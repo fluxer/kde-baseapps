@@ -4,10 +4,6 @@ project (kate)
 # shared libs
 set (LIBRARY_TYPE SHARED)
 
-# activity feature for Kate
-macro_optional_find_package(KActivities 6.1.0 NO_MODULE)
-macro_log_feature(KActivities_FOUND "KActivities" "Activities interface library" "https://projects.kde.org/projects/kde/kdelibs/kactivities" FALSE "6.1.0" "Required for Activities integration.")
-
 # no in source builds
 macro_ensure_out_of_source_build("kate requires an out of source build. Please create a separate build directory and run 'cmake path_to_kate [options]' there.")
 

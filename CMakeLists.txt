@@ -21,7 +21,7 @@ find_package(KActivities 6.1.0)
 set_package_properties(KActivities PROPERTIES DESCRIPTION "Interface library for the activity manager"
                        URL "https://projects.kde.org/kactivities"
                        TYPE RECOMMENDED
-                       PURPOSE "Needed for Dolphin integration with activities"
+                       PURPOSE "Needed for Dolphin and Kate integration with activities"
                       )
 
 include(ConfigureChecks.cmake)
