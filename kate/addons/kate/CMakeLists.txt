@@ -1,5 +1,5 @@
 # Kate interfaces used for the plugins
-include_directories (${CMAKE_SOURCE_DIR}/kate/interfaces)
+include_directories (${CMAKE_SOURCE_DIR}/kate/src/interfaces)
 
 # default debug area
 add_definitions ( -DKDE_DEFAULT_DEBUG_AREA=13040 )

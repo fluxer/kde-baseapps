@@ -29,7 +29,7 @@ include_directories (${CMAKE_CURRENT_BINARY_DIR} ${KDE4_INCLUDES} ${KDE4_KIO_INC
 macro_optional_add_subdirectory (part)
 
 # kate application
-macro_optional_add_subdirectory (kate)
+macro_optional_add_subdirectory (src)
 
 # addons, e.g. ktexteditor plugins, kate plugins, plasma applets, ...
 macro_optional_add_subdirectory (addons)
