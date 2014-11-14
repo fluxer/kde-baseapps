@@ -91,7 +91,7 @@
       <!-- checked -->
     </entry>
     <entry key="KonquerorTabforExternalURL" type="Bool">
-      <default>false</default>
+      <default>true</default>
       <label></label>
       <whatsthis></whatsthis>
       <!-- checked -->
@@ -110,7 +110,7 @@
     </entry>
 <!-- konqtabs.cpp, gui in generalopts.cpp --> 
     <entry key="MouseMiddleClickClosesTab" type="Bool">
-      <default>false</default> 
+      <default>true</default>
       <label></label>
       <whatsthis></whatsthis>
       <!-- checked -->
