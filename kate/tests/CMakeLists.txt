@@ -1,22 +1,22 @@
 set( EXECUTABLE_OUTPUT_PATH ${CMAKE_CURRENT_BINARY_DIR} )
 
 include_directories(
-  ${CMAKE_SOURCE_DIR}/part
-  ${CMAKE_SOURCE_DIR}/part/buffer
-  ${CMAKE_SOURCE_DIR}/part/completion
-  ${CMAKE_SOURCE_DIR}/part/dialogs
-  ${CMAKE_SOURCE_DIR}/part/document
-  ${CMAKE_SOURCE_DIR}/part/script
-  ${CMAKE_SOURCE_DIR}/part/mode
-  ${CMAKE_SOURCE_DIR}/part/render
-  ${CMAKE_SOURCE_DIR}/part/search
-  ${CMAKE_SOURCE_DIR}/part/syntax
-  ${CMAKE_SOURCE_DIR}/part/undo
-  ${CMAKE_SOURCE_DIR}/part/utils
-  ${CMAKE_SOURCE_DIR}/part/vimode
-  ${CMAKE_SOURCE_DIR}/part/view
-  ${CMAKE_SOURCE_DIR}/part/kte5 # KDE5 remove
-  ${CMAKE_BINARY_DIR}/part
+  ${CMAKE_SOURCE_DIR}/kate/part
+  ${CMAKE_SOURCE_DIR}/kate/part/buffer
+  ${CMAKE_SOURCE_DIR}/kate/part/completion
+  ${CMAKE_SOURCE_DIR}/kate/part/dialogs
+  ${CMAKE_SOURCE_DIR}/kate/part/document
+  ${CMAKE_SOURCE_DIR}/kate/part/script
+  ${CMAKE_SOURCE_DIR}/kate/part/mode
+  ${CMAKE_SOURCE_DIR}/kate/part/render
+  ${CMAKE_SOURCE_DIR}/kate/part/search
+  ${CMAKE_SOURCE_DIR}/kate/part/syntax
+  ${CMAKE_SOURCE_DIR}/kate/part/undo
+  ${CMAKE_SOURCE_DIR}/kate/part/utils
+  ${CMAKE_SOURCE_DIR}/kate/part/vimode
+  ${CMAKE_SOURCE_DIR}/kate/part/view
+  ${CMAKE_SOURCE_DIR}/kate/part/kte5 # KDE5 remove
+  ${CMAKE_BINARY_DIR}/kate/part
   ${KDE4_KIO_INCLUDES}
 )
 
