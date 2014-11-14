@@ -4,12 +4,6 @@ project (kate)
 # shared libs
 set (LIBRARY_TYPE SHARED)
 
-# search packages used by KDE
-find_package(KDE4 4.8.0 REQUIRED)
-include (KDE4Defaults)
-include (MacroLibrary)
-include (CheckFunctionExists)
-
 # activity feature for Kate
 macro_optional_find_package(KActivities 6.1.0 NO_MODULE)
 macro_log_feature(KActivities_FOUND "KActivities" "Activities interface library" "https://projects.kde.org/projects/kde/kdelibs/kactivities" FALSE "6.1.0" "Required for Activities integration.")
@@ -35,11 +29,6 @@ add_definitions (-DQT_USE_FAST_CONCATENATION -DQT_USE_FAST_OPERATOR_PLUS -DKTEXT
 # global include directories
 include_directories (${CMAKE_CURRENT_BINARY_DIR} ${KDE4_INCLUDES} ${KDE4_KIO_INCLUDES} ${KACTIVITIES_INCLUDE_DIRS})
 
-# kdelibs 4.11 is required
-if("${KDE_VERSION}" VERSION_LESS 4.10.60)
-  message(FATAL_ERROR "kdelibs version ${KDE_VERSION}, but 4.11 is required")
-endif()
-
 # kate part
 macro_optional_add_subdirectory (part)
 
@@ -51,6 +40,3 @@ macro_optional_add_subdirectory (addons)
 
 # tests
 macro_optional_add_subdirectory (tests)
-
-# display features ;)
-macro_display_feature_log()
