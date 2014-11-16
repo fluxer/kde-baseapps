@@ -1,34 +1,4 @@
-# cmake-options : -WITH_LibKonq=ON or OFF; default is ON
-macro_optional_find_package(LibKonq)
-macro_bool_to_01(LIBKONQ_FOUND HAVE_LIBKONQ)
-
-macro_log_feature(LIBKONQ_FOUND "LibKonq"
-  "Provides high-level file management functions"
-  "https://projects.kde.org/projects/kde/applications/kde-baseapps"
-  FALSE "" "Required for drag-n-drop menus")
-
-if(HAVE_LIBKONQ)
-  include_directories(${LIBKONQ_INCLUDE_DIR})
-endif()
-
-### Too many crashes/issues with detaching on MacOSX
-IF(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
-  set(ENABLE_DETACHING 0)
-else()
-  set(ENABLE_DETACHING 1)
-endif()
-
-### Handle DragonFlyBSD here instead of using __DragonFly__
-IF(${CMAKE_SYSTEM_NAME} MATCHES "DragonFly")
-  set(HAVE_OS_DRAGONFLYBSD 1)
-else()
-  set(HAVE_OS_DRAGONFLYBSD 0)
-endif()
-
 include(CheckIncludeFiles)
-
-configure_file(config-konsole.h.cmake
-              ${CMAKE_CURRENT_BINARY_DIR}/config-konsole.h)
 
 ### Tests
 add_subdirectory(tests)
@@ -128,11 +98,8 @@ set(konsole_LIBS ${KDE4_KPTY_LIBS}
                  ${KDE4_KIO_LIBS}
                  ${KDE4_KNOTIFYCONFIG_LIBS}
                  ${QT_QTXML_LIBRARY}
-                 ${X11_LIBRARIES})
-
-if(HAVE_LIBKONQ)
-  set(konsole_LIBS ${konsole_LIBS} ${LIBKONQ_LIBRARY})
-endif()
+                 ${X11_LIBRARIES}
+                 konq)
 
 ### Konsole Application
 

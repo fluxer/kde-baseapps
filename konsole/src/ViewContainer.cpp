@@ -22,8 +22,6 @@
 // Own
 #include "ViewContainer.h"
 
-#include <config-konsole.h>
-
 // Qt
 #include <QStackedWidget>
 #include <QToolButton>
@@ -284,11 +282,9 @@ TabbedViewContainer::TabbedViewContainer(NavigationPosition position, ViewManage
     // The context menu of tab bar
     _contextPopupMenu = new KMenu(_tabBar);
 
-#if defined(ENABLE_DETACHING)
     _contextPopupMenu->addAction(KIcon("tab-detach"),
                                  i18nc("@action:inmenu", "&Detach Tab"), this,
                                  SLOT(tabContextMenuDetachTab()));
-#endif
 
     _contextPopupMenu->addAction(KIcon("edit-rename"),
                                  i18nc("@action:inmenu", "&Rename Tab..."), this,
@@ -555,12 +551,10 @@ void TabbedViewContainer::openTabContextMenu(int index, const QPoint& pos)
 {
     _contextMenuTabIndex = index;
 
-#if defined(ENABLE_DETACHING)
     // Enable 'Detach Tab' menu item only if there is more than 1 tab
     // Note: the code is coupled with that action's position within the menu
     QAction* detachAction = _contextPopupMenu->actions().first();
     detachAction->setEnabled(_tabBar->count() > 1);
-#endif
 
     _contextPopupMenu->exec(pos);
 }

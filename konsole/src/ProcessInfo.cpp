@@ -17,9 +17,6 @@
     02110-1301  USA.
 */
 
-// Config
-#include <config-konsole.h>
-
 // Own
 #include "ProcessInfo.h"
 
@@ -637,19 +634,11 @@ private:
             return false;
         }
 
-#if defined(HAVE_OS_DRAGONFLYBSD)
-        setName(kInfoProc->kp_comm);
-        setPid(kInfoProc->kp_pid);
-        setParentPid(kInfoProc->kp_ppid);
-        setForegroundPid(kInfoProc->kp_pgid);
-        setUserId(kInfoProc->kp_uid);
-#else
         setName(kInfoProc->ki_comm);
         setPid(kInfoProc->ki_pid);
         setParentPid(kInfoProc->ki_ppid);
         setForegroundPid(kInfoProc->ki_pgid);
         setUserId(kInfoProc->ki_uid);
-#endif
 
         readUserName();
 
@@ -687,24 +676,6 @@ private:
     }
 
     virtual bool readCurrentDir(int aPid) {
-#if defined(HAVE_OS_DRAGONFLYBSD)
-        char buf[PATH_MAX];
-        int managementInfoBase[4];
-        size_t len;
-
-        managementInfoBase[0] = CTL_KERN;
-        managementInfoBase[1] = KERN_PROC;
-        managementInfoBase[2] = KERN_PROC_CWD;
-        managementInfoBase[3] = aPid;
-
-        len = sizeof(buf);
-        if (sysctl(managementInfoBase, 4, buf, &len, NULL, 0) == -1)
-            return false;
-
-        setCurrentDir(buf);
-
-        return true;
-#else
         int numrecords;
         struct kinfo_file* info = 0;
 
@@ -724,7 +695,6 @@ private:
 
         free(info);
         return false;
-#endif
     }
 };
 

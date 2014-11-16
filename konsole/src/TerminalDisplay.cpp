@@ -23,9 +23,6 @@
 // Own
 #include "TerminalDisplay.h"
 
-// Config
-#include <config-konsole.h>
-
 // Qt
 #include <QApplication>
 #include <QtGui/QClipboard>
@@ -52,9 +49,7 @@
 #include <KNotification>
 #include <KGlobalSettings>
 #include <KIO/NetAccess>
-#if defined(HAVE_LIBKONQ)
-    #include <konq_operations.h>
-#endif
+#include <konq_operations.h>
 
 #include <KFileItem>
 #include <KMessageBox>
@@ -3149,7 +3144,6 @@ void TerminalDisplay::dropEvent(QDropEvent* event)
             dropText += ' ';
         }
 
-#if defined(HAVE_LIBKONQ)
         // If our target is local we will open a popup - otherwise the fallback kicks
         // in and the URLs will simply be pasted as text.
         if (_sessionController && _sessionController->url().isLocalFile()) {
@@ -3185,7 +3179,6 @@ void TerminalDisplay::dropEvent(QDropEvent* event)
 
             return;
         }
-#endif
 
     } else {
         dropText = event->mimeData()->text();
