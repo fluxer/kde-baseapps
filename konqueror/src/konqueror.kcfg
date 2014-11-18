@@ -97,7 +97,7 @@
       <!-- checked -->
     </entry>
     <entry key="PopupsWithinTabs" type="Bool">
-      <default>false</default> 
+      <default>true</default>
       <label></label>
       <whatsthis></whatsthis>
       <!-- checked -->
