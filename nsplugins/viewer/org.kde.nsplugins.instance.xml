@@ -37,7 +37,7 @@
          So (bits)
     -->
     <method name="lcGet">
-        <annotation name="com.trolltech.QtDBus.QtTypeName.Out0" value="NSLiveConnectResult"/>
+        <annotation name="org.qtproject.QtDBus.QtTypeName.Out0" value="NSLiveConnectResult"/>
         <arg type="(bits)" direction="out"/>
         <arg name="objid" type="t" />
         <arg name="field" type="s" />
@@ -51,7 +51,7 @@
     </method>
 
     <method name="lcCall">
-        <annotation name="com.trolltech.QtDBus.QtTypeName.Out0" value="NSLiveConnectResult"/>
+        <annotation name="org.qtproject.QtDBus.QtTypeName.Out0" value="NSLiveConnectResult"/>
         <arg type="(bits)" direction="out"/>
         <arg name="objid" type="t" />
         <arg name="field" type="s" />
