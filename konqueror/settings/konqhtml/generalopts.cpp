@@ -82,7 +82,6 @@ void KKonqGeneralOptions::addHomeUrlWidgets(QVBoxLayout* lay)
 
     m_startCombo = new KComboBox(this);
     m_startCombo->setEditable(false);
-    m_startCombo->addItem(i18nc("@item:inlistbox", "Show Introduction Page"), ShowAboutPage);
     m_startCombo->addItem(i18nc("@item:inlistbox", "Show My Home Page"), ShowHomePage);
     m_startCombo->addItem(i18nc("@item:inlistbox", "Show Blank Page"), ShowBlankPage);
     m_startCombo->addItem(i18nc("@item:inlistbox", "Show My Bookmarks"), ShowBookmarksPage);

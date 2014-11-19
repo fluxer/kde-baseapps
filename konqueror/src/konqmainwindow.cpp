@@ -3919,10 +3919,6 @@ void KonqMainWindow::initActions()
   m_paShowStatusBar = KStandardAction::showStatusbar( this, SLOT(slotShowStatusBar()), this );
   actionCollection()->addAction( KStandardAction::name(KStandardAction::ShowStatusbar), m_paShowStatusBar );
 
-  action = actionCollection()->addAction( "konqintro" );
-  action->setText( i18n( "Kon&queror Introduction" ) );
-  connect(action, SIGNAL(triggered()), SLOT(slotIntro()));
-
   QAction *goUrl = actionCollection()->addAction("go_url");
   goUrl->setIcon( KIcon("go-jump-locationbar") );
   goUrl->setText( i18n( "Go" ) );
