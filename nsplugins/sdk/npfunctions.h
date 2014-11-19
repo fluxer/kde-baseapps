@@ -237,14 +237,10 @@ typedef const char* (*NP_GetMIMEDescriptionProcPtr)(void);
 typedef OSErr (*BP_GetSupportedMIMETypesProcPtr)(BPSupportedMIMETypes*, UInt32);
 #endif
 
-#if defined(_WIN32)
-#define OSCALL WINAPI
-#else
 #if defined(__OS2__)
 #define OSCALL _System
 #else
 #define OSCALL
-#endif
 #endif
 
 #if defined(XP_UNIX)

@@ -56,12 +56,6 @@
 #endif
 #endif
 
-#if defined(_WIN32) && !defined(__SYMBIAN32__)
-#include <windef.h>
-#ifndef XP_WIN
-#define XP_WIN 1
-#endif
-#endif
 
 #if defined(__SYMBIAN32__)
 #ifndef XP_SYMBIAN

@@ -25,11 +25,7 @@
 #ifdef MAKE_KATEINTERFACES_LIB
 # define KATEINTERFACES_EXPORT KDE_EXPORT
 #else
-# if defined _WIN32 || defined _WIN64
-#  define KATEINTERFACES_EXPORT KDE_IMPORT
-# else
 #  define KATEINTERFACES_EXPORT KDE_EXPORT
-# endif
 #endif
 
 #endif // _KATE_EXPORT_H
