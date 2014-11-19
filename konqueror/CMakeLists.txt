@@ -8,7 +8,6 @@ endif(Q_WS_X11)
 add_subdirectory( src )
 add_subdirectory( client )
 
-add_subdirectory( about )
 add_subdirectory( pics )
 add_subdirectory( sidebar )
 add_subdirectory( preloader )
