@@ -31,9 +31,6 @@
 #include <kstringhandler.h>
 #include <QDir>
 
-#ifdef Q_OS_WIN
-#include "Windows.h"
-#endif
 
 KonqCopyToMenuPrivate::KonqCopyToMenuPrivate(QWidget* parentWidget)
     : m_urls(), m_readOnly(false), m_parentWidget(parentWidget)
@@ -114,42 +111,10 @@ void KonqCopyToMainMenu::slotAboutToShow()
     addMenu(subMenu);
 
     // Root Folder
-#ifndef Q_OS_WIN
     subMenu = new KonqCopyToDirectoryMenu(this, this, QDir::rootPath());
     subMenu->setTitle(i18nc("@title:menu", "Root Folder"));
     subMenu->setIcon(KIcon("folder-red"));
     addMenu(subMenu);
-#else
-    foreach ( const QFileInfo& info, QDir::drives() ) {
-        uint type = DRIVE_UNKNOWN;
-        QString driveIcon = "drive-harddisk";
-        QT_WA({ type = GetDriveTypeW((wchar_t *)info.absoluteFilePath().utf16()); },
-              { type = GetDriveTypeA(info.absoluteFilePath().toLocal8Bit()); });
-        switch (type) {
-            case DRIVE_REMOVABLE:
-                driveIcon = "drive-removable-media";
-                break;
-            case DRIVE_FIXED:
-                driveIcon = "drive-harddisk";
-                break;
-            case DRIVE_REMOTE:
-                driveIcon = "network-server";
-                break;
-            case DRIVE_CDROM:
-                driveIcon = "drive-optical";
-                break;
-            case DRIVE_RAMDISK:
-            case DRIVE_UNKNOWN:
-            case DRIVE_NO_ROOT_DIR:
-            default:
-                driveIcon = "drive-harddisk";
-        }
-        subMenu = new KonqCopyToDirectoryMenu(this, this, info.absoluteFilePath());
-        subMenu->setTitle(info.absoluteFilePath());
-        subMenu->setIcon(KIcon(driveIcon));
-        addMenu(subMenu);
-    }
-#endif
 
     // Browse... action, shows a KFileDialog
     KAction* browseAction = new KAction(i18nc("@title:menu in Copy To or Move To submenu", "Browse..."), this);

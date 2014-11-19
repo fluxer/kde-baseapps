@@ -76,10 +76,6 @@ ViewProperties::ViewProperties(const KUrl& url) :
         if (!dirInfo.isWritable()
                 || (fileInfo.exists() && !(fileInfo.isReadable() && fileInfo.isWritable()))
                 || !isPartOfHome(m_filePath)) {
-#ifdef Q_OS_WIN
-			// m_filePath probably begins with C:/ - the colon is not a valid character for paths though
-			m_filePath =  QDir::separator() + m_filePath.remove(QLatin1Char(':'));
-#endif
             m_filePath = destinationDir("local") + m_filePath;
         }
     } else {

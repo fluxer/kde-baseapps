@@ -411,7 +411,6 @@ void KonqOperations::asyncDrop( const KFileItem & destItem )
                 if ( mp ) {
                     doDropFileCopy();
                 }
-#ifndef Q_WS_WIN
                 else
                 {
                     const bool ro = desktopGroup.readEntry( "ReadOnly", false );
@@ -419,7 +418,6 @@ void KonqOperations::asyncDrop( const KFileItem & destItem )
                     KAutoMount* am = new KAutoMount( ro, fstype, dev, point, m_destUrl.path(), false );
                     connect( am, SIGNAL(finished()), this, SLOT(doDropFileCopy()) );
                 }
-#endif
                 return;
             }
             else if ( desktopFile.hasLinkType() && desktopGroup.hasKey("URL") ) {
@@ -722,13 +720,8 @@ void KonqOperations::_addPluginActions(QList<QAction*>& pluginActions,const KUrl
 // these two are from /apps/konqueror/settings/konq/globalpaths.cpp
 static bool cleanHomeDirPath( QString &path, const QString &homeDir )
 {
-#ifdef Q_WS_WIN //safer
-    if (!QDir::convertSeparators(path).startsWith(QDir::convertSeparators(homeDir)))
-        return false;
-#else
     if (!path.startsWith(homeDir))
         return false;
-#endif
 
     int len = homeDir.length();
     // replace by "$HOME" if possible

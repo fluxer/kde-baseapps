@@ -405,13 +405,11 @@ static void saveSessionTo(KConfig *sc)
    */
   QFile fileToSync (sc->name());
   if (fileToSync.open (QIODevice::ReadOnly)) {
-#ifndef Q_OS_WIN
     // ensure that the file is written to disk
 #ifdef HAVE_FDATASYNC
     fdatasync (fileToSync.handle());
 #else
     fsync (fileToSync.handle());
-#endif
 #endif
   }
 }

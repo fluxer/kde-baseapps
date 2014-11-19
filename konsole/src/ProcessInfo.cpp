@@ -46,10 +46,6 @@
 #include <sys/sysctl.h>
 #endif
 
-#if defined(Q_OS_MAC)
-#include <libproc.h>
-#include <kde_file.h>
-#endif
 
 #if defined(Q_OS_FREEBSD) || defined(Q_OS_OPENBSD)
 #include <sys/types.h>
@@ -360,7 +356,6 @@ void NullProcessInfo::readUserName()
 {
 }
 
-#if !defined(Q_OS_WIN)
 UnixProcessInfo::UnixProcessInfo(int aPid, bool enableEnvironmentRead)
     : ProcessInfo(aPid, enableEnvironmentRead)
 {
@@ -411,7 +406,6 @@ void UnixProcessInfo::readUserName()
     }
     delete [] getpwBuffer;
 }
-#endif
 
 #if defined(Q_OS_LINUX)
 class LinuxProcessInfo : public UnixProcessInfo
@@ -832,88 +826,6 @@ private:
     }
 };
 
-#elif defined(Q_OS_MAC)
-class MacProcessInfo : public UnixProcessInfo
-{
-public:
-    MacProcessInfo(int aPid, bool env) :
-        UnixProcessInfo(aPid, env) {
-    }
-
-private:
-    virtual bool readProcInfo(int aPid) {
-        int managementInfoBase[4];
-        size_t mibLength;
-        struct kinfo_proc* kInfoProc;
-        KDE_struct_stat statInfo;
-
-        // Find the tty device of 'pid' (Example: /dev/ttys001)
-        managementInfoBase[0] = CTL_KERN;
-        managementInfoBase[1] = KERN_PROC;
-        managementInfoBase[2] = KERN_PROC_PID;
-        managementInfoBase[3] = aPid;
-
-        if (sysctl(managementInfoBase, 4, NULL, &mibLength, NULL, 0) == -1) {
-            return false;
-        } else {
-            kInfoProc = new struct kinfo_proc [mibLength];
-            if (sysctl(managementInfoBase, 4, kInfoProc, &mibLength, NULL, 0) == -1) {
-                delete [] kInfoProc;
-                return false;
-            } else {
-                const QString deviceNumber = QString(devname(((&kInfoProc->kp_eproc)->e_tdev), S_IFCHR));
-                const QString fullDeviceName =  QString("/dev/") + deviceNumber.rightJustified(3, '0');
-                delete [] kInfoProc;
-
-                const QByteArray deviceName = fullDeviceName.toLatin1();
-                const char* ttyName = deviceName.data();
-
-                if (KDE::stat(ttyName, &statInfo) != 0)
-                    return false;
-
-                // Find all processes attached to ttyName
-                managementInfoBase[0] = CTL_KERN;
-                managementInfoBase[1] = KERN_PROC;
-                managementInfoBase[2] = KERN_PROC_TTY;
-                managementInfoBase[3] = statInfo.st_rdev;
-
-                mibLength = 0;
-                if (sysctl(managementInfoBase, sizeof(managementInfoBase) / sizeof(int), NULL, &mibLength, NULL, 0) == -1)
-                    return false;
-
-                kInfoProc = new struct kinfo_proc [mibLength];
-                if (sysctl(managementInfoBase, sizeof(managementInfoBase) / sizeof(int), kInfoProc, &mibLength, NULL, 0) == -1)
-                    return false;
-
-                // The foreground program is the first one
-                setName(QString(kInfoProc->kp_proc.p_comm));
-
-                delete [] kInfoProc;
-            }
-            setPid(aPid);
-        }
-        return true;
-    }
-
-    virtual bool readArguments(int aPid) {
-        Q_UNUSED(aPid);
-        return false;
-    }
-    virtual bool readCurrentDir(int aPid) {
-        struct proc_vnodepathinfo vpi;
-        const int nb = proc_pidinfo(aPid, PROC_PIDVNODEPATHINFO, 0, &vpi, sizeof(vpi));
-        if (nb == sizeof(vpi)) {
-            setCurrentDir(QString(vpi.pvi_cdir.vip_path));
-            return true;
-        }
-        return false;
-    }
-    virtual bool readEnvironment(int aPid) {
-        Q_UNUSED(aPid);
-        return false;
-    }
-};
-
 #elif defined(Q_OS_SOLARIS)
 // The procfs structure definition requires off_t to be
 // 32 bits, which only applies if FILE_OFFSET_BITS=32.
@@ -1138,8 +1050,6 @@ ProcessInfo* ProcessInfo::newInstance(int aPid, bool enableEnvironmentRead)
     return new LinuxProcessInfo(aPid, enableEnvironmentRead);
 #elif defined(Q_OS_SOLARIS)
     return new SolarisProcessInfo(aPid, enableEnvironmentRead);
-#elif defined(Q_OS_MAC)
-    return new MacProcessInfo(aPid, enableEnvironmentRead);
 #elif defined(Q_OS_FREEBSD)
     return new FreeBSDProcessInfo(aPid, enableEnvironmentRead);
 #elif defined(Q_OS_OPENBSD)

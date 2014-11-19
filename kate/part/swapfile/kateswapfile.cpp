@@ -587,13 +587,11 @@ void SwapFile::writeFileToDisk()
   if (m_needSync) {
     m_needSync = false;
 
-    #ifndef Q_OS_WIN
     // ensure that the file is written to disk
     #ifdef HAVE_FDATASYNC
     fdatasync (m_swapfile.handle());
     #else
     fsync (m_swapfile.handle());
-    #endif
     #endif
   }
 }

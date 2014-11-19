@@ -54,9 +54,6 @@
 #include <QtDBus/QDBusConnectionInterface>
 #endif
 
-#ifdef Q_WS_WIN
-#include <QFileDialog>
-#endif
 #include <unistd.h>
 
 using namespace std;
@@ -209,20 +206,12 @@ static int directCommand(KCmdLineArgs *args)
     WId winid = 0;
     bool attach = args->isSet("attach");
     if(attach) {
-#ifdef Q_WS_WIN
-        winid = reinterpret_cast<WId>(args->getOption("attach").toLong(&attach, 0));  //C style parsing.  If the string begins with "0x", base 16 is used; if the string begins with "0", base 8 is used; otherwise, base 10 is used.
-#else
         winid = args->getOption("attach").toLong(&attach, 0);  //C style parsing.  If the string begins with "0x", base 16 is used; if the string begins with "0", base 8 is used; otherwise, base 10 is used.
-#endif
     } else if(args->isSet("embed")) {
         /* KDialog originally used --embed for attaching the dialog box.  However this is misleading and so we changed to --attach.
          * For consistancy, we silently map --embed to --attach */
         attach = true;
-#ifdef Q_WS_WIN
-        winid = reinterpret_cast<WId>(args->getOption("embed").toLong(&attach, 0));  //C style parsing.  If the string begins with "0x", base 16 is used; if the string begins with "0", base 8 is used; otherwise, base 10 is used.
-#else
         winid = args->getOption("embed").toLong(&attach, 0);  //C style parsing.  If the string begins with "0x", base 16 is used; if the string begins with "0", base 8 is used; otherwise, base 10 is used.
-#endif
     }
 
     if (printWId || attach)
@@ -640,11 +629,6 @@ static int directCommand(KCmdLineArgs *args)
         QString startDir;
         startDir = args->getOption("getexistingdirectory");
 	QString result;
-#ifdef Q_WS_WIN
-	result = QFileDialog::getExistingDirectory( 0, title, startDir,
-	                                            QFileDialog::DontResolveSymlinks |
-	                                            QFileDialog::ShowDirsOnly);
-#else
 	KUrl url;
 	KDirSelectDialog myDialog( startDir, true, 0 );
 
@@ -659,7 +643,6 @@ static int directCommand(KCmdLineArgs *args)
 
 	if ( url.isValid() )
 	    result = url.path();
-#endif
         if (!result.isEmpty())  {
             cout << result.toLocal8Bit().data() << endl;
             return 0;

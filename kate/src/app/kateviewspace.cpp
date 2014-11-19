@@ -318,10 +318,6 @@ KateVSStatusBar::KateVSStatusBar ( KateViewSpace *parent)
   m_encodingLabel->setAlignment( Qt::AlignCenter );
   m_encodingLabel->installEventFilter( this );
 
-#ifdef Q_WS_MAC
-  setSizeGripEnabled( false );
-  addPermanentWidget( new QSizeGrip( this ) );
-#endif
 
   installEventFilter( this );
   m_modPm = KIcon("document-save").pixmap(16);

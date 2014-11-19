@@ -21,12 +21,8 @@
 #include "kdirectorycontentscounterworker.h"
 
 // Required includes for subItemsCount():
-#ifdef Q_WS_WIN
-    #include <QDir>
-#else
     #include <dirent.h>
     #include <QFile>
-#endif
 
 KDirectoryContentsCounterWorker::KDirectoryContentsCounterWorker(QObject* parent) :
     QObject(parent)
@@ -39,19 +35,6 @@ int KDirectoryContentsCounterWorker::subItemsCount(const QString& path, Options 
     const bool countHiddenFiles = options & CountHiddenFiles;
     const bool countDirectoriesOnly = options & CountDirectoriesOnly;
 
-#ifdef Q_WS_WIN
-    QDir dir(path);
-    QDir::Filters filters = QDir::NoDotAndDotDot | QDir::System;
-    if (countHiddenFiles) {
-        filters |= QDir::Hidden;
-    }
-    if (countDirectoriesOnly) {
-        filters |= QDir::Dirs;
-    } else {
-        filters |= QDir::AllEntries;
-    }
-    return dir.entryList(filters).count();
-#else
     // Taken from kdelibs/kio/kio/kdirmodel.cpp
     // Copyright (C) 2006 David Faure <faure@kde.org>
 
@@ -86,7 +69,6 @@ int KDirectoryContentsCounterWorker::subItemsCount(const QString& path, Options 
         ::closedir(dir);
     }
     return count;
-#endif
 }
 
 void KDirectoryContentsCounterWorker::countDirectoryContents(const QString& path, Options options)

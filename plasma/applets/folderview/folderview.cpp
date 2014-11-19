@@ -61,10 +61,6 @@
 
 #include <limits.h>
 
-#ifdef Q_OS_WIN
-#  define _WIN32_WINNT 0x0500 // require NT 5.0 (win 2k pro)
-#  include <windows.h>
-#endif // Q_OS_WIN
 
 #include <Plasma/Corona>
 #include <Plasma/PaintUtils>

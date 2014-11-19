@@ -88,9 +88,6 @@ PopupView::PopupView(const QModelIndex &index, const QPoint &pos,
     }
 #endif
 
-#ifdef Q_WS_WIN
-    setWindowFlags(Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint | Qt::Tool);
-#endif
 
     KWindowSystem::setState(effectiveWinId(), NET::SkipTaskbar | NET::SkipPager);
 

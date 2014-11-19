@@ -23,9 +23,6 @@
 #include <QDBusConnectionInterface>
 #include <unistd.h>
 
-#ifdef Q_WS_WIN
-#include <process.h>
-#endif
 
 int KateRunningInstanceInfo::dummy_session=0;
 

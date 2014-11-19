@@ -30,11 +30,7 @@
 #ifdef MAKE_KONQ_LIB
 # define LIBKONQ_EXPORT KDE_EXPORT
 #else
-# ifdef Q_OS_WIN
-#  define LIBKONQ_EXPORT KDE_IMPORT
-# else
 #  define LIBKONQ_EXPORT KDE_EXPORT
-# endif
 #endif
 
 # ifndef LIBKONQ_EXPORT_DEPRECATED

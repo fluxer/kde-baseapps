@@ -3171,13 +3171,8 @@ void KateViewInternal::fixDropEvent(QDropEvent* event) {
   if (event->source()!=this) event->setDropAction(Qt::CopyAction);
   else {
     Qt::DropAction action=Qt::MoveAction;
-#ifdef Q_WS_MAC
-    if(event->keyboardModifiers() & Qt::AltModifier)
-        action = Qt::CopyAction;
-#else
     if (event->keyboardModifiers() & Qt::ControlModifier)
         action = Qt::CopyAction;
-#endif
     event->setDropAction(action);
   }
 }

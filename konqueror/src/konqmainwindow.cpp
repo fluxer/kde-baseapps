@@ -1824,9 +1824,7 @@ void KonqMainWindow::slotConfigure()
         //BEGIN SYNC with initActions()
         const char* const toplevelModules[]={
                 "khtml_general",
-#ifndef Q_WS_WIN
                 "kcmkonqyperformance",
-#endif
                 "bookmarks"};
         for (uint i=0;i<sizeof(toplevelModules)/sizeof(char*);++i)
             if (KAuthorized::authorizeControlModule(toplevelModules[i]))

@@ -808,13 +808,11 @@ bool TextBuffer::save (const QString &filename)
   if (!saveFile.flush())
     return false;
 
-#ifndef Q_OS_WIN
   // ensure that the file is written to disk
 #ifdef HAVE_FDATASYNC
   fdatasync (saveFile.handle());
 #else
   fsync (saveFile.handle());
-#endif
 #endif
 
   // did save work?

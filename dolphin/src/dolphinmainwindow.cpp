@@ -39,9 +39,7 @@
 #include "views/viewproperties.h"
 #include "views/dolphinnewfilemenuobserver.h"
 
-#ifndef Q_OS_WIN
 #include "panels/terminal/terminalpanel.h"
-#endif
 
 #include "dolphin_generalsettings.h"
 
@@ -1510,7 +1508,6 @@ void DolphinMainWindow::setupDockWidgets()
             this, SLOT(slotPanelErrorMessage(QString)));
 
     // Setup "Terminal"
-#ifndef Q_OS_WIN
     DolphinDockWidget* terminalDock = new DolphinDockWidget(i18nc("@title:window Shell terminal", "Terminal"));
     terminalDock->setLocked(lock);
     terminalDock->setObjectName("terminalDock");
@@ -1530,14 +1527,11 @@ void DolphinMainWindow::setupDockWidgets()
     addDockWidget(Qt::BottomDockWidgetArea, terminalDock);
     connect(this, SIGNAL(urlChanged(KUrl)),
             terminalPanel, SLOT(setUrl(KUrl)));
-#endif
 
     if (GeneralSettings::version() < 200) {
         infoDock->hide();
         foldersDock->hide();
-#ifndef Q_OS_WIN
         terminalDock->hide();
-#endif
     }
 
     // Setup "Places"
@@ -1575,9 +1569,7 @@ void DolphinMainWindow::setupDockWidgets()
     panelsMenu->addAction(ac->action("show_places_panel"));
     panelsMenu->addAction(ac->action("show_information_panel"));
     panelsMenu->addAction(ac->action("show_folders_panel"));
-#ifndef Q_OS_WIN
     panelsMenu->addAction(ac->action("show_terminal_panel"));
-#endif
     panelsMenu->addSeparator();
     panelsMenu->addAction(lockLayoutAction);
 }
