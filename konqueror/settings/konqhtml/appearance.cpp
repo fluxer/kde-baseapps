@@ -14,7 +14,7 @@
 #include <kdebug.h>
 #include <kdialog.h>
 #include <kglobal.h>
-#include <khtmldefaults.h>
+#include <kglobalsettings.h>
 #include <klocale.h>
 #include <knuminput.h>
 #include <kglobalsettings.h>
