@@ -57,7 +57,6 @@
 #include <konqmimedata.h>
 #include <konq_operations.h>
 #include <konq_popupmenu.h>
-#include <konq_popupmenuinformation.h>
 
 #include <limits.h>
 
