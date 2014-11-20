@@ -26,7 +26,7 @@
 #include "kfileitemactionplugin.h"
 #include "kabstractfileitemactionplugin.h"
 #include "kpropertiesdialog.h"
-#include "knewmenu.h"
+#include "knewfilemenu.h"
 #include "konq_operations.h"
 
 #include <klocale.h>
