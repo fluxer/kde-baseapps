@@ -47,17 +47,13 @@ install(TARGETS konq_sound  DESTINATION ${PLUGIN_INSTALL_DIR} )
 
 install( FILES directory_bookmarkbar.desktop   DESTINATION  ${DATA_INSTALL_DIR}/kbookmark )
 install( FILES
- konq_popupmenu.h
- konq_popupmenuinformation.h
  konq_popupmenuplugin.h
  konq_dndpopupmenuplugin.h
- konq_menuactions.h
  # konq_copytomenu.h - anyone needs it?
  konq_operations.h
  libkonq_export.h
  konq_events.h
  konqmimedata.h
- konq_fileitemcapabilities.h
  kversioncontrolplugin.h
  kversioncontrolplugin2.h
  konq_historyprovider.h
