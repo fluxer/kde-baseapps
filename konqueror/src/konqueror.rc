@@ -85,9 +85,6 @@
   <Action name="tab_move_left"/>
   <Action name="tab_move_right"/>
  </Menu>
- <Menu name="help" append="about_merge"><text>&amp;Help</text>
-  <Action name="konqintro"/>
- </Menu>
  <Merge/>
 </MenuBar>
 <ToolBar iconText="icononly" name="mainToolBar" newline="true" noMerge="1"><text>Main Toolbar</text>

@@ -22,12 +22,6 @@ set(konq_LIB_SRCS
    konq_historyprovider.cpp
    kversioncontrolplugin.cpp  # used by dolphin and its version control plugins (deprecated)
    kversioncontrolplugin2.cpp # used by dolphin and its version control plugins
-
-   konq_nameandurlinputdialog.cpp # deprecated (functionality has moved to kdelibs)
-   knewmenu.cpp # deprecated (functionality has moved to kdelibs)
-   konq_popupmenuinformation.cpp # deprecated (functionality has moved to kdelibs)
-   konq_menuactions.cpp     # deprecated (functionality has moved to kdelibs)
-   konq_fileitemcapabilities.cpp # deprecated (functionality has moved to kdelibs)
 )
 
 kde4_add_library(konq SHARED ${konq_LIB_SRCS})
@@ -57,7 +51,6 @@ install( FILES
  konq_popupmenuinformation.h
  konq_popupmenuplugin.h
  konq_dndpopupmenuplugin.h
- knewmenu.h
  konq_menuactions.h
  # konq_copytomenu.h - anyone needs it?
  konq_operations.h

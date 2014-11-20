@@ -4402,7 +4402,7 @@ void KonqMainWindow::disableActionsNoView()
     // settings, etc.
     static const char* const s_enActions[] = { "new_window", "duplicate_window", "open_location",
                                          "toolbar_url_combo", "clear_location", "animated_logo",
-                                         "konqintro", "go_most_often", "go_applications",
+                                         "go_most_often", "go_applications",
                                          "go_trash", "go_settings", "go_network_folders", "go_autostart",
                                          "go_url", "go_media", "go_history", "options_configure_extensions", 0 };
     for ( int i = 0 ; s_enActions[i] ; ++i )
