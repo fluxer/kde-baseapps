@@ -5227,11 +5227,6 @@ void KonqMainWindow::updateWindowIcon()
     KWindowSystem::setIcons( winId(), big, pix );
 }
 
-void KonqMainWindow::slotIntro()
-{
-  openUrl( 0, KUrl("about:") );
-}
-
 void KonqMainWindow::goURL()
 {
   QLineEdit *lineEdit = comboEdit();

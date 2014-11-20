@@ -543,7 +543,6 @@ private Q_SLOTS:
   void slotUndoTextChanged(const QString& newText);
 
   void slotRequesterClicked( KUrlRequester * );
-  void slotIntro();
   void slotItemsRemoved(const KFileItemList &);
   /**
    * Loads the url displayed currently in the lineedit of the locationbar, by
