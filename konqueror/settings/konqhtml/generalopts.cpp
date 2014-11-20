@@ -38,7 +38,7 @@
 K_PLUGIN_FACTORY_DECLARATION(KcmKonqHtmlFactory)
 
 // Keep in sync with konqueror.kcfg
-static const char DEFAULT_HOMEPAGE[] = "http://www.kde.org";
+static const char DEFAULT_HOMEPAGE[] = "http://www.entropy-linux.com/";
 enum StartPage { ShowHomePage, ShowBlankPage, ShowAboutPage, ShowBookmarksPage };
 
 //-----------------------------------------------------------------------------
