@@ -56,7 +56,6 @@
 #include <KJob>
 #include <KMenu>
 #include <KMessageBox>
-#include <konq_fileitemcapabilities.h>
 #include <konq_operations.h>
 #include <konqmimedata.h>
 #include <KToggleAction>
