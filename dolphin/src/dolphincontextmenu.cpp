@@ -28,7 +28,6 @@
 
 #include <KActionCollection>
 #include <KDesktopFile>
-#include <kfileitemactionplugin.h>
 #include <kabstractfileitemactionplugin.h>
 #include <KFileItemActions>
 #include <KFileItemListProperties>
@@ -495,12 +494,6 @@ void DolphinContextMenu::addFileItemPluginActions()
             continue;
         }
 
-        // Old API (kdelibs-4.6.0 only)
-        KFileItemActionPlugin* plugin = service->createInstance<KFileItemActionPlugin>();
-        if (plugin) {
-            plugin->setParent(this);
-            addActions(plugin->actions(props, m_mainWindow));
-        }
         // New API (kdelibs >= 4.6.1)
         KAbstractFileItemActionPlugin* abstractPlugin = service->createInstance<KAbstractFileItemActionPlugin>();
         if (abstractPlugin) {
