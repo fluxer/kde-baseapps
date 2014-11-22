@@ -1,6 +1,0 @@
-add_subdirectory(dolphin)
-add_subdirectory(kate)
-add_subdirectory(kfind)
-add_subdirectory(konqueror)
-add_subdirectory(konsole/manual)
-add_subdirectory(kdepasswd)
