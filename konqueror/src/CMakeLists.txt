@@ -100,7 +100,7 @@ if (UNIX)
 endif (UNIX)
 
 if (KActivities_FOUND)
-  target_link_libraries(kdeinit_konqueror ${KACTIVITIES_LIBRARY})
+  target_link_libraries(kdeinit_konqueror ${KACTIVITIES_LIBRARIES})
 endif (KActivities_FOUND)
 
 if (NOT WIN32)

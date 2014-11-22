@@ -262,7 +262,7 @@ endif()
 if (KActivities_FOUND)
     target_link_libraries(
         kdeinit_dolphin
-        ${KACTIVITIES_LIBRARY}
+        ${KACTIVITIES_LIBRARIES}
     )
 endif (KActivities_FOUND)
 
