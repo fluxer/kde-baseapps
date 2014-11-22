@@ -21,25 +21,17 @@
 
 #include "TerminalDisplayAccessible.h"
 
-#if QT_VERSION >= 0x040800 // added in Qt 4.8.0
 QString Q_GUI_EXPORT qTextBeforeOffsetFromString(int offset, QAccessible2::BoundaryType boundaryType,
         int* startOffset, int* endOffset, const QString& text);
 QString Q_GUI_EXPORT qTextAtOffsetFromString(int offset, QAccessible2::BoundaryType boundaryType,
         int* startOffset, int* endOffset, const QString& text);
 QString Q_GUI_EXPORT qTextAfterOffsetFromString(int offset, QAccessible2::BoundaryType boundaryType,
         int* startOffset, int* endOffset, const QString& text);
-#endif
 
 using namespace Konsole;
 
 TerminalDisplayAccessible::TerminalDisplayAccessible(TerminalDisplay* display)
-    : QAccessibleWidgetEx(display,
-#if QT_VERSION > 0x040800 // added in Qt 4.8.1
-                          QAccessible::Terminal
-#else
-                          QAccessible::EditableText
-#endif
-                         )
+    : QAccessibleWidgetEx(display, QAccessible::Terminal)
     , QAccessibleSimpleEditableTextInterface(this)
 {}
 
@@ -183,31 +175,19 @@ QString TerminalDisplayAccessible::text(int startOffset, int endOffset)
 QString TerminalDisplayAccessible::textAfterOffset(int offset, QAccessible2::BoundaryType boundaryType, int* startOffset, int* endOffset)
 {
     const QString text = visibleText();
-#if QT_VERSION >= 0x040800 // added in Qt 4.8.0
     return qTextAfterOffsetFromString(offset, boundaryType, startOffset, endOffset, text);
-#else
-    return text;
-#endif
 }
 
 QString TerminalDisplayAccessible::textAtOffset(int offset, QAccessible2::BoundaryType boundaryType, int* startOffset, int* endOffset)
 {
     const QString text = visibleText();
-#if QT_VERSION >= 0x040800 // added in Qt 4.8.0
     return qTextAtOffsetFromString(offset, boundaryType, startOffset, endOffset, text);
-#else
-    return text;
-#endif
 }
 
 QString TerminalDisplayAccessible::textBeforeOffset(int offset, QAccessible2::BoundaryType boundaryType, int* startOffset, int* endOffset)
 {
     const QString text = visibleText();
-#if QT_VERSION >= 0x040800 // added in Qt 4.8.0
     return qTextBeforeOffsetFromString(offset, boundaryType, startOffset, endOffset, text);
-#else
-    return text;
-#endif
 }
 
 TerminalDisplay* TerminalDisplayAccessible::display()

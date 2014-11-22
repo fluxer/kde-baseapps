@@ -7,8 +7,10 @@ include(CTest)
 include(CTestConfig.cmake)
 
 #search packages used by KDE
-find_package(KDE4 4.10.60 REQUIRED)
+find_package(KDE4 4.14.3 REQUIRED)
 include (KDE4Defaults)
+
+set(QT_MIN_VERSION "4.8.2")
 
 find_package(ZLIB)
 set_package_properties(ZLIB PROPERTIES DESCRIPTION "Support for gzip compressed files and data streams"

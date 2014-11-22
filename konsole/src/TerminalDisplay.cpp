@@ -735,11 +735,7 @@ void TerminalDisplay::drawCharacters(QPainter& painter,
             painter.drawText(rect, 0, text);
         } else {
             // See bug 280896 for more info
-#if QT_VERSION >= 0x040800
             painter.drawText(rect, Qt::AlignBottom, LTR_OVERRIDE_CHAR + text);
-#else
-            painter.drawText(rect, 0, LTR_OVERRIDE_CHAR + text);
-#endif
         }
     }
 }
@@ -1124,11 +1120,9 @@ void TerminalDisplay::updateImage()
     }
     delete[] dirtyMask;
 
-#if QT_VERSION >= 0x040800 // added in Qt 4.8.0
 #ifndef QT_NO_ACCESSIBILITY
     QAccessible::updateAccessibility(this, 0, QAccessible::TextUpdated);
     QAccessible::updateAccessibility(this, 0, QAccessible::TextCaretMoved);
-#endif
 #endif
 }
 
@@ -2946,10 +2940,8 @@ void TerminalDisplay::keyPressEvent(QKeyEvent* event)
 
     emit keyPressedSignal(event);
 
-#if QT_VERSION >= 0x040800 // added in Qt 4.8.0
 #ifndef QT_NO_ACCESSIBILITY
     QAccessible::updateAccessibility(this, 0, QAccessible::TextCaretMoved);
-#endif
 #endif
 
     event->accept();
