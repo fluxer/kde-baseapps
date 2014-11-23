@@ -39,7 +39,7 @@ K_PLUGIN_FACTORY_DECLARATION(KcmKonqHtmlFactory)
 
 // Keep in sync with konqueror.kcfg
 static const char DEFAULT_HOMEPAGE[] = "http://www.entropy-linux.com/";
-enum StartPage { ShowHomePage, ShowBlankPage, ShowAboutPage, ShowBookmarksPage };
+enum StartPage { ShowHomePage, ShowBlankPage, ShowBookmarksPage };
 
 //-----------------------------------------------------------------------------
 
@@ -150,8 +150,6 @@ static StartPage urlToStartPageEnum(const QString& startUrl)
 {
     if (startUrl == "about:blank")
         return ShowBlankPage;
-    if (startUrl == "about:" || startUrl == "about:konqueror")
-        return ShowAboutPage;
     if (startUrl == "bookmarks:" || startUrl == "bookmarks:/")
         return ShowBookmarksPage;
     return ShowHomePage;
@@ -209,7 +207,7 @@ void KKonqGeneralOptions::defaults()
 }
 
 // create local webbrowsing profile,
-// look for View0_ServiceName=konq_aboutpage or ViewT0_ServiceName=khtml
+// look for ViewT0_ServiceName=khtml
 // and replace with
 // ViewT0_ServiceName=khtml (if http)
 // ViewT0_ServiceType=text/html (if http)
@@ -234,11 +232,6 @@ static void updateWebbrowsingProfile(const QString& homeUrl, StartPage startPage
         }
     }
     break;
-    case ShowAboutPage:
-        url = "about:";
-        serviceType = "KonqAboutPage";
-        serviceName = "konq_aboutpage";
-        break;
     case ShowBlankPage:
         url = "about:blank";
         serviceType = "text/html";

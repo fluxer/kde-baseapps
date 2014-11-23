@@ -1194,15 +1194,6 @@ void KonqViewManager::loadItem( const KConfigGroup &cfg, KonqFrameContainerBase 
         } else {
             serviceType = cfg.readEntry( QString::fromLatin1( "ServiceType" ).prepend( prefix ), QString("inode/directory"));
             serviceName = cfg.readEntry( QString::fromLatin1( "ServiceName" ).prepend( prefix ), QString() );
-            if (serviceName == "konq_aboutpage") {
-                if ( (!forcedUrl.isEmpty() && forcedUrl.protocol() != "about") ||
-                     (forcedUrl.isEmpty() && openUrl == false)) // e.g. window.open
-                {
-                    // No point in loading the about page if we're going to replace it with a KHTML part right away
-                    serviceType = "text/html";
-                    serviceName = forcedService; // coming e.g. from the cmdline, otherwise empty
-                }
-            }
         }
         //kDebug() << "serviceType" << serviceType << serviceName;
 

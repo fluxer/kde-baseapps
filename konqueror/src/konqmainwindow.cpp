@@ -823,12 +823,7 @@ bool KonqMainWindow::openView( QString mimeType, const KUrl &_url, KonqView *chi
 
     QString serviceName = req.serviceName; // default: none provided
     const QString urlStr = url.url();
-    if ( urlStr == "about:" || urlStr.startsWith("about:konqueror") || urlStr == "about:plugins" ) {
-        mimeType = "KonqAboutPage"; // not KParts/ReadOnlyPart, it fills the Location menu ! :)
-        serviceName = "konq_aboutpage";
-        originalURL = req.typedUrl.isEmpty() ? QString() : req.typedUrl;
-    }
-    else if ( urlStr == "about:blank" && req.typedUrl.isEmpty() ) {
+    if ( urlStr == "about:blank" && req.typedUrl.isEmpty() ) {
         originalURL.clear();
     }
 

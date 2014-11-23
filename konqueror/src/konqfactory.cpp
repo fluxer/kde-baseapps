@@ -152,7 +152,7 @@ KonqViewFactory KonqFactory::createView( const QString &serviceType,
         kDebug() << "Trying to open lib for requested service " << service->desktopEntryName();
         viewFactory = tryLoadingService(service);
         // If this fails, then return an error.
-        // When looking for konq_sidebartng or konq_aboutpage, we don't want to end up
+        // When looking for konq_sidebartng, we don't want to end up
         // with khtml or another Browser/View part in case of an error...
     } else {
         KService::List::Iterator it = offers.begin();
