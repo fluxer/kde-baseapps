@@ -44,21 +44,13 @@ AdditionalInfoDialog::AdditionalInfoDialog(QWidget* parent,
     header->setText(i18nc("@label", "Select which additional information should be shown:"));
     header->setWordWrap(true);
 
-    // Add checkboxes
-    bool indexingEnabled = false;
-
     m_listWidget = new QListWidget(mainWidget);
     m_listWidget->setSelectionMode(QAbstractItemView::NoSelection);
     const QList<KFileItemModel::RoleInfo> rolesInfo = KFileItemModel::rolesInformation();
     foreach (const KFileItemModel::RoleInfo& info, rolesInfo) {
         QListWidgetItem* item = new QListWidgetItem(info.translation, m_listWidget);
         item->setCheckState(visibleRoles.contains(info.role) ? Qt::Checked : Qt::Unchecked);
-
-        const bool enable = (info.requiresIndexer && indexingEnabled);
-
-        if (!enable) {
-            item->setFlags(item->flags() & ~Qt::ItemIsEnabled);
-        }
+        item->setFlags(item->flags() & ~Qt::ItemIsEnabled);
     }
 
     QVBoxLayout* layout = new QVBoxLayout(mainWidget);

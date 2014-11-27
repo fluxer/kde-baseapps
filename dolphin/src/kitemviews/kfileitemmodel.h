@@ -187,7 +187,6 @@ public:
     {   QByteArray role;
         QString translation;
         QString group;
-        bool requiresIndexer;
     };
 
     /**
@@ -424,7 +423,6 @@ private:
         const char* const roleTranslation;
         const char* const groupTranslationContext;
         const char* const groupTranslation;
-        const bool requiresIndexer;
     };
 
     /**

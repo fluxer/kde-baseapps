@@ -232,8 +232,6 @@ QActionGroup* DolphinViewActionHandler::createFileItemRolesActionGroup(const QSt
     KActionMenu* groupMenu = 0;
     QActionGroup* groupMenuGroup = 0;
 
-    bool indexingEnabled = false;
-
     const QList<KFileItemModel::RoleInfo> rolesInfo = KFileItemModel::rolesInformation();
     foreach (const KFileItemModel::RoleInfo& info, rolesInfo) {
         if (!isSortGroup && info.role == "text") {
@@ -270,9 +268,7 @@ QActionGroup* DolphinViewActionHandler::createFileItemRolesActionGroup(const QSt
         }
         action->setText(info.translation);
         action->setData(info.role);
-
-        const bool enable = (info.requiresIndexer && indexingEnabled);
-        action->setEnabled(enable);
+        action->setEnabled(true);
 
         if (isSortGroup) {
             m_sortByActions.insert(info.role, action);

@@ -864,8 +864,6 @@ void DolphinView::slotHeaderContextMenuRequested(const QPointF& pos)
     KItemListView* view = m_container->controller()->view();
     const QSet<QByteArray> visibleRolesSet = view->visibleRoles().toSet();
 
-    bool indexingEnabled = false;
-
     QString groupName;
     QMenu* groupMenu = 0;
 
@@ -893,9 +891,7 @@ void DolphinView::slotHeaderContextMenuRequested(const QPointF& pos)
         action->setCheckable(true);
         action->setChecked(visibleRolesSet.contains(info.role));
         action->setData(info.role);
-
-        const bool enable = (info.requiresIndexer && indexingEnabled);
-        action->setEnabled(enable);
+        action->setEnabled(true);
     }
 
     menu->addSeparator();
