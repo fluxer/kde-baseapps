@@ -51,19 +51,11 @@
 #include <views/dolphinview.h>
 #include <views/viewproperties.h>
 
-#ifdef HAVE_BALOO
-    #include <baloo/query.h>
-    #include <baloo/indexerconfig.h>
-#endif
 
 namespace {
     // As long as KFilePlacesView from kdelibs is available in parallel, the
     // system-bookmarks for "Recently Accessed" and "Search For" should be
-    // shown only inside the Places Panel. This is necessary as the stored
-    // URLs needs to get translated to a Baloo-search-URL on-the-fly to
-    // be independent from changes in the Baloo-search-URL-syntax.
-    // Hence a prefix to the application-name of the stored bookmarks is
-    // added, which is only read by PlacesItemModel.
+    // shown only inside the Places Panel.
     const char* AppNamePrefix = "-places-panel";
 }
 
@@ -82,10 +74,6 @@ PlacesItemModel::PlacesItemModel(QObject* parent) :
     m_updateBookmarksTimer(0),
     m_storageSetupInProgress()
 {
-#ifdef HAVE_BALOO
-    Baloo::IndexerConfig config;
-    m_fileIndexingEnabled = config.fileIndexingEnabled();
-#endif
     const QString file = KStandardDirs::locateLocal("data", "kfileplaces/bookmarks.xml");
     m_bookmarkManager = KBookmarkManager::managerForFile(file, "kfilePlaces");
 
@@ -1156,36 +1144,11 @@ KUrl PlacesItemModel::createSearchUrl(const KUrl& url)
 {
     KUrl searchUrl;
 
-#ifdef HAVE_BALOO
-    const QString path = url.pathOrUrl();
-    if (path.endsWith(QLatin1String("documents"))) {
-        searchUrl = searchUrlForType("Document");
-    } else if (path.endsWith(QLatin1String("images"))) {
-        searchUrl = searchUrlForType("Image");
-    } else if (path.endsWith(QLatin1String("audio"))) {
-        searchUrl = searchUrlForType("Audio");
-    } else if (path.endsWith(QLatin1String("videos"))) {
-        searchUrl = searchUrlForType("Video");
-    } else {
-        Q_ASSERT(false);
-    }
-#else
     Q_UNUSED(url);
-#endif
 
     return searchUrl;
 }
 
-#ifdef HAVE_BALOO
-KUrl PlacesItemModel::searchUrlForType(const QString& type)
-{
-    Baloo::Query query;
-    query.addType("File");
-    query.addType(type);
-
-    return query.toSearchUrl();
-}
-#endif
 
 #ifdef PLACESITEMMODEL_DEBUG
 void PlacesItemModel::showModelState()

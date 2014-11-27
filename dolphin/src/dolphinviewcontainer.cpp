@@ -442,8 +442,8 @@ void DolphinViewContainer::slotDirectoryLoadingCompleted()
     }
 
     if (isSearchUrl(url()) && m_view->itemsCount() == 0) {
-        // The dir lister has been completed on a Baloo-URI and no items have been found. Instead
-        // of showing the default status bar information ("0 items") a more helpful information is given:
+        // Instead of showing the default status bar information ("0 items")
+        // a more helpful information is given:
         m_statusBar->setText(i18nc("@info:status", "No items found."));
     } else {
         updateStatusBar();

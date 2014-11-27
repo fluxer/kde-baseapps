@@ -187,15 +187,12 @@ public:
     {   QByteArray role;
         QString translation;
         QString group;
-        bool requiresBaloo;
         bool requiresIndexer;
     };
 
     /**
      * @return Provides static information for all available roles that
-     *         are supported by KFileItemModel. Some roles can only be
-     *         determined if Baloo is enabled and/or the Baloo
-     *         indexing is enabled.
+     *         are supported by KFileItemModel. Some roles are conditional.
      */
     static QList<RoleInfo> rolesInformation();
 
@@ -286,10 +283,6 @@ private:
         // User visible roles:
         NoRole, NameRole, SizeRole, DateRole, PermissionsRole, OwnerRole,
         GroupRole, TypeRole, DestinationRole, PathRole,
-        // User visible roles available with Baloo:
-        CommentRole, TagsRole, RatingRole, ImageSizeRole, OrientationRole,
-        WordCountRole, LineCountRole, ArtistRole, AlbumRole, DurationRole, TrackRole,
-        CopiedFromRole,
         // Non-visible roles:
         IsDirRole, IsLinkRole, IsExpandedRole, IsExpandableRole, ExpandedParentsCountRole,
         // Mandatory last entry:
@@ -431,7 +424,6 @@ private:
         const char* const roleTranslation;
         const char* const groupTranslationContext;
         const char* const groupTranslation;
-        const bool requiresBaloo;
         const bool requiresIndexer;
     };
 

@@ -19,17 +19,12 @@
 
 #include "additionalinfodialog.h"
 
-#include <config-baloo.h>
-
 #include <KLocale>
 #include "kitemviews/kfileitemmodel.h"
 #include <QCheckBox>
 #include <QLabel>
 #include <QVBoxLayout>
 
-#ifdef HAVE_BALOO
-    #include <baloo/indexerconfig.h>
-#endif
 
 AdditionalInfoDialog::AdditionalInfoDialog(QWidget* parent,
                                            const QList<QByteArray>& visibleRoles) :
@@ -51,10 +46,6 @@ AdditionalInfoDialog::AdditionalInfoDialog(QWidget* parent,
 
     // Add checkboxes
     bool indexingEnabled = false;
-#ifdef HAVE_BALOO
-    Baloo::IndexerConfig config;
-    indexingEnabled = config.fileIndexingEnabled();
-#endif
 
     m_listWidget = new QListWidget(mainWidget);
     m_listWidget->setSelectionMode(QAbstractItemView::NoSelection);
@@ -63,9 +54,7 @@ AdditionalInfoDialog::AdditionalInfoDialog(QWidget* parent,
         QListWidgetItem* item = new QListWidgetItem(info.translation, m_listWidget);
         item->setCheckState(visibleRoles.contains(info.role) ? Qt::Checked : Qt::Unchecked);
 
-        const bool enable = (!info.requiresBaloo && !info.requiresIndexer) ||
-                            (info.requiresBaloo) ||
-                            (info.requiresIndexer && indexingEnabled);
+        const bool enable = (info.requiresIndexer && indexingEnabled);
 
         if (!enable) {
             item->setFlags(item->flags() & ~Qt::ItemIsEnabled);

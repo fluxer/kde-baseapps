@@ -20,8 +20,6 @@
 
 #include "dolphinviewactionhandler.h"
 
-#include <config-baloo.h>
-
 #include "settings/viewpropertiesdialog.h"
 #include "views/dolphinview.h"
 #include "views/zoomlevelinfo.h"
@@ -41,9 +39,6 @@
 
 #include <KDebug>
 
-#ifdef HAVE_BALOO
-    #include <baloo/indexerconfig.h>
-#endif
 
 DolphinViewActionHandler::DolphinViewActionHandler(KActionCollection* collection, QObject* parent) :
     QObject(parent),
@@ -238,10 +233,6 @@ QActionGroup* DolphinViewActionHandler::createFileItemRolesActionGroup(const QSt
     QActionGroup* groupMenuGroup = 0;
 
     bool indexingEnabled = false;
-#ifdef HAVE_BALOO
-    Baloo::IndexerConfig config;
-    indexingEnabled = config.fileIndexingEnabled();
-#endif
 
     const QList<KFileItemModel::RoleInfo> rolesInfo = KFileItemModel::rolesInformation();
     foreach (const KFileItemModel::RoleInfo& info, rolesInfo) {
@@ -280,9 +271,7 @@ QActionGroup* DolphinViewActionHandler::createFileItemRolesActionGroup(const QSt
         action->setText(info.translation);
         action->setData(info.role);
 
-        const bool enable = (!info.requiresBaloo && !info.requiresIndexer) ||
-                            (info.requiresBaloo) ||
-                            (info.requiresIndexer && indexingEnabled);
+        const bool enable = (info.requiresIndexer && indexingEnabled);
         action->setEnabled(enable);
 
         if (isSortGroup) {

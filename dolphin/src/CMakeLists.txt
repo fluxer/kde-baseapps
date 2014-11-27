@@ -1,16 +1,3 @@
-macro_optional_find_package(Baloo)
-set_package_properties(Baloo PROPERTIES DESCRIPTION "Baloo Core libraries"
-                       URL "http://www.kde.org"
-                       TYPE OPTIONAL
-                       PURPOSE "For adding desktop-wide search and tagging support to dolphin"
-                      )
-
-macro_optional_find_package(BalooWidgets)
-set_package_properties(BalooWidgets PROPERTIES DESCRIPTION "Baloos Widgets"
-                       URL "http://www.kde.org"
-                       TYPE OPTIONAL
-                      )
-
 macro_optional_find_package(KFileMetaData)
 set_package_properties(KFileMetaData PROPERTIES
                        URL "https://projects.kde.org/kfilemetadata"
@@ -18,20 +5,10 @@ set_package_properties(KFileMetaData PROPERTIES
                        PURPOSE "For accessing file metadata labels"
                       )
 
-if (Baloo_FOUND AND BalooWidgets_FOUND AND KFileMetaData_FOUND)
-    set(HAVE_BALOO TRUE)
-endif()
-
-configure_file(config-baloo.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config-baloo.h )
-
 macro_bool_to_01(X11_Xrender_FOUND HAVE_XRENDER)
 configure_file(config-X11.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config-X11.h )
 
 include_directories( ${KACTIVITIES_INCLUDE_DIRS} ${CMAKE_CURRENT_BINARY_DIR} )
-
-if(HAVE_BALOO)
-  include_directories(${BALOO_INCLUDE_DIR} ${BALOO_WIDGETS_INCLUDE_DIR} ${KFILEMETADATA_INCLUDE_DIR})
-endif()
 
 add_subdirectory(tests)
 
@@ -97,13 +74,6 @@ set(dolphinprivate_LIB_SRCS
     dolphinnewfilemenu.cpp
 )
 
-if(HAVE_BALOO)
-    set(dolphinprivate_LIB_SRCS
-        ${dolphinprivate_LIB_SRCS}
-        kitemviews/private/kbaloorolesprovider.cpp
-    )
-endif()
-
 kde4_add_kcfg_files(dolphinprivate_LIB_SRCS
     settings/dolphin_compactmodesettings.kcfgc
     settings/dolphin_directoryviewpropertysettings.kcfgc
@@ -121,15 +91,6 @@ target_link_libraries(
     konq
     ${KDE4_KNEWSTUFF3_LIBS}
 )
-
-if(HAVE_BALOO)
-    target_link_libraries(
-        dolphinprivate
-        ${BALOO_LIBRARIES}
-        ${BALOO_WIDGETS_LIBRARY}
-        ${KFILEMETADATA_LIBRARY}
-    )
-endif()
 
 if(X11_Xrender_FOUND)
     target_link_libraries(dolphinprivate ${X11_Xrender_LIB})
@@ -251,13 +212,6 @@ target_link_libraries(kdeinit_dolphin
     ${KDE4_SOLID_LIBS}
     ${KDE4_PHONON_LIBS}
 )
-
-if(HAVE_BALOO)
-    target_link_libraries(kdeinit_dolphin
-        ${BALOO_LIBRARIES}
-        ${BALOO_WIDGETS_LIBRARY}
-    )
-endif()
 
 if (KActivities_FOUND)
     target_link_libraries(
