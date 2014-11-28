@@ -33,8 +33,7 @@ public:
   virtual ~PluginBabelFish();
 
 private slots:
-  void translateURL(QAction *);
-  void slotAboutToShow();
+  void translateURL();
   void slotEnableMenu();
 
 private:
