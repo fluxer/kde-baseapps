@@ -1,10 +1,3 @@
-macro_optional_find_package(KFileMetaData)
-set_package_properties(KFileMetaData PROPERTIES
-                       URL "https://projects.kde.org/kfilemetadata"
-                       TYPE OPTIONAL
-                       PURPOSE "For accessing file metadata labels"
-                      )
-
 macro_bool_to_01(X11_Xrender_FOUND HAVE_XRENDER)
 configure_file(config-X11.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config-X11.h )
 
@@ -193,9 +186,7 @@ kde4_add_kcfg_files(dolphin_SRCS
     settings/dolphin_versioncontrolsettings.kcfgc
 )
 
-if(NOT WIN32)
-   set(dolphin_SRCS ${dolphin_SRCS} panels/terminal/terminalpanel.cpp)
-endif(NOT WIN32)
+set(dolphin_SRCS ${dolphin_SRCS} panels/terminal/terminalpanel.cpp)
 
 kde4_add_app_icon(dolphin_SRCS "${KDE4_ICON_INSTALL_DIR}/oxygen/*/apps/system-file-manager.png")
 
