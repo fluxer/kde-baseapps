@@ -756,8 +756,7 @@ void KFileItemModelRolesUpdater::startPreviewJob()
     // by PreviewJob if a smaller size is requested. For images KFileItemModelRolesUpdater must
     // do a downscaling anyhow because of the frame, so in this case only the provided
     // cache sizes are requested.
-    const QSize cacheSize = (m_iconSize.width() > 128) || (m_iconSize.height() > 128)
-                             ? QSize(256, 256) : QSize(128, 128);
+    const QSize cacheSize = QSize(128, 128);
 
     // KIO::filePreview() will request the MIME-type of all passed items, which (in the
     // worst case) might block the application for several seconds. To prevent such

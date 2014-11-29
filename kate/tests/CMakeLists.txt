@@ -37,37 +37,29 @@ target_link_libraries( range_test
   katepartinterfaces
 )
 
-########### next target ###############
-
-if(NOT MINGW)
-
 ########### undomanager test ###############
 
 kde4_add_unit_test(undomanager_test TESTNAME kate-undomanager_test undomanager_test.cpp)
 
-target_link_libraries( undomanager_test ${KATE_TEST_LINK_LIBS}
-)
+target_link_libraries( undomanager_test ${KATE_TEST_LINK_LIBS} )
 
 ########### plaintextsearch test ###############
 
 kde4_add_unit_test(plaintextsearch_test TESTNAME kate-plaintextsearch_test plaintextsearch_test.cpp)
 
-target_link_libraries( plaintextsearch_test ${KATE_TEST_LINK_LIBS}
-)
+target_link_libraries( plaintextsearch_test ${KATE_TEST_LINK_LIBS} )
 
 ########### regexpsearch test ###############
 
 kde4_add_unit_test(regexpsearch_test TESTNAME kate-regexpsearch_test regexpsearch_test.cpp)
 
-target_link_libraries( regexpsearch_test ${KATE_TEST_LINK_LIBS}
-)
+target_link_libraries( regexpsearch_test ${KATE_TEST_LINK_LIBS} )
 
 ########### scriptdocument test ###############
 
 kde4_add_unit_test(scriptdocument_test TESTNAME kate-scriptdocument_test scriptdocument_test.cpp)
 
-target_link_libraries( scriptdocument_test ${KATE_TEST_LINK_LIBS}
-)
+target_link_libraries( scriptdocument_test ${KATE_TEST_LINK_LIBS} )
 
 ########### completion test ###############
 
@@ -78,14 +70,12 @@ set(completion_test_SRCS
 
 kde4_add_unit_test(completion_test TESTNAME kate-completion_test ${completion_test_SRCS})
 
-target_link_libraries( completion_test ${KATE_TEST_LINK_LIBS}
-)
+target_link_libraries( completion_test ${KATE_TEST_LINK_LIBS} )
 ########### word completion test ###############
 
 kde4_add_unit_test(wordcompletion_test TESTNAME kate-wordcompletion_test wordcompletiontest.cpp)
 
-target_link_libraries( wordcompletion_test ${KATE_TEST_LINK_LIBS}
-)
+target_link_libraries( wordcompletion_test ${KATE_TEST_LINK_LIBS} )
 
 ########### searchbar test ###############
 
@@ -101,8 +91,6 @@ target_link_libraries( searchbar_test
 ########### vimode test ###############
 
 kde4_add_unit_test(vimode_test TESTNAME kate-vimode_test vimode_test.cpp)
-
-
 
 target_link_libraries( vimode_test
   ${KDE4_KDEUI_LIBS}
@@ -280,10 +268,10 @@ target_link_libraries(bug313759_test
 kde4_add_unit_test(bug313769_test TESTNAME kate-bug313769_test bug313769.cpp)
 
 target_link_libraries( bug313769_test
- ${KDE4_KDEUI_LIBS}
- ${QT_QTTEST_LIBRARY}
- ${KATE_TEST_LINK_LIBS}
- katepartinterfaces
+  ${KDE4_KDEUI_LIBS}
+  ${QT_QTTEST_LIBRARY}
+  ${KATE_TEST_LINK_LIBS}
+  katepartinterfaces
 )
 
 ########### bug 317111 test ###############
@@ -323,8 +311,6 @@ target_link_libraries( kte_messageinterface_test
   ${KATE_TEST_LINK_LIBS}
   katepartinterfaces
 )
-
-endif(NOT MINGW)
 
 # encoding tets
 add_subdirectory (encoding)

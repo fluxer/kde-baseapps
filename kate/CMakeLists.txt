@@ -8,15 +8,10 @@ set (LIBRARY_TYPE SHARED)
 macro_ensure_out_of_source_build("kate requires an out of source build. Please create a separate build directory and run 'cmake path_to_kate [options]' there.")
 
 # config.h
-if(NOT APPLE)
-  check_function_exists (fdatasync HAVE_FDATASYNC)
-  check_function_exists (ctermid HAVE_CTERMID)
-endif(NOT APPLE)
+check_function_exists (fdatasync HAVE_FDATASYNC)
+check_function_exists (ctermid HAVE_CTERMID)
 
 configure_file (config.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config.h)
-
-# enforce build of tests
-set (KDE4_BUILD_TESTS "ON" CACHE "BOOL" "Enable building of tests" FORCE)
 
 # KDE/QT definitions we want
 add_definitions (${QT_DEFINITIONS} ${KDE4_DEFINITIONS})
