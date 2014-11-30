@@ -26,16 +26,7 @@
 
 #include <kparts/part.h>
 #include <kparts/browserextension.h>
-
-#if KDE_IS_VERSION(4, 5, 70)
-#define TEXTEXTENSION_FOUND 1
-#else
-#define TEXTEXTENSION_FOUND 0
-#endif
-
-#if TEXTEXTENSION_FOUND
 #include <kparts/textextension.h>
-#endif
 
 #include <kactionmenu.h>
 #include <kaction.h>
@@ -62,7 +53,7 @@ PluginBabelFish::PluginBabelFish( QObject* parent,
 {
   setComponentData(BabelFishFactory::componentData());
 
-  m_menu = new KActionMenu(KIcon("babelfish"), i18n("Translate Web &Page"),
+  m_menu = new KActionMenu(KIcon("babelfish"), i18n("Transla&te"),
                           actionCollection() );
   actionCollection()->addAction( "translatewebpage", m_menu );
   m_menu->setDelayed( false );
@@ -85,11 +76,7 @@ PluginBabelFish::~PluginBabelFish()
 void PluginBabelFish::slotEnableMenu()
 {
     KParts::ReadOnlyPart* part = qobject_cast<KParts::ReadOnlyPart *>(parent());
-#if TEXTEXTENSION_FOUND
     KParts::TextExtension* textExt = KParts::TextExtension::childObject(parent());
-#else
-    QObject* textExt = 0;
-#endif
 
     //if (part)
     //    kDebug() << part->url();
@@ -112,33 +99,24 @@ void PluginBabelFish::translateURL()
 {
   // KHTMLPart and KWebKitPart provide a TextExtension, at least.
   // So if we got a part without a TextExtension, give an error.
-#if TEXTEXTENSION_FOUND
-    KParts::TextExtension* textExt = KParts::TextExtension::childObject(parent());
-    Q_ASSERT(textExt); // already checked in slotAboutToShow
-#endif
+  KParts::TextExtension* textExt = KParts::TextExtension::childObject(parent());
+  Q_ASSERT(textExt); // already checked in slotAboutToShow
 
-    KParts::BrowserExtension * ext = KParts::BrowserExtension::childObject(parent());
-    if (!ext)
-        return;
-    KParts::ReadOnlyPart* part = qobject_cast<KParts::ReadOnlyPart *>(parent());
+  KParts::BrowserExtension * ext = KParts::BrowserExtension::childObject(parent());
+  if (!ext)
+    return;
+  KParts::ReadOnlyPart* part = qobject_cast<KParts::ReadOnlyPart *>(parent());
 
-    // we check if we have text selected.  if so, we translate that. If
-    // not, we translate the url
-    QString textForQuery;
-    KUrl url = part->url();
-#if TEXTEXTENSION_FOUND
-    const bool hasSelection = textExt->hasSelection();
-#else
-    const bool hasSelection = false;
-#endif
+  // we check if we have text selected.  if so, we translate that. If
+  // not, we translate the url
+  QString textForQuery;
+  KUrl url = part->url();
+  const bool hasSelection = textExt->hasSelection();
 
-#if TEXTEXTENSION_FOUND
   if (hasSelection) {
       QString selection = textExt->selectedText(KParts::TextExtension::PlainText);
       textForQuery = QString::fromLatin1(QUrl::toPercentEncoding(selection));
-  } else
-#endif
-  {
+  } else {
     // Check syntax
     if ( !url.isValid() )
     {
@@ -152,25 +130,16 @@ void PluginBabelFish::translateURL()
   const QString urlForQuery = QLatin1String(QUrl::toPercentEncoding( url.url() ));
 
   // Create URL
-  KUrl result;
   QString query;
-
-  if (hasSelection) { //http://translate.google.com/#en|de|text_to_translate
-    query = "http://translate.google.com/#";
-    query += "auto|auto";
-    query += "|" + textForQuery;
-    result = KUrl( query );
+  if (hasSelection) { // http://translate.google.com/#en|de|text_to_translate
+    query += "http://google.com/translate_t?langpair=auto|auto&text=" + textForQuery;
   }
-  else { //http://translate.google.com/translate?hl=en&sl=en&tl=de&u=http%3A%2F%2Fkde.org%2F%2F
-    result = KUrl( "http://translate.google.com/translate" );
-    query = "ie=UTF-8";
-    query += "&sl=auto&tl=auto";
-    query += "&u=" + urlForQuery;
-    result.setQuery( query );
+  else { // http://translate.google.com/translate?hl=en&sl=en&tl=de&u=http%3A%2F%2Fkde.org%2F%2F
+    query += "http://google.com/translate_c?langpair=auto|auto&ie=UTF-8&u=" + urlForQuery;
   }
 
   // Connect to the fish
-  emit ext->openUrlRequest( result );
+  emit ext->openUrlRequest( KUrl( query ) );
 }
 
 #include <plugin_babelfish.moc>
