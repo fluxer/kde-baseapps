@@ -113,7 +113,7 @@ void FavIconUpdater::downloadIconUsingWebBrowser(const KBookmark &bk, const QStr
     connect(m_webGrabber, SIGNAL(done(bool,QString)), this, SIGNAL(done(bool,QString)));
 }
 
-// khtml callback
+// webkit callback
 void FavIconUpdater::setIconUrl(const KUrl &iconURL)
 {
     m_favIconModule.setIconForUrl(m_bk.url().url(), iconURL.url());
@@ -172,8 +172,8 @@ FavIconWebGrabber::FavIconWebGrabber(KParts::ReadOnlyPart *part, const KUrl &url
     connect(part, SIGNAL(completed(bool)),
             this, SLOT(slotCompleted()));
 
-    // the use of KIO rather than directly using KHTML is to allow silently abort on error
-    // TODO: an alternative would be to derive from KHTMLPart and reimplement showError(KJob*).
+    // the use of KIO rather than directly using KWebKit is to allow silently abort on error
+    // TODO: an alternative would be to derive from KWebKitPart and reimplement showError(KJob*).
 
     kDebug() << "starting KIO::get() on" << m_url;
     KIO::Job *job = KIO::get(m_url, KIO::NoReload, KIO::HideProgressInfo);

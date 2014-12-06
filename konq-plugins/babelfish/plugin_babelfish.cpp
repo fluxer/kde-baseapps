@@ -97,7 +97,7 @@ void PluginBabelFish::slotEnableMenu()
 
 void PluginBabelFish::translateURL()
 {
-  // KHTMLPart and KWebKitPart provide a TextExtension, at least.
+  // KWebKitPart provides a TextExtension, at least.
   // So if we got a part without a TextExtension, give an error.
   KParts::TextExtension* textExt = KParts::TextExtension::childObject(parent());
   Q_ASSERT(textExt); // already checked in slotAboutToShow

@@ -25,7 +25,7 @@
 
 #include "pluginbase.h"
 
-class KHTMLPart;
+class KWebKitPart;
 
 namespace Akregator
 {
@@ -47,7 +47,7 @@ protected:
 private:
     QStringList m_feedMimeTypes;
 //    KConfig *m_conf;
-    KHTMLPart *m_part;
+    KWebKitPart *m_part;
     QString m_feedURL;
 };
 

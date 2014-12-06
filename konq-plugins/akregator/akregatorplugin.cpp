@@ -63,10 +63,10 @@ AkregatorMenu::AkregatorMenu( KonqPopupMenu * popupmenu, const QStringList& /* l
     if ( !m_conf->readEntry( "Enable", true ) )
         return;
     */
-    KHTMLView* view = 0L;
+    KWebView* view = 0L;
      
-    if (popupmenu && popupmenu->parent() && popupmenu->parent()->inherits("KHTMLView"))
-        view = static_cast<KHTMLView*>(popupmenu->parent());
+    if (popupmenu && popupmenu->parent() && popupmenu->parent()->inherits("KWebView"))
+        view = static_cast<KWebView*>(popupmenu->parent());
     
     if (view)
         m_part = view->part();
