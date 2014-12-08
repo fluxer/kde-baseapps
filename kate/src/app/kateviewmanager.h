@@ -35,9 +35,6 @@
 
 #include <config.h>
 
-#ifdef KActivities_FOUND
-namespace KActivities { class ResourceInstance; }
-#endif
 
 class KateDocumentInfo;
 
@@ -284,9 +281,6 @@ class KateViewManager : public QSplitter
     QList<KTextEditor::View*> m_viewList;
     QHash<KTextEditor::View*, bool> m_activeStates;
 
-#ifdef KActivities_FOUND
-    QHash<KTextEditor::View*, KActivities::ResourceInstance*> m_activityResources;
-#endif
 
     bool m_blockViewCreationAndActivation;
 

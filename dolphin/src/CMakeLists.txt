@@ -1,7 +1,7 @@
 macro_bool_to_01(X11_Xrender_FOUND HAVE_XRENDER)
 configure_file(config-X11.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config-X11.h )
 
-include_directories( ${KACTIVITIES_INCLUDE_DIRS} ${CMAKE_CURRENT_BINARY_DIR} )
+include_directories( ${CMAKE_CURRENT_BINARY_DIR} )
 
 add_subdirectory(tests)
 
@@ -203,13 +203,6 @@ target_link_libraries(kdeinit_dolphin
     ${KDE4_SOLID_LIBS}
     ${KDE4_PHONON_LIBS}
 )
-
-if (KActivities_FOUND)
-    target_link_libraries(
-        kdeinit_dolphin
-        ${KACTIVITIES_LIBRARIES}
-    )
-endif (KActivities_FOUND)
 
 install(TARGETS kdeinit_dolphin ${INSTALL_TARGETS_DEFAULT_ARGS})
 install(TARGETS dolphin ${INSTALL_TARGETS_DEFAULT_ARGS})
