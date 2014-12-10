@@ -2,7 +2,6 @@ project(konq-plugins)
 
 include_directories (${KDEBASE_APPS_SOURCE_DIR}/lib/konq)
 
-
 add_subdirectory( akregator )
 add_subdirectory( autorefresh )
 add_subdirectory( babelfish )
