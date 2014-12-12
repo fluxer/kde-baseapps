@@ -27,7 +27,7 @@
 #include <kglobal.h>
 #include <kconfiggroup.h>
 
-struct KonqHistorySettingsSingleton
+class KonqHistorySettingsSingleton
 {
     KonqHistorySettings self;
 };

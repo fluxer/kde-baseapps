@@ -38,7 +38,7 @@
 K_PLUGIN_FACTORY_DECLARATION(KcmKonqHtmlFactory)
 
 // Keep in sync with konqueror.kcfg
-static const char DEFAULT_HOMEPAGE[] = "http://www.entropy-linux.com/";
+static const char DEFAULT_HOMEPAGE[] = "http://fluxer.github.io/katana/";
 enum StartPage { ShowHomePage, ShowBlankPage, ShowBookmarksPage };
 
 //-----------------------------------------------------------------------------

@@ -7,7 +7,7 @@
 
   <group name="UserSettings">
     <entry key="HomeURL" type="Path">
-      <default>http://www.kde.org</default> 
+      <default>http://fluxer.github.io/katana/</default>
       <label>Home Page</label>
       <whatsthis>This is the URL of the web page where Konqueror (as web browser) will jump to when the \"Home\" button is pressed. When Konqueror is started as a file manager, that button makes it jump to your local home folder instead.</whatsthis>
       <!-- checked -->
