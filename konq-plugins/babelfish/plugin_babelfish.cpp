@@ -53,17 +53,49 @@ PluginBabelFish::PluginBabelFish( QObject* parent,
 {
   setComponentData(BabelFishFactory::componentData());
 
-  m_menu = new KActionMenu(KIcon("babelfish"), i18n("Transla&te"),
+  m_menu = new KActionMenu(KIcon("babelfish"), i18n("Transla&te to"),
                           actionCollection() );
   actionCollection()->addAction( "translatewebpage", m_menu );
   m_menu->setDelayed( false );
+
+#warning "incomplete languages map, also - how about using flags?"
+  static const char * const translations[] = {
+      I18N_NOOP("&Auto"), "auto",
+      I18N_NOOP("&Arabic"), "ar",
+      I18N_NOOP("&Bulgarian"), "bg",
+      I18N_NOOP("&Chinese (Simplified)"), "zh",
+      I18N_NOOP("Chinese (&Traditional)"), "zh-TW",
+      I18N_NOOP("&Dutch"), "nl",
+      I18N_NOOP("&English"), "en",
+      I18N_NOOP("&French"), "fr",
+      I18N_NOOP("&German"), "de",
+      I18N_NOOP("&Greek"), "el",
+      I18N_NOOP("&Italian"), "it",
+      I18N_NOOP("&Japanese"), "ja",
+      I18N_NOOP("&Korean"), "ko",
+      I18N_NOOP("&Norwegian"), "no",
+      I18N_NOOP("&Portuguese"), "pt",
+      I18N_NOOP("&Russian"), "ru",
+      I18N_NOOP("&Spanish"), "es",
+      I18N_NOOP("T&hai"), "th",
+      0, 0
+    };
+
+  for (int i = 0; translations[i]; i += 2) {
+    const QString translation = QString::fromLatin1(translations[i + 1]);
+    QAction* a = actionCollection()->addAction(translation);
+    a->setText(i18n(translations[i]));
+    a->setIcon(KIcon("babelfish"));
+    m_menu->addAction(a);
+    m_actionGroup.addAction(a);
+    connect(&m_actionGroup, SIGNAL(triggered(QAction*)), this, SLOT(translateURL(QAction*)));
+  }
 
   KParts::ReadOnlyPart* part = qobject_cast<KParts::ReadOnlyPart *>(parent);
   if (part) {
     connect(part, SIGNAL(started(KIO::Job*)), this, SLOT(slotEnableMenu()));
     connect(part, SIGNAL(completed()), this, SLOT(slotEnableMenu()));
     connect(part, SIGNAL(completed(bool)), this, SLOT(slotEnableMenu()));
-	connect(m_menu, SIGNAL(triggered()), this, SLOT(translateURL()));
   }
 }
 
@@ -95,7 +127,7 @@ void PluginBabelFish::slotEnableMenu()
   }
 }
 
-void PluginBabelFish::translateURL()
+void PluginBabelFish::translateURL(QAction* action)
 {
   // KWebKitPart provides a TextExtension, at least.
   // So if we got a part without a TextExtension, give an error.
@@ -131,11 +163,12 @@ void PluginBabelFish::translateURL()
 
   // Create URL
   QString query;
+  const QString language = action->objectName();
   if (hasSelection) { // http://translate.google.com/#en|de|text_to_translate
-    query += "http://google.com/translate_t?langpair=auto|auto&text=" + textForQuery;
+    query += "http://google.com/translate_t?langpair=auto|" + language + "&text=" + textForQuery;
   }
   else { // http://translate.google.com/translate?hl=en&sl=en&tl=de&u=http%3A%2F%2Fkde.org%2F%2F
-    query += "http://google.com/translate_c?langpair=auto|auto&ie=UTF-8&u=" + urlForQuery;
+    query += "http://google.com/translate_c?langpair=auto|" + language + "&ie=UTF-8&u=" + urlForQuery;
   }
 
   // Connect to the fish
