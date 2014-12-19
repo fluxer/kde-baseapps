@@ -6,12 +6,13 @@ install( FILES
          BlackOnRandomLight.colorscheme
          BlackOnWhite.colorscheme
          BlueOnBlack.colorscheme
-         GreenOnBlack.colorscheme
-         WhiteOnBlack.colorscheme
-         Linux.colorscheme
          DarkPastels.colorscheme
+         GreenOnBlack.colorscheme
+         Linux.colorscheme
+         Oxygen.colorscheme
          RedOnBlack.colorscheme
          Solarized.colorscheme
          SolarizedLight.colorscheme
+         WhiteOnBlack.colorscheme
          DESTINATION
          ${DATA_INSTALL_DIR}/konsole )

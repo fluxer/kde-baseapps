@@ -162,7 +162,7 @@ FallbackProfile::FallbackProfile()
     setProperty(MouseWheelZoomEnabled, true);
 
     setProperty(KeyBindings, "default");
-    setProperty(ColorScheme, "Linux"); //use DarkPastels when is start support blue ncurses UI properly
+    setProperty(ColorScheme, "Oxygen"); //use DarkPastels when is start support blue ncurses UI properly
     setProperty(Font, KGlobalSettings::fixedFont());
 
     setProperty(HistoryMode, Enum::FixedSizeHistory);
