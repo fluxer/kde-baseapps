@@ -1519,6 +1519,7 @@ void KItemListView::slotGeometryOfGroupHeaderParentChanged()
     Q_ASSERT(widget);
     KItemListGroupHeader* groupHeader = m_visibleGroups.value(widget);
     Q_ASSERT(groupHeader);
+    Q_UNUSED(groupHeader);
     updateGroupHeaderLayout(widget);
 }
 
