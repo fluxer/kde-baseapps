@@ -50,7 +50,6 @@ AdditionalInfoDialog::AdditionalInfoDialog(QWidget* parent,
     foreach (const KFileItemModel::RoleInfo& info, rolesInfo) {
         QListWidgetItem* item = new QListWidgetItem(info.translation, m_listWidget);
         item->setCheckState(visibleRoles.contains(info.role) ? Qt::Checked : Qt::Unchecked);
-        item->setFlags(item->flags() & ~Qt::ItemIsEnabled);
     }
 
     QVBoxLayout* layout = new QVBoxLayout(mainWidget);
