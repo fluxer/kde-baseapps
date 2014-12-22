@@ -164,7 +164,7 @@ void PluginBabelFish::translateURL(QAction* action)
   // Create URL
   QString query;
   const QString language = action->objectName();
-  if (hasSelection) { // http://translate.google.com/#en|de|text_to_translate
+  if (hasSelection && !textForQuery.isEmpty()) { // http://translate.google.com/#en|de|text_to_translate
     query += "http://google.com/translate_t?langpair=auto|" + language + "&text=" + textForQuery;
   }
   else { // http://translate.google.com/translate?hl=en&sl=en&tl=de&u=http%3A%2F%2Fkde.org%2F%2F
