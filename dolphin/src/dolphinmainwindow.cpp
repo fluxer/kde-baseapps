@@ -185,7 +185,7 @@ DolphinMainWindow::DolphinMainWindow() :
     showFilterBarAction->setChecked(generalSettings->filterBar());
 
     if (firstRun) {
-        menuBar()->setVisible(false);
+        menuBar()->setVisible(true);
         // Assure a proper default size if Dolphin runs the first time
         resize(750, 500);
     }
