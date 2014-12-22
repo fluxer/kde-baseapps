@@ -82,10 +82,12 @@ static QSet<int> KItemSet2QSet(const KItemSet& itemSet)
 
     foreach (int i, itemSet) {
         Q_ASSERT(result.contains(i));
+        Q_UNUSED(i);
     }
 
     foreach (int i, result) {
         Q_ASSERT(itemSet.contains(i));
+        Q_UNUSED(i);
     }
 
     return result;
