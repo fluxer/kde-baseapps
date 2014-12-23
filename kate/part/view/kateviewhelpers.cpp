@@ -39,8 +39,6 @@
 #include "katelayoutcache.h"
 #include "katetextlayout.h"
 #include "kateglobal.h"
-#include "kateviglobal.h"
-#include <katevicommandrangeexpressionparser.h>
 
 #include <kapplication.h>
 #include <kcharsets.h>
@@ -377,9 +375,6 @@ void KateScrollBar::updatePixmap()
   m_pixmap = QPixmap(pixmapLineWidth, pixmapLineCount);
   m_pixmap.fill(QColor("transparent"));
 
-  // The text currently selected in the document, to be drawn later.
-  const Range& selection = m_view->selectionRange();
-
   QPainter painter;
   if ( painter.begin(&m_pixmap) ) {
     // Do not force updates of the highlighting if the document is very large
@@ -432,18 +427,6 @@ void KateScrollBar::updatePixmap()
           painter.drawPoint(pixelX, pixelY);
 
           pixelX++;
-        }
-
-        // Query the selection and draw it above the character with an alpha channel
-        if (selection.contains(Cursor(realLineNumber, x))) {
-          painter.setPen(selectionColor);
-          painter.drawPoint(s_pixelMargin, pixelY);
-          // fill the line up in case the selection extends beyond it
-          if (lineText.size() - 1 == x) {
-            for (int xFill = s_pixelMargin; xFill < s_lineWidth; xFill++) {
-              painter.drawPoint(xFill, pixelY);
-            }
-          }
         }
       }
       drawnLines++;
@@ -976,7 +959,6 @@ void KateCmdLineEdit::slotReturnPressed ( const QString& text )
 
   // Parse any leading range expression, and strip it (and maybe do some other transforms on the command).
   QString leadingRangeExpression;
-  KTextEditor::Range range = CommandRangeExpressionParser::parseRangeExpression(cmd, m_view, leadingRangeExpression, cmd);
 
   // Built in help: if the command starts with "help", [try to] show some help
   if ( cmd.startsWith( QLatin1String("help") ) )
@@ -992,7 +974,6 @@ void KateCmdLineEdit::slotReturnPressed ( const QString& text )
   if (cmd.length () > 0)
   {
     KTextEditor::Command *p = KateCmd::self()->queryCommand (cmd);
-    KTextEditor::RangeCommand *ce = dynamic_cast<KTextEditor::RangeCommand*>(p);
 
     m_oldText = leadingRangeExpression + cmd;
     m_msgMode = true;
@@ -1004,32 +985,10 @@ void KateCmdLineEdit::slotReturnPressed ( const QString& text )
 
     // we got a range and a valid command, but the command does not inherit the RangeCommand
     // extension. bail out.
-    if ( ( !ce && range.isValid() && p ) || ( range.isValid() && ce && !ce->supportsRange(cmd) ) ) {
-      setText (i18n ("Error: No range allowed for command \"%1\".",  cmd));
-    } else {
-
       if (p)
       {
         QString msg;
 
-        if ((ce && range.isValid() && ce->exec(m_view, cmd, msg, range)) ||
-            (p->exec(m_view, cmd, msg)))
-        {
-
-          // append command along with range (will be empty if none given) to history
-          KateCmd::self()->appendHistory( leadingRangeExpression + cmd );
-          m_histpos = KateCmd::self()->historyLength();
-          m_oldText.clear();
-
-          if (msg.length() > 0) {
-            setText (i18n ("Success: ") + msg);
-          } else if (isVisible()) {
-            // always hide on success without message
-            emit hideRequested();
-          }
-        }
-        else
-        {
           if (msg.length() > 0) {
             if (msg.contains('\n')) {
               // multiline error, use widget with more space
@@ -1041,14 +1000,12 @@ void KateCmdLineEdit::slotReturnPressed ( const QString& text )
             setText (i18n ("Command \"%1\" failed.",  cmd));
           }
           KNotification::beep();
-        }
       }
       else
       {
         setText (i18n ("No such command: \"%1\"",  cmd));
         KNotification::beep();
       }
-    }
   }
 
   // clean up
@@ -1068,10 +1025,6 @@ void KateCmdLineEdit::slotReturnPressed ( const QString& text )
 
   if (isVisible()) {
     m_hideTimer->start(4000);
-  }
-
-  if (m_view->viInputMode()) {
-    m_view->getViInputModeManager()->reset();
   }
 }
 
@@ -1101,9 +1054,6 @@ void KateCmdLineEdit::keyPressEvent( QKeyEvent *ev )
   {
     m_view->setFocus ();
     hideLineEdit();
-    if (m_view->viInputMode()) {
-      m_view->getViInputModeManager()->reset();
-    }
     clear();
   }
   else if ( ev->key() == Qt::Key_Up )
@@ -1532,7 +1482,6 @@ void KateIconBorder::paintBorder (int /*x*/, int y, int /*width*/, int height)
   uint startz = (y / h);
   uint endz = startz + 1 + (height / h);
   uint lineRangesSize = m_viewInternal->cache()->viewCacheLineCount();
-  uint currentLine = m_view->cursorPosition().line();
 
   // center the folding boxes
   int m_px = (h - 11) / 2;
@@ -1702,20 +1651,7 @@ void KateIconBorder::paintBorder (int /*x*/, int y, int /*width*/, int height)
 
       if (realLine > -1) {
         if (m_viewInternal->cache()->viewLine(z).startCol() == 0) {
-          if (m_viRelLineNumbersOn && m_view->viInputMode()) {
-            int diff = abs(realLine - currentLine);
-            if (diff > 0) {
-              p.drawText( lnX + m_maxCharWidth / 2, y, lnWidth - m_maxCharWidth, h,
-                          Qt::TextDontClip|Qt::AlignRight|Qt::AlignVCenter, QString("%1").arg(diff) );
-            } else {
-              p.drawText( lnX + m_maxCharWidth / 2, y, lnWidth - m_maxCharWidth, h,
-                          Qt::TextDontClip|Qt::AlignLeft|Qt::AlignVCenter, QString("%1").arg(realLine + 1) );
-            }
-            if (m_updateViRelLineNumbers) {
-              m_updateViRelLineNumbers = false;
-              update();
-            }
-          } else if (m_lineNumbersOn) {
+          if (m_lineNumbersOn) {
             p.drawText( lnX + m_maxCharWidth / 2, y, lnWidth - m_maxCharWidth, h,
                         Qt::TextDontClip|Qt::AlignRight|Qt::AlignVCenter, QString("%1").arg( realLine + 1 ) );
           }

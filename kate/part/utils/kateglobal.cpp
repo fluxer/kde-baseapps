@@ -34,7 +34,6 @@
 #include "katecmd.h"
 #include "katebuffer.h"
 #include "katepartpluginmanager.h"
-#include "kateviglobal.h"
 #include "katewordcompletion.h"
 #include "katekeywordcompletion.h"
 #include "spellcheck/spellcheck.h"
@@ -153,11 +152,6 @@ KateGlobal::KateGlobal ()
   m_schemaManager = new KateSchemaManager ();
 
   //
-  // vi input mode global
-  //
-  m_viInputModeGlobal = new KateViGlobal ();
-
-  //
   // spell check manager
   //
   m_spellCheckManager = new KateSpellCheckManager ();
@@ -180,7 +174,6 @@ KateGlobal::KateGlobal ()
   // init the cmds
   //
   m_cmds.push_back( KateCommands::CoreCommands::self() );
-  m_cmds.push_back( KateCommands::ViCommands::self() );
   m_cmds.push_back( KateCommands::AppCommands::self() );
   m_cmds.push_back( KateCommands::SedReplace::self() );
   m_cmds.push_back( KateCommands::Character::self() );
@@ -215,8 +208,6 @@ KateGlobal::~KateGlobal()
 
   delete m_modeManager;
   delete m_schemaManager;
-
-  delete m_viInputModeGlobal;
 
   delete m_dirWatch;
 
@@ -270,8 +261,6 @@ void KateGlobal::readConfig(KConfig *config)
   KateViewConfig::global()->readConfig (KConfigGroup(config, "Kate View Defaults"));
 
   KateRendererConfig::global()->readConfig (KConfigGroup(config, "Kate Renderer Defaults"));
-
-  m_viInputModeGlobal->readConfig( KConfigGroup( config, "Kate Vi Input Mode Settings" ) );
 }
 
 void KateGlobal::writeConfig(KConfig *config)
@@ -290,9 +279,6 @@ void KateGlobal::writeConfig(KConfig *config)
 
   KConfigGroup cgRenderer(config, "Kate Renderer Defaults");
   KateRendererConfig::global()->writeConfig (cgRenderer);
-
-  KConfigGroup cgViInputMode(config, "Kate Vi Input Mode Settings");
-  m_viInputModeGlobal->writeConfig (cgViInputMode);
 
   config->sync();
 }

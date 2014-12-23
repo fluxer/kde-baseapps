@@ -45,7 +45,6 @@
 #include "katebuffer.h"
 #include "kateundomanager.h"
 #include "katepartpluginmanager.h"
-#include "katevireplacemode.h"
 #include "spellcheck/prefixstore.h"
 #include "spellcheck/ontheflycheck.h"
 #include "spellcheck/spellcheck.h"
@@ -2616,18 +2615,10 @@ bool KateDocument::typeChars ( KateView *view, const QString &realChars )
 
   KTextEditor::Cursor oldCur (view->cursorPosition());
 
-  if (config()->ovr()
-      || (view->viInputMode() && view->getViInputModeManager()->getCurrentViMode() == ReplaceMode)) {
+  if (config()->ovr()) {
 
     KTextEditor::Range r = KTextEditor::Range(view->cursorPosition(), qMin(chars.length(),
           textLine->length() - view->cursorPosition().column()));
-
-    // replace mode needs to know what was removed so it can be restored with backspace
-    if (view->viInputMode() && view->getViInputModeManager()->getCurrentViMode() == ReplaceMode
-            && oldCur.column() < line( view->cursorPosition().line() ).length() ) {
-      QChar removed = line( view->cursorPosition().line() ).at( r.start().column() );
-      view->getViInputModeManager()->getViReplaceMode()->overwrittenChar( removed );
-    }
 
     removeText(r);
   }
@@ -2929,12 +2920,6 @@ void KateDocument::insertTab( KateView *view, const KTextEditor::Cursor&)
   {
     KTextEditor::Range r = KTextEditor::Range(view->cursorPosition(), 1);
 
-    if (view->viInputMode() && view->getViInputModeManager()->getCurrentViMode() == ReplaceMode)
-    {
-      // vi replace mode needs to know what was removed so it can be restored with backspace
-      QChar removed = line(view->cursorPosition().line()).at( r.start().column());
-      view->getViInputModeManager()->getViReplaceMode()->overwrittenChar(removed);
-    }
     removeText(r);
   }
 

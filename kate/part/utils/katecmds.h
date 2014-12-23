@@ -24,8 +24,6 @@
 #define __KATE_CMDS_H__
 
 #include <ktexteditor/commandinterface.h>
-#include "kateviinputmodemanager.h"
-#include "kateviglobal.h"
 #include "kateregexpsearch.h"
 
 #include <QtCore/QStringList>
@@ -102,71 +100,6 @@ class CoreCommands : public KTextEditor::Command, public KTextEditor::CommandExt
       }
       return m_instance;
     }
-};
-
-/**
- * This KTextEditor::Command provides vi 'ex' commands
- */
-class ViCommands : public KTextEditor::Command, public KTextEditor::CommandExtension,
-  public KTextEditor::RangeCommand
-{
-  ViCommands() { }
-  static ViCommands* m_instance;
-
-  public:
-    ~ViCommands() { m_instance = 0; }
-
-    /**
-     * execute command
-     * @param view view to use for execution
-     * @param cmd cmd string
-     * @param msg message returned from running the command
-     * @return success
-     */
-    bool exec( class KTextEditor::View *view, const QString &cmd, QString &msg );
-
-    /**
-     * execute command on given range
-     * @param view view to use for execution
-     * @param cmd cmd string
-     * @param msg message returned from running the command
-     * @param rangeStart first line in range
-     * @param rangeEnd last line in range
-     * @return success
-     */
-    bool exec( class KTextEditor::View *view, const QString &cmd, QString &msg,
-        const KTextEditor::Range &range = KTextEditor::Range(-1, -0, -1, 0));
-
-    bool supportsRange(const QString &range);
-
-    /** This command does not have help. @see KTextEditor::Command::help */
-    bool help( class KTextEditor::View *, const QString &, QString & ) {return false;}
-
-    /**
-     * supported commands as prefixes
-     * @return prefix list
-     */
-    const QStringList &cmds();
-
-    /**
-    * override completionObject from interfaces/document.h .
-    */
-    KCompletion *completionObject( KTextEditor::View *, const QString & );
-
-    virtual void flagCompletions( QStringList& ) {}
-    virtual bool wantsToProcessText( const QString & ) { return false; }
-    virtual void processText( KTextEditor::View *, const QString & ) {}
-
-    static ViCommands* self() {
-      if (m_instance == 0) {
-        m_instance = new ViCommands();
-      }
-      return m_instance;
-    }
-private:
-  const QStringList& mappingCommands();
-  KateViGlobal::MappingMode modeForMapCommand(const QString& mapCommand);
-  bool isMapCommandRecursive(const QString& mapCommand);
 };
 
 /**

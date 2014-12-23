@@ -29,7 +29,6 @@
 
 #include "katehighlight.h"
 #include "kateviewhelpers.h"
-#include "kateviglobal.h"
 
 #include <ktexteditor/attribute.h>
 #include <ktexteditor/modificationinterface.h>
@@ -230,34 +229,6 @@ public Q_SLOTS:
   void defaults () {}
 };
 
-class KateViInputModeConfigTab : public KateConfigPage
-{
-  Q_OBJECT
-
-  public:
-    KateViInputModeConfigTab(QWidget *parent);
-    ~KateViInputModeConfigTab();
-
-  protected:
-    Ui::ViInputModeConfigWidget *ui;
-
-  private:
-    void applyTab(QTableWidget *mappingsTable, KateViGlobal::MappingMode mode);
-    void reloadTab(QTableWidget *mappingsTable, KateViGlobal::MappingMode mode);
-
-  public Q_SLOTS:
-    void apply ();
-    void reload ();
-    void reset () {}
-    void defaults () {}
-
-  private Q_SLOTS:
-    void showWhatsThis(const QString& text);
-    void addMappingRow();
-    void removeSelectedMappingRows();
-    void importNormalMappingRow();
-};
-
 class KateSpellCheckConfigTab : public KateConfigPage
 {
   Q_OBJECT
@@ -299,7 +270,6 @@ private:
   KateNavigationConfigTab *navigationConfigTab;
   KateIndentConfigTab *indentConfigTab;
   KateCompletionConfigTab *completionConfigTab;
-  KateViInputModeConfigTab *viInputModeConfigTab;
   KateSpellCheckConfigTab *spellCheckConfigTab;
 };
 

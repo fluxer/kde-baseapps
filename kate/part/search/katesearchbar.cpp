@@ -368,10 +368,7 @@ void KateSearchBar::indicateMatch(MatchResult matchResult) {
 
 /*static*/ void KateSearchBar::selectRange(KateView * view, const KTextEditor::Range & range) {
     view->setCursorPositionInternal(range.end());
-
-    // don't make a selection if the vi input mode is used
-    if (!view->viInputMode())
-        view->setSelection(range);
+    view->setSelection(range);
 }
 
 
@@ -507,12 +504,6 @@ void KateSearchBar::onReturnPressed() {
     const bool shiftDown = (modifiers & Qt::ShiftModifier) != 0;
     const bool controlDown = (modifiers & Qt::ControlModifier) != 0;
 
-    // if vi input mode is active, the search box should be closed when hitting enter
-    if (m_view->viInputMode()) {
-        emit hideMe();
-        return;
-    }
-
     if (shiftDown) {
         // Shift down, search backwards
         findPrevious();
@@ -561,14 +552,7 @@ bool KateSearchBar::find(SearchDirection searchDirection, const QString * replac
         // No selection
         const Cursor cursorPos = m_view->cursorPosition();
         if (searchDirection == SearchForward) {
-            // if the vi input mode is used, the cursor will stay a the first character of the
-            // matched pattern (no selection will be made), so the next search should start from
-            // match column + 1
-            if (!m_view->viInputMode()) {
-                inputRange.setRange(cursorPos, m_view->document()->documentEnd());
-            } else {
-                inputRange.setRange(Cursor(cursorPos.line(), cursorPos.column()+1), m_view->document()->documentEnd());
-            }
+            inputRange.setRange(cursorPos, m_view->document()->documentEnd());
         } else {
             inputRange.setRange(Cursor(0, 0), cursorPos);
         }
@@ -587,12 +571,6 @@ bool KateSearchBar::find(SearchDirection searchDirection, const QString * replac
 
     KateMatch match(m_view->doc(), enabledOptions);
     Range afterReplace = Range::invalid();
-
-    // FIXME: in KF5 remove dependency on viInputMode
-    if (m_view->viInputMode() && searchDirection == SearchBackward) {
-        const Cursor end(inputRange.end().line(), inputRange.end().column() - 1);
-        inputRange.setRange(inputRange.start(), end);
-    }
 
     // Find, first try
     match.searchText(inputRange, searchPattern());

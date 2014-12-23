@@ -25,7 +25,6 @@ include_directories(
   ${CMAKE_CURRENT_SOURCE_DIR}/schema
   ${CMAKE_CURRENT_SOURCE_DIR}/undo
   ${CMAKE_CURRENT_SOURCE_DIR}/utils
-  ${CMAKE_CURRENT_SOURCE_DIR}/vimode
   ${CMAKE_CURRENT_SOURCE_DIR}/view
   ${CMAKE_CURRENT_SOURCE_DIR}/swapfile
   ${CMAKE_CURRENT_SOURCE_DIR}/variableeditor
@@ -133,22 +132,6 @@ view/katefadeeffect.cpp
 view/kateanimation.cpp
 view/katetextanimation.cpp
 
-# vi input mode
-vimode/kateviinputmodemanager.cpp
-vimode/katevimodebase.cpp
-vimode/katevinormalmode.cpp
-vimode/kateviinsertmode.cpp
-vimode/katevicommand.cpp
-vimode/katevimotion.cpp
-vimode/katevirange.cpp
-vimode/katevikeyparser.cpp
-vimode/kateviglobal.cpp
-vimode/katevivisualmode.cpp
-vimode/katevireplacemode.cpp
-vimode/kateviemulatedcommandbar.cpp
-vimode/katevicommandrangeexpressionparser.cpp
-vimode/katevikeymapper.cpp
-
 # spell checking
 spellcheck/prefixstore.h
 spellcheck/prefixstore.cpp
@@ -216,7 +199,6 @@ dialogs/modonhdwidget.ui
 dialogs/completionconfigwidget.ui
 search/searchbarincremental.ui
 search/searchbarpower.ui
-dialogs/viinputmodeconfigwidget.ui
 dialogs/spellcheckconfigwidget.ui
 schema/howtoimportschema.ui
 snippet/snippetview.ui

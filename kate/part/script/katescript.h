@@ -28,6 +28,8 @@
 #include <QtScript/QScriptValue>
 #include <QtScript/QScriptable>
 
+#include "katedocument.h"
+
 class QScriptEngine;
 class QScriptContext;
 

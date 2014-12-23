@@ -333,12 +333,6 @@ class KATEPART_TESTS_EXPORT KateGlobal : public KTextEditor::Editor, public KTex
     KateCmd *cmdManager () { return m_cmdManager; }
 
     /**
-     * vi input mode global
-     * @return vi input mode global
-     */
-    KateViGlobal *viInputModeGlobal () { return m_viInputModeGlobal; }
-
-    /**
      * spell check manager
      * @return spell check manager
      */
@@ -531,11 +525,6 @@ class KATEPART_TESTS_EXPORT KateGlobal : public KTextEditor::Editor, public KTex
      * command manager
      */
     KateCmd *m_cmdManager;
-
-    /**
-     * vi input mode global
-     */
-    KateViGlobal *m_viInputModeGlobal;
 
     /**
      * spell check manager

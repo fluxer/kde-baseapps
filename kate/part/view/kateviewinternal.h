@@ -51,8 +51,6 @@ class KateScrollBar;
 class KateTextLayout;
 class KateTextAnimation;
 
-class KateViInputModeManager;
-
 class QScrollBar;
 
 class KateViewInternal : public QWidget
@@ -423,33 +421,6 @@ class KateViewInternal : public QWidget
   private:
     inline KateDocument *doc() { return m_view->doc(); }
     inline KateDocument *doc() const { return m_view->doc(); }
-
-  // vi Mode
-  private:
-    bool m_viInputMode;
-    bool m_viInputModeStealKeys;
-    bool m_viRelLineNumbers;
-
-    /**
-     * returns the current vi mode
-     */
-    ViMode getCurrentViMode();
-
-    /**
-     * an instance of KateViInputModeManager. used for interacting with the vi input mode when
-     * enabled
-     */
-    KateViInputModeManager* m_viInputModeManager;
-
-    /**
-     * @return a pointer to a KateViInputModeManager
-     */
-    KateViInputModeManager* getViInputModeManager();
-
-    /**
-     * @return a pointer to a new KateViInputModeManager
-     */
-    KateViInputModeManager* resetViInputModeManager();
 };
 
 #endif

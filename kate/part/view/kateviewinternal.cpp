@@ -37,7 +37,6 @@
 #include "kateconfig.h"
 #include "katelayoutcache.h"
 #include "katecompletionwidget.h"
-#include "kateviinputmodemanager.h"
 #include "katesearchbar.h"
 #include "spellcheck/spellingmenu.h"
 #include "kateviewaccessible.h"
@@ -97,8 +96,6 @@ KateViewInternal::KateViewInternal(KateView *view)
   , m_textHintEnabled(false)
   , m_textHintPos(-1, -1)
   , m_imPreeditRange(0)
-  , m_viInputMode(false)
-  , m_viInputModeManager (0)
 {
   setMinimumSize (0,0);
   setAttribute(Qt::WA_OpaquePaintEvent);
@@ -231,8 +228,6 @@ KateViewInternal::~KateViewInternal ()
   // kill preedit ranges
   delete m_imPreeditRange;
   qDeleteAll (m_imPreeditRangeChildren);
-
-  delete m_viInputModeManager;
 
   // delete bracket markers
   delete m_bm;
@@ -2203,23 +2198,12 @@ bool KateViewInternal::eventFilter( QObject *obj, QEvent *e )
           //kDebug() << obj << "shortcut override" << k->key() << "closing view bar";
           return true;
         } else if (!m_view->config()->persistentSelection() && m_view->selection()) {
-          if (!m_view->viInputMode()) // Vim mode handles clearing selections itself.
-          {
-            m_view->clearSelection();
-          }
+          m_view->clearSelection();
           k->accept();
           //kDebug() << obj << "shortcut override" << k->key() << "clearing selection";
           return true;
         }
       }
-
-      // if vi input mode key stealing is on, override kate shortcuts
-      if (m_view->viInputMode() && m_view->viInputModeStealKeys() &&  ( m_view->getCurrentViMode() != InsertMode ||
-          k->modifiers() == Qt::ControlModifier || k->key() == Qt::Key_Insert ) ) {
-        k->accept();
-        return true;
-      }
-
     } break;
 
     case QEvent::KeyPress:
@@ -2318,35 +2302,11 @@ void KateViewInternal::keyPressEvent( QKeyEvent* e )
   // Note: AND'ing with <Shift> is a quick hack to fix Key_Enter
   const int key = e->key() | (e->modifiers() & Qt::ShiftModifier);
 
-  if (m_view->isCompletionActive()
-     && !m_view->viInputMode() /* Vi input mode needs to handle completion keypresses itself for e.g. mappings */)
+  if (m_view->isCompletionActive())
   {
     if( key == Qt::Key_Enter || key == Qt::Key_Return ) {
       m_view->completionWidget()->execute();
       e->accept();
-      return;
-    }
-  }
-
-  if ( m_view->viInputMode() ) {
-    if ( getViInputModeManager()->getCurrentViMode() == InsertMode
-        || getViInputModeManager()->getCurrentViMode() == ReplaceMode ) {
-      if ( getViInputModeManager()->handleKeypress( e ) ) {
-        return;
-      } else if ( e->modifiers() != Qt::NoModifier && e->modifiers() != Qt::ShiftModifier ) {
-        // re-post key events not handled if they have a modifier other than shift
-        QEvent *copy = new QKeyEvent ( e->type(), e->key(), e->modifiers(), e->text(),
-            e->isAutoRepeat(), e->count() );
-        QCoreApplication::postEvent( parent(), copy );
-      }
-    } else { // !InsertMode
-      if ( !getViInputModeManager()->handleKeypress( e ) ) {
-        // we didn't need that keypress, un-steal it :-)
-        QEvent *copy = new QKeyEvent ( e->type(), e->key(), e->modifiers(), e->text(),
-            e->isAutoRepeat(), e->count() );
-        QCoreApplication::postEvent( parent(), copy );
-      }
-      m_view->updateViModeBarCmd();
       return;
     }
   }
@@ -2951,10 +2911,7 @@ void KateViewInternal::paintEvent(QPaintEvent *e)
   
   paint.save();
 
-  // TODO put in the proper places
-  if ( !m_view->viInputMode() ) {
-    setCaretStyle( m_view->isOverwriteMode() ? KateRenderer::Block : KateRenderer::Line );
-  }
+  setCaretStyle( m_view->isOverwriteMode() ? KateRenderer::Block : KateRenderer::Line );
   renderer()->setShowTabs(doc()->config()->showTabs());
   renderer()->setShowTrailingSpaces(doc()->config()->showSpaces());
 
@@ -3091,7 +3048,7 @@ void KateViewInternal::scrollTimeout ()
 
 void KateViewInternal::cursorTimeout ()
 {
-  if (!debugPainting && !m_view->viInputMode()) {
+  if (!debugPainting) {
     renderer()->setDrawCaret(!renderer()->drawCaret());
     paintCursor();
   }
@@ -3659,30 +3616,6 @@ void KateViewInternal::inputMethodEvent(QInputMethodEvent* e)
 }
 
 //END IM INPUT STUFF
-
-ViMode KateViewInternal::getCurrentViMode()
-{
-  return getViInputModeManager()->getCurrentViMode();
-}
-
-KateViInputModeManager* KateViewInternal::getViInputModeManager()
-{
-  if (!m_viInputModeManager) {
-    m_viInputModeManager = new KateViInputModeManager(m_view, this);
-  }
-
-  return m_viInputModeManager;
-}
-
-KateViInputModeManager* KateViewInternal::resetViInputModeManager()
-{
-    if (m_viInputModeManager) {
-       delete m_viInputModeManager;
-    }
-    m_viInputModeManager = new KateViInputModeManager(m_view, this);
-
-  return m_viInputModeManager;
-}
 
 void KateViewInternal::flashChar(const KTextEditor::Cursor & pos, KTextEditor::Attribute::Ptr attribute)
 {

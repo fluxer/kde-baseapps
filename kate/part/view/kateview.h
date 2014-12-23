@@ -38,7 +38,6 @@
 
 #include <kdebug.h>
 
-#include "kateviinputmodemanager.h"
 #include "katetextrange.h"
 #include "katetextfolding.h"
 #include "katerenderer.h"
@@ -58,7 +57,6 @@ class KateSpellCheckDialog;
 class KateCompletionWidget;
 class KateViewInternal;
 class KateSearchBar;
-class KateViEmulatedCommandBar;
 class KateViewBar;
 class KateGotoBar;
 class KateDictionaryBar;
@@ -95,7 +93,6 @@ class KATEPART_TESTS_EXPORT KateView : public KTextEditor::View,
 
     friend class KateViewInternal;
     friend class KateIconBorder;
-    friend class KateViModeBase;
 
   public:
     KateView( KateDocument* doc, QWidget* parent );
@@ -518,10 +515,6 @@ class KATEPART_TESTS_EXPORT KateView : public KTextEditor::View,
     void toggleScrollBarMiniMap();
     void toggleScrollBarMiniMapAll();
     void toggleDynWordWrap ();
-    void toggleViInputMode ();
-
-
-    void showViModeEmulatedCommandBar();
 
     void setDynWrapIndicators(int mode);
 
@@ -685,7 +678,6 @@ class KATEPART_TESTS_EXPORT KateView : public KTextEditor::View,
     KateViewBar *bottomViewBar() const;
     KateCommandLineBar *cmdLineBar ();
     KateDictionaryBar *dictionaryBar();
-    KateViEmulatedCommandBar *viModeEmulatedCommandBar();
 
   private:
     KateSearchBar *searchBar (bool initHintAsPower = false);
@@ -703,53 +695,8 @@ class KATEPART_TESTS_EXPORT KateView : public KTextEditor::View,
     // created on demand..., only access them through the above accessors....
     KateCommandLineBar *m_cmdLine;
     KateSearchBar *m_searchBar;
-    KateViEmulatedCommandBar *m_viModeEmulatedCommandBar;
     KateGotoBar *m_gotoBar;
     KateDictionaryBar *m_dictionaryBar;
-
-  // vi Mode
-  public:
-    /**
-     * @return boolean indicating whether vi mode is active or not
-     */
-    bool viInputMode() const;
-
-    /**
-     * @return the current vi mode
-     */
-    ViMode getCurrentViMode() const;
-
-    /**
-     * @return a pointer to the KateViInputModeManager belonging to the view
-     */
-    KateViInputModeManager* getViInputModeManager();
-
-    /**
-     * Replace ViInputModeManager by new one.
-     * @return a pointer to the new KateViInputModeManager.
-     */
-    KateViInputModeManager* resetViInputModeManager();
-
-    /**
-     * @return boolean indicating whether vi mode will override actions or not
-     */
-    bool viInputModeStealKeys() const;
-
-    /**
-     * @return boolean indicating whether relative line numbers should
-     * be used or not.
-     */
-    bool viRelativeLineNumbers() const;
-
-    /**
-     * Update vi mode statusbar according to the current mode
-     */
-    void updateViModeBarMode();
-
-    /**
-     * Update vi mode statusbar with the (partial) vi command being typed
-     */
-    void updateViModeBarCmd();
 
   public:
     KTextEditor::Range visibleRange();

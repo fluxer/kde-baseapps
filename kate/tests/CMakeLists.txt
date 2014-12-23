@@ -13,7 +13,6 @@ include_directories(
   ${CMAKE_SOURCE_DIR}/kate/part/syntax
   ${CMAKE_SOURCE_DIR}/kate/part/undo
   ${CMAKE_SOURCE_DIR}/kate/part/utils
-  ${CMAKE_SOURCE_DIR}/kate/part/vimode
   ${CMAKE_SOURCE_DIR}/kate/part/view
   ${CMAKE_SOURCE_DIR}/kate/part/kte5 # KDE5 remove
   ${CMAKE_BINARY_DIR}/kate/part
@@ -82,17 +81,6 @@ target_link_libraries( wordcompletion_test ${KATE_TEST_LINK_LIBS} )
 kde4_add_unit_test(searchbar_test TESTNAME kate-searchbar_test searchbar_test.cpp)
 
 target_link_libraries( searchbar_test
-  ${KDE4_KDEUI_LIBS}
-  ${QT_QTTEST_LIBRARY}
-  ${KATE_TEST_LINK_LIBS}
-  katepartinterfaces
-)
-
-########### vimode test ###############
-
-kde4_add_unit_test(vimode_test TESTNAME kate-vimode_test vimode_test.cpp)
-
-target_link_libraries( vimode_test
   ${KDE4_KDEUI_LIBS}
   ${QT_QTTEST_LIBRARY}
   ${KATE_TEST_LINK_LIBS}

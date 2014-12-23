@@ -33,7 +33,6 @@
 #include "kateundomanager.h"
 #include "katedocumenthelpers.h"
 #include "kateglobal.h"
-#include "kateviglobal.h"
 #include "katehighlight.h"
 #include "katehighlightmenu.h"
 #include "katedialogs.h"
@@ -45,7 +44,6 @@
 #include "kateautoindent.h"
 #include "katecompletionwidget.h"
 #include "katesearchbar.h"
-#include "kateviemulatedcommandbar.h"
 #include "katepartpluginmanager.h"
 #include "katewordcompletion.h"
 #include "katekeywordcompletion.h"
@@ -138,7 +136,6 @@ KateView::KateView( KateDocument *doc, QWidget *parent )
     , m_topViewBar (0)
     , m_cmdLine (0)
     , m_searchBar (0)
-    , m_viModeEmulatedCommandBar(0)
     , m_gotoBar (0)
     , m_dictionaryBar(NULL)
     , m_spellingMenu( new KateSpellingMenu( this ) )
@@ -283,10 +280,6 @@ KateView::KateView( KateDocument *doc, QWidget *parent )
 
   slotHlChanged();
   KCursor::setAutoHideCursor( m_viewInternal, true );
-
-  if ( viInputMode() /* && FIXME: HAEHH? !config()->viInputModeHideStatusBar() */ ) {
-    deactivateEditActions();
-  }
 
   // user interaction (scrollling) starts notification auto-hide timer
   connect(this, SIGNAL(displayRangeChanged(KateView*)), m_topMessageWidget, SLOT(startAutoHideTimer()));
@@ -624,12 +617,6 @@ void KateView::setupActions()
   a->setShortcut(QKeySequence(Qt::Key_F7));
   a->setWhatsThis(i18n("Show/hide the command line on the bottom of the view."));
   connect(a, SIGNAL(triggered(bool)), SLOT(switchToCmdLine()));
-
-  a = m_viInputModeAction = new KToggleAction(i18n("&VI Input Mode"), this);
-  ac->addAction("view_vi_input_mode", a);
-  a->setShortcut(QKeySequence(Qt::CTRL + Qt::META + Qt::Key_V));
-  a->setWhatsThis( i18n("Activate/deactivate VI input mode" ));
-  connect(a, SIGNAL(triggered(bool)), SLOT(toggleViInputMode()));
 
   a = m_setEndOfLine = new KSelectAction(i18n("&End of Line"), this);
   ac->addAction("set_eol", a);
@@ -1136,9 +1123,6 @@ void KateView::unfoldLine (int startLine)
 
 KTextEditor::View::EditMode KateView::viewEditMode() const
 {
-  if (viInputMode())
-    return EditViMode;
-  
   return isOverwriteMode() ? EditOverwrite : EditInsert;
 }
 
@@ -1148,30 +1132,6 @@ QString KateView::viewMode () const
    * normal two modes
    */
   QString currentMode = isOverwriteMode() ? i18n("OVR") : i18n ("INS");
-  
-  /**
-   * if we are in vi mode, this will be overwritten by current vi mode
-   */
-  if (viInputMode()) {
-    currentMode = KateViInputModeManager::modeToString (getCurrentViMode());
-
-    if (m_viewInternal->getViInputModeManager()->isRecordingMacro())
-    {
-      currentMode += " (" + i18n("recording") + ") ";
-    }
-
-    /**
-     * perhaps append the current keys of a command not finalized
-     */
-    QString cmd = m_viewInternal->getViInputModeManager()->getVerbatimKeys();
-    if (!cmd.isEmpty())
-      currentMode.append (QString (" <em>%1</em>").arg (cmd));
-    
-    /**
-     * make it bold
-     */
-    currentMode = QString ("<b>%1</b>").arg (currentMode);
-  }
   
   /**
    * append read-only if needed
@@ -1189,9 +1149,7 @@ void KateView::slotGotFocus()
 {
   //kDebug(13020) << "KateView::slotGotFocus";
 
-  if ( !viInputMode() ) {
-    activateEditActions();
-  }
+  activateEditActions();
   emit focusIn ( this );
 }
 
@@ -1199,10 +1157,7 @@ void KateView::slotLostFocus()
 {
   //kDebug(13020) << "KateView::slotLostFocus";
 
-  if ( !viInputMode() ) {
-    deactivateEditActions();
-  }
-
+  deactivateEditActions();
   emit focusOut ( this );
 }
 
@@ -1362,9 +1317,6 @@ void KateView::readSessionConfig(const KConfigGroup& config)
   // TODO: text folding state
 //   m_savedFoldingState = config.readEntry("TextFolding", QVariantList());
 //   applyFoldingState ();
-
-  // save vi registers and jump list
-  getViInputModeManager()->readSessionConfig( config );
 }
 
 void KateView::writeSessionConfig(KConfigGroup& config)
@@ -1377,9 +1329,6 @@ void KateView::writeSessionConfig(KConfigGroup& config)
 //   saveFoldingState();
 //   config.writeEntry("TextFolding", m_savedFoldingState);
 //   m_savedFoldingState.clear ();
-
-  // save vi registers and jump list
-  getViInputModeManager()->writeSessionConfig( config );
 }
 
 int KateView::getEol() const
@@ -1527,73 +1476,6 @@ void KateView::disableTextHints()
   m_viewInternal->disableTextHints();
 }
 
-bool KateView::viInputMode() const
-{
-  return m_viewInternal->m_viInputMode;
-}
-
-bool KateView::viInputModeStealKeys() const
-{
-  return m_viewInternal->m_viInputModeStealKeys;
-}
-
-bool KateView::viRelativeLineNumbers() const
-{
-  return m_viewInternal->m_viRelLineNumbers;
-}
-
-void KateView::toggleViInputMode()
-{
-  config()->setViInputMode (!config()->viInputMode());
-
-  if ( viInputMode() ) {
-    m_viewInternal->getViInputModeManager()->viEnterNormalMode();
-    deactivateEditActions();
-  } else { // disabling the vi input mode
-    activateEditActions();
-  }
-
-  emit viewModeChanged(this);
-  emit viewEditModeChanged(this,viewEditMode());
-}
-
-void KateView::showViModeEmulatedCommandBar()
-{
-  if (viInputMode() && config()->viInputModeEmulateCommandBar()) {
-    bottomViewBar()->addBarWidget(viModeEmulatedCommandBar());
-    bottomViewBar()->showBarWidget(viModeEmulatedCommandBar());
-  }
-}
-
-void KateView::updateViModeBarMode()
-{  
-  // view mode changed => status bar in container apps might change!
-  emit viewModeChanged (this);
-  emit viewEditModeChanged(this,viewEditMode());
-}
-
-void KateView::updateViModeBarCmd()
-{
-  // view mode changed => status bar in container apps might change!
-  emit viewModeChanged (this);
-  emit viewEditModeChanged(this,viewEditMode());
-}
-
-ViMode KateView::getCurrentViMode() const
-{
-  return m_viewInternal->getCurrentViMode();
-}
-
-KateViInputModeManager* KateView::getViInputModeManager()
-{
-  return m_viewInternal->getViInputModeManager();
-}
-
-KateViInputModeManager* KateView::resetViInputModeManager()
-{
-  return m_viewInternal->resetViInputModeManager();
-}
-
 void KateView::find()
 {
   const bool INIT_HINT_AS_INCREMENTAL = false;
@@ -1713,21 +1595,12 @@ void KateView::updateConfig ()
   m_toggleBlockSelection->setChecked( blockSelection() );
   m_toggleInsert->setChecked( isOverwriteMode() );
 
-  // vi modes
-  m_viInputModeAction->setChecked( config()->viInputMode() );
-
   updateFoldingConfig ();
 
   // bookmark
   m_bookmarks->setSorting( (KateBookmarks::Sorting) config()->bookmarkSort() );
 
   m_viewInternal->setAutoCenterLines(config()->autoCenterLines ());
-
-  // vi input mode
-  m_viewInternal->m_viInputMode = config()->viInputMode();
-
-  // whether vi input mode should override actions or not
-  m_viewInternal->m_viInputModeStealKeys = config()->viInputModeStealKeys();
 
   // whether relative line numbers should be used or not.
   m_viewInternal->m_leftBorder->setViRelLineNumbersOn(config()->viRelativeLineNumbers());
@@ -3046,16 +2919,6 @@ KateDictionaryBar *KateView::dictionaryBar ()
   }
 
   return m_dictionaryBar;
-}
-
-KateViEmulatedCommandBar* KateView::viModeEmulatedCommandBar()
-{
-  if (!m_viModeEmulatedCommandBar) {
-    m_viModeEmulatedCommandBar = new KateViEmulatedCommandBar(this, this);
-    m_viModeEmulatedCommandBar->hide ();
-  }
-
-  return m_viModeEmulatedCommandBar;
 }
 
 void KateView::setAnnotationModel( KTextEditor::AnnotationModel* model )

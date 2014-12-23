@@ -38,6 +38,7 @@
 #include <ktexteditor/cursor.h>
 #include "katepartprivate_export.h"
 #include "katetextline.h"
+#include "katedocument.h"
 
 class KateDocument;
 class KateView;

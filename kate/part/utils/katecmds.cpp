@@ -29,10 +29,7 @@
 #include "katetextline.h"
 #include "katesyntaxmanager.h"
 #include "kateglobal.h"
-#include "kateviglobal.h"
-#include "katevinormalmode.h"
 #include "katerenderer.h"
-#include "kateviemulatedcommandbar.h"
 #include "katecmd.h"
 
 #include <kdebug.h>
@@ -544,252 +541,6 @@ KCompletion *KateCommands::CoreCommands::completionObject( KTextEditor::View *vi
 }
 //END CoreCommands
 
-// BEGIN ViCommands
-KateCommands::ViCommands* KateCommands::ViCommands::m_instance = 0;
-
-const QStringList &KateCommands::ViCommands::cmds()
-{
-  static QStringList l;
-
-  if (l.isEmpty())
-  l << mappingCommands() << "d" << "delete" << "j" << "c" << "change" << "<" << ">" << "y" << "yank" <<
-       "ma" << "mark" << "k";
-
-  return l;
-}
-
-bool KateCommands::ViCommands::exec(KTextEditor::View *view,
-                            const QString &_cmd,
-                            QString &msg)
-{
-  return exec( view, _cmd, msg, KTextEditor::Range::invalid() );
-}
-
-bool KateCommands::ViCommands::exec(KTextEditor::View *view,
-                            const QString &_cmd,
-                            QString &msg,
-                            const KTextEditor::Range& range)
-{
-  Q_UNUSED(range)
-  // cast it hardcore, we know that it is really a kateview :)
-  KateView *v = static_cast<KateView*>(view);
-
-  if ( !v ) {
-    msg = i18n("Could not access view");
-    return false;
-  }
-
-  //create a list of args
-  QStringList args(_cmd.split( QRegExp("\\s+"), QString::SkipEmptyParts)) ;
-  QString cmd ( args.takeFirst() );
-
-
-  // ALL commands that takes no arguments.
-  if (mappingCommands().contains(cmd))
-  {
-    if (cmd.endsWith("unmap"))
-    {
-      if (args.count() == 1)
-      {
-        KateGlobal::self()->viInputModeGlobal()->removeMapping(modeForMapCommand(cmd), args.at(0));
-        return true;
-      }
-      else
-      {
-        msg = i18n("Missing argument. Usage: %1 <from>",  cmd );
-        return false;
-      }
-    }
-    if ( args.count() == 1 ) {
-      msg = KateGlobal::self()->viInputModeGlobal()->getMapping( modeForMapCommand(cmd), args.at( 0 ), true );
-      if ( msg.isEmpty() ) {
-        msg = i18n( "No mapping found for \"%1\"", args.at(0) );
-        return false;
-      } else {
-        msg = i18n( "\"%1\" is mapped to \"%2\"", args.at( 0 ), msg );
-      }
-    } else if ( args.count() == 2 ) {
-      KateViGlobal::MappingRecursion mappingRecursion = (isMapCommandRecursive(cmd)) ? KateViGlobal::Recursive : KateViGlobal::NonRecursive;
-      KateGlobal::self()->viInputModeGlobal()->addMapping( modeForMapCommand(cmd), args.at( 0 ), args.at( 1 ), mappingRecursion);
-    } else {
-      msg = i18n("Missing argument(s). Usage: %1 <from> [<to>]",  cmd );
-      return false;
-    }
-
-    return true;
-  }
-
-  KateViNormalMode* nm = v->getViInputModeManager()->getViNormalMode();
-
-  if (cmd == "d" || cmd == "delete" || cmd == "j" ||
-      cmd == "c" || cmd == "change" ||  cmd == "<" || cmd == ">" ||
-      cmd == "y" || cmd == "yank") {
-
-    KTextEditor::Cursor start_cursor_position = v->cursorPosition();
-
-    int count = 1;
-    if (range.isValid()){
-        count = qAbs(range.end().line() - range.start().line())+1;
-        v->setCursorPosition(KTextEditor::Cursor(qMin(range.start().line(),
-                                                      range.end().line()),0));
-    }
-
-    QRegExp number("^(\\d+)$");
-    for (int i = 0; i < args.count(); i++) {
-        if (number.indexIn(args.at(i)) != -1)
-            count += number.cap().toInt() - 1;
-
-        QChar r = args.at(i).at(0);
-        if (args.at(i).size() == 1 && ( (r >= 'a' && r <= 'z') || r == '_' || r == '+' || r == '*' ))
-                nm->setRegister(r);
-    }
-
-    nm->setCount(count);
-
-    if (cmd == "d" || cmd == "delete" )
-        nm->commandDeleteLine();
-    if (cmd == "j")
-        nm->commandJoinLines();
-    if (cmd == "c" || cmd == "change" )
-        nm->commandChangeLine();
-    if (cmd == "<")
-        nm->commandUnindentLine();
-    if (cmd == ">")
-        nm->commandIndentLine();
-    if (cmd == "y" || cmd == "yank" ){
-        nm->commandYankLine();
-        v->setCursorPosition(start_cursor_position);
-    }
-
-    // TODO - should we resetParser, here? We'd have to make it public, if so.
-    // Or maybe synthesise a KateViCommand to execute instead ... ?
-    nm->setCount(0);
-
-    return true;
-  }
-
-  if (cmd == "mark" || cmd == "ma" || cmd == "k" ) {
-      if (args.count() == 0){
-          if (cmd == "mark"){
-              // TODO: show up mark list;
-          } else {
-              msg = i18n("Wrong arguments");
-              return false;
-          }
-      } else if (args.count() == 1) {
-
-        QChar r = args.at(0).at(0);
-        int line;
-        if ( (r >= 'a' && r <= 'z') || r == '_' || r == '+' || r == '*' ) {
-            if (range.isValid())
-                line = qMax(range.end().line(),range.start().line());
-            else
-                line = v->cursorPosition().line();
-
-            v->getViInputModeManager()->addMark(v->doc(),r,KTextEditor::Cursor(line, 0));
-        }
-      } else {
-          msg = i18n("Wrong arguments");
-          return false;
-      }
-      return true;
-  }
-
-  // should not happen :)
-  msg = i18n("Unknown command '%1'", cmd);
-  return false;
-}
-
-bool KateCommands::ViCommands::supportsRange(const QString &range)
-{
-  static QStringList l;
-
-  if (l.isEmpty())
-  l << "d" << "delete" << "j" << "c" << "change" << "<" <<
-       ">" << "y" << "yank" << "ma" << "mark" << "k";
-
-  return l.contains(range.split(" ").at(0));
-}
-
-KCompletion *KateCommands::ViCommands::completionObject( KTextEditor::View *view, const QString &cmd )
-{
-  Q_UNUSED(view)
-
-  KateView *v = static_cast<KateView*>(view);
-
-  if ( v && ( cmd == "nn" || cmd == "nnoremap" ) )
-  {
-    QStringList l = KateGlobal::self()->viInputModeGlobal()->getMappings( KateViGlobal::NormalModeMapping );
-
-    KateCmdShellCompletion *co = new KateCmdShellCompletion();
-    co->setItems( l );
-    co->setIgnoreCase( false );
-    return co;
-  }
-  return 0L;
-}
-
-const QStringList& KateCommands::ViCommands::mappingCommands()
-{
-  static QStringList mappingsCommands;
-  if (mappingsCommands.isEmpty())
-  {
-    mappingsCommands << "nmap"  << "nm"  << "noremap" << "nnoremap" << "nn" << "no"
-                     << "vmap" << "vm" << "vnoremap" << "vn"
-                     << "imap" << "im" << "inoremap" << "ino"
-                     << "cmap" << "cm" << "cnoremap" << "cno";
-
-    mappingsCommands << "nunmap" << "vunmap" << "iunmap" << "cunmap";
-  }
-  return mappingsCommands;
-}
-
-KateViGlobal::MappingMode KateCommands::ViCommands::modeForMapCommand(const QString& mapCommand)
-{
-  static QMap<QString, KateViGlobal::MappingMode> modeForMapCommand;
-  if (modeForMapCommand.isEmpty())
-  {
-    // Normal is the default.
-    modeForMapCommand.insert("vmap", KateViGlobal::VisualModeMapping);
-    modeForMapCommand.insert("vm", KateViGlobal::VisualModeMapping);
-    modeForMapCommand.insert("vnoremap", KateViGlobal::VisualModeMapping);
-    modeForMapCommand.insert("vn", KateViGlobal::VisualModeMapping);
-    modeForMapCommand.insert("imap", KateViGlobal::InsertModeMapping);
-    modeForMapCommand.insert("im", KateViGlobal::InsertModeMapping);
-    modeForMapCommand.insert("inoremap", KateViGlobal::InsertModeMapping);
-    modeForMapCommand.insert("ino", KateViGlobal::InsertModeMapping);
-    modeForMapCommand.insert("cmap", KateViGlobal::CommandModeMapping);
-    modeForMapCommand.insert("cm", KateViGlobal::CommandModeMapping);
-    modeForMapCommand.insert("cnoremap", KateViGlobal::CommandModeMapping);
-    modeForMapCommand.insert("cno", KateViGlobal::CommandModeMapping);
-
-    modeForMapCommand.insert("nunmap", KateViGlobal::NormalModeMapping);
-    modeForMapCommand.insert("vunmap", KateViGlobal::VisualModeMapping);
-    modeForMapCommand.insert("iunmap", KateViGlobal::InsertModeMapping);
-    modeForMapCommand.insert("cunmap", KateViGlobal::CommandModeMapping);
-  }
-  return modeForMapCommand[mapCommand];
-}
-
-bool KateCommands::ViCommands::isMapCommandRecursive(const QString& mapCommand)
-{
-  static QMap<QString, bool> isMapCommandRecursive;
-  {
-    isMapCommandRecursive.insert("nmap", true);
-    isMapCommandRecursive.insert("nm", true);
-    isMapCommandRecursive.insert("vmap", true);
-    isMapCommandRecursive.insert("vm", true);
-    isMapCommandRecursive.insert("imap", true);
-    isMapCommandRecursive.insert("im", true);
-    isMapCommandRecursive.insert("cmap", true);
-    isMapCommandRecursive.insert("cm", true);
-  }
-  return isMapCommandRecursive[mapCommand];
-}
-
-
-//END ViCommands
-
 // BEGIN AppCommands
 KateCommands::AppCommands* KateCommands::AppCommands::m_instance = 0;
 
@@ -975,17 +726,8 @@ bool KateCommands::SedReplace::exec (class KTextEditor::View *view, const QStrin
 
   if (interactive)
   {
-    if (kateView->viInputMode() && KateViewConfig::global()->viInputModeEmulateCommandBar())
-    {
-      KateViEmulatedCommandBar *emulatedCommandBar = kateView->viModeEmulatedCommandBar();
-      emulatedCommandBar->startInteractiveSearchAndReplace(interactiveSedReplacer);
-      return true;
-    }
-    else
-    {
-      kDebug(13025) << "Interactive sedreplace is only currently supported with Vi mode plus Vi emulated command bar.";
-      return false;
-    }
+    kDebug(13025) << "Interactive sedreplace is only currently supported with Vi mode plus Vi emulated command bar.";
+    return false;
   }
 
   kateView->setSearchPattern(find);
@@ -1033,19 +775,19 @@ KateCommands::SedReplace::InteractiveSedReplacer::InteractiveSedReplacer(KateDoc
       m_numLinesTouched(0),
       m_lastChangedLineNum(-1)
 {
-  m_currentSearchPos = Cursor(startLine, 0);
+  m_currentSearchPos = KTextEditor::Cursor(startLine, 0);
 }
 
-Range KateCommands::SedReplace::InteractiveSedReplacer::currentMatch()
+KTextEditor::Range KateCommands::SedReplace::InteractiveSedReplacer::currentMatch()
 {
-  QVector<Range> matches = fullCurrentMatch();
+  QVector<KTextEditor::Range> matches = fullCurrentMatch();
 
   if (matches.isEmpty()) {
-    return Range::invalid();
+    return KTextEditor::Range::invalid();
   }
 
   if (matches.first().start().line() > m_endLine) {
-    return Range::invalid();
+    return KTextEditor::Range::invalid();
   }
 
   return matches.first();
@@ -1053,17 +795,17 @@ Range KateCommands::SedReplace::InteractiveSedReplacer::currentMatch()
 
 void KateCommands::SedReplace::InteractiveSedReplacer::skipCurrentMatch()
 {
-  const Range currentMatch = this->currentMatch();
+  const KTextEditor::Range currentMatch = this->currentMatch();
   m_currentSearchPos = currentMatch.end();
   if (m_onlyOnePerLine && currentMatch.start().line() == m_currentSearchPos.line())
   {
-    m_currentSearchPos = Cursor(m_currentSearchPos.line() + 1, 0);
+    m_currentSearchPos = KTextEditor::Cursor(m_currentSearchPos.line() + 1, 0);
   }
 }
 
 void KateCommands::SedReplace::InteractiveSedReplacer::replaceCurrentMatch()
 {
-  const Range currentMatch = this->currentMatch();
+  const KTextEditor::Range currentMatch = this->currentMatch();
   const QString currentMatchText = m_doc->text(currentMatch);
   const QString replacementText = replacementTextForCurrentMatch();
 
@@ -1077,15 +819,15 @@ void KateCommands::SedReplace::InteractiveSedReplacer::replaceCurrentMatch()
     const int moveChar = currentMatch.isEmpty() ? 1 : 0; // if the search was for \s*, make sure we advance a char
     const int col = currentMatch.start().column() + replacementText.length() + moveChar;
 
-    m_currentSearchPos = Cursor(currentMatch.start().line(), col);
+    m_currentSearchPos = KTextEditor::Cursor(currentMatch.start().line(), col);
   } else {
-    m_currentSearchPos = Cursor(currentMatch.start().line() + replacementText.count('\n'),
+    m_currentSearchPos = KTextEditor::Cursor(currentMatch.start().line() + replacementText.count('\n'),
                                 replacementText.length() - replacementText.lastIndexOf('\n') - 1);
   }
   if (m_onlyOnePerLine)
   {
     // Drop down to next line.
-    m_currentSearchPos = Cursor(m_currentSearchPos.line() + 1, 0);
+    m_currentSearchPos = KTextEditor::Cursor(m_currentSearchPos.line() + 1, 0);
   }
 
   // Adjust end line down by the number of new newlines just added, minus the number taken away.
@@ -1126,21 +868,21 @@ QString KateCommands::SedReplace::InteractiveSedReplacer::finalStatusReportMessa
 }
 
 
-const QVector< Range > KateCommands::SedReplace::InteractiveSedReplacer::fullCurrentMatch()
+const QVector< KTextEditor::Range > KateCommands::SedReplace::InteractiveSedReplacer::fullCurrentMatch()
 {
   if (m_currentSearchPos > m_doc->documentEnd()) {
-    return QVector<Range>();
+    return QVector<KTextEditor::Range>();
   }
 
-  return m_regExpSearch.search(m_findPattern, Range(m_currentSearchPos, m_doc->documentEnd()));
+  return m_regExpSearch.search(m_findPattern, KTextEditor::Range(m_currentSearchPos, m_doc->documentEnd()));
 }
 
 QString KateCommands::SedReplace::InteractiveSedReplacer::replacementTextForCurrentMatch()
 {
-  const Range currentMatch = this->currentMatch();
+  const KTextEditor::Range currentMatch = this->currentMatch();
   const QVector<KTextEditor::Range> captureRanges = fullCurrentMatch();
   QStringList captureTexts;
-  foreach(const Range& captureRange, captureRanges)
+  foreach(const KTextEditor::Range& captureRange, captureRanges)
   {
     captureTexts << m_doc->text(captureRange);
   }
