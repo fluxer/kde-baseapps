@@ -29,7 +29,6 @@
 #include <KIcon>
 #include <KLocale>
 #include <KMessageBox>
-#include <knewstuff3/knewstuffbutton.h>
 #include <KService>
 #include <KServiceTypeTrader>
 #include <KStandardDirs>
@@ -80,14 +79,8 @@ ServicesSettingsPage::ServicesSettingsPage(QWidget* parent) :
     m_listView->setVerticalScrollMode(QListView::ScrollPerPixel);
     connect(m_listView, SIGNAL(clicked(QModelIndex)), this, SIGNAL(changed()));
 
-    KNS3::Button* downloadButton = new KNS3::Button(i18nc("@action:button", "Download New Services..."),
-                                                    "servicemenu.knsrc",
-                                                    this);
-    connect(downloadButton, SIGNAL(dialogFinished(KNS3::Entry::List)), this, SLOT(loadServices()));
-
     topLayout->addWidget(label);
     topLayout->addWidget(m_listView);
-    topLayout->addWidget(downloadButton);
 
     m_enabledVcsPlugins = VersionControlSettings::enabledPlugins();
     qSort(m_enabledVcsPlugins);

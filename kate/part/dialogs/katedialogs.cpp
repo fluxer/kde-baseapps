@@ -90,7 +90,6 @@
 #include <kplugininfo.h>
 #include <ktabwidget.h>
 
-//#include <knewstuff/knewstuff.h>
 #include <QtGui/QCheckBox>
 #include <QtGui/QComboBox>
 #include <QtGui/QDialog>

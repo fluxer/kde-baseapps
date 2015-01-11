@@ -39,9 +39,6 @@
 
 #include <KGlobalSettings>
 
-#include <KNS3/DownloadDialog>
-#include <knewstuff3/uploaddialog.h>
-
 SnippetView::SnippetView(KateSnippetGlobal* plugin, QWidget* parent)
  : QWidget(parent), Ui::SnippetViewBase(), m_plugin(plugin)
 {
@@ -79,10 +76,6 @@ SnippetView::SnippetView(KateSnippetGlobal* plugin, QWidget* parent)
     connect(m_removeRepoAction, SIGNAL(triggered()), this, SLOT(slotRemoveRepo()));
     addAction(m_removeRepoAction);
 
-    m_putNewStuffAction = new KAction(KIcon("get-hot-new-stuff"), i18n("Publish Repository"), this);
-    connect(m_putNewStuffAction, SIGNAL(triggered()), this, SLOT(slotSnippetToGHNS()));
-    addAction(m_putNewStuffAction);
-
     QAction* separator = new QAction(this);
     separator->setSeparator(true);
     addAction(separator);
@@ -98,10 +91,6 @@ SnippetView::SnippetView(KateSnippetGlobal* plugin, QWidget* parent)
     addAction(m_removeSnippetAction);
 
     addAction(separator);
-
-    m_getNewStuffAction = new KAction(KIcon("get-hot-new-stuff"), i18n("Get New Snippets"), this);
-    connect(m_getNewStuffAction, SIGNAL(triggered()), this, SLOT(slotGHNS()));
-    addAction(m_getNewStuffAction);
 
     connect(snippetTree->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)), SLOT(validateActions()));
     validateActions();
@@ -284,42 +273,6 @@ void SnippetView::slotRemoveRepo()
 void SnippetView::slotFilterChanged()
 {
     m_proxy->changeFilter( filterText->text() );
-}
-
-void SnippetView::slotGHNS()
-{
-    KNS3::DownloadDialog dialog("ktexteditor_codesnippets_core.knsrc", this);
-    dialog.exec();
-    foreach ( const KNS3::Entry& entry, dialog.changedEntries() ) {
-        foreach ( const QString& path, entry.uninstalledFiles() ) {
-            if ( path.endsWith(".xml") ) {
-                if ( SnippetRepository* repo = SnippetStore::self()->repositoryForFile(path) ) {
-                    repo->remove();
-                }
-            }
-        }
-        foreach ( const QString& path, entry.installedFiles() ) {
-            if ( path.endsWith(".xml") ) {
-                SnippetStore::self()->appendRow(new SnippetRepository(path));
-            }
-        }
-    }
-}
-
-void SnippetView::slotSnippetToGHNS()
-{
-    QStandardItem* item = currentItem();
-    if ( !item)
-        return;
-
-    SnippetRepository* repo = dynamic_cast<SnippetRepository*>( item );
-    if ( !repo )
-        return;
-
-    KNS3::UploadDialog dialog("ktexteditor_codesnippets_core.knsrc", this);
-    dialog.setUploadFile(KUrl::fromPath(repo->file()));
-    dialog.setUploadName(repo->text());
-    dialog.exec();
 }
 
 bool SnippetView::eventFilter(QObject* obj, QEvent* e)

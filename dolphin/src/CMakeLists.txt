@@ -82,7 +82,6 @@ target_link_libraries(
     dolphinprivate
     ${KDE4_KFILE_LIBS}
     konq
-    ${KDE4_KNEWSTUFF3_LIBS}
 )
 
 if(X11_Xrender_FOUND)
@@ -199,7 +198,6 @@ target_link_libraries(kdeinit_dolphin
     ${KDE4_KCMUTILS_LIBRARY}
     konq
     dolphinprivate
-    knewstuff3
     ${KDE4_SOLID_LIBS}
     ${KDE4_PHONON_LIBS}
 )
@@ -264,7 +262,7 @@ kde4_add_plugin(kcm_dolphingeneral ${kcm_dolphingeneral_PART_SRCS})
 
 target_link_libraries(kcm_dolphinviewmodes  ${KDE4_KDEUI_LIBS} ${KDE4_KFILE_LIBS} dolphinprivate)
 target_link_libraries(kcm_dolphinnavigation  ${KDE4_KDEUI_LIBS} ${KDE4_KFILE_LIBS} dolphinprivate)
-target_link_libraries(kcm_dolphinservices  ${KDE4_KDEUI_LIBS} ${KDE4_KFILE_LIBS} ${KDE4_KIO_LIBS} ${KDE4_KNEWSTUFF3_LIBRARY} dolphinprivate)
+target_link_libraries(kcm_dolphinservices  ${KDE4_KDEUI_LIBS} ${KDE4_KFILE_LIBS} ${KDE4_KIO_LIBS} dolphinprivate)
 target_link_libraries(kcm_dolphingeneral ${KDE4_KDEUI_LIBS} ${KDE4_KFILE_LIBS} ${KDE4_KIO_LIBS} dolphinprivate)
 
 install(TARGETS kcm_dolphinviewmodes DESTINATION ${PLUGIN_INSTALL_DIR} )
@@ -293,12 +291,8 @@ install( FILES settings/dolphin_directoryviewpropertysettings.kcfg
 install( FILES dolphinui.rc DESTINATION ${DATA_INSTALL_DIR}/dolphin )
 install( FILES dolphin.appdata.xml DESTINATION ${SHARE_INSTALL_PREFIX}/appdata )
 install( FILES search/filenamesearch.protocol DESTINATION ${SERVICES_INSTALL_DIR} )
-install( FILES settings/kcm/kcmdolphinviewmodes.desktop DESTINATION
-${SERVICES_INSTALL_DIR} )
+install( FILES settings/kcm/kcmdolphinviewmodes.desktop DESTINATION ${SERVICES_INSTALL_DIR} )
 install( FILES settings/kcm/kcmdolphinnavigation.desktop DESTINATION ${SERVICES_INSTALL_DIR} )
 install( FILES settings/kcm/kcmdolphinservices.desktop DESTINATION ${SERVICES_INSTALL_DIR} )
 install( FILES settings/kcm/kcmdolphingeneral.desktop DESTINATION ${SERVICES_INSTALL_DIR} )
 install( FILES settings/services/servicemenu.knsrc DESTINATION ${CONFIG_INSTALL_DIR} )
-install( PROGRAMS settings/services/servicemenuinstallation DESTINATION ${BIN_INSTALL_DIR} )
-install( PROGRAMS settings/services/servicemenudeinstallation DESTINATION ${BIN_INSTALL_DIR} )
-
