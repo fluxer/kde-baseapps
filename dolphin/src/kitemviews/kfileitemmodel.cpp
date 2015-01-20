@@ -735,14 +735,7 @@ QList<KFileItemModel::RoleInfo> KFileItemModel::rolesInformation()
                 RoleInfo info;
                 info.role = map[i].role;
                 info.translation = i18nc(map[i].roleTranslationContext, map[i].roleTranslation);
-                if (map[i].groupTranslation) {
-                    info.group = i18nc(map[i].groupTranslationContext, map[i].groupTranslation);
-                } else {
-                    // For top level roles, groupTranslation is 0. We must make sure that
-                    // info.group is an empty string then because the code that generates
-                    // menus tries to put the actions into sub menus otherwise.
-                    info.group = QString();
-                }
+                info.group = QString();
                 rolesInfo.append(info);
             }
         }
@@ -2115,17 +2108,17 @@ void KFileItemModel::emitSortProgress(int resolvedCount)
 const KFileItemModel::RoleInfoMap* KFileItemModel::rolesInfoMap(int& count)
 {
     static const RoleInfoMap rolesInfoMap[] = {
-    //  | role         | roleType       | role translation                                | group translation                    
-        { 0,             NoRole,          0, 0,                                             0, 0 },
-        { "text",        NameRole,        I18N_NOOP2_NOSTRIP("@label", "Name"),             0, 0 },
-        { "size",        SizeRole,        I18N_NOOP2_NOSTRIP("@label", "Size"),             0, 0 },
-        { "date",        DateRole,        I18N_NOOP2_NOSTRIP("@label", "Date"),             0, 0 },
-        { "type",        TypeRole,        I18N_NOOP2_NOSTRIP("@label", "Type"),             0, 0 },
-        { "path",        PathRole,        I18N_NOOP2_NOSTRIP("@label", "Path"),             0, 0 },
-        { "destination", DestinationRole, I18N_NOOP2_NOSTRIP("@label", "Link Destination"), 0, 0 },
-        { "permissions", PermissionsRole, I18N_NOOP2_NOSTRIP("@label", "Permissions"),      0, 0 },
-        { "owner",       OwnerRole,       I18N_NOOP2_NOSTRIP("@label", "Owner"),            0, 0 },
-        { "group",       GroupRole,       I18N_NOOP2_NOSTRIP("@label", "User Group"),       0, 0 },
+    //  | role           | roleType       | role translation
+        { 0,             NoRole,          0, 0                                             },
+        { "text",        NameRole,        I18N_NOOP2_NOSTRIP("@label", "Name")             },
+        { "size",        SizeRole,        I18N_NOOP2_NOSTRIP("@label", "Size")             },
+        { "date",        DateRole,        I18N_NOOP2_NOSTRIP("@label", "Date")             },
+        { "type",        TypeRole,        I18N_NOOP2_NOSTRIP("@label", "Type")             },
+        { "path",        PathRole,        I18N_NOOP2_NOSTRIP("@label", "Path")             },
+        { "destination", DestinationRole, I18N_NOOP2_NOSTRIP("@label", "Link Destination") },
+        { "permissions", PermissionsRole, I18N_NOOP2_NOSTRIP("@label", "Permissions")      },
+        { "owner",       OwnerRole,       I18N_NOOP2_NOSTRIP("@label", "Owner")            },
+        { "group",       GroupRole,       I18N_NOOP2_NOSTRIP("@label", "User Group")       },
     };
 
     count = sizeof(rolesInfoMap) / sizeof(RoleInfoMap);

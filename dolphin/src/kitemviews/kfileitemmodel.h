@@ -421,8 +421,6 @@ private:
         const RoleType roleType;
         const char* const roleTranslationContext;
         const char* const roleTranslation;
-        const char* const groupTranslationContext;
-        const char* const groupTranslation;
     };
 
     /**
