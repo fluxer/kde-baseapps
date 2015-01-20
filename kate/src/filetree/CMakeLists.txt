@@ -4,7 +4,7 @@ project(katefiletreeplugin)
 set(katefiletreeplugin_PART_SRCS katefiletreeplugin.cpp katefiletree.cpp katefiletreemodel.cpp katefiletreeproxymodel.cpp katefiletreeconfigpage.cpp katefiletreepluginsettings.cpp )
 
 if(NOT KDE4_FOUND)
-  find_package(KDE4 REQUIRED)
+  find_package(KDE4 4.14.3 REQUIRED)
   include_directories( ${KDE4_INCLUDES} ${QT_INCLUDES} )
 endif(NOT KDE4_FOUND)
 

@@ -2,7 +2,7 @@
 # building separately or as part of kdesdk?
 if(NOT KDE4_FOUND)
     cmake_minimum_required( VERSION 2.6 )
-    find_package(KDE4 REQUIRED)
+    find_package(KDE4 4.14.3 REQUIRED)
     ADD_DEFINITIONS(-DKDE_DEFAULT_DEBUG_AREA=13040)
     include_directories(${KDE4_INCLUDES})
     include_directories(${KDE4_KIO_INCLUDES})

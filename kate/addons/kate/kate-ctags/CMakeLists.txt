@@ -1,6 +1,6 @@
 # building separately or as part of kdesdk?
 if(NOT KDE4_FOUND)
-    find_package(KDE4 REQUIRED)
+    find_package(KDE4 4.14.3 REQUIRED)
 endif(NOT KDE4_FOUND)
 
 include_directories (${KDE4_INCLUDES})
