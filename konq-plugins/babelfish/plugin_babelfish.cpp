@@ -41,6 +41,7 @@
 #include <kicon.h>
 #include <KConfigGroup>
 #include <KDebug>
+#include <KStandardDirs>
 
 static const KAboutData aboutdata("babelfish", 0, ki18n("Translate Web Page") , "1.0" );
 K_PLUGIN_FACTORY(BabelFishFactory, registerPlugin<PluginBabelFish>();)
@@ -58,7 +59,7 @@ PluginBabelFish::PluginBabelFish( QObject* parent,
   actionCollection()->addAction( "translatewebpage", m_menu );
   m_menu->setDelayed( false );
 
-#warning "incomplete languages map, also - how about using flags?"
+#warning "incomplete languages map"
   static const char * const translations[] = {
       I18N_NOOP("&Auto"), "auto",
       I18N_NOOP("&Arabic"), "ar",
@@ -85,7 +86,11 @@ PluginBabelFish::PluginBabelFish( QObject* parent,
     const QString translation = QString::fromLatin1(translations[i + 1]);
     QAction* a = actionCollection()->addAction(translation);
     a->setText(i18n(translations[i]));
-    a->setIcon(KIcon("babelfish"));
+    QString flag = KStandardDirs::locate("locale", QString("l10n/%1/flag.png").arg(translation));
+    if (flag.isEmpty()) {
+        flag = "babelfish";
+    }
+    a->setIcon(KIcon(flag));
     m_menu->addAction(a);
     m_actionGroup.addAction(a);
     connect(&m_actionGroup, SIGNAL(triggered(QAction*)), this, SLOT(translateURL(QAction*)));
