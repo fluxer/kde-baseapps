@@ -102,7 +102,7 @@ DolphinViewContainer::DolphinViewContainer(const KUrl& url, QWidget* parent) :
     m_messageWidget->hide();
 
     m_view = new DolphinView(url, this);
-    connect(m_view, SIGNAL(urlChanged(KUrl)),                   m_urlNavigator, SLOT(setUrl(KUrl)));
+    connect(m_view, SIGNAL(urlChanged(KUrl)),                   m_urlNavigator, SLOT(setLocationUrl(KUrl)));
     connect(m_view, SIGNAL(urlChanged(KUrl)),                   m_messageWidget, SLOT(hide()));
     connect(m_view, SIGNAL(directoryLoadingCompleted()),        m_messageWidget, SLOT(hide()));
     connect(m_view, SIGNAL(writeStateChanged(bool)),            this, SIGNAL(writeStateChanged(bool)));
