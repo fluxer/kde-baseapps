@@ -17,5 +17,4 @@ install(TARGETS autorefresh  DESTINATION ${PLUGIN_INSTALL_DIR} )
 
 ########### install files ###############
 
-install( FILES autorefresh.rc autorefresh.desktop  DESTINATION  ${DATA_INSTALL_DIR}/khtml/kpartplugins )
 install( FILES autorefresh.rc autorefresh.desktop  DESTINATION  ${DATA_INSTALL_DIR}/kwebkitpart/kpartplugins )

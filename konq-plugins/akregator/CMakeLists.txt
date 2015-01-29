@@ -26,7 +26,6 @@ install(TARGETS akregatorkonqfeedicon DESTINATION ${PLUGIN_INSTALL_DIR} )
 ########### install files ###############
 
 #install( FILES akregator_konqplugin.desktop  DESTINATION  ${SERVICES_INSTALL_DIR} )
-install( FILES akregator_konqfeedicon.desktop akregator_konqfeedicon.rc  DESTINATION  ${DATA_INSTALL_DIR}/khtml/kpartplugins )
 install( FILES akregator_konqfeedicon.desktop akregator_konqfeedicon.rc  DESTINATION  ${DATA_INSTALL_DIR}/kwebkitpart/kpartplugins )
 
 install( FILES feed.png DESTINATION ${DATA_INSTALL_DIR}/akregator/pics )
