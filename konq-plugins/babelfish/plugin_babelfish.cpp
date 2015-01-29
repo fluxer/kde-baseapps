@@ -185,7 +185,7 @@ void PluginBabelFish::translateURL(QAction* action)
   // KWebKitPart provides a TextExtension, at least.
   // So if we got a part without a TextExtension, give an error.
   KParts::TextExtension* textExt = KParts::TextExtension::childObject(parent());
-  Q_ASSERT(textExt); // already checked in slotAboutToShow
+  Q_ASSERT(textExt);
 
   KParts::BrowserExtension * ext = KParts::BrowserExtension::childObject(parent());
   if (!ext)
@@ -205,23 +205,22 @@ void PluginBabelFish::translateURL(QAction* action)
     // Check syntax
     if ( !url.isValid() )
     {
-      QString title = i18nc( "@title:window", "Malformed URL" );
-      QString text = i18n( "The URL you entered is not valid, please "
-                           "correct it and try again." );
-      KMessageBox::sorry( 0L, text, title );
+      KMessageBox::sorry( 0L, i18nc( "@title:window", "Malformed URL"),
+                            i18n("The URL you entered is not valid, please "
+                                 "correct it and try again."));
       return;
     }
   }
   const QString urlForQuery = QLatin1String(QUrl::toPercentEncoding( url.url() ));
 
   // Create URL
-  QString query;
   const QString language = action->objectName();
-  if (hasSelection && !textForQuery.isEmpty()) { // http://translate.google.com/#en|de|text_to_translate
-    query += "http://google.com/translate_t?langpair=auto|" + language + "&text=" + textForQuery;
+  QString query = "http://google.com/translate_t?langpair=auto|" + language;
+  if (hasSelection && !textForQuery.isEmpty()) {
+    query += "&text=" + textForQuery;
   }
-  else { // http://translate.google.com/translate?hl=en&sl=en&tl=de&u=http%3A%2F%2Fkde.org%2F%2F
-    query += "http://google.com/translate_c?langpair=auto|" + language + "&ie=UTF-8&u=" + urlForQuery;
+  else {
+    query += "&ie=UTF-8&u=" + urlForQuery;
   }
 
   // Connect to the fish
