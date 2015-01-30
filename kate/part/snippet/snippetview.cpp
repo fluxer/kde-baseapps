@@ -111,7 +111,6 @@ void SnippetView::validateActions()
     m_addRepoAction->setEnabled(true);
     m_editRepoAction->setEnabled(selectedRepo);
     m_removeRepoAction->setEnabled(selectedRepo);
-    m_putNewStuffAction->setEnabled(selectedRepo);
 
     m_addSnippetAction->setEnabled(selectedRepo || selectedSnippet);
     m_editSnippetAction->setEnabled(selectedSnippet);
@@ -150,7 +149,6 @@ void SnippetView::contextMenu (const QPoint& pos)
         menu.addTitle(i18n("Snippets"));
 
         menu.addAction(m_addRepoAction);
-        menu.addAction(m_getNewStuffAction);
 
         menu.exec(snippetTree->mapToGlobal(pos));
     } else if (Snippet* snippet = dynamic_cast<Snippet*>( item )) {
@@ -167,7 +165,6 @@ void SnippetView::contextMenu (const QPoint& pos)
 
         menu.addAction(m_editRepoAction);
         menu.addAction(m_removeRepoAction);
-        menu.addAction(m_putNewStuffAction);
         menu.addSeparator();
 
         menu.addAction(m_addSnippetAction);
