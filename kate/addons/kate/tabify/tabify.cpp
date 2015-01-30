@@ -65,7 +65,7 @@ TabBarPluginView::TabBarPluginView(Kate::MainWindow* mainwindow)
           this, SLOT(slotViewChanged()));
 
   connect(m_tabBar, SIGNAL(currentChanged(int)), this, SLOT(slotTabChanged(int)));
-  connect(m_tabBar, SIGNAL(closeRequest(int)), this, SLOT(slotTabCloseRequest(int)));
+  connect(m_tabBar, SIGNAL(tabCloseRequested(int)), this, SLOT(slotTabCloseRequest(int)));
   connect(m_tabBar, SIGNAL(mouseMiddleClick(int)), this, SLOT(slotMiddleMouseButtonPressed(int)));
   connect(m_tabBar, SIGNAL(wheelDelta(int)), this, SLOT(slotWheelDelta(int)));
   connect(m_tabBar, SIGNAL(tabMoved(int,int)), this, SLOT(slotTabMoved(int,int)));
