@@ -1,6 +1,9 @@
 # Kate project
 project (kate)
 
+find_package(KDE4 4.14.3 REQUIRED)
+include (KDE4Defaults)
+
 # shared libs
 set (LIBRARY_TYPE SHARED)
 
