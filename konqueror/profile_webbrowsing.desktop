@@ -95,6 +95,6 @@ XMLUIFile=konqueror.rc
 RootItem=View0
 View0_ServiceName=khtml
 View0_ServiceType=text/html
-View0_URL=
+View0_URL=http://fluxer.github.io/katana/
 Width=80%
 Height=80%
