@@ -1,4 +1,5 @@
 #include "kcmcss.h"
+#include "appearance.h"
 
 #include <QLabel>
 #include <QLayout>

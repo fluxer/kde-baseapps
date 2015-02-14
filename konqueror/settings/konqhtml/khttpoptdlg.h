@@ -36,11 +36,9 @@ Q_OBJECT
     QString m_groupname;
 
     // Acceptable languages "LANG" - locale selected languages
-    QLabel *lb_languages;	
     QLineEdit *le_languages;	
 
     // Acceptable charsets "CHARSET" - locale selected charset
-    QLabel *lb_charsets;	
     QLineEdit *le_charsets;	
 
     QString defaultCharsets;

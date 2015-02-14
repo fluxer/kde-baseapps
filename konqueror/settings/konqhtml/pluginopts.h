@@ -89,7 +89,6 @@ private Q_SLOTS:
   virtual void slotClose();
 
 private:
-  PluginDomainListView *domainSpecific;
   QBoxLayout *thisLayout;
 };
 

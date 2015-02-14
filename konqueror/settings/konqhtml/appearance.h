@@ -22,6 +22,8 @@
 
 #include <kcmodule.h>
 #include <kconfig.h>
+#include <knuminput.h>
+#include <ksharedconfig.h>
 
 class KIntSpinBox;
 class KFontComboBox;

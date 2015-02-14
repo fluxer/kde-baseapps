@@ -125,9 +125,7 @@ private:
     QLineEdit *le_domain;
     QLabel *l_feature_policy;
     QComboBox *cb_feature_policy;
-    QWidget *panel;
     QStringList policy_values;
-    QPushButton *okButton;
 };
 
 #endif

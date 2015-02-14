@@ -24,7 +24,6 @@
 #include <kcmodule.h>
 #include "ui_history_dlg.h"
 
-class KonqHistoryManager;
 class KonqHistorySettings;
 
 class KonqSidebarHistoryDlg : public QWidget, public Ui::KonqSidebarHistoryDlg
@@ -68,7 +67,6 @@ private:
 
   KonqSidebarHistoryDlg* dialog;
   KonqHistorySettings *m_settings;
-  KonqHistoryManager *mgr;
 };
 
 #endif
