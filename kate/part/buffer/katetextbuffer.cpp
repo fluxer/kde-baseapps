@@ -721,13 +721,11 @@ bool TextBuffer::save (const QString &filename)
    */
   KSaveFile saveFile (filename);
   
-#if KDE_IS_VERSION(4,10,3)
   /**
    * allow fallback if directory not writable
    * fixes bug 312415
    */
   saveFile.setDirectWriteFallback (true);
-#endif
   
   /**
    * try to open or fail

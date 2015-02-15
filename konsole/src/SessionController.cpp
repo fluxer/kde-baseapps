@@ -52,13 +52,8 @@
 #include <KStringHandler>
 #include <KConfigGroup>
 #include <KGlobal>
-
-#include <kdeversion.h>
-#if KDE_IS_VERSION(4, 9, 1)
 #include <KCodecAction>
-#else
-#include <kcodecaction.h>
-#endif
+#include <kdeversion.h>
 
 // Konsole
 #include "EditProfileDialog.h"

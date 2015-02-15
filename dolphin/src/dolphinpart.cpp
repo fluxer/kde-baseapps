@@ -42,10 +42,8 @@
 #include <KProtocolInfo>
 #include <kdeversion.h>
 
-#if KDE_IS_VERSION(4, 9, 2)
-#include "dolphinpart_ext.h"
-#endif
 
+#include "dolphinpart_ext.h"
 #include "dolphinnewfilemenu.h"
 #include "views/dolphinview.h"
 #include "views/dolphinviewactionhandler.h"
@@ -134,7 +132,6 @@ DolphinPart::DolphinPart(QWidget* parentWidget, QObject* parent, const QVariantL
     // NOTE: Listing filter needs to be instantiated after the creation of the view.
     new DolphinPartFileInfoExtension(this);
 
-#if KDE_IS_VERSION(4, 9, 2)
     new DolphinPartListingFilterExtension(this);
 
     KDirLister* lister = m_view->m_model->m_dirLister;
@@ -145,7 +142,6 @@ DolphinPart::DolphinPart(QWidget* parentWidget, QObject* parent, const QVariantL
     } else {
         kWarning() << "NULL KDirLister object! KParts::ListingNotificationExtension will NOT be supported";
     }
-#endif
 
     createActions();
     m_actionHandler->updateViewActions();

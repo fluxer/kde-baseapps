@@ -60,9 +60,7 @@ KonqViewManager::KonqViewManager( KonqMainWindow *mainWindow )
   m_bLoadingProfile = false;
   m_tabContainer = 0;
 
-#if KDE_IS_VERSION(4,9,97)
   setIgnoreExplictFocusRequests(true);
-#endif
 
   connect( this, SIGNAL(activePartChanged(KParts::Part*)),
            this, SLOT(slotActivePartChanged(KParts::Part*)) );
