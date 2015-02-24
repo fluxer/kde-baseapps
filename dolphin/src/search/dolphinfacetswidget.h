@@ -51,15 +51,17 @@ public:
     explicit DolphinFacetsWidget(QWidget* parent = 0);
     virtual ~DolphinFacetsWidget();
 
-
-    void setFacetType(const QString& type);
+    /**
+     * @return Types of files to be looked for
+     *
+     */
+    const QString types();
 
 signals:
     void facetChanged();
 
-private:
-    void setRating(const int stars);
-    void setTimespan(const QDate& date);
+public slots:
+    void facetChange();
 
     /**
      * @return New radiobutton which is connected to the
@@ -67,7 +69,7 @@ private:
      *         been toggled.
      */
     QRadioButton* createRadioButton(const QString& text,
-                                    QButtonGroup* group);
+                                    QWidget* parent = 0);
 
 private:
     QRadioButton* m_anyType;
@@ -76,19 +78,7 @@ private:
     QRadioButton* m_audio;
     QRadioButton* m_videos;
 
-    QRadioButton* m_anytime;
-    QRadioButton* m_today;
-    QRadioButton* m_yesterday;
-    QRadioButton* m_thisWeek;
-    QRadioButton* m_thisMonth;
-    QRadioButton* m_thisYear;
-
-    QRadioButton* m_anyRating;
-    QRadioButton* m_oneOrMore;
-    QRadioButton* m_twoOrMore;
-    QRadioButton* m_threeOrMore;
-    QRadioButton* m_fourOrMore;
-    QRadioButton* m_maxRating;
+    QString m_type;
 };
 
 #endif

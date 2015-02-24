@@ -97,9 +97,6 @@ void DolphinSearchBox::setSearchPath(const KUrl& url)
     m_separator->setVisible(showSearchFromButtons);
     m_fromHereButton->setVisible(showSearchFromButtons);
     m_everywhereButton->setVisible(showSearchFromButtons);
-
-    bool hasFacetsSupport = false;
-    m_facetsWidget->setEnabled(hasFacetsSupport);
 }
 
 KUrl DolphinSearchBox::searchPath() const
@@ -114,6 +111,10 @@ KUrl DolphinSearchBox::urlForSearching() const
     url.addQueryItem("search", m_searchInput->text());
     if (m_contentButton->isChecked()) {
         url.addQueryItem("checkContent", "yes");
+    }
+
+    if (!m_facetsWidget->types().isEmpty()) {
+        url.addQueryItem("checkType", m_facetsWidget->types());
     }
 
     QString encodedUrl;

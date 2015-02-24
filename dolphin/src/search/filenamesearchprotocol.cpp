@@ -33,7 +33,8 @@
 
 FileNameSearchProtocol::FileNameSearchProtocol( const QByteArray &pool, const QByteArray &app ) :
     SlaveBase("search", pool, app),
-    m_checkContent(false),
+    m_checkContent(""),
+    m_checkType(""),
     m_regExp(0),
     m_iteratedDirs()
 {
@@ -53,11 +54,9 @@ void FileNameSearchProtocol::listDir(const KUrl& url)
         m_regExp = new QRegExp(search, Qt::CaseInsensitive, QRegExp::Wildcard);
     }
 
-    m_checkContent = false;
-    const QString checkContent = url.queryItem("checkContent");
-    if (checkContent == QLatin1String("yes")) {
-        m_checkContent = true;
-    }
+    m_checkContent = url.queryItem("checkContent");
+
+    m_checkType = url.queryItem("checkType");
 
     const QString urlString = url.queryItem("url");
     searchDirectory(KUrl(urlString));
@@ -68,8 +67,10 @@ void FileNameSearchProtocol::listDir(const KUrl& url)
 
 void FileNameSearchProtocol::searchDirectory(const KUrl& directory)
 {
-    if (directory.path() == QLatin1String("/proc")) {
-        // Don't try to iterate the /proc directory of Linux
+    // Don't try to iterate the pseudo filesystem directories of Linux
+    if (directory.path() == QLatin1String("/dev")
+        || directory.path() == QLatin1String("/proc")
+        || directory.path() == QLatin1String("/sys")) {
         return;
     }
 
@@ -91,7 +92,17 @@ void FileNameSearchProtocol::searchDirectory(const KUrl& directory)
         bool addItem = false;
         if (!m_regExp || item.name().contains(*m_regExp)) {
             addItem = true;
-        } else if (m_checkContent && item.determineMimeType()->is(QLatin1String("text/plain"))) {
+            if (!m_checkType.isEmpty()) {
+                addItem = false;
+                const QStringList types = m_checkType.split(";");
+                const KSharedPtr<KMimeType> mime = item.determineMimeType();
+                foreach (const QString& t, types) {
+                    if (mime->is(t)) {
+                        addItem = true;
+                    }
+                }
+            }
+        } else if (!m_checkContent.isEmpty() && item.determineMimeType()->is(QLatin1String("text/plain"))) {
             addItem = contentContainsPattern(item.url());
         }
 
