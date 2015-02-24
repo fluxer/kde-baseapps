@@ -215,12 +215,12 @@ void PluginBabelFish::translateURL(QAction* action)
 
   // Create URL
   const QString language = action->objectName();
-  QString query = "http://google.com/translate_t?langpair=auto|" + language;
+  QString query;
   if (hasSelection && !textForQuery.isEmpty()) {
-    query += "&text=" + textForQuery;
+    query += "http://translate.google.com/translate_t?langpair=auto|" + language + "&text=" + textForQuery;
   }
   else {
-    query += "&ie=UTF-8&u=" + urlForQuery;
+    query += "http://translate.google.com/translate_c?langpair=auto|" + language + "&ie=UTF-8&u=" + urlForQuery;
   }
 
   // Connect to the fish
