@@ -417,5 +417,5 @@ void PluginCanvasWidget::resizeEvent(QResizeEvent *ev)
 }
 
 
-#include "plugin_part.moc"
+#include "moc_plugin_part.cpp"
 // kate: indent-width 4; replace-tabs on; tab-width 4; space-indent on;

@@ -2893,5 +2893,5 @@ void IconView::timerEvent(QTimerEvent *event)
     }
 }
 
-#include "iconview.moc"
+#include "moc_iconview.cpp"
 

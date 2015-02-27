@@ -21,7 +21,7 @@
 
 //BEGIN Includes
 #include "kateschemaconfig.h"
-#include "kateschemaconfig.moc"
+#include "moc_kateschemaconfig.cpp"
 
 #include "kateschema.h"
 #include "kateconfig.h"

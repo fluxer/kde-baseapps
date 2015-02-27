@@ -157,5 +157,5 @@ void HgTagDialog::slotCreateTag()
     }
 }
 
-#include "tagdialog.moc"
+#include "moc_tagdialog.cpp"
 

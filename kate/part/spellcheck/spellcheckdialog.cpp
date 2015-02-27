@@ -25,7 +25,7 @@
  */
 
 #include "spellcheckdialog.h"
-#include "spellcheckdialog.moc"
+#include "moc_spellcheckdialog.cpp"
 
 #include "katedocument.h"
 #include "kateglobal.h"

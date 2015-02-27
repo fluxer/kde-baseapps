@@ -19,7 +19,7 @@
 */
 
 #include "katemailfiles.h"
-#include "katemailfiles.moc"
+#include "moc_katemailfiles.cpp"
 
 #include "katemailfilesdialog.h"
 

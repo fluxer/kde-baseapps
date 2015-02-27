@@ -28,7 +28,7 @@
 #include <X11/Xlib.h>
 #endif
 
-#include "appearance.moc"
+#include "moc_appearance.cpp"
 
 K_PLUGIN_FACTORY_DECLARATION(KcmKonqHtmlFactory)
 

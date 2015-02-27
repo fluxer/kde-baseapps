@@ -558,5 +558,5 @@ QString KProxyDialog::quickHelp() const
                  "<p><u>Note:</u> Some proxy servers provide both services.</p>");
 }
 
-#include "kproxydlg.moc"
+#include "moc_kproxydlg.cpp"
 

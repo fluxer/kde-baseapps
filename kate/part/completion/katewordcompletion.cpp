@@ -602,5 +602,5 @@ KTextEditor::Range KateWordCompletionView::range() const
 }
 //END
 
-#include "katewordcompletion.moc"
+#include "moc_katewordcompletion.cpp"
 // kate: space-indent on; indent-width 2; replace-tabs on; mixed-indent off;

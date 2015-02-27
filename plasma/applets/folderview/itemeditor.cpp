@@ -124,5 +124,5 @@ bool ItemEditor::eventFilter(QObject *watched, QEvent *event)
     } // switch (event->type())
 }
 
-#include "itemeditor.moc"
+#include "moc_itemeditor.cpp"
 

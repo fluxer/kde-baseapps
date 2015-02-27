@@ -77,4 +77,4 @@ void KonquerorApplication::slotComboCleared( const QDBusMessage& msg )
     KonqMainWindow::comboAction( KonqMainWindow::ComboClear, QString(), msg.service() );
 }
 
-#include "konqapplication.moc"
+#include "moc_konqapplication.cpp"

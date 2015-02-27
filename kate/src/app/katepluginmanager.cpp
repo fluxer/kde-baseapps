@@ -19,7 +19,7 @@
 */
 
 #include "katepluginmanager.h"
-#include "katepluginmanager.moc"
+#include "moc_katepluginmanager.cpp"
 
 #include "kateapp.h"
 #include "katemainwindow.h"

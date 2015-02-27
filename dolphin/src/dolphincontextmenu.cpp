@@ -522,4 +522,4 @@ void DolphinContextMenu::addCustomActions()
     }
 }
 
-#include "dolphincontextmenu.moc"
+#include "moc_dolphincontextmenu.cpp"

@@ -717,4 +717,4 @@ KateStyleTreeWidget* KateStyleTreeWidgetItem::treeWidget() const
 }
 //END
 
-#include "katestyletreewidget.moc"
+#include "moc_katestyletreewidget.cpp"

@@ -194,4 +194,4 @@ void TerminalPanel::slotKonsolePartCurrentDirectoryChanged(const QString& dir)
     }
 }
 
-#include "terminalpanel.moc"
+#include "moc_terminalpanel.cpp"

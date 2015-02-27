@@ -18,7 +18,7 @@
 
 //BEGIN Includes
 #include "katebacktracebrowser.h"
-#include "katebacktracebrowser.moc"
+#include "moc_katebacktracebrowser.cpp"
 
 #include "btparser.h"
 #include "btfileindexer.h"

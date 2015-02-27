@@ -449,4 +449,4 @@ QList<QAction*> FileViewSvnPlugin::directoryActions(const QString& directory) co
     return actions;
 }
 
-#include "fileviewsvnplugin.moc"
+#include "moc_fileviewsvnplugin.cpp"

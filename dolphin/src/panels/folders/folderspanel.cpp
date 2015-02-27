@@ -328,4 +328,4 @@ void FoldersPanel::updateCurrentItem(int index)
     m_controller->view()->scrollToItem(index);
 }
 
-#include "folderspanel.moc"
+#include "moc_folderspanel.cpp"

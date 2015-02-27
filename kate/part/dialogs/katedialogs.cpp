@@ -27,7 +27,7 @@
 
 //BEGIN Includes
 #include "katedialogs.h"
-#include "katedialogs.moc"
+#include "moc_katedialogs.cpp"
 
 #include "kateautoindent.h"
 #include "katebuffer.h"

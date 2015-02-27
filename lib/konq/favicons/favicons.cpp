@@ -319,4 +319,4 @@ void FavIconsModule::slotKill()
     d->killJobs.clear();
 }
 
-#include "favicons.moc"
+#include "moc_favicons.cpp"

@@ -53,5 +53,5 @@ QString SuggestionEngine::engineName() const
     return m_engineName;
 }
 
-#include "SuggestionEngine.moc"
+#include "moc_SuggestionEngine.cpp"
 

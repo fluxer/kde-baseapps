@@ -30,7 +30,7 @@
 
 #include "plugin_katexmlcheck.h"
 #include <QHBoxLayout>
-#include "plugin_katexmlcheck.moc"
+#include "moc_plugin_katexmlcheck.cpp"
 
 #include <qfile.h>
 #include <qinputdialog.h>

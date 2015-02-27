@@ -89,4 +89,4 @@ KonqSidebarBrowserExtension::KonqSidebarBrowserExtension(KonqSidebarPart *part, 
 {
 }
 
-#include "sidebar_part.moc"
+#include "moc_sidebar_part.cpp"

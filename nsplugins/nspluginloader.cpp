@@ -24,7 +24,7 @@
 */
 
 #include "nspluginloader.h"
-#include "nspluginloader.moc"
+#include "moc_nspluginloader.cpp"
 
 #include <QDir>
 #include <QGridLayout>

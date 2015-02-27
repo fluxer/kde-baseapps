@@ -45,4 +45,4 @@ void DolphinNewFileMenu::slotResult(KJob* job)
     }
 }
 
-#include "dolphinnewfilemenu.moc"
+#include "moc_dolphinnewfilemenu.cpp"

@@ -91,4 +91,4 @@ QString FileMetaDataConfigurationDialog::description() const
     return m_descriptionLabel->text();
 }
 
-#include "filemetadataconfigurationdialog.moc"
+#include "moc_filemetadataconfigurationdialog.cpp"

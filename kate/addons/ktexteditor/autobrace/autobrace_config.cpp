@@ -102,5 +102,5 @@ void AutoBraceConfig::slotChanged(bool)
     emit changed(true);
 }
 
-#include "autobrace_config.moc"
+#include "moc_autobrace_config.cpp"
 

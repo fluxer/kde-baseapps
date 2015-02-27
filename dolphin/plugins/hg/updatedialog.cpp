@@ -151,5 +151,5 @@ void HgUpdateDialog::done(int r)
         KDialog::done(r);
     }
 }
-#include "updatedialog.moc"
+#include "moc_updatedialog.cpp"
 

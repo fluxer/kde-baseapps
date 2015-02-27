@@ -17,7 +17,7 @@
 */
 
 #include "mainwindow.h"
-#include "mainwindow.moc"
+#include "moc_mainwindow.cpp"
 
 #include "documentmanager.h"
 #include "plugin.h"

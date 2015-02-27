@@ -65,4 +65,4 @@ void KonqAnimatedLogo::setAnimatedLogoSize(const QSize &size)
     updateIcons();
 }
 
-#include "konqanimatedlogo_p.moc"
+#include "moc_konqanimatedlogo_p.cpp"

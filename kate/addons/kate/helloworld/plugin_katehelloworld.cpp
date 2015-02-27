@@ -19,7 +19,7 @@
  */
 
 #include "plugin_katehelloworld.h"
-#include "plugin_katehelloworld.moc"
+#include "moc_plugin_katehelloworld.cpp"
 
 #include <kate/application.h>
 #include <ktexteditor/view.h>

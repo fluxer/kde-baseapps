@@ -238,4 +238,4 @@ void KStandardItemModel::onItemRemoved(int index, KStandardItem* removedItem)
 }
 
 
-#include "kstandarditemmodel.moc"
+#include "moc_kstandarditemmodel.cpp"

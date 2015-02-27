@@ -669,4 +669,4 @@ void KFindTreeView::updateMouseButtons()
 
 //END KFindTreeView
 
-#include "kfindtreeview.moc"
+#include "moc_kfindtreeview.cpp"

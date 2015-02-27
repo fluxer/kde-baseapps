@@ -169,5 +169,5 @@ bool KateContainer::closeView(KTextEditor::View *view)
 //END KTextEditor::MdiContainer
 
 
-#include "katecontainer.moc"
+#include "moc_katecontainer.cpp"
 // kate: space-indent on; indent-width 2; replace-tabs on;

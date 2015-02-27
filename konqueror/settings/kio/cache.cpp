@@ -127,4 +127,4 @@ void CacheConfigModule::on_clearCacheButton_clicked()
                           QStringList(QLatin1String("--clear-all")));
 }
 
-#include "cache.moc"
+#include "moc_cache.cpp"

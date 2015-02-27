@@ -114,5 +114,5 @@ void ShellCommandTest::testEmptyCommand()
 
 QTEST_KDEMAIN_CORE(ShellCommandTest)
 
-#include "ShellCommandTest.moc"
+#include "moc_ShellCommandTest.cpp"
 

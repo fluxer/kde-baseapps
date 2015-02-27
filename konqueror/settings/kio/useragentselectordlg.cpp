@@ -149,4 +149,4 @@ QString UserAgentSelectorDlg::alias()
     return mUi.identityLineEdit->text();
 }
 
-#include "useragentselectordlg.moc"
+#include "moc_useragentselectordlg.cpp"

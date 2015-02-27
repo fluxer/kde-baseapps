@@ -97,5 +97,5 @@ void KeyboardTranslatorTest::testEntryTextWildcards()
 
 QTEST_KDEMAIN_CORE(KeyboardTranslatorTest)
 
-#include "KeyboardTranslatorTest.moc"
+#include "moc_KeyboardTranslatorTest.cpp"
 

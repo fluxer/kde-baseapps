@@ -233,4 +233,4 @@ QColor KItemListGroupHeader::baseColor() const
     return styleOption().palette.color(group, normalBaseColorRole());
 }
 
-#include "kitemlistgroupheader.moc"
+#include "moc_kitemlistgroupheader.cpp"

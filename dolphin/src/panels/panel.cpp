@@ -76,4 +76,4 @@ void Panel::readSettings()
 
 }
 
-#include "panel.moc"
+#include "moc_panel.cpp"

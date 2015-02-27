@@ -541,4 +541,4 @@ void FSView::doUpdate()
     emit completed(_dirsFinished);
 }
 
-#include "fsview.moc"
+#include "moc_fsview.cpp"

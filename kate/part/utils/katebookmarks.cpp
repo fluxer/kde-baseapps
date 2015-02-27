@@ -18,7 +18,7 @@
 */
 
 #include "katebookmarks.h"
-#include "katebookmarks.moc"
+#include "moc_katebookmarks.cpp"
 
 #include "katedocument.h"
 #include "kateview.h"

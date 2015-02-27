@@ -139,4 +139,4 @@ void EditRepository::updateFileTypes()
     }
 }
 
-#include "editrepository.moc"
+#include "moc_editrepository.cpp"

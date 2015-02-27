@@ -5900,4 +5900,4 @@ QLineEdit* KonqMainWindow::comboEdit()
   return m_combo ? m_combo->lineEdit() : 0;
 }
 
-#include "konqmainwindow.moc"
+#include "moc_konqmainwindow.cpp"

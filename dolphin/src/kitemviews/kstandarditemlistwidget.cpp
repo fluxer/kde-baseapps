@@ -1497,4 +1497,4 @@ qreal KStandardItemListWidget::columnPadding(const KItemListStyleOption& option)
     return option.padding * 6;
 }
 
-#include "kstandarditemlistwidget.moc"
+#include "moc_kstandarditemlistwidget.cpp"

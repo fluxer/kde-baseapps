@@ -324,5 +324,5 @@ inline KUrl *KCMUserAccount::decodeImgDrop(QDropEvent *e, QWidget *wdg)
   return 0;
 }
 
-#include "main.moc"
+#include "moc_main.cpp"
 

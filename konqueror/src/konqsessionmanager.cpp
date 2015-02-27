@@ -659,4 +659,4 @@ bool KonqSessionManager::askUserToRestoreAutosavedAbandonedSessions()
     }
 }
 
-#include "konqsessionmanager.moc"
+#include "moc_konqsessionmanager.cpp"

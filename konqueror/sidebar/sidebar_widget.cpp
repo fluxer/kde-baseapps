@@ -852,4 +852,4 @@ void Sidebar_Widget::slotAddItem(const KFileItem& item)
     }
 }
 
-#include "sidebar_widget.moc"
+#include "moc_sidebar_widget.cpp"

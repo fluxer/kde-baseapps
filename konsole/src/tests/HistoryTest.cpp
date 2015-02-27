@@ -139,5 +139,5 @@ void HistoryTest::testHistoryScroll()
 
 QTEST_KDEMAIN(HistoryTest , GUI)
 
-#include "HistoryTest.moc"
+#include "moc_HistoryTest.cpp"
 

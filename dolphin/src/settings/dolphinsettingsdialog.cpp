@@ -149,4 +149,4 @@ void DolphinSettingsDialog::restoreDefaults()
     }
 }
 
-#include "dolphinsettingsdialog.moc"
+#include "moc_dolphinsettingsdialog.cpp"

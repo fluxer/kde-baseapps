@@ -158,5 +158,5 @@ void HgMergeDialog::saveGeometry()
     settings->writeConfig();
 }
 
-#include "mergedialog.moc"
+#include "moc_mergedialog.cpp"
 

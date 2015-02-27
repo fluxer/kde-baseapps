@@ -221,4 +221,4 @@ KonqView * KonqRun::childView() const
     return m_pView;
 }
 
-#include "konqrun.moc"
+#include "moc_konqrun.cpp"

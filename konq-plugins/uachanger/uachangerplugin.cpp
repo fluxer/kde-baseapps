@@ -463,4 +463,4 @@ void UAChangerPlugin::slotApplyToDomain()
   m_bApplyToDomain = !m_bApplyToDomain;
 }
 
-#include "uachangerplugin.moc"
+#include "moc_uachangerplugin.cpp"

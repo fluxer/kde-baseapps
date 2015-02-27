@@ -1068,4 +1068,4 @@ QPair<bool, QString> KonqOperations::pasteInfo(const KUrl& targetUrl)
     return ret;
 }
 
-#include "konq_operations.moc"
+#include "moc_konq_operations.cpp"

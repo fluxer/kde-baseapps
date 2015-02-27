@@ -14,7 +14,7 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-#include "konqsidebartest.moc"
+#include "moc_konqsidebartest.cpp"
 #include <kcomponentdata.h>
 
 extern "C"

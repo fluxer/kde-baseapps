@@ -21,7 +21,7 @@
 //  Boston, MA 02110-1301, USA.
 
 #include "ioview.h"
-#include "ioview.moc"
+#include "moc_ioview.cpp"
 
 #include <QtGui/QVBoxLayout>
 #include <QtCore/QFile>

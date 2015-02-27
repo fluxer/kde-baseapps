@@ -19,7 +19,7 @@
  */
 
 #include "spellingmenu.h"
-#include "spellingmenu.moc"
+#include "moc_spellingmenu.cpp"
 
 #include "katedocument.h"
 #include "kateglobal.h"

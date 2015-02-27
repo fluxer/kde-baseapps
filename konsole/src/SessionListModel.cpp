@@ -141,4 +141,4 @@ QModelIndex SessionListModel::index(int row, int column, const QModelIndex& pare
         return QModelIndex();
 }
 
-#include "SessionListModel.moc"
+#include "moc_SessionListModel.cpp"

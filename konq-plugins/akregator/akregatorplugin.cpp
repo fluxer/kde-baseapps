@@ -133,4 +133,4 @@ void AkregatorMenu::slotAddFeed()
         addFeedViaCmdLine(url);
 }
 
-#include "akregatorplugin.moc"
+#include "moc_akregatorplugin.cpp"

@@ -110,4 +110,4 @@ void KonqHistoryDialog::slotOpenWindowForIndex(const QModelIndex& index)
     }
 }
 
-#include "konqhistorydialog.moc"
+#include "moc_konqhistorydialog.cpp"

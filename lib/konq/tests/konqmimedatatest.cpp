@@ -27,7 +27,7 @@
 #include <konqmimedata.h>
 #include "konqmimedatatest.h"
 
-#include "konqmimedatatest.moc"
+#include "moc_konqmimedatatest.cpp"
 
 QTEST_KDEMAIN( KonqMimeDataTest, NoGUI )
 

@@ -361,4 +361,4 @@ DCD::~DCD()
 }
 
 
-#include "dcd.moc"
+#include "moc_dcd.cpp"

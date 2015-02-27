@@ -227,4 +227,4 @@ void PluginBabelFish::translateURL(QAction* action)
   emit ext->openUrlRequest( KUrl( query ) );
 }
 
-#include <plugin_babelfish.moc>
+#include "moc_plugin_babelfish.cpp"

@@ -293,4 +293,4 @@ bool SnippetView::eventFilter(QObject* obj, QEvent* e)
 }
 
 
-#include "snippetview.moc"
+#include "moc_snippetview.cpp"

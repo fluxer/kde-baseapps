@@ -2014,6 +2014,6 @@ void NSPluginStream::result(KJob *job)
    finish( err!=0 || error() );
 }
 
-#include "nsplugin.moc"
+#include "moc_nsplugin.cpp"
 // vim: ts=4 sw=4 et
 // kate: indent-width 4; replace-tabs on; tab-width 4; space-indent on;

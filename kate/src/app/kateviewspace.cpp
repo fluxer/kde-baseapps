@@ -20,7 +20,7 @@
 #include "kateviewspace.h"
 
 #include <KTextEditor/SessionConfigInterface>
-#include "kateviewspace.moc"
+#include "moc_kateviewspace.cpp"
 
 #include "katemainwindow.h"
 #include "kateviewmanager.h"

@@ -65,4 +65,4 @@ void DolphinNavigationConfigModule::defaults()
     m_navigation->restoreDefaults();
 }
 
-#include "kcmdolphinnavigation.moc"
+#include "moc_kcmdolphinnavigation.cpp"

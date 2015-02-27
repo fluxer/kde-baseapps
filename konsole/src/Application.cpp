@@ -465,5 +465,5 @@ void Application::toggleBackgroundInstance()
     }
 }
 
-#include "Application.moc"
+#include "moc_Application.cpp"
 

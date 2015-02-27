@@ -979,4 +979,4 @@ void KonqComboCompletionBox::insertStringList( const QStringList & list, int ind
     foreach ( const QString &text, list )
         insertItem( index++, new KonqListWidgetItem( text ) );
 }
-#include "konqcombo.moc"
+#include "moc_konqcombo.cpp"

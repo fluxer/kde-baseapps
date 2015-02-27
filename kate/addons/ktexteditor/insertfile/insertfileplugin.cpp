@@ -17,7 +17,7 @@
 */
 
 #include "insertfileplugin.h"
-#include "insertfileplugin.moc"
+#include "moc_insertfileplugin.cpp"
 
 #include <ktexteditor/document.h>
 

@@ -101,5 +101,5 @@ void TerminalTest::testSize()
 
 QTEST_KDEMAIN(TerminalTest , GUI)
 
-#include "TerminalTest.moc"
+#include "moc_TerminalTest.cpp"
 

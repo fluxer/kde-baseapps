@@ -18,7 +18,7 @@
 */
 
 #include "plugin_kateopenheader.h"
-#include "plugin_kateopenheader.moc"
+#include "moc_plugin_kateopenheader.cpp"
 
 #include <kate/application.h>
 #include <ktexteditor/view.h>

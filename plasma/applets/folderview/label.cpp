@@ -78,5 +78,5 @@ void Label::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWi
     painter->restore();
 }
 
-#include "label.moc"
+#include "moc_label.cpp"
 

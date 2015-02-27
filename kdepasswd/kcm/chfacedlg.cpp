@@ -179,4 +179,4 @@ void ChFaceDlg::slotSaveCustomImage()
 }
 #endif
 
-#include "chfacedlg.moc"
+#include "moc_chfacedlg.cpp"

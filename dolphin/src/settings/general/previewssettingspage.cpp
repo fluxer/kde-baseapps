@@ -198,4 +198,4 @@ void PreviewsSettingsPage::loadSettings()
     m_remoteFileSizeBox->setValue(maxRemoteMByteSize);
 }
 
-#include "previewssettingspage.moc"
+#include "moc_previewssettingspage.cpp"

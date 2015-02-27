@@ -87,4 +87,4 @@ QRadioButton* DolphinFacetsWidget::createRadioButton(const QString& text,
     return button;
 }
 
-#include "dolphinfacetswidget.moc"
+#include "moc_dolphinfacetswidget.cpp"

@@ -18,7 +18,7 @@
 //  Boston, MA 02110-1301, USA.
 
 #include "targets.h"
-#include "targets.moc"
+#include "moc_targets.cpp"
 #include <klocale.h>
 #include <kdebug.h>
 #include <QApplication>

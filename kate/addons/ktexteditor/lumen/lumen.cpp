@@ -173,4 +173,4 @@ void LumenPlugin::removeView(KTextEditor::View *view)
     delete m_views.take(view);
 }
 
-#include "lumen.moc"
+#include "moc_lumen.cpp"

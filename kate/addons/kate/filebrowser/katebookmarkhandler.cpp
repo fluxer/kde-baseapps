@@ -20,7 +20,7 @@
 */
 
 #include "katebookmarkhandler.h"
-#include "katebookmarkhandler.moc"
+#include "moc_katebookmarkhandler.cpp"
 #include "katefilebrowser.h"
 
 #include <kdiroperator.h>

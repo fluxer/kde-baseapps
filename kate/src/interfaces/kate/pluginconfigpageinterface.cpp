@@ -17,7 +17,7 @@
 */
 
 #include "pluginconfigpageinterface.h"
-#include "pluginconfigpageinterface.moc"
+#include "moc_pluginconfigpageinterface.cpp"
 
 #include "plugin.h"
 

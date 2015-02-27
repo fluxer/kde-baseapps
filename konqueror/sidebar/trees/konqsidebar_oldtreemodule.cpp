@@ -196,4 +196,4 @@ public:
 
 K_PLUGIN_FACTORY(KonqSidebarTreePluginFactory, registerPlugin<KonqSidebarTreePlugin>(); )
 K_EXPORT_PLUGIN(KonqSidebarTreePluginFactory())
-#include "konqsidebar_oldtreemodule.moc"
+#include "moc_konqsidebar_oldtreemodule.cpp"

@@ -266,4 +266,4 @@ void ToolTipManager::showToolTip()
     m_toolTipRequested = false;
 }
 
-#include "tooltipmanager.moc"
+#include "moc_tooltipmanager.cpp"

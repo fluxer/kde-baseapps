@@ -18,7 +18,7 @@
 */
 
 #include "katequickopen.h"
-#include "katequickopen.moc"
+#include "moc_katequickopen.cpp"
 #include "katemainwindow.h"
 #include "kateviewmanager.h"
 

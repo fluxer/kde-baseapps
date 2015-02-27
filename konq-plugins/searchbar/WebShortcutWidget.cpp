@@ -104,5 +104,5 @@ void WebShortcutWidget::cancelClicked()
     hide();
 }
 
-#include "WebShortcutWidget.moc"
+#include "moc_WebShortcutWidget.cpp"
 

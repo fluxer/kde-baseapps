@@ -24,7 +24,7 @@
 
 //BEGIN includes
 #include "kateview.h"
-#include "kateview.moc"
+#include "moc_kateview.cpp"
 
 #include "kateviewinternal.h"
 #include "kateviewhelpers.h"

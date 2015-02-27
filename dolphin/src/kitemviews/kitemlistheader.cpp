@@ -85,4 +85,4 @@ KItemListHeader::KItemListHeader(KItemListView* listView) :
             this, SIGNAL(columnWidthChanged(QByteArray,qreal,qreal)));
 }
 
-#include "kitemlistheader.moc"
+#include "moc_kitemlistheader.cpp"

@@ -181,4 +181,4 @@ void StartupSettingsPage::loadSettings()
     m_filterBar->setChecked(GeneralSettings::filterBar());
 }
 
-#include "startupsettingspage.moc"
+#include "moc_startupsettingspage.cpp"

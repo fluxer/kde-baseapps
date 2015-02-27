@@ -19,7 +19,7 @@
  */
 
 #include "SearchDiskFiles.h"
-#include "SearchDiskFiles.moc"
+#include "moc_SearchDiskFiles.cpp"
 #include <kdebug.h>
 
 #include <QDir>

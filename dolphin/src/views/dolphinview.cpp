@@ -1662,4 +1662,4 @@ KUrl DolphinView::viewPropertiesUrl() const
     return url;
 }
 
-#include "dolphinview.moc"
+#include "moc_dolphinview.cpp"

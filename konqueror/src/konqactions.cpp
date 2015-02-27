@@ -237,4 +237,4 @@ void KonqHistoryAction::slotActivated(QAction* action)
     emit activated(action->data().value<KUrl>());
 }
 
-#include "konqactions.moc"
+#include "moc_konqactions.cpp"

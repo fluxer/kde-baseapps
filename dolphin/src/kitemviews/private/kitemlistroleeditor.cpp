@@ -148,4 +148,4 @@ void KItemListRoleEditor::emitRoleEditingFinished()
     }
 }
 
-#include "kitemlistroleeditor.moc"
+#include "moc_kitemlistroleeditor.cpp"

@@ -737,4 +737,4 @@ bool SearchBarPlugin::enableFindInPage() const
     return true;
 }
 
-#include "searchbar.moc"
+#include "moc_searchbar.cpp"

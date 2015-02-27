@@ -539,4 +539,4 @@ void FSViewBrowserExtension::selected(TreeMapItem* i)
 
 
 
-#include "fsview_part.moc"
+#include "moc_fsview_part.cpp"

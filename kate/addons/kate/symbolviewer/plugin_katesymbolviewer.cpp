@@ -39,7 +39,7 @@
  ***************************************************************************/
 
 #include "plugin_katesymbolviewer.h"
-#include "plugin_katesymbolviewer.moc"
+#include "moc_plugin_katesymbolviewer.cpp"
 
 #include <kaction.h>
 #include <klocale.h>

@@ -306,4 +306,4 @@ void Pty::setupChildProcess()
         sigaction(signal, &action, 0);
 }
 
-#include "Pty.moc"
+#include "moc_Pty.cpp"

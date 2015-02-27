@@ -28,4 +28,4 @@ SettingsPageBase::~SettingsPageBase()
 {}
 
 
-#include "settingspagebase.moc"
+#include "moc_settingspagebase.cpp"

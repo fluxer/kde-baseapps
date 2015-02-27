@@ -170,4 +170,4 @@ void FileMetaDataToolTip::showEvent(QShowEvent *)
     Plasma::WindowEffects::enableBlurBehind(winId(), true, mask());
 }
 
-#include "filemetadatatooltip.moc"
+#include "moc_filemetadatatooltip.cpp"

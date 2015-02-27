@@ -756,4 +756,4 @@ void StackedViewContainer::removeViewWidget(QWidget* view)
     _stackWidget->removeWidget(view);
 }
 
-#include "ViewContainer.moc"
+#include "moc_ViewContainer.cpp"

@@ -1985,5 +1985,5 @@ QString SessionController::userTitle() const
     }
 }
 
-#include "SessionController.moc"
+#include "moc_SessionController.cpp"
 

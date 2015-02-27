@@ -162,4 +162,4 @@ QPixmap KonqPixmapProvider::loadIcon( const QString& icon, int size )
     return KIconLoader::global()->loadIcon( icon, KIconLoader::Panel, size );
 }
 
-#include "konqpixmapprovider.moc"
+#include "moc_konqpixmapprovider.cpp"

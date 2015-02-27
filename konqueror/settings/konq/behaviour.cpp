@@ -140,4 +140,4 @@ void KBehaviourOptions::updateWinPixmap(bool b)
                                         "kcontrol/pics/onlyone.png")));
 }
 
-#include "behaviour.moc"
+#include "moc_behaviour.cpp"

@@ -78,4 +78,4 @@ void ConfigurePreviewPluginDialog::slotOk()
 
 }
 
-#include "configurepreviewplugindialog.moc"
+#include "moc_configurepreviewplugindialog.cpp"

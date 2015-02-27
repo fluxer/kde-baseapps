@@ -19,7 +19,7 @@
  */
 
 #include "katemessagewidget.h"
-#include "katemessagewidget.moc"
+#include "moc_katemessagewidget.cpp"
 
 #include <ktexteditor/messageinterface.h>
 #include <kmessagewidget.h>

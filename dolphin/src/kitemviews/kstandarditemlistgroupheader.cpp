@@ -122,4 +122,4 @@ void KStandardItemListGroupHeader::updateCache()
     }
 }
 
-#include "kstandarditemlistgroupheader.moc"
+#include "moc_kstandarditemlistgroupheader.cpp"

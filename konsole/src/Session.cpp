@@ -1525,5 +1525,5 @@ void SessionGroup::forwardData(const char* data, int size)
     _inForwardData = false;
 }
 
-#include "Session.moc"
+#include "moc_Session.cpp"
 

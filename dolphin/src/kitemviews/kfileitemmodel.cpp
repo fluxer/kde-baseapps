@@ -2209,4 +2209,4 @@ bool KFileItemModel::isConsistent() const
     return true;
 }
 
-#include "kfileitemmodel.moc"
+#include "moc_kfileitemmodel.cpp"

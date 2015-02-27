@@ -161,4 +161,4 @@ int KFileItemListWidget::selectionLength(const QString& text) const
     return selectionLength;
 }
 
-#include "kfileitemlistwidget.moc"
+#include "moc_kfileitemlistwidget.cpp"

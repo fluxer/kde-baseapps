@@ -20,7 +20,7 @@
 */
 
 #include "kateconsole.h"
-#include "kateconsole.moc"
+#include "moc_kateconsole.cpp"
 
 #include <kicon.h>
 #include <kiconloader.h>

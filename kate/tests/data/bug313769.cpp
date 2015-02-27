@@ -3,7 +3,7 @@
 */
 //BEGIN includes
 #include "kateview.h"
-#include "kateview.moc"
+#include "moc_kateview.cpp"
 
 //#define VIEW_RANGE_DEBUG
 

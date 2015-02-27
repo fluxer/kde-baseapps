@@ -19,7 +19,7 @@
 */
 
 #include "kateconfigplugindialogpage.h"
-#include "kateconfigplugindialogpage.moc"
+#include "moc_kateconfigplugindialogpage.cpp"
 
 #include "katepluginmanager.h"
 #include "kateconfigdialog.h"

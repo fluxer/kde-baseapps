@@ -20,7 +20,7 @@
 
 // KateKttsdPlugin includes.
 #include "katekttsd.h"
-#include "katekttsd.moc"
+#include "moc_katekttsd.cpp"
 #include <ktexteditor/document.h>
 // Qt includes.
 #include <QtCore/QTimer>

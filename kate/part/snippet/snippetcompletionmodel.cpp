@@ -193,4 +193,4 @@ bool SnippetCompletionModel::shouldAbortCompletion(KTextEditor::View* view, cons
 }
 
 
-#include "snippetcompletionmodel.moc"
+#include "moc_snippetcompletionmodel.cpp"

@@ -20,7 +20,7 @@
 */
 
 #include "katefilebrowserconfig.h"
-#include "katefilebrowserconfig.moc"
+#include "moc_katefilebrowserconfig.cpp"
 
 #include <QGroupBox>
 #include <QListWidget>

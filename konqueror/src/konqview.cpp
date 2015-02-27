@@ -1424,4 +1424,4 @@ bool KonqView::isErrorUrl() const
     return m_bErrorURL;
 }
 
-#include "konqview.moc"
+#include "moc_konqview.cpp"

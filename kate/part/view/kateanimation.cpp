@@ -19,7 +19,7 @@
  */
 
 #include "kateanimation.h"
-#include "kateanimation.moc"
+#include "moc_kateanimation.cpp"
 #include <katefadeeffect.h>
 
 #include <KMessageWidget>

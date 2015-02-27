@@ -17,7 +17,7 @@
 */
 
 #include "application.h"
-#include "application.moc"
+#include "moc_application.cpp"
 
 #include "documentmanager.h"
 #include "mainwindow.h"

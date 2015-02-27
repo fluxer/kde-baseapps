@@ -20,7 +20,7 @@
  */
 
 #include "kateglobal.h"
-#include "kateglobal.moc"
+#include "moc_kateglobal.cpp"
 
 #include "katedocument.h"
 #include "kateview.h"

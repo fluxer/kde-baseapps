@@ -222,5 +222,5 @@ void HgBackoutDialog::slotUpdateOkButton(const QString &text)
     enableButtonOk(!text.isEmpty());
 }
 
-#include "backoutdialog.moc"
+#include "moc_backoutdialog.cpp"
 

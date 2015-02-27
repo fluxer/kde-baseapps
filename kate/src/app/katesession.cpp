@@ -19,7 +19,7 @@
 #include "config.h"
 
 #include "katesession.h"
-#include "katesession.moc"
+#include "moc_katesession.cpp"
 
 #include "kateapp.h"
 #include "katemainwindow.h"

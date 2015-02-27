@@ -25,7 +25,7 @@
  ***************************************************************************/
 
 #include "ktinytabbar.h"
-#include "ktinytabbar.moc"
+#include "moc_ktinytabbar.cpp"
 #include "ktinytabbutton.h"
 #include "ktinytabbarconfigpage.h"
 #include "ktinytabbarconfigdialog.h"

@@ -155,4 +155,4 @@ public:
 K_PLUGIN_FACTORY(KonqSidebarHistoryPluginFactory, registerPlugin<KonqSidebarHistoryPlugin>(); )
 K_EXPORT_PLUGIN(KonqSidebarHistoryPluginFactory())
 
-#include "history_module.moc"
+#include "moc_history_module.cpp"

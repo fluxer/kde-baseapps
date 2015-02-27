@@ -233,5 +233,5 @@ void HgBundleDialog::slotAllChangesCheckToggled(int state)
     }
 }
 
-#include "bundledialog.moc"
+#include "moc_bundledialog.cpp"
 

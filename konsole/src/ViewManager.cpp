@@ -1135,5 +1135,5 @@ void ViewManager::setNavigationBehavior(int behavior)
     _newTabBehavior = static_cast<NewTabBehavior>(behavior);
 }
 
-#include "ViewManager.moc"
+#include "moc_ViewManager.cpp"
 

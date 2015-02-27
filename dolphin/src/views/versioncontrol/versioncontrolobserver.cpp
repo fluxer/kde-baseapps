@@ -365,4 +365,4 @@ bool VersionControlObserver::isVersioned() const
     return m_versionedDirectory && m_plugin;
 }
 
-#include "versioncontrolobserver.moc"
+#include "moc_versioncontrolobserver.cpp"

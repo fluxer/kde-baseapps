@@ -312,5 +312,5 @@ void HgSyncBaseDialog::slotUpdateBusy(QProcess::ProcessState state)
     QApplication::processEvents();
 }
 
-#include "syncdialogbase.moc"
+#include "moc_syncdialogbase.cpp"
 

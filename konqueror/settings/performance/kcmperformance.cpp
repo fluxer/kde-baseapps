@@ -109,4 +109,4 @@ void KonquerorConfig::defaults()
 
 } // namespace
 
-#include "kcmperformance.moc"
+#include "moc_kcmperformance.cpp"

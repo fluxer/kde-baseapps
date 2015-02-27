@@ -106,4 +106,4 @@ void DolphinViewModesConfigModule::viewModeChanged()
     emit changed(true);
 }
 
-#include "kcmdolphinviewmodes.moc"
+#include "moc_kcmdolphinviewmodes.cpp"

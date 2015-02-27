@@ -23,7 +23,7 @@
 
 //BEGIN INCLUDES
 #include "katesyntaxmanager.h"
-#include "katesyntaxmanager.moc"
+#include "moc_katesyntaxmanager.cpp"
 
 #include "katetextline.h"
 #include "katedocument.h"

@@ -135,5 +135,5 @@ void Animator::graphicsEffectsToggled(int category)
     }
 }
 
-#include "animator.moc"
+#include "moc_animator.cpp"
 

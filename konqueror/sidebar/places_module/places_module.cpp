@@ -148,4 +148,4 @@ public:
 K_PLUGIN_FACTORY(KonqSidebarPlacesPluginFactory, registerPlugin<KonqSidebarPlacesPlugin>(); )
 K_EXPORT_PLUGIN(KonqSidebarPlacesPluginFactory())
 
-#include "places_module.moc"
+#include "moc_places_module.cpp"

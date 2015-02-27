@@ -116,4 +116,4 @@ void KonqHistoryProxyModel::slotSettingsChanged()
     reset();
 }
 
-#include "konqhistoryproxymodel.moc"
+#include "moc_konqhistoryproxymodel.cpp"

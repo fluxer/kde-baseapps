@@ -962,4 +962,4 @@ QSize KfindTabWidget::sizeHint() const
   return sz;
 }
 
-#include "kftabdlg.moc"
+#include "moc_kftabdlg.cpp"

@@ -407,4 +407,4 @@ void KateCompletionConfig::moveGroupingOrderDown( )
   }
 }
 
-#include "katecompletionconfig.moc"
+#include "moc_katecompletionconfig.cpp"

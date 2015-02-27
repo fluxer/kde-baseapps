@@ -21,7 +21,7 @@
 #include "application.h"
 #include "mainwindow.h"
 
-#include "plugin.moc"
+#include "moc_plugin.cpp"
 
 #include <kpluginfactory.h>
 #include <kpluginloader.h>

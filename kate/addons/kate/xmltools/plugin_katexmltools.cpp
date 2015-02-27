@@ -66,7 +66,7 @@ TODO:
 */
 
 #include "plugin_katexmltools.h"
-#include "plugin_katexmltools.moc"
+#include "moc_plugin_katexmltools.cpp"
 
 #include <assert.h>
 

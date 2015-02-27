@@ -22,7 +22,7 @@
 #include "katesession.h"
 #include "katedocmanager.h"
 #include "katemainwindow.h"
-#include "kateappadaptor.moc"
+#include "moc_kateappadaptor.cpp"
 
 #include <kdebug.h>
 #include <kwindowsystem.h>

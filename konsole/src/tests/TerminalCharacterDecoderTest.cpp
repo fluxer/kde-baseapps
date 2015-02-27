@@ -77,5 +77,5 @@ void TerminalCharacterDecoderTest::testHTMLFileForValidity()
 
 QTEST_KDEMAIN_CORE(TerminalCharacterDecoderTest)
 
-#include "TerminalCharacterDecoderTest.moc"
+#include "moc_TerminalCharacterDecoderTest.cpp"
 

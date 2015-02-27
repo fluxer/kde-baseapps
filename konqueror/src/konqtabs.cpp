@@ -617,4 +617,4 @@ bool KonqFrameTabs::eventFilter(QObject* watched, QEvent* event)
     return KTabWidget::eventFilter(watched, event);
 }
 
-#include "konqtabs.moc"
+#include "moc_konqtabs.cpp"

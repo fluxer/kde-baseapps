@@ -95,5 +95,5 @@ void KShellCmdPlugin::slotExecuteShellCommand()
 K_PLUGIN_FACTORY(KonqShellCmdPluginFactory, registerPlugin<KShellCmdPlugin>();)
 K_EXPORT_PLUGIN(KonqShellCmdPluginFactory("kshellcmdplugin"))
 
-#include "kshellcmdplugin.moc"
+#include "moc_kshellcmdplugin.cpp"
 

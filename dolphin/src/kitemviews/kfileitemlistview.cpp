@@ -421,4 +421,4 @@ QSize KFileItemListView::availableIconSize() const
     return QSize(iconSize, iconSize);
 }
 
-#include "kfileitemlistview.moc"
+#include "moc_kfileitemlistview.cpp"

@@ -76,4 +76,4 @@ void ApplyViewPropsJob::slotResult(KJob* job)
     emitResult();
 }
 
-#include "applyviewpropsjob.moc"
+#include "moc_applyviewpropsjob.cpp"

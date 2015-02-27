@@ -19,7 +19,7 @@
 */
 
 #include "kateautoindent.h"
-#include "kateautoindent.moc"
+#include "moc_kateautoindent.cpp"
 
 #include "kateconfig.h"
 #include "katehighlight.h"

@@ -266,4 +266,4 @@ void ServicesSettingsPage::addRow(const QString& icon,
     m_serviceModel->setData(index, checked, Qt::CheckStateRole);
 }
 
-#include "servicessettingspage.moc"
+#include "moc_servicessettingspage.cpp"

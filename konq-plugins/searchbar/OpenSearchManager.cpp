@@ -170,5 +170,5 @@ QString OpenSearchManager::trimmedEngineName(const QString &engineName) const
     return trimmed;
 }
 
-#include "OpenSearchManager.moc"
+#include "moc_OpenSearchManager.cpp"
 

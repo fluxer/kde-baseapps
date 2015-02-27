@@ -288,6 +288,6 @@ void KatePluginTabBarExtension::tabbarSettingsChanged( KTinyTabBar* tabbar )
 }
 //END KatePluginTabBarExtension
 
-#include "plugin_katetabbarextension.moc"
+#include "moc_plugin_katetabbarextension.cpp"
 
 // kate: space-indent on; indent-width 2; tab-width 4; replace-tabs off; eol unix;

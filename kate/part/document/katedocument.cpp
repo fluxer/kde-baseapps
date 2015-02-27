@@ -25,7 +25,7 @@
 
 //BEGIN includes
 #include "katedocument.h"
-#include "katedocument.moc"
+#include "moc_katedocument.cpp"
 #include "kateglobal.h"
 #include "katedialogs.h"
 #include "katehighlight.h"

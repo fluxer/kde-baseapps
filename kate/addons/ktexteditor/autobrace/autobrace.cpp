@@ -449,4 +449,4 @@ bool AutoBracePluginDocument::isInsertionCandidate(KTextEditor::Document *docume
     return isCandidate;
 }
 
-#include "autobrace.moc"
+#include "moc_autobrace.cpp"

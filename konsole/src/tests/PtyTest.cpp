@@ -91,5 +91,5 @@ void PtyTest::testRunProgram()
 
 QTEST_KDEMAIN_CORE(PtyTest)
 
-#include "PtyTest.moc"
+#include "moc_PtyTest.cpp"
 

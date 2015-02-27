@@ -2273,5 +2273,5 @@ void KateCompletionModel::clearCompletionModels()
   endResetModel();
 }
 
-#include "katecompletionmodel.moc"
+#include "moc_katecompletionmodel.cpp"
 // kate: space-indent on; indent-width 2; replace-tabs on;

@@ -485,4 +485,4 @@ void KBookmarkModel::notifyManagers(const KBookmarkGroup& grp)
     bookmarkManager()->emitChanged(grp);
 }
 
-#include "model.moc"
+#include "moc_model.cpp"

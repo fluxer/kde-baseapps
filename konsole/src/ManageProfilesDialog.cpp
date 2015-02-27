@@ -540,4 +540,4 @@ void ShortcutItemDelegate::paint(QPainter* painter, const QStyleOptionViewItem& 
         QStyledItemDelegate::paint(painter, option, index);
 }
 
-#include "ManageProfilesDialog.moc"
+#include "moc_ManageProfilesDialog.cpp"

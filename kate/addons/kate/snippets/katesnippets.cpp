@@ -19,7 +19,7 @@
  */
 
 #include "katesnippets.h"
-#include "katesnippets.moc"
+#include "moc_katesnippets.cpp"
 
 #include <kicon.h>
 #include <kiconloader.h>

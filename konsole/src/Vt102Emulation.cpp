@@ -1357,5 +1357,5 @@ void Vt102Emulation::reportDecodingError()
     kDebug() << outputError;
 }
 
-#include "Vt102Emulation.moc"
+#include "moc_Vt102Emulation.cpp"
 

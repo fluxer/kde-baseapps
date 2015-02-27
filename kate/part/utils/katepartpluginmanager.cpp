@@ -22,7 +22,7 @@
  */
 
 #include "katepartpluginmanager.h"
-#include "katepartpluginmanager.moc"
+#include "moc_katepartpluginmanager.cpp"
 
 #include "kateglobal.h"
 

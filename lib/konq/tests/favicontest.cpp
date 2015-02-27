@@ -25,7 +25,7 @@
 #include <QDateTime>
 #include <kmimetype.h>
 
-#include "favicontest.moc"
+#include "moc_favicontest.cpp"
 
 QTEST_KDEMAIN( FavIconTest, NoGUI )
 

@@ -129,4 +129,4 @@ void ServiceItemDelegate::slotConfigureButtonClicked()
     emit requestServiceConfiguration(focusedIndex());
 }
 
-#include "serviceitemdelegate.moc"
+#include "moc_serviceitemdelegate.cpp"

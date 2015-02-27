@@ -78,4 +78,4 @@ void KHTTPOptions::slotChanged()
 }
 
 
-#include "khttpoptdlg.moc"
+#include "moc_khttpoptdlg.cpp"

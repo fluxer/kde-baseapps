@@ -93,4 +93,4 @@ void ProgressDialog::close()
     slotButtonClicked(KDialog::Close);
 }
 
-#include "progressdialog.moc"
+#include "moc_progressdialog.cpp"

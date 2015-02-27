@@ -20,7 +20,7 @@
 
 //BEGIN Includes
 #include "kateschema.h"
-#include "kateschema.moc"
+#include "moc_kateschema.cpp"
 
 #include "kateconfig.h"
 #include "kateglobal.h"

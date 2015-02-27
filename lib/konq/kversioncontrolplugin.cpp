@@ -27,4 +27,4 @@ KVersionControlPlugin::~KVersionControlPlugin()
 {
 }
 
-#include "kversioncontrolplugin.moc"
+#include "moc_kversioncontrolplugin.cpp"

@@ -303,4 +303,4 @@ void ToggleViewGUIClient::slotViewRemoved( KonqView *view )
   }
 }
 
-#include "konqguiclients.moc"
+#include "moc_konqguiclients.cpp"

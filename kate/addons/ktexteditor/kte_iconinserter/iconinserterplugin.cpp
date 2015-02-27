@@ -126,4 +126,4 @@ void IconInserterPlugin::removeView(KTextEditor::View *view)
 	delete m_views.take(view);
 }
 
-#include "iconinserterplugin.moc"
+#include "moc_iconinserterplugin.cpp"

@@ -123,4 +123,4 @@ KURIFilterModule::~KURIFilterModule()
     qDeleteAll( modules );
 }
 
-#include "main.moc"
+#include "moc_main.cpp"

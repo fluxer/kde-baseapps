@@ -78,7 +78,7 @@ KTinyTabBarConfigPage* KTinyTabBarConfigDialog::configPage()
     return m_configPage;
 }
 
-#include "ktinytabbarconfigdialog.moc"
+#include "moc_ktinytabbarconfigdialog.cpp"
 
 // kate: space-indent on; tab-width 4; replace-tabs off; eol unix;
 

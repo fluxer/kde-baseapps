@@ -25,7 +25,7 @@
 ** MA 02110-1301, USA.
 */
 
-#include "plugin_katebuild.moc"
+#include "moc_plugin_katebuild.cpp"
 
 #include <cassert>
 

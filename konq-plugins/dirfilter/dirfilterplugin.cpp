@@ -539,4 +539,4 @@ void DirFilterPlugin::setFilterBar()
 K_PLUGIN_FACTORY(DirFilterFactory, registerPlugin<DirFilterPlugin>();)
 K_EXPORT_PLUGIN(DirFilterFactory("dirfilterplugin"))
 
-#include "dirfilterplugin.moc"
+#include "moc_dirfilterplugin.cpp"

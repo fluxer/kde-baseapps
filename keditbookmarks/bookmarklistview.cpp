@@ -207,4 +207,4 @@ bool BookmarkFolderViewFilterModel::filterAcceptsRow ( int source_row, const QMo
     return bk.isGroup();
 }
 
-#include "bookmarklistview.moc"
+#include "moc_bookmarklistview.cpp"

@@ -19,7 +19,7 @@
 */
 
 #include "katebuffer.h"
-#include "katebuffer.moc"
+#include "moc_katebuffer.cpp"
 
 #include <sys/types.h>
 #include <sys/stat.h>

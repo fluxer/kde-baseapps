@@ -1123,6 +1123,6 @@ QString KateTemplateHandler::MirrorBehaviour::getMirrorString(const QString &sou
 //END MIRROR BEHAVOUR
 
 
-#include "katetemplatehandler.moc"
+#include "moc_katetemplatehandler.cpp"
 
 // kate: indent-mode cstyle; space-indent on; indent-width 2; replace-tabs on;  replace-tabs on;  replace-tabs on;  replace-tabs on;

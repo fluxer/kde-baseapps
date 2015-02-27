@@ -20,7 +20,7 @@
 
 //BEGIN Includes
 #include "katemodemenu.h"
-#include "katemodemenu.moc"
+#include "moc_katemodemenu.cpp"
 
 #include "katedocument.h"
 #include "kateconfig.h"

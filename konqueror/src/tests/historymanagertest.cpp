@@ -23,7 +23,7 @@
 #include <kio/netaccess.h>
 #include <QDateTime>
 
-#include "historymanagertest.moc"
+#include "moc_historymanagertest.cpp"
 
 QTEST_KDEMAIN( HistoryManagerTest, NoGUI )
 

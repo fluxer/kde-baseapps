@@ -235,5 +235,5 @@ void KonqFeedIcon::addFeeds()
     }
 }
 
-#include "konqfeedicon.moc"
+#include "moc_konqfeedicon.cpp"
 // vim: ts=4 sw=4 et

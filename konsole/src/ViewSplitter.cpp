@@ -257,4 +257,4 @@ ViewContainer* ViewSplitter::activeContainer() const
     }
 }
 
-#include "ViewSplitter.moc"
+#include "moc_ViewSplitter.cpp"

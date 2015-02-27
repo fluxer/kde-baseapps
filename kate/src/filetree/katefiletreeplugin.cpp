@@ -19,7 +19,7 @@
 //BEGIN Includes
 
 #include "katefiletreeplugin.h"
-#include "katefiletreeplugin.moc"
+#include "moc_katefiletreeplugin.cpp"
 #include "katefiletree.h"
 #include "katefiletreemodel.h"
 #include "katefiletreeproxymodel.h"

@@ -839,5 +839,5 @@ QString FileViewHgPlugin::visualDiffExecPath()
     return services.first()->exec().split(' ').takeFirst();
 }
 
-#include "fileviewhgplugin.moc"
+#include "moc_fileviewhgplugin.cpp"
 

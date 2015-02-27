@@ -48,4 +48,4 @@ QList<QAction*> KVersionControlPlugin2::contextMenuActions(const QString& direct
     return QList<QAction*>();
 }
 
-#include "kversioncontrolplugin2.moc"
+#include "moc_kversioncontrolplugin2.cpp"

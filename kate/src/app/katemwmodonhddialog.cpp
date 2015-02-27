@@ -18,7 +18,7 @@
 */
 
 #include "katemwmodonhddialog.h"
-#include "katemwmodonhddialog.moc"
+#include "moc_katemwmodonhddialog.cpp"
 
 #include "katedocmanager.h"
 #include "katemainwindow.h"

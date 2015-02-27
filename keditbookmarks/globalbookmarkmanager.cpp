@@ -104,4 +104,4 @@ QString GlobalBookmarkManager::makeTimeStr(int b)
         : KGlobal::locale()->formatDateTime(dt, KLocale::LongDate);
 }
 
-#include "globalbookmarkmanager.moc"
+#include "moc_globalbookmarkmanager.cpp"

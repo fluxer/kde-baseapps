@@ -20,7 +20,7 @@
 #include "completion_test.h"
 
 #include "codecompletiontestmodels.h"
-#include "codecompletiontestmodels.moc"
+#include "moc_codecompletiontestmodels.cpp"
 
 #include <qtest_kde.h>
 #include <ksycoca.h>
@@ -492,4 +492,4 @@ void CompletionTest::benchCompletionModel()
   }
 }
 
-#include "completion_test.moc"
+#include "moc_completion_test.cpp"

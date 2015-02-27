@@ -262,4 +262,4 @@ ViewModeSettings::ViewMode DolphinItemListView::viewMode() const
     return mode;
 }
 
-#include "dolphinitemlistview.moc"
+#include "moc_dolphinitemlistview.cpp"

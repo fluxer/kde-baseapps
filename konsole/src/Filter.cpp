@@ -484,4 +484,4 @@ QList<QAction*> UrlFilter::HotSpot::actions()
     return actions;
 }
 
-#include "Filter.moc"
+#include "moc_Filter.cpp"

@@ -283,4 +283,4 @@ const QBitArray IncrementalSearchBar::optionsChecked()
     return options;
 }
 
-#include "IncrementalSearchBar.moc"
+#include "moc_IncrementalSearchBar.cpp"

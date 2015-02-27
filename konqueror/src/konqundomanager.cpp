@@ -306,4 +306,4 @@ void KonqUndoManager::undoLastClosedItem()
     undoClosedItem(0);
 }
 
-#include "konqundomanager.moc"
+#include "moc_konqundomanager.cpp"

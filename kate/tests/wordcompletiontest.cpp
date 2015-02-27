@@ -111,6 +111,6 @@ void WordCompletionTest::benchWordRetrievalDistinct()
   }
 }
 
-#include "wordcompletiontest.moc"
+#include "moc_wordcompletiontest.cpp"
 
 // kate: indent-width 2

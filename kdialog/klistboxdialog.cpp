@@ -17,7 +17,7 @@
 //  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 //
 #include "klistboxdialog.h"
-#include "klistboxdialog.moc"
+#include "moc_klistboxdialog.cpp"
 
 #include <QLabel>
 #include <kvbox.h>

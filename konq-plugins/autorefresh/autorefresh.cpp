@@ -128,5 +128,5 @@ void AutoRefresh::slotRefresh()
 K_PLUGIN_FACTORY( AutoRefreshFactory, registerPlugin< AutoRefresh >(); )
 K_EXPORT_PLUGIN( AutoRefreshFactory( "autorefresh" ) )
 
-#include "autorefresh.moc"
+#include "moc_autorefresh.cpp"
 

@@ -233,5 +233,5 @@ void KMiscHTMLOptions::save()
 }
 
 
-#include "htmlopts.moc"
+#include "moc_htmlopts.cpp"
 

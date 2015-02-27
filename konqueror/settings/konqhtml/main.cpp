@@ -145,5 +145,5 @@ QString KJSParts::quickHelp() const
               "JavaScript programs." );
 }
 
-#include "main.moc"
+#include "moc_main.cpp"
 

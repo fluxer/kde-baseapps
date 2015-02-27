@@ -22,7 +22,7 @@
 //  Boston, MA 02110-1301, USA.
 
 #include "debugview.h"
-#include "debugview.moc"
+#include "moc_debugview.cpp"
 
 #include <QtCore/QRegExp>
 #include <QtCore/QFile>

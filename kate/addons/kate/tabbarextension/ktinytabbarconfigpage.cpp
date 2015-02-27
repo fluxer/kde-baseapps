@@ -421,6 +421,6 @@ QColor KTinyTabBarConfigPage::modifiedTabsColor() const
 
 
 
-#include "ktinytabbarconfigpage.moc"
+#include "moc_ktinytabbarconfigpage.cpp"
 
 // kate: space-indent on; indent-width 4; tab-width 4; replace-tabs off; eol unix;

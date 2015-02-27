@@ -339,4 +339,4 @@ JavaPolicies *JavaDomainListView::copyPolicies(Policies *pol) {
   return new JavaPolicies(*static_cast<JavaPolicies *>(pol));
 }
 
-#include "javaopts.moc"
+#include "moc_javaopts.cpp"

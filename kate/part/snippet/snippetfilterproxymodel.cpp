@@ -93,4 +93,4 @@ void SnippetFilterProxyModel::dataChanged(const QModelIndex& /*topLeft*/, const 
     clear();
 }
 
-#include "snippetfilterproxymodel.moc"
+#include "moc_snippetfilterproxymodel.cpp"

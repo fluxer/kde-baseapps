@@ -1847,4 +1847,4 @@ void DolphinMainWindow::UndoUiInterface::jobError(KIO::Job* job)
     }
 }
 
-#include "dolphinmainwindow.moc"
+#include "moc_dolphinmainwindow.cpp"

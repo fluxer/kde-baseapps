@@ -156,4 +156,4 @@ void KShellCommandExecutor::slotFinished()
    emit finished();
 }
 
-#include "kshellcmdexecutor.moc"
+#include "moc_kshellcmdexecutor.cpp"

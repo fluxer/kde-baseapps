@@ -114,4 +114,4 @@ void BookmarksConfigModule::configChanged()
   emit changed( true );
 }
 
-#include "bookmarks.moc"
+#include "moc_bookmarks.cpp"

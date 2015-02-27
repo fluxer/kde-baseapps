@@ -20,7 +20,7 @@
 */
 
 #include "katesearchbar.h"
-#include "katesearchbar.moc"
+#include "moc_katesearchbar.cpp"
 
 #include "kateregexp.h"
 #include "katematch.h"

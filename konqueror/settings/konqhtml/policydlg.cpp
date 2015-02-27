@@ -137,4 +137,4 @@ void PolicyDialog::accept()
     KDialog::accept();
 }
 
-#include "policydlg.moc"
+#include "moc_policydlg.cpp"

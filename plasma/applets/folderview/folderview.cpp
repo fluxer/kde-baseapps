@@ -2292,4 +2292,4 @@ void FolderView::setTitleEditEnabled(int index)
     }
 }
 
-#include "folderview.moc"
+#include "moc_folderview.cpp"

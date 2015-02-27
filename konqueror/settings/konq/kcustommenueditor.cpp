@@ -246,4 +246,4 @@ KCustomMenuEditor::slotMoveDown()
    refreshButton();
 }
 
-#include "kcustommenueditor.moc"
+#include "moc_kcustommenueditor.cpp"

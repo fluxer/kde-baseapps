@@ -215,4 +215,4 @@ void KonqFrameContainer::replaceChildFrame(KonqFrameBase* oldFrame, KonqFrameBas
     setSizes(splitterSizes);
 }
 
-#include "konqframecontainer.moc"
+#include "moc_konqframecontainer.cpp"

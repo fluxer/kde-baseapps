@@ -612,4 +612,4 @@ bool DolphinPart::eventFilter(QObject* obj, QEvent* event)
     return KParts::ReadOnlyPart::eventFilter(obj, event);
 }
 
-#include "dolphinpart.moc"
+#include "moc_dolphinpart.cpp"

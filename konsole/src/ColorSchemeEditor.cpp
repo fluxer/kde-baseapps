@@ -268,4 +268,4 @@ void ColorSchemeEditor::saveColorScheme()
     emit colorSchemeSaveRequested(colorScheme(), _isNewScheme);
 }
 
-#include "ColorSchemeEditor.moc"
+#include "moc_ColorSchemeEditor.cpp"

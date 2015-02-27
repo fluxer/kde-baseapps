@@ -1363,6 +1363,6 @@ void KateCompletionWidget::tab(bool shift)
   }
 }
 
-#include "katecompletionwidget.moc"
+#include "moc_katecompletionwidget.cpp"
 
 // kate: space-indent on; indent-width 2; replace-tabs on;

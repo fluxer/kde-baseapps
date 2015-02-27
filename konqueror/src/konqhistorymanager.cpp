@@ -279,4 +279,4 @@ void KonqHistoryManager::slotEntryRemoved(const KonqHistoryEntry& entry)
     addToUpdateList(urlString);
 }
 
-#include "konqhistorymanager.moc"
+#include "moc_konqhistorymanager.cpp"

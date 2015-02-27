@@ -543,4 +543,4 @@ void PlacesPanel::triggerItem(int index, Qt::MouseButton button)
 }
 
 
-#include "placespanel.moc"
+#include "moc_placespanel.cpp"

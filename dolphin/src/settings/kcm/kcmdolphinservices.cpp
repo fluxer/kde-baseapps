@@ -65,4 +65,4 @@ void DolphinServicesConfigModule::defaults()
     m_services->restoreDefaults();
 }
 
-#include "kcmdolphinservices.moc"
+#include "moc_kcmdolphinservices.cpp"

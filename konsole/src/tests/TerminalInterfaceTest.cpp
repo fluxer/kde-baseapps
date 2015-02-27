@@ -164,5 +164,5 @@ KParts::Part* TerminalInterfaceTest::createPart()
 
 QTEST_KDEMAIN(TerminalInterfaceTest , GUI)
 
-#include "TerminalInterfaceTest.moc"
+#include "moc_TerminalInterfaceTest.cpp"
 

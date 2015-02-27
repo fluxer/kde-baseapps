@@ -259,4 +259,4 @@ void HistorySidebarConfig::slotClearHistory()
     }
 }
 
-#include "kcmhistory.moc"
+#include "moc_kcmhistory.cpp"

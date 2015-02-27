@@ -143,5 +143,5 @@ void HgBranchDialog::slotCreateBranch()
     }
 }
 
-#include "branchdialog.moc"
+#include "moc_branchdialog.cpp"
 

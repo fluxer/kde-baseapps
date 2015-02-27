@@ -3269,4 +3269,4 @@ void TreeMapWidget::addPopupItem(KMenu* popup, const QString &text,
 }
 
 
-#include "treemap.moc"
+#include "moc_treemap.cpp"

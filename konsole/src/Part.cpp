@@ -385,4 +385,4 @@ void Part::sessionStateChanged(int state)
         emit activityDetected();
 }
 
-#include "Part.moc"
+#include "moc_Part.cpp"

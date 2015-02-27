@@ -258,4 +258,4 @@ void KonqHistoryView::slotCopyLinkLocation()
     QApplication::clipboard()->setMimeData( mimeData, QClipboard::Selection );
 }
 
-#include "konqhistoryview.moc"
+#include "moc_konqhistoryview.cpp"

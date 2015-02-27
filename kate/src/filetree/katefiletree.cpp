@@ -18,7 +18,7 @@
 
 //BEGIN Includes
 #include "katefiletree.h"
-#include "katefiletree.moc"
+#include "moc_katefiletree.cpp"
 #include "katefiletreemodel.h"
 #include "katefiletreeproxymodel.h"
 #include "katefiletreedebug.h"

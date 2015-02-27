@@ -254,4 +254,4 @@ bool KonqFrame::accept( KonqFrameVisitor* visitor )
     return visitor->visit( this );
 }
 
-#include "konqframe.moc"
+#include "moc_konqframe.cpp"

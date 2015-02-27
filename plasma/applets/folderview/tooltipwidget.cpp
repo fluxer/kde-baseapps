@@ -304,5 +304,5 @@ void ToolTipWidget::timerEvent(QTimerEvent *event)
     }
 }
 
-#include "tooltipwidget.moc"
+#include "moc_tooltipwidget.cpp"
 

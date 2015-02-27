@@ -167,4 +167,4 @@ void KateSnippetGlobal::createSnippet (KateView *view)
     }
 }
 
-#include "katesnippetglobal.moc"
+#include "moc_katesnippetglobal.cpp"

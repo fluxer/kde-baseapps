@@ -93,5 +93,5 @@ void HgGeneralConfigWidget::saveConfig()
     }
 }
 
-#include "generalconfig.moc"
+#include "moc_generalconfig.cpp"
 

@@ -19,7 +19,7 @@
  */
 
 #include "kateprojectplugin.h"
-#include "kateprojectplugin.moc"
+#include "moc_kateprojectplugin.cpp"
 
 #include "kateproject.h"
 #include "kateprojectpluginview.h"

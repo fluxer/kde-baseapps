@@ -232,5 +232,5 @@ void DBusTest::testSessions()
 
 QTEST_MAIN(DBusTest)
 
-#include "DBusTest.moc"
+#include "moc_DBusTest.cpp"
 

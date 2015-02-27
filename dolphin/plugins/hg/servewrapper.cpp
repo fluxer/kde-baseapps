@@ -146,5 +146,5 @@ void HgServeWrapper::cleanUnused()
     }
 }
 
-#include "servewrapper.moc"
+#include "moc_servewrapper.cpp"
 

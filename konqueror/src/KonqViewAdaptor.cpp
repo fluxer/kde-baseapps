@@ -122,4 +122,4 @@ void KonqViewAdaptor::reload()
     return m_pView->mainWindow()->slotReload( m_pView );
 }
 
-#include "KonqViewAdaptor.moc"
+#include "moc_KonqViewAdaptor.cpp"

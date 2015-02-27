@@ -701,5 +701,5 @@ void PopupView::timerEvent(QTimerEvent *event)
     }
 }
 
-#include "popupview.moc"
+#include "moc_popupview.cpp"
 

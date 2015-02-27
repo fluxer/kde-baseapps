@@ -415,4 +415,4 @@ bool KBookmarkBar::eventFilter( QObject *, QEvent *e )
     return false;
 }
 
-#include "konqbookmarkbar.moc"
+#include "moc_konqbookmarkbar.cpp"

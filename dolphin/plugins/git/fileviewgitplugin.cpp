@@ -626,4 +626,4 @@ void FileViewGitPlugin::startGitCommandProcess()
     // after the process has finished (see slotOperationFinished())
 }
 
-#include "fileviewgitplugin.moc"
+#include "moc_fileviewgitplugin.cpp"

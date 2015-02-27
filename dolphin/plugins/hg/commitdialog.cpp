@@ -366,5 +366,5 @@ void HgCommitDialog::slotInsertCopyMessage(QAction *action)
     m_commitMessage->insertPlainText(action->text());
 }
 
-#include "commitdialog.moc"
+#include "moc_commitdialog.cpp"
 

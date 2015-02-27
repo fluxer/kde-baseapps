@@ -645,4 +645,4 @@ QStyleOptionViewItemV4 ListView::viewOptions() const
     return option;
 }
 
-#include "listview.moc"
+#include "moc_listview.cpp"

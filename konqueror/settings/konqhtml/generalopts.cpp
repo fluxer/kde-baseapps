@@ -350,5 +350,5 @@ void KKonqGeneralOptions::slotChanged()
     emit changed(true);
 }
 
-#include "generalopts.moc"
+#include "moc_generalopts.cpp"
 

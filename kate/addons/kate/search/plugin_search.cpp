@@ -19,7 +19,7 @@
  */
 
 #include "plugin_search.h"
-#include "plugin_search.moc"
+#include "moc_plugin_search.cpp"
 
 #include "htmldelegate.h"
 

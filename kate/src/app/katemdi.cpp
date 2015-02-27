@@ -21,7 +21,7 @@
 */
 
 #include "katemdi.h"
-#include "katemdi.moc"
+#include "moc_katemdi.cpp"
 
 #include "kate/pluginconfigpageinterface.h"
 

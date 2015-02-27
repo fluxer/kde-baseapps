@@ -91,5 +91,5 @@ void AsyncFileTester::statResult(KJob *job)
     deleteLater();
 }
 
-#include "asyncfiletester.moc"
+#include "moc_asyncfiletester.cpp"
 

@@ -157,4 +157,4 @@ void KonqExtensionManager::showEvent(QShowEvent *event)
     KDialog::showEvent(event);
 }
 
-#include "konqextensionmanager.moc"
+#include "moc_konqextensionmanager.cpp"

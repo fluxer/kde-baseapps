@@ -36,5 +36,5 @@ void KonqBrowserInterface::goHistory( int steps )
     m_view->goHistory( steps );
 }
 
-#include "konqbrowseriface.moc"
+#include "moc_konqbrowseriface.cpp"
 

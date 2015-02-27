@@ -91,4 +91,4 @@ void KonqDraggableLabel::delayedOpenURL()
 }
 
 
-#include "konqdraggablelabel.moc"
+#include "moc_konqdraggablelabel.cpp"

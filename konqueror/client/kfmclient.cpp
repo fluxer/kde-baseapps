@@ -595,4 +595,4 @@ void ClientApp::slotDialogCanceled()
     quit();
 }
 
-#include "kfmclient.moc"
+#include "moc_kfmclient.cpp"

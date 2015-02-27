@@ -83,4 +83,4 @@ void FavIconsItr::cancel()
     setStatus(m_oldStatus);
 }
 
-#include "favicons.moc"
+#include "moc_favicons.cpp"

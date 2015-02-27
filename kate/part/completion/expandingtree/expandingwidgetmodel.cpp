@@ -525,5 +525,5 @@ QList<QVariant> mergeCustomHighlighting( QStringList strings, QList<QVariantList
     //Combine the custom-highlightings
     return totalHighlighting;
 }
-#include "expandingwidgetmodel.moc"
+#include "moc_expandingwidgetmodel.cpp"
 

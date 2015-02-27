@@ -51,6 +51,6 @@ void ExporterPlugin::removeView(KTextEditor::View* view)
   delete m_views.take(view);
 }
 
-#include "exporterplugin.moc"
+#include "moc_exporterplugin.cpp"
 
 // kate: space-indent on; indent-width 2; replace-tabs on;

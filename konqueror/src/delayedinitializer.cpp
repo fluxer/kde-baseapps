@@ -51,7 +51,7 @@ void DelayedInitializer::slotInitialize()
     deleteLater();
 }
 
-#include "delayedinitializer.moc"
+#include "moc_delayedinitializer.cpp"
 
 /* vim: et sw=4
  */

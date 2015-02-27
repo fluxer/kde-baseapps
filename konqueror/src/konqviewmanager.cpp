@@ -1633,4 +1633,4 @@ QString KonqViewManager::normalizedXMLFileName(const QString& xmluiFile)
     return xmluiFile;
 }
 
-#include "konqviewmanager.moc"
+#include "moc_konqviewmanager.cpp"

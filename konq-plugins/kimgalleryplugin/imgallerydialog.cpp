@@ -45,7 +45,7 @@ Boston, MA 02110-1301, USA.
 #include <kconfig.h>
 #include <kicon.h>
 #include "imgallerydialog.h"
-#include "imgallerydialog.moc"
+#include "moc_imgallerydialog.cpp"
 
 KIGPDialog::KIGPDialog(QWidget *parent, const QString& path )
     : KPageDialog( parent)

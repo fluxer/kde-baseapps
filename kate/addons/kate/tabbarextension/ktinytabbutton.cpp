@@ -25,7 +25,7 @@
  ***************************************************************************/
 
 #include "ktinytabbutton.h"
-#include "ktinytabbutton.moc"
+#include "moc_ktinytabbutton.cpp"
 
 #include <kcolordialog.h>
 #include <kdebug.h>

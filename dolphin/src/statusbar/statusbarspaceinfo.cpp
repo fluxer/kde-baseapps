@@ -87,4 +87,4 @@ void StatusBarSpaceInfo::slotValuesChanged()
     }
 }
 
-#include "statusbarspaceinfo.moc"
+#include "moc_statusbarspaceinfo.cpp"

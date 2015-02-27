@@ -187,5 +187,5 @@ void  KDEpasswd2Dialog::accept()
 }
 
 
-#include "passwddlg.moc"
+#include "moc_passwddlg.cpp"
 

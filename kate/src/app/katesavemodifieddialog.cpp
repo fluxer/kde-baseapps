@@ -17,7 +17,7 @@
 */
 
 #include "katesavemodifieddialog.h"
-#include "katesavemodifieddialog.moc"
+#include "moc_katesavemodifieddialog.cpp"
 
 #include <QTreeWidget>
 #include <QLabel>

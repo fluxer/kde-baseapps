@@ -16,7 +16,7 @@
  ***************************************************************************/
 
 #include "plugin_katetextfilter.h"
-#include "plugin_katetextfilter.moc"
+#include "moc_plugin_katetextfilter.cpp"
 
 #include "ui_textfilterwidget.h"
 

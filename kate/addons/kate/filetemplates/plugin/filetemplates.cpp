@@ -1189,4 +1189,4 @@ void KateTemplateManager::slotRemoveTemplate()
 
 // kate: space-indent on; indent-width 2; replace-tabs on;
 
-#include "filetemplates.moc"
+#include "moc_filetemplates.cpp"

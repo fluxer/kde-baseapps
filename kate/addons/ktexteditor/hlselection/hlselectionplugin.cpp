@@ -17,7 +17,7 @@
 */
 
 #include "hlselectionplugin.h"
-#include "hlselectionplugin.moc"
+#include "moc_hlselectionplugin.cpp"
 
 #include <ktexteditor/document.h>
 #include <ktexteditor/attribute.h>

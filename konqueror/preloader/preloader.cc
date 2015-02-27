@@ -156,4 +156,4 @@ void KonqyPreloader::unloadAllPreloaded()
     // ignore 'always_have_preloaded' here
     }
 
-#include "preloader.moc"
+#include "moc_preloader.cpp"

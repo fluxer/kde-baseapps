@@ -83,4 +83,4 @@ KFileItemClipboard::KFileItemClipboard() :
             this, SLOT(updateCutItems()));
 }
 
-#include "kfileitemclipboard.moc"
+#include "moc_kfileitemclipboard.cpp"

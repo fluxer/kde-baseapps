@@ -525,4 +525,4 @@ void KImGalleryPlugin::slotCancelled()
     m_cancelled = true;
 }
 
-#include "imgalleryplugin.moc"
+#include "moc_imgalleryplugin.cpp"

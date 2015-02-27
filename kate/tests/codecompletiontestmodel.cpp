@@ -194,4 +194,4 @@ QVariant AbbreviationCodeCompletionTestModel::data(const QModelIndex& index, int
   return QVariant();
 }
 
-#include "codecompletiontestmodel.moc"
+#include "moc_codecompletiontestmodel.cpp"

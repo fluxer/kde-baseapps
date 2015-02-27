@@ -331,5 +331,5 @@ Session* SessionManager::idToSession(int id)
 }
 
 
-#include "SessionManager.moc"
+#include "moc_SessionManager.cpp"
 

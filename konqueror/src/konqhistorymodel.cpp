@@ -476,4 +476,4 @@ QModelIndex KonqHistoryModel::indexFor(KHM::GroupEntry *entry) const
     return createIndex(row, 0, entry);
 }
 
-#include "konqhistorymodel.moc"
+#include "moc_konqhistorymodel.cpp"

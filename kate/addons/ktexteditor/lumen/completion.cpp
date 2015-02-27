@@ -155,4 +155,4 @@ QVariant LumenCompletionModel::data(const QModelIndex& index, int role) const
     return QVariant();
 }
 
-#include "completion.moc"
+#include "moc_completion.cpp"

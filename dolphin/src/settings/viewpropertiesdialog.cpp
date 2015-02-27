@@ -406,4 +406,4 @@ void ViewPropertiesDialog::loadSettings()
     markAsDirty(false);
 }
 
-#include "viewpropertiesdialog.moc"
+#include "moc_viewpropertiesdialog.cpp"

@@ -47,4 +47,4 @@ void PlacesItemSignalHandler::onTrashDirListerCompleted()
     }
 }
 
-#include "placesitemsignalhandler.moc"
+#include "moc_placesitemsignalhandler.cpp"

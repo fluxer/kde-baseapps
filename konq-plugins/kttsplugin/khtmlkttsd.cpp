@@ -102,4 +102,4 @@ K_PLUGIN_FACTORY(KHTMLPluginKTTSDFactory,
     )
 K_EXPORT_PLUGIN( KHTMLPluginKTTSDFactory( "khtmlkttsd" ) )
 
-#include "khtmlkttsd.moc"
+#include "moc_khtmlkttsd.cpp"

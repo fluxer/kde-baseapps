@@ -390,4 +390,4 @@ QString UserAgentDlg::quickHelp() const
                  "for which you are seeking help.</p>");
 }
 
-#include "useragentdlg.moc"
+#include "moc_useragentdlg.cpp"

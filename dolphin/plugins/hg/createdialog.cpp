@@ -83,5 +83,5 @@ void HgCreateDialog::done(int r)
     }
 }
 
-#include "createdialog.moc"
+#include "moc_createdialog.cpp"
 

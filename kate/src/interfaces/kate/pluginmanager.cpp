@@ -17,7 +17,7 @@
 */
 #include "pluginmanager.h"
 
-#include "pluginmanager.moc"
+#include "moc_pluginmanager.cpp"
 
 #include "plugin.h"
 #include "documentmanager.h"

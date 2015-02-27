@@ -18,7 +18,7 @@
 */
 
 #include "kateapp.h"
-#include "kateapp.moc"
+#include "moc_kateapp.cpp"
 
 #include "katedocmanager.h"
 #include "katepluginmanager.h"

@@ -257,4 +257,4 @@ QStringList KateSessionConfigInterface::hideList() const
     return hideList;
 }
 
-#include "katesessionapplet.moc"
+#include "moc_katesessionapplet.cpp"

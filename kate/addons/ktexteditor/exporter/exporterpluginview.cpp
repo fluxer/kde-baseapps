@@ -200,6 +200,6 @@ void ExporterPluginView::exportData(const bool useSelection, QTextStream &output
   output.flush();
 }
 
-#include "exporterpluginview.moc"
+#include "moc_exporterpluginview.cpp"
 
 // kate: space-indent on; indent-width 2; replace-tabs on;

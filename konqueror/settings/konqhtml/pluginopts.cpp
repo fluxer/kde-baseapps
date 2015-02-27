@@ -696,4 +696,4 @@ PluginPolicies *PluginDomainListView::copyPolicies(Policies *pol) {
   return new PluginPolicies(*static_cast<PluginPolicies *>(pol));
 }
 
-#include "pluginopts.moc"
+#include "moc_pluginopts.cpp"

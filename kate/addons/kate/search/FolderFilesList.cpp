@@ -19,7 +19,7 @@
  */
 
 #include "FolderFilesList.h"
-#include "FolderFilesList.moc"
+#include "moc_FolderFilesList.cpp"
 #include <kmimetype.h>
 #include <kdebug.h>
 

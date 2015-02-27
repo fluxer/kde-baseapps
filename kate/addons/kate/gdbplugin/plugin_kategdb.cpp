@@ -20,7 +20,7 @@
 //  Boston, MA 02110-1301, USA.
 
 #include "plugin_kategdb.h"
-#include "plugin_kategdb.moc"
+#include "moc_plugin_kategdb.cpp"
 
 #include <QtCore/QFile>
 #include <QtCore/QFileInfo>

@@ -168,5 +168,5 @@ void HgPullDialog::noChangesMessage()
                 "No incoming changes!"));
 }
 
-#include "pulldialog.moc"
+#include "moc_pulldialog.cpp"
 

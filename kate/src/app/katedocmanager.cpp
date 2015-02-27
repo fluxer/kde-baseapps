@@ -19,7 +19,7 @@
 */
 
 #include "katedocmanager.h"
-#include "katedocmanager.moc"
+#include "moc_katedocmanager.cpp"
 #include "kateapp.h"
 #include "katemainwindow.h"
 #include "kateviewmanager.h"

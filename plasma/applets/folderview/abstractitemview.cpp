@@ -741,4 +741,4 @@ void AbstractItemView::scrollTick() {
     m_smoothScrollStopwatch.start();
 }
 
-#include "abstractitemview.moc"
+#include "moc_abstractitemview.cpp"

@@ -1270,6 +1270,6 @@ void KatePrintLayout::writeSettings()
 
 //END KatePrintLayout
 
-#include "kateprinter.moc"
+#include "moc_kateprinter.cpp"
 
 // kate: space-indent on; indent-width 2; replace-tabs on;

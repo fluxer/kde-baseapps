@@ -615,4 +615,4 @@ extern "C"
 	}
 }
 
-#include "bookmark_module.moc"
+#include "moc_bookmark_module.cpp"

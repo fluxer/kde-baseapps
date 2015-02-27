@@ -285,4 +285,4 @@ void KonqProfileDlg::slotTextChanged( const QString & text )
 #undef BTN_DELETE
 #undef BTN_SAVE
 
-#include "konqprofiledlg.moc"
+#include "moc_konqprofiledlg.cpp"

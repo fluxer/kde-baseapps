@@ -140,4 +140,4 @@ void FilterBar::keyReleaseEvent(QKeyEvent* event)
     }
 }
 
-#include "filterbar.moc"
+#include "moc_filterbar.cpp"

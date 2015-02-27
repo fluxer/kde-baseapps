@@ -20,7 +20,7 @@
 
 //BEGIN Includes
 #include "kateviewmanager.h"
-#include "kateviewmanager.moc"
+#include "moc_kateviewmanager.cpp"
 
 #include "katemainwindow.h"
 #include "katedocmanager.h"

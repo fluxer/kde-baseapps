@@ -91,4 +91,4 @@ void DolphinGeneralConfigModule::defaults()
     }
 }
 
-#include "kcmdolphingeneral.moc"
+#include "moc_kcmdolphingeneral.cpp"

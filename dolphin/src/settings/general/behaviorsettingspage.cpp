@@ -141,4 +141,4 @@ void BehaviorSettingsPage::loadSettings()
     m_renameInline->setChecked(GeneralSettings::renameInline());
 }
 
-#include "behaviorsettingspage.moc"
+#include "moc_behaviorsettingspage.cpp"

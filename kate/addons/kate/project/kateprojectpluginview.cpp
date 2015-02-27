@@ -19,7 +19,7 @@
  */
 
 #include "kateprojectpluginview.h"
-#include "kateprojectpluginview.moc"
+#include "moc_kateprojectpluginview.cpp"
 
 #include <kate/application.h>
 #include <ktexteditor/view.h>
