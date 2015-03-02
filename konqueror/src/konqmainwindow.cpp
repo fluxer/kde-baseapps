@@ -158,11 +158,8 @@ QList<KonqMainWindow*> *KonqMainWindow::s_lstViews = 0;
 KConfig * KonqMainWindow::s_comboConfig = 0;
 KCompletion * KonqMainWindow::s_pCompletion = 0;
 
-bool KonqMainWindow::s_preloaded = false;
-KonqMainWindow* KonqMainWindow::s_preloadedWindow = 0;
 static int s_initialMemoryUsage = -1;
 static time_t s_startupTime;
-static int s_preloadUsageCount;
 
 KonqOpenURLRequest KonqOpenURLRequest::null;
 
@@ -203,7 +200,6 @@ KonqMainWindow::KonqMainWindow( const KUrl &initialURL, const QString& xmluiFile
     , m_isPopupWithProxyWindow(false)
 {
   incInstancesCount();
-  setPreloadedFlag( false );
 
   if ( !s_lstViews )
     s_lstViews = new QList<KonqMainWindow*>;
@@ -320,7 +316,6 @@ KonqMainWindow::KonqMainWindow( const KUrl &initialURL, const QString& xmluiFile
   {
       s_initialMemoryUsage = current_memory_usage();
       s_startupTime = time( NULL );
-      s_preloadUsageCount = 0;
   }
   KonqSessionManager::self();
   m_fullyConstructed = true;
@@ -5179,10 +5174,6 @@ void KonqMainWindow::closeEvent( QCloseEvent *e )
           QApplication::sendEvent( (*it)->part()->widget(), e );
   }
   KParts::MainWindow::closeEvent( e );
-  if (!kapp->sessionSaving() && stayPreloaded()) {
-      e->ignore();
-      hide();
-  }
 }
 
 void KonqMainWindow::addClosedWindowToUndoList()
@@ -5638,34 +5629,6 @@ bool KonqMainWindow::refuseExecutingKonqueror(const QString& mimeType)
 
 // KonqFrameContainerBase implementation END
 
-void KonqMainWindow::setPreloadedFlag( bool preloaded )
-{
-    if( s_preloaded == preloaded )
-        return;
-    s_preloaded = preloaded;
-    if( s_preloaded )
-    {
-        kapp->disableSessionManagement(); // don't restore preloaded konqy's
-        KonqSessionManager::self()->disableAutosave(); // don't save sessions
-        return; // was registered before calling this
-    }
-    delete s_preloadedWindow; // preloaded state was abandoned without reusing the window
-    s_preloadedWindow = NULL;
-    kapp->enableSessionManagement(); // enable SM again
-    KonqSessionManager::self()->enableAutosave(); // enable session saving again
-    QDBusInterface ref( "org.kde.kded", "/modules/konqy_preloader", "org.kde.konqueror.Preloader", QDBusConnection::sessionBus() );
-    ref.call( "unregisterPreloadedKonqy", QDBusConnection::sessionBus().baseService() );
-}
-
-void KonqMainWindow::setPreloadedWindow( KonqMainWindow* window )
-{
-    s_preloadedWindow = window;
-    if( window == NULL )
-        return;
-    window->viewManager()->clear();
-    KIO::Scheduler::unregisterWindow( window );
-}
-
 // used by preloading - this KonqMainWindow will be reused, reset everything
 // that won't be reset by loading a profile
 void KonqMainWindow::resetWindow()
@@ -5698,19 +5661,7 @@ void KonqMainWindow::resetWindow()
 
 bool KonqMainWindow::event( QEvent* e )
 {
-    if( e->type() == QEvent::DeferredDelete )
-    {
-        // since the preloading code tries to reuse KonqMainWindow,
-        // the last window shouldn't be really deleted, but only hidden
-        // deleting WDestructiveClose windows is done using deleteLater(),
-        // so catch QEvent::DeferredDelete and check if this window should stay
-        if( stayPreloaded())
-        {
-            setAttribute(Qt::WA_DeleteOnClose); // was reset before deleteLater()
-            return true; // no deleting
-        }
-
-    } else if ( e->type() == QEvent::StatusTip) {
+    if ( e->type() == QEvent::StatusTip) {
         if (m_currentView && m_currentView->frame()->statusbar()) {
             KonqFrameStatusBar *statusBar = m_currentView->frame()->statusbar();
             statusBar->message(static_cast<QStatusTipEvent*>(e)->tip());
@@ -5745,80 +5696,6 @@ bool KonqMainWindow::event( QEvent* e )
         }
     }
     return KParts::MainWindow::event( e );
-}
-
-bool KonqMainWindow::stayPreloaded()
-{
-#ifdef Q_WS_X11
-    // last window?
-    if( mainWindowList()->count() > 1 )
-        return false;
-    // not running in full KDE environment?
-    if( getenv( "KDE_FULL_SESSION" ) == NULL || getenv( "KDE_FULL_SESSION" )[ 0 ] == '\0' )
-        return false;
-    // not the same user like the one running the session (most likely we're run via sudo or something)
-    if( getenv( "KDE_SESSION_UID" ) != NULL && uid_t( atoi( getenv( "KDE_SESSION_UID" ))) != getuid())
-        return false;
-    if( KonqSettings::maxPreloadCount() == 0 )
-        return false;
-    viewManager()->clear(); // reduce resource usage before checking it
-    if( !checkPreloadResourceUsage())
-        return false;
-    QDBusInterface ref( "org.kde.kded", "/modules/konqy_preloader", "org.kde.konqueror.Preloader", QDBusConnection::sessionBus() );
-    QX11Info info;
-    QDBusReply<bool> retVal = ref.call( QDBus::Block, "registerPreloadedKonqy", QDBusConnection::sessionBus().baseService(), info.screen());
-    if ( !retVal )
-    {
-        return false;
-    }
-    KonqMainWindow::setPreloadedFlag( true );
-    kDebug() << "Konqy kept for preloading:" << QDBusConnection::sessionBus().baseService();
-    KonqMainWindow::setPreloadedWindow( this );
-    return true;
-#else
-    return false;
-#endif
-}
-
-// try to avoid staying running when leaking too much memory
-// this is checked by using mallinfo() and comparing
-// memory usage during konqy startup and now, if the difference
-// is too large -> leaks -> quit
-// also, if this process is running for too long, or has been
-// already reused too many times -> quit, just in case
-bool KonqMainWindow::checkPreloadResourceUsage()
-{
-    if(
-#ifndef NDEBUG
-        isatty( STDIN_FILENO ) ||
-#endif
-        isatty( STDOUT_FILENO ) || isatty( STDERR_FILENO ))
-    {
-        kDebug() << "Running from tty, not keeping for preloading";
-        return false;
-    }
-    int limit;
-    int usage = current_memory_usage( &limit );
-    kDebug() << "Memory usage increase: " << ( usage - s_initialMemoryUsage )
-        << " (" << usage << "/" << s_initialMemoryUsage << "), increase limit: " << limit;
-    int max_allowed_usage = s_initialMemoryUsage + limit;
-    if( usage > max_allowed_usage ) // too much memory used?
-    {
-	kDebug() << "Not keeping for preloading due to high memory usage";
-	return false;
-    }
-    // working memory usage test ( usage != 0 ) makes others less strict
-    if( ++s_preloadUsageCount > ( usage != 0 ? 100 : 10 )) // reused too many times?
-    {
-	kDebug() << "Not keeping for preloading due to high usage count";
-	return false;
-    }
-    if( time( NULL ) > s_startupTime + 60 * 60 * ( usage != 0 ? 4 : 1 )) // running for too long?
-    {
-	kDebug() << "Not keeping for preloading due to long usage time";
-	return false;
-    }
-    return true;
 }
 
 static int current_memory_usage( int* limit )

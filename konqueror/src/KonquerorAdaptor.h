@@ -125,12 +125,6 @@ public slots:
    */
   bool processCanBeReused( int screen );
 
-  /**
-   * Called from konqy_preloader to terminate this Konqueror instance,
-   * if it's in the preloaded mode, and there are too many preloaded Konqy's
-   */
-  Q_NOREPLY void terminatePreloaded();
-
 Q_SIGNALS:
   /**
    * Emitted by kcontrol when the global configuration changes

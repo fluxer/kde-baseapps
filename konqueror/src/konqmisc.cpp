@@ -128,18 +128,6 @@ KonqMainWindow * KonqMisc::createBrowserWindowFromProfile(const QString& _path, 
       if(!url.isEmpty())
           mainWindow->openUrl( 0, url, QString(), req );
   }
-  else if( KonqMainWindow::isPreloaded() && KonqMainWindow::preloadedWindow() != NULL )
-  {
-      mainWindow = KonqMainWindow::preloadedWindow();
-#ifdef Q_WS_X11
-      KStartupInfo::setWindowStartupId( mainWindow->winId(), kapp->startupId());
-#endif
-      KonqMainWindow::setPreloadedWindow( NULL );
-      KonqMainWindow::setPreloadedFlag( false );
-      mainWindow->resetWindow();
-      mainWindow->reparseConfiguration();
-      mainWindow->viewManager()->loadViewProfileFromFile(path, filename, url, req, true, openUrl);
-  }
   else
   {
       KSharedConfigPtr cfg = KSharedConfig::openConfig(path, KConfig::SimpleConfig);

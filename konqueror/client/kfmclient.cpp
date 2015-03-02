@@ -257,30 +257,9 @@ static void needDBus()
     }
 }
 
-// when reusing a preloaded konqy, make sure your always use a DBus call which opens a profile !
-
-static QString getPreloadedKonqy()
-{
-    needInstance();
-    KConfig konqCfg( QLatin1String( "konquerorrc" ) );
-    const KConfigGroup reusingGroup( &konqCfg, "Reusing" );
-    if( reusingGroup.readEntry( "MaxPreloadCount", 1 ) == 0 )
-        return QString();
-    needDBus();
-    QDBusInterface ref( "org.kde.kded", "/modules/konqy_preloader", "org.kde.konqueror.Preloader", QDBusConnection::sessionBus() );
-    // ## used to have NoEventLoop and 3s timeout with dcop
-    QDBusReply<QString> reply = ref.call( "getPreloadedKonqy", currentScreen() );
-    if ( reply.isValid() )
-        return reply;
-    return QString();
-}
-
 static QString konqyToReuse( const QString& url, const QString& mimetype, const QString& profile )
-{ // prefer(?) preloaded ones
+{
 
-    QString ret = getPreloadedKonqy();
-    if( !ret.isEmpty())
-        return ret;
     if( startNewKonqueror( url, mimetype, profile ))
         return QString();
     needDBus();

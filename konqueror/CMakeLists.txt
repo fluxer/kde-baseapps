@@ -10,7 +10,6 @@ add_subdirectory( client )
 
 add_subdirectory( pics )
 add_subdirectory( sidebar )
-add_subdirectory( preloader )
 add_subdirectory( settings )
 
 ########### install files ###############

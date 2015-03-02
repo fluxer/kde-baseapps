@@ -317,12 +317,6 @@ public:
 
   void resetWindow();
 
-    // TODO: move to a KonqPreloadHandler class
-  static void setPreloadedFlag( bool preloaded );
-  static bool isPreloaded() { return s_preloaded; }
-  static void setPreloadedWindow( KonqMainWindow* );
-  static KonqMainWindow* preloadedWindow() { return s_preloadedWindow; }
-
   QString currentTitle() const;
     // Not used by konqueror itself; only exists for the Q_PROPERTY,
     // which I guess is used by scripts and plugins...
@@ -602,9 +596,6 @@ private:
   void plugViewModeActions();
   void unplugViewModeActions();
 
-  bool stayPreloaded();
-  bool checkPreloadResourceUsage();
-
   /**
    * Manage how many instances of this class are out there.
    */
@@ -755,10 +746,6 @@ private: // members
    */
   bool m_isPopupWithProxyWindow;
   QPointer<KonqMainWindow> m_popupProxyWindow;
-
-    // TODO: move to a KonqPreloadHandler class
-  static bool s_preloaded;
-  static KonqMainWindow* s_preloadedWindow;
 };
 
 #endif // KONQMAINWINDOW_H

@@ -63,29 +63,6 @@ static void listSessions()
     }
 }
 
-static bool tryPreload()
-{
-#ifdef Q_WS_X11
-    if(KonqSettings::maxPreloadCount() > 0) {
-        QDBusInterface ref("org.kde.kded", "/modules/konqy_preloader", "org.kde.konqueror.Preloader", QDBusConnection::sessionBus());
-        QX11Info info;
-        QDBusReply<bool> retVal = ref.call(QDBus::Block, "registerPreloadedKonqy", QDBusConnection::sessionBus().baseService(), info.screen());
-        if(!retVal)
-            return false; // too many preloaded or failed
-        KonqMainWindow* win = new KonqMainWindow; // prepare an empty window too
-        // KonqMainWindow ctor sets always the preloaded flag to false, so create the window before this
-        KonqMainWindow::setPreloadedFlag(true);
-        KonqMainWindow::setPreloadedWindow(win);
-        kDebug() << "Konqy preloaded :" << QDBusConnection::sessionBus().baseService();
-        return true;
-    } else {
-        return false; // no preloading
-    }
-#else
-    return false; // no preloading
-#endif
-}
-
 extern "C" KDE_EXPORT int kdemain(int argc, char **argv)
 {
     KCmdLineArgs::init(argc, argv, KonqFactory::aboutData());
@@ -94,8 +71,6 @@ extern "C" KDE_EXPORT int kdemain(int argc, char **argv)
     KCmdLineOptions options;
 
     options.add("silent", ki18n("Start without a default window, when called without URLs"));
-
-    options.add("preload", ki18n("Preload for later use. This mode does not support URLs on the command line"));
 
     options.add("profile <profile>", ki18n("Profile to open"));
 
@@ -137,10 +112,7 @@ extern "C" KDE_EXPORT int kdemain(int argc, char **argv)
         }
     } else {
         // First the invocations that do not take urls.
-        if (args->isSet("preload")) {
-            if (!tryPreload())
-                return 0; // no preloading
-        } else if (args->isSet("profiles")) {
+        if (args->isSet("profiles")) {
             listProfiles();
             return 0;
         } else if (args->isSet("sessions")) {

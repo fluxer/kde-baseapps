@@ -174,13 +174,9 @@ QDBusObjectPath KonquerorAdaptor::windowForTab()
     QList<KonqMainWindow*> *mainWindows = KonqMainWindow::mainWindowList();
     if ( mainWindows ) {
         foreach ( KonqMainWindow* window, *mainWindows ) {
-#ifdef Q_WS_X11
             KWindowInfo winfo = KWindowSystem::windowInfo( window->winId(), NET::WMDesktop );
-            if( winfo.isOnCurrentDesktop() &&
-#else
-	    if(
-#endif
-                !KonqMainWindow::isPreloaded() ) { // we want a tab in an already shown window
+            if( winfo.isOnCurrentDesktop() ) {
+                // we want a tab in an already shown window
                 Q_ASSERT(!window->dbusName().isEmpty());
                 return QDBusObjectPath( window->dbusName() );
             }
@@ -198,8 +194,6 @@ bool KonquerorAdaptor::processCanBeReused( int screen )
     if( info.screen() != screen )
         return false; // this instance run on different screen, and Qt apps can't migrate
 #endif
-    if( KonqMainWindow::isPreloaded())
-        return false; // will be handled by preloading related code instead
     QList<KonqMainWindow*>* windows = KonqMainWindow::mainWindowList();
     if( windows == NULL )
         return true;
@@ -232,12 +226,6 @@ bool KonquerorAdaptor::processCanBeReused( int screen )
         }
     }
     return true;
-}
-
-void KonquerorAdaptor::terminatePreloaded()
-{
-    if( KonqMainWindow::isPreloaded())
-        kapp->exit();
 }
 
 #include "moc_KonquerorAdaptor.cpp"

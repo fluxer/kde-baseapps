@@ -81,9 +81,7 @@ KonquerorConfig::KonquerorConfig( QWidget* parent_P, const QVariantList & )
     : KCModule( KCMPerformanceConfigFactory::componentData(), parent_P )
     {
     setQuickHelp( i18n( "<h1>Konqueror Performance</h1>"
-        " You can configure several settings that improve Konqueror performance here."
-        " These include options for reusing already running instances"
-        " and for keeping instances preloaded." ));
+        " You can configure several settings that improve Konqueror performance here."));
 
     QVBoxLayout *topLayout = new QVBoxLayout( this );
     topLayout->setMargin( 0 );
