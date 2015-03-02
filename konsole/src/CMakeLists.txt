@@ -141,7 +141,7 @@ install(TARGETS kdeinit_konsole konsole konsoleprivate
 
 set(konsolepart_PART_SRCS Part.cpp)
 
-kde4_add_plugin(konsolepart WITH_PREFIX ${konsolepart_PART_SRCS})
+kde4_add_plugin(konsolepart ${konsolepart_PART_SRCS})
 set_target_properties(konsolepart PROPERTIES DEFINE_SYMBOL KONSOLE_PART)
 target_link_libraries(konsolepart ${KDE4_KPARTS_LIBS} konsoleprivate)
 install(TARGETS konsolepart  DESTINATION ${PLUGIN_INSTALL_DIR})
