@@ -1,4 +1,3 @@
-KDE4_NO_ENABLE_FINAL(settings)
 add_subdirectory( ebrowsing )
 add_subdirectory( konq )
 add_subdirectory( konqhtml )

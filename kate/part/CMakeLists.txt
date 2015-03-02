@@ -224,13 +224,6 @@ set_target_properties(
   SOVERSION ${GENERIC_LIB_SOVERSION}
 )
 
-# kde 4 final support
-if(KDE4_ENABLE_FINAL)
-   macro_add_file_dependencies(${CMAKE_CURRENT_BINARY_DIR}/katepartinterfaces_final_cpp.cpp )
-else(KDE4_ENABLE_FINAL)
-   macro_add_file_dependencies(${CMAKE_CURRENT_SOURCE_DIR}/script/katescript.cpp )
-endif(KDE4_ENABLE_FINAL)
-
 # install kate part interfaces
 install (TARGETS katepartinterfaces EXPORT kdelibsLibraryTargets ${INSTALL_TARGETS_DEFAULT_ARGS})
 
