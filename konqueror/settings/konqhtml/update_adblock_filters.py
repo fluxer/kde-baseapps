@@ -57,4 +57,4 @@ HTMLFilterListURL-%d=%s
 
 print('Writing khtmlrc...')
 with open('khtmlrc', 'w') as rc:
-    rc.write(mheader)
+    rc.write(header)
