@@ -173,12 +173,7 @@ void KateConsole::loadConsoleIfNeeded()
   if (!window() || !parentWidget()) return;
   if (!window() || !isVisibleTo(window())) return;
 
-  KPluginFactory* factory = 0;
-  KService::Ptr service = KService::serviceByDesktopName("konsolepart");
-  if (service) {
-      factory = KPluginLoader(service->library()).factory();
-  }
-
+  KPluginFactory* factory = KPluginLoader("konsolepart").factory();
   if (!factory) return;
 
   m_part = static_cast<KParts::ReadOnlyPart *>(factory->create<QObject>(this, this));
