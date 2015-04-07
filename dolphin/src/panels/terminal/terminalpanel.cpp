@@ -102,11 +102,7 @@ void TerminalPanel::showEvent(QShowEvent* event)
 
     if (!m_terminal) {
         m_clearTerminal = true;
-        KPluginFactory* factory = 0;
-        KService::Ptr service = KService::serviceByDesktopName("konsolepart");
-        if (service) {
-            factory = KPluginLoader(service->library()).factory();
-        }
+        KPluginFactory* factory = KPluginLoader("konsolepart").factory();
         m_konsolePart = factory ? (factory->create<KParts::ReadOnlyPart>(this)) : 0;
         if (m_konsolePart) {
             connect(m_konsolePart, SIGNAL(destroyed(QObject*)), this, SLOT(terminalExited()));
