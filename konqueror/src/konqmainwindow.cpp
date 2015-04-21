@@ -158,12 +158,7 @@ QList<KonqMainWindow*> *KonqMainWindow::s_lstViews = 0;
 KConfig * KonqMainWindow::s_comboConfig = 0;
 KCompletion * KonqMainWindow::s_pCompletion = 0;
 
-static int s_initialMemoryUsage = -1;
-static time_t s_startupTime;
-
 KonqOpenURLRequest KonqOpenURLRequest::null;
-
-static int current_memory_usage( int* limit = NULL );
 
 static unsigned short int s_closedItemsListLength = 10;
 static unsigned long s_konqMainWindowInstancesCount = 0;
@@ -312,11 +307,6 @@ KonqMainWindow::KonqMainWindow( const KUrl &initialURL, const QString& xmluiFile
 
     //kDebug() << this << "done";
 
-  if( s_initialMemoryUsage == -1 )
-  {
-      s_initialMemoryUsage = current_memory_usage();
-      s_startupTime = time( NULL );
-  }
   KonqSessionManager::self();
   m_fullyConstructed = true;
 }
@@ -5696,53 +5686,6 @@ bool KonqMainWindow::event( QEvent* e )
         }
     }
     return KParts::MainWindow::event( e );
-}
-
-static int current_memory_usage( int* limit )
-{
-#ifdef __linux__  //krazy:exclude=cpp
-// Check whole memory usage - VmSize
-    QFile f( QString::fromLatin1( "/proc/%1/statm" ).arg(getpid()) );
-    if( f.open( QIODevice::ReadOnly ))
-    {
-        QByteArray buffer; buffer.resize( 100 );
-        const int bytes = f.readLine( buffer.data(), buffer.size()-1 );
-        if ( bytes != -1 )
-        {
-            QString line = QString::fromLatin1( buffer ).trimmed();
-            const int usage = line.section( ' ', 0, 0 ).toInt();
-            if( usage > 0 )
-            {
-                int pagesize = sysconf (_SC_PAGE_SIZE);
-                if( pagesize < 0 )
-                    pagesize = 4096;
-                if( limit != NULL )
-                    *limit = 16 * 1024 * 1024;
-                return usage * pagesize;
-            }
-        }
-    }
-    kWarning() << "Couldn't read VmSize from /proc/*/statm." ;
-#endif
-// Check malloc() usage - very imprecise, but better than nothing.
-    int usage_sum = 0;
-#if defined(KDE_MALLINFO_STDLIB) || defined(KDE_MALLINFO_MALLOC)
-    struct mallinfo m = mallinfo();
-#ifdef KDE_MALLINFO_FIELD_hblkhd
-    usage_sum += m.hblkhd;
-#endif
-#ifdef KDE_MALLINFO_FIELD_uordblks
-    usage_sum += m.uordblks;
-#endif
-#ifdef KDE_MALLINFO_FIELD_usmblks
-    usage_sum += m.usmblks;
-#endif
-    // unlike /proc , this doesn't include things like size of dlopened modules,
-    // and also doesn't include malloc overhead
-    if( limit != NULL )
-        *limit = 6 * 1024 * 1024;
-#endif
-    return usage_sum;
 }
 
 void KonqMainWindow::slotUndoTextChanged( const QString & newText )
