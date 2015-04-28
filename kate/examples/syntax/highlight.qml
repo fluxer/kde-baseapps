@@ -1,4 +1,4 @@
-import Qt 4.6
+import QtQuick 1.0
 
 // some random qml snippets stolen from the qt docs
 
