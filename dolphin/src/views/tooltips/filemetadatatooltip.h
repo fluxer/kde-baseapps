@@ -64,7 +64,6 @@ signals:
 
 protected:
     virtual void paintEvent(QPaintEvent* event);
-    virtual void showEvent(QShowEvent *);
 
 private:
     QLabel* m_preview;

@@ -36,9 +36,6 @@
 
 #include <KFileMetaDataWidget>
 
-// For the blurred tooltip background
-#include <plasma/windoweffects.h>
-
 FileMetaDataToolTip::FileMetaDataToolTip(QWidget* parent) :
     QWidget(parent),
     m_preview(0),
@@ -162,12 +159,6 @@ void FileMetaDataToolTip::paintEvent(QPaintEvent* event)
     painter.end();
 
     QWidget::paintEvent(event);
-}
-
-void FileMetaDataToolTip::showEvent(QShowEvent *)
-{
-    Plasma::WindowEffects::overrideShadow(winId(), true);
-    Plasma::WindowEffects::enableBlurBehind(winId(), true, mask());
 }
 
 #include "moc_filemetadatatooltip.cpp"
