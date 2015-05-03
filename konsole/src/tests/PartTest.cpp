@@ -98,10 +98,7 @@ void PartTest::testFd()
 
 KParts::Part* PartTest::createPart()
 {
-    KService::Ptr service = KService::serviceByDesktopName("konsolepart");
-    if (!service)       // not found
-        return 0;
-    KPluginFactory* factory = KPluginLoader(service->library()).factory();
+    KPluginFactory* factory = KPluginLoader("konsolepart").factory();
     if (!factory)       // not found
         return 0;
 

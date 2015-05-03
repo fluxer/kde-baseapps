@@ -127,9 +127,7 @@ void PartManualTest::shortcutTriggered()
 
 KParts::Part* PartManualTest::createPart()
 {
-    KService::Ptr service = KService::serviceByDesktopName("konsolepart");
-    Q_ASSERT(service);
-    KPluginFactory* factory = KPluginLoader(service->library()).factory();
+    KPluginFactory* factory = KPluginLoader("konsolepart").factory();
     Q_ASSERT(factory);
 
     KParts::Part* terminalPart = factory->create<KParts::Part>(this);
