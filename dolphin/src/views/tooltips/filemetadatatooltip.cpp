@@ -65,7 +65,6 @@ FileMetaDataToolTip::FileMetaDataToolTip(QWidget* parent) :
     // Create widget for the meta data
     m_fileMetaDataWidget = new KFileMetaDataWidget(this);
     m_fileMetaDataWidget->setForegroundRole(QPalette::ToolTipText);
-    m_fileMetaDataWidget->setReadOnly(true);
     connect(m_fileMetaDataWidget, SIGNAL(metaDataRequestFinished(KFileItemList)),
             this, SIGNAL(metaDataRequestFinished(KFileItemList)));
 
