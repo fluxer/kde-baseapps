@@ -36,11 +36,8 @@ set_target_properties(konquerorprivate PROPERTIES VERSION ${GENERIC_LIB_VERSION}
 install(TARGETS konquerorprivate ${INSTALL_TARGETS_DEFAULT_ARGS} LIBRARY NAMELINK_SKIP)
 
 ########### konqueror ###############
-if (WIN32)
-    add_definitions(-DMAKE_KDEINIT_KONQUEROR_LIB)
-endif(WIN32)
 
-set(konqueror_KDEINIT_SRCS
+set(konqueror_SRCS
    konqapplication.cpp
    konqguiclients.cpp
    konqrun.cpp
@@ -76,24 +73,23 @@ set(konqueror_KDEINIT_SRCS
    konqhistorydialog.cpp
 )
 
-kde4_add_kcfg_files(konqueror_KDEINIT_SRCS konqsettingsxt.kcfgc)
-kde4_add_ui_files(konqueror_KDEINIT_SRCS konqprofiledlg_base.ui)
-kde4_add_ui_files(konqueror_KDEINIT_SRCS konqsessiondlg_base.ui)
-kde4_add_ui_files(konqueror_KDEINIT_SRCS konqnewsessiondlg_base.ui)
+kde4_add_kcfg_files(konqueror_SRCS konqsettingsxt.kcfgc)
+kde4_add_ui_files(konqueror_SRCS konqprofiledlg_base.ui)
+kde4_add_ui_files(konqueror_SRCS konqsessiondlg_base.ui)
+kde4_add_ui_files(konqueror_SRCS konqnewsessiondlg_base.ui)
 
-qt4_add_dbus_interface(konqueror_KDEINIT_SRCS org.kde.Konqueror.Main.xml konqueror_interface)
-qt4_add_dbus_interface(konqueror_KDEINIT_SRCS ${KDE4_DBUS_INTERFACES_DIR}/org.kde.kded.xml kded_interface)
-qt4_add_dbus_adaptor(konqueror_KDEINIT_SRCS org.kde.Konqueror.UndoManager.xml konqclosedwindowsmanager.h KonqClosedWindowsManager konqclosedwindowsmanageradaptor KonqClosedWindowsManagerAdaptor)
-qt4_add_dbus_interface(konqueror_KDEINIT_SRCS org.kde.Konqueror.UndoManager.xml konqclosedwindowsmanager_interface)
-qt4_add_dbus_adaptor(konqueror_KDEINIT_SRCS org.kde.Konqueror.SessionManager.xml konqsessionmanager.h KonqSessionManager konqsessionmanageradaptor KonqSessionManagerAdaptor)
-qt4_add_dbus_interface(konqueror_KDEINIT_SRCS org.kde.Konqueror.SessionManager.xml konqsessionmanager_interface)
+qt4_add_dbus_interface(konqueror_SRCS org.kde.Konqueror.Main.xml konqueror_interface)
+qt4_add_dbus_interface(konqueror_SRCS ${KDE4_DBUS_INTERFACES_DIR}/org.kde.kded.xml kded_interface)
+qt4_add_dbus_adaptor(konqueror_SRCS org.kde.Konqueror.UndoManager.xml konqclosedwindowsmanager.h KonqClosedWindowsManager konqclosedwindowsmanageradaptor KonqClosedWindowsManagerAdaptor)
+qt4_add_dbus_interface(konqueror_SRCS org.kde.Konqueror.UndoManager.xml konqclosedwindowsmanager_interface)
+qt4_add_dbus_adaptor(konqueror_SRCS org.kde.Konqueror.SessionManager.xml konqsessionmanager.h KonqSessionManager konqsessionmanageradaptor KonqSessionManagerAdaptor)
+qt4_add_dbus_interface(konqueror_SRCS org.kde.Konqueror.SessionManager.xml konqsessionmanager_interface)
 
-kde4_add_app_icon(konqueror_KDEINIT_SRCS "${KDE4_ICON_INSTALL_DIR}/oxygen/*/apps/konqueror.png")
-kde4_add_kdeinit_executable(konqueror ${konqueror_KDEINIT_SRCS} konqmain.cpp)
+kde4_add_app_icon(konqueror_SRCS "${KDE4_ICON_INSTALL_DIR}/oxygen/*/apps/konqueror.png")
+kde4_add_executable(konqueror ${konqueror_SRCS} konqmain.cpp)
 # libkfile is only needed because of KNewFileMenu
-target_link_libraries(kdeinit_konqueror konquerorprivate konq ${KDE4_KPARTS_LIBS} ${KDE4_KCMUTILS_LIBS} ${KDE4_KFILE_LIBS} ${X11_LIBRARIES})
+target_link_libraries(konqueror konquerorprivate konq ${KDE4_KPARTS_LIBS} ${KDE4_KCMUTILS_LIBS} ${KDE4_KFILE_LIBS} ${X11_LIBRARIES})
 
-install(TARGETS kdeinit_konqueror  ${INSTALL_TARGETS_DEFAULT_ARGS} )
 install(TARGETS konqueror ${INSTALL_TARGETS_DEFAULT_ARGS})
 
 ########### install files ###############

@@ -49,7 +49,7 @@ void restoreSession(Application& app);
 // ***
 // Entry point into the Konsole terminal application.
 // ***
-extern "C" int KDE_EXPORT kdemain(int argc, char** argv)
+int main(int argc, char** argv)
 {
     KAboutData about("konsole",
                      0,

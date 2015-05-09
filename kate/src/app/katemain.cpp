@@ -73,7 +73,7 @@ class KateWaiter : public QObject {
 };
 
 
-extern "C" KDE_EXPORT int kdemain( int argc, char **argv )
+int main( int argc, char **argv )
 {
   // here we go, construct the Kate version
   QByteArray kateVersion = KateApp::kateVersion().toLatin1();

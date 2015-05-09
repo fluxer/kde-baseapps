@@ -92,7 +92,7 @@ static bool askUser(const QString& filename, bool &readonly) {
 
 #include <kactioncollection.h>
 
-extern "C" KDE_EXPORT int kdemain(int argc, char **argv) {
+int main(int argc, char **argv) {
     KAboutData aboutData("keditbookmarks", 0, ki18n("Bookmark Editor"), KDE_VERSION_STRING,
             ki18n("Bookmark Organizer and Editor"),
             KAboutData::License_GPL,

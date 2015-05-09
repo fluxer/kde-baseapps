@@ -63,7 +63,7 @@ static void listSessions()
     }
 }
 
-extern "C" KDE_EXPORT int kdemain(int argc, char **argv)
+int main(int argc, char **argv)
 {
     KCmdLineArgs::init(argc, argv, KonqFactory::aboutData());
 
