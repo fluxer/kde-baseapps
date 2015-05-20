@@ -1,7 +1,7 @@
 macro_bool_to_01(X11_Xrender_FOUND HAVE_XRENDER)
 configure_file(config-X11.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config-X11.h )
 
-include_directories( ${CMAKE_CURRENT_BINARY_DIR} )
+include_directories( ${CMAKE_CURRENT_BINARY_DIR} ${KDE4_PHONON_INCLUDES})
 
 add_subdirectory(tests)
 

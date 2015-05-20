@@ -38,10 +38,6 @@ add_subdirectory( konq-plugins )
 add_subdirectory( konsole )
 add_subdirectory( plasma )
 
-if ( Q_WS_MAC )
-  add_subdirectory( kdepasswd )
-endif ( Q_WS_MAC )
-
 if ( Q_WS_X11 )
   add_subdirectory( nsplugins )
   add_subdirectory( kdepasswd )
