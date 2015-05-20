@@ -372,10 +372,6 @@ QWidget * KonqMainWindow::createContainer( QWidget *parent, int index, const QDo
   if ( res && (element.tagName() == tagToolBar) && (element.attribute( "name" ) == nameBookmarkBar) )
   {
     Q_ASSERT( ::qobject_cast<KToolBar*>( res ) );
-    if (!KAuthorized::authorizeKAction("bookmarks")) {
-        delete res;
-        return 0;
-    }
 
     if ( !m_bookmarkBarInitialized ) {
         // The actual menu needs a different action collection, so that the bookmarks
@@ -750,14 +746,6 @@ static QString preferredService(KonqView* currentView, const QString& mimeType)
 
 bool KonqMainWindow::openView( QString mimeType, const KUrl &_url, KonqView *childView, const KonqOpenURLRequest& req )
 {
-  // Second argument is referring URL
-  if ( !KAuthorized::authorizeUrlAction("open", childView ? childView->url() : KUrl(), _url) )
-  {
-     QString msg = KIO::buildErrorString(KIO::ERR_ACCESS_DENIED, _url.prettyUrl());
-     KMessageBox::queuedMessageBox( this, KMessageBox::Error, msg );
-     return true; // Nothing else to do.
-  }
-
   if ( KonqRun::isExecutable( mimeType ) )
      return false; // execute, don't open
   // Contract: the caller of this method should ensure the view is stopped first.
@@ -4911,11 +4899,6 @@ void KonqMainWindow::updateOpenWithActions()
   m_openWithActions.clear();
 
   delete m_openWithMenu;
-  m_openWithMenu = 0;
-
-  if (!KAuthorized::authorizeKAction("openwith"))
-     return;
-
   m_openWithMenu = new KActionMenu( i18n("&Open With"), this );
 
   const KService::List & services = m_currentView->appServiceOffers();

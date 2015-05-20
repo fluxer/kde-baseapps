@@ -34,9 +34,6 @@
 KShellCmdPlugin::KShellCmdPlugin( QObject* parent, const QVariantList & )
     : KParts::Plugin( parent )
 {
-    if (!KAuthorized::authorizeKAction("shell_access"))
-       return;
-
     KAction *action = actionCollection()->addAction("executeshellcommand");
     action->setIcon(KIcon("system-run"));
     action->setText(i18n( "&Execute Shell Command..." ));

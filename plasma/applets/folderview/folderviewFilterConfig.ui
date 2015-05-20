@@ -188,7 +188,7 @@ For example, if you have &quot;*&quot; as your pattern, but have nothing selecte
   </customwidget>
  </customwidgets>
  <includes>
-  <include location="global">KDE/KUrlRequester</include>
+  <include location="global">KUrlRequester</include>
  </includes>
  <resources/>
  <connections/>

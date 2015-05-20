@@ -50,19 +50,6 @@ AkregatorMenu::AkregatorMenu( KonqPopupMenu * popupmenu, const QStringList& /* l
     : KonqPopupMenuPlugin( popupmenu), PluginBase(), /*m_conf(0),*/ m_part(0)
 {
     kDebug() << "AkregatorMenu::AkregatorMenu()";
-#if 0
-    if ( QByteArray( kapp->name() ) == "kdesktop" && !KAuthorized::authorizeKAction("editable_desktop_icons" ) )
-        return;
-#endif
-    // Do nothing if user has turned us off.
-    // TODO: Not yet implemented in aKregator settings.
-    
-    /*
-    m_conf = new KConfig( "akregatorrc" );
-    m_conf->setGroup( "AkregatorKonqPlugin" );
-    if ( !m_conf->readEntry( "Enable", true ) )
-        return;
-    */
     KWebView* view = 0L;
      
     if (popupmenu && popupmenu->parent() && popupmenu->parent()->inherits("KWebView"))

@@ -225,13 +225,11 @@ void DolphinPart::createActions()
     m_findFileAction->setIcon(KIcon("edit-find"));
     connect(m_findFileAction, SIGNAL(triggered()), this, SLOT(slotFindFile()));
 
-    if (KAuthorized::authorizeKAction("shell_access")) {
-        m_openTerminalAction = actionCollection()->addAction("open_terminal");
-        m_openTerminalAction->setIcon(KIcon("utilities-terminal"));
-        m_openTerminalAction->setText(i18nc("@action:inmenu Tools", "Open &Terminal"));
-        connect(m_openTerminalAction, SIGNAL(triggered()), SLOT(slotOpenTerminal()));
-        m_openTerminalAction->setShortcut(Qt::Key_F4);
-    }
+    m_openTerminalAction = actionCollection()->addAction("open_terminal");
+    m_openTerminalAction->setIcon(KIcon("utilities-terminal"));
+    m_openTerminalAction->setText(i18nc("@action:inmenu Tools", "Open &Terminal"));
+    connect(m_openTerminalAction, SIGNAL(triggered()), SLOT(slotOpenTerminal()));
+    m_openTerminalAction->setShortcut(Qt::Key_F4);
 }
 
 void DolphinPart::createGoAction(const char* name, const char* iconName,

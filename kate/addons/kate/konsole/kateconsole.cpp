@@ -57,10 +57,6 @@ KateKonsolePlugin::KateKonsolePlugin( QObject* parent, const QList<QVariant>& ):
     Kate::Plugin ( (Kate::Application*)parent )
 {
   m_previousEditorEnv=qgetenv("EDITOR");
-  if (!KAuthorized::authorizeKAction("shell_access"))
-  {
-    KMessageBox::sorry(0, i18n ("You do not have enough karma to access a shell or terminal emulation"));
-  }
 }
 
 KateKonsolePlugin::~KateKonsolePlugin()

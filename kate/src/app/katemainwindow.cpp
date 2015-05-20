@@ -55,7 +55,6 @@
 #include <KTipDialog>
 #include <KStringHandler>
 #include <KToolInvocation>
-#include <KAuthorized>
 #include <KRun>
 #include <KRecentFilesAction>
 #include <KToggleFullScreenAction>

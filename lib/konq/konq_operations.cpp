@@ -461,8 +461,6 @@ void KonqOperations::doDropFileCopy()
     assert(m_info); // setDropInfo - and asyncDrop - should have been called before asyncDrop
     const KUrl::List lst = m_info->urls;
     Qt::DropAction action = m_info->action;
-    bool isDesktopFile = false;
-    bool itemIsOnDesktop = false;
     bool allItemsAreFromTrash = true;
     KUrl::List mlst; // list of items that can be moved
     for (KUrl::List::ConstIterator it = lst.begin(); it != lst.end(); ++it)
@@ -480,31 +478,18 @@ void KonqOperations::doDropFileCopy()
                 }
             }
         }
-        if ( local && KDesktopFile::isDesktopFile((*it).toLocalFile()))
-            isDesktopFile = true;
-        if ( local && (*it).path().startsWith(KGlobalSettings::desktopPath()))
-            itemIsOnDesktop = true;
         if ( local || (*it).protocol() != "trash" )
             allItemsAreFromTrash = false;
     }
 
     bool linkOnly = false; // if true, we'll show a popup menu, but with only "link" in it (for confirmation)
-    if (isDesktopFile && !KAuthorized::authorizeKAction("run_desktop_files") &&
-        (m_destUrl.path(KUrl::AddTrailingSlash) == KGlobalSettings::desktopPath()) ) {
-        linkOnly = true;
-    } else if ( allItemsAreFromTrash && lst.first().path() == "/" ) {
+    if ( allItemsAreFromTrash && lst.first().path() == "/" ) {
         // Dropping a link to the trash: don't move the full contents, just make a link (#319660)
         linkOnly = true;
     }
 
     if ( !mlst.isEmpty() && m_destUrl.protocol() == "trash" )
     {
-        if ( itemIsOnDesktop && !KAuthorized::authorizeKAction("editable_desktop_icons") )
-        {
-            deleteLater();
-            return;
-        }
-
         m_method = TRASH;
         if ( askDeleteConfirmation( mlst, TRASH, DEFAULT_CONFIRMATION, parentWidget() ) )
             action = Qt::MoveAction;

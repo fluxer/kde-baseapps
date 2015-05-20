@@ -236,14 +236,6 @@ void KonqPopupMenuPrivate::init(KonqPopupMenu::Flags kpf, KParts::BrowserExtensi
 
     KAction *actNewWindow = 0;
 
-#if 0 // TODO in the desktop code itself.
-    if (( flags & KParts::BrowserExtension::ShowProperties ) && isOnDesktop &&
-        !KAuthorized::authorizeKAction("editable_desktop_icons"))
-    {
-        flags &= ~KParts::BrowserExtension::ShowProperties; // remove flag
-    }
-#endif
-
     // Either 'newview' is in the actions we're given (probably in the tabhandling group)
     // or we need to insert it ourselves (e.g. for the desktop).
     // In the first case, actNewWindow must remain 0.
@@ -391,8 +383,7 @@ void KonqPopupMenuPrivate::init(KonqPopupMenu::Flags kpf, KParts::BrowserExtensi
         QObject::connect(act, SIGNAL(triggered()), q, SLOT(slotPopupAddToBookmark()));
         if (lstItems.count() > 1)
             act->setEnabled(false);
-        if (KAuthorized::authorizeKAction("bookmarks"))
-            q->addAction( act );
+        q->addAction( act );
         if (bIsLink)
             addGroup( "linkactions" ); // see khtml
     }

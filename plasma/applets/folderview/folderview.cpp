@@ -29,7 +29,6 @@
 #include <QItemSelectionModel>
 
 #include <KAction>
-#include <KAuthorized>
 #include <KBookmarkManager>
 #include <KConfigDialog>
 #include <KDebug>
@@ -1560,124 +1559,122 @@ void FolderView::createActions()
     m_actionCollection.addAction("del", del);
     m_actionCollection.addAction("empty_trash", emptyTrash);
 
-    if (KAuthorized::authorize("editable_desktop_icons")) {
-        KAction *alignToGrid = new KAction(i18n("Align to Grid"), this);
-        alignToGrid->setCheckable(true);
-        alignToGrid->setChecked(m_alignToGrid);
-        connect(alignToGrid, SIGNAL(toggled(bool)), SLOT(toggleAlignToGrid(bool)));
+    KAction *alignToGrid = new KAction(i18n("Align to Grid"), this);
+    alignToGrid->setCheckable(true);
+    alignToGrid->setChecked(m_alignToGrid);
+    connect(alignToGrid, SIGNAL(toggled(bool)), SLOT(toggleAlignToGrid(bool)));
 
-        KAction *lockIcons = new KAction(i18nc("Icons on the desktop", "Lock in Place"), this);
-        lockIcons->setCheckable(true);
-        lockIcons->setChecked(m_iconsLocked);
-        connect(lockIcons, SIGNAL(toggled(bool)), SLOT(toggleIconsLocked(bool)));
+    KAction *lockIcons = new KAction(i18nc("Icons on the desktop", "Lock in Place"), this);
+    lockIcons->setCheckable(true);
+    lockIcons->setChecked(m_iconsLocked);
+    connect(lockIcons, SIGNAL(toggled(bool)), SLOT(toggleIconsLocked(bool)));
 
-        m_layoutGroup = new QActionGroup(this);
-        connect(m_layoutGroup, SIGNAL(triggered(QAction*)), SLOT(layoutChanged(QAction*)));
-        QAction *layoutRows = m_layoutGroup->addAction(i18nc("Arrange icons in", "Rows"));
-        QAction *layoutColumns = m_layoutGroup->addAction(i18nc("Arrange icons in", "Columns"));
+    m_layoutGroup = new QActionGroup(this);
+    connect(m_layoutGroup, SIGNAL(triggered(QAction*)), SLOT(layoutChanged(QAction*)));
+    QAction *layoutRows = m_layoutGroup->addAction(i18nc("Arrange icons in", "Rows"));
+    QAction *layoutColumns = m_layoutGroup->addAction(i18nc("Arrange icons in", "Columns"));
 
-        layoutRows->setCheckable(true);
-        layoutRows->setData(QVariant::fromValue(IconView::Rows));
+    layoutRows->setCheckable(true);
+    layoutRows->setData(QVariant::fromValue(IconView::Rows));
 
-        layoutColumns->setCheckable(true);
-        layoutColumns->setData(QVariant::fromValue(IconView::Columns));
+    layoutColumns->setCheckable(true);
+    layoutColumns->setData(QVariant::fromValue(IconView::Columns));
 
-        m_alignmentGroup = new QActionGroup(this);
-        connect(m_alignmentGroup, SIGNAL(triggered(QAction*)), SLOT(alignmentChanged(QAction*)));
-        QAction *alignLeft = m_alignmentGroup->addAction(i18nc("Align icons", "Left"));
-        QAction *alignRight = m_alignmentGroup->addAction(i18nc("Align icons", "Right"));
+    m_alignmentGroup = new QActionGroup(this);
+    connect(m_alignmentGroup, SIGNAL(triggered(QAction*)), SLOT(alignmentChanged(QAction*)));
+    QAction *alignLeft = m_alignmentGroup->addAction(i18nc("Align icons", "Left"));
+    QAction *alignRight = m_alignmentGroup->addAction(i18nc("Align icons", "Right"));
 
-        alignLeft->setCheckable(true);
-        alignLeft->setData(QVariant::fromValue(IconView::Left));
+    alignLeft->setCheckable(true);
+    alignLeft->setData(QVariant::fromValue(IconView::Left));
 
-        alignRight->setCheckable(true);
-        alignRight->setData(QVariant::fromValue(IconView::Right));
+    alignRight->setCheckable(true);
+    alignRight->setData(QVariant::fromValue(IconView::Right));
 
-        KAction *unsorted = new KAction(i18nc("Sort icons", "Unsorted"), this);
-        unsorted->setData(int(FolderView::Unsorted));
+    KAction *unsorted = new KAction(i18nc("Sort icons", "Unsorted"), this);
+    unsorted->setData(int(FolderView::Unsorted));
 
-        m_sortingGroup = new QActionGroup(this);
-        connect(m_sortingGroup, SIGNAL(triggered(QAction*)), SLOT(sortingChanged(QAction*)));
-        QAction *sortByName = m_sortingGroup->addAction(i18nc("Sort icons by", "Name"));
-        QAction *sortBySize = m_sortingGroup->addAction(i18nc("Sort icons by", "Size"));
-        QAction *sortByType = m_sortingGroup->addAction(i18nc("Sort icons by", "Type"));
-        QAction *sortByDate = m_sortingGroup->addAction(i18nc("Sort icons by", "Date"));
+    m_sortingGroup = new QActionGroup(this);
+    connect(m_sortingGroup, SIGNAL(triggered(QAction*)), SLOT(sortingChanged(QAction*)));
+    QAction *sortByName = m_sortingGroup->addAction(i18nc("Sort icons by", "Name"));
+    QAction *sortBySize = m_sortingGroup->addAction(i18nc("Sort icons by", "Size"));
+    QAction *sortByType = m_sortingGroup->addAction(i18nc("Sort icons by", "Type"));
+    QAction *sortByDate = m_sortingGroup->addAction(i18nc("Sort icons by", "Date"));
 
-        sortByName->setCheckable(true);
-        sortByName->setData(int(KDirModel::Name));
+    sortByName->setCheckable(true);
+    sortByName->setData(int(KDirModel::Name));
 
-        sortBySize->setCheckable(true);
-        sortBySize->setData(int(KDirModel::Size));
+    sortBySize->setCheckable(true);
+    sortBySize->setData(int(KDirModel::Size));
 
-        sortByType->setCheckable(true);
-        sortByType->setData(int(KDirModel::Type));
+    sortByType->setCheckable(true);
+    sortByType->setData(int(KDirModel::Type));
 
-        sortByDate->setCheckable(true);
-        sortByDate->setData(int(KDirModel::ModifiedTime));
+    sortByDate->setCheckable(true);
+    sortByDate->setData(int(KDirModel::ModifiedTime));
 
-        KAction *sortDescending = new KAction(i18nc("Sort icons", "Descending"), this);
-        sortDescending->setCheckable(true);
-        sortDescending->setChecked(m_sortOrder == Qt::DescendingOrder);
-        connect(sortDescending, SIGNAL(toggled(bool)), SLOT(toggleSortDescending(bool)));
+    KAction *sortDescending = new KAction(i18nc("Sort icons", "Descending"), this);
+    sortDescending->setCheckable(true);
+    sortDescending->setChecked(m_sortOrder == Qt::DescendingOrder);
+    connect(sortDescending, SIGNAL(toggled(bool)), SLOT(toggleSortDescending(bool)));
 
-        KAction *dirsFirst = new KAction(i18nc("Sort icons", "Folders First"), this);
-        dirsFirst->setCheckable(true);
-        dirsFirst->setChecked(m_sortDirsFirst);
-        connect(dirsFirst, SIGNAL(toggled(bool)), SLOT(toggleDirectoriesFirst(bool)));
+    KAction *dirsFirst = new KAction(i18nc("Sort icons", "Folders First"), this);
+    dirsFirst->setCheckable(true);
+    dirsFirst->setChecked(m_sortDirsFirst);
+    connect(dirsFirst, SIGNAL(toggled(bool)), SLOT(toggleDirectoriesFirst(bool)));
 
-        QMenu *arrangeMenu = new QMenu(i18n("Arrange In"));
-        arrangeMenu->addAction(layoutRows);
-        arrangeMenu->addAction(layoutColumns);
+    QMenu *arrangeMenu = new QMenu(i18n("Arrange In"));
+    arrangeMenu->addAction(layoutRows);
+    arrangeMenu->addAction(layoutColumns);
 
-        QMenu *alignMenu = new QMenu(i18n("Align"));
-        alignMenu->addAction(alignLeft);
-        alignMenu->addAction(alignRight);
+    QMenu *alignMenu = new QMenu(i18n("Align"));
+    alignMenu->addAction(alignLeft);
+    alignMenu->addAction(alignRight);
 
-        QMenu *sortMenu = new QMenu(i18n("Sort By"));
-        sortMenu->addAction(sortByName);
-        sortMenu->addAction(sortBySize);
-        sortMenu->addAction(sortByType);
-        sortMenu->addAction(sortByDate);
-        sortMenu->addSeparator();
-        sortMenu->addAction(sortDescending);
-        sortMenu->addAction(dirsFirst);
+    QMenu *sortMenu = new QMenu(i18n("Sort By"));
+    sortMenu->addAction(sortByName);
+    sortMenu->addAction(sortBySize);
+    sortMenu->addAction(sortByType);
+    sortMenu->addAction(sortByDate);
+    sortMenu->addSeparator();
+    sortMenu->addAction(sortDescending);
+    sortMenu->addAction(dirsFirst);
 
-        QMenu *iconsMenu = new QMenu;
-        iconsMenu->addMenu(arrangeMenu);
-        iconsMenu->addMenu(alignMenu);
-        iconsMenu->addMenu(sortMenu);
-        iconsMenu->addSeparator();
-        iconsMenu->addAction(alignToGrid);
-        iconsMenu->addAction(lockIcons);
+    QMenu *iconsMenu = new QMenu;
+    iconsMenu->addMenu(arrangeMenu);
+    iconsMenu->addMenu(alignMenu);
+    iconsMenu->addMenu(sortMenu);
+    iconsMenu->addSeparator();
+    iconsMenu->addAction(alignToGrid);
+    iconsMenu->addAction(lockIcons);
 
-        QAction *iconsMenuAction = new KAction(i18n("Icons"), this);
-        iconsMenuAction->setIcon(KIcon("preferences-desktop-icons"));
-        iconsMenuAction->setMenu(iconsMenu);
+    QAction *iconsMenuAction = new KAction(i18n("Icons"), this);
+    iconsMenuAction->setIcon(KIcon("preferences-desktop-icons"));
+    iconsMenuAction->setMenu(iconsMenu);
 
-        // Create the new menu
-        m_newMenu = new KNewFileMenu(&m_actionCollection, "new_menu", QApplication::desktop());
-        m_newMenu->setModal(false);
+    // Create the new menu
+    m_newMenu = new KNewFileMenu(&m_actionCollection, "new_menu", QApplication::desktop());
+    m_newMenu->setModal(false);
 
-        connect(m_newMenu->menu(), SIGNAL(aboutToShow()), this, SLOT(aboutToShowCreateNew()));
+    connect(m_newMenu->menu(), SIGNAL(aboutToShow()), this, SLOT(aboutToShowCreateNew()));
 
-        m_actionCollection.addAction("lock_icons", lockIcons);
-        m_actionCollection.addAction("auto_align", alignToGrid);
-        m_actionCollection.addAction("sort_desc", sortDescending);
-        m_actionCollection.addAction("dirs_first", dirsFirst);
-        m_actionCollection.addAction("icons_menu", iconsMenuAction);
-        m_actionCollection.addAction("layout_rows", layoutRows);
-        m_actionCollection.addAction("layout_columns", layoutColumns);
-        m_actionCollection.addAction("align_left", alignLeft);
-        m_actionCollection.addAction("align_right", alignRight);
-        m_actionCollection.addAction("unsorted", unsorted);
-        m_actionCollection.addAction("sort_name", sortByName);
-        m_actionCollection.addAction("sort_size", sortBySize);
-        m_actionCollection.addAction("sort_type", sortByType);
-        m_actionCollection.addAction("sort_date", sortByDate);
+    m_actionCollection.addAction("lock_icons", lockIcons);
+    m_actionCollection.addAction("auto_align", alignToGrid);
+    m_actionCollection.addAction("sort_desc", sortDescending);
+    m_actionCollection.addAction("dirs_first", dirsFirst);
+    m_actionCollection.addAction("icons_menu", iconsMenuAction);
+    m_actionCollection.addAction("layout_rows", layoutRows);
+    m_actionCollection.addAction("layout_columns", layoutColumns);
+    m_actionCollection.addAction("align_left", alignLeft);
+    m_actionCollection.addAction("align_right", alignRight);
+    m_actionCollection.addAction("unsorted", unsorted);
+    m_actionCollection.addAction("sort_name", sortByName);
+    m_actionCollection.addAction("sort_size", sortBySize);
+    m_actionCollection.addAction("sort_type", sortByType);
+    m_actionCollection.addAction("sort_date", sortByDate);
 
-        updateFlowActionsState();
-        updateSortActionsState();
-    }
+    updateFlowActionsState();
+    updateSortActionsState();
 }
 
 void FolderView::updatePasteAction()
@@ -1699,8 +1696,7 @@ QList<QAction*> FolderView::contextualActions()
     QList<QAction*> actions;
 
     KFileItem rootItem = m_model->itemForIndex(QModelIndex());
-    if (KAuthorized::authorize("action/kdesktop_rmb") && !rootItem.isNull())
-    {
+    if (!rootItem.isNull()) {
         if (QAction *action = m_actionCollection.action("new_menu")) {
             actions.append(action);
             QAction *separator = new QAction(this);
@@ -2092,7 +2088,7 @@ void FolderView::contextMenuRequest(QWidget *widget, const QPoint &screenPos)
 
 void FolderView::showContextMenu(QWidget *widget, const QPoint &pos, const QModelIndexList &indexes)
 {
-    if (!KAuthorized::authorize("action/kdesktop_rmb") || indexes.isEmpty()) {
+    if (indexes.isEmpty()) {
         return;
     }
 
