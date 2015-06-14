@@ -12,7 +12,7 @@ associate it with the relevant file types.
 
 How
 ===
-Create a file ~/.katana/share/katana/services/ServiceMenus/something.desktop
+Create a file ~/.katana/share/kde4/services/ServiceMenus/something.desktop
 and write into it something like (without the comments) :
 
 [Desktop Entry]

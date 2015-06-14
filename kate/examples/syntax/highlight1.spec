@@ -148,7 +148,7 @@ cmake ./ -DCMAKE_INSTALL_PREFIX=%{_prefix}
 %endif  
 %if 0%{?fedora_version} || 0%{?rhel_version} || 0%{?centos_version}  
 make install DESTDIR=%{buildroot}  
-desktop-file-install --delete-original --vendor fedora --dir=%{buildroot}/%{_datadir}/applications/katana %{buildroot}/%{_datadir}/applications/katana/kradioripper.desktop  
+desktop-file-install --delete-original --vendor fedora --dir=%{buildroot}/%{_datadir}/applications/kde4 %{buildroot}/%{_datadir}/applications/kde4/kradioripper.desktop  
 %endif  
 %if 0%{?mandriva_version}  
 %makeinstall_std  
@@ -162,9 +162,9 @@ rm -rf "%{buildroot}"
 %files  
 %defattr(-,root,root)  
 %if 0%{?fedora_version} || 0%{?rhel_version} || 0%{?centos_version}  
-%{_datadir}/applications/katana/fedora-kradioripper.desktop  
+%{_datadir}/applications/kde4/fedora-kradioripper.desktop  
 %else  
-%{_datadir}/applications/katana/kradioripper.desktop  
+%{_datadir}/applications/kde4/kradioripper.desktop  
 %endif  
 %{_bindir}/kradioripper  
 %{_datadir}/locale/*/LC_MESSAGES/kradioripper.mo  
@@ -174,8 +174,8 @@ rm -rf "%{buildroot}"
 %{_datadir}/apps/kradioripper/*  
 %else  
 %doc COPYING LICENSE LICENSE.GPL2 LICENSE.GPL3 NEWS WARRANTY  
-%dir %{_datadir}/katana/apps/kradioripper  
-%{_datadir}/katana/apps/kradioripper/*  
+%dir %{_datadir}/kde4/apps/kradioripper  
+%{_datadir}/kde4/apps/kradioripper/*  
 %endif  
   
   
