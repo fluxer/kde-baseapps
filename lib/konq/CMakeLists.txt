@@ -26,8 +26,8 @@ set(konq_LIB_SRCS
 
 kde4_add_library(konq SHARED ${konq_LIB_SRCS})
 
-target_link_libraries(konq ${KDE4_KPARTS_LIBS} ${KDE4_KFILE_LIBS} ${ZLIB_LIBRARY} ${X11_X11_LIB})
-target_link_libraries(konq LINK_INTERFACE_LIBRARIES ${KDE4_KPARTS_LIBS})
+target_link_libraries(konq PRIVATE ${KDE4_KPARTS_LIBS} ${KDE4_KFILE_LIBS} ${ZLIB_LIBRARY} ${X11_X11_LIB})
+target_link_libraries(konq PUBLIC ${KDE4_KPARTS_LIBS})
 
 set_target_properties(konq PROPERTIES
     VERSION ${GENERIC_LIB_VERSION}

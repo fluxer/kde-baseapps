@@ -29,8 +29,8 @@ set(kateinterfaces_LIB_SRCS kateappadaptor.cpp
 
 kde4_add_library(kateinterfaces SHARED ${kateinterfaces_LIB_SRCS})
 
-target_link_libraries(kateinterfaces  ${KDE_4_4_LIBS_NEEDED} ${QT_QTXML_LIBRARY} ${KDE4_KTEXTEDITOR_LIBS} ${KDE4_KPARTS_LIBS} )
-target_link_libraries(kateinterfaces  LINK_INTERFACE_LIBRARIES "${KDE4_KPARTS_LIBS}" )
+target_link_libraries(kateinterfaces PRIVATE ${QT_QTXML_LIBRARY} ${KDE4_KTEXTEDITOR_LIBS} ${KDE4_KPARTS_LIBS} )
+target_link_libraries(kateinterfaces PUBLIC "${KDE4_KPARTS_LIBS}" )
 
 
 set_target_properties(kateinterfaces PROPERTIES VERSION ${GENERIC_LIB_VERSION} SOVERSION ${GENERIC_LIB_SOVERSION})

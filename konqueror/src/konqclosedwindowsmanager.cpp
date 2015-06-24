@@ -382,7 +382,7 @@ void KonqClosedWindowsManager::saveConfig()
     delete config;
 }
 
-void KonqClosedWindowsManager ::readConfig()
+void KonqClosedWindowsManager::readConfig()
 {
     if(m_konqClosedItemsConfig)
         return;

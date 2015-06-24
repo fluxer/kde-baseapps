@@ -117,8 +117,8 @@ kde4_add_ui_files(konsoleprivate_SRCS ColorSchemeEditor.ui
                                       settings/TabBarSettings.ui)
 
 kde4_add_library(konsoleprivate SHARED ${konsoleprivate_SRCS})
-target_link_libraries(konsoleprivate ${konsole_LIBS})
-target_link_libraries(konsoleprivate LINK_INTERFACE_LIBRARIES ${konsole_LIBS})
+target_link_libraries(konsoleprivate PRIVATE ${konsole_LIBS})
+target_link_libraries(konsoleprivate PUBLIC ${konsole_LIBS})
 
 set(konsole_SRCS
    Application.cpp
@@ -132,7 +132,7 @@ kde4_add_kcfg_files(konsole_SRCS settings/KonsoleSettings.kcfgc)
 kde4_add_app_icon(konsole_SRCS "${KDE4_ICON_INSTALL_DIR}/oxygen/*/apps/utilities-terminal.png")
 
 kde4_add_executable(konsole ${konsole_SRCS})
-target_link_libraries(konsole konsoleprivate)
+target_link_libraries(konsole PRIVATE konsoleprivate)
 
 install(TARGETS konsole konsoleprivate
        ${INSTALL_TARGETS_DEFAULT_ARGS})
