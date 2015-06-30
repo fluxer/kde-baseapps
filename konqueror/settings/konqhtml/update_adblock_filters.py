@@ -1,4 +1,4 @@
-#!/bin/python2
+#!/usr/bin/python2
 
 # this scripts updates the adblock subscriptions config from upstream
 
