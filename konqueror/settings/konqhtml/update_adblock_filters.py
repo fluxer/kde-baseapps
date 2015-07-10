@@ -2,14 +2,18 @@
 
 # this scripts updates the adblock subscriptions config from upstream
 
-import os, sys, urllib
+import os, sys
 import xml.etree.ElementTree as ET
+if int(sys.version_info[0]) < 3:
+    from urllib import urlopen
+else:
+    from urllib.request import urlopen
 
 # see https://raw.githubusercontent.com/adblockplus/adblockplus/master/defaults/prefs.js
 surl = "https://adblockplus.org/subscriptions2.xml"
 
 print('Getting subscriptions from: %s' % surl)
-sfd = urllib.urlopen(surl)
+sfd = urlopen(surl)
 scontent = sfd.read()
 sfd.close()
 
