@@ -9,8 +9,6 @@
 #define HTMLOPTS_H
 
 #include <QCheckBox>
-#include <QLineEdit>
-#include <QComboBox>
 
 //-----------------------------------------------------------------------------
 // The "Misc Options" Tab for the HTML view contains :
@@ -20,10 +18,9 @@
 // AutoLoad Images
 // ... there is room for others :))
 
-
-
 #include <kcmodule.h>
 #include <ksharedconfig.h>
+
 class KIntNumInput;
 class QGroupBox;
 

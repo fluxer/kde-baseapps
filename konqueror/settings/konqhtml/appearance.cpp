@@ -2,11 +2,11 @@
 #include "appearance.h"
 
 #include <QLabel>
-#include <QLayout>
+#include <QVBoxLayout>
 #include <QFormLayout>
 #include <QLineEdit>
-#include <QtDBus/QDBusMessage>
-#include <QtDBus/QDBusConnection>
+#include <QDBusMessage>
+#include <QDBusConnection>
 #include <QGroupBox>
 
 #include <kapplication.h>

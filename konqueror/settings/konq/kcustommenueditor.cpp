@@ -22,7 +22,6 @@
 
 // Qt
 #include <QtCore/QDir>
-#include <QtCore/QRegExp>
 #include <QImage>
 #include <QPushButton>
 

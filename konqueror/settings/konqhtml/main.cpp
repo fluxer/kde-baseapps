@@ -31,7 +31,8 @@
 // Qt
 #include <QTabWidget>
 #include <QLayout>
-#include <QtDBus/QtDBus>
+#include <QDBusMessage>
+#include <QDBusConnection>
 
 // KDE
 #include <kapplication.h>

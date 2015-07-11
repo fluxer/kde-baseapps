@@ -20,12 +20,14 @@
 #include "filteropts.h"
 
 // Qt
-#include <QtCore/QRegExp>
-#include <QtCore/QTextStream>
-#include <QtDBus/QtDBus>
+#include <QRegExp>
+#include <QTextStream>
+#include <QDBusMessage>
+#include <QDBusConnection>
 #include <QCheckBox>
 #include <QLabel>
-#include <QLayout>
+#include <QVBoxLayout>
+#include <QGridLayout>
 #include <QTreeView>
 #include <QWhatsThis>
 

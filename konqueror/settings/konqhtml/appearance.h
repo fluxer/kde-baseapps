@@ -18,7 +18,6 @@
 #define APPEARANCE_H
 
 #include <QWidget>
-#include <QtCore/QMap>
 
 #include <kcmodule.h>
 #include <kconfig.h>

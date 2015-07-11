@@ -20,9 +20,8 @@
 #include "kcmperformance.h"
 
 // Qt
-#include <QLayout>
 #include <QTabWidget>
-#include <QBoxLayout>
+#include <QVBoxLayout>
 
 // KDE
 #include <klocale.h>

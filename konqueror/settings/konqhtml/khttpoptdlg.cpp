@@ -10,7 +10,8 @@
 #include "khttpoptdlg.h"
 
 // Qt
-#include <QLayout> //CT
+#include <QLayout>
+#include <QLabel>
 
 // KDE
 #include <klocale.h>

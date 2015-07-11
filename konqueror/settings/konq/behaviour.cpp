@@ -22,7 +22,8 @@
 #include "behaviour.h"
 
 // Qt
-#include <QtDBus/QtDBus>
+#include <QDBusMessage>
+#include <QDBusConnection>
 #include <QCheckBox>
 #include <QGroupBox>
 #include <QLayout>

@@ -14,10 +14,8 @@
 #include <QGroupBox>
 #include <QFormLayout>
 #include <QVBoxLayout>
-#include <QLabel>
-#include <QPushButton>
-#include <QtDBus/QDBusMessage>
-#include <QtDBus/QDBusConnection>
+#include <QDBusMessage>
+#include <QDBusConnection>
 
 // KDE
 #include <kglobalsettings.h> // get default for DEFAULT_CHANGECURSOR

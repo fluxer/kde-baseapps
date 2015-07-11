@@ -17,10 +17,10 @@
 #include <unistd.h>
 
 // Qt
-#include <QtCore/QRegExp>
-#include <QtCore/QTextStream>
-#include <QtDBus/QDBusConnection>
-#include <QtDBus/QDBusMessage>
+#include <QRegExp>
+#include <QTextStream>
+#include <QDBusConnection>
+#include <QDBusMessage>
 #include <QLabel>
 #include <QLayout>
 #include <QSlider>

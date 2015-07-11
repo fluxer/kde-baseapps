@@ -19,9 +19,8 @@
 #include "konqueror.h"
 
 #include <kconfig.h>
-#include <QtDBus/QtDBus>
-#include <QRadioButton>
-#include <QLabel>
+#include <QDBusMessage>
+#include <QDBusConnection>
 #include <QCheckBox>
 #include <klocale.h>
 

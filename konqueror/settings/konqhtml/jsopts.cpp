@@ -23,7 +23,8 @@
 #include "jsopts.h"
 
 // Qt
-#include <QLayout>
+#include <QVBoxLayout>
+#include <QHBoxLayout>
 #include <QTreeWidget>
 
 // KDE
