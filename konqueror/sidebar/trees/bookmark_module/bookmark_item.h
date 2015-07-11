@@ -16,8 +16,8 @@
    Boston, MA 02110-1301, USA.
 */
 
-#ifndef bookmark_item_h
-#define bookmark_item_h
+#ifndef BOOKMARK_ITEM_H
+#define BOOKMARK_ITEM_H
 
 #include <konq_sidebartreeitem.h>
 #include <kbookmark.h>

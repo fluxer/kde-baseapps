@@ -18,8 +18,8 @@
  * MA 02110-1301, USA.
  */
 
-#ifndef FolderFilesList_h
-#define FolderFilesList_h
+#ifndef FOLDERFILESLIST_H
+#define FOLDERFILESLIST_H
 
 #include <QThread>
 #include <QRegExp>

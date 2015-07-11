@@ -15,8 +15,8 @@
    along with this program.  If not, see <http://www.gnu.org/licenses/>
 */
 
-#ifndef __kebsearchline_h
-#define __kebsearchline_h
+#ifndef KEBSEARCHLINE_H
+#define KEBSEARCHLINE_H
 
 #include <klineedit.h>
 #include <QAbstractItemView>

@@ -16,8 +16,8 @@
    along with this program.  If not, see <http://www.gnu.org/licenses/>
 */
 
-#ifndef __bookmarkiterator_h
-#define __bookmarkiterator_h
+#ifndef BOOKMARKITERATOR_H
+#define BOOKMARKITERATOR_H
 
 #include <QtCore/QObject>
 #include <QtCore/QList>

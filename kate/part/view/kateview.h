@@ -19,8 +19,8 @@
    Boston, MA 02110-1301, USA.
 */
 
-#ifndef kate_view_h
-#define kate_view_h
+#ifndef KATE_VIEW_H
+#define KATE_VIEW_H
 
 #include <ktexteditor/view.h>
 #include <ktexteditor/texthintinterface.h>

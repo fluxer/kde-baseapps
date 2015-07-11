@@ -20,8 +20,8 @@
    Boston, MA 02110-1301, USA.
 */
 
-#ifndef kate_undo_h
-#define kate_undo_h
+#ifndef KATE_UNDO_H
+#define KATE_UNDO_H
 
 #include <QtCore/QList>
 

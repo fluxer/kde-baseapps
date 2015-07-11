@@ -16,8 +16,8 @@
    Boston, MA 02110-1301, USA.
 */
 
-#ifndef kshellcmdplugin_h
-#define kshellcmdplugin_h
+#ifndef KSHELLCMDPLUGIN_H
+#define KSHELLCMDPLUGIN_H
 
 #include <kparts/plugin.h>
 

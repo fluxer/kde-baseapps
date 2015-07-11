@@ -18,8 +18,8 @@
    Boston, MA 02110-1301, USA.
 */
 
-#ifndef __actionsimpl_h
-#define __actionsimpl_h
+#ifndef ACTIONSIMPL_H
+#define ACTIONSIMPL_H
 
 #include <QtCore/QObject>
 class FavIconsItrHolder;

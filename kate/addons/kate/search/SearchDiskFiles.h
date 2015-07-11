@@ -18,8 +18,8 @@
  * MA 02110-1301, USA.
  */
 
-#ifndef SearchDiskFiles_h
-#define SearchDiskFiles_h
+#ifndef SEARCHDISKFILES_H
+#define SEARCHDISKFILES_H
 
 #include <QThread>
 #include <QRegExp>

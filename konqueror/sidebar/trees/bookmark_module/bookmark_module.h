@@ -16,8 +16,8 @@
    Boston, MA 02110-1301, USA.
 */
 
-#ifndef bookmark_module_h
-#define bookmark_module_h
+#ifndef BOOKMARK_MODULE_H
+#define BOOKMARK_MODULE_H
 
 #include <QKeyEvent>
 #include <QtCore/QMap>

@@ -18,8 +18,8 @@
    Boston, MA 02110-1301, USA.
 */
 
-#ifndef __konqpopupmenu_h
-#define __konqpopupmenu_h
+#ifndef KONQPOPUPMENU_H
+#define KONQPOPUPMENU_H
 
 #include <sys/types.h>
 

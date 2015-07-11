@@ -18,8 +18,8 @@ the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 Boston, MA 02110-1301, USA.
 */
 
-#ifndef kimgalleryplugin_h
-#define kimgalleryplugin_h
+#ifndef KIMGALLERYPLUGIN_H
+#define KIMGALLERYPLUGIN_H
 
 #include <kparts/plugin.h>
 

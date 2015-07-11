@@ -16,8 +16,8 @@
    Boston, MA 02110-1301, USA.
 */
 
-#ifndef __bookmarklistview_h
-#define __bookmarklistview_h
+#ifndef BOOKMARKLISTVIEW_H
+#define BOOKMARKLISTVIEW_H
 
 #include <QTreeView>
 #include <QSortFilterProxyModel>

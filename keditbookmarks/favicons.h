@@ -17,8 +17,8 @@
    along with this program.  If not, see <http://www.gnu.org/licenses/>
 */
 
-#ifndef __favicons_h
-#define __favicons_h
+#ifndef FAVICONS_H
+#define FAVICONS_H
 
 #include <kbookmark.h>
 

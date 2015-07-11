@@ -16,8 +16,8 @@
    along with this program.  If not, see <http://www.gnu.org/licenses/>
 */
 
-#ifndef kbookmarkmodel__commands_h
-#define kbookmarkmodel__commands_h
+#ifndef KBOOKMARKMODEL__COMMANDS_H
+#define KBOOKMARKMODEL__COMMANDS_H
 
 #include <QUndoCommand>
 #include "kbookmarkmodel_export.h"

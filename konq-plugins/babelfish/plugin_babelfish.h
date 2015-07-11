@@ -16,8 +16,8 @@
    the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
    Boston, MA 02110-1301, USA.
 */
-#ifndef __plugin_babelfish_h
-#define __plugin_babelfish_h
+#ifndef PLUGIN_BABELFISH_H
+#define PLUGIN_BABELFISH_H
 
 #include <kparts/plugin.h>
 #include <kactionmenu.h>

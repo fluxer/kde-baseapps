@@ -17,8 +17,8 @@
    along with this program.  If not, see <http://www.gnu.org/licenses/>
 */
 
-#ifndef __importers_h
-#define __importers_h
+#ifndef IMPORTERS_H
+#define IMPORTERS_H
 
 #include "kbookmarkmodel/commands.h"
 #include <klocale.h>

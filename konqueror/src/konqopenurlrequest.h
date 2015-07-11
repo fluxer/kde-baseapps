@@ -17,8 +17,8 @@
    Boston, MA 02110-1301, USA.
 */
 
-#ifndef __konqopenurlrequest_h
-#define __konqopenurlrequest_h
+#ifndef KONQOPENURLREQUEST_H
+#define KONQOPENURLREQUEST_H
 
 #include "konqprivate_export.h"
 

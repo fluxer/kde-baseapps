@@ -15,8 +15,8 @@
    along with this program.  If not, see <http://www.gnu.org/licenses/>
 */
 
-#ifndef __exporters_h
-#define __exporters_h
+#ifndef EXPORTERS_H
+#define EXPORTERS_H
 
 #include <kbookmark.h>
 //Added by qt3to4:

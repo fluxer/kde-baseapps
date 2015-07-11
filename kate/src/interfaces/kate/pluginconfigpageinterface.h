@@ -16,8 +16,8 @@
    Boston, MA 02110-1301, USA.
 */
 
-#ifndef kate_pluginconfigpageinterface_h
-#define kate_pluginconfigpageinterface_h
+#ifndef KATE_PLUGINCONFIGPAGEINTERFACE_H
+#define KATE_PLUGINCONFIGPAGEINTERFACE_H
 
 #include <kate_export.h>
 #include <QtGui/QWidget>

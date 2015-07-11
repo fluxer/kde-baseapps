@@ -17,8 +17,8 @@
    Boston, MA 02110-1301, USA.
 */
 
-#ifndef __kfmclient_h
-#define __kfmclient_h
+#ifndef KFMCLIENT_H
+#define KFMCLIENT_H
 
 #include <kglobal.h>
 #include <QApplication>

@@ -16,8 +16,8 @@
    along with this program.  If not, see <http://www.gnu.org/licenses/>
 */
 
-#ifndef __toplevel_h
-#define __toplevel_h
+#ifndef TOPLEVEL_H
+#define TOPLEVEL_H
 
 #include <kxmlguiwindow.h>
 #include <kbookmark.h>

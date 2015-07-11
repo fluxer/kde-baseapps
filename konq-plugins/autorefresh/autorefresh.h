@@ -19,8 +19,8 @@
   02110-1301, USA.
  */
 
-#ifndef __plugin_autorefresh_h
-#define __plugin_autorefresh_h
+#ifndef PLUGIN_AUTOREFRESH_H
+#define PLUGIN_AUTOREFRESH_H
  
 #include <kparts/plugin.h>
  

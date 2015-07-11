@@ -16,8 +16,8 @@
    along with this program.  If not, see <http://www.gnu.org/licenses/>
 */
 
-#ifndef __testlink_h
-#define __testlink_h
+#ifndef TESTLINK_H
+#define TESTLINK_H
 
 #include <QtCore/QObject>
 

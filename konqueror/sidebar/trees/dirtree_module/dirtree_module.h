@@ -16,8 +16,8 @@
    Boston, MA 02110-1301, USA.
 */
 
-#ifndef dirtree_module_h
-#define dirtree_module_h
+#ifndef DIRTREE_MODULE_H
+#define DIRTREE_MODULE_H
 
 #include <konq_sidebartreemodule.h>
 #include <kfileitem.h>
