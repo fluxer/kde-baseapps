@@ -18,8 +18,8 @@
     Boston, MA 02110-1301, USA.
 */
 
-#ifndef __SMBRODLG_H
-#define __SMBRODLG_H
+#ifndef SMBRODLG_H
+#define SMBRODLG_H
 
 #include <QWidget>
 #include <QLineEdit>

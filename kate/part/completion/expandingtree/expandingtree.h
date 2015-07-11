@@ -18,8 +18,8 @@
  *  Boston, MA 02110-1301, USA.
  */
 
-#ifndef ExpandingTree_H
-#define ExpandingTree_H
+#ifndef EXPANDINGTREE_H
+#define EXPANDINGTREE_H
 
 #include <QTreeView>
 #include <QTextDocument>

@@ -7,8 +7,8 @@
  *
  */
 
-#ifndef __KCOOKIESMAIN_H
-#define __KCOOKIESMAIN_H
+#ifndef KCOOKIESMAIN_H
+#define KCOOKIESMAIN_H
 
 #include <kcmodule.h>
 
@@ -37,4 +37,4 @@ private:
     KCookiesManagement* management;
 };
 
-#endif // __KCOOKIESMAIN_H
+#endif // KCOOKIESMAIN_H

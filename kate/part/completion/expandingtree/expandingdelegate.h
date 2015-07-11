@@ -18,8 +18,8 @@
  *  Boston, MA 02110-1301, USA.
  */
 
-#ifndef ExpandingDelegate_H
-#define ExpandingDelegate_H
+#ifndef EXPANDINGDELEGATE_H
+#define EXPANDINGDELEGATE_H
 
 #include <QtGui/QItemDelegate>
 #include <QItemDelegate>

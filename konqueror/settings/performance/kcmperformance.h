@@ -16,8 +16,8 @@
  *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef _KCM_PERFORMANCE_H
-#define _KCM_PERFORMANCE_H
+#ifndef KCM_PERFORMANCE_H
+#define KCM_PERFORMANCE_H
 
 #include <kcmodule.h>
 

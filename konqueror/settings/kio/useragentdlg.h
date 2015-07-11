@@ -22,8 +22,8 @@
    Boston, MA 02110-1301, USA.
 */
 
-#ifndef _USERAGENTDLG_H
-#define _USERAGENTDLG_H
+#ifndef USERAGENTDLG_H
+#define USERAGENTDLG_H
 
 #include <kcmodule.h>
 #include "ui_useragentdlg.h"

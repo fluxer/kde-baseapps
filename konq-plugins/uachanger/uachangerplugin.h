@@ -18,8 +18,8 @@
     Boston, MA 02110-1301, USA.
 */
 
-#ifndef __UACHANGER_PLUGIN_H
-#define __UACHANGER_PLUGIN_H
+#ifndef UACHANGER_PLUGIN_H
+#define UACHANGER_PLUGIN_H
 
 #include <qmap.h>
 #include <qstringlist.h>

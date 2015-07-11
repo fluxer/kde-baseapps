@@ -5,8 +5,8 @@
  *
  */
 
-#ifndef _POLICYDLG_H
-#define _POLICYDLG_H
+#ifndef POLICYDLG_H
+#define POLICYDLG_H
 
 #include <kdialog.h>
 

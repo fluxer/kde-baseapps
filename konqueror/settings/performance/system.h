@@ -16,8 +16,8 @@
  *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef _KCM_PERF_SYSTEM_H
-#define _KCM_PERF_SYSTEM_H
+#ifndef KCM_PERF_SYSTEM_H
+#define KCM_PERF_SYSTEM_H
 
 #include <kcmodule.h>
 

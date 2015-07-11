@@ -18,8 +18,8 @@
  *  Boston, MA 02110-1301, USA.
  */
 
-#ifndef _KATE_CMD_H
-#define _KATE_CMD_H
+#ifndef KATE_CMD_H
+#define KATE_CMD_H
 
 #include "katepartprivate_export.h"
 

@@ -16,8 +16,8 @@
  *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef _KCM_PERF_KONQUEROR_H
-#define _KCM_PERF_KONQUEROR_H
+#ifndef KCM_PERF_KONQUEROR_H
+#define KCM_PERF_KONQUEROR_H
 
 #include "ui_konqueror_ui.h"
 

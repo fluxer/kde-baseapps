@@ -4,8 +4,8 @@
  *
  */
 
-#ifndef __KHTTPOPTDLG_H
-#define __KHTTPOPTDLG_H
+#ifndef KHTTPOPTDLG_H
+#define KHTTPOPTDLG_H
 
 #include <QLineEdit>
 
@@ -45,4 +45,4 @@ private Q_SLOTS:
 
 };
 
-#endif // __KHTTPOPTDLG_H
+#endif // KHTTPOPTDLG_H
