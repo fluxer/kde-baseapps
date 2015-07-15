@@ -48,7 +48,7 @@
 // default settings
 namespace {
     const bool UseThumbnails = true;
-    const int MaxRemotePreviewSize = 0; // 0 MB
+    const int MaxRemotePreviewSize = 1; // 1 MB
 }
 
 PreviewsSettingsPage::PreviewsSettingsPage(QWidget* parent) :
