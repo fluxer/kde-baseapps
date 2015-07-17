@@ -29,7 +29,7 @@ class QPainter;
 class QModelIndex;
 class QStyleOption;
 
-class KateCategoryDrawer : public KCategoryDrawerV3
+class KateCategoryDrawer : public KCategoryDrawer
 {
 public:
     KateCategoryDrawer();
