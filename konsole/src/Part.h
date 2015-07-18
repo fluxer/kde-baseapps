@@ -22,7 +22,7 @@
 
 // KDE
 #include <KParts/Part>
-#include <kde_terminal_interface_v2.h>
+#include <kde_terminal_interface.h>
 
 // Qt
 #include <QtCore/QVariantList>
@@ -45,10 +45,10 @@ class ViewProperties;
  * A re-usable terminal emulator component using the KParts framework which can
  * be used to embed terminal emulators into other applications.
  */
-class Part : public KParts::ReadOnlyPart , public TerminalInterfaceV2
+class Part : public KParts::ReadOnlyPart , public TerminalInterface
 {
     Q_OBJECT
-    Q_INTERFACES(TerminalInterface TerminalInterfaceV2)
+    Q_INTERFACES(TerminalInterface TerminalInterface)
 public:
     /** Constructs a new Konsole part with the specified parent. */
     explicit Part(QWidget* parentWidget , QObject* parent, const QVariantList&);
@@ -62,13 +62,13 @@ public:
     /** Reimplemented from TerminalInterface. */
     virtual void sendInput(const QString& text);
 
-    /** Reimplemented from TerminalInterfaceV2. */
+    /** Reimplemented from TerminalInterface. */
     virtual int terminalProcessId();
 
-    /** Reimplemented from TerminalInterfaceV2. */
+    /** Reimplemented from TerminalInterface. */
     virtual int foregroundProcessId();
 
-    /** Reimplemented from TerminalInterfaceV2. */
+    /** Reimplemented from TerminalInterface. */
     virtual QString foregroundProcessName();
 
 public slots:
@@ -148,7 +148,7 @@ public slots:
     /**
     * Returns the current working directory of the active session
     *
-    * TODO: this should better be moved into TerminalInterfaceV2.
+    * TODO: this should better be moved into TerminalInterface.
     */
     QString currentWorkingDirectory() const;
 

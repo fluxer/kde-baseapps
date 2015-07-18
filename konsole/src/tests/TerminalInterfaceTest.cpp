@@ -31,9 +31,6 @@
 
 using namespace Konsole;
 
-/* In KDE 4.x there are 2 versions: TerminalInterface and TerminalInterfaceV2
-   The code below uses both as well the KonsolePart API
-*/
 void TerminalInterfaceTest::testTerminalInterface()
 {
     QString currentDirectory;
@@ -45,7 +42,7 @@ void TerminalInterfaceTest::testTerminalInterface()
     if (!_terminalPart)
         QSKIP("konsolepart not found.", SkipSingle);
 
-    TerminalInterfaceV2* terminal = qobject_cast<TerminalInterfaceV2*>(_terminalPart);
+    TerminalInterface* terminal = qobject_cast<TerminalInterface*>(_terminalPart);
     QVERIFY(terminal);
     terminal->showShellInDir(QDir::home().path());
 

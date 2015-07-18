@@ -24,7 +24,7 @@
 #include <KPluginLoader>
 #include <KPluginFactory>
 #include <KService>
-#include <kde_terminal_interface_v2.h>
+#include <kde_terminal_interface.h>
 #include <KParts/Part>
 #include <KShell>
 #include <KIO/Job>
@@ -108,7 +108,7 @@ void TerminalPanel::showEvent(QShowEvent* event)
             connect(m_konsolePart, SIGNAL(destroyed(QObject*)), this, SLOT(terminalExited()));
             m_terminalWidget = m_konsolePart->widget();
             m_layout->addWidget(m_terminalWidget);
-            m_terminal = qobject_cast<TerminalInterfaceV2 *>(m_konsolePart);
+            m_terminal = qobject_cast<TerminalInterface *>(m_konsolePart);
         }
     }
     if (m_terminal) {
@@ -146,7 +146,7 @@ void TerminalPanel::sendCdToTerminal(const QString& dir)
     }
 
     if (!m_clearTerminal) {
-        // The TerminalV2 interface does not provide a way to delete the
+        // The Terminal interface does not provide a way to delete the
         // current line before sending a new input. This is mandatory,
         // otherwise sending a 'cd x' to a existing 'rm -rf *' might
         // result in data loss. As workaround SIGINT is send.
