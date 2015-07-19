@@ -23,7 +23,6 @@
 #include "konq_popupmenuplugin.h"
 #include "konq_copytomenu.h"
 #include "kfileitemactions.h"
-#include "kfileitemactionplugin.h"
 #include "kabstractfileitemactionplugin.h"
 #include "kpropertiesdialog.h"
 #include "knewfilemenu.h"
