@@ -47,6 +47,7 @@ install(TARGETS konq_sound  DESTINATION ${PLUGIN_INSTALL_DIR} )
 
 install( FILES directory_bookmarkbar.desktop   DESTINATION  ${DATA_INSTALL_DIR}/kbookmark )
 install( FILES
+ konq_popupmenu.h # used by folderview
  konq_popupmenuplugin.h
  konq_dndpopupmenuplugin.h
  # konq_copytomenu.h - anyone needs it?

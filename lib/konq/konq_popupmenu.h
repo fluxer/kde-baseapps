@@ -24,8 +24,8 @@
 #include <sys/types.h>
 
 #include <QtCore/QMap>
-#include <QMenu>
 
+#include <KMenu>
 #include <kaction.h>
 #include <kactioncollection.h>
 #include <kfileitem.h>
@@ -46,9 +46,8 @@ class KonqPopupMenuPrivate;
  * with the correct arguments, then exec() to make it appear, then destroy it.
  *
  * Users of KonqPopupMenu include: konqueror, the media applet, the trash applet
- * (and the desktop icons, in kde3)
  */
-class LIBKONQ_EXPORT KonqPopupMenu : public QMenu // KDE5 TODO: inherit KMenu to benefit from KAcceleratorManager automatically
+class LIBKONQ_EXPORT KonqPopupMenu : public KMenu
 {
   Q_OBJECT
 public:

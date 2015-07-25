@@ -134,7 +134,7 @@ KonqPopupMenu::KonqPopupMenu(const KFileItemList &items,
                              QWidget * parentWidget,
                              KBookmarkManager *mgr,
                              const KParts::BrowserExtension::ActionGroupMap& actionGroups)
-  : QMenu(parentWidget),
+  : KMenu(parentWidget),
     d(new KonqPopupMenuPrivate(this, actions, parentWidget))
 {
     d->m_actionGroups = actionGroups;

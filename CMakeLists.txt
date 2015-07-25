@@ -36,7 +36,6 @@ add_subdirectory( kfind )
 add_subdirectory( konqueror )
 add_subdirectory( konq-plugins )
 add_subdirectory( konsole )
-add_subdirectory( plasma )
 
 if ( Q_WS_X11 )
   add_subdirectory( nsplugins )
