@@ -272,7 +272,7 @@ void KateWordCompletionModel::executeCompletionItem2(
   }
 }
 
-KTextEditor::CodeCompletionModelControllerInterface3::MatchReaction KateWordCompletionModel::matchingItem(const QModelIndex& /*matched*/)
+KTextEditor::CodeCompletionModelControllerInterface::MatchReaction KateWordCompletionModel::matchingItem(const QModelIndex& /*matched*/)
 {
   return HideListIfAutomaticInvocation;
 }

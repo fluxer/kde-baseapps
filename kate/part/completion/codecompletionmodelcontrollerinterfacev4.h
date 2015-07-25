@@ -28,8 +28,8 @@
 
 namespace KTextEditor {
 //BEGIN V4
-///Extension of CodeCompletionModelControllerInterface3
-class CodeCompletionModelControllerInterface4 : public CodeCompletionModelControllerInterface3 {
+///Extension of CodeCompletionModelControllerInterface
+class CodeCompletionModelControllerInterface4 : public CodeCompletionModelControllerInterface {
   public:
 
     /**

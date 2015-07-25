@@ -38,7 +38,7 @@ LumenCompletionModel::~LumenCompletionModel()
 
 bool LumenCompletionModel::shouldStartCompletion(View* view, const QString& insertedText, bool userInsertion, const Cursor& position)
 {
-    bool complete = KTextEditor::CodeCompletionModelControllerInterface3::shouldStartCompletion(
+    bool complete = KTextEditor::CodeCompletionModelControllerInterface::shouldStartCompletion(
         view, insertedText, userInsertion, position
     );
 

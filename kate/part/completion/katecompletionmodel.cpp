@@ -1735,10 +1735,10 @@ bool KateCompletionModel::shouldMatchHideCompletionList() const {
   foreach(Group* group, m_rowTable)
     foreach(const Item& item, group->filtered)
       if(item.haveExactMatch()) {
-        KTextEditor::CodeCompletionModelControllerInterface3* iface3 = dynamic_cast<KTextEditor::CodeCompletionModelControllerInterface3*>(item.sourceRow().first);
+        KTextEditor::CodeCompletionModelControllerInterface* iface3 = dynamic_cast<KTextEditor::CodeCompletionModelControllerInterface*>(item.sourceRow().first);
         bool hide = false;
         if ( !iface3 ) hide = true;
-        if(iface3 && iface3->matchingItem(item.sourceRow().second) == KTextEditor::CodeCompletionModelControllerInterface3::HideListIfAutomaticInvocation)
+        if(iface3 && iface3->matchingItem(item.sourceRow().second) == KTextEditor::CodeCompletionModelControllerInterface::HideListIfAutomaticInvocation)
           hide = true;
         if(hide)
         {

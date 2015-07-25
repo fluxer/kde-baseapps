@@ -198,10 +198,10 @@ QVariant KateKeywordCompletionModel::data(const QModelIndex& index, int role) co
   return QVariant();
 }
 
-KTextEditor::CodeCompletionModelControllerInterface3::MatchReaction KateKeywordCompletionModel::matchingItem(
+KTextEditor::CodeCompletionModelControllerInterface::MatchReaction KateKeywordCompletionModel::matchingItem(
     const QModelIndex& /*matched*/)
 {
-    return KTextEditor::CodeCompletionModelControllerInterface3::None;
+    return KTextEditor::CodeCompletionModelControllerInterface::None;
 }
 
 #include "moc_katekeywordcompletion.cpp"
