@@ -27,7 +27,7 @@
 #include <QtCore/QMimeData>
 #include <QLabel>
 #include <QtGui/QPainter>
-#include <QtGui/QDragMoveEvent>
+#include <QtGui/qevent.h>
 
 // KDE
 #include <KLocalizedString>

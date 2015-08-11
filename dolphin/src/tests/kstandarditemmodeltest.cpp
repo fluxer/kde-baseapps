@@ -23,6 +23,8 @@
 #include "kitemviews/kstandarditem.h"
 #include "kitemviews/kstandarditemmodel.h"
 
+#include <QtCore/qdebug.h>
+
 class KStandardItemModelTest : public QObject
 {
     Q_OBJECT

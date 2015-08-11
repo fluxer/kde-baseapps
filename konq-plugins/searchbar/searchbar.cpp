@@ -53,7 +53,7 @@
 #include <QStyle>
 #include <QPixmap>
 #include <QPainter>
-#include <QMouseEvent>
+#include <QtGui/qevent.h>
 #include <QtDBus/QtDBus>
 
 

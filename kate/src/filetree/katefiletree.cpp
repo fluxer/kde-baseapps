@@ -35,7 +35,7 @@
 #include <KMessageBox>
 
 #include <QtGui/QMenu>
-#include <QtGui/QContextMenuEvent>
+#include <QtGui/qevent.h>
 #include <kicon.h>
 #include <kdebug.h>
 #include <qapplication.h>

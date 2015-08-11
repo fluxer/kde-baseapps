@@ -23,9 +23,9 @@
 #include <libdolphin_export.h>
 
 #include <QObject>
-#include <QRectF>
+#include <QtCore/qrect.h>
 #include <QSet>
-#include <QSizeF>
+#include <QtCore/qsize.h>
 #include <QVector>
 
 class KItemModelBase;

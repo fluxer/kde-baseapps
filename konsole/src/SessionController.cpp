@@ -24,7 +24,7 @@
 // Qt
 #include <QApplication>
 #include <QMenu>
-#include <QtGui/QKeyEvent>
+#include <QtGui/qevent.h>
 #include <QPrinter>
 #include <QPrintDialog>
 #include <QPainter>

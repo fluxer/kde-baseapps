@@ -21,7 +21,7 @@
 #include "KeyBindingEditor.h"
 
 // Qt
-#include <QtGui/QKeyEvent>
+#include <QtGui/qevent.h>
 
 // Konsole
 #include "ui_KeyBindingEditor.h"

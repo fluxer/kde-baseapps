@@ -24,11 +24,11 @@
 #include <ktexteditor/markinterface.h>
 #include <kencodingprober.h>
 
-#include <QtCore/QBitRef>
+#include <QtCore/qbitarray.h>
 #include <QtGui/QColor>
 #include <QtCore/QObject>
 #include <QtCore/QVector>
-#include <QtGui/QFontMetricsF>
+#include <QtGui/qfontmetrics.h>
 #include <QStringListModel>
 
 class KConfigGroup;

@@ -54,7 +54,7 @@
 #include <kconfiggroup.h>
 #include "ktoolinvocation.h"
 
-#include <QtAlgorithms>
+#include <QtCore/qalgorithms.h>
 #include <QVariant>
 #include <QtGui/QCursor>
 #include <QtGui/QMenu>
@@ -63,7 +63,7 @@
 #include <QtCore/QTimer>
 #include <QtCore/QRegExp>
 #include <QtCore/QTextCodec>
-#include <QtGui/QKeyEvent>
+#include <QtGui/qevent.h>
 #include <QtGui/QPainterPath>
 #include <QtGui/QStyleOption>
 #include <QtGui/QPalette>
@@ -73,7 +73,7 @@
 #include <QtGui/QToolTip>
 #include <QtGui/QAction>
 #include <QtGui/QWhatsThis>
-#include <QtGui/QLinearGradient>
+#include <QtGui/qbrush.h>
 
 #include <math.h>
 

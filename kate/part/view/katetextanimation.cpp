@@ -27,8 +27,8 @@
 #include <QTimeLine>
 #include <QPainter>
 #include <QRect>
-#include <QSizeF>
-#include <QPointF>
+#include <QtCore/qsize.h>
+#include <QtCore/qpoint.h>
 
 #include <QDebug>
 

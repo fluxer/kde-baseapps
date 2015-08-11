@@ -63,9 +63,9 @@
 #include <kwindowsystem.h>
 #include <KToolBar>
 
-#include <QDragEnterEvent>
+#include <QtGui/qevent.h>
 #include <QEvent>
-#include <QDropEvent>
+#include <QtGui/qevent.h>
 #include <QList>
 #include <QDesktopWidget>
 

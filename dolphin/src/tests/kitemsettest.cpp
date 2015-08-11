@@ -22,6 +22,7 @@
 #include "kitemviews/kitemset.h"
 
 #include <QVector>
+#include <QtCore/qset.h>
 
 Q_DECLARE_METATYPE(KItemRangeList);
 

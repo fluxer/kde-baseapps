@@ -38,7 +38,7 @@
 #include <QtCore/QObject>
 #include <QtCore/QStringList>
 #include <QtCore/QPointer>
-#include <QtCore/QDate>
+#include <QtCore/qdatetime.h>
 #include <QtCore/QLinkedList>
 
 class KateSyntaxDocument;

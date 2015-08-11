@@ -21,8 +21,8 @@
 #ifndef WIDGETS_H
 #define WIDGETS_H
 
-#include <QDate>
-#include <QtCore/QByteRef>
+#include <QtCore/qdatetime.h>
+#include <QtCore/qbytearray.h>
 #include <QWidget>
 #include <QtCore/QStringList>
 

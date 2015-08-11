@@ -18,7 +18,7 @@
  ***************************************************************************/
 
 #include "katesessionapplet.h"
-#include <QStyleOptionGraphicsItem>
+#include <QtGui/qstyleoption.h>
 #include <QTreeView>
 #include <QVBoxLayout>
 #include <QGraphicsGridLayout>
@@ -28,7 +28,7 @@
 #include <KMessageBox>
 #include <KStandardGuiItem>
 #include <QGraphicsProxyWidget>
-#include <QListWidgetItem>
+#include <QtGui/qlistwidget.h>
 #include <QStandardItemModel>
 #include <KIcon>
 #include <KToolInvocation>

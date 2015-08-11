@@ -26,7 +26,7 @@
 // Qt
 #include <QApplication>
 #include <QtGui/QClipboard>
-#include <QtGui/QKeyEvent>
+#include <QtGui/qevent.h>
 #include <QtCore/QEvent>
 #include <QtCore/QFileInfo>
 #include <QGridLayout>

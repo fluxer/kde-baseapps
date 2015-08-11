@@ -32,7 +32,7 @@
 #include <QtGui/QComboBox>
 #include <QtGui/QCheckBox>
 #include <QtGui/QBoxLayout>
-#include <QtGui/QResizeEvent>
+#include <QtGui/qevent.h>
 
 #include <QtCore/QList>
 

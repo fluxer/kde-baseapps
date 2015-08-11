@@ -30,7 +30,7 @@
 
 #include <QFontMetrics>
 #include <QPainter>
-#include <QKeyEvent>
+#include <QtGui/qevent.h>
 #include <QPixmap>
 #include <QToolButton>
 #include <QTimer>

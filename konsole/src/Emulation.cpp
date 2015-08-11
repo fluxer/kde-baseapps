@@ -23,7 +23,7 @@
 #include "Emulation.h"
 
 // Qt
-#include <QtGui/QKeyEvent>
+#include <QtGui/qevent.h>
 
 // Konsole
 #include "KeyboardTranslator.h"

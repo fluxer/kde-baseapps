@@ -27,7 +27,7 @@
 #include <QFileInfo>
 #include <QProcess>
 #include <QSet>
-#include <QTime>
+#include <QtCore/qdatetime.h>
 
 KateProjectWorker::KateProjectWorker (QObject *project)
   : QObject ()

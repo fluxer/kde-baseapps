@@ -25,7 +25,7 @@
 #define __SNIPPETREPOSITORY_H__
 
 #include <QObject>
-#include <QStandardItem>
+#include <QtGui/qstandarditemmodel.h>
 #include <QStringList>
 
 class Snippet;

@@ -21,10 +21,10 @@
 #include "htmldelegate.h"
 
 #include <QtGui/QPainter>
-#include <QtCore/QModelIndex>
+#include <QtCore/qabstractitemmodel.h>
 #include <QtGui/QTextDocument>
 #include <QtGui/QAbstractTextDocumentLayout>
-#include <QtGui/QTextCharFormat>
+#include <QtGui/qtextformat.h>
 #include <KLocalizedString>
 
 #include <KDebug>

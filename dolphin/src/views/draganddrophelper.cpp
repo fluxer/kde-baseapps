@@ -26,7 +26,7 @@
 #include <KUrl>
 #include <QApplication>
 #include <QtDBus>
-#include <QDropEvent>
+#include <QtGui/qevent.h>
 
 KonqOperations* DragAndDropHelper::dropUrls(const KFileItem& destItem, const KUrl& destUrl, QDropEvent* event, QString& error)
 {

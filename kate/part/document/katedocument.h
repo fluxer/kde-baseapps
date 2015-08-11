@@ -24,7 +24,7 @@
 
 #include <QtCore/QLinkedList>
 #include <QtCore/QMap>
-#include <QtCore/QDate>
+#include <QtCore/qdatetime.h>
 #include <QtGui/QClipboard>
 #include <QtCore/QStack>
 

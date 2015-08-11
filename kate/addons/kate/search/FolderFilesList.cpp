@@ -25,7 +25,7 @@
 
 #include <QDir>
 #include <QFileInfo>
-#include <QFileInfoList>
+#include <QtCore/qfileinfo.h>
 
 FolderFilesList::FolderFilesList(QObject *parent) : QThread(parent) {}
 

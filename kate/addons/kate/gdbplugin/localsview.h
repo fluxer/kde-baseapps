@@ -21,7 +21,7 @@
 #define LOCALSVIEW_H
 
 #include <QTreeWidget>
-#include <QTreeWidgetItem>
+#include <QtGui/qtreewidget.h>
 
 
 class LocalsView : public QTreeWidget

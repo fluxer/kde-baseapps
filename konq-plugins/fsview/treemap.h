@@ -35,11 +35,11 @@
 #include <QPixmap>
 #include <QColor>
 #include <QStringList>
-#include <QPaintEvent>
-#include <QKeyEvent>
-#include <QContextMenuEvent>
+#include <QtGui/qevent.h>
+#include <QtGui/qevent.h>
+#include <QtGui/qevent.h>
 #include <kmenu.h>
-#include <QMouseEvent>
+#include <QtGui/qevent.h>
 #include <kconfiggroup.h>
 
 class TreeMapWidget;

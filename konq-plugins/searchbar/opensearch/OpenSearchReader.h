@@ -20,7 +20,7 @@
 #ifndef OPENSEARCHREADER_H
 #define OPENSEARCHREADER_H
  
-#include <QtCore/QXmlStreamReader>
+#include <QtCore/qxmlstream.h>
  
 class OpenSearchEngine;
  

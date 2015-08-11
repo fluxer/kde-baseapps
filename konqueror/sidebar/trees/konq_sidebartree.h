@@ -29,8 +29,8 @@
 
 //Added by qt3to4:
 #include <QPixmap>
-#include <QtCore/QByteRef>
-#include <QKeyEvent>
+#include <QtCore/qbytearray.h>
+#include <QtGui/qevent.h>
 #include <Qt3Support/Q3PtrList>
 #include <QtCore/QEvent>
 

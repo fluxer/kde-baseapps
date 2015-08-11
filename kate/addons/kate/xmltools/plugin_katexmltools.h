@@ -40,7 +40,7 @@
 
 #include <kcombobox.h>
 #include <kdialog.h>
-#include <QVariantList>
+#include <QtCore/qvariant.h>
 
 
 class PluginKateXMLTools : public Kate::Plugin

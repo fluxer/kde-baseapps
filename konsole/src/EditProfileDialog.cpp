@@ -26,10 +26,10 @@
 // Qt
 #include <QtGui/QBrush>
 #include <QtGui/QPainter>
-#include <QStandardItem>
+#include <QtGui/qstandarditemmodel.h>
 #include <QtCore/QTextCodec>
-#include <QtGui/QLinearGradient>
-#include <QtGui/QRadialGradient>
+#include <QtGui/qbrush.h>
+#include <QtGui/qbrush.h>
 #include <QtCore/QTimer>
 
 // KDE

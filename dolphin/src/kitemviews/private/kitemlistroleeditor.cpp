@@ -21,7 +21,7 @@
 
 #include <KDebug>
 #include <kio/global.h>
-#include <QKeyEvent>
+#include <QtGui/qevent.h>
 
 KItemListRoleEditor::KItemListRoleEditor(QWidget *parent) :
     KTextEdit(parent),

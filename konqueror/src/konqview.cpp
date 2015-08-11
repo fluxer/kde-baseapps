@@ -45,11 +45,11 @@
 #include <kjobuidelegate.h>
 
 #include <QApplication>
-#include <QtCore/QArgument>
+#include <QtCore/qobjectdefs.h>
 #include <QtCore/QObject>
-#include <QtCore/QByteRef>
+#include <QtCore/qbytearray.h>
 #include <QtCore/QEvent>
-#include <QKeyEvent>
+#include <QtGui/qevent.h>
 #include <QtCore/QFile>
 #include <QScrollArea>
 

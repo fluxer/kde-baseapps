@@ -27,7 +27,7 @@
 #include <QVector>
 
 #include <QTreeWidget>
-#include <QTreeWidgetItem>
+#include <QtGui/qtreewidget.h>
 
 typedef  QVector<KTextEditor::Document*> DocVector;
 class KProcess;

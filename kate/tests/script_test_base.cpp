@@ -70,13 +70,14 @@
 #include <QtCore/QList>
 #include <QtCore/QTimer>
 #include <QtCore/QFileInfo>
-#include <QtCore/Q_PID>
+#include <QtCore/qprocess.h>
 #include <QtCore/QEvent>
 #include <QtCore/QTimer>
 #include <QtCore/QFileInfo>
-
+#include <QtCore/qdiriterator.h>
 #include <QtScript/QScriptEngine>
 #include <QTest>
+
 #include <qtest_kde.h>
 
 #include "testutils.h"

@@ -32,7 +32,7 @@
 #include <kaboutdata.h>
 #include <kpluginfactory.h>
 
-#include <QtGui/QKeyEvent>
+#include <QtGui/qevent.h>
 //END Includes
 
 K_PLUGIN_FACTORY(KateFileBrowserFactory, registerPlugin<KateFileBrowserPlugin>();)

@@ -23,7 +23,7 @@
 #include <libdolphin_export.h>
 
 #include <kitemviews/kitemmodelbase.h>
-#include <QSizeF>
+#include <QtCore/qsize.h>
 #include <QVector>
 
 class KItemListView;

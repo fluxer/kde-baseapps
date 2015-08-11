@@ -20,7 +20,7 @@
 
 #include "replace_matches.h"
 #include "moc_replace_matches.cpp"
-#include <QTreeWidgetItem>
+#include <QtGui/qtreewidget.h>
 #include <ktexteditor/movinginterface.h>
 #include <ktexteditor/movingrange.h>
 #include <klocale.h>

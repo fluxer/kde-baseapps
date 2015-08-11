@@ -27,7 +27,7 @@
 
 #include <QAbstractItemView>
 #include <QCheckBox>
-#include <QModelIndex>
+#include <QtCore/qabstractitemmodel.h>
 #include <QPainter>
 
 ServiceItemDelegate::ServiceItemDelegate(QAbstractItemView* itemView, QObject* parent) :

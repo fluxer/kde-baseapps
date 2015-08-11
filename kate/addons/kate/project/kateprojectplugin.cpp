@@ -29,7 +29,7 @@
 #include <ktexteditor/document.h>
 
 #include <QFileInfo>
-#include <QTime>
+#include <QtCore/qdatetime.h>
 
 #include "config.h"
 

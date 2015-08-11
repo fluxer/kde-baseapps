@@ -26,7 +26,7 @@
 #include "ktexteditor/range.h"
 
 #include <QObject>
-#include <QFlags>
+#include <QtCore/qglobal.h>
  
 namespace Kate {
 

@@ -22,7 +22,7 @@
 #include <KLocale>
 #include <QButtonGroup>
 #include <QCheckBox>
-#include <QDate>
+#include <QtCore/qdatetime.h>
 #include <QRadioButton>
 #include <QHBoxLayout>
 

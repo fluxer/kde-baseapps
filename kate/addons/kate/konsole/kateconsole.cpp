@@ -39,7 +39,7 @@
 #include <kdebug.h>
 #include <kmessagebox.h>
 
-#include <QShowEvent>
+#include <QtGui/qevent.h>
 #include <QLabel>
 #include <QCheckBox>
 #include <QVBoxLayout>

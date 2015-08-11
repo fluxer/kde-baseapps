@@ -37,8 +37,8 @@
 
 #include <QApplication>
 #include <QBoxLayout>
-#include <QDropEvent>
-#include <QGraphicsSceneDragDropEvent>
+#include <QtGui/qevent.h>
+#include <QtGui/qgraphicssceneevent.h>
 #include <QGraphicsView>
 #include <QPropertyAnimation>
 #include <QTimer>

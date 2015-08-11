@@ -23,7 +23,7 @@
 #include <KUrl>
 
 #include <QColor>
-#include <QKeyEvent>
+#include <QtGui/qevent.h>
 #include <QString>
 
 #include <kcapacitybar.h>

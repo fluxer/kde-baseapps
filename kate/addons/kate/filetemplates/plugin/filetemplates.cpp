@@ -62,7 +62,7 @@
 #include <QApplication>
 #include <khbox.h>
 
-#include <QWizardPage>
+#include <QtGui/qwizard.h>
 #include <QTreeWidget>
 
 #include <stdlib.h>

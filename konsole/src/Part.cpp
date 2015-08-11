@@ -23,7 +23,7 @@
 // Qt
 #include <QtCore/QStringList>
 #include <QtCore/QDir>
-#include <QtGui/QKeyEvent>
+#include <QtGui/qevent.h>
 
 // KDE
 #include <KAction>

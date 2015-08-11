@@ -33,7 +33,7 @@
 
 #include <QDebug>
 #include <QEvent>
-#include <QKeyEvent>
+#include <QtGui/qevent.h>
 
 //BEGIN KateColorTreeItem
 class KateColorTreeItem : public QTreeWidgetItem

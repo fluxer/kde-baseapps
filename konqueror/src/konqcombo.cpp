@@ -26,9 +26,9 @@
 #include <QStyle>
 #include <QDrag>
 #include <QPixmap>
-#include <QKeyEvent>
+#include <QtGui/qevent.h>
 #include <QItemDelegate>
-#include <QListWidgetItem>
+#include <QtGui/qlistwidget.h>
 #include <QtCore/QEvent>
 
 // KDE

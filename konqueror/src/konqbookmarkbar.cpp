@@ -24,7 +24,7 @@
 
 #include <QApplication>
 #include <QDebug>
-#include <QDropEvent>
+#include <QtGui/qevent.h>
 #include <QEvent>
 #include <QFile>
 #include <QRegExp>

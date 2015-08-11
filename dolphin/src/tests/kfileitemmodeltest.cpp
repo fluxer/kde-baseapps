@@ -20,6 +20,8 @@
 
 #include <qtest_kde.h>
 
+#include <QtCore/qmimedata.h>
+
 #include <KDirLister>
 #include <kio/job.h>
 

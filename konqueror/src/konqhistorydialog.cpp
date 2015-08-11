@@ -29,7 +29,7 @@
 #include <QToolBar>
 #include <QToolButton>
 #include <QVBoxLayout>
-#include <QModelIndex>
+#include <QtCore/qabstractitemmodel.h>
 #include <QTreeView>
 
 #include <kaction.h>

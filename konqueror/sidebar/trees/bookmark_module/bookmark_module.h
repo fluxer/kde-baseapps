@@ -19,7 +19,7 @@
 #ifndef BOOKMARK_MODULE_H
 #define BOOKMARK_MODULE_H
 
-#include <QKeyEvent>
+#include <QtGui/qevent.h>
 #include <QtCore/QMap>
 #include <QtCore/QObject>
 

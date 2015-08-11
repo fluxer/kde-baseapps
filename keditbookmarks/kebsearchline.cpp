@@ -29,7 +29,7 @@
 
 #include <QHeaderView>
 #include <QBoxLayout>
-#include <QKeyEvent>
+#include <QtGui/qevent.h>
 #include <QMenu>
 
 

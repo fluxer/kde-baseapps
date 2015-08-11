@@ -22,7 +22,7 @@
 #include <fixx11h.h>
 
 #include <kapplication.h>
-#include <QX11Info>
+#include <QtGui/qx11info_x11.h>
 
 static XtEvents* self;
 

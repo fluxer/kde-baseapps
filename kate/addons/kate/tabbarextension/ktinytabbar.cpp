@@ -37,7 +37,7 @@
 #include <kstringhandler.h>
 
 #include <QApplication> // QApplication::sendEvent
-#include <QtAlgorithms> // qSort
+#include <QtCore/qalgorithms.h> // qSort
 
 KTinyTabBar::SortType global_sortType;
 

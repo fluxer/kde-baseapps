@@ -23,7 +23,7 @@
 
 #include <kicon.h>
 
-#include <QAbstractListModel>
+#include <QtCore/qabstractitemmodel.h>
 #include <qstring.h>
 #include <qhash.h>
 

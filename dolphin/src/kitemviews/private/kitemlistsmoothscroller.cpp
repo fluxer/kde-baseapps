@@ -23,7 +23,7 @@
 #include <QEvent>
 #include <QPropertyAnimation>
 #include <QScrollBar>
-#include <QWheelEvent>
+#include <QtGui/qevent.h>
 
 #include <KDebug>
 

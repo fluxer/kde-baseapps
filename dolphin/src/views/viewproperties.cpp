@@ -29,7 +29,7 @@
 #include <KUrl>
 
 #include <QCryptographicHash>
-#include <QDate>
+#include <QtCore/qdatetime.h>
 #include <QFile>
 #include <QFileInfo>
 

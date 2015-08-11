@@ -22,7 +22,7 @@
 #include "katecompletionmodel.h"
 
 #include <QTextEdit>
-#include <QMultiMap>
+#include <QtCore/qmap.h>
 #include <QTimer>
 #include <QVarLengthArray>
 

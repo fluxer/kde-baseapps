@@ -21,7 +21,7 @@
 #include "search_open_files.h"
 #include "moc_search_open_files.cpp"
 
-#include <QTime>
+#include <QtCore/qdatetime.h>
 
 SearchOpenFiles::SearchOpenFiles(QObject *parent) : QObject(parent), m_nextIndex(-1), m_cancelSearch(true)
 {

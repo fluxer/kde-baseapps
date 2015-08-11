@@ -25,9 +25,9 @@
 #include "kbookmarkmodel/commands.h"
 
 #include <QHeaderView>
-#include <QItemSelection>
+#include <QtGui/qitemselectionmodel.h>
 #include <QMenu>
-#include <QKeyEvent>
+#include <QtGui/qevent.h>
 #include <QBrush>
 #include <QPalette>
 

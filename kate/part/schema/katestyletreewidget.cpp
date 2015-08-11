@@ -22,7 +22,7 @@
 #include "katestyletreewidget.h"
 
 #include <QtGui/QPainter>
-#include <QtGui/QKeyEvent>
+#include <QtGui/qevent.h>
 #include <QtGui/QAction>
 #include <QtGui/QStyledItemDelegate>
 #include <QtGui/QHeaderView>

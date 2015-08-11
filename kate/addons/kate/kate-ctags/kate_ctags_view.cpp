@@ -23,7 +23,7 @@
 
 #include <QFileInfo>
 #include <KFileDialog>
-#include <QKeyEvent>
+#include <QtGui/qevent.h>
 
 #include <kmenu.h>
 #include <kactioncollection.h>

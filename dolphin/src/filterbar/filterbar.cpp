@@ -21,7 +21,7 @@
 #include "filterbar.h"
 
 #include <QBoxLayout>
-#include <QKeyEvent>
+#include <QtGui/qevent.h>
 #include <QLabel>
 #include <QToolButton>
 

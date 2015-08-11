@@ -20,7 +20,7 @@
 #define KDATECOMBO_H
 
 #include <QWidget>
-#include <QtCore/QDate>
+#include <QtCore/qdatetime.h>
 
 #include <kcombobox.h>
 

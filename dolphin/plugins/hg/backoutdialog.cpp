@@ -27,7 +27,7 @@
 #include <QtGui/QCheckBox>
 #include <QtGui/QGridLayout>
 #include <QtGui/QVBoxLayout>
-#include <QtGui/QListWidgetItem>
+#include <QtGui/qlistwidget.h>
 #include <QtGui/QLabel>
 #include <QtCore/QTextCodec>
 #include <QtCore/QProcess>

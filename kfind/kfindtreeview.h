@@ -21,9 +21,9 @@
 #define KFINDTREEVIEW__H
 
 #include <QTreeView>
-#include <QtCore/QAbstractTableModel>
+#include <QtCore/qabstractitemmodel.h>
 #include <QSortFilterProxyModel>
-#include <QDragMoveEvent>
+#include <QtGui/qevent.h>
 
 #include <kurl.h>
 #include <kicon.h>

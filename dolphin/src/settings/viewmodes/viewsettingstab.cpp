@@ -32,7 +32,7 @@
 #include <QLabel>
 #include <QSlider>
 #include <QVBoxLayout>
-#include <QHelpEvent>
+#include <QtGui/qevent.h>
 #include <QApplication>
 
 #include <views/zoomlevelinfo.h>

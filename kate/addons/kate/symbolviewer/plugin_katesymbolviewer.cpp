@@ -59,7 +59,7 @@
 #include <QVBoxLayout>
 #include <QGroupBox>
 
-#include <QResizeEvent>
+#include <QtGui/qevent.h>
 #include <QMenu>
 #include <QPainter>
 

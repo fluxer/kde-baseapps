@@ -28,7 +28,7 @@
 #include <QtCore/QEvent>
 #include <QPixmap>
 #include <QtCore/QStringList>
-#include <QDragEnterEvent>
+#include <QtGui/qevent.h>
 #include <QDBusInterface>
 #include <QDBusReply>
 

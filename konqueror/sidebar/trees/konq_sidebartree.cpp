@@ -30,7 +30,7 @@
 #include <QtCore/QTimer>
 #include <QApplication>
 #include <QPixmap>
-#include <QKeyEvent>
+#include <QtGui/qevent.h>
 #include <QtCore/QEvent>
 #include <QFrame>
 

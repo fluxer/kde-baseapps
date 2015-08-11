@@ -33,7 +33,7 @@
 
 #include <QPixmap>
 #include <QLabel>
-#include <QResizeEvent>
+#include <QtGui/qevent.h>
 #include <QTreeWidget>
 #include <QList>
 #include <QTimer>

@@ -26,7 +26,7 @@
 #include <QtCore/QTextStream>
 
 #include <QFile>
-#include <QXmlSimpleReader>
+#include <QtXml/qxml.h>
 
 // KDE
 #include <qtest_kde.h>

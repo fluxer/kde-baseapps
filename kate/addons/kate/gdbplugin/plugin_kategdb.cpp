@@ -31,7 +31,7 @@
 #include <QtGui/QTextEdit>
 #include <QtGui/QScrollBar>
 #include <QtGui/QTreeWidget>
-#include <QtGui/QKeyEvent>
+#include <QtGui/qevent.h>
 
 #include <kaction.h>
 #include <kactioncollection.h>

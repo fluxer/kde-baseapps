@@ -27,7 +27,7 @@
 #include <kvbox.h>
 #include <QLabel>
 #include <QLineEdit>
-#include <QListWidgetItem>
+#include <QtGui/qlistwidget.h>
 
 #include <kdebug.h>
 #include <kstandardguiitem.h>

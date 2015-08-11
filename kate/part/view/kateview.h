@@ -33,7 +33,7 @@
 #include <ktexteditor/annotationinterface.h>
 
 #include <QtCore/QPointer>
-#include <QModelIndex>
+#include <QtCore/qabstractitemmodel.h>
 #include <QtGui/QMenu>
 
 #include <kdebug.h>

@@ -31,14 +31,14 @@
 #include <QRegExp>
 #include <QStyle>
 #include <QPixmap>
-#include <QPaintEvent>
-#include <QKeyEvent>
-#include <QShowEvent>
-#include <QContextMenuEvent>
-#include <QMouseEvent>
+#include <QtGui/qevent.h>
+#include <QtGui/qevent.h>
+#include <QtGui/qevent.h>
+#include <QtGui/qevent.h>
+#include <QtGui/qevent.h>
 #include <QToolTip>
 #include <QStylePainter>
-#include <QStyleOptionFocusRect>
+#include <QtGui/qstyleoption.h>
 
 #include <klocale.h>
 #include <kconfig.h>

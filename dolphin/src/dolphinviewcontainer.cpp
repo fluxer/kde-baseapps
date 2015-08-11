@@ -21,8 +21,8 @@
 #include <KProtocolManager>
 
 #include <QApplication>
-#include <QKeyEvent>
-#include <QItemSelection>
+#include <QtGui/qevent.h>
+#include <QtGui/qitemselectionmodel.h>
 #include <QBoxLayout>
 #include <QTimer>
 #include <QScrollBar>

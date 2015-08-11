@@ -22,6 +22,8 @@
 #include "konqhistory.h"
 #include "konqhistorysettings.h"
 
+#include <QtCore/qdatetime.h>
+
 KonqHistoryProxyModel::KonqHistoryProxyModel(KonqHistorySettings *settings, QObject *parent)
     : KSortFilterProxyModel(parent)
     , m_settings(settings)

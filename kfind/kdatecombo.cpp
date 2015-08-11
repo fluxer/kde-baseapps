@@ -22,7 +22,7 @@
 
 #include <QtCore/QTimer>
 //Added by qt3to4:
-#include <QKeyEvent>
+#include <QtGui/qevent.h>
 #include <QtCore/QEvent>
 
 #include <kglobal.h>

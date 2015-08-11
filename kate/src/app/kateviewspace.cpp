@@ -40,7 +40,7 @@
 #include <QMenu>
 #include <QTimer>
 #include <QEvent>
-#include <QMouseEvent>
+#include <QtGui/qevent.h>
 #include <QSizeGrip>
 
 //BEGIN KateViewSpace

@@ -25,7 +25,7 @@
 #include <kitemviews/kitemlistwidget.h>
 
 #include <QPixmap>
-#include <QPointF>
+#include <QtCore/qpoint.h>
 #include <QStaticText>
 
 class KItemListRoleEditor;

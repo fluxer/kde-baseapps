@@ -46,7 +46,7 @@
 #include <QtCore/QTextStream>
 #include <QtCore/QTimer>
 #include <QtCore/QTextCodec>
-#include <QtCore/QDate>
+#include <QtCore/qdatetime.h>
 
 #include <limits.h>
 

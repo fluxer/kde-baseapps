@@ -34,12 +34,12 @@
 #include <kglobalsettings.h>
 
 #include <QApplication>
-#include <QContextMenuEvent>
+#include <QtGui/qevent.h>
 #include <QIcon>
 #include <QMenu>
 #include <QPainter>
 #include <QStyle>
-#include <QStyleOptionButton>
+#include <QtGui/qstyleoption.h>
 #include <qdrawutil.h>
 
 QColor KTinyTabButton::s_predefinedColors[] = { Qt::red, Qt::yellow, Qt::green, Qt::cyan, Qt::blue, Qt::magenta };

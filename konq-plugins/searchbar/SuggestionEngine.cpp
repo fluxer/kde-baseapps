@@ -23,7 +23,7 @@
 #include <KUrl>
 #include <kservice.h>
 
-#include <QXmlStreamReader>
+#include <QtCore/qxmlstream.h>
 
 SuggestionEngine::SuggestionEngine(const QString &engineName, QObject *parent)
     : QObject(parent),

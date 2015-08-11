@@ -24,7 +24,7 @@
 #include <ktexteditor/document.h>
 #include <ktexteditor/view.h>
 
-#include <QContextMenuEvent>
+#include <QtGui/qevent.h>
 #include <QSortFilterProxyModel>
 #include <KMimeType>
 #include <KMimeTypeTrader>

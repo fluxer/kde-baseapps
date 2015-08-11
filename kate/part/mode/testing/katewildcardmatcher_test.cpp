@@ -18,7 +18,7 @@
 
 #include "../katewildcardmatcher.h"
 #include <QtGlobal>
-#include <QtDebug>
+#include <QtCore/qdebug.h>
 
 
 

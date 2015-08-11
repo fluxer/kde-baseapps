@@ -24,7 +24,7 @@
 
 // Qt
 #include <QBoxLayout>
-#include <QKeyEvent>
+#include <QtGui/qevent.h>
 #include <QLabel>
 #include <QLayout>
 #include <QPushButton>

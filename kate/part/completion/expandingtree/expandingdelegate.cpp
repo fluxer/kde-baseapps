@@ -20,10 +20,10 @@
 
 #include "expandingdelegate.h"
 
-#include <QtGui/QTextLine>
+#include <QtGui/qtextlayout.h>
 #include <QtGui/QPainter>
 #include <QtGui/QBrush>
-#include <QKeyEvent>
+#include <QtGui/qevent.h>
 #include <QTreeView>
 #include <QApplication>
 

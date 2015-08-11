@@ -24,9 +24,9 @@
 
 #include "kitemlistview.h"
 
-#include <QGraphicsSceneResizeEvent>
+#include <QtGui/qgraphicssceneevent.h>
 #include <QPainter>
-#include <QStyleOptionGraphicsItem>
+#include <QtGui/qstyleoption.h>
 #include <KDebug>
 
 KItemListGroupHeader::KItemListGroupHeader(QGraphicsWidget* parent) :

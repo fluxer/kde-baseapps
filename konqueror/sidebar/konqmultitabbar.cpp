@@ -19,7 +19,7 @@
 */
 
 #include "konqmultitabbar.h"
-#include <QDragEnterEvent>
+#include <QtGui/qevent.h>
 #include <kdebug.h>
 
 KonqMultiTabBar::KonqMultiTabBar(QWidget* parent)

@@ -24,7 +24,7 @@
 */
 
 #include "plugin_paths.h"
-#include <QtCore/QGlobalStatic>
+#include <QtCore/qglobal.h>
 #include <ksharedconfig.h>
 #include <kconfiggroup.h>
 #include <stdlib.h>

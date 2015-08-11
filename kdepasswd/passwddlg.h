@@ -27,7 +27,7 @@
 
 #include <kpassworddialog.h>
 #include <knewpassworddialog.h>
-#include <QtCore/QByteRef>
+#include <QtCore/qbytearray.h>
 
 class KDEpasswd1Dialog
     : public KPasswordDialog

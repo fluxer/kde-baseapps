@@ -43,11 +43,11 @@
 
 #include <QEvent>
 //Added by qt3to4:
-#include <QContextMenuEvent>
+#include <QtGui/qevent.h>
 #include <QPixmap>
-#include <QChildEvent>
+#include <QtCore/qcoreevent.h>
 #include <QSizePolicy>
-#include <QDomDocument>
+#include <QtXml/qdom.h>
 namespace KateMDI
 {
 

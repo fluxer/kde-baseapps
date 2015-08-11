@@ -45,7 +45,7 @@
 #include <klineedit.h>
 #include <kcolorscheme.h>
 
-#include <QKeyEvent>
+#include <QtGui/qevent.h>
 #include <QClipboard>
 #include <QMenu>
 #include <QMetaObject>

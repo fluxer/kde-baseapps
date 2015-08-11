@@ -33,7 +33,6 @@
 # include <KToggleAction>
 # include <QtCore/QList>
 # include <QtGui/QTreeWidget>
-# include <QtGui/QTreeWidgetItem>
 # include <QtGui/QCheckBox>
 
 namespace kate {

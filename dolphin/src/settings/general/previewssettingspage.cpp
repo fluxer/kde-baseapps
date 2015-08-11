@@ -40,7 +40,7 @@
 #include <QListView>
 #include <QPainter>
 #include <QScrollBar>
-#include <QShowEvent>
+#include <QtGui/qevent.h>
 #include <QSlider>
 #include <QSortFilterProxyModel>
 #include <QVBoxLayout>

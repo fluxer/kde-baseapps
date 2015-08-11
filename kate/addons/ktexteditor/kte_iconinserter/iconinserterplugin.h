@@ -26,7 +26,7 @@
 
 #include <kpluginfactory.h>
 
-#include <QVariantList>
+#include <QtCore/qvariant.h>
 
 #include <kaction.h>
 #include <kxmlguiclient.h>

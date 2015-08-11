@@ -27,7 +27,7 @@
 #include <QVector>
 #include <QMutex>
 #include <QStringList>
-#include <QTime>
+#include <QtCore/qdatetime.h>
 
 class SearchDiskFiles: public QThread
 {

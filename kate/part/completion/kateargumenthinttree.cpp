@@ -30,7 +30,7 @@
 #include "expandingtree/expandingwidgetmodel.h"
 #include "katecompletiondelegate.h"
 #include "kateview.h"
-#include <QModelIndex>
+#include <QtCore/qabstractitemmodel.h>
 
 
 KateArgumentHintTree::KateArgumentHintTree( KateCompletionWidget* parent ) : ExpandingTree(0), m_parent(parent) { //Do not use the completion-widget as widget-parent, because the argument-hint-tree will be rendered separately

@@ -40,7 +40,7 @@
 #include <QCompleter>
 #include <QDirModel>
 #include <QScrollBar>
-#include <QKeyEvent>
+#include <QtGui/qevent.h>
 #include <QFileInfo>
 #include <QDir>
 

@@ -23,7 +23,7 @@ class SQLManager;
 class QMouseEvent;
 
 #include <QTreeWidget>
-#include <QTreeWidgetItem>
+#include <QtGui/qtreewidget.h>
 #include <qstring.h>
 #include <qsqldriver.h>
 

@@ -22,7 +22,7 @@
 
 #include <QtCore/QList>
 #include <QtCore/QStringList>
-#include <QtXml/QDomDocument>
+#include <QtXml/qdom.h>
 
 class KConfig;
 

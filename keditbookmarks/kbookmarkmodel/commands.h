@@ -19,7 +19,7 @@
 #ifndef KBOOKMARKMODEL__COMMANDS_H
 #define KBOOKMARKMODEL__COMMANDS_H
 
-#include <QUndoCommand>
+#include <QtGui/qundostack.h>
 #include "kbookmarkmodel_export.h"
 #include <kbookmark.h>
 

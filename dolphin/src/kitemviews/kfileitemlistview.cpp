@@ -31,7 +31,7 @@
 #include <KTextEdit>
 
 #include <QPainter>
-#include <QTextLine>
+#include <QtGui/qtextlayout.h>
 #include <QTimer>
 
 // #define KFILEITEMLISTVIEW_DEBUG

@@ -20,7 +20,7 @@
 #include "konqdraggablelabel.h"
 #include "konqmainwindow.h"
 #include "konqview.h"
-#include <QMouseEvent>
+#include <QtGui/qevent.h>
 #include <QApplication>
 #include <QDrag>
 

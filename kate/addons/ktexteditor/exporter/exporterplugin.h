@@ -24,7 +24,7 @@
 
 #include <kpluginfactory.h>
 
-#include <QtCore/QVariantList>
+#include <QtCore/qvariant.h>
 
 namespace KTextEditor {
 class View;

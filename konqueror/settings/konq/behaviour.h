@@ -22,7 +22,7 @@
 #include <kcmodule.h>
 #include <kconfig.h>
 #include <ksharedconfig.h>
-#include <QtCore/QVariantList>
+#include <QtCore/qvariant.h>
 
 class QCheckBox;
 class QLabel;

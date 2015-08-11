@@ -36,7 +36,7 @@
 #include <kdebug.h>
 
 #include <QtGui/QPainter>
-#include <QtGui/QTextLine>
+#include <QtGui/qtextlayout.h>
 #include <QtCore/QStack>
 #include <QtGui/QBrush>
 

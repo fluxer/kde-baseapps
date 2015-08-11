@@ -26,7 +26,7 @@
 
 #include <QtCore/QDir>
 #include <QFileSystemModel>
-#include <QListWidgetItem>
+#include <QtGui/qlistwidget.h>
 #include <QtCore/QFileInfo>
 #include <QtCore/QDirIterator>
 

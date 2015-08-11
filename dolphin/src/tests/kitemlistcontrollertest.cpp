@@ -32,7 +32,7 @@
 #include <KConfigGroup>
 #include <KGlobalSettings>
 
-#include <QGraphicsSceneMouseEvent>
+#include <QtGui/qgraphicssceneevent.h>
 
 namespace {
     const int DefaultTimeout = 2000;

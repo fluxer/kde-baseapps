@@ -87,7 +87,7 @@
 #include <QtGui/QFont>
 #include <QtCore/QFileInfo>
 #include <QtGui/QStyle>
-#include <QtGui/QKeyEvent>
+#include <QtGui/qevent.h>
 #include <QtGui/QLayout>
 #include <QtCore/QMimeData>
 

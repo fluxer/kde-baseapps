@@ -82,7 +82,7 @@
 
 #include <QDesktopWidget>
 #include <QDBusMessage>
-#include <QKeyEvent>
+#include <QtGui/qevent.h>
 #include <QClipboard>
 #include <QToolButton>
 

@@ -28,7 +28,7 @@
 #include "konqframestatusbar.h"
 
 // Qt
-#include <QKeyEvent>
+#include <QtGui/qevent.h>
 #include <QApplication>
 #include <QtCore/QEvent>
 #include <QLabel>

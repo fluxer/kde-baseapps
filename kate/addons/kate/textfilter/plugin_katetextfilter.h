@@ -28,7 +28,7 @@
 #include <ktexteditor/commandinterface.h>
 
 #include <QProcess>
-#include <QVariantList>
+#include <QtCore/qvariant.h>
 
 class KProcess;
 

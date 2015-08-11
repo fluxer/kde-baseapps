@@ -24,6 +24,8 @@
 #include "katetextcursor.h"
 #include "katetextfolding.h"
 
+#include <QtCore/qdir.h>
+
 QTEST_MAIN(KateTextBufferTest)
 
 KateTextBufferTest::KateTextBufferTest()

@@ -32,7 +32,7 @@
 
 #include <QBoxLayout>
 #include <QDir>
-#include <QShowEvent>
+#include <QtGui/qevent.h>
 
 TerminalPanel::TerminalPanel(QWidget* parent) :
     Panel(parent),

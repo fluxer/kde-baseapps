@@ -23,7 +23,7 @@
 
 #include <QObject>
 #include <QRegExp>
-#include <QTime>
+#include <QtCore/qdatetime.h>
 #include <ktexteditor/document.h>
 
 class SearchOpenFiles: public QObject

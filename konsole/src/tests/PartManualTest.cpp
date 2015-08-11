@@ -24,7 +24,7 @@
 #include <QWidget>
 #include <QLabel>
 #include <QVBoxLayout>
-#include <QtGui/QKeyEvent>
+#include <QtGui/qevent.h>
 #include <qtestkeyboard.h>
 
 // System

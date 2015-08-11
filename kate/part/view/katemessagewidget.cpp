@@ -32,7 +32,7 @@
 #include <QtCore/QTimer>
 #include <QtGui/QVBoxLayout>
 #include <QToolTip>
-#include <QShowEvent>
+#include <QtGui/qevent.h>
 
 static const int s_defaultAutoHideTime = 6 * 1000;
 

@@ -36,7 +36,7 @@
 #include <QPixmap>
 #include <QList>
 #include <QEvent>
-#include <QChildEvent>
+#include <QtCore/qcoreevent.h>
 #include <QPointer>
 
 class KActionMenu;

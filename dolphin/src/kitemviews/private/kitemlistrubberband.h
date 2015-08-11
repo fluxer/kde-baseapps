@@ -22,7 +22,7 @@
 
 #include <libdolphin_export.h>
 #include <QObject>
-#include <QPointF>
+#include <QtCore/qpoint.h>
 
 /**
  * @brief Manages the rubberband when selecting items.

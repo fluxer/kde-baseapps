@@ -30,7 +30,7 @@
 #include <QList>
 #include <QActionGroup>
 #include <QTreeWidget>
-#include <QTreeWidgetItem>
+#include <QtGui/qtreewidget.h>
 
 class KateSessionManager;
 class KPushButton;

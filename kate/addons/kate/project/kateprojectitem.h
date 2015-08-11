@@ -21,7 +21,7 @@
 #ifndef KATE_PROJECT_ITEM_H
 #define KATE_PROJECT_ITEM_H
 
-#include <QStandardItem>
+#include <QtGui/qstandarditemmodel.h>
 #include <KTextEditor/ModificationInterface>
 
 namespace KTextEditor {

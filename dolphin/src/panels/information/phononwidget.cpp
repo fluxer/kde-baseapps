@@ -28,7 +28,7 @@
 
 #include <QVBoxLayout>
 #include <QHBoxLayout>
-#include <QShowEvent>
+#include <QtGui/qevent.h>
 #include <QToolButton>
 
 #include <KDialog>

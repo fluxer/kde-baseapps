@@ -28,7 +28,7 @@
 
 #include <QDir>
 #include <QGridLayout>
-#include <QResizeEvent>
+#include <QtGui/qevent.h>
 
 
 #include <kapplication.h>
@@ -42,7 +42,7 @@
 #include <QLayout>
 #include <QObject>
 #include <QPushButton>
-#include <QX11EmbedContainer>
+#include <QtGui/qx11embed_x11.h>
 #include <QTextStream>
 #include <QRegExp>
 #include <QTimer>

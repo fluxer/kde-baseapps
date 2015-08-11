@@ -22,7 +22,7 @@
 #include "katelayoutcache.h"
 #include "moc_katelayoutcache.cpp"
 
-#include <QtAlgorithms>
+#include <QtCore/qalgorithms.h>
 
 #include "katerenderer.h"
 #include "kateview.h"

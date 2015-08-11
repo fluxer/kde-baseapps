@@ -24,7 +24,7 @@
 #include "kateproject.h"
 
 #include <QVBoxLayout>
-#include <QKeyEvent>
+#include <QtGui/qevent.h>
 
 #include <kparts/part.h>
 

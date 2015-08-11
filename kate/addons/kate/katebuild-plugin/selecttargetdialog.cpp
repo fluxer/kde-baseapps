@@ -22,7 +22,7 @@
 #include <QCoreApplication>
 #include <QGridLayout>
 #include <QLabel>
-#include <QKeyEvent>
+#include <QtGui/qevent.h>
 #include <QLineEdit>
 #include <QListWidget>
 

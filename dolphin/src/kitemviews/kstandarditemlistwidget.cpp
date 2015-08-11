@@ -34,14 +34,14 @@
 #include "private/kitemlistroleeditor.h"
 #include "private/kpixmapmodifier.h"
 
-#include <QFontMetricsF>
+#include <QtGui/qfontmetrics.h>
 #include <QGraphicsScene>
-#include <QGraphicsSceneResizeEvent>
+#include <QtGui/qgraphicssceneevent.h>
 #include <QGraphicsView>
 #include <QPainter>
 #include <QStyleOption>
 #include <QTextLayout>
-#include <QTextLine>
+#include <QtGui/qtextlayout.h>
 #include <QPixmapCache>
 
 // #define KSTANDARDITEMLISTWIDGET_DEBUG

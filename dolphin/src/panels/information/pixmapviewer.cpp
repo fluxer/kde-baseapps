@@ -24,7 +24,7 @@
 #include <QLayout>
 #include <QPainter>
 #include <QPixmap>
-#include <QKeyEvent>
+#include <QtGui/qevent.h>
 
 PixmapViewer::PixmapViewer(QWidget* parent, Transition transition) :
     QWidget(parent),

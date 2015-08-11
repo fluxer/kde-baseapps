@@ -29,7 +29,7 @@
 
 #include <QObject>
 #include <QPixmap>
-#include <QPointF>
+#include <QtCore/qpoint.h>
 
 class KItemModelBase;
 class KItemListKeyboardSearchManager;

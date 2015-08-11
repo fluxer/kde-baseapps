@@ -21,7 +21,7 @@
 #ifndef EXPANDING_WIDGET_MODEL_H
 #define EXPANDING_WIDGET_MODEL_H
 
-#include <QAbstractTableModel>
+#include <QtCore/qabstractitemmodel.h>
 #include <QtCore/QHash>
 #include <QIcon>
 #include <QPointer>

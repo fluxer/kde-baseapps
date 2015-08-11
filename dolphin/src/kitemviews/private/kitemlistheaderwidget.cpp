@@ -24,9 +24,9 @@
 #include <kitemviews/kitemmodelbase.h>
 
 #include <QApplication>
-#include <QGraphicsSceneHoverEvent>
+#include <QtGui/qgraphicssceneevent.h>
 #include <QPainter>
-#include <QStyleOptionHeader>
+#include <QtGui/qstyleoption.h>
 
 #include <KDebug>
 

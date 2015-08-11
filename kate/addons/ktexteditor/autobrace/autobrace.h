@@ -28,7 +28,7 @@
 #include <QtCore/QEvent>
 #include <QtCore/QObject>
 #include <QtCore/QHash>
-#include <QtCore/QVariantList>
+#include <QtCore/qvariant.h>
 
 class AutoBracePlugin
     : public KTextEditor::Plugin

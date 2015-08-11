@@ -53,7 +53,7 @@
 #include <QtGui/QPainter>
 #include <QtGui/QClipboard>
 #include <QtGui/QPixmap>
-#include <QtGui/QKeyEvent>
+#include <QtGui/qevent.h>
 #include <QtGui/QLayout>
 #include <QToolTip>
 

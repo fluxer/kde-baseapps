@@ -23,7 +23,7 @@
 
 #include "snippetview.h"
 
-#include <QContextMenuEvent>
+#include <QtGui/qevent.h>
 #include <KMenu>
 #include <KMessageBox>
 #include <KAction>

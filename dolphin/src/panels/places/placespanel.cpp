@@ -45,9 +45,9 @@
 #include "placesitemmodel.h"
 #include "placesview.h"
 #include <views/draganddrophelper.h>
-#include <QGraphicsSceneDragDropEvent>
+#include <QtGui/qgraphicssceneevent.h>
 #include <QVBoxLayout>
-#include <QShowEvent>
+#include <QtGui/qevent.h>
 
 PlacesPanel::PlacesPanel(QWidget* parent) :
     Panel(parent),

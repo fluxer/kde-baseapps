@@ -32,7 +32,7 @@
 #include <QList>
 #include <QMap>
 #include <QIcon>
-#include <QResizeEvent>
+#include <QtGui/qevent.h>
 
 class KTinyTabButton;
 class KConfigBase;

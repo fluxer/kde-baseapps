@@ -27,7 +27,7 @@
 
 class QRegExp;
 
-#include <QTreeWidgetItem>
+#include <QtGui/qtreewidget.h>
 #include <QString>
 #include <QStack>
 

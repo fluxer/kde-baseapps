@@ -38,9 +38,9 @@
 
 #include <kparts/browserextension.h>  // for OpenUrlArguments
 #include <kio/job.h>
-#include <QDBusObjectPath>
+#include <QtDBus/qdbusextratypes.h>
 
-#include <QX11EmbedWidget>
+#include <QtGui/qx11embed_x11.h>
 
 #define XP_UNIX
 #define MOZ_X11

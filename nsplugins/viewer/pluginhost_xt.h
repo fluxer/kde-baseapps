@@ -27,7 +27,7 @@
 #define PLUGIN_HOST_XT_H
 
 #include "pluginhost.h"
-#include <QX11EmbedContainer>
+#include <QtGui/qx11embed_x11.h>
 
 #include <X11/Intrinsic.h>
 #include <X11/Composite.h>

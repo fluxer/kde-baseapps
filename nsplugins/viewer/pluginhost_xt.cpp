@@ -24,7 +24,7 @@
 */
 
 #include "pluginhost_xt.h"
-#include <QX11Info>
+#include <QtGui/qx11info_x11.h>
 #include <QVBoxLayout>
 #include <QLabel>
 

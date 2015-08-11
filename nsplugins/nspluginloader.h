@@ -30,7 +30,7 @@
 #include <QHash>
 #include <QObject>
 #include <QWidget>
-#include <QX11EmbedContainer>
+#include <QtGui/qx11embed_x11.h>
 
 #include <KUrl>
 #include <kdemacros.h>

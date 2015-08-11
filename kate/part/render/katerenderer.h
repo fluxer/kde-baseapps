@@ -28,9 +28,9 @@
 #include "katelinelayout.h"
 
 #include <QtGui/QFont>
-#include <QtGui/QFontMetricsF>
+#include <QtGui/qfontmetrics.h>
 #include <QtCore/QList>
-#include <QtGui/QTextLine>
+#include <QtGui/qtextlayout.h>
 
 class KateDocument;
 class KateView;

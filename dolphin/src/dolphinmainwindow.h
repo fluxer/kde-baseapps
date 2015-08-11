@@ -29,7 +29,7 @@
 #include <KIcon>
 
 #include <QList>
-#include <QWeakPointer>
+#include <QtCore/qsharedpointer.h>
 
 typedef KIO::FileUndoManager::CommandType CommandType;
 

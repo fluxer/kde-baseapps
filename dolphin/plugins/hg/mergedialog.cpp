@@ -28,7 +28,7 @@
 #include <QtGui/QHBoxLayout>
 #include <QtGui/QVBoxLayout>
 #include <QtGui/QTextEdit>
-#include <QtGui/QListWidgetItem>
+#include <QtGui/qlistwidget.h>
 #include <QtCore/QTextCodec>
 #include <kpushbutton.h>
 #include <kcombobox.h>

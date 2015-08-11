@@ -31,11 +31,11 @@
 
 #include <KAction>
 
-#include <QDragEnterEvent>
+#include <QtGui/qevent.h>
 #include <QEvent>
-#include <QDropEvent>
+#include <QtGui/qevent.h>
 #include <QVBoxLayout>
-#include <QModelIndex>
+#include <QtCore/qabstractitemmodel.h>
 #include <QHash>
 #include <QStackedWidget>
 

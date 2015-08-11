@@ -49,7 +49,7 @@
 
 #ifdef Q_WS_X11
 #include <X11/Xlib.h>
-#include <QX11Info>
+#include <QtGui/qx11info_x11.h>
 #endif
 
 static const char appName[] = "kfmclient";

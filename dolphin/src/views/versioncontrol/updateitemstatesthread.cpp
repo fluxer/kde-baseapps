@@ -21,7 +21,7 @@
 
 #include <kversioncontrolplugin2.h>
 
-#include <QMutexLocker>
+#include <QtCore/qmutex.h>
 
 UpdateItemStatesThread::UpdateItemStatesThread(KVersionControlPlugin* plugin,
                                                const QMap<QString, QVector<VersionControlObserver::ItemState> >& itemStates) :

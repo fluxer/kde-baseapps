@@ -43,7 +43,7 @@
 #include <QListWidget>
 #include <QPushButton>
 #include <QSortFilterProxyModel>
-#include <QShowEvent>
+#include <QtGui/qevent.h>
 
 namespace
 {

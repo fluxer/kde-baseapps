@@ -20,7 +20,7 @@
 #ifndef SERVICEMODEL_H
 #define SERVICEMODEL_H
 
-#include <QAbstractListModel>
+#include <QtCore/qabstractitemmodel.h>
 #include <QList>
 
 /**

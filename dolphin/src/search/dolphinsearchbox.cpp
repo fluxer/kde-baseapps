@@ -32,7 +32,7 @@
 #include <QEvent>
 #include <QFormLayout>
 #include <QHBoxLayout>
-#include <QKeyEvent>
+#include <QtGui/qevent.h>
 #include <QLabel>
 #include <QScrollArea>
 #include <QTimer>

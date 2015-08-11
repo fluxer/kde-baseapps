@@ -24,7 +24,7 @@
 #define PLUGIN_HOST_XEMBED_H
 
 #include "pluginhost.h"
-#include <QX11EmbedContainer>
+#include <QtGui/qx11embed_x11.h>
 
 class PluginHostXEmbed : public PluginHost
 {

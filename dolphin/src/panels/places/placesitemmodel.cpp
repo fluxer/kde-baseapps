@@ -37,7 +37,7 @@
 #include <KUser>
 #include "placesitem.h"
 #include <QAction>
-#include <QDate>
+#include <QtCore/qdatetime.h>
 #include <QMimeData>
 #include <QTimer>
 

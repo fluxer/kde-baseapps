@@ -25,7 +25,7 @@
 #include <kundostack.h>
 
 #include <QAction>
-#include <QUndoCommand>
+#include <QtGui/qundostack.h>
 
 class CommandHistory::Private
 {

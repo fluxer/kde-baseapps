@@ -19,6 +19,8 @@
 
 #include <qtest_kde.h>
 
+#include <QtCore/qmimedata.h>
+
 #include <kurl.h>
 #include <kdebug.h>
 #include <assert.h>

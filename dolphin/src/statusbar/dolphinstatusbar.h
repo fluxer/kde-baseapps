@@ -20,7 +20,7 @@
 #ifndef DOLPHINSTATUSBAR_H
 #define DOLPHINSTATUSBAR_H
 
-#include <QTime>
+#include <QtCore/qdatetime.h>
 #include <QWidget>
 
 class KUrl;

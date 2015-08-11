@@ -27,7 +27,7 @@
 // Qt
 #include <QtCore/QStringList>
 #include <QtCore/QHash>
-//#include <QtCore/QByteRef>
+//#include <QtCore/qbytearray.h>
 #include <QtCore/QUuid>
 #include <QtCore/QSize>
 #include <QtCore/QProcess>

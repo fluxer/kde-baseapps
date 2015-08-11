@@ -43,7 +43,7 @@
 #include <QFileInfo>
 #include <QPoint>
 #include <QtDBus/QtDBus>
-#include <QtAlgorithms>
+#include <QtCore/qalgorithms.h>
 #include <QDirIterator>
 #include <QtCore/QDir>
 #include <QDBusArgument>

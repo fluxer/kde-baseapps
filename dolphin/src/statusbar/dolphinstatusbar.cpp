@@ -35,7 +35,7 @@
 #include <QProgressBar>
 #include <QTextDocument>
 #include <QToolButton>
-#include <QTime>
+#include <QtCore/qdatetime.h>
 #include <QTimer>
 
 #include <views/dolphinview.h>

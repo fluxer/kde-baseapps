@@ -25,7 +25,7 @@
 #include <ktexteditor/document.h>
 #include <ktexteditor/view.h>
 
-#include <QContextMenuEvent>
+#include <QtGui/qevent.h>
 #include <krecursivefilterproxymodel.h>
 
 KateProjectViewTree::KateProjectViewTree (KateProjectPluginView *pluginView, KateProject *project)

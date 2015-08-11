@@ -22,7 +22,7 @@
 
 #include <QObject>
 #include <QString>
-#include <QRectF>
+#include <QtCore/qrect.h>
 
 #include <ktexteditor/cursor.h>
 #include <ktexteditor/range.h>

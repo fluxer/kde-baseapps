@@ -44,11 +44,11 @@
 #include <QLabel>
 #include <QPixmap>
 #include <QPointer>
-#include <QResizeEvent>
+#include <QtGui/qevent.h>
 #include <QScrollArea>
 #include <QTextDocument>
 #include <QTextLayout>
-#include <QTextLine>
+#include <QtGui/qtextlayout.h>
 #include <QTimer>
 #include <QVBoxLayout>
 

@@ -24,7 +24,7 @@
 */
 
 #include "pluginhost.h"
-#include <QX11Info>
+#include <QtGui/qx11info_x11.h>
 
 void PluginHost::setupPluginWindow(NSPluginInstance* plugin, void* winID, int width, int height)
 {

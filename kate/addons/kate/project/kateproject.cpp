@@ -28,7 +28,7 @@
 #include <QDir>
 #include <QFile>
 #include <QFileInfo>
-#include <QPlainTextDocumentLayout>
+#include <QtGui/qplaintextedit.h>
 #include <qjson/parser.h>
 
 KateProject::KateProject ()

@@ -24,10 +24,10 @@
 #include <QApplication>
 #include <QBoxLayout>
 #include <QClipboard>
-#include <QDropEvent>
-#include <QGraphicsSceneDragDropEvent>
-#include <QKeyEvent>
-#include <QItemSelection>
+#include <QtGui/qevent.h>
+#include <QtGui/qgraphicssceneevent.h>
+#include <QtGui/qevent.h>
+#include <QtGui/qitemselectionmodel.h>
 #include <QTimer>
 #include <QScrollBar>
 

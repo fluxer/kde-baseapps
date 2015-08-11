@@ -49,7 +49,7 @@
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <QStyle>
-#include <QtAlgorithms>
+#include <QtCore/qalgorithms.h>
 
 #include <unistd.h>
 #include <time.h>

@@ -30,7 +30,7 @@
 // Qt
 #include <QtCore/QEvent>
 #include <QtCore/QTimer>
-#include <QtGui/QKeyEvent>
+#include <QtGui/qevent.h>
 
 // KDE
 #include <KLocalizedString>

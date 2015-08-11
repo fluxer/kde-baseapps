@@ -30,7 +30,7 @@
 #include <KIO/Job>
 
 #include <QBoxLayout>
-#include <QKeyEvent>
+#include <QtGui/qevent.h>
 #include <QLinkedList>
 #include <QWidget>
 

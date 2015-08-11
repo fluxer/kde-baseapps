@@ -77,18 +77,19 @@
 #include <sys/stat.h>
 #include <unistd.h>
 
-#include <QtCore/QFile>
+#include <QtCore/qfile.h>
+#include <QtCore/qdiriterator.h>
 #include <QClipboard>
-#include <QtCore/QArgument>
+#include <QtCore/qobjectdefs.h>
 #include <QLayout>
 #include <QStackedWidget>
 #include <QtCore/QFileInfo>
 #ifdef Q_WS_X11
-#include <QX11Info>
+#include <QtGui/qx11info_x11.h>
 #endif
 #include <QtCore/QEvent>
-#include <QKeyEvent>
-#include <QtCore/QByteRef>
+#include <QtGui/qevent.h>
+#include <QtCore/qbytearray.h>
 #include <QtCore/QList>
 #include <QPixmap>
 #include <QLineEdit>

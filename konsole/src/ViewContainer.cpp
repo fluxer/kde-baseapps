@@ -26,7 +26,7 @@
 #include <QStackedWidget>
 #include <QToolButton>
 #include <QtGui/QDrag>
-#include <QtGui/QDragMoveEvent>
+#include <QtGui/qevent.h>
 #include <QtCore/QMimeData>
 #include <QHBoxLayout>
 #include <QVBoxLayout>

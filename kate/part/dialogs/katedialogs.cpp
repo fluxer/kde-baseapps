@@ -108,8 +108,8 @@
 #include <QtCore/QTextStream>
 #include <QtGui/QToolButton>
 #include <QtGui/QWhatsThis>
-#include <QtGui/QKeyEvent>
-#include <QtXml/QDomDocument>
+#include <QtGui/qevent.h>
+#include <QtXml/qdom.h>
 
 // trailing slash is important
 #define HLDOWNLOADPATH "http://kate.kde.org/syntax/"

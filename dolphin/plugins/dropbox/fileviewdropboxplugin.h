@@ -26,7 +26,7 @@
 #include <kversioncontrolplugin2.h>
 
 #include <QMap>
-#include <QVariantList>
+#include <QtCore/qvariant.h>
 #include <QPointer>
 
 class QLocalSocket;

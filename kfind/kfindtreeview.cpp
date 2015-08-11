@@ -27,7 +27,7 @@
 #include <QClipboard>
 #include <QHeaderView>
 #include <QApplication>
-#include <QtCore/QDate>
+#include <QtCore/qdatetime.h>
 
 #include <kfiledialog.h>
 #include <klocale.h>

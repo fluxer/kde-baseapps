@@ -30,6 +30,7 @@
 #include <QMenu>
 #include <QTreeView>
 #include <QVBoxLayout>
+#include <QMimeData>
 
 #include <kactioncollection.h>
 #include <kaction.h>

@@ -24,7 +24,7 @@
 #include <KIO/JobUiDelegate>
 #include <KDirNotify>
 #include <QApplication>
-#include <QShowEvent>
+#include <QtGui/qevent.h>
 #include <QVBoxLayout>
 
 InformationPanel::InformationPanel(QWidget* parent) :

@@ -27,12 +27,12 @@
 #include <KStringHandler>
 
 #include <QLabel>
-#include <QStyleOptionFrame>
+#include <QtGui/qstyleoption.h>
 #include <QStylePainter>
 #include <QVBoxLayout>
 #include <QTextDocument>
 #include <QTextLayout>
-#include <QTextLine>
+#include <QtGui/qtextlayout.h>
 
 #include <KFileMetaDataWidget>
 

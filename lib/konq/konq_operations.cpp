@@ -66,7 +66,7 @@
 #include <QMenu>
 #include <QApplication>
 #include <QClipboard>
-#include <QDropEvent>
+#include <QtGui/qevent.h>
 #include <QList>
 #include <QDir>
 

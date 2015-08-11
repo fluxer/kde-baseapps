@@ -30,7 +30,7 @@
 #include "updateitemstatesthread.h"
 
 #include <QFile>
-#include <QMutexLocker>
+#include <QtCore/qmutex.h>
 #include <QTimer>
 
 VersionControlObserver::VersionControlObserver(QObject* parent) :

@@ -28,7 +28,7 @@
 
 #include <kvbox.h>
 #include <QList>
-#include <QKeyEvent>
+#include <QtGui/qevent.h>
 
 class QShowEvent;
 

@@ -59,7 +59,7 @@
 #include <kstandarddirs.h>
 #include <ktemporaryfile.h>
 #include <kurl.h>
-#include <QX11Info>
+#include <QtGui/qx11info_x11.h>
 #include <QProcess>
 
 #include <X11/Intrinsic.h>

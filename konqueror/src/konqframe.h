@@ -28,7 +28,7 @@
 #include <QCheckBox>
 #include <QLabel>
 #include <QPixmap>
-#include <QKeyEvent>
+#include <QtGui/qevent.h>
 #include <QtCore/QEvent>
 #include <QtCore/QList>
 

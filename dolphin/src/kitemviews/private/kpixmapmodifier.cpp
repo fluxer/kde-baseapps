@@ -43,7 +43,7 @@
 
 #include <config-X11.h> // for HAVE_XRENDER
 #if defined(Q_WS_X11) && defined(HAVE_XRENDER)
-#  include <QX11Info>
+#  include <qx11info_x11.h>
 #  include <X11/Xlib.h>
 #  include <X11/extensions/Xrender.h>
 #endif
