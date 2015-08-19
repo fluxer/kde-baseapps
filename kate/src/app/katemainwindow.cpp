@@ -357,6 +357,7 @@ void KateMainWindow::setupActions()
   }
 
   a = actionCollection()->addAction( "help_about_editor" );
+  a->setIcon( KIcon("preferences-plugin") );
   a->setText( i18n("&About Editor Component") );
   connect( a, SIGNAL(triggered()), this, SLOT(aboutEditor()) );
 
