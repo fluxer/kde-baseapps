@@ -115,8 +115,6 @@ KonqFrameTabs::KonqFrameTabs(QWidget* parent, KonqFrameContainerBase* parentCont
 
   connect( tabBar(), SIGNAL(tabMoved(int,int)),
            SLOT(slotMovedTab(int,int)) );
-  connect( this, SIGNAL(movedTab(int,int)),
-           SLOT(slotMovedTab(int,int)) );
   connect( this, SIGNAL(mouseMiddleClick()),
            SLOT(slotMouseMiddleClick()) );
   connect( this, SIGNAL(mouseMiddleClick(QWidget*)),
