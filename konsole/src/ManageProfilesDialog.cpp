@@ -28,6 +28,7 @@
 #include <KKeySequenceWidget>
 #include <KStandardDirs>
 #include <KDebug>
+#include <KLocale>
 
 // Konsole
 #include "EditProfileDialog.h"

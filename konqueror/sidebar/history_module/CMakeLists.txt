@@ -12,8 +12,7 @@ install(FILES konqsidebar_history.desktop DESTINATION ${DATA_INSTALL_DIR}/konqsi
 
 ########### the KCM for the history ###############
 
-set(kcm_history_SRCS kcmhistory.cpp ../../src/konqhistorysettings.cpp)
-kde4_add_ui_files(kcm_history_SRCS history_dlg.ui )
+set(kcm_history_SRCS kcmhistory.cpp ../../src/konqhistorysettings.cpp history_dlg.ui)
 kde4_add_plugin(kcm_history ${kcm_history_SRCS})
 
 # konquerorprivate is only needed for konqhistorysettings...

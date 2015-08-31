@@ -1,5 +1,9 @@
 project(KDEBASE_APPS)
 
+if("${CMAKE_SOURCE_DIR}" STREQUAL "${CMAKE_BINARY_DIR}")
+    message(SEND_ERROR "kde-baseapps requires an out of source build")
+endif()
+
 # where to look first for cmake modules, before ${CMAKE_ROOT}/Modules/ is checked
 set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules )
 
@@ -9,6 +13,8 @@ include(CTestConfig.cmake)
 #search packages used by KDE
 find_package(KDE4 4.14.3 REQUIRED)
 include (KDE4Defaults)
+
+set(LIBRARY_TYPE SHARED)
 
 set(QT_MIN_VERSION "4.8.2")
 

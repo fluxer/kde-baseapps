@@ -1,7 +1,9 @@
 add_subdirectory( pics )
 add_subdirectory( favicons )
 add_subdirectory( Templates )
-add_subdirectory( tests )
+if(ENABLE_TESTING)
+    add_subdirectory( tests )
+endif()
 
 ########### libkonq ###############
 
@@ -24,7 +26,7 @@ set(konq_LIB_SRCS
    kversioncontrolplugin2.cpp # used by dolphin and its version control plugins
 )
 
-kde4_add_library(konq SHARED ${konq_LIB_SRCS})
+add_library(konq ${LIBRARY_TYPE} ${konq_LIB_SRCS})
 
 target_link_libraries(konq PRIVATE ${KDE4_KPARTS_LIBS} ${KDE4_KFILE_LIBS} ${ZLIB_LIBRARY} ${X11_X11_LIB})
 target_link_libraries(konq PUBLIC ${KDE4_KPARTS_LIBS})
@@ -41,24 +43,33 @@ install(TARGETS konq  ${INSTALL_TARGETS_DEFAULT_ARGS})
 set(konq_sound_LIB_SRCS konq_sound.cc)
 kde4_add_plugin(konq_sound ${konq_sound_LIB_SRCS})
 target_link_libraries(konq_sound ${KDE4_KDECORE_LIBS} ${KDE4_PHONON_LIBS})
-install(TARGETS konq_sound  DESTINATION ${PLUGIN_INSTALL_DIR} )
+install(TARGETS konq_sound DESTINATION ${PLUGIN_INSTALL_DIR} )
 
 ########### install files ###############
 
-install( FILES directory_bookmarkbar.desktop   DESTINATION  ${DATA_INSTALL_DIR}/kbookmark )
-install( FILES
- konq_popupmenu.h # used by folderview
- konq_popupmenuplugin.h
- konq_dndpopupmenuplugin.h
- # konq_copytomenu.h - anyone needs it?
- konq_operations.h
- libkonq_export.h
- konq_events.h
- konqmimedata.h
- kversioncontrolplugin.h
- kversioncontrolplugin2.h
- konq_historyprovider.h
- konq_historyentry.h
-DESTINATION ${INCLUDE_INSTALL_DIR} COMPONENT Devel
+install(FILES
+    directory_bookmarkbar.desktop
+    DESTINATION ${DATA_INSTALL_DIR}/kbookmark
 )
-install( FILES konqpopupmenuplugin.desktop konqdndpopupmenuplugin.desktop  DESTINATION  ${SERVICETYPES_INSTALL_DIR} )
+
+install(FILES
+    konq_popupmenu.h # used by folderview
+    konq_popupmenuplugin.h
+    konq_dndpopupmenuplugin.h
+    # konq_copytomenu.h - anyone needs it?
+    konq_operations.h
+    libkonq_export.h
+    konq_events.h
+    konqmimedata.h
+    kversioncontrolplugin.h
+    kversioncontrolplugin2.h
+    konq_historyprovider.h
+    konq_historyentry.h
+    DESTINATION ${INCLUDE_INSTALL_DIR}
+    COMPONENT Devel
+)
+install(FILES
+    konqpopupmenuplugin.desktop
+    konqdndpopupmenuplugin.desktop
+    DESTINATION ${SERVICETYPES_INSTALL_DIR}
+)

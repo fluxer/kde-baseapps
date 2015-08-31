@@ -22,7 +22,6 @@
 #include "kate_ctags_view.h"
 
 #include <QFileInfo>
-#include <KFileDialog>
 #include <QtGui/qevent.h>
 
 #include <kmenu.h>
@@ -30,7 +29,8 @@
 #include <kstandarddirs.h>
 #include <kstringhandler.h>
 #include <kmessagebox.h>
-
+#include <kfiledialog.h>
+#include <klocale.h>
 
 /******************************************************************/
 KateCTagsView::KateCTagsView(Kate::MainWindow *mw, const KComponentData& componentData)

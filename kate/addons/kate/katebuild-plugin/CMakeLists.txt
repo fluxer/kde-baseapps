@@ -1,15 +1,12 @@
-# building separately or as part of kdesdk?
-if(NOT KDE4_FOUND)
-    find_package(KDE4 4.14.3 REQUIRED)
-    include_directories(${CMAKE_CURRENT_BINARY_DIR})
-endif(NOT KDE4_FOUND)
-
 include_directories (${KDE4_INCLUDES})
 include_directories( ${KDE4_KIO_INCLUDES} )
 
-set(katebuild_SRCS plugin_katebuild.cpp targets.cpp selecttargetdialog.cpp)
-
-kde4_add_ui_files(katebuild_SRCS build.ui)
+set(katebuild_SRCS
+    plugin_katebuild.cpp
+    targets.cpp
+    selecttargetdialog.cpp
+    build.ui
+)
 
 kde4_add_plugin(katebuildplugin ${katebuild_SRCS})
 

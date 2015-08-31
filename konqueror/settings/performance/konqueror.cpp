@@ -18,7 +18,7 @@
 
 #include "konqueror.h"
 
-#include <kconfig.h>
+#include <kconfiggroup.h>
 #include <QDBusMessage>
 #include <QDBusConnection>
 #include <QCheckBox>

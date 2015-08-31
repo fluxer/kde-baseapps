@@ -5,9 +5,7 @@ set(kfind_SRCS main.cpp
                kdatecombo.cpp
                kfindtreeview.cpp)
 
-kde4_add_app_icon(kfind_SRCS "hi*-app-kfind.png")
-
-kde4_add_executable(kfind ${kfind_SRCS})
+add_executable(kfind ${kfind_SRCS})
 
 target_link_libraries(kfind konq ${KDE4_KFILE_LIBS})
 

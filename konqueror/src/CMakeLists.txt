@@ -1,9 +1,8 @@
-if(KDE4_BUILD_TESTS)
+if(ENABLE_TESTING)
     # only with this definition will the KONQ_TESTS_EXPORT macro do something
     add_definitions(-DCOMPILING_TESTS)
-endif(KDE4_BUILD_TESTS)
-
-add_subdirectory( tests )
+    add_subdirectory( tests )
+endif()
 
 check_symbol_exists(mallinfo        "malloc.h"                 KDE_MALLINFO_MALLOC)
 check_symbol_exists(mallinfo        "stdlib.h"                 KDE_MALLINFO_STDLIB)
@@ -30,7 +29,7 @@ set(konquerorprivate_SRCS
 )
 qt4_add_dbus_interface(konquerorprivate_SRCS ${CMAKE_CURRENT_SOURCE_DIR}/../../lib/konq/favicons/org.kde.FavIcon.xml favicon_interface)
 
-kde4_add_library(konquerorprivate SHARED ${konquerorprivate_SRCS})
+add_library(konquerorprivate SHARED ${konquerorprivate_SRCS})
 target_link_libraries(konquerorprivate konq ${KDE4_KPARTS_LIBS} ${ZLIB_LIBRARY})
 set_target_properties(konquerorprivate PROPERTIES VERSION ${GENERIC_LIB_VERSION} SOVERSION ${GENERIC_LIB_SOVERSION} )
 install(TARGETS konquerorprivate ${INSTALL_TARGETS_DEFAULT_ARGS} LIBRARY NAMELINK_SKIP)
@@ -38,45 +37,45 @@ install(TARGETS konquerorprivate ${INSTALL_TARGETS_DEFAULT_ARGS} LIBRARY NAMELIN
 ########### konqueror ###############
 
 set(konqueror_SRCS
-   konqapplication.cpp
-   konqguiclients.cpp
-   konqrun.cpp
-   konqview.cpp
-   konqviewmanager.cpp
-   konqrmbeventfilter.cpp
-   konqmisc.cpp
-   konqdraggablelabel.cpp
-   konqframe.cpp
-   konqframevisitor.cpp
-   konqframestatusbar.cpp
-   konqframecontainer.cpp
-   konqtabs.cpp
-   konqactions.cpp
-   konqprofiledlg.cpp
-   konqsessiondlg.cpp
-   konqfactory.cpp
-   konqcombo.cpp
-   konqbrowseriface.cpp
-   delayedinitializer.cpp
-   konqanimatedlogo.cpp
-   konqmainwindow.cpp
-   konqextensionmanager.cpp
-   konqbookmarkbar.cpp
-   konqsettings.cpp
-   KonquerorAdaptor.cpp
-   KonqMainWindowAdaptor.cpp
-   KonqViewAdaptor.cpp
-   konqundomanager.cpp
-   konqclosedwindowsmanager.cpp
-   konqsessionmanager.cpp
-   konqcloseditem.cpp
-   konqhistorydialog.cpp
+    konqapplication.cpp
+    konqguiclients.cpp
+    konqrun.cpp
+    konqview.cpp
+    konqviewmanager.cpp
+    konqrmbeventfilter.cpp
+    konqmisc.cpp
+    konqdraggablelabel.cpp
+    konqframe.cpp
+    konqframevisitor.cpp
+    konqframestatusbar.cpp
+    konqframecontainer.cpp
+    konqtabs.cpp
+    konqactions.cpp
+    konqprofiledlg.cpp
+    konqsessiondlg.cpp
+    konqfactory.cpp
+    konqcombo.cpp
+    konqbrowseriface.cpp
+    delayedinitializer.cpp
+    konqanimatedlogo.cpp
+    konqmainwindow.cpp
+    konqextensionmanager.cpp
+    konqbookmarkbar.cpp
+    konqsettings.cpp
+    KonquerorAdaptor.cpp
+    KonqMainWindowAdaptor.cpp
+    KonqViewAdaptor.cpp
+    konqundomanager.cpp
+    konqclosedwindowsmanager.cpp
+    konqsessionmanager.cpp
+    konqcloseditem.cpp
+    konqhistorydialog.cpp
+    konqprofiledlg_base.ui
+    konqsessiondlg_base.ui
+    konqnewsessiondlg_base.ui
 )
 
 kde4_add_kcfg_files(konqueror_SRCS konqsettingsxt.kcfgc)
-kde4_add_ui_files(konqueror_SRCS konqprofiledlg_base.ui)
-kde4_add_ui_files(konqueror_SRCS konqsessiondlg_base.ui)
-kde4_add_ui_files(konqueror_SRCS konqnewsessiondlg_base.ui)
 
 qt4_add_dbus_interface(konqueror_SRCS org.kde.Konqueror.Main.xml konqueror_interface)
 qt4_add_dbus_interface(konqueror_SRCS ${KDE4_DBUS_INTERFACES_DIR}/org.kde.kded.xml kded_interface)
@@ -85,8 +84,7 @@ qt4_add_dbus_interface(konqueror_SRCS org.kde.Konqueror.UndoManager.xml konqclos
 qt4_add_dbus_adaptor(konqueror_SRCS org.kde.Konqueror.SessionManager.xml konqsessionmanager.h KonqSessionManager konqsessionmanageradaptor KonqSessionManagerAdaptor)
 qt4_add_dbus_interface(konqueror_SRCS org.kde.Konqueror.SessionManager.xml konqsessionmanager_interface)
 
-kde4_add_app_icon(konqueror_SRCS "${KDE4_ICON_INSTALL_DIR}/oxygen/*/apps/konqueror.png")
-kde4_add_executable(konqueror ${konqueror_SRCS} konqmain.cpp)
+add_executable(konqueror ${konqueror_SRCS} konqmain.cpp)
 # libkfile is only needed because of KNewFileMenu
 target_link_libraries(konqueror konquerorprivate konq ${KDE4_KPARTS_LIBS} ${KDE4_KCMUTILS_LIBS} ${KDE4_KFILE_LIBS} ${X11_LIBRARIES})
 

@@ -22,7 +22,7 @@
 
 // KDE
 #include <kcombobox.h>
-#include <kconfig.h>
+#include <kconfiggroup.h>
 #include <kdebug.h>
 #include <kmimetype.h>
 #include <kmimetypetrader.h>

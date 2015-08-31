@@ -5,7 +5,7 @@ set(kdepasswd_SRCS
     passwd.cpp
     passwddlg.cpp)
 
-kde4_add_executable(kdepasswd ${kdepasswd_SRCS})
+add_executable(kdepasswd ${kdepasswd_SRCS})
 
 target_link_libraries(kdepasswd ${KDE4_KIO_LIBS} ${KDE4_KDESU_LIBS})
 

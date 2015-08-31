@@ -28,7 +28,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include <QRadioButton>
 
 // KDE
-#include <kconfig.h>
+#include <kconfiggroup.h>
 #include <kpluginfactory.h>
 #include <klocale.h>
 #include <knuminput.h>

@@ -4,12 +4,6 @@ project (kate)
 find_package(KDE4 4.14.3 REQUIRED)
 include (KDE4Defaults)
 
-# shared libs
-set (LIBRARY_TYPE SHARED)
-
-# no in source builds
-macro_ensure_out_of_source_build("kate requires an out of source build. Please create a separate build directory and run 'cmake path_to_kate [options]' there.")
-
 # config.h
 check_function_exists (fdatasync HAVE_FDATASYNC)
 check_function_exists (ctermid HAVE_CTERMID)
@@ -33,4 +27,6 @@ macro_optional_add_subdirectory (src)
 macro_optional_add_subdirectory (addons)
 
 # tests
-macro_optional_add_subdirectory (tests)
+if(ENABLE_TESTING)
+  add_subdirectory (tests)
+endif()

@@ -19,6 +19,7 @@
 #ifndef KATE_BACKTRACEBROWSER_H
 #define KATE_BACKTRACEBROWSER_H
 
+#include <kdialog.h>
 #include <ktexteditor/document.h>
 #include <ktexteditor/configpage.h>
 #include <kate/plugin.h>

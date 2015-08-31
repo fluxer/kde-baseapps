@@ -2,11 +2,10 @@ add_subdirectory(pics)
 
 set(kcm_useraccount_PART_SRCS
     main.cpp
-    chfacedlg.cpp)
-
-kde4_add_ui_files(kcm_useraccount_PART_SRCS
+    chfacedlg.cpp
     main_widget.ui
-    faceDlg.ui)
+    faceDlg.ui
+)
 
 kde4_add_kcfg_files(kcm_useraccount_PART_SRCS settings.kcfgc pass.kcfgc)
 

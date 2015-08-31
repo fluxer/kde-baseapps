@@ -24,6 +24,7 @@
 
 #include <kicon.h>
 #include <kglobal.h>
+#include <klocale.h>
 
 #include "katecompletionmodel.h"
 

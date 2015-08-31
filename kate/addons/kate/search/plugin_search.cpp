@@ -44,6 +44,7 @@
 #include <kurlcompletion.h>
 #include <klineedit.h>
 #include <kcolorscheme.h>
+#include <kconfiggroup.h>
 
 #include <QtGui/qevent.h>
 #include <QClipboard>

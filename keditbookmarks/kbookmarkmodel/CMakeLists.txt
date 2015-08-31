@@ -1,14 +1,16 @@
-add_subdirectory(tests)
+if(ENABLE_TESTING)
+    add_subdirectory(tests)
+endif()
 
 set(kbookmarkmodel_SRCS
-  commandhistory.cpp
-  commands.cpp
-  model.cpp
-  treeitem.cpp
-  view.cpp
+    commandhistory.cpp
+    commands.cpp
+    model.cpp
+    treeitem.cpp
+    view.cpp
 )
 
-kde4_add_library(kbookmarkmodel_private SHARED ${kbookmarkmodel_SRCS})
+add_library(kbookmarkmodel_private SHARED ${kbookmarkmodel_SRCS})
 target_link_libraries(kbookmarkmodel_private PRIVATE ${KDE4_KIO_LIBS})
 target_link_libraries(kbookmarkmodel_private PUBLIC ${KDE4_KIO_LIBS})
 

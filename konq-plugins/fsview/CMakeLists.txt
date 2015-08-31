@@ -1,5 +1,6 @@
-
-add_subdirectory(tests)
+if(ENABLE_TESTING)
+    add_subdirectory(tests)
+endif()
 
 ########### next target ###############
 
@@ -15,7 +16,7 @@ set(libfsview_SRCS
 
 set(fsview_SRCS main.cpp ${libfsview_SRCS} )
 
-kde4_add_executable(fsview ${fsview_SRCS})
+add_executable(fsview ${fsview_SRCS})
 
 target_link_libraries(fsview  ${KDE4_KIO_LIBS})
 

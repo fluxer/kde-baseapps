@@ -29,6 +29,7 @@
 #include <KWindowSystem>
 #include <KFileDialog>
 #include <KUrlCompletion>
+#include <klocale.h>
 
 // Konsole
 #include "ui_ColorSchemeEditor.h"

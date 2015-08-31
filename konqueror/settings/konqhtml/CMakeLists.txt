@@ -19,14 +19,12 @@ set(kcm_konqhtml_PART_SRCS
    filteropts.cpp
    css/template.cpp
    css/kcmcss.cpp
-   )
 
-kde4_add_ui_files(kcm_konqhtml_PART_SRCS
     nsconfigwidget.ui
     advancedTabOptions.ui
     css/csscustom.ui
     css/cssconfig.ui
-    )
+)
 
 kde4_add_plugin(kcm_konqhtml ${kcm_konqhtml_PART_SRCS})
 

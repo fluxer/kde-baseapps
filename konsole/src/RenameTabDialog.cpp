@@ -20,6 +20,9 @@
 // Own
 #include "RenameTabDialog.h"
 
+// KDE
+#include <KLocale>
+
 // Konsole
 #include "ui_RenameTabDialog.h"
 

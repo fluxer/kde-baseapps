@@ -3,7 +3,9 @@ configure_file(config-X11.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config-X11.h )
 
 include_directories( ${CMAKE_CURRENT_BINARY_DIR} ${KDE4_PHONON_INCLUDES})
 
-add_subdirectory(tests)
+if(ENABLE_TESTING)
+    add_subdirectory(tests)
+endif()
 
 ########### next target ###############
 
@@ -76,7 +78,7 @@ kde4_add_kcfg_files(dolphinprivate_LIB_SRCS
     settings/dolphin_versioncontrolsettings.kcfgc
 )
 
-kde4_add_library(dolphinprivate SHARED ${dolphinprivate_LIB_SRCS})
+add_library(dolphinprivate SHARED ${dolphinprivate_LIB_SRCS})
 
 target_link_libraries(
     dolphinprivate
@@ -179,9 +181,7 @@ kde4_add_kcfg_files(dolphin_SRCS
 
 set(dolphin_SRCS ${dolphin_SRCS} panels/terminal/terminalpanel.cpp)
 
-kde4_add_app_icon(dolphin_SRCS "${KDE4_ICON_INSTALL_DIR}/oxygen/*/apps/system-file-manager.png")
-
-kde4_add_executable(dolphin ${dolphin_SRCS})
+add_executable(dolphin ${dolphin_SRCS})
 
 target_link_libraries(dolphin
     ${KDE4_KDEPRINT_LIBS}

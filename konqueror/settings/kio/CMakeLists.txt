@@ -17,9 +17,7 @@ set(kcm_kio_PART_SRCS
     netpref.cpp
     cache.cpp
     bookmarks.cpp
-    ksaveioconfig.cpp)
-
-kde4_add_ui_files(kcm_kio_PART_SRCS
+    ksaveioconfig.cpp
     bookmarks.ui
     cache.ui
     useragentselectordlg.ui

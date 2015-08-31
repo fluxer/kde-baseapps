@@ -18,6 +18,7 @@
 
 #include "selecttargetdialog.h"
 
+#include <klocale.h>
 
 #include <QCoreApplication>
 #include <QGridLayout>

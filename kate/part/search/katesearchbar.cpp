@@ -39,6 +39,7 @@
 #include <kcolorscheme.h>
 #include <kmessagebox.h>
 #include <kstandardaction.h>
+#include <klocale.h>
 
 #include <QtGui/QVBoxLayout>
 #include <QtGui/QComboBox>

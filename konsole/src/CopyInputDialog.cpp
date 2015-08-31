@@ -23,6 +23,9 @@
 // Qt
 #include <QSortFilterProxyModel>
 
+// KDE
+#include <klocale.h>
+
 // Konsole
 #include "ui_CopyInputDialog.h"
 

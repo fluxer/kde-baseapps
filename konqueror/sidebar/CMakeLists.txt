@@ -8,13 +8,15 @@ endif()
 add_subdirectory( history_module )
 add_subdirectory( places_module )
 add_subdirectory( default_entries )
-add_subdirectory( test )
+if(ENABLE_TESTING)
+    add_subdirectory( test )
+endif()
 
 ########### konqsidebarplugin lib: contains the base class for plugins ###############
 
 set(konqsidebarplugin_LIB_SRCS konqsidebarplugin.cpp )
 
-kde4_add_library(konqsidebarplugin SHARED ${konqsidebarplugin_LIB_SRCS})
+add_library(konqsidebarplugin SHARED ${konqsidebarplugin_LIB_SRCS})
 
 target_link_libraries(konqsidebarplugin ${KDE4_KPARTS_LIBS} )
 

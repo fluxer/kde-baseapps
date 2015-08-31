@@ -60,7 +60,7 @@ if (X11_Xt_LIB)
 
   set(nspluginscan_SRCS pluginscan.cpp plugin_paths.cpp mimetypewriter.cpp)
 
-  kde4_add_executable(nspluginscan ${nspluginscan_SRCS})
+  add_executable(nspluginscan ${nspluginscan_SRCS})
 
   target_link_libraries(nspluginscan  ${KDE4_KIO_LIBS} ${X11_Xt_LIB})
 
@@ -72,7 +72,9 @@ if (X11_Xt_LIB)
   install( FILES nspluginpart.rc  DESTINATION  ${DATA_INSTALL_DIR}/nsplugin )
   install( FILES org.kde.nsplugins.CallBack.xml DESTINATION ${DBUS_INTERFACES_INSTALL_DIR} )
 
-  add_subdirectory( test )
+  if(ENABLE_TESTING)
+    add_subdirectory( test )
+  endif()
 
 else (X11_Xt_LIB)
 

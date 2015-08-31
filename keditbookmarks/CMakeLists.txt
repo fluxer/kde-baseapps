@@ -4,7 +4,7 @@ add_subdirectory(kbookmarkmodel)
 
 set(kbookmarkmerger_SRCS kbookmarkmerger.cpp )
 
-kde4_add_executable(kbookmarkmerger ${kbookmarkmerger_SRCS})
+add_executable(kbookmarkmerger ${kbookmarkmerger_SRCS})
 
 target_link_libraries(kbookmarkmerger  ${KDE4_KIO_LIBS})
 
@@ -38,7 +38,7 @@ qt4_add_dbus_interface( keditbookmarks_SRCS ${CMAKE_CURRENT_SOURCE_DIR}/../lib/k
 
 kde4_add_kcfg_files(keditbookmarks_SRCS settings.kcfgc )
 
-kde4_add_executable( keditbookmarks ${keditbookmarks_SRCS})
+add_executable( keditbookmarks ${keditbookmarks_SRCS})
 
 target_link_libraries(keditbookmarks kbookmarkmodel_private konq ${KDE4_KPARTS_LIBS})
 

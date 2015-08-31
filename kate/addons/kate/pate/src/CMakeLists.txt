@@ -63,6 +63,6 @@ install(
 
 # Dive into plugins crowd
 add_subdirectory(plugins)
-add_subdirectory(test)
-
-# kate: indent-width 4;
+if(ENABLE_TESTING)
+    add_subdirectory(test)
+endif()

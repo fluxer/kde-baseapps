@@ -1,7 +1,9 @@
 include(CheckIncludeFiles)
 
 ### Tests
-add_subdirectory(tests)
+if(ENABLE_TESTING)
+    add_subdirectory(tests)
+endif()
 
 ### Font Embedder and LineFont.h
 option(KONSOLE_BUILD_FONTEMBEDDER "Konsole: build fontembedder executable" OFF)
@@ -11,7 +13,7 @@ option(KONSOLE_GENERATE_LINEFONT "Konsole: regenerate LineFont file" OFF)
 if(KONSOLE_BUILD_FONTEMBEDDER OR KONSOLE_GENERATE_LINEFONT)
   ### Font Embedder
   set(fontembedder_SRCS fontembedder.cpp)
-  kde4_add_executable(fontembedder ${fontembedder_SRCS})
+  add_executable(fontembedder ${fontembedder_SRCS})
   target_link_libraries(fontembedder  ${KDE4_KIO_LIBS})
 
   ### Line graphics font
@@ -43,57 +45,71 @@ qt4_add_dbus_adaptor(windowadaptors_SRCS
                     ViewManager.h
                     Konsole::ViewManager)
 
-set(konsoleprivate_SRCS ${sessionadaptors_SRCS}
-                        ${windowadaptors_SRCS}
-                        BookmarkHandler.cpp
-                        ColorScheme.cpp
-                        ColorSchemeManager.cpp
-                        ColorSchemeEditor.cpp
-                        CopyInputDialog.cpp
-                        EditProfileDialog.cpp
-                        Emulation.cpp
-                        Filter.cpp
-                        History.cpp
-                        HistorySizeDialog.cpp
-                        HistorySizeWidget.cpp
-                        IncrementalSearchBar.cpp
-                        KeyBindingEditor.cpp
-                        KeyboardTranslator.cpp
-                        KeyboardTranslatorManager.cpp
-                        ManageProfilesDialog.cpp
-                        ProcessInfo.cpp
-                        Profile.cpp
-                        ProfileList.cpp
-                        ProfileReader.cpp
-                        ProfileWriter.cpp
-                        ProfileManager.cpp
-                        Pty.cpp
-                        RenameTabDialog.cpp
-                        RenameTabWidget.cpp
-                        Screen.cpp
-                        ScreenWindow.cpp
-                        Session.cpp
-                        SessionController.cpp
-                        SessionManager.cpp
-                        SessionListModel.cpp
-                        ShellCommand.cpp
-                        TabTitleFormatButton.cpp
-                        TerminalCharacterDecoder.cpp
-                        ExtendedCharTable.cpp
-                        TerminalDisplay.cpp
-                        TerminalDisplayAccessible.cpp
-                        ViewContainer.cpp
-                        ViewContainerTabBar.cpp
-                        ViewManager.cpp
-                        ViewProperties.cpp
-                        ViewSplitter.cpp
-                        Vt102Emulation.cpp
-                        ZModemDialog.cpp
-                        PrintOptions.cpp
-                        konsole_wcwidth.cpp
-                        WindowSystemInfo.cpp
-                        ${CMAKE_CURRENT_BINARY_DIR}/org.kde.konsole.Window.xml
-                        ${CMAKE_CURRENT_BINARY_DIR}/org.kde.konsole.Session.xml)
+set(konsoleprivate_SRCS
+    ${sessionadaptors_SRCS}
+    ${windowadaptors_SRCS}
+    BookmarkHandler.cpp
+    ColorScheme.cpp
+    ColorSchemeManager.cpp
+    ColorSchemeEditor.cpp
+    CopyInputDialog.cpp
+    EditProfileDialog.cpp
+    Emulation.cpp
+    Filter.cpp
+    History.cpp
+    HistorySizeDialog.cpp
+    HistorySizeWidget.cpp
+    IncrementalSearchBar.cpp
+    KeyBindingEditor.cpp
+    KeyboardTranslator.cpp
+    KeyboardTranslatorManager.cpp
+    ManageProfilesDialog.cpp
+    ProcessInfo.cpp
+    Profile.cpp
+    ProfileList.cpp
+    ProfileReader.cpp
+    ProfileWriter.cpp
+    ProfileManager.cpp
+    Pty.cpp
+    RenameTabDialog.cpp
+    RenameTabWidget.cpp
+    Screen.cpp
+    ScreenWindow.cpp
+    Session.cpp
+    SessionController.cpp
+    SessionManager.cpp
+    SessionListModel.cpp
+    ShellCommand.cpp
+    TabTitleFormatButton.cpp
+    TerminalCharacterDecoder.cpp
+    ExtendedCharTable.cpp
+    TerminalDisplay.cpp
+    TerminalDisplayAccessible.cpp
+    ViewContainer.cpp
+    ViewContainerTabBar.cpp
+    ViewManager.cpp
+    ViewProperties.cpp
+    ViewSplitter.cpp
+    Vt102Emulation.cpp
+    ZModemDialog.cpp
+    PrintOptions.cpp
+    konsole_wcwidth.cpp
+    WindowSystemInfo.cpp
+    ${CMAKE_CURRENT_BINARY_DIR}/org.kde.konsole.Window.xml
+    ${CMAKE_CURRENT_BINARY_DIR}/org.kde.konsole.Session.xml
+    ColorSchemeEditor.ui
+    CopyInputDialog.ui
+    EditProfileDialog.ui
+    KeyBindingEditor.ui
+    ManageProfilesDialog.ui
+    RenameTabDialog.ui
+    RenameTabWidget.ui
+    HistorySizeDialog.ui
+    HistorySizeWidget.ui
+    PrintOptions.ui
+    settings/GeneralSettings.ui
+    settings/TabBarSettings.ui
+)
 set(konsole_LIBS ${KDE4_KPTY_LIBS}
                  ${KDE4_KIO_LIBS}
                  ${KDE4_KNOTIFYCONFIG_LIBS}
@@ -103,20 +119,7 @@ set(konsole_LIBS ${KDE4_KPTY_LIBS}
 
 ### Konsole Application
 
-kde4_add_ui_files(konsoleprivate_SRCS ColorSchemeEditor.ui
-                                      CopyInputDialog.ui
-                                      EditProfileDialog.ui
-                                      KeyBindingEditor.ui
-                                      ManageProfilesDialog.ui
-                                      RenameTabDialog.ui
-                                      RenameTabWidget.ui
-                                      HistorySizeDialog.ui
-                                      HistorySizeWidget.ui
-                                      PrintOptions.ui
-                                      settings/GeneralSettings.ui
-                                      settings/TabBarSettings.ui)
-
-kde4_add_library(konsoleprivate SHARED ${konsoleprivate_SRCS})
+add_library(konsoleprivate SHARED ${konsoleprivate_SRCS})
 target_link_libraries(konsoleprivate PRIVATE ${konsole_LIBS})
 target_link_libraries(konsoleprivate PUBLIC ${konsole_LIBS})
 
@@ -129,9 +132,7 @@ set(konsole_SRCS
 
 kde4_add_kcfg_files(konsole_SRCS settings/KonsoleSettings.kcfgc)
 
-kde4_add_app_icon(konsole_SRCS "${KDE4_ICON_INSTALL_DIR}/oxygen/*/apps/utilities-terminal.png")
-
-kde4_add_executable(konsole ${konsole_SRCS})
+add_executable(konsole ${konsole_SRCS})
 target_link_libraries(konsole PRIVATE konsoleprivate)
 
 install(TARGETS konsole konsoleprivate

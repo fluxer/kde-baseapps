@@ -8,9 +8,7 @@ qt4_add_dbus_interface( kfmclient_SRCS ../src/org.kde.Konqueror.MainWindow.xml k
 
 add_definitions(-DQT_NO_CAST_ASCII)
 
-kde4_add_app_icon(kfmclient_SRCS "${KDE4_ICON_INSTALL_DIR}/oxygen/*/apps/system-file-manager.png")
-
-kde4_add_executable( kfmclient NOGUI ${kfmclient_SRCS})
+add_executable( kfmclient ${kfmclient_SRCS})
 target_link_libraries(kfmclient  ${KDE4_KIO_LIBS} ${X11_LIBRARIES})
 install(TARGETS kfmclient  ${INSTALL_TARGETS_DEFAULT_ARGS} )
 

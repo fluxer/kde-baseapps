@@ -23,6 +23,10 @@
 // Qt
 #include <QtGui/qevent.h>
 
+// KDE
+#include <KLocale>
+#include <KIcon>
+
 // Konsole
 #include "ui_KeyBindingEditor.h"
 #include "KeyboardTranslator.h"

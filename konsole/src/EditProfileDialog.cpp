@@ -43,6 +43,7 @@
 #include <KWindowSystem>
 #include <KTextEdit>
 #include <KMessageBox>
+#include <KLocale>
 
 // Konsole
 #include "ColorScheme.h"

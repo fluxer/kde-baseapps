@@ -5,13 +5,9 @@ set(katetabbarextensionplugin_PART_SRCS
    ktinytabbutton.cpp
    ktinytabbar.cpp
    ktinytabbarconfigdialog.cpp
-   ktinytabbarconfigpage.cpp )
-
-set(katetabbarextensionplugin_PART_UI
-    tabbarconfigwidget.ui
+   ktinytabbarconfigpage.cpp
+   tabbarconfigwidget.ui
 )
-
-kde4_add_ui_files(katetabbarextensionplugin_PART_SRCS ${katetabbarextensionplugin_PART_UI} )
 
 kde4_add_plugin(katetabbarextensionplugin ${katetabbarextensionplugin_PART_SRCS})
 
@@ -22,5 +18,5 @@ install(TARGETS katetabbarextensionplugin  DESTINATION ${PLUGIN_INSTALL_DIR} )
 
 ########### install files ###############
 
-install( FILES ui.rc  DESTINATION  ${DATA_INSTALL_DIR}/kate/plugins/katetabbarextension )
-install( FILES katetabbarextension.desktop  DESTINATION  ${SERVICES_INSTALL_DIR} )
+install(FILES ui.rc DESTINATION ${DATA_INSTALL_DIR}/kate/plugins/katetabbarextension)
+install(FILES katetabbarextension.desktop DESTINATION ${SERVICES_INSTALL_DIR})

@@ -18,9 +18,8 @@ set(kategdbplugin_PART_SRCS
     ioview.cpp
     localsview.cpp
     advanced_settings.cpp
+    advanced_settings.ui
 )
-
-kde4_add_ui_files(kategdbplugin_PART_SRCS advanced_settings.ui)
 
 kde4_add_plugin( kategdbplugin ${kategdbplugin_PART_SRCS} )
 target_link_libraries( kategdbplugin ${KDE4_KDEUI_LIBS} ${KDE4_KDECORE_LIBS} ${KDE4_KTEXTEDITOR_LIBS} kateinterfaces )

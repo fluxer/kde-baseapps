@@ -18,10 +18,10 @@
 
 #include "system.h"
 
-#include <kconfig.h>
+#include <kconfiggroup.h>
+#include <klocale.h>
 
 #include <QCheckBox>
-#include <klocale.h>
 
 namespace KCMPerformance
 {

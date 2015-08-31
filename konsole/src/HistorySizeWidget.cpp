@@ -25,6 +25,9 @@
 #include <QButtonGroup>
 #include <QAbstractButton>
 
+// KDE
+#include <KLocale>
+
 // Konsole
 #include "ui_HistorySizeWidget.h"
 

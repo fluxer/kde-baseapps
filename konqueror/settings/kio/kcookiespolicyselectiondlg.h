@@ -20,6 +20,8 @@
 #define KCOOKIESPOLICYSELECTIONDLG_H
 
 #include <kdialog.h>
+#include <klocale.h>
+
 #include "ui_kcookiespolicyselectiondlg.h"
 
 class QWidget;

@@ -21,6 +21,9 @@
 // Own
 #include "HistorySizeDialog.h"
 
+// KDE
+#include <klocale.h>
+
 // Konsole
 #include "ui_HistorySizeDialog.h"
 
