@@ -351,20 +351,13 @@ void KonqCombo::loadItems()
     clear();
     int i = 0;
 
-    KConfigGroup historyConfigGroup( s_config, "History" ); // delete the old 2.0.x completion
-    historyConfigGroup.writeEntry( "CompletionItems", "unused" );
-
     KConfigGroup locationBarGroup( s_config, "Location Bar" );
     const QStringList items = locationBarGroup.readPathEntry( "ComboContents", QStringList() );
-    QStringList::ConstIterator it = items.begin();
-    QString item;
-    while ( it != items.end() ) {
-        item = *it;
+    foreach( const QString item, items ) {
         if ( !item.isEmpty() ) { // only insert non-empty items
             insertItem( KonqPixmapProvider::self()->pixmapFor( item, KIconLoader::SizeSmall ),
                         item, i++, titleOfURL( item ) );
         }
-        ++it;
     }
 
     if ( count() > 0 )
