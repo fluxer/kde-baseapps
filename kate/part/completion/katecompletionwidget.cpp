@@ -814,7 +814,7 @@ void KateCompletionWidget::execute()
     toExecute = m_argumentHintModel->mapToSource(index);
 
   if (!toExecute.isValid()) {
-    kWarning() << k_funcinfo << "Could not map index" << m_entryList->selectionModel()->currentIndex() << "to source index.";
+    kWarning() << "Could not map index" << m_entryList->selectionModel()->currentIndex() << "to source index.";
     return abortCompletion();
   }
 

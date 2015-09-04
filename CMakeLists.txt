@@ -1,4 +1,4 @@
-project(KDEBASE_APPS)
+project(kde-baseapps)
 
 if("${CMAKE_SOURCE_DIR}" STREQUAL "${CMAKE_BINARY_DIR}")
     message(SEND_ERROR "kde-baseapps requires an out of source build")

@@ -1271,7 +1271,7 @@ int KateCompletionModel::translateColumn( int sourceColumn ) const
     columnMerge += "] ";
   }
 
-  kDebug( 13035 ) << k_funcinfo << columnMerge;*/
+  kDebug( 13035 ) << columnMerge;*/
 
   int c = 0;
   foreach (const QList<int>& list, m_columnMerges) {

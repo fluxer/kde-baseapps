@@ -2881,7 +2881,7 @@ void KateViewInternal::updateDirty( )
     updateRegion += QRect(0, currentRectStart, width(), currentRectEnd);
 
   if (!updateRegion.isEmpty()) {
-    if (debugPainting) kDebug( 13030 ) << k_funcinfo << "Update dirty region " << updateRegion;
+    if (debugPainting) kDebug( 13030 ) << "Update dirty region " << updateRegion;
     update(updateRegion);
   }
 }
