@@ -17,15 +17,15 @@ include_directories( ${ZLIB_INCLUDE_DIR} )
 ########### libkonquerorprivate, shared with unit tests and sidebar modules ###############
 
 set(konquerorprivate_SRCS
-   konqhistorymanager.cpp # for unit tests
-   konqpixmapprovider.cpp # needed ?!?
+    konqhistorymanager.cpp # for unit tests
+    konqpixmapprovider.cpp # needed ?!?
 
-   # for the sidebar history module
-   konqhistorymodel.cpp
-   ksortfilterproxymodel.cpp
-   konqhistoryproxymodel.cpp
-   konqhistoryview.cpp
-   konqhistorysettings.cpp
+    # for the sidebar history module
+    konqhistorymodel.cpp
+    ksortfilterproxymodel.cpp
+    konqhistoryproxymodel.cpp
+    konqhistoryview.cpp
+    konqhistorysettings.cpp
 )
 qt4_add_dbus_interface(konquerorprivate_SRCS ${CMAKE_CURRENT_SOURCE_DIR}/../../lib/konq/favicons/org.kde.FavIcon.xml favicon_interface)
 
