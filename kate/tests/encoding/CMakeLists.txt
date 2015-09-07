@@ -1,6 +1,5 @@
 # test executable for encoding
-set( EXECUTABLE_OUTPUT_PATH ${CMAKE_CURRENT_BINARY_DIR} )
-kde4_add_executable(kateencodingtest NOGUI kateencodingtest.cpp)
+kde4_add_manual_test(kateencodingtest kateencodingtest.cpp)
 target_link_libraries(kateencodingtest ${KATE_TEST_LINK_LIBS})
 
 # test macro for encoding tests

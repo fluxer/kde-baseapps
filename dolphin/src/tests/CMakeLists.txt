@@ -1,23 +1,31 @@
-set( EXECUTABLE_OUTPUT_PATH ${CMAKE_CURRENT_BINARY_DIR} )
-include_directories( ${CMAKE_CURRENT_SOURCE_DIR}/.. ${CMAKE_CURRENT_BUILD_DIR}/.. ${KDE4_INCLUDES} )
-
-# needed on windows to correctly use the files from dolphinprivate
-add_definitions(-DLIBDOLPHINPRIVATE_EXPORT=)
+include_directories(
+    ${CMAKE_CURRENT_SOURCE_DIR}/..
+    ${CMAKE_CURRENT_BUILD_DIR}/..
+    ${KDE4_INCLUDES}
+)
 
 # KItemSetTest
 set(kitemsettest_SRCS
     kitemsettest.cpp
     ../kitemviews/kitemset.cpp
 )
-kde4_add_unit_test(kitemsettest TEST ${kitemsettest_SRCS})
-target_link_libraries(kitemsettest dolphinprivate ${KDE4_KIO_LIBS} ${QT_QTTEST_LIBRARY})
+kde4_add_test(dolphin-kitemsettest ${kitemsettest_SRCS})
+target_link_libraries(dolphin-kitemsettest
+    dolphinprivate
+    ${KDE4_KIO_LIBS}
+    ${QT_QTTEST_LIBRARY}
+)
 
 # KItemRangeTest
 set(kitemrangetest_SRCS
     kitemrangetest.cpp
 )
-kde4_add_unit_test(kitemrangetest TEST ${kitemrangetest_SRCS})
-target_link_libraries(kitemrangetest dolphinprivate ${KDE4_KIO_LIBS} ${QT_QTTEST_LIBRARY})
+kde4_add_test(dolphin-kitemrangetest ${kitemrangetest_SRCS})
+target_link_libraries(dolphin-kitemrangetest
+    dolphinprivate
+    ${KDE4_KIO_LIBS}
+    ${QT_QTTEST_LIBRARY}
+)
 
 # KItemListSelectionManagerTest
 set(kitemlistselectionmanagertest_SRCS
@@ -26,8 +34,12 @@ set(kitemlistselectionmanagertest_SRCS
     ../kitemviews/kitemmodelbase.cpp
     ../kitemviews/kitemset.cpp
 )
-kde4_add_unit_test(kitemlistselectionmanagertest TEST ${kitemlistselectionmanagertest_SRCS})
-target_link_libraries(kitemlistselectionmanagertest dolphinprivate ${KDE4_KIO_LIBS} ${QT_QTTEST_LIBRARY})
+kde4_add_test(dolphin-kitemlistselectionmanagertest ${kitemlistselectionmanagertest_SRCS})
+target_link_libraries(dolphin-kitemlistselectionmanagertest
+    dolphinprivate
+    ${KDE4_KIO_LIBS}
+    ${QT_QTTEST_LIBRARY}
+)
 
 # KItemListControllerTest
 set(kitemlistcontrollertest_SRCS
@@ -45,8 +57,12 @@ set(kitemlistcontrollertest_SRCS
     ../kitemviews/kstandarditemlistview.cpp
     ../kitemviews/kstandarditemlistwidget.cpp
 )
-kde4_add_unit_test(kitemlistcontrollertest TEST ${kitemlistcontrollertest_SRCS})
-target_link_libraries(kitemlistcontrollertest dolphinprivate ${KDE4_KIO_LIBS} ${QT_QTTEST_LIBRARY})
+kde4_add_test(dolphin-kitemlistcontrollertest ${kitemlistcontrollertest_SRCS})
+target_link_libraries(dolphin-kitemlistcontrollertest
+    dolphinprivate
+    ${KDE4_KIO_LIBS}
+    ${QT_QTTEST_LIBRARY}
+)
 
 # KFileItemListViewTest
 set(kfileitemlistviewtest_SRCS
@@ -63,8 +79,12 @@ set(kfileitemlistviewtest_SRCS
     ../kitemviews/kstandarditemlistview.cpp
     ../kitemviews/kstandarditemlistwidget.cpp
 )
-kde4_add_unit_test(kfileitemlistviewtest TEST ${kfileitemlistviewtest_SRCS})
-target_link_libraries(kfileitemlistviewtest dolphinprivate ${KDE4_KIO_LIBS} ${QT_QTTEST_LIBRARY})
+kde4_add_test(dolphin-kfileitemlistviewtest ${kfileitemlistviewtest_SRCS})
+target_link_libraries(dolphin-kfileitemlistviewtest
+    dolphinprivate
+    ${KDE4_KIO_LIBS}
+    ${QT_QTTEST_LIBRARY}
+)
 
 # KFileItemModelTest
 set(kfileitemmodeltest_SRCS
@@ -74,8 +94,12 @@ set(kfileitemmodeltest_SRCS
     ../kitemviews/kitemmodelbase.cpp
     ../kitemviews/kitemset.cpp
 )
-kde4_add_unit_test(kfileitemmodeltest TEST ${kfileitemmodeltest_SRCS})
-target_link_libraries(kfileitemmodeltest dolphinprivate ${KDE4_KIO_LIBS} ${QT_QTTEST_LIBRARY})
+kde4_add_test(dolphin-kfileitemmodeltest ${kfileitemmodeltest_SRCS})
+target_link_libraries(dolphin-kfileitemmodeltest
+    dolphinprivate
+    ${KDE4_KIO_LIBS}
+    ${QT_QTTEST_LIBRARY}
+)
 
 # KFileItemModelBenchmark
 set(kfileitemmodelbenchmark_SRCS
@@ -84,16 +108,23 @@ set(kfileitemmodelbenchmark_SRCS
     ../kitemviews/kfileitemmodel.cpp
     ../kitemviews/kitemmodelbase.cpp
 )
-kde4_add_executable(kfileitemmodelbenchmark TEST ${kfileitemmodelbenchmark_SRCS})
-target_link_libraries(kfileitemmodelbenchmark dolphinprivate ${KDE4_KIO_LIBS} ${QT_QTTEST_LIBRARY})
+kde4_add_manual_test(dolphin-kfileitemmodelbenchmark ${kfileitemmodelbenchmark_SRCS})
+target_link_libraries(dolphin-kfileitemmodelbenchmark
+    dolphinprivate
+    ${KDE4_KIO_LIBS}
+    ${QT_QTTEST_LIBRARY}
+)
 
 # KItemListKeyboardSearchManagerTest
 set(kitemlistkeyboardsearchmanagertest_SRCS
     kitemlistkeyboardsearchmanagertest.cpp
     ../kitemviews/private/kitemlistkeyboardsearchmanager.cpp
 )
-kde4_add_unit_test(kitemlistkeyboardsearchmanagertest TEST ${kitemlistkeyboardsearchmanagertest_SRCS})
-target_link_libraries(kitemlistkeyboardsearchmanagertest ${KDE4_KIO_LIBS} ${QT_QTTEST_LIBRARY})
+kde4_add_test(dolphin-kitemlistkeyboardsearchmanagertest ${kitemlistkeyboardsearchmanagertest_SRCS})
+target_link_libraries(dolphin-kitemlistkeyboardsearchmanagertest
+    ${KDE4_KIO_LIBS}
+    ${QT_QTTEST_LIBRARY}
+)
 
 # KStandardItemModelTest
 set(kstandarditemmodeltest_SRCS
@@ -102,8 +133,12 @@ set(kstandarditemmodeltest_SRCS
     ../kitemviews/kstandarditemmodel.cpp
     ../kitemviews/kitemmodelbase.cpp
 )
-kde4_add_unit_test(kstandarditemmodeltest TEST ${kstandarditemmodeltest_SRCS})
-target_link_libraries(kstandarditemmodeltest dolphinprivate ${KDE4_KIO_LIBS} ${QT_QTTEST_LIBRARY})
+kde4_add_test(dolphin-kstandarditemmodeltest ${kstandarditemmodeltest_SRCS})
+target_link_libraries(dolphin-kstandarditemmodeltest
+    dolphinprivate
+    ${KDE4_KIO_LIBS}
+    ${QT_QTTEST_LIBRARY}
+)
 
 # ViewPropertiesTest
 set(viewpropertiestest_SRCS
@@ -115,5 +150,9 @@ kde4_add_kcfg_files(viewpropertiestest_SRCS
   ../settings/dolphin_generalsettings.kcfgc
   ../settings/dolphin_directoryviewpropertysettings.kcfgc
 )
-kde4_add_unit_test(viewpropertiestest TEST ${viewpropertiestest_SRCS})
-target_link_libraries(viewpropertiestest dolphinprivate ${KDE4_KIO_LIBS} ${QT_QTTEST_LIBRARY})
+kde4_add_test(dolphin-viewpropertiestest ${viewpropertiestest_SRCS})
+target_link_libraries(dolphin-viewpropertiestest
+    dolphinprivate
+    ${KDE4_KIO_LIBS}
+    ${QT_QTTEST_LIBRARY}
+)

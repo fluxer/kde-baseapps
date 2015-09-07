@@ -110,16 +110,16 @@ QString KonqUndoManager::undoText() const
                 return i18n("Und&o: Closed Tab");
             else
                 return i18n("Und&o: Closed Window");
-        } else
-          return KIO::FileUndoManager::self()->undoText();
-          
-    } else if(m_supportsFileUndo && KIO::FileUndoManager::self()->undoAvailable())
+        } else {
+            return KIO::FileUndoManager::self()->undoText();
+        }
+    } else if(m_supportsFileUndo && KIO::FileUndoManager::self()->undoAvailable()) {
         return KIO::FileUndoManager::self()->undoText();
-        
-    else if(KonqClosedWindowsManager::self()->undoAvailable())
+    } else if(KonqClosedWindowsManager::self()->undoAvailable()) {
         return i18n("Und&o: Closed Window");
-    else
+    } else {
         return i18n("Und&o");
+    }
 }
 
 void KonqUndoManager::undo()
@@ -293,10 +293,10 @@ void KonqUndoManager::clearClosedItemsList(bool onlyInthisWindow)
             delete closedWindowItem;
         }
     }
-    
+
     emit closedItemsListChanged();
     emit undoAvailable(this->undoAvailable());
-    
+
     // Save config so that this window won't appear in new konqueror processes
     KonqClosedWindowsManager::self()->saveConfig();
 }
