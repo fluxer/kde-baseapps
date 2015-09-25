@@ -29,13 +29,11 @@
 # other modules must be enabled like this:
 
 set(QT_USE_QTWEBKIT TRUE)
-set(sources engine.cpp plugin.cpp utilities.cpp )
+set(sources engine.cpp plugin.cpp utilities.cpp manager.ui)
 
 # NOTE Disable trivial Qt keywords due conflicts w/ some Python.h header
 # (at least version 3.3 of it has a member PyType_Spec::slots)
 add_definitions(-DQT_NO_KEYWORDS)
-
-kde4_add_ui_files(sources manager.ui)
 
 configure_file(config.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config.h)
 
