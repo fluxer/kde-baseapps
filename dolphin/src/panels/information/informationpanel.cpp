@@ -26,6 +26,7 @@
 #include <QApplication>
 #include <QtGui/qevent.h>
 #include <QVBoxLayout>
+#include <QTimer>
 
 InformationPanel::InformationPanel(QWidget* parent) :
     Panel(parent),
