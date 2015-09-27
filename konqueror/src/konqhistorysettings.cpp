@@ -27,6 +27,9 @@
 #include <kglobal.h>
 #include <kconfiggroup.h>
 
+// Qt
+#include <QtDBus/QDBusConnection>
+
 class KonqHistorySettingsSingleton
 {
 public:

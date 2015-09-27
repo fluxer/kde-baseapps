@@ -23,7 +23,6 @@
 
 #include "konqprivate_export.h"
 #include <kconfiggroup.h>
-#include <QtDBus/QtDBus>
 #include <QString>
 #include <QImage>
 

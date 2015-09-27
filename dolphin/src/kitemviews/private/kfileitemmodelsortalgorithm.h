@@ -22,7 +22,8 @@
 #ifndef KFILEITEMMODELSORTALGORITHM_H
 #define KFILEITEMMODELSORTALGORITHM_H
 
-#include <QtCore>
+#include <QtCore/QFuture>
+#include <QtCore/QtConcurrentRun>
 
 #include <algorithm>
 

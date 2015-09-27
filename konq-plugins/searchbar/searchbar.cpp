@@ -43,9 +43,6 @@
 #include <KParts/TextExtension>
 #include <KParts/HtmlExtension>
 
-
-//#include <kparts/mainwindow.h>
-
 #include <QLineEdit>
 #include <QApplication>
 #include <QtCore/QTimer>
@@ -54,8 +51,8 @@
 #include <QPixmap>
 #include <QPainter>
 #include <QtGui/qevent.h>
-#include <QtDBus/QtDBus>
-
+#include <QtDBus/QDBusConnection>
+#include <QtDBus/QDBusMessage>
 
 K_PLUGIN_FACTORY(SearchBarPluginFactory, registerPlugin<SearchBarPlugin>();)
 K_EXPORT_PLUGIN(SearchBarPluginFactory("searchbarplugin"))

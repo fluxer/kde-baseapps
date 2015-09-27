@@ -50,7 +50,7 @@
 
 #include "xtevents.h"
 #include "glibevents.h"
-#include <QtDBus/QtDBus>
+#include <QtDBus/QDBusConnectionInterface>
 
 /**
  *  Use RLIMIT_DATA on systems that don't define RLIMIT_AS,

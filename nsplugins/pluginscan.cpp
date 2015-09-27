@@ -39,7 +39,8 @@
 #include <QRegExp>
 #include <QBuffer>
 
-#include <QtDBus/QtDBus>
+#include <QtDBus/QDBusInterface>
+#include <QtDBus/QDBusConnectionInterface>
 
 #include <kapplication.h>
 #include <kdebug.h>

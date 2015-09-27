@@ -28,10 +28,14 @@
 
 #include "feeddetector.h"
 #include "pluginbase.h"
-#include <qstringlist.h>
-#include <QtDBus>
+
 #include <kdebug.h>
 #include <KMessageBox>
+
+#include <qstringlist.h>
+#include <QtDBus/QDBusInterface>
+#include <QtDBus/QDBusConnectionInterface>
+
 using namespace Akregator;
 
 PluginBase::PluginBase()

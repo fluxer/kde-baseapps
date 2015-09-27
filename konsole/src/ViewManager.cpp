@@ -23,8 +23,8 @@
 // Qt
 #include <QtCore/QSignalMapper>
 #include <QtCore/QStringList>
-#include <QMenu>
-#include <QtDBus/QtDBus>
+#include <QtGui/QMenu>
+#include <QtDBus/QDBusConnection>
 
 // KDE
 #include <KAcceleratorManager>

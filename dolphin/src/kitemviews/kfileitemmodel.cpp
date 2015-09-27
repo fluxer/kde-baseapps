@@ -29,6 +29,7 @@
 #include "private/kfileitemmodelsortalgorithm.h"
 #include "private/kfileitemmodeldirlister.h"
 
+#include <QDir>
 #include <QApplication>
 #include <QMimeData>
 #include <QTimer>

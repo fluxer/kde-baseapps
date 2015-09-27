@@ -22,7 +22,8 @@
 #define __KonquerorAdaptor_h__
 
 #include <QtCore/QStringList>
-#include <QtDBus/QtDBus>
+#include <QtDBus/QDBusMessage>
+#include <QtDBus/QDBusArgument>
 
 #define KONQ_MAIN_PATH "/KonqMain"
 

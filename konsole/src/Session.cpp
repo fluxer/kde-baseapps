@@ -35,7 +35,7 @@
 #include <QtCore/QDir>
 #include <QtCore/QFile>
 #include <QtCore/QStringList>
-#include <QtDBus/QtDBus>
+#include <QtDBus/QDBusConnection>
 
 // KDE
 #include <KDebug>
