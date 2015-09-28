@@ -1319,6 +1319,8 @@
     <item> QUuid </item>
     <item> QValidator </item>
     <item> QVariant </item>
+    <item> QVariantList </item>
+    <item> QVariantMap </item>
     <item> QVariantAnimation </item>
     <item> QVarLengthArray </item>
     <item> QVBoxLayout </item>
