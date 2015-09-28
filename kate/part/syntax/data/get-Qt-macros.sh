@@ -15,7 +15,7 @@ if [ -n "$*" ]; then
   for f in $*; do
     egrep '^\s*#\s*define\s+(Q|QT|QT3)_' ${basepath}/$f
   done \
-    | sed 's,^\s*#\s*define\s\+\(Q[A-Z0-9_]\+\).*,<item> \1 </item>,' \
+    | sed 's,^\s*#\s*define\s\+\(Q[A-Z0-9_]\+\).*,    <item> \1 </item>,' \
     | sort \
     | uniq \
     | grep -v EXPORT \

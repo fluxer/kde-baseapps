@@ -24,7 +24,7 @@ if [ -n "$version" ]; then
   tmp=`mktemp`
   wget -O $tmp "$url"
   cat $tmp | egrep '^<dd><a href=".*\.html">.*</a></dd>$' \
-    | sed -e 's,<dd><a href=".*\.html">\(.*\)</a></dd>,<item> \1 </item>,' \
+    | sed -e 's,<dd><a href=".*\.html">\(.*\)</a></dd>,    <item> \1 </item>,' \
     | grep -v 'qoutputrange'
   rm $tmp
 else

@@ -42,7 +42,6 @@
     <item> Q_DECLARE_TR_FUNCTIONS </item>
     <!-- QObject related macros from http://qt-project.org/doc/qt-4.8/qobject.html#macros -->
     <item> Q_CLASSINFO </item>
-    <item> Q_DISABLE_COPY </item>
     <item> Q_EMIT </item>
     <item> Q_ENUMS </item>
     <item> Q_FLAGS </item>
@@ -132,35 +131,190 @@
     <!-- List of Qt macros obtained by
          part/syntax/data/get-Qt-macros.sh for qglobal.h qfeatures.h qconfig.h
       -->
-    <item> QT3_SUPPORT </item>
+    <item> Q_ALIGNOF </item>
+    <item> Q_ASSERT </item>
+    <item> Q_ASSERT_X </item>
+    <item> Q_BIG_ENDIAN </item>
+    <item> Q_BROKEN_DEBUG_STREAM </item>
+    <item> Q_BROKEN_TEMPLATE_SPECIALIZATION </item>
+    <item> Q_BYTE_ORDER </item>
+    <item> Q_CANNOT_DELETE_CONSTANT </item>
+    <item> Q_C_CALLBACKS </item>
+    <item> Q_CC_BOR </item>
+    <item> Q_CC_CDS </item>
+    <item> Q_CC_CLANG </item>
+    <item> Q_CC_COMEAU </item>
+    <item> Q_CC_DEC </item>
+    <item> Q_CC_DIAB </item>
+    <item> Q_CC_EDG </item>
+    <item> Q_CC_GCCE </item>
+    <item> Q_CC_GHS </item>
+    <item> Q_CC_GNU </item>
+    <item> Q_CC_HIGHC </item>
+    <item> Q_CC_HPACC </item>
+    <item> Q_CC_HP </item>
+    <item> Q_CC_INTEL </item>
+    <item> Q_CC_KAI </item>
+    <item> Q_CC_MINGW </item>
+    <item> Q_CC_MIPS </item>
+    <item> Q_CC_MSVC </item>
+    <item> Q_CC_MSVC_NET </item>
+    <item> Q_CC_MWERKS </item>
+    <item> Q_CC_NOKIAX86 </item>
+    <item> Q_CC_OC </item>
+    <item> Q_CC_PGI </item>
+    <item> Q_CC_RVCT </item>
+    <item> Q_CC_SUN </item>
+    <item> Q_CC_SYM </item>
+    <item> Q_CC_USLC </item>
+    <item> Q_CC_WAT </item>
+    <item> Q_CC_XLC </item>
+    <item> Q_CHECK_PTR </item>
+    <item> Q_CLEANUP_RESOURCE </item>
+    <item> Q_COMPILER_AUTO_FUNCTION </item>
+    <item> Q_COMPILER_AUTO_TYPE </item>
+    <item> Q_COMPILER_CLASS_ENUM </item>
+    <item> Q_COMPILER_CONSTEXPR </item>
+    <item> Q_COMPILER_DECLTYPE </item>
+    <item> Q_COMPILER_DEFAULT_DELETE_MEMBERS </item>
+    <item> Q_COMPILER_EXTERN_TEMPLATES </item>
+    <item> Q_COMPILER_INITIALIZER_LISTS </item>
+    <item> Q_COMPILER_LAMBDA </item>
+    <item> Q_COMPILER_MANGLES_RETURN_TYPE </item>
+    <item> Q_COMPILER_RVALUE_REFS </item>
+    <item> Q_COMPILER_UNICODE_STRINGS </item>
+    <item> Q_COMPILER_VARIADIC_TEMPLATES </item>
+    <item> Q_CONSTRUCTOR_FUNCTION0 </item>
+    <item> Q_CONSTRUCTOR_FUNCTION </item>
+    <item> Q_DECL_ALIGN </item>
+    <item> Q_DECLARE_FLAGS </item>
+    <item> Q_DECLARE_INCOMPATIBLE_FLAGS </item>
+    <item> Q_DECLARE_OPERATORS_FOR_FLAGS </item>
+    <item> Q_DECLARE_PRIVATE_D </item>
+    <item> Q_DECLARE_PRIVATE </item>
+    <item> Q_DECLARE_PUBLIC </item>
+    <item> Q_DECLARE_SHARED </item>
+    <item> Q_DECLARE_SHARED_STL </item>
+    <item> Q_DECLARE_TYPEINFO_BODY </item>
+    <item> Q_DECLARE_TYPEINFO </item>
+    <item> Q_DECL_CONSTEXPR </item>
+    <item> Q_DECL_CONSTRUCTOR_DEPRECATED </item>
+    <item> Q_DECL_DEPRECATED </item>
+    <item> Q_DECL_HIDDEN </item>
+    <item> Q_DECL_IMPORT </item>
+    <item> Q_DECL_VARIABLE_DEPRECATED </item>
+    <item> Q_DESTRUCTOR_FUNCTION0 </item>
+    <item> Q_DESTRUCTOR_FUNCTION </item>
+    <item> Q_DISABLE_COPY </item>
+    <item> Q_D </item>
+    <item> Q_DUMMY_COMPARISON_OPERATOR </item>
+    <item> Q_FOREACH </item>
+    <item> Q_FOREVER </item>
+    <item> Q_FULL_TEMPLATE_INSTANTIATION </item>
+    <item> Q_FUNC_INFO </item>
+    <item> Q_GLOBAL_STATIC_INIT </item>
+    <item> Q_GLOBAL_STATIC </item>
+    <item> Q_GLOBAL_STATIC_WITH_ARGS </item>
+    <item> Q_GLOBAL_STATIC_WITH_INITIALIZER </item>
+    <item> Q_INIT_RESOURCE_EXTERN </item>
+    <item> Q_INIT_RESOURCE </item>
+    <item> Q_INLINE_TEMPLATE </item>
+    <item> Q_INT64_C </item>
+    <item> Q_LIKELY </item>
+    <item> Q_LITTLE_ENDIAN </item>
+    <item> Q_NO_BOOL_TYPE </item>
+    <item> Q_NO_DATA_RELOCATION </item>
+    <item> Q_NO_DECLARED_NOT_DEFINED </item>
+    <item> Q_NO_DEPRECATED_CONSTRUCTORS </item>
+    <item> Q_NO_EXPLICIT_KEYWORD </item>
+    <item> Q_NO_PACKED_REFERENCE </item>
+    <item> Q_NO_POSIX_SIGNALS </item>
+    <item> Q_NO_TEMPLATE_FRIENDS </item>
+    <item> Q_NO_USING_KEYWORD </item>
+    <item> Q_OF_ELF </item>
+    <item> Q_OS_AIX </item>
+    <item> Q_OS_BSD4 </item>
+    <item> Q_OS_BSDI </item>
+    <item> Q_OS_CYGWIN </item>
+    <item> Q_OS_DARWIN32 </item>
+    <item> Q_OS_DARWIN64 </item>
+    <item> Q_OS_DARWIN </item>
+    <item> Q_OS_DGUX </item>
+    <item> Q_OS_DYNIX </item>
+    <item> Q_OS_FREEBSD </item>
+    <item> Q_OS_HPUX </item>
+    <item> Q_OS_HURD </item>
+    <item> Q_OS_INTEGRITY </item>
+    <item> Q_OS_IRIX </item>
+    <item> Q_OS_LINUX </item>
+    <item> Q_OS_LYNX </item>
+    <item> Q_OS_MAC32 </item>
+    <item> Q_OS_MAC64 </item>
+    <item> Q_OS_MAC </item>
+    <item> Q_OS_MACX </item>
+    <item> Q_OS_MSDOS </item>
+    <item> Q_OS_NACL </item>
+    <item> Q_OS_NETBSD </item>
+    <item> Q_OS_OPENBSD </item>
+    <item> Q_OS_OS2EMX </item>
+    <item> Q_OS_OS2 </item>
+    <item> Q_OS_OSF </item>
+    <item> Q_OS_QNX </item>
+    <item> Q_OS_RELIANT </item>
+    <item> Q_OS_SCO </item>
+    <item> Q_OS_SOLARIS </item>
+    <item> Q_OS_SYMBIAN </item>
+    <item> Q_OS_ULTRIX </item>
+    <item> Q_OS_UNIX </item>
+    <item> Q_OS_UNIXWARE </item>
+    <item> Q_OS_VXWORKS </item>
+    <item> Q_OS_WIN32 </item>
+    <item> Q_OS_WIN64 </item>
+    <item> Q_OS_WINCE </item>
+    <item> Q_OS_WIN </item>
+    <item> Q_OUTOFLINE_TEMPLATE </item>
+    <item> Q_PACKED </item>
+    <item> Q_Q </item>
+    <item> Q_REQUIRED_RESULT </item>
+    <item> Q_SYMBIAN_FIXED_POINTER_CURSORS </item>
+    <item> Q_SYMBIAN_HAS_EXTENDED_BITMAP_TYPE </item>
+    <item> Q_SYMBIAN_SEMITRANSPARENT_BG_SURFACE </item>
+    <item> Q_SYMBIAN_SUPPORTS_FIXNATIVEORIENTATION </item>
+    <item> Q_SYMBIAN_SUPPORTS_MULTIPLE_SCREENS </item>
+    <item> Q_SYMBIAN_SUPPORTS_SURFACES </item>
+    <item> Q_SYMBIAN_TRANSITION_EFFECTS </item>
+    <item> Q_SYMBIAN_WINDOW_SIZE_CACHE </item>
     <item> QT3_SUPPORT_CONSTRUCTOR </item>
+    <item> QT3_SUPPORT </item>
     <item> QT3_SUPPORT_VARIABLE </item>
     <item> QT3_SUPPORT_WARNINGS </item>
-    <item> QT_ARCH_X86_64 </item>
-    <item> QT_ASCII_CAST_WARN </item>
+    <item> QT_ARCH_I386 </item>
     <item> QT_ASCII_CAST_WARN_CONSTRUCTOR </item>
-    <item> QT_BUILD_KEY </item>
+    <item> QT_ASCII_CAST_WARN </item>
     <item> QT_BUILD_KEY_COMPAT </item>
+    <item> QT_BUILD_KEY </item>
     <item> QT_CATCH </item>
     <item> QT_COMPAT </item>
     <item> QT_COMPAT_WARNINGS </item>
     <item> QT_DEBUG </item>
-    <item> QT_DEPRECATED </item>
     <item> QT_DEPRECATED_CONSTRUCTOR </item>
+    <item> QT_DEPRECATED </item>
     <item> QT_DEPRECATED_VARIABLE </item>
-    <item> QT_EDITION </item>
     <item> QT_EDITION_ACADEMIC </item>
     <item> QT_EDITION_CONSOLE </item>
     <item> QT_EDITION_DESKTOP </item>
     <item> QT_EDITION_DESKTOPLIGHT </item>
     <item> QT_EDITION_EDUCATIONAL </item>
     <item> QT_EDITION_EVALUATION </item>
+    <item> QT_EDITION </item>
     <item> QT_EDITION_OPENSOURCE </item>
     <item> QT_EDITION_UNIVERSAL </item>
+    <item> Q_TEMPLATEDLL </item>
     <item> QT_ENSURE_STACK_ALIGNED_FOR_SSE </item>
     <item> QT_FASTCALL </item>
     <item> QT_FORWARD_DECLARE_CLASS </item>
     <item> QT_FORWARD_DECLARE_STRUCT </item>
+    <item> QT_GRAPHICSSYSTEM_RASTER </item>
     <item> QT_HAVE_ARMV6 </item>
     <item> QT_LARGEFILE_SUPPORT </item>
     <item> QT_LICENSED_MODULE </item>
@@ -168,7 +322,6 @@
     <item> QT_LINUXBASE </item>
     <item> QT_MAC_USE_COCOA </item>
     <item> QT_MOC_COMPAT </item>
-    <item> QT_MODULE </item>
     <item> QT_MODULE_ACTIVEQT </item>
     <item> QT_MODULE_CORE </item>
     <item> QT_MODULE_DBUS </item>
@@ -176,6 +329,7 @@
     <item> QT_MODULE_GRAPHICSVIEW </item>
     <item> QT_MODULE_GUI </item>
     <item> QT_MODULE_HELP </item>
+    <item> QT_MODULE </item>
     <item> QT_MODULE_MULTIMEDIA </item>
     <item> QT_MODULE_NETWORK </item>
     <item> QT_MODULE_OPENGL </item>
@@ -201,8 +355,8 @@
     <item> QT_NO_COLUMNVIEW </item>
     <item> QT_NO_COMBOBOX </item>
     <item> QT_NO_COMPLETER </item>
-    <item> QT_NO_CONCURRENT </item>
     <item> QT_NO_CONCURRENT_FILTER </item>
+    <item> QT_NO_CONCURRENT </item>
     <item> QT_NO_CONCURRENT_MAP </item>
     <item> QT_NO_CONTEXTMENU </item>
     <item> QT_NO_COP </item>
@@ -214,7 +368,6 @@
     <item> QT_NO_DBUS </item>
     <item> QT_NO_DEBUG </item>
     <item> QT_NO_DEBUG_STREAM </item>
-    <item> QT_NO_DECLARATIVE </item>
     <item> QT_NO_DIAL </item>
     <item> QT_NO_DIRMODEL </item>
     <item> QT_NO_DOCKWIDGET </item>
@@ -225,7 +378,6 @@
     <item> QT_NO_FILEDIALOG </item>
     <item> QT_NO_FILESYSTEMMODEL </item>
     <item> QT_NO_FONTCOMBOBOX </item>
-    <item> QT_NO_FONTCONFIG </item>
     <item> QT_NO_FONTDIALOG </item>
     <item> QT_NO_FPU </item>
     <item> QT_NO_FSCOMPLETER </item>
@@ -238,12 +390,11 @@
     <item> QT_NO_HOSTINFO </item>
     <item> QT_NO_HTTP </item>
     <item> QT_NO_ICD </item>
-    <item> QT_NO_IM </item>
     <item> QT_NO_IMAGEFORMAT_JPEG </item>
     <item> QT_NO_IMAGEFORMAT_MNG </item>
-    <item> QT_NO_IMAGEFORMAT_PNG </item>
     <item> QT_NO_IMAGEFORMAT_TIFF </item>
     <item> QT_NO_IMAGEFORMAT_XPM </item>
+    <item> QT_NO_IM </item>
     <item> QT_NO_INPUTDIALOG </item>
     <item> QT_NO_ITEMVIEWS </item>
     <item> QT_NO_LIBRARY </item>
@@ -252,17 +403,14 @@
     <item> QT_NO_LPR </item>
     <item> QT_NO_MAINWINDOW </item>
     <item> QT_NO_MDIAREA </item>
-    <item> QT_NO_MENU </item>
     <item> QT_NO_MENUBAR </item>
-    <item> QT_NO_MITSHM </item>
-    <item> QT_NO_MULTIMEDIA </item>
+    <item> QT_NO_MENU </item>
     <item> QT_NO_NAS </item>
     <item> QT_NO_NETWORKDISKCACHE </item>
-    <item> QT_NO_OPENGL </item>
     <item> QT_NO_OPENVG </item>
     <item> QT_NO_PAINT_DEBUG </item>
-    <item> QT_NO_PHONON </item>
     <item> QT_NO_PHONON_EFFECTWIDGET </item>
+    <item> QT_NO_PHONON </item>
     <item> QT_NO_PHONON_PLATFORMPLUGIN </item>
     <item> QT_NO_PHONON_SEEKSLIDER </item>
     <item> QT_NO_PHONON_SETTINGSGROUP </item>
@@ -292,12 +440,8 @@
     <item> QT_NO_QWS_VNC </item>
     <item> QT_NO_RAWFONT </item>
     <item> QT_NO_S60 </item>
-    <item> QT_NO_SCRIPT </item>
-    <item> QT_NO_SCRIPTTOOLS </item>
     <item> QT_NO_SCROLLAREA </item>
     <item> QT_NO_SCROLLBAR </item>
-    <item> QT_NO_SESSIONMANAGER </item>
-    <item> QT_NO_SHAPE </item>
     <item> QT_NO_SHAREDMEMORY </item>
     <item> QT_NO_SOCKS5 </item>
     <item> QT_NO_SOFTKEYMANAGER </item>
@@ -310,7 +454,6 @@
     <item> QT_NO_STRINGLISTMODEL </item>
     <item> QT_NO_STYLE_CDE </item>
     <item> QT_NO_STYLE_CLEANLOOKS </item>
-    <item> QT_NO_STYLE_GTK </item>
     <item> QT_NO_STYLE_PLASTIQUE </item>
     <item> QT_NO_STYLE_S60 </item>
     <item> QT_NO_STYLE_STYLESHEET </item>
@@ -318,8 +461,8 @@
     <item> QT_NO_STYLE_WINDOWSMOBILE </item>
     <item> QT_NO_STYLE_WINDOWSVISTA </item>
     <item> QT_NO_STYLE_WINDOWSXP </item>
-    <item> QT_NO_SVG </item>
     <item> QT_NO_SVGGENERATOR </item>
+    <item> QT_NO_SVG </item>
     <item> QT_NO_SVGRENDERER </item>
     <item> QT_NO_SVGWIDGET </item>
     <item> QT_NO_SXE </item>
@@ -327,7 +470,6 @@
     <item> QT_NO_SYSTEMSEMAPHORE </item>
     <item> QT_NO_TABBAR </item>
     <item> QT_NO_TABDIALOG </item>
-    <item> QT_NO_TABLET </item>
     <item> QT_NO_TABLEVIEW </item>
     <item> QT_NO_TABLEWIDGET </item>
     <item> QT_NO_TABWIDGET </item>
@@ -351,235 +493,67 @@
     <item> QT_NO_WIN_ACTIVEQT </item>
     <item> QT_NO_WIZARD </item>
     <item> QT_NO_WORKSPACE </item>
-    <item> QT_NO_XCURSOR </item>
-    <item> QT_NO_XFIXES </item>
-    <item> QT_NO_XINERAMA </item>
-    <item> QT_NO_XINPUT </item>
-    <item> QT_NO_XKB </item>
-    <item> QT_NO_XMLPATTERNS </item>
     <item> QT_NO_XMLSTREAMREADER </item>
     <item> QT_NO_XMLSTREAMWRITER </item>
-    <item> QT_NO_XRANDR </item>
-    <item> QT_NO_XRENDER </item>
-    <item> QT_NO_XSYNC </item>
-    <item> QT_NO_XVIDEO </item>
     <item> QT_NO_ZLIB </item>
     <item> QT_PACKAGEDATE_STR </item>
     <item> QT_PACKAGE_TAG </item>
     <item> QT_POINTER_SIZE </item>
     <item> QT_PREPEND_NAMESPACE </item>
-    <item> QT_PRODUCT_LICENSE </item>
     <item> QT_PRODUCT_LICENSEE </item>
+    <item> QT_PRODUCT_LICENSE </item>
     <item> QT_RETHROW </item>
-    <item> QT_STATIC_CONST </item>
+    <item> QT_RUNTIME_XCURSOR </item>
+    <item> QT_RUNTIME_XFIXES </item>
+    <item> QT_RUNTIME_XINERAMA </item>
+    <item> QT_RUNTIME_XINPUT </item>
+    <item> QT_RUNTIME_XRANDR </item>
     <item> QT_STATIC_CONST_IMPL </item>
-    <item> QT_STRINGIFY </item>
+    <item> QT_STATIC_CONST </item>
     <item> QT_STRINGIFY2 </item>
+    <item> QT_STRINGIFY </item>
     <item> QT_SUPPORTS </item>
     <item> QT_SYMBIAN_SUPPORTS_ADVANCED_POINTER </item>
     <item> QT_SYMBIAN_SUPPORTS_SGIMAGE </item>
     <item> QT_THROW </item>
-    <item> QT_TRANSLATE_NOOP </item>
     <item> QT_TRANSLATE_NOOP3 </item>
     <item> QT_TRANSLATE_NOOP3_UTF8 </item>
+    <item> QT_TRANSLATE_NOOP </item>
     <item> QT_TRANSLATE_NOOP_UTF8 </item>
     <item> QT_TRAP_THROWING </item>
     <item> QT_TRID_NOOP </item>
-    <item> QT_TRY </item>
-    <item> QT_TRYCATCH_ERROR </item>
-    <item> QT_TRYCATCH_LEAVING </item>
     <item> QT_TR_NOOP </item>
     <item> QT_TR_NOOP_UTF8 </item>
+    <item> QT_TRYCATCH_ERROR </item>
+    <item> QT_TRYCATCH_LEAVING </item>
+    <item> QT_TRY </item>
     <item> QT_USE_MATH_H_FLOATS </item>
     <item> QT_USE_NAMESPACE </item>
-    <item> QT_VERSION </item>
     <item> QT_VERSION_CHECK </item>
+    <item> QT_VERSION </item>
     <item> QT_VERSION_STR </item>
     <item> QT_VISIBILITY_AVAILABLE </item>
-    <item> QT_WA </item>
     <item> QT_WA_INLINE </item>
+    <item> QT_WA </item>
     <item> QT_WIN_CALLBACK </item>
-    <item> QT_USE_NAMESPACE </item>
-    <item> QT_BEGIN_NAMESPACE </item>
-    <item> QT_END_NAMESPACE </item>
-    <item> QT_BEGIN_HEADER </item>
-    <item> QT_END_HEADER </item>
-    <item> Q_ALIGNOF </item>
-    <item> Q_ASSERT </item>
-    <item> Q_ASSERT_X </item>
-    <item> Q_BIG_ENDIAN </item>
-    <item> Q_BROKEN_DEBUG_STREAM </item>
-    <item> Q_BROKEN_TEMPLATE_SPECIALIZATION </item>
-    <item> Q_BYTE_ORDER </item>
-    <item> Q_CANNOT_DELETE_CONSTANT </item>
-    <item> Q_CC_BOR </item>
-    <item> Q_CC_CDS </item>
-    <item> Q_CC_CLANG </item>
-    <item> Q_CC_COMEAU </item>
-    <item> Q_CC_DEC </item>
-    <item> Q_CC_DIAB </item>
-    <item> Q_CC_EDG </item>
-    <item> Q_CC_GCCE </item>
-    <item> Q_CC_GHS </item>
-    <item> Q_CC_GNU </item>
-    <item> Q_CC_HIGHC </item>
-    <item> Q_CC_HP </item>
-    <item> Q_CC_HPACC </item>
-    <item> Q_CC_INTEL </item>
-    <item> Q_CC_KAI </item>
-    <item> Q_CC_MINGW </item>
-    <item> Q_CC_MIPS </item>
-    <item> Q_CC_MSVC </item>
-    <item> Q_CC_MSVC_NET </item>
-    <item> Q_CC_MWERKS </item>
-    <item> Q_CC_NOKIAX86 </item>
-    <item> Q_CC_OC </item>
-    <item> Q_CC_PGI </item>
-    <item> Q_CC_RVCT </item>
-    <item> Q_CC_SUN </item>
-    <item> Q_CC_SYM </item>
-    <item> Q_CC_USLC </item>
-    <item> Q_CC_WAT </item>
-    <item> Q_CC_XLC </item>
-    <item> Q_CHECK_PTR </item>
-    <item> Q_CLEANUP_RESOURCE </item>
-    <item> Q_COMPILER_AUTO_TYPE </item>
-    <item> Q_COMPILER_CLASS_ENUM </item>
-    <item> Q_COMPILER_CONSTEXPR </item>
-    <item> Q_COMPILER_DECLTYPE </item>
-    <item> Q_COMPILER_DEFAULT_DELETE_MEMBERS </item>
-    <item> Q_COMPILER_EXTERN_TEMPLATES </item>
-    <item> Q_COMPILER_INITIALIZER_LISTS </item>
-    <item> Q_COMPILER_LAMBDA </item>
-    <item> Q_COMPILER_MANGLES_RETURN_TYPE </item>
-    <item> Q_COMPILER_RVALUE_REFS </item>
-    <item> Q_COMPILER_UNICODE_STRINGS </item>
-    <item> Q_COMPILER_VARIADIC_TEMPLATES </item>
-    <item> Q_CONSTRUCTOR_FUNCTION </item>
-    <item> Q_CONSTRUCTOR_FUNCTION0 </item>
-    <item> Q_C_CALLBACKS </item>
-    <item> Q_D </item>
-    <item> Q_DECLARE_FLAGS </item>
-    <item> Q_DECLARE_INCOMPATIBLE_FLAGS </item>
-    <item> Q_DECLARE_OPERATORS_FOR_FLAGS </item>
-    <item> Q_DECLARE_PRIVATE </item>
-    <item> Q_DECLARE_PRIVATE_D </item>
-    <item> Q_DECLARE_PUBLIC </item>
-    <item> Q_DECLARE_SHARED </item>
-    <item> Q_DECLARE_SHARED_STL </item>
-    <item> Q_DECLARE_TYPEINFO </item>
-    <item> Q_DECLARE_TYPEINFO_BODY </item>
-    <item> Q_DECL_ALIGN </item>
-    <item> Q_DECL_CONSTEXPR </item>
-    <item> Q_DECL_CONSTRUCTOR_DEPRECATED </item>
-    <item> Q_DECL_DEPRECATED </item>
-    <item> Q_DECL_FINAL </item>
-    <item> Q_DECL_HIDDEN </item>
-    <item> Q_DECL_IMPORT </item>
-    <item> Q_DECL_OVERRIDE </item>
-    <item> Q_DECL_NOEXCEPT </item>
-    <item> Q_DECL_NOTHROW </item>
-    <item> Q_NULLPTR </item>
-    <item> Q_DECL_VARIABLE_DEPRECATED </item>
-    <item> Q_DESTRUCTOR_FUNCTION </item>
-    <item> Q_DESTRUCTOR_FUNCTION0 </item>
-    <item> Q_DISABLE_COPY </item>
-    <item> Q_DUMMY_COMPARISON_OPERATOR </item>
-    <item> Q_FOREACH </item>
-    <item> Q_FOREVER </item>
-    <item> Q_FULL_TEMPLATE_INSTANTIATION </item>
-    <item> Q_FUNC_INFO </item>
-    <item> Q_GLOBAL_STATIC </item>
-    <item> Q_GLOBAL_STATIC_INIT </item>
-    <item> Q_GLOBAL_STATIC_WITH_ARGS </item>
-    <item> Q_GLOBAL_STATIC_WITH_INITIALIZER </item>
-    <item> Q_INIT_RESOURCE </item>
-    <item> Q_INIT_RESOURCE_EXTERN </item>
-    <item> Q_INLINE_TEMPLATE </item>
-    <item> Q_INT64_C </item>
-    <item> Q_LIKELY </item>
-    <item> Q_LITTLE_ENDIAN </item>
-    <item> Q_NO_BOOL_TYPE </item>
-    <item> Q_NO_DATA_RELOCATION </item>
-    <item> Q_NO_DECLARED_NOT_DEFINED </item>
-    <item> Q_NO_DEPRECATED_CONSTRUCTORS </item>
-    <item> Q_NO_EXPLICIT_KEYWORD </item>
-    <item> Q_NO_PACKED_REFERENCE </item>
-    <item> Q_NO_POSIX_SIGNALS </item>
-    <item> Q_NO_TEMPLATE_FRIENDS </item>
-    <item> Q_NO_USING_KEYWORD </item>
-    <item> Q_OF_ELF </item>
-    <item> Q_OS_AIX </item>
-    <item> Q_OS_BSD4 </item>
-    <item> Q_OS_BSDI </item>
-    <item> Q_OS_CYGWIN </item>
-    <item> Q_OS_DARWIN </item>
-    <item> Q_OS_DARWIN32 </item>
-    <item> Q_OS_DARWIN64 </item>
-    <item> Q_OS_DGUX </item>
-    <item> Q_OS_DYNIX </item>
-    <item> Q_OS_FREEBSD </item>
-    <item> Q_OS_HPUX </item>
-    <item> Q_OS_HURD </item>
-    <item> Q_OS_INTEGRITY </item>
-    <item> Q_OS_IRIX </item>
-    <item> Q_OS_LINUX </item>
-    <item> Q_OS_LYNX </item>
-    <item> Q_OS_MAC </item>
-    <item> Q_OS_MAC32 </item>
-    <item> Q_OS_MAC64 </item>
-    <item> Q_OS_MACX </item>
-    <item> Q_OS_MSDOS </item>
-    <item> Q_OS_NACL </item>
-    <item> Q_OS_NETBSD </item>
-    <item> Q_OS_OPENBSD </item>
-    <item> Q_OS_OS2 </item>
-    <item> Q_OS_OS2EMX </item>
-    <item> Q_OS_OSF </item>
-    <item> Q_OS_QNX </item>
-    <item> Q_OS_RELIANT </item>
-    <item> Q_OS_SCO </item>
-    <item> Q_OS_SOLARIS </item>
-    <item> Q_OS_SYMBIAN </item>
-    <item> Q_OS_ULTRIX </item>
-    <item> Q_OS_UNIX </item>
-    <item> Q_OS_UNIXWARE </item>
-    <item> Q_OS_VXWORKS </item>
-    <item> Q_OS_WIN </item>
-    <item> Q_OS_WIN32 </item>
-    <item> Q_OS_WIN64 </item>
-    <item> Q_OS_WINCE </item>
-    <item> Q_OUTOFLINE_TEMPLATE </item>
-    <item> Q_PACKED </item>
-    <item> Q_Q </item>
-    <item> Q_REQUIRED_RESULT </item>
-    <item> Q_SYMBIAN_FIXED_POINTER_CURSORS </item>
-    <item> Q_SYMBIAN_HAS_EXTENDED_BITMAP_TYPE </item>
-    <item> Q_SYMBIAN_SEMITRANSPARENT_BG_SURFACE </item>
-    <item> Q_SYMBIAN_SUPPORTS_FIXNATIVEORIENTATION </item>
-    <item> Q_SYMBIAN_SUPPORTS_MULTIPLE_SCREENS </item>
-    <item> Q_SYMBIAN_SUPPORTS_SURFACES </item>
-    <item> Q_SYMBIAN_TRANSITION_EFFECTS </item>
-    <item> Q_SYMBIAN_WINDOW_SIZE_CACHE </item>
-    <item> Q_TEMPLATEDLL </item>
     <item> Q_TYPENAME </item>
     <item> Q_TYPEOF </item>
     <item> Q_UINT64_C </item>
     <item> Q_UNLIKELY </item>
     <item> Q_UNUSED </item>
     <item> Q_WRONG_SB_CTYPE_MACROS </item>
-    <item> Q_WS_MAC </item>
     <item> Q_WS_MAC32 </item>
     <item> Q_WS_MAC64 </item>
+    <item> Q_WS_MAC </item>
     <item> Q_WS_MACX </item>
     <item> Q_WS_PM </item>
     <item> Q_WS_S60 </item>
-    <item> Q_WS_WIN </item>
     <item> Q_WS_WIN16 </item>
     <item> Q_WS_WIN32 </item>
     <item> Q_WS_WIN64 </item>
     <item> Q_WS_WINCE </item>
     <item> Q_WS_WINCE_WM </item>
+    <item> Q_WS_WIN </item>
     <item> Q_WS_X11 </item>
     <!-- arguments for Q_DECLARE_TYPEINFO, not really macros but good if highlighted like that -->
     <item> Q_COMPLEX_TYPE </item>
@@ -593,6 +567,156 @@
     <!-- Classes listed here: http://qt-project.org/doc/qt-4.8/classes.html
         Obtained by `get-Qt-classes.sh 4.8`
       -->
+    <item> Q3Accel </item>
+    <item> Q3Action </item>
+    <item> Q3ActionGroup </item>
+    <item> Q3AsciiCache </item>
+    <item> Q3AsciiCacheIterator </item>
+    <item> Q3AsciiDict </item>
+    <item> Q3AsciiDictIterator </item>
+    <item> Q3Button </item>
+    <item> Q3ButtonGroup </item>
+    <item> Q3CString </item>
+    <item> Q3Cache </item>
+    <item> Q3CacheIterator </item>
+    <item> Q3Canvas </item>
+    <item> Q3CanvasEllipse </item>
+    <item> Q3CanvasItem </item>
+    <item> Q3CanvasItemList </item>
+    <item> Q3CanvasLine </item>
+    <item> Q3CanvasPixmap </item>
+    <item> Q3CanvasPixmapArray </item>
+    <item> Q3CanvasPolygon </item>
+    <item> Q3CanvasPolygonalItem </item>
+    <item> Q3CanvasRectangle </item>
+    <item> Q3CanvasSpline </item>
+    <item> Q3CanvasSprite </item>
+    <item> Q3CanvasText </item>
+    <item> Q3CanvasView </item>
+    <item> Q3CheckListItem </item>
+    <item> Q3CheckTableItem </item>
+    <item> Q3ColorDrag </item>
+    <item> Q3ComboBox </item>
+    <item> Q3ComboTableItem </item>
+    <item> Q3DataBrowser </item>
+    <item> Q3DataTable </item>
+    <item> Q3DataView </item>
+    <item> Q3DateEdit </item>
+    <item> Q3DateTimeEdit </item>
+    <item> Q3DateTimeEditBase </item>
+    <item> Q3DeepCopy </item>
+    <item> Q3Dict </item>
+    <item> Q3DictIterator </item>
+    <item> Q3Dns </item>
+    <item> Q3DockArea </item>
+    <item> Q3DockWindow </item>
+    <item> Q3DragObject </item>
+    <item> Q3DropSite </item>
+    <item> Q3EditorFactory </item>
+    <item> Q3FileDialog </item>
+    <item> Q3FileIconProvider </item>
+    <item> Q3FilePreview </item>
+    <item> Q3Frame </item>
+    <item> Q3Ftp </item>
+    <item> Q3Grid </item>
+    <item> Q3GridView </item>
+    <item> Q3GroupBox </item>
+    <item> Q3HBox </item>
+    <item> Q3HBoxLayout </item>
+    <item> Q3HButtonGroup </item>
+    <item> Q3HGroupBox </item>
+    <item> Q3Header </item>
+    <item> Q3Http </item>
+    <item> Q3HttpHeader </item>
+    <item> Q3HttpRequestHeader </item>
+    <item> Q3HttpResponseHeader </item>
+    <item> Q3IconDrag </item>
+    <item> Q3IconDragItem </item>
+    <item> Q3IconView </item>
+    <item> Q3IconViewItem </item>
+    <item> Q3ImageDrag </item>
+    <item> Q3IntCache </item>
+    <item> Q3IntCacheIterator </item>
+    <item> Q3IntDict </item>
+    <item> Q3IntDictIterator </item>
+    <item> Q3ListBox </item>
+    <item> Q3ListBoxItem </item>
+    <item> Q3ListBoxPixmap </item>
+    <item> Q3ListBoxText </item>
+    <item> Q3ListView </item>
+    <item> Q3ListViewItem </item>
+    <item> Q3ListViewItemIterator </item>
+    <item> Q3LocalFs </item>
+    <item> Q3MainWindow </item>
+    <item> Q3MemArray </item>
+    <item> Q3MimeSourceFactory </item>
+    <item> Q3MultiLineEdit </item>
+    <item> Q3NetworkOperation </item>
+    <item> Q3NetworkProtocol </item>
+    <item> Q3PaintDeviceMetrics </item>
+    <item> Q3Painter </item>
+    <item> Q3Picture </item>
+    <item> Q3PointArray </item>
+    <item> Q3PopupMenu </item>
+    <item> Q3Process </item>
+    <item> Q3ProgressBar </item>
+    <item> Q3ProgressDialog </item>
+    <item> Q3PtrCollection </item>
+    <item> Q3PtrDict </item>
+    <item> Q3PtrDictIterator </item>
+    <item> Q3PtrList </item>
+    <item> Q3PtrListIterator </item>
+    <item> Q3PtrQueue </item>
+    <item> Q3PtrStack </item>
+    <item> Q3PtrVector </item>
+    <item> Q3RangeControl </item>
+    <item> Q3ScrollView </item>
+    <item> Q3Semaphore </item>
+    <item> Q3ServerSocket </item>
+    <item> Q3Shared </item>
+    <item> Q3Signal </item>
+    <item> Q3SimpleRichText </item>
+    <item> Q3Socket </item>
+    <item> Q3SocketDevice </item>
+    <item> Q3SqlCursor </item>
+    <item> Q3SqlEditorFactory </item>
+    <item> Q3SqlFieldInfo </item>
+    <item> Q3SqlForm </item>
+    <item> Q3SqlPropertyMap </item>
+    <item> Q3SqlRecordInfo </item>
+    <item> Q3SqlSelectCursor </item>
+    <item> Q3StoredDrag </item>
+    <item> Q3StrIList </item>
+    <item> Q3StrList </item>
+    <item> Q3StrListIterator </item>
+    <item> Q3StyleSheet </item>
+    <item> Q3StyleSheetItem </item>
+    <item> Q3SyntaxHighlighter </item>
+    <item> Q3TabDialog </item>
+    <item> Q3Table </item>
+    <item> Q3TableItem </item>
+    <item> Q3TableSelection </item>
+    <item> Q3TextBrowser </item>
+    <item> Q3TextDrag </item>
+    <item> Q3TextEdit </item>
+    <item> Q3TextStream </item>
+    <item> Q3TextView </item>
+    <item> Q3TimeEdit </item>
+    <item> Q3ToolBar </item>
+    <item> Q3UriDrag </item>
+    <item> Q3Url </item>
+    <item> Q3VBox </item>
+    <item> Q3VBoxLayout </item>
+    <item> Q3VButtonGroup </item>
+    <item> Q3VGroupBox </item>
+    <item> Q3ValueList </item>
+    <item> Q3ValueListConstIterator </item>
+    <item> Q3ValueListIterator </item>
+    <item> Q3ValueStack </item>
+    <item> Q3ValueVector </item>
+    <item> Q3WhatsThis </item>
+    <item> Q3WidgetStack </item>
+    <item> Q3Wizard </item>
     <item> QAbstractAnimation </item>
     <item> QAbstractButton </item>
     <item> QAbstractEventDispatcher </item>
@@ -658,15 +782,14 @@
     <item> QBitArray </item>
     <item> QBitmap </item>
     <item> QBoxLayout </item>
-    <item> QBool </item>
     <item> QBrush </item>
     <item> QBuffer </item>
     <item> QButtonGroup </item>
     <item> QByteArray </item>
     <item> QByteArrayMatcher </item>
+    <item> QCDEStyle </item>
     <item> QCache </item>
     <item> QCalendarWidget </item>
-    <item> QCDEStyle </item>
     <item> QChar </item>
     <item> QCheckBox </item>
     <item> QChildEvent </item>
@@ -675,6 +798,7 @@
     <item> QCloseEvent </item>
     <item> QColor </item>
     <item> QColorDialog </item>
+    <item> QColorGroup </item>
     <item> QColormap </item>
     <item> QColumnView </item>
     <item> QComboBox </item>
@@ -682,19 +806,15 @@
     <item> QCommonStyle </item>
     <item> QCompleter </item>
     <item> QConicalGradient </item>
+    <item> QConstString </item>
     <item> QContextMenuEvent </item>
     <item> QContiguousCache </item>
     <item> QCopChannel </item>
     <item> QCoreApplication </item>
     <item> QCryptographicHash </item>
     <item> QCursor </item>
+    <item> QCustomEvent </item>
     <item> QCustomRasterPaintDevice </item>
-    <item> QDataStream </item>
-    <item> QDataWidgetMapper </item>
-    <item> QDate </item>
-    <item> QDateEdit </item>
-    <item> QDateTime </item>
-    <item> QDateTimeEdit </item>
     <item> QDBusAbstractAdaptor </item>
     <item> QDBusAbstractInterface </item>
     <item> QDBusArgument </item>
@@ -713,6 +833,12 @@
     <item> QDBusSignature </item>
     <item> QDBusUnixFileDescriptor </item>
     <item> QDBusVariant </item>
+    <item> QDataStream </item>
+    <item> QDataWidgetMapper </item>
+    <item> QDate </item>
+    <item> QDateEdit </item>
+    <item> QDateTime </item>
+    <item> QDateTimeEdit </item>
     <item> QDebug </item>
     <item> QDeclarativeComponent </item>
     <item> QDeclarativeContext </item>
@@ -723,7 +849,6 @@
     <item> QDeclarativeImageProvider </item>
     <item> QDeclarativeItem </item>
     <item> QDeclarativeListProperty </item>
-    <item> QDeclarativeListReference </item>
     <item> QDeclarativeNetworkAccessManagerFactory </item>
     <item> QDeclarativeParserStatus </item>
     <item> QDeclarativeProperty </item>
@@ -756,8 +881,9 @@
     <item> QDialog </item>
     <item> QDialogButtonBox </item>
     <item> QDir </item>
-    <item> QDirectPainter </item>
     <item> QDirIterator </item>
+    <item> QDirModel </item>
+    <item> QDirectPainter </item>
     <item> QDockWidget </item>
     <item> QDomAttr </item>
     <item> QDomCDATASection </item>
@@ -793,6 +919,7 @@
     <item> QExplicitlySharedDataPointer </item>
     <item> QExtensionFactory </item>
     <item> QExtensionManager </item>
+    <item> QFSFileEngine </item>
     <item> QFile </item>
     <item> QFileDialog </item>
     <item> QFileIconProvider </item>
@@ -817,22 +944,12 @@
     <item> QFormBuilder </item>
     <item> QFormLayout </item>
     <item> QFrame </item>
-    <item> QFSFileEngine </item>
     <item> QFtp </item>
     <item> QFuture </item>
     <item> QFutureIterator </item>
     <item> QFutureSynchronizer </item>
     <item> QFutureWatcher </item>
-    <item> QGenericArgument </item>
-    <item> QGenericMatrix </item>
-    <item> QGenericPlugin </item>
-    <item> QGenericPluginFactory </item>
-    <item> QGenericReturnArgument </item>
-    <item> QGesture </item>
-    <item> QGestureEvent </item>
-    <item> QGestureRecognizer </item>
     <item> QGLBuffer </item>
-    <item> QGLColormap </item>
     <item> QGLContext </item>
     <item> QGLFormat </item>
     <item> QGLFramebufferObject </item>
@@ -842,6 +959,14 @@
     <item> QGLShader </item>
     <item> QGLShaderProgram </item>
     <item> QGLWidget </item>
+    <item> QGenericArgument </item>
+    <item> QGenericMatrix </item>
+    <item> QGenericPlugin </item>
+    <item> QGenericPluginFactory </item>
+    <item> QGenericReturnArgument </item>
+    <item> QGesture </item>
+    <item> QGestureEvent </item>
+    <item> QGestureRecognizer </item>
     <item> QGlyphRun </item>
     <item> QGradient </item>
     <item> QGraphicsAnchor </item>
@@ -857,8 +982,8 @@
     <item> QGraphicsItemGroup </item>
     <item> QGraphicsLayout </item>
     <item> QGraphicsLayoutItem </item>
-    <item> QGraphicsLinearLayout </item>
     <item> QGraphicsLineItem </item>
+    <item> QGraphicsLinearLayout </item>
     <item> QGraphicsObject </item>
     <item> QGraphicsOpacityEffect </item>
     <item> QGraphicsPathItem </item>
@@ -888,9 +1013,9 @@
     <item> QGridLayout </item>
     <item> QGroupBox </item>
     <item> QGtkStyle </item>
+    <item> QHBoxLayout </item>
     <item> QHash </item>
     <item> QHashIterator </item>
-    <item> QHBoxLayout </item>
     <item> QHeaderView </item>
     <item> QHelpContentItem </item>
     <item> QHelpContentModel </item>
@@ -909,8 +1034,13 @@
     <item> QHostAddress </item>
     <item> QHostInfo </item>
     <item> QHoverEvent </item>
+    <item> QHttp </item>
+    <item> QHttpHeader </item>
     <item> QHttpMultiPart </item>
     <item> QHttpPart </item>
+    <item> QHttpRequestHeader </item>
+    <item> QHttpResponseHeader </item>
+    <item> QIODevice </item>
     <item> QIcon </item>
     <item> QIconDragEvent </item>
     <item> QIconEngine </item>
@@ -930,7 +1060,6 @@
     <item> QInputEvent </item>
     <item> QInputMethodEvent </item>
     <item> QIntValidator </item>
-    <item> QIODevice </item>
     <item> QItemDelegate </item>
     <item> QItemEditorCreator </item>
     <item> QItemEditorCreatorBase </item>
@@ -943,18 +1072,18 @@
     <item> QKeyEvent </item>
     <item> QKeyEventTransition </item>
     <item> QKeySequence </item>
+    <item> QLCDNumber </item>
     <item> QLabel </item>
     <item> QLatin1Char </item>
     <item> QLatin1String </item>
     <item> QLayout </item>
     <item> QLayoutItem </item>
-    <item> QLCDNumber </item>
     <item> QLibrary </item>
     <item> QLibraryInfo </item>
     <item> QLine </item>
-    <item> QLinearGradient </item>
     <item> QLineEdit </item>
     <item> QLineF </item>
+    <item> QLinearGradient </item>
     <item> QLinkedList </item>
     <item> QLinkedListIterator </item>
     <item> QList </item>
@@ -962,9 +1091,9 @@
     <item> QListView </item>
     <item> QListWidget </item>
     <item> QListWidgetItem </item>
-    <item> QLocale </item>
     <item> QLocalServer </item>
     <item> QLocalSocket </item>
+    <item> QLocale </item>
     <item> QMacCocoaViewContainer </item>
     <item> QMacNativeWidget </item>
     <item> QMacPasteboardMime </item>
@@ -973,11 +1102,13 @@
     <item> QMap </item>
     <item> QMapIterator </item>
     <item> QMargins </item>
+    <item> QMatrix </item>
     <item> QMatrix4x4 </item>
     <item> QMdiArea </item>
     <item> QMdiSubWindow </item>
     <item> QMenu </item>
     <item> QMenuBar </item>
+    <item> QMenuItem </item>
     <item> QMessageBox </item>
     <item> QMetaClassInfo </item>
     <item> QMetaEnum </item>
@@ -986,6 +1117,7 @@
     <item> QMetaProperty </item>
     <item> QMetaType </item>
     <item> QMimeData </item>
+    <item> QMimeSource </item>
     <item> QModelIndex </item>
     <item> QMotifStyle </item>
     <item> QMouseDriverFactory </item>
@@ -1025,10 +1157,10 @@
     <item> QPaintDevice </item>
     <item> QPaintEngine </item>
     <item> QPaintEngineState </item>
+    <item> QPaintEvent </item>
     <item> QPainter </item>
     <item> QPainterPath </item>
     <item> QPainterPathStroker </item>
-    <item> QPaintEvent </item>
     <item> QPair </item>
     <item> QPalette </item>
     <item> QPanGesture </item>
@@ -1037,6 +1169,8 @@
     <item> QPen </item>
     <item> QPersistentModelIndex </item>
     <item> QPicture </item>
+    <item> QPictureFormatPlugin </item>
+    <item> QPictureIO </item>
     <item> QPinchGesture </item>
     <item> QPixmap </item>
     <item> QPixmapCache </item>
@@ -1049,21 +1183,22 @@
     <item> QPlatformWindowFormat </item>
     <item> QPluginLoader </item>
     <item> QPoint </item>
-    <item> QPointer </item>
     <item> QPointF </item>
+    <item> QPointer </item>
     <item> QPolygon </item>
     <item> QPolygonF </item>
     <item> QPrintDialog </item>
     <item> QPrintEngine </item>
-    <item> QPrinter </item>
-    <item> QPrinterInfo </item>
     <item> QPrintPreviewDialog </item>
     <item> QPrintPreviewWidget </item>
+    <item> QPrinter </item>
+    <item> QPrinterInfo </item>
     <item> QProcess </item>
     <item> QProcessEnvironment </item>
     <item> QProgressBar </item>
     <item> QProgressDialog </item>
     <item> QPropertyAnimation </item>
+    <item> QProxyModel </item>
     <item> QProxyScreen </item>
     <item> QProxyScreenCursor </item>
     <item> QProxyStyle </item>
@@ -1085,8 +1220,8 @@
     <item> QResource </item>
     <item> QRubberBand </item>
     <item> QRunnable </item>
-    <item> QS60MainApplication </item>
     <item> QS60MainAppUi </item>
+    <item> QS60MainApplication </item>
     <item> QS60MainDocument </item>
     <item> QS60Style </item>
     <item> QScopedArrayPointer </item>
@@ -1096,7 +1231,6 @@
     <item> QScreenCursor </item>
     <item> QScreenDriverFactory </item>
     <item> QScreenDriverPlugin </item>
-    <item> QScriptable </item>
     <item> QScriptClass </item>
     <item> QScriptClassPropertyIterator </item>
     <item> QScriptContext </item>
@@ -1110,6 +1244,7 @@
     <item> QScriptSyntaxCheckResult </item>
     <item> QScriptValue </item>
     <item> QScriptValueIterator </item>
+    <item> QScriptable </item>
     <item> QScrollArea </item>
     <item> QScrollBar </item>
     <item> QSemaphore </item>
@@ -1182,7 +1317,6 @@
     <item> QStringMatcher </item>
     <item> QStringRef </item>
     <item> QStyle </item>
-    <item> QStyledItemDelegate </item>
     <item> QStyleFactory </item>
     <item> QStyleHintReturn </item>
     <item> QStyleHintReturnMask </item>
@@ -1227,6 +1361,7 @@
     <item> QStyleOptionViewItemV4 </item>
     <item> QStylePainter </item>
     <item> QStylePlugin </item>
+    <item> QStyledItemDelegate </item>
     <item> QSupportedWritingSystems </item>
     <item> QSvgGenerator </item>
     <item> QSvgRenderer </item>
@@ -1240,12 +1375,12 @@
     <item> QSystemSemaphore </item>
     <item> QSystemTrayIcon </item>
     <item> QTabBar </item>
-    <item> QTabletEvent </item>
+    <item> QTabWidget </item>
     <item> QTableView </item>
     <item> QTableWidget </item>
     <item> QTableWidgetItem </item>
     <item> QTableWidgetSelectionRange </item>
-    <item> QTabWidget </item>
+    <item> QTabletEvent </item>
     <item> QTapAndHoldGesture </item>
     <item> QTapGesture </item>
     <item> QTcpServer </item>
@@ -1272,6 +1407,7 @@
     <item> QTextFragment </item>
     <item> QTextFrame </item>
     <item> QTextFrameFormat </item>
+    <item> QTextIStream </item>
     <item> QTextImageFormat </item>
     <item> QTextInlineObject </item>
     <item> QTextItem </item>
@@ -1280,6 +1416,7 @@
     <item> QTextLine </item>
     <item> QTextList </item>
     <item> QTextListFormat </item>
+    <item> QTextOStream </item>
     <item> QTextObject </item>
     <item> QTextObjectInterface </item>
     <item> QTextOption </item>
@@ -1317,13 +1454,11 @@
     <item> QUrl </item>
     <item> QUrlInfo </item>
     <item> QUuid </item>
-    <item> QValidator </item>
-    <item> QVariant </item>
-    <item> QVariantList </item>
-    <item> QVariantMap </item>
-    <item> QVariantAnimation </item>
-    <item> QVarLengthArray </item>
     <item> QVBoxLayout </item>
+    <item> QValidator </item>
+    <item> QVarLengthArray </item>
+    <item> QVariant </item>
+    <item> QVariantAnimation </item>
     <item> QVector </item>
     <item> QVector2D </item>
     <item> QVector3D </item>
@@ -1331,6 +1466,18 @@
     <item> QVectorIterator </item>
     <item> QVideoFrame </item>
     <item> QVideoSurfaceFormat </item>
+    <item> QWSCalibratedMouseHandler </item>
+    <item> QWSClient </item>
+    <item> QWSEmbedWidget </item>
+    <item> QWSEvent </item>
+    <item> QWSGLWindowSurface </item>
+    <item> QWSInputMethod </item>
+    <item> QWSKeyboardHandler </item>
+    <item> QWSMouseHandler </item>
+    <item> QWSPointerCalibrationData </item>
+    <item> QWSScreenSaver </item>
+    <item> QWSServer </item>
+    <item> QWSWindow </item>
     <item> QWaitCondition </item>
     <item> QWeakPointer </item>
     <item> QWebDatabase </item>
@@ -1353,34 +1500,23 @@
     <item> QWidget </item>
     <item> QWidgetAction </item>
     <item> QWidgetItem </item>
+    <item> QWindowStateChangeEvent </item>
     <item> QWindowsMime </item>
     <item> QWindowsStyle </item>
-    <item> QWindowStateChangeEvent </item>
     <item> QWindowsVistaStyle </item>
     <item> QWindowsXPStyle </item>
     <item> QWizard </item>
     <item> QWizardPage </item>
+    <item> QWorkspace </item>
     <item> QWriteLocker </item>
-    <item> QWSCalibratedMouseHandler </item>
-    <item> QWSClient </item>
-    <item> QWSEmbedWidget </item>
-    <item> QWSEvent </item>
-    <item> QWSGLWindowSurface </item>
-    <item> QWSInputMethod </item>
-    <item> QWSKeyboardHandler </item>
-    <item> QWSMouseHandler </item>
-    <item> QWSPointerCalibrationData </item>
-    <item> QWSScreenSaver </item>
-    <item> QWSServer </item>
-    <item> QWSWindow </item>
     <item> QX11EmbedContainer </item>
     <item> QX11EmbedWidget </item>
     <item> QX11Info </item>
     <item> QXmlAttributes </item>
     <item> QXmlContentHandler </item>
+    <item> QXmlDTDHandler </item>
     <item> QXmlDeclHandler </item>
     <item> QXmlDefaultHandler </item>
-    <item> QXmlDTDHandler </item>
     <item> QXmlEntityResolver </item>
     <item> QXmlErrorHandler </item>
     <item> QXmlFormatter </item>
@@ -1440,7 +1576,6 @@
     <item> qDebug </item>
     <item> qFatal </item>
     <item> qFuzzyCompare </item>
-    <item> qFuzzyCompare </item>
     <item> qInstallMsgHandler </item>
     <item> qMacVersion </item>
     <item> qMakePair </item>
@@ -1496,12 +1631,10 @@
     <!-- http://qt-project.org/doc/qt-4.8/qmetatype.html#related-non-members -->
     <item> qMetaTypeId </item>
     <item> qRegisterMetaType </item>
-    <item> qRegisterMetaType </item>
     <item> qRegisterMetaTypeStreamOperators </item>
     <!-- http://qt-project.org/doc/qt-4.8/qcolor.html#related-non-members -->
     <item> qAlpha </item>
     <item> qBlue </item>
-    <item> qGray </item>
     <item> qGray </item>
     <item> qGreen </item>
     <item> qRed </item>
@@ -1512,7 +1645,6 @@
     <!-- http://qt-project.org/doc/qt-4.8/qdeclarativeengine.html#related-non-members -->
     <item> qmlInfo </item>
     <item> qmlRegisterInterface </item>
-    <item> qmlRegisterType </item>
     <item> qmlRegisterType </item>
     <item> qmlRegisterTypeNotAvailable </item>
     <item> qmlRegisterUncreatableType </item>
