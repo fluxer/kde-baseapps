@@ -94,7 +94,6 @@ set(konsoleprivate_SRCS
     ZModemDialog.cpp
     PrintOptions.cpp
     konsole_wcwidth.cpp
-    WindowSystemInfo.cpp
     ${CMAKE_CURRENT_BINARY_DIR}/org.kde.konsole.Window.xml
     ${CMAKE_CURRENT_BINARY_DIR}/org.kde.konsole.Session.xml
     ColorSchemeEditor.ui

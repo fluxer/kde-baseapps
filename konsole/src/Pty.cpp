@@ -205,8 +205,8 @@ void Pty::addEnvironmentVariables(const QStringList& environmentVariables)
         const int separator = pair.indexOf('=');
 
         if (separator >= 0) {
-            QString variable = pair.left(separator);
-            QString value = pair.mid(separator + 1);
+            const QString variable = pair.left(separator);
+            const QString value = pair.mid(separator + 1);
 
             setEnv(variable, value);
 
@@ -264,11 +264,11 @@ void Pty::setWriteable(bool writeable)
     if (KDE::stat(pty()->ttyName(), &sbuf) == 0) {
         if (writeable) {
             if (KDE::chmod(pty()->ttyName(), sbuf.st_mode | S_IWGRP) < 0) {
-                kWarning() << "Could not set writeable on "<<pty()->ttyName();
+                kWarning() << "Could not set writeable on" << pty()->ttyName();
             }
         } else {
             if (KDE::chmod(pty()->ttyName(), sbuf.st_mode & ~(S_IWGRP | S_IWOTH)) < 0) {
-                kWarning() << "Could not unset writeable on "<<pty()->ttyName();
+                kWarning() << "Could not unset writeable on" << pty()->ttyName();
             }
         }
     }

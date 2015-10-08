@@ -25,8 +25,6 @@
 // Qt
 #include <QtCore/QDir>
 #include <QtCore/QFileInfo>
-#include <QtCore/QList>
-#include <QtCore/QString>
 
 // KDE
 #include <KConfig>

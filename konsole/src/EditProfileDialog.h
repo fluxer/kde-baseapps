@@ -87,6 +87,8 @@ public:
     void selectProfileName();
     const Profile::Ptr lookupProfile() const;
 
+    static const bool HAVE_TRANSPARENCY;
+
 public slots:
     // reimplemented
     virtual void accept();
