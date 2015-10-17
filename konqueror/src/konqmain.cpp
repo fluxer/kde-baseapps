@@ -82,7 +82,7 @@ int main(int argc, char **argv)
     options.add("open-session <session>", ki18n("Session to open"));
 
     options.add("mimetype <mimetype>", ki18n("Mimetype to use for this URL (e.g. text/html or inode/directory)"));
-    options.add("part <service>", ki18n("Part to use (e.g. khtml or kwebkitpart)"));
+    options.add("part <service>", ki18n("Part to use (e.g. kwebkitpart)"));
 
     options.add("select", ki18n("For URLs that point to files, opens the directory and selects the file, instead of opening the actual file"));
 
