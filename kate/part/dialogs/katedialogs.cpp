@@ -840,7 +840,6 @@ void KateSaveConfigTab::apply()
   // set both standard and fallback encoding
   KateDocumentConfig::global()->setEncoding((ui->cmbEncoding->currentIndex() == 0) ? "" : KGlobal::charsets()->encodingForName(ui->cmbEncoding->currentText()));
 
-  KateGlobalConfig::global()->setProberType((KEncodingProber::ProberType)ui->cmbEncodingDetection->currentIndex());
   KateGlobalConfig::global()->setFallbackEncoding(KGlobal::charsets()->encodingForName(ui->cmbEncodingFallback->currentText()));
 
   KateDocumentConfig::global()->setEol(ui->cmbEOL->currentIndex());
@@ -888,20 +887,6 @@ void KateSaveConfigTab::reload()
       insert++;
     }
   }
-
-  // encoding detection
-  ui->cmbEncodingDetection->clear ();
-  bool found = false;
-  for (int i = 0; !KEncodingProber::nameForProberType ((KEncodingProber::ProberType) i).isEmpty(); ++i) {
-    ui->cmbEncodingDetection->addItem (KEncodingProber::nameForProberType ((KEncodingProber::ProberType) i));
-    if (i == KateGlobalConfig::global()->proberType()) {
-      ui->cmbEncodingDetection->setCurrentIndex(ui->cmbEncodingDetection->count()-1);
-      found = true;
-    }
-  }
-  if (!found)
-      ui->cmbEncodingDetection->setCurrentIndex(KEncodingProber::Universal);
-
 
   // eol
   ui->cmbEOL->setCurrentIndex(KateDocumentConfig::global()->eol());

@@ -1,3 +1,4 @@
+
 /* This file is part of the KDE libraries
    Copyright (C) 2003 Christoph Cullmann <cullmann@kde.org>
 
@@ -22,7 +23,6 @@
 #include "katepartprivate_export.h"
 
 #include <ktexteditor/markinterface.h>
-#include <kencodingprober.h>
 
 #include <QtCore/qbitarray.h>
 #include <QtGui/QColor>
@@ -123,19 +123,11 @@ class KATEPART_TESTS_EXPORT KateGlobalConfig : public KateConfig
     void updateConfig ();
 
   public:
-    KEncodingProber::ProberType proberType () const
-    {
-      return m_proberType;
-    }
-
-    void setProberType (KEncodingProber::ProberType proberType);
-
     QTextCodec *fallbackCodec () const;
     const QString &fallbackEncoding () const;
     bool setFallbackEncoding (const QString &encoding);
 
   private:
-    KEncodingProber::ProberType m_proberType;
     QString m_fallbackEncoding;
 
   private:

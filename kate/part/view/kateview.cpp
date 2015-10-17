@@ -76,7 +76,6 @@
 #include <kstandardaction.h>
 #include <kxmlguifactory.h>
 #include <kxmlguiclient.h>
-#include <kencodingfiledialog.h>
 #include <kstandardshortcut.h>
 #include <kmenu.h>
 #include <ktoggleaction.h>
@@ -84,12 +83,12 @@
 #include <kactioncollection.h>
 #include <kdeversion.h>
 
-#include <QtGui/QFont>
+#include <QtCore/QMimeData>
 #include <QtCore/QFileInfo>
+#include <QtGui/QFont>
 #include <QtGui/QStyle>
 #include <QtGui/qevent.h>
 #include <QtGui/QLayout>
-#include <QtCore/QMimeData>
 
 //#define VIEW_RANGE_DEBUG
 

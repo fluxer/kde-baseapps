@@ -98,7 +98,6 @@ KateGlobalConfig::~KateGlobalConfig ()
 
 namespace
 {
-  const char * const KEY_PROBER_TYPE = "Encoding Prober Type";
   const char * const KEY_FALLBACK_ENCODING = "Fallback Encoding";
 }
 
@@ -106,7 +105,6 @@ void KateGlobalConfig::readConfig (const KConfigGroup &config)
 {
   configStart ();
 
-  setProberType ((KEncodingProber::ProberType)config.readEntry(KEY_PROBER_TYPE, (int)KEncodingProber::Universal));
   setFallbackEncoding (config.readEntry(KEY_FALLBACK_ENCODING, ""));
 
   configEnd ();
@@ -114,19 +112,11 @@ void KateGlobalConfig::readConfig (const KConfigGroup &config)
 
 void KateGlobalConfig::writeConfig (KConfigGroup &config)
 {
-  config.writeEntry(KEY_PROBER_TYPE, (int)proberType());
   config.writeEntry(KEY_FALLBACK_ENCODING, fallbackEncoding());
 }
 
 void KateGlobalConfig::updateConfig ()
 {
-}
-
-void KateGlobalConfig::setProberType (KEncodingProber::ProberType proberType)
-{
-  configStart ();
-  m_proberType = proberType;
-  configEnd ();
 }
 
 const QString &KateGlobalConfig::fallbackEncoding () const

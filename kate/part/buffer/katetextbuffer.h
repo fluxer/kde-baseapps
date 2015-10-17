@@ -36,9 +36,6 @@
 #include "katetextrange.h"
 #include "katetexthistory.h"
 
-// encoding prober
-#include <kencodingprober.h>
-
 namespace Kate {
 
 /**
@@ -83,18 +80,6 @@ class KATEPART_TESTS_EXPORT TextBuffer : public QObject {
      * Virtual, can be overwritten.
      */
     virtual void clear ();
-
-    /**
-     * Set encoding prober type for this buffer to use for load.
-     * @param proberType prober type to use for encoding
-     */
-    void setEncodingProberType (KEncodingProber::ProberType proberType) { m_encodingProberType = proberType; }
-
-    /**
-     * Get encoding prober type for this buffer
-     * @return currently in use prober type of this buffer
-     */
-    KEncodingProber::ProberType encodingProberType () const { return m_encodingProberType; }
 
     /**
      * Set fallback codec for this buffer to use for load.
@@ -526,11 +511,6 @@ class KATEPART_TESTS_EXPORT TextBuffer : public QObject {
      * Set of ranges of this whole buffer.
      */
     QSet<TextRange *> m_ranges;
-
-    /**
-     * Encoding prober type to use
-     */
-    KEncodingProber::ProberType m_encodingProberType;
 
     /**
      * Fallback text codec to use

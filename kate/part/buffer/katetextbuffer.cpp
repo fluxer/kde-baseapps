@@ -54,7 +54,6 @@ TextBuffer::TextBuffer (KateDocument *parent, int blockSize)
   , m_editingLastLines (0)
   , m_editingMinimalLineChanged (-1)
   , m_editingMaximalLineChanged (-1)
-  , m_encodingProberType (KEncodingProber::Universal)
   , m_fallbackTextCodec (0)
   , m_textCodec (0)
   , m_generateByteOrderMark (false)
@@ -526,7 +525,7 @@ bool TextBuffer::load (const QString &filename, bool &encodingErrors, bool &tooL
   /**
    * construct the file loader for the given file, with correct prober type
    */
-  Kate::TextLoader file (filename, m_encodingProberType);
+  Kate::TextLoader file (filename);
 
   /**
    * triple play, maximal three loading rounds
