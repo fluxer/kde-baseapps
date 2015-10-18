@@ -1551,17 +1551,14 @@ void KonqMainWindow::slotOpenWith()
 {
     if (!m_currentView) return;
 
-    KUrl::List lst;
-    lst.append(m_currentView->url());
+    const KUrl::List lst(m_currentView->url());
 
     const QString serviceName = sender()->objectName();
 
     const KService::List offers = m_currentView->appServiceOffers();
-    KService::List::ConstIterator it = offers.begin();
-    const KService::List::ConstIterator end = offers.end();
-    for (; it != end; ++it ) {
-        if ((*it)->desktopEntryName() == serviceName) {
-            KRun::run(**it, lst, this);
+    foreach (const KSharedPtr<KService> it, offers) {
+        if (it->desktopEntryName() == serviceName) {
+            KRun::run(*it, lst, this);
             return;
         }
     }
