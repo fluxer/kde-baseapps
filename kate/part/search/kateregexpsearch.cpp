@@ -301,7 +301,7 @@ QVector<KTextEditor::Range> KateRegExpSearch::search(
     // save opening and closing indices and build a map.
     // the correct values will be written into it later.
     QMap<int, TwoViewCursor *> indicesToCursors;
-    const int numCaptures = regexp.numCaptures();
+    const int numCaptures = regexp.captureCount();
     QVector<IndexPair> indexPairs(1 + numCaptures);
     for (int z = 0; z <= numCaptures; z++)
     {
@@ -493,7 +493,7 @@ QVector<KTextEditor::Range> KateRegExpSearch::search(
         FAST_DEBUG("line " << j << ": yes");
 
         // build result array
-        const int numCaptures = regexp.numCaptures();
+        const int numCaptures = regexp.captureCount();
         QVector<KTextEditor::Range> result(1 + numCaptures);
         result[0] = KTextEditor::Range(j, foundAt, j, foundAt + regexp.matchedLength());
         FAST_DEBUG("result range " << 0 << ": (" << j << ", " << foundAt << ")..(" << j << ", " <<

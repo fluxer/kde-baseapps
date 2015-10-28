@@ -307,7 +307,7 @@ void SQLManager::loadConnections(KConfigGroup *connectionsGroup)
 void SQLManager::saveConnections(KConfigGroup *connectionsGroup)
 {
   for(int i = 0; i < m_model->rowCount(); i++)
-    saveConnection(connectionsGroup, qVariantValue<Connection>(m_model->data(m_model->index(i), Qt::UserRole)));
+    saveConnection(connectionsGroup, qvariant_cast<Connection>(m_model->data(m_model->index(i), Qt::UserRole)));
 }
 
 /// TODO: write KUrl instead of QString for sqlite paths

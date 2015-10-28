@@ -274,7 +274,7 @@ void KateSQLView::slotConnectionEdit()
     return;
 
   ConnectionModel *model = m_manager->connectionModel();
-  Connection c = qVariantValue<Connection>(model->data(model->index(i), Qt::UserRole));
+  Connection c = qvariant_cast<Connection>(model->data(model->index(i), Qt::UserRole));
 
   QString previousName = c.name;
 

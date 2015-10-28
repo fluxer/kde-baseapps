@@ -30,7 +30,7 @@ XtEvents::XtEvents()
     {
     XtToolkitInitialize();
     context = XtCreateApplicationContext();
-    int argc = qApp->argc();
+    int argc = qApp->arguments().count();
     XtDisplayInitialize( context, QX11Info::display(), qAppName().toLatin1(), QX11Info::appClass(),
         NULL, 0, &argc, qApp->argv());
     connect( &timer, SIGNAL(timeout()), SLOT(idleProcess()));
