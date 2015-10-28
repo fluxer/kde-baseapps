@@ -396,7 +396,7 @@ QWidget * KonqMainWindow::createContainer( QWidget *parent, int index, const QDo
 
 void KonqMainWindow::initBookmarkBar()
 {
-  KToolBar * bar = qFindChild<KToolBar *>( this, "bookmarkToolBar" );
+  KToolBar * bar = this->findChild<KToolBar *>( "bookmarkToolBar" );
 
   if (!bar) return;
 
@@ -2993,7 +2993,7 @@ void KonqMainWindow::checkDisableClearButton()
   KToolBar* ltb = toolBar("locationToolBar");
   QAction* clearAction = action("clear_location");
   bool enable = true;
-  foreach(QToolButton* atb, qFindChildren<QToolButton *>(ltb))
+  foreach(QToolButton* atb, ltb->findChildren<QToolButton *>())
   {
      if (atb->defaultAction() == clearAction) {
          enable = false;
@@ -5057,7 +5057,7 @@ void KonqMainWindow::unplugViewModeActions()
 
 void KonqMainWindow::updateBookmarkBar()
 {
-    KToolBar * bar = qFindChild<KToolBar *>(this, "bookmarkToolBar");
+    KToolBar * bar = this->findChild<KToolBar *>( "bookmarkToolBar" );
     if (!bar) return;
     if (m_paBookmarkBar && bar->actions().isEmpty() )
         bar->hide();

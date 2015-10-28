@@ -1018,7 +1018,7 @@ QStringList KonqView::childFrameNames( KParts::ReadOnlyPart *part )
   const QList<KParts::ReadOnlyPart*> children = hostExtension->frames();
   QListIterator<KParts::ReadOnlyPart *> i(children);
   while (i.hasNext())
-		res += childFrameNames( i.next() );
+    res += childFrameNames( i.next() );
 
   return res;
 }
@@ -1166,7 +1166,7 @@ bool KonqView::eventFilter( QObject *obj, QEvent *e )
         {
             KUrl::List lstDragURLs = KUrl::List::fromMimeData( ev->mimeData() );
 
-            QList<QWidget *> children = qFindChildren<QWidget *>( m_pPart->widget() );
+            QList<QWidget *> children = m_pPart->widget()->findChildren<QWidget *>();
 
             if ( !lstDragURLs.isEmpty()
                  && !lstDragURLs.first().url().startsWith( "javascript:", Qt::CaseInsensitive ) && // ### this looks like a hack to me
