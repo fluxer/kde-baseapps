@@ -1,7 +1,5 @@
 ########### khtmlkttsdplugin ###############
 
-include(MacroOptionalDependPackage)
-
 set(khtmlkttsdplugin_PART_SRCS khtmlkttsd.cpp )
 
 qt4_add_dbus_interfaces(khtmlkttsdplugin_PART_SRCS ${KDE4_DBUS_INTERFACES_DIR}/org.kde.KSpeech.xml)
