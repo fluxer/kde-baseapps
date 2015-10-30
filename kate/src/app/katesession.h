@@ -37,7 +37,7 @@ class KPushButton;
 
 class QCheckBox;
 
-class KateSession  : public KShared
+class KateSession  : public QSharedData
 {
   public:
     /**

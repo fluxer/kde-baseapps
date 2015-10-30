@@ -31,7 +31,7 @@ class KateDocument;
 class KateTextLayout;
 class KateRenderer;
 
-class KateLineLayout : public KShared
+class KateLineLayout : public QSharedData
 {
   public:
     KateLineLayout(KateRenderer &renderer);
