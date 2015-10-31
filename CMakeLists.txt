@@ -19,11 +19,12 @@ set(LIBRARY_TYPE SHARED)
 set(QT_MIN_VERSION "4.8.2")
 
 find_package(ZLIB)
-set_package_properties(ZLIB PROPERTIES DESCRIPTION "Support for gzip compressed files and data streams"
-                       URL "http://www.zlib.net"
-                       TYPE REQUIRED
-                       PURPOSE "Required for building Konqueror"
-                      )
+set_package_properties(ZLIB PROPERTIES
+    DESCRIPTION "Support for gzip compressed files and data streams"
+    URL "http://www.zlib.net"
+    TYPE REQUIRED
+    PURPOSE "Required for building Konqueror"
+)
 
 include(ConfigureChecks.cmake)
 configure_file (config-apps.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config-apps.h )
