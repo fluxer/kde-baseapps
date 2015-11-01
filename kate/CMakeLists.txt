@@ -1,14 +1,11 @@
 # Kate project
 project (kate)
 
-find_package(KDE4 4.14.3 REQUIRED)
-include (KDE4Defaults)
-
 # config.h
 check_function_exists (fdatasync HAVE_FDATASYNC)
 check_function_exists (ctermid HAVE_CTERMID)
 
-configure_file (config.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config.h)
+configure_file(config.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config.h)
 
 # KDE/QT definitions we want
 add_definitions (${QT_DEFINITIONS} ${KDE4_DEFINITIONS})
