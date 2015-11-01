@@ -735,6 +735,8 @@
       <item> CMAKE_CURRENT_LIST_FILE </item>
       <item> CMAKE_CURRENT_LIST_LINE </item>
       <item> CMAKE_CURRENT_SOURCE_DIR </item>
+      <item> CMAKE_CXX_STANDARD_REQUIRED </item>
+      <item> CMAKE_CXX_STANDARD </item>
       <item> CMAKE_DEBUG_POSTFIX </item>
       <item> CMAKE_DEBUG_TARGET_PROPERTIES </item>
       <item> CMAKE_DL_LIBS </item>
