@@ -1,12 +1,15 @@
 project(fileviewdropboxplugin)
 
-include_directories( ${KDE4_INCLUDE_DIR} ${QT_INCLUDES} )
+kde4_add_plugin(fileviewdropboxplugin fileviewdropboxplugin.cpp)
 
-set(fileviewdropboxplugin_SRCS
-    fileviewdropboxplugin.cpp
+target_link_libraries(fileviewdropboxplugin ${KDE4_KIO_LIBS} konq)
+
+install(
+    FILES fileviewdropboxplugin.desktop
+    DESTINATION ${SERVICES_INSTALL_DIR}
 )
 
-kde4_add_plugin(fileviewdropboxplugin  ${fileviewdropboxplugin_SRCS})
-target_link_libraries(fileviewdropboxplugin ${KDE4_KIO_LIBS} konq)
-install(FILES fileviewdropboxplugin.desktop DESTINATION ${SERVICES_INSTALL_DIR})
-install(TARGETS fileviewdropboxplugin DESTINATION ${PLUGIN_INSTALL_DIR})
+install(
+    TARGETS fileviewdropboxplugin
+    DESTINATION ${PLUGIN_INSTALL_DIR}
+)

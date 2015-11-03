@@ -17,10 +17,7 @@ target_link_libraries(dolphin-kitemsettest
 )
 
 # KItemRangeTest
-set(kitemrangetest_SRCS
-    kitemrangetest.cpp
-)
-kde4_add_test(dolphin-kitemrangetest ${kitemrangetest_SRCS})
+kde4_add_test(dolphin-kitemrangetest kitemrangetest.cpp)
 target_link_libraries(dolphin-kitemrangetest
     dolphinprivate
     ${KDE4_KIO_LIBS}

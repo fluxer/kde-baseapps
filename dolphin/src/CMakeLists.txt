@@ -1,7 +1,14 @@
 macro_bool_to_01(X11_Xrender_FOUND HAVE_XRENDER)
-configure_file(config-X11.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config-X11.h )
 
-include_directories( ${CMAKE_CURRENT_BINARY_DIR} ${KDE4_PHONON_INCLUDES})
+configure_file(
+    config-X11.h.cmake
+    ${CMAKE_CURRENT_BINARY_DIR}/config-X11.h
+)
+
+include_directories(
+    ${CMAKE_CURRENT_BINARY_DIR}
+    ${KDE4_PHONON_INCLUDES}
+)
 
 if(ENABLE_TESTING)
     add_subdirectory(tests)
@@ -90,25 +97,44 @@ if(X11_Xrender_FOUND)
     target_link_libraries(dolphinprivate ${X11_Xrender_LIB})
 endif(X11_Xrender_FOUND)
 
-set_target_properties(dolphinprivate PROPERTIES VERSION ${GENERIC_LIB_VERSION} SOVERSION ${GENERIC_LIB_SOVERSION} )
-install(TARGETS dolphinprivate  ${INSTALL_TARGETS_DEFAULT_ARGS})
+set_target_properties(dolphinprivate PROPERTIES
+    VERSION ${GENERIC_LIB_VERSION}
+    SOVERSION ${GENERIC_LIB_SOVERSION}
+)
+
+install(
+    TARGETS dolphinprivate
+    ${INSTALL_TARGETS_DEFAULT_ARGS}
+)
 
 ##########################################
 
 set(dolphinpart_SRCS
-   dolphinpart.cpp
-   dolphinpart_ext.cpp
+    dolphinpart.cpp
+    dolphinpart_ext.cpp
 )
 
 kde4_add_plugin(dolphinpart ${dolphinpart_SRCS})
 
 target_link_libraries(dolphinpart dolphinprivate konq ${KDE4_KPARTS_LIBS} ${KDE4_KFILE_LIBS})
 
-install(TARGETS dolphinpart DESTINATION ${PLUGIN_INSTALL_DIR})
+install(
+    TARGETS dolphinpart
+    DESTINATION ${PLUGIN_INSTALL_DIR}
+)
 
-install(FILES dolphinpart.rc DESTINATION ${DATA_INSTALL_DIR}/dolphinpart)
-install(FILES dolphinpart.desktop DESTINATION ${SERVICES_INSTALL_DIR} )
-install(FILES views/versioncontrol/fileviewversioncontrolplugin.desktop DESTINATION ${SERVICETYPES_INSTALL_DIR})
+install(
+    FILES dolphinpart.rc
+    DESTINATION ${DATA_INSTALL_DIR}/dolphinpart
+)
+install(
+    FILES dolphinpart.desktop
+    DESTINATION ${SERVICES_INSTALL_DIR}
+)
+install(
+    FILES views/versioncontrol/fileviewversioncontrolplugin.desktop
+    DESTINATION ${SERVICETYPES_INSTALL_DIR}
+)
 
 ##########################################
 
@@ -194,7 +220,10 @@ target_link_libraries(dolphin
     ${KDE4_PHONON_LIBS}
 )
 
-install(TARGETS dolphin ${INSTALL_TARGETS_DEFAULT_ARGS})
+install(
+    TARGETS dolphin
+    ${INSTALL_TARGETS_DEFAULT_ARGS}
+)
 
 ##########################################
 
@@ -203,19 +232,22 @@ set(kcm_dolphinviewmodes_PART_SRCS
     settings/viewmodes/dolphinfontrequester.cpp
     settings/viewmodes/viewmodesettings.cpp
     settings/viewmodes/viewsettingstab.cpp
-    views/zoomlevelinfo.cpp)
+    views/zoomlevelinfo.cpp
+)
 
 set(kcm_dolphinnavigation_PART_SRCS
     settings/kcm/kcmdolphinnavigation.cpp
     settings/navigation/navigationsettingspage.cpp
-    settings/settingspagebase.cpp)
+    settings/settingspagebase.cpp
+)
 
 set(kcm_dolphinservices_PART_SRCS
     settings/kcm/kcmdolphinservices.cpp
     settings/services/servicessettingspage.cpp
     settings/settingspagebase.cpp
     settings/serviceitemdelegate.cpp
-    settings/servicemodel.cpp)
+    settings/servicemodel.cpp
+)
 
 set(kcm_dolphingeneral_PART_SRCS
     settings/kcm/kcmdolphingeneral.cpp
@@ -225,7 +257,8 @@ set(kcm_dolphingeneral_PART_SRCS
     settings/general/confirmationssettingspage.cpp
     settings/settingspagebase.cpp
     settings/serviceitemdelegate.cpp
-    settings/servicemodel.cpp)
+    settings/servicemodel.cpp
+)
 
 kde4_add_kcfg_files(kcm_dolphinviewmodes_PART_SRCS
     settings/dolphin_compactmodesettings.kcfgc
@@ -237,14 +270,17 @@ kde4_add_kcfg_files(kcm_dolphinviewmodes_PART_SRCS
 )
 
 kde4_add_kcfg_files(kcm_dolphinnavigation_PART_SRCS
-    settings/dolphin_generalsettings.kcfgc)
+    settings/dolphin_generalsettings.kcfgc
+)
 
 kde4_add_kcfg_files(kcm_dolphinservices_PART_SRCS
     settings/dolphin_generalsettings.kcfgc
-    settings/dolphin_versioncontrolsettings.kcfgc)
+    settings/dolphin_versioncontrolsettings.kcfgc
+)
 
 kde4_add_kcfg_files(kcm_dolphingeneral_PART_SRCS
-    settings/dolphin_generalsettings.kcfgc)
+    settings/dolphin_generalsettings.kcfgc
+)
 
 kde4_add_plugin(kcm_dolphinviewmodes ${kcm_dolphinviewmodes_PART_SRCS})
 kde4_add_plugin(kcm_dolphinnavigation ${kcm_dolphinnavigation_PART_SRCS})
@@ -256,34 +292,60 @@ target_link_libraries(kcm_dolphinnavigation  ${KDE4_KDEUI_LIBS} ${KDE4_KFILE_LIB
 target_link_libraries(kcm_dolphinservices  ${KDE4_KDEUI_LIBS} ${KDE4_KFILE_LIBS} ${KDE4_KIO_LIBS} dolphinprivate)
 target_link_libraries(kcm_dolphingeneral ${KDE4_KDEUI_LIBS} ${KDE4_KFILE_LIBS} ${KDE4_KIO_LIBS} dolphinprivate)
 
-install(TARGETS kcm_dolphinviewmodes DESTINATION ${PLUGIN_INSTALL_DIR} )
-install(TARGETS kcm_dolphinnavigation DESTINATION ${PLUGIN_INSTALL_DIR} )
-install(TARGETS kcm_dolphinservices DESTINATION ${PLUGIN_INSTALL_DIR} )
-install(TARGETS kcm_dolphingeneral DESTINATION ${PLUGIN_INSTALL_DIR} )
+install(
+    TARGETS
+    kcm_dolphinviewmodes
+    kcm_dolphinnavigation
+    kcm_dolphinservices
+    kcm_dolphingeneral
+    DESTINATION ${PLUGIN_INSTALL_DIR}
+)
 
 #########################################
 
-set(kio_search_PART_SRCS
-    search/filenamesearchprotocol.cpp)
-kde4_add_plugin(kio_filenamesearch ${kio_search_PART_SRCS})
+kde4_add_plugin(kio_filenamesearch search/filenamesearchprotocol.cpp)
+
 target_link_libraries(kio_filenamesearch ${KDE4_KIO_LIBS})
-install(TARGETS kio_filenamesearch DESTINATION ${PLUGIN_INSTALL_DIR})
+
+install(
+    TARGETS kio_filenamesearch
+    DESTINATION ${PLUGIN_INSTALL_DIR}
+)
 
 ########### install files ###############
 
-install( PROGRAMS dolphin.desktop DESTINATION ${XDG_APPS_INSTALL_DIR} )
-install( FILES settings/dolphin_directoryviewpropertysettings.kcfg
-               settings/dolphin_generalsettings.kcfg
-               settings/dolphin_compactmodesettings.kcfg
-               settings/dolphin_iconsmodesettings.kcfg
-               settings/dolphin_detailsmodesettings.kcfg
-               settings/dolphin_versioncontrolsettings.kcfg
-         DESTINATION ${KCFG_INSTALL_DIR} )
-install( FILES dolphinui.rc DESTINATION ${DATA_INSTALL_DIR}/dolphin )
-install( FILES dolphin.appdata.xml DESTINATION ${SHARE_INSTALL_PREFIX}/appdata )
-install( FILES search/filenamesearch.protocol DESTINATION ${SERVICES_INSTALL_DIR} )
-install( FILES settings/kcm/kcmdolphinviewmodes.desktop DESTINATION ${SERVICES_INSTALL_DIR} )
-install( FILES settings/kcm/kcmdolphinnavigation.desktop DESTINATION ${SERVICES_INSTALL_DIR} )
-install( FILES settings/kcm/kcmdolphinservices.desktop DESTINATION ${SERVICES_INSTALL_DIR} )
-install( FILES settings/kcm/kcmdolphingeneral.desktop DESTINATION ${SERVICES_INSTALL_DIR} )
-install( FILES settings/services/servicemenu.knsrc DESTINATION ${CONFIG_INSTALL_DIR} )
+install(
+    PROGRAMS dolphin.desktop
+    DESTINATION ${XDG_APPS_INSTALL_DIR}
+)
+install(
+    FILES
+    settings/dolphin_directoryviewpropertysettings.kcfg
+    settings/dolphin_generalsettings.kcfg
+    settings/dolphin_compactmodesettings.kcfg
+    settings/dolphin_iconsmodesettings.kcfg
+    settings/dolphin_detailsmodesettings.kcfg
+    settings/dolphin_versioncontrolsettings.kcfg
+    DESTINATION ${KCFG_INSTALL_DIR}
+)
+install(
+    FILES dolphinui.rc
+    DESTINATION ${DATA_INSTALL_DIR}/dolphin
+)
+install(
+    FILES dolphin.appdata.xml
+    DESTINATION ${SHARE_INSTALL_PREFIX}/appdata
+)
+install(
+    FILES
+    search/filenamesearch.protocol
+    settings/kcm/kcmdolphinviewmodes.desktop
+    settings/kcm/kcmdolphinnavigation.desktop
+    settings/kcm/kcmdolphinservices.desktop
+    settings/kcm/kcmdolphingeneral.desktop
+    DESTINATION ${SERVICES_INSTALL_DIR}
+)
+install(
+    FILES settings/services/servicemenu.knsrc
+    DESTINATION ${CONFIG_INSTALL_DIR}
+)
