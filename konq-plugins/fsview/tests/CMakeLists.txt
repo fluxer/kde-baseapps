@@ -13,6 +13,4 @@ set(scantest_SRCS scantest.cpp ${libfsview_SRCS})
 
 kde4_add_manual_test(scantest ${scantest_SRCS})
 
-target_link_libraries(scantest  ${KDE4_KIO_LIBS})
-
-
+target_link_libraries(scantest ${KDE4_KIO_LIBS})

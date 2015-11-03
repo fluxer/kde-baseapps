@@ -14,18 +14,32 @@ MESSAGE(STATUS "akregator popupmenu plugin disabled. Doable via servicemenu or s
 
 ########### next target ###############
 
-set(akregatorkonqfeedicon_PART_SRCS konqfeedicon.cpp feeddetector.cpp pluginbase.cpp )
+set(akregatorkonqfeedicon_PART_SRCS
+    konqfeedicon.cpp
+    feeddetector.cpp
+    pluginbase.cpp
+)
 
 kde4_add_plugin(akregatorkonqfeedicon ${akregatorkonqfeedicon_PART_SRCS})
 
 target_link_libraries(akregatorkonqfeedicon ${KDE4_KPARTS_LIBS} )
 
-install(TARGETS akregatorkonqfeedicon DESTINATION ${PLUGIN_INSTALL_DIR} )
-
+install(
+    TARGETS akregatorkonqfeedicon
+    DESTINATION ${PLUGIN_INSTALL_DIR}
+)
 
 ########### install files ###############
 
-#install( FILES akregator_konqplugin.desktop  DESTINATION  ${SERVICES_INSTALL_DIR} )
-install( FILES akregator_konqfeedicon.desktop akregator_konqfeedicon.rc  DESTINATION  ${DATA_INSTALL_DIR}/kwebkitpart/kpartplugins )
+#install(FILES akregator_konqplugin.desktop DESTINATION ${SERVICES_INSTALL_DIR})
+install(
+    FILES
+    akregator_konqfeedicon.desktop
+    akregator_konqfeedicon.rc
+    DESTINATION ${DATA_INSTALL_DIR}/kwebkitpart/kpartplugins
+)
 
-install( FILES feed.png DESTINATION ${DATA_INSTALL_DIR}/akregator/pics )
+install(
+    FILES feed.png
+    DESTINATION ${DATA_INSTALL_DIR}/akregator/pics
+)

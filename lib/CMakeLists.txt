@@ -1,1 +1,1 @@
-add_subdirectory (konq)
+add_subdirectory(konq)
