@@ -29,7 +29,11 @@
 # other modules must be enabled like this:
 
 set(QT_USE_QTWEBKIT TRUE)
-set(sources engine.cpp plugin.cpp utilities.cpp manager.ui)
+set(sources
+    engine.cpp
+    plugin.cpp
+    utilities.cpp
+)
 
 # NOTE Disable trivial Qt keywords due conflicts w/ some Python.h header
 # (at least version 3.3 of it has a member PyType_Spec::slots)
@@ -45,19 +49,31 @@ target_link_libraries(
     ${PYTHON_LIBRARY}
     ${QT_QTWEBKIT_LIBRARY}
     kateinterfaces
-  )
+)
 
-install(TARGETS katepateplugin DESTINATION ${PLUGIN_INSTALL_DIR})
-install(FILES katepythonplugin.desktop  DESTINATION  ${SERVICETYPES_INSTALL_DIR})
-install(FILES pate.desktop DESTINATION ${SERVICES_INSTALL_DIR})
-install(FILES ui.rc DESTINATION ${DATA_INSTALL_DIR}/kate/plugins/katepateplugin)
+install(
+    TARGETS katepateplugin
+    DESTINATION ${PLUGIN_INSTALL_DIR}
+)
+install(
+    FILES katepythonplugin.desktop
+    DESTINATION ${SERVICETYPES_INSTALL_DIR}
+)
+install(
+    FILES pate.desktop
+    DESTINATION ${SERVICES_INSTALL_DIR}
+)
+install(
+    FILES ui.rc
+    DESTINATION ${DATA_INSTALL_DIR}/kate/plugins/katepateplugin
+)
 
 # Install "built-in" plugins
 install(
     DIRECTORY kate
     DESTINATION ${DATA_INSTALL_DIR}/kate/plugins/pate
     FILES_MATCHING PATTERN "*.py"
-  )
+)
 
 # Dive into plugins crowd
 add_subdirectory(plugins)

@@ -1,15 +1,29 @@
-set(katemailfilesplugin_PART_SRCS katemailfiles.cpp katemailfilesdialog.cpp )
-
+set(katemailfilesplugin_PART_SRCS
+    katemailfiles.cpp
+    katemailfilesdialog.cpp
+)
 
 kde4_add_plugin(katemailfilesplugin ${katemailfilesplugin_PART_SRCS})
 
 
-target_link_libraries(katemailfilesplugin ${KDE4_KDECORE_LIBS} ${KDE4_KPARTS_LIBS} kateinterfaces )
+target_link_libraries(katemailfilesplugin
+    ${KDE4_KDECORE_LIBS}
+    ${KDE4_KPARTS_LIBS}
+    kateinterfaces
+)
 
-install(TARGETS katemailfilesplugin  DESTINATION ${PLUGIN_INSTALL_DIR} )
+install(
+    TARGETS katemailfilesplugin
+    DESTINATION ${PLUGIN_INSTALL_DIR}
+)
 
 ########### install files ###############
 
-install( FILES ui.rc  DESTINATION  ${DATA_INSTALL_DIR}/kate/plugins/katemailfiles )
-install( FILES katemailfilesplugin.desktop  DESTINATION  ${SERVICES_INSTALL_DIR} )
-
+install(
+    FILES ui.rc
+    DESTINATION ${DATA_INSTALL_DIR}/kate/plugins/katemailfiles
+)
+install(
+    FILES katemailfilesplugin.desktop
+    DESTINATION ${SERVICES_INSTALL_DIR}
+)

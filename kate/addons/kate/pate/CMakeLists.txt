@@ -71,18 +71,21 @@ endif (NOT PYKDE4_FOUND)
 set(KATE_INCLUDES ${CMAKE_CURRENT_SOURCE_DIR}/../../../src)
 
 include(KDE4Defaults)
-include_directories(${CMAKE_CURRENT_SOURCE_DIR} ${SIP_INCLUDE_DIR} ${PYTHON_INCLUDE_PATH}
-    # Qt
-    # TODO Make sure all that paths are required...
-    ${QT_INCLUDE_DIR} ${QT_QTCORE_INCLUDE_DIR} ${QT_QTGUI_INCLUDE_DIR}
-    ${QT_QTNETWORK_INCLUDE_DIR} ${QT_QTOPENGL_INCLUDE_DIR}
-    ${QT_QTSQL_INCLUDE_DIR} ${QT_QTXML_INCLUDE_DIR} ${QT_QTSVG_INCLUDE_DIR}
-    ${QT_WEBKIT_INCLUDE_DIR}
+include_directories(
+    ${CMAKE_CURRENT_SOURCE_DIR}
+    ${SIP_INCLUDE_DIR}
+    ${PYTHON_INCLUDE_PATH}
     # KDE
-    ${KDE4_INCLUDE_DIR} ${KDE4_INCLUDE_DIR}/solid ${KDE4_INCLUDE_DIR}/kio
-    ${KDE4_INCLUDE_DIR}/dom ${KDE4_INCLUDE_DIR}/ksettings
+    ${KDE4_INCLUDE_DIR}
+    ${KDE4_INCLUDE_DIR}/solid
+    ${KDE4_INCLUDE_DIR}/kio
+    ${KDE4_INCLUDE_DIR}/dom
+    ${KDE4_INCLUDE_DIR}/ksettings
     # Kate
-    ${KATE_INCLUDES} ${KATE_INCLUDES}/interfaces ${KATE_INCLUDES}/interfaces/kate)
+    ${KATE_INCLUDES}
+    ${KATE_INCLUDES}/interfaces
+    ${KATE_INCLUDES}/interfaces/kate
+)
 
 add_subdirectory(sip)
 add_subdirectory(src)

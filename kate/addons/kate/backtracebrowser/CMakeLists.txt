@@ -5,14 +5,23 @@ set(katebacktracebrowserplugin_PART_SRCS
     btparser.cpp
     btfileindexer.cpp
     btdatabase.cpp
-    btbrowserwidget.ui
-    btconfigwidget.ui
 )
 
 kde4_add_plugin(katebacktracebrowserplugin ${katebacktracebrowserplugin_PART_SRCS})
-target_link_libraries(katebacktracebrowserplugin ${KDE4_KFILE_LIBS} kateinterfaces ${KDE4_KTEXTEDITOR_LIBS})
+
+target_link_libraries(katebacktracebrowserplugin
+    ${KDE4_KFILE_LIBS}
+    kateinterfaces
+    ${KDE4_KTEXTEDITOR_LIBS}
+)
 
 ########### install files ###############
 
-install(TARGETS katebacktracebrowserplugin DESTINATION ${PLUGIN_INSTALL_DIR})
-install(FILES katebacktracebrowserplugin.desktop DESTINATION ${SERVICES_INSTALL_DIR})
+install(
+    TARGETS katebacktracebrowserplugin
+    DESTINATION ${PLUGIN_INSTALL_DIR}
+)
+install(
+    FILES katebacktracebrowserplugin.desktop
+    DESTINATION ${SERVICES_INSTALL_DIR}
+)

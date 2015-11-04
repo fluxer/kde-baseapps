@@ -1,7 +1,7 @@
 if(ENABLE_TESTING)
     # only with this definition will the KONQ_TESTS_EXPORT macro do something
     add_definitions(-DCOMPILING_TESTS)
-    add_subdirectory( tests )
+    add_subdirectory(tests)
 endif()
 
 check_symbol_exists(mallinfo        "malloc.h"                 KDE_MALLINFO_MALLOC)
@@ -9,10 +9,13 @@ check_symbol_exists(mallinfo        "stdlib.h"                 KDE_MALLINFO_STDL
 # TODO KDE_MALLINFO_FIELD_hblkhd
 # TODO KDE_MALLINFO_FIELD_uordblks
 # TODO KDE_MALLINFO_FIELD_usmblks
-configure_file(config-konqueror.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config-konqueror.h )
+configure_file(
+    config-konqueror.h.cmake
+    ${CMAKE_CURRENT_BINARY_DIR}/config-konqueror.h
+)
 
 # For crc32 in konqhistorymanager.cpp
-include_directories( ${ZLIB_INCLUDE_DIR} )
+include_directories(${ZLIB_INCLUDE_DIR})
 
 ########### libkonquerorprivate, shared with unit tests and sidebar modules ###############
 
@@ -27,12 +30,29 @@ set(konquerorprivate_SRCS
     konqhistoryview.cpp
     konqhistorysettings.cpp
 )
-qt4_add_dbus_interface(konquerorprivate_SRCS ${CMAKE_CURRENT_SOURCE_DIR}/../../lib/konq/favicons/org.kde.FavIcon.xml favicon_interface)
+qt4_add_dbus_interface(konquerorprivate_SRCS
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../lib/konq/favicons/org.kde.FavIcon.xml
+    favicon_interface
+)
 
 add_library(konquerorprivate SHARED ${konquerorprivate_SRCS})
-target_link_libraries(konquerorprivate konq ${KDE4_KPARTS_LIBS} ${ZLIB_LIBRARY})
-set_target_properties(konquerorprivate PROPERTIES VERSION ${GENERIC_LIB_VERSION} SOVERSION ${GENERIC_LIB_SOVERSION} )
-install(TARGETS konquerorprivate ${INSTALL_TARGETS_DEFAULT_ARGS} LIBRARY NAMELINK_SKIP)
+
+target_link_libraries(konquerorprivate
+    konq
+    ${KDE4_KPARTS_LIBS}
+    ${ZLIB_LIBRARY}
+)
+
+set_target_properties(konquerorprivate PROPERTIES
+    VERSION ${GENERIC_LIB_VERSION}
+    SOVERSION ${GENERIC_LIB_SOVERSION}
+)
+install(
+    TARGETS konquerorprivate
+    ${INSTALL_TARGETS_DEFAULT_ARGS}
+    LIBRARY
+    NAMELINK_SKIP
+)
 
 ########### konqueror ###############
 
@@ -70,27 +90,70 @@ set(konqueror_SRCS
     konqsessionmanager.cpp
     konqcloseditem.cpp
     konqhistorydialog.cpp
-    konqprofiledlg_base.ui
-    konqsessiondlg_base.ui
-    konqnewsessiondlg_base.ui
 )
 
 kde4_add_kcfg_files(konqueror_SRCS konqsettingsxt.kcfgc)
 
-qt4_add_dbus_interface(konqueror_SRCS org.kde.Konqueror.Main.xml konqueror_interface)
-qt4_add_dbus_interface(konqueror_SRCS ${KDE4_DBUS_INTERFACES_DIR}/org.kde.kded.xml kded_interface)
-qt4_add_dbus_adaptor(konqueror_SRCS org.kde.Konqueror.UndoManager.xml konqclosedwindowsmanager.h KonqClosedWindowsManager konqclosedwindowsmanageradaptor KonqClosedWindowsManagerAdaptor)
-qt4_add_dbus_interface(konqueror_SRCS org.kde.Konqueror.UndoManager.xml konqclosedwindowsmanager_interface)
-qt4_add_dbus_adaptor(konqueror_SRCS org.kde.Konqueror.SessionManager.xml konqsessionmanager.h KonqSessionManager konqsessionmanageradaptor KonqSessionManagerAdaptor)
-qt4_add_dbus_interface(konqueror_SRCS org.kde.Konqueror.SessionManager.xml konqsessionmanager_interface)
+qt4_add_dbus_interface(konqueror_SRCS
+    org.kde.Konqueror.Main.xml
+    konqueror_interface
+)
+qt4_add_dbus_interface(konqueror_SRCS
+    ${KDE4_DBUS_INTERFACES_DIR}/org.kde.kded.xml
+    kded_interface
+)
+qt4_add_dbus_adaptor(konqueror_SRCS
+    org.kde.Konqueror.UndoManager.xml
+    konqclosedwindowsmanager.h
+    KonqClosedWindowsManager
+    konqclosedwindowsmanageradaptor
+    KonqClosedWindowsManagerAdaptor
+)
+qt4_add_dbus_interface(konqueror_SRCS
+    org.kde.Konqueror.UndoManager.xml
+    konqclosedwindowsmanager_interface
+)
+qt4_add_dbus_adaptor(konqueror_SRCS
+    org.kde.Konqueror.SessionManager.xml
+    konqsessionmanager.h
+    KonqSessionManager
+    konqsessionmanageradaptor
+    KonqSessionManagerAdaptor
+)
+qt4_add_dbus_interface(konqueror_SRCS
+    org.kde.Konqueror.SessionManager.xml
+    konqsessionmanager_interface
+)
 
 add_executable(konqueror ${konqueror_SRCS} konqmain.cpp)
-# libkfile is only needed because of KNewFileMenu
-target_link_libraries(konqueror konquerorprivate konq ${KDE4_KPARTS_LIBS} ${KDE4_KCMUTILS_LIBS} ${KDE4_KFILE_LIBS} ${X11_LIBRARIES})
 
-install(TARGETS konqueror ${INSTALL_TARGETS_DEFAULT_ARGS})
+# libkfile is only needed because of KNewFileMenu
+target_link_libraries(konqueror
+    konquerorprivate
+    konq
+    ${KDE4_KPARTS_LIBS}
+    ${KDE4_KCMUTILS_LIBS}
+    ${KDE4_KFILE_LIBS}
+    ${X11_LIBRARIES}
+)
+
+install(
+    TARGETS konqueror
+    ${INSTALL_TARGETS_DEFAULT_ARGS}
+)
 
 ########### install files ###############
-install( FILES konqueror.kcfg  DESTINATION  ${KCFG_INSTALL_DIR} )
-install( FILES konqueror.rc DESTINATION  ${DATA_INSTALL_DIR}/konqueror )
-install( FILES org.kde.Konqueror.Main.xml org.kde.Konqueror.MainWindow.xml DESTINATION ${DBUS_INTERFACES_INSTALL_DIR} )
+install(
+    FILES konqueror.kcfg
+    DESTINATION ${KCFG_INSTALL_DIR}
+)
+install(
+    FILES konqueror.rc
+    DESTINATION ${DATA_INSTALL_DIR}/konqueror
+)
+install(
+    FILES
+    org.kde.Konqueror.Main.xml
+    org.kde.Konqueror.MainWindow.xml
+    DESTINATION ${DBUS_INTERFACES_INSTALL_DIR}
+)

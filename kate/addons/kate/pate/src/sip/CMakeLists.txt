@@ -46,7 +46,8 @@ include(SIPMacros)
 include(KDE4Defaults)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}
     # Okteta
-    /usr/include/okteta1)
+    /usr/include/okteta1
+)
 
 set(SIP_INCLUDES ${PYQT4_SIP_DIR} ${PYKDE4_SIP_DIR} ./okteta)
 set(SIP_CONCAT_PARTS 1)
@@ -62,5 +63,6 @@ endif(PYQT4_VERSION LESS "040905")
 add_sip_python_module(PyKate4.okteta ./okteta/oktetamod.sip ${KDE4_KDEUI_LIBS} okteta1core okteta1gui)
 
 install(FILES
-    ./__init__.py
-    DESTINATION ${PYTHON_SITE_PACKAGES_INSTALL_DIR}/PyKate4/)
+    __init__.py
+    DESTINATION ${PYTHON_SITE_PACKAGES_INSTALL_DIR}/PyKate4
+)

@@ -32,7 +32,8 @@ endif(PYQT4_VERSION STRLESS "040905")
 
 add_sip_python_module(PyKate4.kate ./kate/katemod.sip ${KDE4_KTEXTEDITOR_LIBS} kateinterfaces)
 
-install(FILES
-    ./__init__.py
-    DESTINATION ${PYTHON_SITE_PACKAGES_INSTALL_DIR}/PyKate4/)
-
+install(
+    FILES
+    __init__.py
+    DESTINATION ${PYTHON_SITE_PACKAGES_INSTALL_DIR}/PyKate4
+)

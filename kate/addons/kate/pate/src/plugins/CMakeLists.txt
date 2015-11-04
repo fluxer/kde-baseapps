@@ -50,11 +50,11 @@ function(install_pate_plugin name)
             DIRECTORY ${name}
             DESTINATION ${DATA_INSTALL_DIR}/kate/pate
             FILES_MATCHING
-                PATTERN "*.py"
-                PATTERN "*.ui"
-                PATTERN "*_ui.rc"
-                PATTERN "__pycache__*" EXCLUDE
-           )
+            PATTERN "*.py"
+            PATTERN "*.ui"
+            PATTERN "*_ui.rc"
+            PATTERN "__pycache__*" EXCLUDE
+        )
         # TODO Is there any way to form a long PATTERN options string
         # and use it in a single install() call?
         # NOTE Install specified patterns one-by-one...
@@ -63,9 +63,9 @@ function(install_pate_plugin name)
                 DIRECTORY ${name}
                 DESTINATION ${DATA_INSTALL_DIR}/kate/pate
                 FILES_MATCHING
-                    PATTERN "${_pattern}"
-                    PATTERN "__pycache__*" EXCLUDE
-              )
+                PATTERN "${_pattern}"
+                PATTERN "__pycache__*" EXCLUDE
+            )
         endforeach()
     else()
         message(FATAL_ERROR "Do not know what to do with ${name}")
@@ -102,6 +102,6 @@ install(
     DIRECTORY libkatepate
     DESTINATION ${DATA_INSTALL_DIR}/kate/pate
     FILES_MATCHING
-        PATTERN "*.py"
-        PATTERN "__pycache__*" EXCLUDE
-  )
+    PATTERN "*.py"
+    PATTERN "__pycache__*" EXCLUDE
+)

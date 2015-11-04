@@ -2,13 +2,13 @@
 project(katepart)
 
 # these subdirs have their own CMakeLists
-add_subdirectory( data )
+add_subdirectory(data)
 
 # syntax highlighting data files
-add_subdirectory( syntax/data )
+add_subdirectory(syntax/data)
 
 # jscripts for the part
-add_subdirectory( script/data )
+add_subdirectory(script/data)
 
 # includes
 include_directories(
@@ -34,7 +34,6 @@ include_directories(
 
 # our sources
 set(katepart_PART_SRCS
-
     # text buffer & buffer helpers
     buffer/katetextbuffer.cpp
     buffer/katetextblock.cpp
@@ -101,7 +100,7 @@ set(katepart_PART_SRCS
     variableeditor/variableitem.cpp
     variableeditor/katehelpbutton.cpp
 
-    # rendering stuff (katerenderer  and helpers)
+    # rendering stuff (katerenderer and helpers)
     render/katerenderer.cpp
     render/katerenderrange.cpp
     render/katelayoutcache.cpp
@@ -181,39 +180,19 @@ set(katepart_PART_SRCS
 
     # KDE5: move to KTextEditor
     kte5/documentcursor.cpp
-
-    # user interfaces
-    dialogs/textareaappearanceconfigwidget.ui
-    dialogs/bordersappearanceconfigwidget.ui
-    dialogs/commandmenuconfigwidget.ui
-    dialogs/commandmenueditwidget.ui
-    dialogs/completionconfigtab.ui
-    dialogs/navigationconfigwidget.ui
-    dialogs/editconfigwidget.ui
-    mode/filetypeconfigwidget.ui
-    dialogs/indentationconfigwidget.ui
-    dialogs/opensaveconfigwidget.ui
-    dialogs/opensaveconfigadvwidget.ui
-    dialogs/modonhdwidget.ui
-    completion/completionconfigwidget.ui
-    search/searchbarincremental.ui
-    search/searchbarpower.ui
-    dialogs/spellcheckconfigwidget.ui
-    schema/howtoimportschema.ui
-    snippet/snippetview.ui
-    snippet/editrepository.ui
-    snippet/editsnippet.ui
 )
 
-add_definitions( -DKDE_DEFAULT_DEBUG_AREA=13000 )
+add_definitions(-DKDE_DEFAULT_DEBUG_AREA=13000)
 
-add_library(katepartinterfaces ${LIBRARY_TYPE} ${katepart_PART_SRCS} )
+add_library(katepartinterfaces ${LIBRARY_TYPE} ${katepart_PART_SRCS})
 
-target_link_libraries (
-    katepartinterfaces PRIVATE ${KDE4_KDECORE_LIBS} ${KDE4_KPARTS_LIBS}
-    ${KDE4_KCMUTILS_LIBS} ${KDE4_KTEXTEDITOR_LIBS} ${QT_QTSCRIPT_LIBRARY}
+target_link_libraries(katepartinterfaces
+    ${KDE4_KDECORE_LIBS}
+    ${KDE4_KPARTS_LIBS}
+    ${KDE4_KCMUTILS_LIBS}
+    ${KDE4_KTEXTEDITOR_LIBS}
+    ${QT_QTSCRIPT_LIBRARY}
 )
-target_link_libraries(katepartinterfaces PUBLIC "${KDE4_KPARTS_LIBS}" )
 
 set_target_properties(
     katepartinterfaces PROPERTIES
@@ -222,7 +201,10 @@ set_target_properties(
 )
 
 # install kate part interfaces
-install(TARGETS katepartinterfaces EXPORT kdelibsLibraryTargets ${INSTALL_TARGETS_DEFAULT_ARGS})
+install(
+    TARGETS katepartinterfaces
+    EXPORT kdelibsLibraryTargets ${INSTALL_TARGETS_DEFAULT_ARGS}
+)
 
 # kate part itself just is interfaces + the factory
 kde4_add_plugin(katepart utils/katefactory.cpp)
@@ -238,7 +220,13 @@ target_link_libraries(katepart
 )
 
 # install the part
-install(TARGETS katepart DESTINATION ${PLUGIN_INSTALL_DIR})
+install(
+    TARGETS katepart
+    DESTINATION ${PLUGIN_INSTALL_DIR}
+)
 
 # install the snippet stuff
-install(FILES snippet/ktexteditor_codesnippets_core.knsrc DESTINATION ${CONFIG_INSTALL_DIR})
+install(
+    FILES snippet/ktexteditor_codesnippets_core.knsrc
+    DESTINATION ${CONFIG_INSTALL_DIR}
+)
