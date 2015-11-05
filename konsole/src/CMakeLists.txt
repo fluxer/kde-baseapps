@@ -7,25 +7,23 @@ endif()
 
 ### Font Embedder and LineFont.h
 option(KONSOLE_BUILD_FONTEMBEDDER "Konsole: build fontembedder executable" OFF)
-option(KONSOLE_GENERATE_LINEFONT "Konsole: regenerate LineFont file" OFF)
 
-### Use cmake -DKONSOLE_BUILD_FONTEMBEDDER or/and -DKONSOLE_GENERATE_LINEFONT=1
-if(KONSOLE_BUILD_FONTEMBEDDER OR KONSOLE_GENERATE_LINEFONT)
-  ### Font Embedder
-  set(fontembedder_SRCS fontembedder.cpp)
-  add_executable(fontembedder ${fontembedder_SRCS})
-  target_link_libraries(fontembedder  ${KDE4_KIO_LIBS})
+### Use cmake -DKONSOLE_BUILD_FONTEMBEDDER
+if(KONSOLE_BUILD_FONTEMBEDDER)
+    ### Font Embedder
+    add_executable(fontembedder fontembedder.cpp)
+    target_link_libraries(fontembedder ${KDE4_KIO_LIBS})
 
-  ### Line graphics font
-  ### The below cmake doesn't work; it might be possible to automate it
-  ###   if LineFont.src has changed.  If automated, different OSes will
-  ###   need to be handled.
-  ###   If LineFont.h is needed to be recreated use:
-  ###     fontembedder LineFont.src > LineFont.h
-  #add_custom_command(OUTPUT ${CMAKE_SOURCE_DIR}/LineFont.h
-  #                   COMMAND ${CMAKE_CURRENT_BINARY_DIR}/fontembedder
-  #                   ARGS ${CMAKE_SOURCE_DIR}/LineFont.src
-  #                   DEPENDS ${CMAKE_SOURCE_DIR}/LineFont.src )
+    ### Line graphics font
+    ### The below cmake doesn't work; it might be possible to automate it
+    ###   if LineFont.src has changed.  If automated, different OSes will
+    ###   need to be handled.
+    ###   If LineFont.h is needed to be recreated use:
+    ###     fontembedder LineFont.src > LineFont.h
+    #add_custom_command(OUTPUT ${CMAKE_SOURCE_DIR}/LineFont.h
+    #                   COMMAND ${CMAKE_CURRENT_BINARY_DIR}/fontembedder
+    #                   ARGS ${CMAKE_SOURCE_DIR}/LineFont.src
+    #                   DEPENDS ${CMAKE_SOURCE_DIR}/LineFont.src )
 endif()
 
 ### Konsole source files shared between embedded terminal and main application
@@ -33,17 +31,27 @@ endif()
 # qdbuscpp2xml -M -s ViewManager.h -o org.kde.konsole.Konsole.xml
 
 # Generate dbus .xml files; do not store .xml in source folder
-qt4_generate_dbus_interface(Session.h org.kde.konsole.Session.xml OPTIONS -M)
-qt4_generate_dbus_interface(ViewManager.h org.kde.konsole.Window.xml OPTIONS -M)
+qt4_generate_dbus_interface(
+    Session.h
+    org.kde.konsole.Session.xml
+    OPTIONS -M
+)
+qt4_generate_dbus_interface(
+    ViewManager.h
+    org.kde.konsole.Window.xml
+    OPTIONS -M
+)
 
 qt4_add_dbus_adaptor(sessionadaptors_SRCS
-                    ${CMAKE_CURRENT_BINARY_DIR}/org.kde.konsole.Session.xml
-                    Session.h
-                    Konsole::Session)
+    ${CMAKE_CURRENT_BINARY_DIR}/org.kde.konsole.Session.xml
+    Session.h
+    Konsole::Session
+)
 qt4_add_dbus_adaptor(windowadaptors_SRCS
-                    ${CMAKE_CURRENT_BINARY_DIR}/org.kde.konsole.Window.xml
-                    ViewManager.h
-                    Konsole::ViewManager)
+    ${CMAKE_CURRENT_BINARY_DIR}/org.kde.konsole.Window.xml
+    ViewManager.h
+    Konsole::ViewManager
+)
 
 set(konsoleprivate_SRCS
     ${sessionadaptors_SRCS}
@@ -96,56 +104,60 @@ set(konsoleprivate_SRCS
     konsole_wcwidth.cpp
     ${CMAKE_CURRENT_BINARY_DIR}/org.kde.konsole.Window.xml
     ${CMAKE_CURRENT_BINARY_DIR}/org.kde.konsole.Session.xml
-    ColorSchemeEditor.ui
-    CopyInputDialog.ui
-    EditProfileDialog.ui
-    KeyBindingEditor.ui
-    ManageProfilesDialog.ui
-    RenameTabDialog.ui
-    RenameTabWidget.ui
-    HistorySizeDialog.ui
-    HistorySizeWidget.ui
-    PrintOptions.ui
-    settings/GeneralSettings.ui
-    settings/TabBarSettings.ui
 )
-set(konsole_LIBS ${KDE4_KPTY_LIBS}
-                 ${KDE4_KIO_LIBS}
-                 ${KDE4_KNOTIFYCONFIG_LIBS}
-                 ${QT_QTXML_LIBRARY}
-                 ${X11_LIBRARIES}
-                 konq)
 
 ### Konsole Application
 
 add_library(konsoleprivate SHARED ${konsoleprivate_SRCS})
-target_link_libraries(konsoleprivate PRIVATE ${konsole_LIBS})
-target_link_libraries(konsoleprivate PUBLIC ${konsole_LIBS})
+
+target_link_libraries(konsoleprivate
+    ${KDE4_KPTY_LIBS}
+    ${KDE4_KIO_LIBS}
+    ${KDE4_KNOTIFYCONFIG_LIBS}
+    ${QT_QTXML_LIBRARY}
+    ${X11_LIBRARIES}
+    konq
+)
 
 set(konsole_SRCS
-   Application.cpp
-   MainWindow.cpp
-   main.cpp
-   settings/GeneralSettings.cpp
-   settings/TabBarSettings.cpp)
+    Application.cpp
+    MainWindow.cpp
+    main.cpp
+    settings/GeneralSettings.cpp
+    settings/TabBarSettings.cpp
+)
 
-kde4_add_kcfg_files(konsole_SRCS settings/KonsoleSettings.kcfgc)
+kde4_add_kcfg_files(konsole_SRCS
+    settings/KonsoleSettings.kcfgc
+)
 
 add_executable(konsole ${konsole_SRCS})
+
 target_link_libraries(konsole PRIVATE konsoleprivate)
 
-install(TARGETS konsole konsoleprivate
-       ${INSTALL_TARGETS_DEFAULT_ARGS})
+install(
+    TARGETS konsole konsoleprivate
+    ${INSTALL_TARGETS_DEFAULT_ARGS}
+)
 
 ### Embedded Konsole KPart
 
-set(konsolepart_PART_SRCS Part.cpp)
-
-kde4_add_plugin(konsolepart ${konsolepart_PART_SRCS})
-set_target_properties(konsolepart PROPERTIES DEFINE_SYMBOL KONSOLE_PART)
-target_link_libraries(konsolepart ${KDE4_KPARTS_LIBS} konsoleprivate)
-install(TARGETS konsolepart  DESTINATION ${PLUGIN_INSTALL_DIR})
+kde4_add_plugin(konsolepart Part.cpp)
+set_target_properties(konsolepart PROPERTIES
+    DEFINE_SYMBOL KONSOLE_PART
+)
+target_link_libraries(konsolepart
+    ${KDE4_KPARTS_LIBS}
+    konsoleprivate
+)
+install(
+    TARGETS konsolepart
+    DESTINATION ${PLUGIN_INSTALL_DIR}
+)
 
 ### konsoleprofile command-line tool
-install(PROGRAMS konsoleprofile DESTINATION ${BIN_INSTALL_DIR})
 
+install(
+    PROGRAMS konsoleprofile
+    DESTINATION ${BIN_INSTALL_DIR}
+)

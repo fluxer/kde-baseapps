@@ -4,12 +4,15 @@ include_directories(
     ${QT_QTTEST_INCLUDES}
 )
 
-set(KONSOLE_TEST_LIBS ${QT_QTTEST_LIBRARY} konsoleprivate)
+set(KONSOLE_TEST_LIBS
+    ${QT_QTTEST_LIBRARY}
+    konsoleprivate
+    ${KDE4_KPARTS_LIBS}
+    ${KDE4_KPTY_LIBS}
+)
 
 kde4_add_manual_test(PartManualTest PartManualTest.cpp)
 target_link_libraries(PartManualTest
-    ${KDE4_KPARTS_LIBS}
-    ${KDE4_KPTY_LIBS}
     ${KONSOLE_TEST_LIBS}
 )
 
@@ -22,22 +25,34 @@ target_link_libraries(konsole-CharacterWidthTest ${KONSOLE_TEST_LIBS})
 kde4_add_test(konsole-DBusTest DBusTest.cpp)
 target_link_libraries(konsole-DBusTest ${KONSOLE_TEST_LIBS})
 
-kde4_add_test(konsole-HistoryTest HistoryTest.cpp ../History.cpp)
-set_target_properties(konsole-HistoryTest PROPERTIES COMPILE_FLAGS -DKONSOLEPRIVATE_EXPORT=)
+set(HistoryTest_SRCS
+    HistoryTest.cpp
+    ../History.cpp
+)
+kde4_add_test(konsole-HistoryTest ${HistoryTest_SRCS})
+set_target_properties(konsole-HistoryTest PROPERTIES
+    COMPILE_FLAGS -DKONSOLEPRIVATE_EXPORT=
+)
 target_link_libraries(konsole-HistoryTest ${KONSOLE_TEST_LIBS})
 
-kde4_add_test(konsole-KeyboardTranslatorTest KeyboardTranslatorTest.cpp ../KeyboardTranslator.cpp)
-set_target_properties(konsole-KeyboardTranslatorTest PROPERTIES COMPILE_FLAGS -DKONSOLEPRIVATE_EXPORT=)
+set(KeyboardTranslatorTest_SRCS
+    KeyboardTranslatorTest.cpp
+    ../KeyboardTranslator.cpp
+)
+kde4_add_test(konsole-KeyboardTranslatorTest ${KeyboardTranslatorTest_SRCS})
+set_target_properties(konsole-KeyboardTranslatorTest PROPERTIES
+    COMPILE_FLAGS -DKONSOLEPRIVATE_EXPORT=
+)
 target_link_libraries(konsole-KeyboardTranslatorTest ${KONSOLE_TEST_LIBS})
 
 kde4_add_test(konsole-PartTest PartTest.cpp)
-target_link_libraries(konsole-PartTest ${KDE4_KPARTS_LIBS} ${KDE4_KPTY_LIBS} ${KONSOLE_TEST_LIBS})
+target_link_libraries(konsole-PartTest ${KONSOLE_TEST_LIBS})
 
 kde4_add_test(konsole-ProfileTest ProfileTest.cpp)
 target_link_libraries(konsole-ProfileTest ${KONSOLE_TEST_LIBS})
 
 kde4_add_test(konsole-PtyTest PtyTest.cpp)
-target_link_libraries(konsole-PtyTest ${KDE4_KPTY_LIBS} ${KONSOLE_TEST_LIBS})
+target_link_libraries(konsole-PtyTest ${KONSOLE_TEST_LIBS})
 
 kde4_add_test(konsole-SessionTest SessionTest.cpp)
 target_link_libraries(konsole-SessionTest ${KONSOLE_TEST_LIBS})
@@ -55,4 +70,4 @@ kde4_add_test(konsole-TerminalTest TerminalTest.cpp)
 target_link_libraries(konsole-TerminalTest ${KONSOLE_TEST_LIBS})
 
 kde4_add_test(konsole-TerminalInterfaceTest TerminalInterfaceTest.cpp)
-target_link_libraries(konsole-TerminalInterfaceTest ${KDE4_KPARTS_LIBS} ${KDE4_KPTY_LIBS} ${KONSOLE_TEST_LIBS})
+target_link_libraries(konsole-TerminalInterfaceTest ${KONSOLE_TEST_LIBS})
