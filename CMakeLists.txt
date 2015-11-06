@@ -4,8 +4,6 @@ if("${CMAKE_SOURCE_DIR}" STREQUAL "${CMAKE_BINARY_DIR}")
     message(SEND_ERROR "kde-baseapps requires an out of source build")
 endif()
 
-set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake/modules)
-
 find_package(KDE4 REQUIRED)
 include(KDE4Defaults)
 
