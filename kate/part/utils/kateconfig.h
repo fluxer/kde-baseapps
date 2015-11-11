@@ -28,6 +28,7 @@
 #include <QtGui/QColor>
 #include <QtCore/QObject>
 #include <QtCore/QVector>
+#include <QtCore/qrect.h>
 #include <QtGui/qfontmetrics.h>
 #include <QStringListModel>
 

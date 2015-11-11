@@ -48,8 +48,11 @@ add_subdirectory(konq-plugins)
 add_subdirectory(konsole)
 
 if(Q_WS_X11)
-  add_subdirectory(nsplugins)
-  add_subdirectory(kdepasswd)
+    if(NOT KATIE_FOUND)
+        # TODO: fix
+        add_subdirectory(nsplugins)
+    endif()
+    add_subdirectory(kdepasswd)
 endif()
 
 feature_summary(WHAT ALL INCLUDE_QUIET_PACKAGES FATAL_ON_MISSING_REQUIRED_PACKAGES)
