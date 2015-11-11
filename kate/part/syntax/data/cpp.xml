@@ -1215,6 +1215,10 @@
     <item> QRectF </item>
     <item> QRegExp </item>
     <item> QRegExpValidator </item>
+    <item> QJsonValue </item>
+    <item> QJsonObject </item>
+    <item> QJsonArray </item>
+    <item> QJsonDocument </item>
     <item> QRegion </item>
     <item> QResizeEvent </item>
     <item> QResource </item>
