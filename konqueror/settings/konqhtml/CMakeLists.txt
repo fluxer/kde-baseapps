@@ -44,7 +44,3 @@ install(
     FILES css/template.css
     DESTINATION ${DATA_INSTALL_DIR}/kcmcss
 )
-install(
-    FILES khtmlrc
-    DESTINATION ${CONFIG_INSTALL_DIR}
-)
