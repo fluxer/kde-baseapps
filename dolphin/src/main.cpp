@@ -27,6 +27,7 @@
 #include <KLocale>
 #include <kmainwindow.h>
 #include <KDebug>
+#include <kdeversion.h>
 
 int main(int argc, char **argv)
 {
