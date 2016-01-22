@@ -22,7 +22,7 @@
 
 #include <KDialog>
 
-class ThumbCreatorV2;
+class ThumbCreator;
 
 /**
  * @brief Dialog for configuring preview-plugins.
@@ -49,7 +49,7 @@ private slots:
 
 private:
     QWidget* m_configurationWidget;
-    ThumbCreatorV2* m_previewPlugin;
+    ThumbCreator* m_previewPlugin;
 };
 
 #endif

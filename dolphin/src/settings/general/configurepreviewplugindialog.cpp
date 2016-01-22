@@ -39,7 +39,7 @@ ConfigurePreviewPluginDialog::ConfigurePreviewPluginDialog(const QString& plugin
     if (library.load()) {
         newCreator create = (newCreator)library.resolveFunction("new_creator");
         if (create) {
-            m_previewPlugin = dynamic_cast<ThumbCreatorV2*>(create());
+            m_previewPlugin = dynamic_cast<ThumbCreator*>(create());
         }
     }
 
