@@ -41,8 +41,7 @@ KonqPixmapProvider * KonqPixmapProvider::self()
 }
 
 KonqPixmapProvider::KonqPixmapProvider()
-    : KPixmapProvider(),
-    org::kde::FavIcon("org.kde.kded", "/modules/favicons", QDBusConnection::sessionBus())
+    : org::kde::FavIcon("org.kde.kded", "/modules/favicons", QDBusConnection::sessionBus())
 {
     QObject::connect(this, SIGNAL(iconChanged(bool,QString,QString)),
                      this, SLOT(notifyChange(bool,QString,QString)) );
