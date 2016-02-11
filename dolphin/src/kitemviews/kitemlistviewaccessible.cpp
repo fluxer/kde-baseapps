@@ -210,7 +210,11 @@ QAccessible::State KItemListViewAccessible::state(int child) const
         }
     }
 
+#ifndef QT_KATIE
     return QAccessible::Normal | QAccessible::HasInvokeExtension;
+#else
+    return QAccessible::Normal;
+#endif
 }
 
 int KItemListViewAccessible::childAt(int x, int y) const
