@@ -61,7 +61,6 @@
   khtml background
   khtml link
   khtml image (www.kde.org RMB on K logo)
-  khtmlimage (same as above, then choose View image, then RMB)
   selected text in khtml
   embedded katepart
   folder on the desktop

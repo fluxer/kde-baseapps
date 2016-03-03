@@ -1833,7 +1833,7 @@ void KonqMainWindow::slotConfigure()
                     "cookies",
                     "crypto",
                     "useragent",
-                    "khtml_java_js",
+                    "khtml_js",
                     "khtml_plugins"};
                 for (uint i=0;i<sizeof(webModules)/sizeof(char*);++i)
                     if (KAuthorized::authorizeControlModule(webModules[i]))
@@ -3660,7 +3660,7 @@ void KonqMainWindow::initActions()
   QStringList configureModules;
   configureModules << "khtml_general" << "bookmarks" <<
       "filebehavior" << "filetypes" << "kcmtrash" <<
-      "khtml_appearance" << "khtml_behavior" << "khtml_java_js" <<
+      "khtml_appearance" << "khtml_behavior" << "khtml_js" <<
       "khtml_filter" << "ebrowsing" <<
       "kcmhistory" << "cookies" <<
       "cache" << "proxy" <<

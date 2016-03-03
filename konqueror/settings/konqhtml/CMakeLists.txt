@@ -1,11 +1,9 @@
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/css)
 
-
 set(kcm_konqhtml_PART_SRCS 
     generalopts.cpp
     htmlopts.cpp 
     jsopts.cpp 
-    javaopts.cpp 
     pluginopts.cpp 
     appearance.cpp 
     khttpoptdlg.cpp 
@@ -34,7 +32,7 @@ install(
     FILES
     khtml_general.desktop
     khtml_behavior.desktop
-    khtml_java_js.desktop
+    khtml_js.desktop
     khtml_appearance.desktop
     khtml_filter.desktop
     DESTINATION ${SERVICES_INSTALL_DIR}
