@@ -255,9 +255,9 @@ static int tryCheck(int write_fd, const QString &absFile)
         if ( nperr==NPERR_NO_ERROR )
             description = QString::fromLatin1( buf );
         kDebug() << "description = " << description;
+    } else {
+        kWarning() << "Plugin doesn't implement NP_GetValue";
     }
-    else
-        kWarning() << "Plugin doesn't implement NP_GetValue"  ;
 
     // get mime description function pointer
     char* (*func_GetMIMEDescription)() =
