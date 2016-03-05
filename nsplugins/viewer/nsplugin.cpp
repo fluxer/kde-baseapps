@@ -43,6 +43,7 @@
 #include <QFile>
 #include <QTimer>
 #include <QApplication>
+#include <QLibrary>
 
 #ifdef Bool
 #undef Bool
@@ -54,7 +55,6 @@
 #include <kglobal.h>
 #include <kio/netaccess.h>
 #include <kprotocolmanager.h>
-#include <kpluginloader.h>
 #include <klocale.h>
 #include <kstandarddirs.h>
 #include <ktemporaryfile.h>
@@ -646,7 +646,7 @@ static void g_NPN_PopPopupsEnabledState(NPP /*instance*/)
 static int s_instanceCounter = 0;
 
 NSPluginInstance::NSPluginInstance(NPPluginFuncs *pluginFuncs,
-                                   KPluginLoader *handle,
+                                   QLibrary *handle,
                                    const QString &url, const QString &mimeType,
                                    const QStringList &argn, const QStringList &argv,
                                    const QString &appId, const QString &callbackId,
@@ -1393,7 +1393,7 @@ NSPluginClass::NSPluginClass( const QString &library,
     QDBusConnection::sessionBus().registerObject( objectName(), this );
 
     // initialize members
-    _handle = new KPluginLoader(QFile::encodeName(library), KGlobal::mainComponent(), this);
+    _handle = new QLibrary(QFile::encodeName(library), this);
     _libname = library;
     _constructed = false;
     _error = true;
