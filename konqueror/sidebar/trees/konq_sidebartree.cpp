@@ -33,6 +33,7 @@
 #include <QtGui/qevent.h>
 #include <QtCore/QEvent>
 #include <QFrame>
+#include <QLibrary>
 
 #include <kaction.h>
 #include <kactioncollection.h>
@@ -40,7 +41,6 @@
 #include <kdirnotify.h>
 #include <kdesktopfile.h>
 #include <kglobalsettings.h>
-#include <klibrary.h>
 #include <kicon.h>
 #include <kiconloader.h>
 #include <kinputdialog.h>
@@ -65,12 +65,12 @@ getModule KonqSidebarTree::getPluginFactory(const QString &name)
   if (!pluginFactories.contains(name))
   {
     QString libName    = pluginInfo[name];
-    KLibrary lib(libName);
+    QLibrary lib(libName);
     if (lib.load())
     {
       // get the create_ function
       QString factory = "create_" + libName;
-      KLibrary::void_function_ptr create    = lib.resolveFunction(QFile::encodeName(factory));
+      void *create    = lib.resolve(QFile::encodeName(factory));
       if (create)
       {
         getModule func = (getModule)create;
@@ -804,7 +804,7 @@ void KonqSidebarTree::loadTopLevelItem(KonqSidebarTreeItem *parent, const QStrin
     const QString name = cfg.readName();
 
     // Here's where we need to create the right module...
-    // ### TODO: make this KTrader/KLibrary based.
+    // ### TODO: make this KTrader/QLibrary based.
     const QString moduleName = desktopGroup.readPathEntry( "X-KDE-TreeModule", QString("Directory") );
     const QString showHidden = desktopGroup.readEntry("X-KDE-TreeModule-ShowHidden");
 

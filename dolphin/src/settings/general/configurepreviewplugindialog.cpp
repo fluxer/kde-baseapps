@@ -19,7 +19,6 @@
 
 #include "configurepreviewplugindialog.h"
 
-#include <KLibrary>
 #include <KLocale>
 #include <KIO/NetAccess>
 #include <kio/thumbcreator.h>
@@ -27,6 +26,7 @@
 #include <QApplication>
 #include <QDir>
 #include <QVBoxLayout>
+#include <QLibrary>
 
 ConfigurePreviewPluginDialog::ConfigurePreviewPluginDialog(const QString& pluginName,
                                                            const QString& desktopEntryName,
@@ -35,7 +35,7 @@ ConfigurePreviewPluginDialog::ConfigurePreviewPluginDialog(const QString& plugin
     m_configurationWidget(0),
     m_previewPlugin(0)
 {
-    KLibrary library(desktopEntryName);
+    QLibrary library(desktopEntryName);
     if (library.load()) {
         newCreator create = (newCreator)library.resolveFunction("new_creator");
         if (create) {

@@ -38,15 +38,14 @@
 #include <QTextStream>
 #include <QRegExp>
 #include <QBuffer>
-
-#include <QtDBus/QDBusInterface>
-#include <QtDBus/QDBusConnectionInterface>
+#include <QLibrary>
+#include <QDBusInterface>
+#include <QDBusConnectionInterface>
 
 #include <kapplication.h>
 #include <kdebug.h>
 #include <kglobal.h>
 #include <kstandarddirs.h>
-#include <klibrary.h>
 #include <kconfig.h>
 #include <kconfiggroup.h>
 #include <kcrash.h>
@@ -227,10 +226,9 @@ static void segv_handler(int)
 
 static int tryCheck(int write_fd, const QString &absFile)
 {
-    KLibrary _handle(absFile);
+    QLibrary _handle(absFile);
     if (!_handle.load()) {
-        kDebug(1433) << " - open failed with message " <<
-		         _handle.errorString() << ", skipping " << endl;
+        kDebug(1433) << " - open failed with message " <<  _handle.errorString() << ", skipping ";
         return 1;
     }
 

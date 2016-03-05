@@ -58,7 +58,7 @@ typedef NPError NP_ShutdownUPP(void);
 void quitXt();
 
 class OrgKdeNspluginsCallBackInterface;
-class KLibrary;
+class KPluginLoader;
 class QTimer;
 
 // We need the following inside the scripting code
@@ -174,7 +174,7 @@ class NSPluginInstance : public QObject
 public:
 
   // constructor, destructor
-  NSPluginInstance( NPPluginFuncs *pluginFuncs, KLibrary *handle,
+  NSPluginInstance( NPPluginFuncs *pluginFuncs, KPluginLoader *handle,
                     const QString &src, const QString &mime,
                     const QStringList &argn, const QStringList &argv,
                     const QString &appId, const QString &callbackId, bool embed,
@@ -255,7 +255,7 @@ private:
   QList<KTemporaryFile *> _tempFiles;
   OrgKdeNspluginsCallBackInterface *_callback;
   QList<NSPluginStreamBase *> _streams;
-  KLibrary *_handle;
+  KPluginLoader *_handle;
   QTimer *_timer;
 
   NPP      _npp;
@@ -336,7 +336,7 @@ private:
   int initialize();
   void shutdown();
 
-  KLibrary *_handle;
+  KPluginLoader *_handle;
   QString  _libname;
   bool _constructed;
   bool _error;
