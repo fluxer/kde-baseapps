@@ -238,7 +238,7 @@ static int tryCheck(int write_fd, const QString &absFile)
 
     NPError (*func_GetValue)(void *, NPPVariable, void *) =
         (NPError(*)(void *, NPPVariable, void *))
-        _handle.resolveFunction("NP_GetValue");
+        _handle.resolve("NP_GetValue");
     if ( func_GetValue ) {
 
         // get name
@@ -261,7 +261,7 @@ static int tryCheck(int write_fd, const QString &absFile)
 
     // get mime description function pointer
     char* (*func_GetMIMEDescription)() =
-        (char *(*)())_handle.resolveFunction("NP_GetMIMEDescription");
+        (char *(*)())_handle.resolve("NP_GetMIMEDescription");
     if ( !func_GetMIMEDescription ) {
         kDebug(1433) << " - no GetMIMEDescription, skipping";
         _handle.unload();

@@ -37,7 +37,7 @@ ConfigurePreviewPluginDialog::ConfigurePreviewPluginDialog(const QString& plugin
 {
     QLibrary library(desktopEntryName);
     if (library.load()) {
-        newCreator create = (newCreator)library.resolveFunction("new_creator");
+        newCreator create = (newCreator)library.resolve("new_creator");
         if (create) {
             m_previewPlugin = dynamic_cast<ThumbCreator*>(create());
         }

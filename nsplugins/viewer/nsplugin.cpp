@@ -1411,9 +1411,9 @@ NSPluginClass::NSPluginClass( const QString &library,
     }
 
     // get exported lib functions
-    _NP_GetMIMEDescription = (NP_GetMIMEDescriptionUPP *)_handle->resolveFunction("NP_GetMIMEDescription");
-    _NP_Initialize = (NP_InitializeUPP *)_handle->resolveFunction("NP_Initialize");
-    _NP_Shutdown = (NP_ShutdownUPP *)_handle->resolveFunction("NP_Shutdown");
+    _NP_GetMIMEDescription = (NP_GetMIMEDescriptionUPP *)_handle->resolve("NP_GetMIMEDescription");
+    _NP_Initialize = (NP_InitializeUPP *)_handle->resolve("NP_Initialize");
+    _NP_Shutdown = (NP_ShutdownUPP *)_handle->resolve("NP_Shutdown");
 
     // check for valid returned ptrs
     if (!_NP_GetMIMEDescription) {
@@ -1436,7 +1436,7 @@ NSPluginClass::NSPluginClass( const QString &library,
 
     // see if it uses gtk
     if (!s_initedGTK) {
-        gtkInitFunc* gtkInit = (gtkInitFunc*)_handle->resolveFunction("gtk_init");
+        gtkInitFunc* gtkInit = (gtkInitFunc*)_handle->resolve("gtk_init");
         if (gtkInit) {
             kDebug(1431) << "Calling gtk_init for the plugin";
             // Prevent gtk_init() from replacing the X error handlers, since the Gtk
