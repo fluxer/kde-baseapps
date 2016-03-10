@@ -62,6 +62,7 @@ public:
 
 	void save();
 
+protected:
 	/**
 	 * For the face button
 	 */
@@ -74,7 +75,6 @@ private Q_SLOTS:
 
 private:
 	void changeFace(const QPixmap& pix);
-	inline KUrl* decodeImgDrop(QDropEvent *e, QWidget *wdg);
 
 	KEMailSettings *_kes;
 	KUser *_ku;

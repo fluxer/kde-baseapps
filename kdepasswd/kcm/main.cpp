@@ -25,12 +25,12 @@
 #include <QLayout>
 #include <QLabel>
 #include <QLineEdit>
-#include <QtCore/QEvent>
 #include <QPixmap>
-#include <QtCore/QStringList>
-#include <QtGui/qevent.h>
+#include <QStringList>
+#include <QEvent>
 #include <QDBusInterface>
 #include <QDBusReply>
+#include <QImageReader>
 
 #include <kpushbutton.h>
 #include <kguiitem.h>
@@ -38,7 +38,6 @@
 #include <kuser.h>
 #include <kdialog.h>
 #include <kicon.h>
-#include <kimageio.h>
 #include <kmimetype.h>
 #include <kstandarddirs.h>
 #include <kaboutdata.h>
@@ -66,6 +65,8 @@ KCMUserAccount::KCMUserAccount( QWidget *parent, const QVariantList &)
         topLayout->setMargin(0);
 
 	_mw = new MainWidget(this);
+        installEventFilter(this);
+        setAcceptDrops(true);
 	topLayout->addWidget( _mw );
 
 	connect( _mw->btnChangeFace, SIGNAL(clicked()), SLOT(slotFaceButtonClicked()));
@@ -275,53 +276,33 @@ void KCMUserAccount::slotFaceButtonClicked()
  */
 bool KCMUserAccount::eventFilter(QObject *, QEvent *e)
 {
-	if (e->type() == QEvent::DragEnter)
-		{
-		QDragEnterEvent *ee = (QDragEnterEvent *) e;
-    if (!KUrl::List::fromMimeData( ee->mimeData() ).isEmpty())
-      ee->accept();
-    else
-      ee->ignore();
-		return true;
-	}
+    QDragEnterEvent *ee = (QDragEnterEvent *) e;
+    if (e->type() == QEvent::DragEnter) {
+        KUrl::List uris = KUrl::List::fromMimeData(ee->mimeData());
+        if (!uris.isEmpty())
+            ee->accept();
+        else
+            ee->ignore();
+        return true;
+    } else if (e->type() == QEvent::Drop) {
+        KUrl::List uris = KUrl::List::fromMimeData(ee->mimeData());
+        if (!uris.isEmpty()) {
+            KUrl *url = new KUrl(uris.first());
 
-	if (e->type() == QEvent::Drop)
-	{
-		KUrl *url = decodeImgDrop( (QDropEvent *) e, this);
-		if (url)
-		{
-			QString pixPath;
-			KIO::NetAccess::download(*url, pixPath, this);
-			changeFace( QPixmap( pixPath ) );
-			KIO::NetAccess::removeTempFile(pixPath);
-			delete url;
-		}
-		return true;
-	}
-	return false;
-}
-
-inline KUrl *KCMUserAccount::decodeImgDrop(QDropEvent *e, QWidget *wdg)
-{
-  KUrl::List uris = KUrl::List::fromMimeData(e->mimeData());
-  if (!uris.isEmpty())
-  {
-    KUrl *url = new KUrl(uris.first());
-
-    KMimeType::Ptr mime = KMimeType::findByUrl( *url );
-    if ( mime && KImageIO::isSupported( mime->name(), KImageIO::Reading ) )
-      return url;
-
-    QStringList qs = KImageIO::pattern().split( '\n');
-    qs.erase(qs.begin());
-
-    QString msg = i18n( "%1 does not appear to be an image file.\n"
-			  "Please use files with these extensions:\n"
-			  "%2", url->fileName(), qs.join("\n"));
-    KMessageBox::sorry( wdg, msg);
-    delete url;
-  }
-  return 0;
+            QImageReader reader(url->path());
+            if ( !reader.canRead() ) {
+                KMessageBox::sorry( this, i18n( "%1 does not appear to be an image file.\n", url->path()));
+            } else {
+                QString pixPath;
+                KIO::NetAccess::download(*url, pixPath, this);
+                changeFace( QPixmap( pixPath ) );
+                KIO::NetAccess::removeTempFile(pixPath);
+                delete url;
+            }
+        }
+        return true;
+    }
+    return false;
 }
 
 #include "moc_main.cpp"
