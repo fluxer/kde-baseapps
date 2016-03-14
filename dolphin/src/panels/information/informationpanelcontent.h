@@ -24,11 +24,11 @@
 #include <KFileItem>
 #include <KUrl>
 #include <KVBox>
+#include <KMediaWidget>
 
 #include <QPointer>
 
 class KFileItemList;
-class PhononWidget;
 class PixmapViewer;
 class PlacesItemModel;
 class QPixmap;
@@ -100,7 +100,7 @@ private slots:
      */
     void markOutdatedPreview();
 
-    void slotHasVideoChanged(bool hasVideo);
+    void slotVideoChanged();
 
     /**
      * Is invoked after the file meta data configuration dialog has been
@@ -138,7 +138,7 @@ private:
     QTimer* m_outdatedPreviewTimer;
 
     PixmapViewer* m_preview;
-    PhononWidget* m_phononWidget;
+    KMediaWidget* m_playerWidget;
     QLabel* m_nameLabel;
     KFileMetaDataWidget* m_metaDataWidget;
     QScrollArea* m_metaDataArea;

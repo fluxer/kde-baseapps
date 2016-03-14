@@ -30,15 +30,11 @@
 #include <KMenu>
 #include <kseparator.h>
 #include <KStringHandler>
-
+#include <KMediaWidget>
 #include <KFileMetaDataWidget>
 
 #include <panels/places/placesitem.h>
 #include <panels/places/placesitemmodel.h>
-
-#include <Phonon/BackendCapabilities>
-#include <Phonon/MediaObject>
-#include <Phonon/SeekSlider>
 
 #include <QEvent>
 #include <QLabel>
@@ -54,7 +50,6 @@
 
 #include "dolphin_informationpanelsettings.h"
 #include "filemetadataconfigurationdialog.h"
-#include "phononwidget.h"
 #include "pixmapviewer.h"
 
 InformationPanelContent::InformationPanelContent(QWidget* parent) :
@@ -63,7 +58,7 @@ InformationPanelContent::InformationPanelContent(QWidget* parent) :
     m_previewJob(0),
     m_outdatedPreviewTimer(0),
     m_preview(0),
-    m_phononWidget(0),
+    m_playerWidget(0),
     m_nameLabel(0),
     m_metaDataWidget(0),
     m_metaDataArea(0),
@@ -90,11 +85,11 @@ InformationPanelContent::InformationPanelContent(QWidget* parent) :
     m_preview->setMinimumWidth(minPreviewWidth);
     m_preview->setMinimumHeight(KIconLoader::SizeEnormous);
 
-    m_phononWidget = new PhononWidget(parent);
-    m_phononWidget->hide();
-    m_phononWidget->setMinimumWidth(minPreviewWidth);
-    connect(m_phononWidget, SIGNAL(hasVideoChanged(bool)),
-            this, SLOT(slotHasVideoChanged(bool)));
+    m_playerWidget = new KMediaWidget(parent);
+    m_playerWidget->hide();
+    m_playerWidget->setMinimumWidth(minPreviewWidth);
+    connect(m_playerWidget->player(), SIGNAL(loaded()),
+            this, SLOT(slotVideoChanged()));
 
     // name
     m_nameLabel = new QLabel(parent);
@@ -136,7 +131,7 @@ InformationPanelContent::InformationPanelContent(QWidget* parent) :
     viewport->setPalette(palette);
 
     layout->addWidget(m_preview);
-    layout->addWidget(m_phononWidget);
+    layout->addWidget(m_playerWidget);
     layout->addWidget(m_nameLabel);
     layout->addWidget(new KSeparator());
     layout->addWidget(m_metaDataArea);
@@ -202,19 +197,18 @@ void InformationPanelContent::showItem(const KFileItem& item)
 
     if (InformationPanelSettings::previewsShown()) {
         const QString mimeType = item.mimetype();
-        const bool usePhonon = mimeType.startsWith("audio/") || mimeType.startsWith("video/");
-        if (usePhonon) {
-            m_phononWidget->show();
-            m_phononWidget->setUrl(item.targetUrl());
+        if (m_playerWidget->player()->isMimeSupported(mimeType)) {
+            m_playerWidget->show();
+            m_playerWidget->open(item.targetUrl().url());
             if (m_preview->isVisible()) {
-                m_phononWidget->setVideoSize(m_preview->size());
+                m_playerWidget->setMaximumSize(m_preview->size());
             }
         } else {
-            m_phononWidget->hide();
+            m_playerWidget->hide();
             m_preview->setVisible(true);
         }
     } else {
-        m_phononWidget->hide();
+        m_playerWidget->hide();
     }
 
     m_item = item;
@@ -239,7 +233,7 @@ void InformationPanelContent::showItems(const KFileItemList& items)
         m_metaDataWidget->setItems(items);
     }
 
-    m_phononWidget->hide();
+    m_playerWidget->hide();
 
     m_item = KFileItem();
 }
@@ -344,9 +338,9 @@ void InformationPanelContent::markOutdatedPreview()
     m_preview->setPixmap(disabledPixmap);
 }
 
-void InformationPanelContent::slotHasVideoChanged(bool hasVideo)
+void InformationPanelContent::slotVideoChanged()
 {
-    m_preview->setVisible(!hasVideo);
+    m_preview->setVisible(true);
 }
 
 void InformationPanelContent::refreshMetaData()
@@ -421,9 +415,9 @@ void InformationPanelContent::adjustWidgetSizes(int width)
     // try to increase the preview as large as possible
     m_preview->setSizeHint(QSize(maxWidth, maxWidth));
 
-    if (m_phononWidget->isVisible()) {
+    if (m_playerWidget->isVisible()) {
         // assure that the size of the video player is the same as the preview size
-        m_phononWidget->setVideoSize(QSize(maxWidth, maxWidth));
+        m_playerWidget->setMaximumSize(maxWidth, maxWidth);
     }
 }
 

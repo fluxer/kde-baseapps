@@ -17,8 +17,7 @@
    Boston, MA 02110-1301, USA.
 */
 
-#include <phonon/mediaobject.h>
-#include <phonon/backendcapabilities.h>
+#include <kmediaplayer.h>
 #include <kdebug.h>
 
 #include "konq_sound.h"
@@ -40,7 +39,7 @@ public:
 	virtual bool isPlaying();
 
 private:
-	Phonon::MediaObject *m_player;
+	KAudioPlayer *m_player;
 };
 
 KonqSoundPlayerImpl::KonqSoundPlayerImpl()
@@ -50,8 +49,9 @@ KonqSoundPlayerImpl::KonqSoundPlayerImpl()
 
 bool KonqSoundPlayerImpl::isMimeTypeKnown(const QString& mimeType)
 {
-	kDebug() << mimeType << Phonon::BackendCapabilities::isMimeTypeAvailable(mimeType);
-	return Phonon::BackendCapabilities::isMimeTypeAvailable(mimeType);
+        const bool supported = m_player->isMimeSupported(mimeType);
+	kDebug() << mimeType << supported;
+	return supported;
 }
 
 void KonqSoundPlayerImpl::setUrl(const KUrl &url)
@@ -59,10 +59,9 @@ void KonqSoundPlayerImpl::setUrl(const KUrl &url)
 	kDebug() ;
 	if (!m_player) {
 		kDebug() << "create AudioPlayer";
-		m_player = Phonon::createPlayer(Phonon::MusicCategory);
-		m_player->setParent(this);
+		m_player = new KAudioPlayer(this);
 	}
-	m_player->setCurrentSource(url);
+	m_player->load(url.url());
 }
 
 void KonqSoundPlayerImpl::play()
@@ -82,7 +81,7 @@ void KonqSoundPlayerImpl::stop()
 bool KonqSoundPlayerImpl::isPlaying()
 {
 	if (m_player) {
-		const bool isPlaying = (m_player->state() == Phonon::PlayingState || m_player->state() == Phonon::BufferingState);
+		const bool isPlaying = (m_player->isPlaying() || m_player->isBuffering());
 		kDebug() << isPlaying;
 		return isPlaying;
 	}

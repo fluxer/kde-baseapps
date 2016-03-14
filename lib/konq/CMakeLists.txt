@@ -42,7 +42,7 @@ install(TARGETS konq  ${INSTALL_TARGETS_DEFAULT_ARGS})
 
 set(konq_sound_LIB_SRCS konq_sound.cc)
 kde4_add_plugin(konq_sound ${konq_sound_LIB_SRCS})
-target_link_libraries(konq_sound ${KDE4_KDECORE_LIBS} ${KDE4_PHONON_LIBS})
+target_link_libraries(konq_sound ${KDE4_KDECORE_LIBS} kmediaplayer)
 install(TARGETS konq_sound DESTINATION ${PLUGIN_INSTALL_DIR} )
 
 ########### install files ###############

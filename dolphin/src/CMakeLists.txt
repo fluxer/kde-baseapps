@@ -7,7 +7,6 @@ configure_file(
 
 include_directories(
     ${CMAKE_CURRENT_BINARY_DIR}
-    ${KDE4_PHONON_INCLUDES}
 )
 
 if(ENABLE_TESTING)
@@ -152,7 +151,6 @@ set(dolphin_SRCS
     panels/information/informationpanel.cpp
     panels/information/informationpanelcontent.cpp
     panels/information/pixmapviewer.cpp
-    panels/information/phononwidget.cpp
     panels/places/placespanel.cpp
     panels/places/placesitem.cpp
     panels/places/placesitemeditdialog.cpp
@@ -217,7 +215,7 @@ target_link_libraries(dolphin
     konq
     dolphinprivate
     ${KDE4_SOLID_LIBS}
-    ${KDE4_PHONON_LIBS}
+    kmediaplayer
 )
 
 install(
