@@ -1,6 +1,6 @@
 [Desktop Entry]
 Name=KMediaPlayer
-GenericName=Simple media player part for KDE
+GenericName=Simple media player for KDE
 Comment=A simple program to view your media files
 Exec=kmediaplayer --icon '%i' --caption '%c' %U
 Terminal=false
