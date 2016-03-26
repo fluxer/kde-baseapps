@@ -24,7 +24,6 @@
 #include <KParts/BrowserExtension>
 #include <KParts/Part>
 #include <KUrl>
-#include <QtGui/QGridLayout>
 
 class KMediaPlayerPart;
 class BrowserExtension : public KParts::BrowserExtension
@@ -50,7 +49,6 @@ private slots:
 
 private:
     BrowserExtension   *m_ext;
-    QGridLayout *m_layout;
     KMediaWidget *m_player;
 };
 

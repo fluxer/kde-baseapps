@@ -281,7 +281,7 @@ void MainWindow::updateWindowCaption()
     if (KonsoleSettings::showAppNameOnTitleBar()) {
         setCaption(caption);
     } else {
-        setPlainCaption(caption);
+        setWindowTitle(caption);
     }
 }
 
