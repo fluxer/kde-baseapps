@@ -22,6 +22,7 @@
 
 // Qt
 #include <QVBoxLayout>
+#include <QMenuBar>
 
 // KDE
 #include <KAcceleratorManager>
@@ -32,7 +33,6 @@
 #include <KShortcutsDialog>
 #include <KLocale>
 #include <KMenu>
-#include <KMenuBar>
 #include <KMessageBox>
 #include <KToggleFullScreenAction>
 #include <KStandardAction>

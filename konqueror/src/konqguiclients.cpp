@@ -26,7 +26,6 @@
 #include <kicon.h>
 #include <kiconloader.h>
 #include <klocale.h>
-#include <kmenubar.h>
 #include <kactioncollection.h>
 #include <kservicetypetrader.h>
 

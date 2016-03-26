@@ -35,7 +35,6 @@
 #include <KIconLoader>
 #include <KIO/NetAccess>
 #include <KMenu>
-#include <KMenuBar>
 #include <KMessageBox>
 #include <KMimeTypeTrader>
 #include <KNewFileMenu>
@@ -54,6 +53,7 @@
 #include <QApplication>
 #include <QClipboard>
 #include <QDir>
+#include <QMenuBar>
 
 #include "views/dolphinview.h"
 #include "views/viewmodecontroller.h"

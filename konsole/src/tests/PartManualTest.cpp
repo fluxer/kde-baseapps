@@ -33,7 +33,6 @@
 
 // KDE
 #include <KMenu>
-#include <KMenuBar>
 #include <KPluginLoader>
 #include <KPluginFactory>
 #include <KService>

@@ -65,9 +65,9 @@
 
 #include <QtGui/qevent.h>
 #include <QEvent>
-#include <QtGui/qevent.h>
 #include <QList>
 #include <QDesktopWidget>
+#include <QMenuBar>
 
 #include <kio/job.h>
 #include <KIO/ListJob>
@@ -75,7 +75,6 @@
 
 #include <assert.h>
 #include <unistd.h>
-#include <kmenubar.h>
 #include <kstandardaction.h>
 //END
 

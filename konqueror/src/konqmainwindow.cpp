@@ -77,22 +77,24 @@
 #include <sys/stat.h>
 #include <unistd.h>
 
-#include <QtCore/qfile.h>
+#include <QFile>
 #include <QtCore/qdiriterator.h>
 #include <QClipboard>
 #include <QtCore/qobjectdefs.h>
 #include <QLayout>
 #include <QStackedWidget>
-#include <QtCore/QFileInfo>
+#include <QFileInfo>
 #ifdef Q_WS_X11
 #include <QtGui/qx11info_x11.h>
 #endif
-#include <QtCore/QEvent>
+#include <QEvent>
 #include <QtGui/qevent.h>
-#include <QtCore/qbytearray.h>
-#include <QtCore/QList>
+#include <QByteArray>
+#include <QList>
 #include <QPixmap>
 #include <QLineEdit>
+#include <QtDBus>
+#include <QMenuBar>
 
 #include <kaboutdata.h>
 #include <ktoolbar.h>
@@ -102,7 +104,6 @@
 #include <kdesktopfile.h>
 #include <kedittoolbar.h>
 #include <klocalizedstring.h>
-#include <kmenubar.h>
 #include <kmessagebox.h>
 #include <knewfilemenu.h>
 #include <konq_popupmenu.h>
@@ -127,7 +128,6 @@
 #include <kicon.h>
 #include <kiconloader.h>
 #include <kmenu.h>
-#include <kprocess.h>
 #include <kio/scheduler.h>
 #include <kio/netaccess.h>
 #include <kparts/browseropenorsavequestion.h>
@@ -148,7 +148,6 @@
 #endif
 #include <kauthorized.h>
 #include <ktoolinvocation.h>
-#include <QtDBus/QtDBus>
 #include <kconfiggroup.h>
 
 template class QList<QPixmap*>;

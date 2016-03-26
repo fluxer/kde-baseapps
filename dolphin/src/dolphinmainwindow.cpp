@@ -63,7 +63,6 @@
 #include <KLocale>
 #include <KProtocolManager>
 #include <KMenu>
-#include <KMenuBar>
 #include <KMessageBox>
 #include <KFileItemListProperties>
 #include <konqmimedata.h>
@@ -80,11 +79,12 @@
 #include <KUrlComboBox>
 #include <KToolInvocation>
 
+#include <QtGui/qevent.h>
 #include <QDesktopWidget>
 #include <QDBusMessage>
-#include <QtGui/qevent.h>
 #include <QClipboard>
 #include <QToolButton>
+#include <QMenuBar>
 
 namespace {
     // Used for GeneralSettings::version() to determine whether
