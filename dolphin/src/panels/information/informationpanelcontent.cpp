@@ -100,8 +100,7 @@ InformationPanelContent::InformationPanelContent(QWidget* parent) :
     m_nameLabel->setAlignment(Qt::AlignHCenter);
     m_nameLabel->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
 
-    const bool previewsShown = InformationPanelSettings::previewsShown();
-    m_preview->setVisible(previewsShown);
+    m_preview->setVisible(InformationPanelSettings::previewsShown());
 
     m_metaDataWidget = new KFileMetaDataWidget(parent);
     m_metaDataWidget->setFont(KGlobalSettings::smallestReadableFont());
@@ -204,10 +203,12 @@ void InformationPanelContent::showItem(const KFileItem& item)
                 m_playerWidget->setMaximumSize(m_preview->size());
             }
         } else {
+            m_playerWidget->player()->stop();
             m_playerWidget->hide();
             m_preview->setVisible(true);
         }
     } else {
+        m_playerWidget->player()->stop();
         m_playerWidget->hide();
     }
 
@@ -233,6 +234,7 @@ void InformationPanelContent::showItems(const KFileItemList& items)
         m_metaDataWidget->setItems(items);
     }
 
+    m_playerWidget->player()->stop();
     m_playerWidget->hide();
 
     m_item = KFileItem();
