@@ -97,9 +97,6 @@ KCMPlayer::KCMPlayer(QWidget *parent, const QVariantList &arguments )
 
 KCMPlayer::~KCMPlayer()
 {
-    if (m_player) {
-        m_player->deleteLater();
-    }
 }
 
 void KCMPlayer::defaults()
