@@ -1,12 +1,15 @@
 project(KMediaPlayer)
 
+add_subdirectory(kcm)
+
 # application
-add_executable(kmediaplayer main.cpp)
+add_executable(kmediaplayer main.cpp kmediawindow.cpp)
 
 target_link_libraries(kmediaplayer
     ${KDE4_KDECORE_LIBS}
-    ${KDE4_KPARTS_LIBS}
     ${KDE4_KDEUI_LIBS} 
+    KDE4::kmediaplayer
+    KDE4::kcmutils
 )
 
 ## part

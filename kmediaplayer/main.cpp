@@ -25,7 +25,8 @@
 #include <KLocale>
 #include <KMessageBox>
 #include <KDebug>
-#include <KMainWindow>
+
+#include "kmediawindow.h"
 
 int main(int argc, char **argv) {
     KAboutData aboutData("kmediaplayer", 0, ki18n("KMediaPlayer"),
@@ -47,31 +48,14 @@ int main(int argc, char **argv) {
     KCmdLineArgs::addCmdLineOptions(option);
 
     KApplication *app = new KApplication();
+    KMediaWindow *window = new KMediaWindow();
 
-    KMainWindow *window = new KMainWindow();
-
-    KPluginLoader loader(QLatin1String("kmediaplayerpart"));
-    KPluginFactory *factory = loader.factory();
-    KParts::ReadOnlyPart *part;
-    if (factory) {
-        part = factory->create<KParts::ReadOnlyPart>(window);
-    }
-    if (!factory || !part) {
-        kWarning() << "Error loading KMediaPlayer KPart:" << loader.errorString();
-        KMessageBox::error(window, i18n("Unable to load KMediaPlayer's KPart component, please check your installation."));
-        return 1;
-    }
-
-    part->setObjectName(QLatin1String("KMediaPlayer"));
-    window->setCentralWidget(part->widget());
     window->setAutoSaveSettings();
     window->show();
 
-    app->connect(app, SIGNAL(saveYourself()), part, SLOT(closeUrl()));
-
     KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
     for (int pos = 0; pos < args->count(); ++pos) {
-        part->openUrl(args->url(pos));
+        window->openURL(args->url(pos));
     }
 
     return app->exec();

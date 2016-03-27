@@ -56,7 +56,7 @@ KMediaPlayerPart::KMediaPlayerPart(QWidget *parentWidget, QObject *parent, const
 {
     setComponentData(KMediaPlayerPartFactory::componentData());
 
-    m_player = new KMediaWidget(parentWidget, KMediaWidget::AllOptions);
+    m_player = new KMediaWidget(parentWidget, KMediaWidget::HiddenControls);
     setWidget(m_player);
 }
 
