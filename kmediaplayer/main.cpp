@@ -49,8 +49,6 @@ int main(int argc, char **argv) {
 
     KApplication *app = new KApplication();
     KMediaWindow *window = new KMediaWindow();
-
-    window->setAutoSaveSettings();
     window->show();
 
     KCmdLineArgs *args = KCmdLineArgs::parsedArgs();

@@ -20,6 +20,7 @@
 #include <KLocale>
 #include <KDebug>
 #include <KAction>
+#include <KMenu>
 #include <KStandardShortcut>
 #include <KCMultiDialog>
 #include <QMessageBox>
@@ -33,6 +34,8 @@
 KMediaWindow::KMediaWindow(QWidget *parent, Qt::WindowFlags flags)
     : KMainWindow(parent, flags)
 {
+    setAutoSaveSettings();
+
     m_player = new KMediaWidget(this, KMediaWidget::AllOptions);
     setCentralWidget(m_player);
 
@@ -40,37 +43,37 @@ KMediaWindow::KMediaWindow(QWidget *parent, Qt::WindowFlags flags)
 
     QMenuBar *menubar = menuBar();
 
-    QMenu *fileMenu = menubar->addMenu(i18n("&File"));
+    QMenu *fileMenu = menubar->addMenu(i18n("File"));
 
-    KAction *openAction = new KAction(KIcon("document-open"), i18n("&Open"), fileMenu);
-    openAction->setShortcut(KStandardShortcut::Open);
+    KAction *openAction = new KAction(KIcon("document-open"), i18n("Open"), fileMenu);
+    openAction->setShortcut(KStandardShortcut::shortcut(KStandardShortcut::Open));
     openAction->setStatusTip(i18n("Open a path"));
     connect(openAction, SIGNAL(triggered()), this, SLOT(openPath()));
     fileMenu->addAction(openAction);
 
-    KAction *openURLAction = new KAction(KIcon("document-open-remote"), i18n("O&pen URL"), fileMenu);
-    openURLAction->setShortcut(KStandardShortcut::shortcut(KStandardShortcut::Open));
+    KAction *openURLAction = new KAction(KIcon("document-open-remote"), i18n("Open URL"), fileMenu);
     openURLAction->setStatusTip(i18n("Open a URL"));
     connect(openURLAction, SIGNAL(triggered()), this, SLOT(openURL()));
     fileMenu->addAction(openURLAction);
 
     fileMenu->addSeparator();
-    KAction *quitAction = new KAction(KIcon("application-exit"), i18n("&Quit"), fileMenu);
-    quitAction->setShortcut(KStandardShortcut::Quit);
+    KAction *quitAction = new KAction(KIcon("application-exit"), i18n("Quit"), fileMenu);
+    quitAction->setShortcut(KStandardShortcut::shortcut(KStandardShortcut::Quit));
     quitAction->setStatusTip(i18n("Exit the program"));
     connect(quitAction, SIGNAL(triggered()), this, SLOT(quit()));
     fileMenu->addAction(quitAction);
 
     QMenu *settingsMenu = menubar->addMenu(i18n("&Settings"));
 
-    KAction *configureAction = new KAction(KIcon("configure"), i18n("&Configure KMediaPlayer"), settingsMenu);
-    configureAction->setShortcut(KStandardShortcut::Preferences);
+    KAction *configureAction = new KAction(KIcon("configure"), i18n("Configure KMediaPlayer"), settingsMenu);
+    configureAction->setShortcut(KStandardShortcut::shortcut(KStandardShortcut::Preferences));
     configureAction->setStatusTip(i18n("Configure KMediaPlayer"));
     connect(configureAction, SIGNAL(triggered()), this, SLOT(configure()));
     settingsMenu->addAction(configureAction);
 
-    // KMenu *helpmenu = helpMenu(i18n("&Help"));
-    // menubar->addMenu( helpmenu );
+    KMenu *helpmenu = helpMenu();
+    // FIXME: implement overload for helpMenu() to avoid this bellow
+    menubar->addMenu((QMenu*)helpmenu);
 }
 
 KMediaWindow::~KMediaWindow()
@@ -118,10 +121,9 @@ void KMediaWindow::quit()
 
 void KMediaWindow::configure()
 {
-    KCMultiDialog KCM;
-    // KCM.setWindowTitle( i18n( "Sound System - Amarok" ) );
-    KCM.addModule( "kcmplayer" );
-    KCM.exec();
+    KCMultiDialog kcmdialg(this);
+    kcmdialg.addModule("kcmplayer");
+    kcmdialg.exec();
 }
 
 void KMediaWindow::openURL(KUrl url)

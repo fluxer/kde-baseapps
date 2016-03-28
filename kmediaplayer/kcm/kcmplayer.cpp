@@ -27,26 +27,26 @@
 #include "kcmplayer.h"
 #include "ui_kcmplayer.h"
 
-K_PLUGIN_FACTORY( PlayerFactory, registerPlugin<KCMPlayer>(); )
-K_EXPORT_PLUGIN( PlayerFactory("kcmnotify") )
+K_PLUGIN_FACTORY(PlayerFactory, registerPlugin<KCMPlayer>();)
+K_EXPORT_PLUGIN(PlayerFactory("kcmplayer"))
 
-KCMPlayer::KCMPlayer(QWidget *parent, const QVariantList &arguments )
+KCMPlayer::KCMPlayer(QWidget *parent, const QVariantList &arguments)
     : KCModule(PlayerFactory::componentData(), parent)
 {
-    m_settings = new QSettings("KMediaPlayer", "kmediaplayer");
     m_ui = new Ui_KCMPlayer();
     m_ui->setupUi(this);
-    m_player = new KAudioPlayer(m_settings);
+    m_settings = new QSettings("KMediaPlayer", "kmediaplayer", this);
+    m_player = new KMediaPlayer(this);
 
-    setButtons( KCModule::Default | KCModule::Apply );
+    setButtons(KCModule::Default | KCModule::Apply);
 
     KAboutData* ab = new KAboutData(
         "kcmplayer", 0, ki18n("KMediaPlayer"), "1.0",
         ki18n("System Media Player Configuration"),
         KAboutData::License_GPL, ki18n("(c) 2016 Ivailo Monev"));
 
-    ab->addAuthor( ki18n("Ivailo Monev"), KLocalizedString(), "xakepa10@gmail.com" );
-    setAboutData( ab );
+    ab->addAuthor(ki18n("Ivailo Monev"), KLocalizedString(), "xakepa10@gmail.com");
+    setAboutData(ab);
 
     Q_UNUSED(arguments);
 
@@ -54,10 +54,10 @@ KCMPlayer::KCMPlayer(QWidget *parent, const QVariantList &arguments )
     int globalvolume = m_settings->value("global/volume", 90).toInt();
     bool globalmute = m_settings->value("global/mute", false).toBool();
 
-    m_ui->w_audiooutput->clear();
-    m_ui->w_audiooutput->addItems(m_player->audiooutputs());
-    m_ui->w_appaudiooutput->clear();
-    m_ui->w_appaudiooutput->addItems(m_player->audiooutputs());
+    QStringList audiooutputs = m_player->audiooutputs();
+    delete m_player;
+    m_ui->w_audiooutput->addItems(audiooutputs);
+    m_ui->w_appaudiooutput->addItems(audiooutputs);
     int audioindex = m_ui->w_audiooutput->findText(globalaudio);
     m_ui->w_audiooutput->setCurrentIndex(audioindex);
     m_ui->w_volume->setValue(globalvolume);
@@ -71,8 +71,8 @@ KCMPlayer::KCMPlayer(QWidget *parent, const QVariantList &arguments )
         this, SLOT(setGlobalMute(int)));
 
     QStringList desktopfiles = KGlobal::dirs()->findAllResources("xdgdata-apps",
-        "*/*.desktop", KStandardDirs::Recursive | KStandardDirs::NoDuplicates);
-
+        "*.desktop", KStandardDirs::Recursive | KStandardDirs::NoDuplicates);
+    desktopfiles.sort();
     foreach (const QString desktopfile, desktopfiles )
     {
         KDesktopFile *desktop = new KDesktopFile(desktopfile);
@@ -82,8 +82,7 @@ KCMPlayer::KCMPlayer(QWidget *parent, const QVariantList &arguments )
             continue;
         }
         QString appicon = desktop->readIcon();
-        KIcon appkicon(appicon);
-        m_ui->w_application->addItem(appkicon, appname);
+        m_ui->w_application->addItem(KIcon(appicon), appname);
     }
     connect(m_ui->w_application, SIGNAL(currentIndexChanged(QString)),
         this, SLOT(setApplicationSettings(QString)));
@@ -120,7 +119,7 @@ void KCMPlayer::save()
         m_settings->setValue("global/mute", m_ui->w_mute->isChecked());
         m_settings->sync();
     } else {
-        qWarning() << i18n("Could not save state");
+        kWarning() << i18n("Could not save global state");
     }
 
     if (!m_application.isEmpty()) {
@@ -130,7 +129,7 @@ void KCMPlayer::save()
             m_settings->setValue(m_application + "/mute", m_ui->w_appmute->isChecked());
             m_settings->sync();
         } else {
-            qWarning() << i18n("Could not save state");
+            kWarning() << i18n("Could not save application state");
         }
     }
 
