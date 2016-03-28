@@ -25,7 +25,7 @@
 #include <klocale.h>
 #include <kconfiggroup.h>
 #include <kglobalsettings.h>
-
+#include <QDateTime>
 
 inline bool isNumeric(const QVariant::Type type)
 {

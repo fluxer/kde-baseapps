@@ -45,6 +45,7 @@
 #include <qtextstream.h>
 #include <qfile.h>
 #include <qtimer.h>
+#include <qdatetime.h>
 
 DataOutputWidget::DataOutputWidget(QWidget *parent)
 : QWidget(parent)

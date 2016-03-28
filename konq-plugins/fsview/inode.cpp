@@ -27,6 +27,7 @@
 #include <kglobal.h>
 #include <kiconloader.h>
 #include <klocale.h>
+#include <QDateTime>
 #include "inode.h"
 #include "scan.h"
 #include "fsview.h"

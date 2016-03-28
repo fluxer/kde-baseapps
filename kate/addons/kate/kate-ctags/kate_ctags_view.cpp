@@ -22,6 +22,7 @@
 #include "kate_ctags_view.h"
 
 #include <QFileInfo>
+#include <QDateTime>
 #include <QtGui/qevent.h>
 
 #include <kmenu.h>
