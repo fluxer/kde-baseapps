@@ -6,19 +6,20 @@ add_subdirectory(kcm)
 add_executable(kmediaplayer main.cpp kmediawindow.cpp)
 
 target_link_libraries(kmediaplayer
-    ${KDE4_KDECORE_LIBS}
-    ${KDE4_KDEUI_LIBS} 
-    KDE4::kmediaplayer
+    KDE4::kdecore
+    KDE4::kdeui
+    KDE4::kfile
     KDE4::kcmutils
+    KDE4::kmediaplayer
 )
 
 ## part
 kde4_add_plugin(kmediaplayerpart kmediaplayerpart.cpp)
 
 target_link_libraries(kmediaplayerpart
-    ${KDE4_KDECORE_LIBS}
-    ${KDE4_KPARTS_LIBS}
-    ${KDE4_KDEUI_LIBS}
+    KDE4::kdecore
+    KDE4::kdeui
+    KDE4::kparts
     KDE4::kmediaplayer
 )
 

@@ -23,9 +23,9 @@
 #include <KMenu>
 #include <KStandardShortcut>
 #include <KCMultiDialog>
+#include <KInputDialog>
+#include <KFileDialog>
 #include <QMessageBox>
-#include <QFileDialog>
-#include <QInputDialog>
 #include <QApplication>
 #include <QMenuBar>
 
@@ -87,7 +87,7 @@ void KMediaWindow::hideMenuBar(bool hidden)
 
 void KMediaWindow::openPath()
 {
-    QString path = QFileDialog::getOpenFileName(this, i18n("Select paths"));
+    QString path = KFileDialog::getOpenFileName(KUrl(), QString(), this, i18n("Select paths"));
     if (!path.isEmpty()) {
         if (!m_player->player()->isPathSupported(path)) {
             kDebug() << i18n("ignoring unsupported:\n%1", path);
@@ -101,15 +101,19 @@ void KMediaWindow::openPath()
 
 void KMediaWindow::openURL()
 {
-    QString url = QInputDialog::getText(this, i18n("Input URL"),
-        i18n("Supported protocols are: %1", m_player->player()->protocols().join(",")));
+    bool dummy;
+    QString protocols = m_player->player()->protocols().join(", ");
+    KUrl url = KInputDialog::getText(i18n("Input URL"),
+        i18n("Supported protocols are:\n\n%1", protocols),
+        QString(), &dummy, this);
     if (!url.isEmpty()) {
-        if (!m_player->player()->isPathSupported(url)) {
-            kDebug() << i18n("ignoring unsupported:\n%1", url);
+        QString urlstring = url.prettyUrl();
+        if (!m_player->player()->isPathSupported(urlstring)) {
+            kDebug() << i18n("ignoring unsupported:\n%1", urlstring);
             QMessageBox::warning(this, i18n("Invalid URL"),
-                i18n("Invalid URL:\n%1", url));
+                i18n("Invalid URL:\n%1", urlstring));
         } else {
-            m_player->open(url);
+            m_player->open(urlstring);
         }
     }
 }
