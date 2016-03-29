@@ -43,3 +43,8 @@ install(
     PROGRAMS kmediaplayerpart.desktop
     DESTINATION ${SERVICES_INSTALL_DIR}
 )
+
+install(
+    FILES kmediaplayerui.rc
+    DESTINATION ${DATA_INSTALL_DIR}/kmediaplayer
+)

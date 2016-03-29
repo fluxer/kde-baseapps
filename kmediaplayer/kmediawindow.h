@@ -19,10 +19,12 @@
 #ifndef KMEDIAWINDOW_H
 #define KMEDIAWINDOW_H
 
-#include <KMainWindow>
+#include <KXmlGuiWindow>
 #include <KMediaWidget>
+#include <KRecentFilesAction>
+#include <QSettings>
 
-class KMediaWindow: public KMainWindow
+class KMediaWindow: public KXmlGuiWindow
 {
     Q_OBJECT
 public:
@@ -33,14 +35,23 @@ public slots:
     void openPath();
     void openURL();
     void openURL(KUrl url);
+    void fullscreen();
     void configure();
     void quit();
 
 private slots:
     void hideMenuBar(bool hidden);
 
+protected:
+    void showEvent(QShowEvent *event);
+
 private:
     KMediaWidget *m_player;
+    KRecentFilesAction *m_recentfiles;
+    QSettings *m_settings;
+    bool m_menuvisible;
+    bool m_toolvisible;
+    bool m_statusvisible;
 };
 
 #endif // KMEDIAWINDOW_H

@@ -1,0 +1,36 @@
+<!DOCTYPE kpartgui SYSTEM "kpartgui.dtd">
+<kpartgui name="kmediaplayer" version="1" >
+    <MenuBar>
+        <Menu name="file"><text>&amp;File</text>
+            <Action name="file_open"/>
+            <Action name="file_open_url"/>
+            <Action name="file_open_recent"/>
+            <Separator/>
+            <Action name="file_quit"/>
+        </Menu>
+        <Menu name="player"><text>&amp;Player</text>
+            <Action name="player_fullscreen"/>
+            <Separator/>
+            <Menu name="player_audio"><text>&amp;Audio</text>
+                <Action name="player_audio_1"/>
+                <Action name="player_audio_2"/>
+                <Action name="player_audio_3"/>
+                <Action name="player_audio_4"/>
+                <Action name="player_audio_5"/>
+            </Menu>
+            <Menu name="player_subtitles"><text>&amp;Subtitles</text>
+                <Action name="player_subtitles_1"/>
+                <Action name="player_subtitles_2"/>
+                <Action name="player_subtitles_3"/>
+                <Action name="player_subtitles_4"/>
+                <Action name="player_subtitles_5"/>
+            </Menu>
+        </Menu>
+        <Menu name="settings"><text>&amp;Settings</text>
+            <Action name="settings_player"/>
+        </Menu>
+    </MenuBar>
+
+    <ToolBar name="mainToolBar" disable="1"><text>Main Toolbar</text>
+    </ToolBar>
+</kpartgui>
