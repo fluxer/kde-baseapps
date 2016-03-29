@@ -81,7 +81,7 @@ KMediaWindow::KMediaWindow(QWidget *parent, Qt::WindowFlags flags)
     m_recentfiles->setWhatsThis(i18n("Open recently opened files."));
     connect(m_recentfiles, SIGNAL(urlSelected(KUrl)), this, SLOT(openURL(KUrl)));
     actionCollection()->addAction("file_open_recent", m_recentfiles);
-    QStringList recenturls = m_settings->value("global/recenturls", QStringList()).toStringList();
+    QStringList recenturls = m_settings->value("KMultiMedia/recenturls", QStringList()).toStringList();
     foreach (QString url, recenturls) {
         KUrl kurl(url);
         m_recentfiles->addUrl(kurl);
@@ -93,14 +93,16 @@ KMediaWindow::KMediaWindow(QWidget *parent, Qt::WindowFlags flags)
     bool firstrun = m_settings->value("KMultiMedia/firstrun", true).toBool();
     if (firstrun) {
         // not toolbar unless explicitly enabled
-        toolBar()->setVisible(!firstrun);
+        toolBar()->setVisible(false);
         // also set a decent window size
         resize(640, 480);
     }
 
-    // TODO: context menu to restore visibility of menubar atleast
-
     connect(m_player, SIGNAL(controlsHidden(bool)), this, SLOT(hideMenuBar(bool)));
+    m_menu = new QMenu();
+    m_menu->addAction(KIcon("show-menu"), 18n("Show/hide menubar"), this, SLOT(menubar()));
+    setContextMenuPolicy(Qt::CustomContextMenu);
+    connect(this, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(menu(QPoint)));
 }
 
 KMediaWindow::~KMediaWindow()
@@ -110,8 +112,9 @@ KMediaWindow::~KMediaWindow()
     foreach (KUrl url, recenturls) {
         recentlist.append(url.prettyUrl());
     }
-    m_settings->setValue("global/recenturls", recentlist);
+    m_settings->setValue("KMultiMedia/recenturls", recentlist);
     m_settings->setValue("KMultiMedia/firstrun", false);
+    m_settings->sync();
 }
 
 void KMediaWindow::showEvent(QShowEvent *event)
@@ -193,4 +196,15 @@ void KMediaWindow::configure()
 void KMediaWindow::openURL(KUrl url)
 {
     m_player->open(url.prettyUrl());
+}
+
+void KMediaWindow::menubar() {
+    menuBar()->setVisible(!menuBar()->isVisible());
+}
+
+void KMediaWindow::menu(QPoint position)
+{
+    // it is bogus, just ignore it
+    Q_UNUSED(position);
+    m_menu->exec(QCursor::pos());
 }

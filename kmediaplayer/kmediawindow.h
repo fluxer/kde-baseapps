@@ -23,6 +23,7 @@
 #include <KMediaWidget>
 #include <KRecentFilesAction>
 #include <QSettings>
+#include <QMenu>
 
 class KMediaWindow: public KXmlGuiWindow
 {
@@ -37,18 +38,21 @@ public slots:
     void openURL(KUrl url);
     void fullscreen();
     void configure();
+    void menubar();
+    void menu(QPoint position);
     void quit();
 
 private slots:
     void hideMenuBar(bool hidden);
 
 protected:
-    void showEvent(QShowEvent *event);
+    virtual void showEvent(QShowEvent *event);
 
 private:
     KMediaWidget *m_player;
     KRecentFilesAction *m_recentfiles;
     QSettings *m_settings;
+    QMenu *m_menu;
     bool m_menuvisible;
     bool m_toolvisible;
     bool m_statusvisible;
