@@ -100,7 +100,7 @@ KMediaWindow::KMediaWindow(QWidget *parent, Qt::WindowFlags flags)
 
     connect(m_player, SIGNAL(controlsHidden(bool)), this, SLOT(hideMenuBar(bool)));
     m_menu = new QMenu();
-    m_menu->addAction(KIcon("show-menu"), 18n("Show/hide menubar"), this, SLOT(menubar()));
+    m_menu->addAction(KIcon("show-menu"), i18n("Show/hide menubar"), this, SLOT(menubar()));
     setContextMenuPolicy(Qt::CustomContextMenu);
     connect(this, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(menu(QPoint)));
 }
