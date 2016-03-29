@@ -83,6 +83,8 @@ KMediaWindow::~KMediaWindow()
 void KMediaWindow::hideMenuBar(bool hidden)
 {
     menuBar()->setVisible(hidden);
+    toolBar()->setVisible(hidden);
+    statusBar()->setVisible(hidden);
 }
 
 void KMediaWindow::openPath()
