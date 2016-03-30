@@ -293,7 +293,7 @@ KonqOperations *KonqOperations::doDrop( const KFileItem & destItem, const KUrl &
     kDebug(1203) << "dest:" << dest;
     QMap<QString, QString> metaData;
     // Prefer local urls if possible, to avoid problems with desktop:/ urls from other users (#184403)
-    const KUrl::List lst = KUrl::List::fromMimeData(ev->mimeData(), KUrl::List::PreferLocalUrls, &metaData);
+    const KUrl::List lst = KUrl::List::fromMimeData(ev->mimeData(), &metaData, KUrl::List::PreferLocalUrls);
     if (!lst.isEmpty()) { // Are they urls ?
         //kDebug(1203) << "metaData:" << metaData.count() << "entries.";
         //QMap<QString,QString>::ConstIterator mit;
