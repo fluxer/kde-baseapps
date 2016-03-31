@@ -104,9 +104,15 @@ void KCMPlayer::defaults()
 }
 void KCMPlayer::load()
 {
-    // just to load the appplication values
-    m_ui->w_application->setCurrentIndex(1);
-    m_ui->w_application->setCurrentIndex(0);
+    // Qt::MatchFixedString is basicly case-insensitive
+    int appindex = m_ui->w_application->findText(QCoreApplication::applicationName(), Qt::MatchFixedString);
+    if (appindex >= 0) {
+        m_ui->w_application->setCurrentIndex(appindex);
+    } else {
+        // just to load the appplication values
+        m_ui->w_application->setCurrentIndex(1);
+        m_ui->w_application->setCurrentIndex(0);
+    }
 
     emit changed(false);
 }
