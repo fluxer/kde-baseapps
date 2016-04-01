@@ -34,7 +34,6 @@
 #include <KInputDialog>
 #include <KIconLoader>
 #include <KMessageBox>
-#include <KCodecs>
 #include <KStandardGuiItem>
 #include <KPushButton>
 #include <KMenu>

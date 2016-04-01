@@ -74,7 +74,6 @@
 #include <kglobalsettings.h>
 #include <kdirwatch.h>
 #include <kencodingfiledialog.h>
-#include <kcodecs.h>
 #include <kstandarddirs.h>
 #include <kstringhandler.h>
 

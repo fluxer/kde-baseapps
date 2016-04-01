@@ -36,7 +36,6 @@
 #include <KLocale>
 #include <kdebug.h>
 #include <KConfig>
-#include <KCodecs>
 #include <KMessageBox>
 #include <KEncodingFileDialog>
 #include <KIO/DeleteJob>
@@ -50,6 +49,7 @@
 #include <QHash>
 #include <QListView>
 #include <QTimer>
+#include <QCryptographicHash>
 
 KateDocManager::KateDocManager (QObject *parent)
     : QObject(parent)
@@ -708,12 +708,12 @@ bool KateDocManager::computeUrlMD5(const KUrl &url, QByteArray &result)
 
   if (f.exists() && f.open(QIODevice::ReadOnly))
   {
-    KMD5 md5;
+    QByteArray md5 = QCryptographicHash::hash(f.readAll(), QCryptographicHash::Md5);
 
-    if (!md5.update(f))
+    if (md5.isEmpty())
       return false;
 
-    md5.hexDigest(result);
+    result = md5.toHex();
     f.close();
   }
   else
