@@ -32,7 +32,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include <kpluginfactory.h>
 #include <klocale.h>
 #include <knuminput.h>
-#include <kimagecache.h>
 
 K_PLUGIN_FACTORY_DECLARATION(KioConfigFactory)
 
@@ -44,11 +43,6 @@ BookmarksConfigModule::BookmarksConfigModule(QWidget *parent, const QVariantList
 
 BookmarksConfigModule::~BookmarksConfigModule()
 {
-}
-
-void BookmarksConfigModule::clearCache()
-{
-  KImageCache::deleteCache("kio_bookmarks");
 }
 
 void BookmarksConfigModule::load()
@@ -70,8 +64,6 @@ void BookmarksConfigModule::load()
   connect ( ui.cbFlattenTree, SIGNAL(toggled(bool)), SLOT(configChanged()) );
   connect ( ui.cbShowPlaces, SIGNAL(toggled(bool)), SLOT(configChanged()) );
   connect ( ui.sbCacheSize, SIGNAL(valueChanged(int)), SLOT(configChanged()) );
-
-  connect ( ui.clearCacheButton, SIGNAL(clicked(bool)), SLOT(clearCache()) );
 
   delete c;
   emit changed( false );
