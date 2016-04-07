@@ -1,8 +1,8 @@
 # !?!?!? make a lib, or clean this up...
 set(libkonq_sidebar_tree_SRCS 
-    konq_sidebartree.cpp
-    konq_sidebartreeitem.cpp
-    konq_sidebartreetoplevelitem.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/konq_sidebartree.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/konq_sidebartreeitem.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/konq_sidebartreetoplevelitem.cpp
 )
 
 add_definitions (-DQT3_SUPPORT -DQT3_SUPPORT_WARNINGS)
