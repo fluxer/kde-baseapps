@@ -36,6 +36,7 @@
 #include <QtCore/QFile>
 #include <QtCore/QStringList>
 #include <QtDBus/QDBusConnection>
+#include <QDateTime>
 
 // KDE
 #include <KDebug>
