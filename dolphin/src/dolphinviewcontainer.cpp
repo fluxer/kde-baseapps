@@ -544,7 +544,7 @@ void DolphinViewContainer::slotUrlNavigatorLocationChanged(const KUrl& url)
             QTimer::singleShot(0, this, SLOT(requestFocus()));
         }
     } else if (KProtocolManager::isSourceProtocol(url)) {
-        QString app = "konqueror";
+        QString app = "rekonq";
         if (url.protocol().startsWith(QLatin1String("http"))) {
             showMessage(i18nc("@info:status", // krazy:exclude=qmethods
                               "Dolphin does not support web pages, the web browser has been launched"),
@@ -561,7 +561,7 @@ void DolphinViewContainer::slotUrlNavigatorLocationChanged(const KUrl& url)
             }
         } else {
             showMessage(i18nc("@info:status",
-                              "Protocol not supported by Dolphin, Konqueror has been launched"),
+                              "Protocol not supported by Dolphin, Rekonq has been launched"),
                         Information);
         }
 
