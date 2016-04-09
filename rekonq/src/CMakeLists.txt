@@ -16,6 +16,7 @@ set(rekonq_SRCS
     sessionwidget.cpp
     urlresolver.cpp
     websnap.cpp
+    iconmanager.cpp
     #----------------------------------------
     adblock/adblockelementhiding.cpp
     adblock/adblockhostmatcher.cpp
@@ -38,10 +39,6 @@ set(rekonq_SRCS
     #----------------------------------------
     history/historymanager.cpp
     history/historymodels.cpp
-    #----------------------------------------
-    icons/icondownloader.cpp
-    icons/iconmanager.cpp
-    icons/webicon.cpp
     #----------------------------------------
     panels/bookmarkspanel.cpp
     panels/historypanel.cpp
@@ -128,6 +125,11 @@ if(HAVE_QCA2 AND HAVE_QTOAUTH)
         sync/operasynchandler.cpp
     )
 endif()
+
+qt4_add_dbus_interface(rekonq_SRCS
+    ${CMAKE_SOURCE_DIR}/lib/konq/favicons/org.kde.FavIcon.xml
+    favicon_interface
+)
 
 ### ------------- INCLUDING DIRECTORIES...
 

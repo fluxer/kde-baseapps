@@ -74,19 +74,6 @@ BookmarkManager::BookmarkManager(QObject *parent)
     , m_actionCollection(new KActionCollection(this))
 {
     m_manager = KBookmarkManager::userBookmarksManager();
-    const QString bookmarksFile = KStandardDirs::locateLocal("data", QString::fromLatin1("konqueror/bookmarks.xml"));
-
-    if (!QFile::exists(bookmarksFile))
-    {
-        kDebug() << "copying of defaultbookmarks.xbel ...";
-
-        QString bookmarksDefaultPath = KStandardDirs::locate("appdata" , "defaultbookmarks.xbel");
-        KBookmarkManager *tempManager = KBookmarkManager::managerForExternalFile(bookmarksDefaultPath);
-
-        copyBookmarkGroup(tempManager->root(), rootGroup());
-        m_manager->emitChanged();
-        delete tempManager;
-    }
 
     connect(m_manager, SIGNAL(changed(QString,QString)), this, SLOT(slotBookmarksChanged()));
 
@@ -265,35 +252,6 @@ KBookmark BookmarkManager::bookmarkForUrl(const KBookmark &bookmark, const KUrl 
 
     return found;
 }
-
-
-void BookmarkManager::copyBookmarkGroup(const KBookmarkGroup &groupToCopy, KBookmarkGroup destGroup)
-{
-    KBookmark bookmark = groupToCopy.first();
-    while (!bookmark.isNull())
-    {
-        if (bookmark.isGroup())
-        {
-            KBookmarkGroup newDestGroup = destGroup.createNewFolder(bookmark.text());
-            if (bookmark.toGroup().isToolbarGroup())
-            {
-                newDestGroup.internalElement().setAttribute("toolbar", "yes");
-                newDestGroup.setIcon("bookmark-toolbar");
-            }
-            copyBookmarkGroup(bookmark.toGroup(), newDestGroup);
-        }
-        else if (bookmark.isSeparator())
-        {
-            destGroup.createNewSeparator();
-        }
-        else
-        {
-            destGroup.addBookmark(bookmark.text(), bookmark.url());
-        }
-        bookmark = groupToCopy.next(bookmark);
-    }
-}
-
 
 void BookmarkManager::slotEditBookmarks()
 {

@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>245</width>
-    <height>226</height>
+    <height>189</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -80,16 +80,6 @@
     <widget class="QCheckBox" name="clearCachedPages">
      <property name="text">
       <string>Cached web pages</string>
-     </property>
-     <property name="checked">
-      <bool>true</bool>
-     </property>
-    </widget>
-   </item>
-   <item>
-    <widget class="QCheckBox" name="clearWebIcons">
-     <property name="text">
-      <string>Website icons</string>
      </property>
      <property name="checked">
       <bool>true</bool>

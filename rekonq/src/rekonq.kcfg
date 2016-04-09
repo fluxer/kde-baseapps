@@ -48,9 +48,6 @@
     <entry name="clearCachedPages" type="Bool">
         <default>true</default>
     </entry>
-    <entry name="clearWebIcons" type="Bool">
-        <default>true</default>
-    </entry>
     <entry name="clearHomePageThumbs" type="Bool">
         <default>true</default>
     </entry>

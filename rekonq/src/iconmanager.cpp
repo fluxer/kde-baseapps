@@ -30,7 +30,6 @@
 
 // Local Includes
 #include "application.h"
-#include "webicon.h"
 
 // KDE Includes
 #include <KIO/Job>
@@ -38,11 +37,6 @@
 #include <KIcon>
 #include <KFileItem>
 #include <KStandardDirs>
-#include <KUrl>
-
-// Qt Includes
-#include <QDir>
-#include <QWebSettings>
 
 
 QWeakPointer<IconManager> IconManager::s_iconManager;
@@ -62,13 +56,9 @@ IconManager *IconManager::self()
 
 
 IconManager::IconManager(QObject *parent)
-    : QObject(parent)
+    : QObject(parent),
+    m_favIconModule("org.kde.kded", "/modules/favicons", QDBusConnection::sessionBus())
 {
-    _faviconsDir = KStandardDirs::locateLocal("cache" , "favicons/" , true);
-    _tempIconsDir = KStandardDirs::locateLocal("tmp", "favicons/", true);
-    
-    // Use webkit icon database path
-    QWebSettings::setIconDatabasePath(_faviconsDir);
 }
 
 
@@ -103,39 +93,12 @@ KIcon IconManager::iconForUrl(const KUrl &url)
         return KIcon(iconName);
     }
 
-    QIcon icon = QWebSettings::iconForUrl(url);
+    KIcon icon = engineFavicon(url);
     if (!icon.isNull())
-        return KIcon(icon);
+        return icon;
 
     // Not found icon. Return default one.
     return KIcon("text-html");
-}
-
-
-void IconManager::clearIconCache()
-{
-    QDir d(_faviconsDir);
-    QStringList favicons = d.entryList();
-    Q_FOREACH(const QString & fav, favicons)
-    {
-        d.remove(fav);
-    }
-
-    // delete webkit icon cache
-    QWebSettings::clearIconDatabase();
-}
-
-
-void IconManager::saveDesktopIconForUrl(const KUrl &u)
-{
-    KIcon icon = iconForUrl(u);
-    QString destPath = _faviconsDir + u.host() + QL1S("_WEBAPPICON.png");
-
-    QPixmap pix = icon.pixmap(16, 16);
-    int s = KIconLoader::global()->currentSize(KIconLoader::Desktop);
-    pix = pix.scaled(s, s);
-
-    pix.save(destPath);
 }
 
 
@@ -191,14 +154,10 @@ QString IconManager::iconPathForUrl(const KUrl &url)
         return icon;
     }
 
-    QIcon ic = QWebSettings::iconForUrl(url);
-    if (!ic.isNull())
-    {
-        QPixmap px = ic.pixmap(16, 16);
-        QString tempIconPath = _tempIconsDir + url.host() + QL1S(".png");
-        bool b = px.save(tempIconPath);
-        if (b)
-            return QL1S("file://") + tempIconPath;
+    m_favIconModule.downloadHostIcon(url.host());
+    QString favicon = m_favIconModule.iconForUrl(url.pathOrUrl());
+    if (!favicon.isEmpty()) {
+        return favicon;
     }
 
     // Not found icon. Return default one.
@@ -209,19 +168,12 @@ QString IconManager::iconPathForUrl(const KUrl &url)
 
 KIcon IconManager::engineFavicon(const KUrl &url)
 {
-    QString h = url.host();
-    if (QFile::exists(_faviconsDir + h + QL1S(".png")))
-    {
-        _engineFaviconHosts.removeAll(h);
-        return KIcon(QIcon(_faviconsDir + h + QL1S(".png")));
-    }
+    // fetch the icon, this does not force download
+    m_favIconModule.downloadHostIcon(url.host());
 
-    // if engine favicon is NOT found, download it
-    // will autodelete itself when done
-    if (!_engineFaviconHosts.contains(h))
-    {
-        _engineFaviconHosts << h;
-        new WebIcon(url);
+    QString favicon = m_favIconModule.iconForUrl(url.pathOrUrl());
+    if (!favicon.isEmpty()) {
+        return KIcon(favicon);
     }
 
     kDebug() << "NO ENGINE FAVICON";

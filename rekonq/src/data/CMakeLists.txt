@@ -13,13 +13,6 @@ INSTALL(
     DESTINATION ${DATA_INSTALL_DIR}/rekonq/pics
 )
 
-# default bookmarks
-INSTALL(
-    FILES
-    defaultbookmarks.xbel
-    DESTINATION ${DATA_INSTALL_DIR}/rekonq
-)
-
 # .desktop file
 INSTALL(
     PROGRAMS rekonq.desktop

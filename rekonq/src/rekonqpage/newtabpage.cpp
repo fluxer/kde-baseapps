@@ -934,9 +934,6 @@ void NewTabPage::createBookmarkGroup(const KBookmark &bookmark, QWebElement pare
 
 void NewTabPage::createBookmarkItem(const KBookmark &bookmark, QWebElement parent)
 {
-    QString cacheDir = QL1S("file://") + KStandardDirs::locateLocal("cache" , "" , true);
-    QString icon; 
-    
     if (bookmark.isGroup())
     {
         createBookmarkGroup(bookmark, m_root);
@@ -949,11 +946,7 @@ void NewTabPage::createBookmarkItem(const KBookmark &bookmark, QWebElement paren
     }
     else
     {
-        QString b = bookmark.icon();
-        if (b.contains(QL1S("favicons")))
-            icon = cacheDir + bookmark.icon() + QL1S(".png");
-        else
-            icon = IconManager::self()->iconPathForUrl(bookmark.url());
+        QString icon = IconManager::self()->iconPathForUrl(bookmark.url());
         
         parent.appendInside(markup(QL1S("a")));
         QWebElement bookmarkElement = parent.lastChild();

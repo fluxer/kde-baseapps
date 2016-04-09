@@ -725,7 +725,6 @@ void Application::clearPrivateData()
     clearWidget.clearDownloads->setChecked(ReKonfig::clearDownloads());
     clearWidget.clearCookies->setChecked(ReKonfig::clearCookies());
     clearWidget.clearCachedPages->setChecked(ReKonfig::clearCachedPages());
-    clearWidget.clearWebIcons->setChecked(ReKonfig::clearWebIcons());
     clearWidget.homePageThumbs->setChecked(ReKonfig::clearHomePageThumbs());
 
     dialog->setMainWidget(&widget);
@@ -738,7 +737,6 @@ void Application::clearPrivateData()
         ReKonfig::setClearDownloads(clearWidget.clearDownloads->isChecked());
         ReKonfig::setClearCookies(clearWidget.clearDownloads->isChecked());
         ReKonfig::setClearCachedPages(clearWidget.clearCachedPages->isChecked());
-        ReKonfig::setClearWebIcons(clearWidget.clearWebIcons->isChecked());
         ReKonfig::setClearHomePageThumbs(clearWidget.homePageThumbs->isChecked());
 
         if (clearWidget.clearHistory->isChecked())
@@ -761,11 +759,6 @@ void Application::clearPrivateData()
         {
             KProcess::startDetached(KStandardDirs::findExe("kio_http_cache_cleaner"),
                                     QStringList(QL1S("--clear-all")));
-        }
-
-        if (clearWidget.clearWebIcons->isChecked())
-        {
-            IconManager::self()->clearIconCache();
         }
 
         if (clearWidget.homePageThumbs->isChecked())
@@ -833,8 +826,8 @@ void Application::createWebAppShortcut(const QString & urlString, const QString 
         ReKonfig::setCreateDesktopAppShortcut(wAppWidget.kcfg_createDesktopAppShortcut->isChecked());
         ReKonfig::setCreateMenuAppShortcut(wAppWidget.kcfg_createMenuAppShortcut->isChecked());
 
-        IconManager::self()->saveDesktopIconForUrl(u);
-        QString iconPath = KStandardDirs::locateLocal("cache" , "favicons/" , true) + h + QL1S("_WEBAPPICON.png");
+        // FIXME:
+        QString iconPath = IconManager::self()->iconPathForUrl(h);
 
         if (!wAppWidget.nameLineEdit->text().isEmpty())
             webAppTitle = wAppWidget.nameLineEdit->text();

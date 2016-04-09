@@ -2,7 +2,7 @@
 *
 * This file is a part of the rekonq project
 *
-* Copyright (C) 2010-2011 by Andrea Diamantini <adjam7 at gmail dot com>
+* Copyright (C) 2010-2012 by Andrea Diamantini <adjam7 at gmail dot com>
 *
 *
 * This program is free software; you can redistribute it and/or
@@ -24,33 +24,47 @@
 * ============================================================ */
 
 
-#ifndef WEB_ICON_H
-#define WEB_ICON_H
+#ifndef ICON_MANAGER_H
+#define ICON_MANAGER_H
 
 // Rekonq Includes
 #include "rekonq_defines.h"
-
-// KDE Includes
-#include <KUrl>
+#include "favicon_interface.h" // org::kde::FavIcon
 
 // Qt Includes
-#include <QWebPage>
+#include <QObject>
+#include <QtCore/qsharedpointer.h>
+#include <QString>
+#include <QStringList>
 
+// KDE Includes
+#include <KIcon>
 
-class REKONQ_TESTS_EXPORT WebIcon : public QObject
+class REKONQ_TESTS_EXPORT IconManager : public QObject
 {
     Q_OBJECT
 
 public:
-    explicit WebIcon(const KUrl &url, QObject *parent = 0);
+    /**
+     * Entry point.
+     * Access to IconManager class by using
+     * IconManager::self()->thePublicMethodYouNeed()
+     */
+    static IconManager *self();
 
-private Q_SLOTS:
-    void load();
-    void saveIcon(bool);
+    KIcon iconForUrl(const KUrl &url);
+    
+    QString iconPathForUrl(const KUrl &url);
+
+    // Engine ToolBar needed method
+    KIcon engineFavicon(const KUrl &);
 
 private:
-    QWebPage m_page;
-    KUrl m_url;
+    IconManager(QObject *parent = 0);
+
+    static QWeakPointer<IconManager> s_iconManager;
+    org::kde::FavIcon m_favIconModule;
 };
 
-#endif //WEB_ICON_H
+
+#endif // ICON_MANAGER_H
