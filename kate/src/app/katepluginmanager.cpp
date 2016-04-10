@@ -186,10 +186,9 @@ void KatePluginManager::unloadPlugin (KatePluginInfo *item)
 {
   disablePluginGUI (item);
   delete item->plugin;
-  Kate::Plugin *plugin = item->plugin;
   item->plugin = 0L;
   item->load=false;
-  emit m_pluginManager->pluginUnloaded (item->service->library(), plugin);
+  emit m_pluginManager->pluginUnloaded (item->service->library(), item->plugin);
 }
 
 void KatePluginManager::enablePluginGUI (KatePluginInfo *item, KateMainWindow *win, KConfigBase *config)

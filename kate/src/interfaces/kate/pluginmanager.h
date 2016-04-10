@@ -130,7 +130,7 @@ namespace Kate
       /**
        * This signal is emitted when the plugin has been unloaded, aka deleted.
        *
-       *  Warning !!! DO NOT ACCESS THE DATA REFERENCED BY THE POINTER, IT IS ALREADY INVALID
+       *  @warning DO NOT ACCESS THE DATA REFERENCED BY THE POINTER, IT IS ALREADY INVALID
        *  Use the pointer only to remove mappings in hash or maps
        * 
        * @param name name of unloaded plugin
