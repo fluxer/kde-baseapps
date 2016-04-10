@@ -81,6 +81,8 @@ KateProjectInfoViewCodeAnalysis::~KateProjectInfoViewCodeAnalysis ()
 
 void KateProjectInfoViewCodeAnalysis::slotStartStopClicked ()
 {
+  m_treeView->setSortingEnabled (false);
+
   /**
    * get files for cppcheck
    */
@@ -158,6 +160,7 @@ void KateProjectInfoViewCodeAnalysis::slotReadyRead ()
   m_treeView->resizeColumnToContents (2);
   m_treeView->resizeColumnToContents (1);
   m_treeView->resizeColumnToContents (0);
+  m_treeView->setSortingEnabled (true);
 }
 
 void KateProjectInfoViewCodeAnalysis::slotClicked (const QModelIndex &index)
