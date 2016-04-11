@@ -25,6 +25,7 @@
 #include "kateproject.h"
 #include "kateprojectview.h"
 #include "kateprojectinfoview.h"
+#include "kateprojectnew.h"
 
 #include <QPointer>
 #include <QComboBox>
@@ -99,6 +100,11 @@ class KateProjectPluginView : public Kate::PluginView, public Kate::XMLGUIClient
     void slotViewDestroyed (QObject *view);
 
     /**
+     * Create new project.
+     */
+    void slotProjectNew ();
+
+    /**
      * Activate the previous project.
      */
     void slotProjectPrev ();
@@ -141,6 +147,11 @@ class KateProjectPluginView : public Kate::PluginView, public Kate::XMLGUIClient
      * Url changed, to auto-load projects
      */
     void slotDocumentUrlChanged (KTextEditor::Document *document);
+
+    /**
+     * A new project was created, load it
+     */
+    void slotProjectCreated(QString path);
 
   private:
     /**
@@ -193,6 +204,11 @@ class KateProjectPluginView : public Kate::PluginView, public Kate::XMLGUIClient
      * remember for which text views we might need to cleanup stuff
      */
     QSet<QObject *> m_textViews;
+
+    /*
+     * new project widget
+    */
+    KateProjectNew *m_newProject;
 };
 
 #endif

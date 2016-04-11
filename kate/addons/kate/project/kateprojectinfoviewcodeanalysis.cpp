@@ -160,6 +160,7 @@ void KateProjectInfoViewCodeAnalysis::slotReadyRead ()
   m_treeView->resizeColumnToContents (2);
   m_treeView->resizeColumnToContents (1);
   m_treeView->resizeColumnToContents (0);
+  // TODO: resort view
   m_treeView->setSortingEnabled (true);
 }
 

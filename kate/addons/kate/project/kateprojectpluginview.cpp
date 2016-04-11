@@ -32,14 +32,16 @@
 #include <kpluginfactory.h>
 #include <kpluginloader.h>
 #include <kaboutdata.h>
+#include <kfiledialog.h>
+#include <kmessagebox.h>
 
-#include <KFileDialog>
 #include <QDialog>
 #include <QHBoxLayout>
 #include <QVBoxLayout>
 
 K_PLUGIN_FACTORY(KateProjectPluginFactory, registerPlugin<KateProjectPlugin>();)
-K_EXPORT_PLUGIN(KateProjectPluginFactory(KAboutData("project","kateproject",ki18n("Hello World"), "0.1", ki18n("Example kate plugin"))) )
+K_EXPORT_PLUGIN(KateProjectPluginFactory(KAboutData("project", "kateproject",
+  ki18n("Kate Project"), "0.1", ki18n("Manage your projects with ease"))) )
 
 KateProjectPluginView::KateProjectPluginView( KateProjectPlugin *plugin, Kate::MainWindow *mainWin )
     : Kate::PluginView( mainWin )
@@ -49,8 +51,10 @@ KateProjectPluginView::KateProjectPluginView( KateProjectPlugin *plugin, Kate::M
   /**
    * create toolviews
    */
-  m_toolView = mainWindow()->createToolView ("kateproject", Kate::MainWindow::Left, SmallIcon("project-open"), i18n("Projects"));
-  m_toolInfoView = mainWindow()->createToolView ("kateprojectinfo", Kate::MainWindow::Bottom, SmallIcon("view-choose"), i18n("Current Project"));
+  m_toolView = mainWindow()->createToolView ("kateproject",
+    Kate::MainWindow::Left, SmallIcon("project-open"), i18n("Projects"));
+  m_toolInfoView = mainWindow()->createToolView ("kateprojectinfo",
+    Kate::MainWindow::Bottom, SmallIcon("view-choose"), i18n("Current Project"));
 
   /**
    * create the combo + buttons for the toolViews + stacked widgets
@@ -74,6 +78,12 @@ KateProjectPluginView::KateProjectPluginView( KateProjectPlugin *plugin, Kate::M
     viewForProject (project);
 
   /**
+   * create new project widget
+  */
+  m_newProject = new KateProjectNew(m_toolView);
+  connect (m_newProject, SIGNAL(projectCreated(QString)), this, SLOT(slotProjectCreated(QString)));
+
+  /**
    * connect to important signals, e.g. for auto project view creation
    */
   connect (m_plugin, SIGNAL(projectCreated (KateProject *)), this, SLOT(viewForProject (KateProject *)));
@@ -94,10 +104,17 @@ KateProjectPluginView::KateProjectPluginView( KateProjectPlugin *plugin, Kate::M
   slotViewChanged ();
 
   /**
+   * new project
+   */
+  actionCollection()->addAction (KStandardAction::New, "projects_new_project", this,
+    SLOT(slotProjectNew()));
+  /**
    * back + forward
    */
-  actionCollection()->addAction (KStandardAction::Back, "projects_prev_project", this, SLOT(slotProjectPrev()))->setShortcut (Qt::CTRL | Qt::ALT | Qt::Key_Left);
-  actionCollection()->addAction (KStandardAction::Forward, "projects_next_project", this, SLOT(slotProjectNext()))->setShortcut (Qt::CTRL | Qt::ALT | Qt::Key_Right);
+  actionCollection()->addAction (KStandardAction::Back, "projects_prev_project", this,
+    SLOT(slotProjectPrev()))->setShortcut (Qt::CTRL | Qt::ALT | Qt::Key_Left);
+  actionCollection()->addAction (KStandardAction::Forward, "projects_next_project", this,
+    SLOT(slotProjectNext()))->setShortcut (Qt::CTRL | Qt::ALT | Qt::Key_Right);
 
   /**
    * add us to gui
@@ -119,6 +136,7 @@ KateProjectPluginView::~KateProjectPluginView()
   /**
    * cu toolviews
    */
+  delete m_newProject;
   delete m_toolView;
   delete m_toolInfoView;
 
@@ -308,6 +326,11 @@ void KateProjectPluginView::slotDocumentUrlChanged (KTextEditor::Document *docum
   }
 }
 
+void KateProjectPluginView::slotProjectCreated(QString path)
+{
+  m_plugin->createProjectForFileName(path);
+}
+
 void KateProjectPluginView::slotViewCreated (KTextEditor::View *view)
 {
   /**
@@ -334,6 +357,11 @@ void KateProjectPluginView::slotViewDestroyed (QObject *view)
    * remove remembered views for which we need to cleanup on exit!
    */
   m_textViews.remove (view);
+}
+
+void KateProjectPluginView::slotProjectNew ()
+{
+  m_newProject->show();
 }
 
 void KateProjectPluginView::slotProjectPrev ()
