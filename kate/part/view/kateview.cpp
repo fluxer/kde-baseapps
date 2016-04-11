@@ -90,6 +90,8 @@
 #include <QtGui/qevent.h>
 #include <QtGui/QLayout>
 
+#include <sys/stat.h>
+
 //#define VIEW_RANGE_DEBUG
 
 //END includes
