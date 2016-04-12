@@ -25,6 +25,7 @@
 #include <QVBoxLayout>
 
 // KDE
+#include <KStandardDirs>
 #include <KPluginLoader>
 #include <KPluginFactory>
 #include <KService>
@@ -46,14 +47,7 @@ void PartTest::testFd()
     // find ping
     QStringList pingList;
     QFileInfo info;
-    QString pingExe;
-    pingList << "/bin/ping" << "/sbin/ping";
-    for (int i = 0; i < pingList.size(); ++i) {
-        info.setFile(pingList.at(i));
-        if (info.exists() && info.isExecutable())
-            pingExe = pingList.at(i);
-    }
-
+    QString pingExe = KStandardDirs::findExe("ping");
     if (pingExe.isEmpty()) {
         QSKIP("ping command not found.", SkipSingle);
         return;
