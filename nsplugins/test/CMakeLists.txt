@@ -31,9 +31,9 @@ QT4_ADD_DBUS_INTERFACE(testnsplugin_SRCS
     nsplugins_viewer_interface
 )
 
-kde4_add_manual_test(testnsplugin ${testnsplugin_SRCS})
+kde4_add_manual_test(nsplugin-testnsplugin ${testnsplugin_SRCS})
 
-target_link_libraries(testnsplugin
+target_link_libraries(nsplugin-testnsplugin
     ${KDE4_KPARTS_LIBS}
     ${QT_QTDBUS_LIBRARY}
 )

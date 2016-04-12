@@ -93,7 +93,8 @@ if(X11_Xt_LIB)
     install( FILES org.kde.nsplugins.CallBack.xml DESTINATION ${DBUS_INTERFACES_INSTALL_DIR} )
 
     if(ENABLE_TESTING)
-        add_subdirectory( test )
+        # FIXME:
+        # add_subdirectory( test )
     endif()
 else (X11_Xt_LIB)
   message(STATUS "libXt not found - browser plugin support disabled")
