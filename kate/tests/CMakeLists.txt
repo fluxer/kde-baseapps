@@ -227,7 +227,7 @@ target_link_libraries(kate-syntax_highlighting_test ${KATE_TEST_LINK_LIBS})
 ########### bug 286887 test ###############
 
 kde4_add_test(kate-bug286887_test bug286887.cpp)
-set_tests_properties(kate-bug286887_ PROPERTIES TIMEOUT 4)
+set_tests_properties(kate-bug286887_test PROPERTIES TIMEOUT 4)
 
 target_link_libraries(kate-bug286887_test
     ${KDE4_KDEUI_LIBS}
