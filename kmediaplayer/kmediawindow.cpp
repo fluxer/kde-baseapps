@@ -92,7 +92,7 @@ KMediaWindow::KMediaWindow(QWidget *parent, Qt::WindowFlags flags)
 
     bool firstrun = m_settings->value("KMultiMedia/firstrun", true).toBool();
     if (firstrun) {
-        // not toolbar unless explicitly enabled
+        // no toolbar unless explicitly enabled
         toolBar()->setVisible(false);
         // also set a decent window size
         resize(640, 480);
@@ -107,6 +107,12 @@ KMediaWindow::KMediaWindow(QWidget *parent, Qt::WindowFlags flags)
 
 KMediaWindow::~KMediaWindow()
 {
+    disconnect(m_player, SIGNAL(controlsHidden(bool)), this, SLOT(hideMenuBar(bool)));
+    menuBar()->setVisible(m_menuvisible);
+    toolBar()->setVisible(m_toolvisible);
+    statusBar()->setVisible(m_statusvisible);
+    saveAutoSaveSettings();
+
     KUrl::List recenturls = m_recentfiles->urls();
     QStringList recentlist;
     foreach (KUrl url, recenturls) {
@@ -146,7 +152,6 @@ void KMediaWindow::openPath()
     QString path = KFileDialog::getOpenFileName(KUrl(), QString(), this, i18n("Select paths"));
     if (!path.isEmpty()) {
         if (!m_player->player()->isPathSupported(path)) {
-            kDebug() << i18n("ignoring unsupported:\n%1", path);
             QMessageBox::warning(this, i18n("Invalid path"),
                 i18n("The path is invalid:\n%1", path));
         } else {
@@ -166,7 +171,6 @@ void KMediaWindow::openURL()
     if (!url.isEmpty()) {
         QString urlstring = url.prettyUrl();
         if (!m_player->player()->isPathSupported(urlstring)) {
-            kDebug() << i18n("ignoring unsupported:\n%1", urlstring);
             QMessageBox::warning(this, i18n("Invalid URL"),
                 i18n("Invalid URL:\n%1", urlstring));
         } else {
