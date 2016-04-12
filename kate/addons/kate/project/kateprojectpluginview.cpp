@@ -104,10 +104,12 @@ KateProjectPluginView::KateProjectPluginView( KateProjectPlugin *plugin, Kate::M
   slotViewChanged ();
 
   /**
-   * new project
+   * new + project
    */
   actionCollection()->addAction (KStandardAction::New, "projects_new_project", this,
     SLOT(slotProjectNew()));
+  actionCollection()->addAction (KStandardAction::Open, "projects_open_project", this,
+    SLOT(slotProjectOpen()));
   /**
    * back + forward
    */
@@ -362,6 +364,19 @@ void KateProjectPluginView::slotViewDestroyed (QObject *view)
 void KateProjectPluginView::slotProjectNew ()
 {
   m_newProject->show();
+}
+
+void KateProjectPluginView::slotProjectOpen ()
+{
+  QString path = KFileDialog::getExistingDirectory(KUrl(), m_toolView, i18n("Select project path"));
+  if (!path.isEmpty()) {
+    QFile kateproject(path + QLatin1String("/.kateproject"));
+    if (!kateproject.exists()) {
+      KMessageBox::error(m_toolView, i18n("Path is not valid Kate project"), i18n("Invalid project path"));
+    } else if (!projectFiles().contains(kateproject.fileName())) {
+      m_plugin->createProjectForFileName(kateproject.fileName());
+    }
+  }
 }
 
 void KateProjectPluginView::slotProjectPrev ()

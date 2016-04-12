@@ -105,6 +105,11 @@ class KateProjectPluginView : public Kate::PluginView, public Kate::XMLGUIClient
     void slotProjectNew ();
 
     /**
+     * Open existing project.
+     */
+    void slotProjectOpen ();
+
+    /**
      * Activate the previous project.
      */
     void slotProjectPrev ();
