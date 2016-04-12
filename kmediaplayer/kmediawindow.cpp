@@ -200,6 +200,7 @@ void KMediaWindow::configure()
 void KMediaWindow::openURL(KUrl url)
 {
     m_player->open(url.prettyUrl());
+    m_recentfiles->addUrl(url);
 }
 
 void KMediaWindow::menubar() {
