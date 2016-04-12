@@ -23,13 +23,9 @@
 #define DOLPHIN_MAINWINDOW_H
 
 #include <KFileItemDelegate>
-#include <kio/fileundomanager.h>
-#include <ksortablelist.h>
-#include <kxmlguiwindow.h>
 #include <KIcon>
-
-#include <QList>
-#include <QtCore/qsharedpointer.h>
+#include <kio/fileundomanager.h>
+#include <kxmlguiwindow.h>
 
 typedef KIO::FileUndoManager::CommandType CommandType;
 

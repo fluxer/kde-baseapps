@@ -43,7 +43,6 @@
 #include "searchenginebar.h"
 #include "walletbar.h"
 #include "webpage.h"
-#include "websnap.h"
 
 #include "webwindow.h"
 

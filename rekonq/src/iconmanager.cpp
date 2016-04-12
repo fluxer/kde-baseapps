@@ -168,6 +168,7 @@ QString IconManager::iconPathForUrl(const KUrl &url)
 
 KIcon IconManager::engineFavicon(const KUrl &url)
 {
+    kDebug() << "requesting favicon";
     // fetch the icon, this does not force download
     m_favIconModule.downloadHostIcon(url.host());
 
