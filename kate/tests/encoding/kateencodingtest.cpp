@@ -26,6 +26,11 @@
 
 int main (int argc, char *argv[])
 {
+  if (argc < 4) {
+    qWarning() << "usage: <encoding> <input_file> <output_file>";
+    return 2;
+  }
+
   // construct core app
   QCoreApplication app (argc, argv);
 
