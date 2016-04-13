@@ -762,7 +762,6 @@ KateSaveConfigTab::KateSaveConfigTab( QWidget *parent )
   //
 
   connect( ui->cmbEncoding, SIGNAL(activated(int)), this, SLOT(slotChanged()));
-  connect( ui->cmbEncodingDetection, SIGNAL(activated(int)), this, SLOT(slotChanged()));
   connect( ui->cmbEncodingFallback, SIGNAL(activated(int)), this, SLOT(slotChanged()));
   connect( ui->cmbEOL, SIGNAL(activated(int)), this, SLOT(slotChanged()));
   connect( ui->chkDetectEOL, SIGNAL(toggled(bool)), this, SLOT(slotChanged()) );
