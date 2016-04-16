@@ -45,8 +45,6 @@ using namespace Konsole;
 void PartTest::testFd()
 {
     // find ping
-    QStringList pingList;
-    QFileInfo info;
     QString pingExe = KStandardDirs::findExe("ping");
     if (pingExe.isEmpty()) {
         QSKIP("ping command not found.", SkipSingle);
