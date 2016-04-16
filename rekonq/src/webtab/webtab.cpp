@@ -53,6 +53,7 @@
 #include <KActionMenu>
 #include <kdeprintdialog.h>
 #include <KLocalizedString>
+#include <KGlobal>
 
 #include <KParts/Part>
 #include <KParts/BrowserExtension>

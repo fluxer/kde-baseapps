@@ -24,6 +24,7 @@
 #include <ktoolbar.h>
 #include <kaction.h>
 #include <klocale.h>
+#include <kicon.h>
 
 #include <qlayout.h>
 #include <qtextedit.h>

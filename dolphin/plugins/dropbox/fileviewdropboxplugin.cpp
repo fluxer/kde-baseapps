@@ -26,6 +26,7 @@
 #include <KLocalizedString>
 #include <KActionCollection>
 #include <KPluginFactory>
+#include <KIcon>
 
 #include <QDir>
 #include <QPointer>

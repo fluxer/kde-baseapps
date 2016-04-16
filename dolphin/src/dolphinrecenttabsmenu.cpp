@@ -23,6 +23,7 @@
 #include <KAcceleratorManager>
 #include <KMimeType>
 #include <KMenu>
+#include <KIcon>
 
 DolphinRecentTabsMenu::DolphinRecentTabsMenu(QObject* parent) :
     KActionMenu(KIcon("edit-undo"), i18n("Recently Closed Tabs"), parent)
