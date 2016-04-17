@@ -29,7 +29,11 @@
 #include <QFile>
 #include <QFileInfo>
 #include <QtGui/qplaintextedit.h>
+#ifndef QT_KATIE
 #include <qjson/parser.h>
+#else
+#include <QJsonDocument>
+#endif
 
 KateProject::KateProject ()
   : QObject ()
@@ -97,17 +101,27 @@ bool KateProject::reload (bool force)
    * open the file for reading, bail out on error!
    */
   QFile file (m_fileName);
-  if (!file.open (QFile::ReadOnly))
+  if (!file.open (QIODevice::ReadOnly | QIODevice::Text))
     return false;
 
   /**
    * parse the whole file, bail out again on error!
    */
+#ifndef QT_KATIE
   bool ok = true;
   QJson::Parser parser;
   QVariant project = parser.parse (&file, &ok);
   if (!ok)
     return false;
+#else
+  // TODO: error reporting via QJsonParseError
+  QByteArray jsondata = file.readAll();
+  QJsonDocument jsondoc = QJsonDocument::fromJson(jsondata);
+  if (jsondoc.isEmpty()) {
+    return false;
+  }
+  QVariant project = jsondoc.toVariant();
+#endif
 
   /**
    * now: get global group

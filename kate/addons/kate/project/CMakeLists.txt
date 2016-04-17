@@ -1,14 +1,16 @@
 macro_optional_find_package(QJSON)
 macro_log_feature(QJSON_FOUND "QJSON" "Json parser for Qt" "")
 
-# bail out without it!
-if(NOT QJSON_FOUND)
+# bail out without it, Katie has backported JSON support tough
+if(NOT QJSON_FOUND AND NOT KATIE_FOUND)
     message(WARNING "Project plugin needs QJSON Library.")
     return()
 endif()
 
-# Ubuntu 12.10 needs the lower-case qjson
-include_directories(${QJSON_INCLUDE_DIR} ${qjson_INCLUDE_DIR})
+if(QJSON_FOUND)
+    # Ubuntu 12.10 needs the lower-case qjson
+    include_directories(${QJSON_INCLUDE_DIR} ${qjson_INCLUDE_DIR})
+endif()
 
 set(kateprojectplugin_PART_SRCS
     kateprojectplugin.cpp
@@ -35,10 +37,15 @@ kde4_add_plugin(kateprojectplugin ${kateprojectplugin_PART_SRCS})
 target_link_libraries(kateprojectplugin
     ${KDE4_KDEUI_LIBS}
     ${KDE4_KTEXTEDITOR_LIBS}
-    ${QJSON_LIBRARIES}
-    ${qjson_LIBRARIES}
     kateinterfaces
 )
+
+if(QJSON_FOUND)
+    target_link_libraries(kateprojectplugin
+        ${QJSON_LIBRARIES}
+        ${qjson_LIBRARIES}
+    )
+endif()
 
 ########### install files ###############
 install(
