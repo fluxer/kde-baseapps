@@ -32,17 +32,6 @@
 
 namespace Kate
 {
-
-  class PrivatePlugin
-  {
-    public:
-      PrivatePlugin ()
-      {}
-
-      ~PrivatePlugin ()
-      {}
-  };
-
   class PrivatePluginView
   {
     public:

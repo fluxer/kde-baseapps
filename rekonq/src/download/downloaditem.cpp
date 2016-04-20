@@ -45,7 +45,6 @@ DownloadItem::DownloadItem(const QString &srcUrl, const QString &destUrl, const 
     , m_srcUrlString(srcUrl)
     , m_destUrl(KUrl(destUrl))
     , m_dateTime(d)
-    , m_job(0)
     , m_state(0)
 {
 }
@@ -56,7 +55,6 @@ DownloadItem::DownloadItem(KIO::CopyJob *job, const QDateTime &d, QObject *paren
     , m_srcUrlString(job->srcUrls().at(0).url())
     , m_destUrl(job->destUrl())
     , m_dateTime(d)
-    , m_job(job)
     , m_state(0)
 {
     QObject::connect(job, SIGNAL(percent(KJob*,ulong)), this, SLOT(updateProgress(KJob*,ulong)));

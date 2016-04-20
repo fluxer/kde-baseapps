@@ -113,8 +113,6 @@ namespace Kate
    */
   class KATEINTERFACES_EXPORT Plugin : public QObject
   {
-      friend class PrivatePlugin;
-
       Q_OBJECT
 
     public:
@@ -171,9 +169,6 @@ namespace Kate
        * \see readSessionConfig()
        */
       virtual void writeSessionConfig (KConfigBase* config, const QString& groupPrefix);
-
-    private:
-      class PrivatePlugin *d;
   };
 
   /**

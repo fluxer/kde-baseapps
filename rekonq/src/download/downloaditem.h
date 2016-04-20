@@ -101,7 +101,6 @@ private:
 
     QDateTime m_dateTime;
 
-    KIO::CopyJob *m_job;
     int m_state;
 
     QString m_errorString;

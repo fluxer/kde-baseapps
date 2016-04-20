@@ -76,7 +76,6 @@ private:
     void resizePlugin(int w, int h );
 
     QFrame *_frame;
-    QGridLayout *_layout;
 };
 
 // class exported for the test program

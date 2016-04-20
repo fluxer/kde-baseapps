@@ -168,8 +168,6 @@ private:
     FolderFilesList                    m_folderFilesList;
     SearchDiskFiles                    m_searchDiskFiles;
     ReplaceMatches                     m_replacer;
-    KAction                           *m_matchCase;
-    KAction                           *m_useRegExp;
     Results                           *m_curResults;
     bool                               m_searchJustOpened;
     bool                               m_switchToProjectModeWhenAvailable;

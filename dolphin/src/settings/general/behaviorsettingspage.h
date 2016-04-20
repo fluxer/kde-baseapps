@@ -55,7 +55,6 @@ private:
     QRadioButton* m_globalViewProps;
 
     QCheckBox* m_showToolTips;
-    QLabel* m_configureToolTips;
     QCheckBox* m_showSelectionToggle;
     QCheckBox* m_naturalSorting;
     QCheckBox* m_renameInline;

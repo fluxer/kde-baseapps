@@ -59,7 +59,6 @@ public slots:
 
 private:
     KTemporaryFile *m_tmp_file;
-    KParts::ReadOnlyPart *part;
     bool m_validating;
     KProcess *m_proc;
     QString m_proc_stderr;

@@ -114,7 +114,6 @@ KateScrollBar::KateScrollBar (Qt::Orientation orientation, KateViewInternal* par
   , m_miniMapAll(true)
   , m_miniMapWidth(40)
   , m_grooveHeight(height())
-  , m_linesModified(0)
 {
   connect(this, SIGNAL(valueChanged(int)), this, SLOT(sliderMaybeMoved(int)));
   connect(m_doc, SIGNAL(marksChanged(KTextEditor::Document*)), this, SLOT(marksChanged()));
@@ -1195,8 +1194,6 @@ void KateCmdLineEdit::fromHistory( bool up )
 
 //BEGIN KateIconBorder
 using namespace KTextEditor;
-
-const int halfIPW = 8;
 
 KateIconBorder::KateIconBorder ( KateViewInternal* internalView, QWidget *parent )
   : QWidget(parent)

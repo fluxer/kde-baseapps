@@ -32,7 +32,6 @@ KateContainer::KateContainer(KateApp* parent)
   : QObject(parent)
   , KTextEditor::ViewBarContainer()
   , KTextEditor::MdiContainer()
-  , m_app(parent)
 {
 }
 

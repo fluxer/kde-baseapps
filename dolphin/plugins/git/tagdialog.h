@@ -60,7 +60,6 @@ private:
     KTextEdit* m_tagMessageTextEdit;
     KLineEdit* m_tagNameTextEdit;
     KComboBox* m_branchComboBox;
-    QRadioButton* branchRadioButton;
     QTextCodec* m_localCodec;
     QPalette m_errorColors;
 };

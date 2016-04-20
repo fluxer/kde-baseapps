@@ -64,7 +64,6 @@ class KateFileTreePlugin: public Kate::Plugin, public Kate::PluginConfigPageInte
 
   private:
     QList<KateFileTreePluginView *> m_views;
-    KateFileTreeConfigPage *m_confPage;
     KateFileTreePluginSettings m_settings;
     KateFileTreeCommand* m_fileCommand;
 };

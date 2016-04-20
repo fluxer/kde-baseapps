@@ -71,11 +71,6 @@
 #include "views/tooltips/tooltipmanager.h"
 #include "zoomlevelinfo.h"
 
-
-namespace {
-    const int MaxModeEnum = DolphinView::CompactView;
-};
-
 DolphinView::DolphinView(const KUrl& url, QWidget* parent) :
     QWidget(parent),
     m_active(true),

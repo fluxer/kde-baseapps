@@ -85,8 +85,6 @@ public:
         : KParts::BrowserInterface(view), m_view(view) {
         ;
     }
-private:
-    FavIconUpdater *m_view;
 };
 
 #endif

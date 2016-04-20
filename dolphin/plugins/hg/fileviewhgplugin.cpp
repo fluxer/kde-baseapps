@@ -74,7 +74,6 @@ FileViewHgPlugin::FileViewHgPlugin(QObject *parent, const QList<QVariant> &args)
     m_updateAction(0),
     m_cloneAction(0),
     m_createAction(0),
-    m_configAction(0),
     m_globalConfigAction(0),
     m_repoConfigAction(0),
     m_pushAction(0),
@@ -90,7 +89,6 @@ FileViewHgPlugin::FileViewHgPlugin(QObject *parent, const QList<QVariant> &args)
     m_diffAction(0),
     m_serveAction(0),
     m_backoutAction(0),
-    m_isCommitable(false),
     m_hgWrapper(0),
     m_retrievalHgw(0)
 {

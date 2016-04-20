@@ -29,7 +29,6 @@
 PixmapViewer::PixmapViewer(QWidget* parent, Transition transition) :
     QWidget(parent),
     m_transition(transition),
-    m_animationStep(0),
     m_sizeHint()
 {
     setMinimumWidth(KIconLoader::SizeEnormous);

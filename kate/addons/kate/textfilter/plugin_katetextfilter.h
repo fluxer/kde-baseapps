@@ -71,9 +71,6 @@ class PluginViewKateTextFilter: public Kate::PluginView, public Kate::XMLGUIClie
   public:
     PluginViewKateTextFilter(PluginKateTextFilter *plugin, Kate::MainWindow *mainwindow);
     virtual ~PluginViewKateTextFilter();
-
-  private:
-    PluginKateTextFilter *m_plugin;
 };
 
 #endif // PLUGIN_KATETEXTFILTER_H

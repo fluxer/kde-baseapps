@@ -85,7 +85,6 @@ private:
     virtual Qt::ItemFlags flags (const QModelIndex & index) const;
 
     static SnippetStore* m_self;
-    KateSnippetGlobal* m_plugin;
     KTextEditor::TemplateScriptRegistrar* m_scriptregistrar;
 };
 

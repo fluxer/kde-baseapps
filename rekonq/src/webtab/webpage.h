@@ -99,9 +99,7 @@ private:
     QString _mimeType;
     QString _suggestedFileName;
 
-    bool _networkAnalyzer;
     bool _isOnRekonqPage;
-    bool _hasAdBlockedElements;
 };
 
 #endif

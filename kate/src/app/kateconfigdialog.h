@@ -68,7 +68,6 @@ class KateConfigDialog : public KPageDialog
   private:
     KateMainWindow *m_mainWindow;
 
-    KTextEditor::View* m_view;
     bool m_dataChanged;
 
     QCheckBox *m_modNotifications;

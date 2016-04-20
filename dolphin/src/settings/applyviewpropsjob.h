@@ -70,7 +70,6 @@ private slots:
 
 private:
     ViewProperties* m_viewProps;
-    int m_currentItem;
     int m_progress;
     KUrl m_dir;
 };

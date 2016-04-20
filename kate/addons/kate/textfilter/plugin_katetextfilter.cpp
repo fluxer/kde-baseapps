@@ -49,7 +49,6 @@ PluginViewKateTextFilter::PluginViewKateTextFilter(PluginKateTextFilter *plugin,
                                                    Kate::MainWindow *mainwindow)
   : Kate::PluginView(mainwindow)
   , Kate::XMLGUIClient(PluginKateTextFilterFactory::componentData())
-  , m_plugin(plugin)
 {
   KAction* a = actionCollection()->addAction("edit_filter");
   a->setText(i18n("Filter Te&xt..."));

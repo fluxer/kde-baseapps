@@ -64,9 +64,6 @@ class KateContainer
     virtual bool closeDocument( KTextEditor::Document * doc );
     virtual KTextEditor::View * createView( KTextEditor::Document * doc );
     virtual bool closeView( KTextEditor::View * view );
-
-  private:
-    KateApp *m_app;
 };
 
 #endif

@@ -74,7 +74,6 @@ private:
   bool isResultReported;
   KQuery *query;
   KStatusBar *mStatusBar;
-  KDirLister *dirlister;
   KDirWatch *dirwatch;
 };
 

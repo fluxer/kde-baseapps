@@ -112,7 +112,6 @@ private:
     KAction *m_updateAction;
     KAction *m_cloneAction;
     KAction *m_createAction;
-    KAction *m_configAction;
     KAction *m_globalConfigAction;
     KAction *m_repoConfigAction;
     KAction *m_pushAction;
@@ -132,7 +131,6 @@ private:
     mutable KFileItemList m_contextItems;
     mutable QString m_universalCurrentDirectory;
     mutable QString m_currentDir;
-    bool m_isCommitable;
 
     mutable QString m_operationCompletedMsg;
     mutable QString m_errorMsg;

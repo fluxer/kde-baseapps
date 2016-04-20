@@ -222,7 +222,6 @@ class SedReplace : public KTextEditor::Command, public KTextEditor::RangeCommand
       const QString m_findPattern;
       const QString m_replacePattern;
       bool m_onlyOnePerLine;
-      int m_startLine;
       int m_endLine;
       KateDocument *m_doc;
       KateRegExpSearch m_regExpSearch;

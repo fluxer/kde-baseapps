@@ -128,7 +128,6 @@ static void extractMimeType(const QNetworkReply* reply, QString& mimeType)
 
 WebPage::WebPage(bool isPrivateBrowsing, QWidget *parent)
     : KWebPage(parent, KWalletIntegration)
-    , _networkAnalyzer(false)
     , _isOnRekonqPage(false)
 {
     // handling unsupported content...

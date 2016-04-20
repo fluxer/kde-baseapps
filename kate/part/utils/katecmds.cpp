@@ -767,7 +767,6 @@ KateCommands::SedReplace::InteractiveSedReplacer::InteractiveSedReplacer(KateDoc
     : m_findPattern(findPattern),
       m_replacePattern(replacePattern),
       m_onlyOnePerLine(onlyOnePerLine),
-      m_startLine(startLine),
       m_endLine(endLine),
       m_doc(doc),
       m_regExpSearch(doc, caseSensitive ? Qt::CaseSensitive : Qt::CaseInsensitive),

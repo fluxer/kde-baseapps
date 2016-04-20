@@ -85,7 +85,6 @@ private:
     QQueue<QPixmap> m_pendingPixmaps;
     QTimeLine m_animation;
     Transition m_transition;
-    int m_animationStep;
     QSize m_sizeHint;
 };
 

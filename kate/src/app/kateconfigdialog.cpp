@@ -53,7 +53,6 @@
 KateConfigDialog::KateConfigDialog ( KateMainWindow *parent, KTextEditor::View *view )
     : KPageDialog( parent )
     , m_mainWindow( parent )
-    , m_view( view )
 {
   setFaceType( Tree );
   setCaption( i18n("Configure") );

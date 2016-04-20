@@ -35,7 +35,7 @@
 SnippetStore* SnippetStore::m_self = 0;
 
 SnippetStore::SnippetStore(KateSnippetGlobal* plugin)
-    : m_plugin(plugin), m_scriptregistrar(0)
+    : m_scriptregistrar(0)
 {
     m_self = this;
 
