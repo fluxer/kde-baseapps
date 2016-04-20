@@ -82,7 +82,7 @@ class FavIconBrowserInterface : public KParts::BrowserInterface
     Q_OBJECT
 public:
     FavIconBrowserInterface(FavIconUpdater *view)
-        : KParts::BrowserInterface(view), m_view(view) {
+        : KParts::BrowserInterface(view) {
         ;
     }
 };
