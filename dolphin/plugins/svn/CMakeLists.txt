@@ -1,7 +1,5 @@
 project(fileviewsvnplugin)
 
-include_directories(${QIMAGEBLITZ_INCLUDES})
-
 set(fileviewsvnplugin_SRCS fileviewsvnplugin.cpp)
 
 kde4_add_kcfg_files(fileviewsvnplugin_SRCS fileviewsvnpluginsettings.kcfgc)

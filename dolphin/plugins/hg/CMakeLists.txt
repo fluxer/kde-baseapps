@@ -1,7 +1,5 @@
 project(fileviewhgplugin)
 
-include_directories(${QIMAGEBLITZ_INCLUDES})
-
 set(fileviewhgplugin_SRCS
     fileviewhgplugin.cpp
     renamedialog.cpp

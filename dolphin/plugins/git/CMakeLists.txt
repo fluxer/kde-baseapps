@@ -1,7 +1,5 @@
 project(fileviewgitplugin)
 
-include_directories(${QIMAGEBLITZ_INCLUDES})
-
 set(fileviewgitplugin_SRCS
     fileviewgitplugin.cpp
     checkoutdialog.cpp
