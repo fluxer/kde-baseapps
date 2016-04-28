@@ -65,7 +65,7 @@ namespace Kate
    * \author Christoph Cullmann \<cullmann@kde.org\>
    * \see KXMLGUIFactory
    */
-  class KATEINTERFACES_EXPORT MainWindow : public QObject
+  class KATE_EXPORT MainWindow : public QObject
   {
       friend class PrivateMainWindow;
 

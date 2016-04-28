@@ -51,7 +51,7 @@ namespace Kate
    *
    * \author Christoph Cullmann \<cullmann@kde.org\>
    */
-  class KATEINTERFACES_EXPORT DocumentManager : public QObject
+  class KATE_EXPORT DocumentManager : public QObject
   {
       friend class PrivateDocumentManager;
 
@@ -180,7 +180,7 @@ namespace Kate
    * Global accessor to the document manager object.
    * \return document manager object
    */
-  KATEINTERFACES_EXPORT DocumentManager *documentManager ();
+  KATE_EXPORT DocumentManager *documentManager ();
 
 }
 

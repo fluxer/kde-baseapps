@@ -52,7 +52,7 @@ class KCmdLineArgs;
  * Kate Application
  * This class represents the core kate application object
  */
-class KATEINTERFACES_EXPORT KateApp : public KApplication
+class KATE_EXPORT KateApp : public KApplication
 {
     Q_OBJECT
 

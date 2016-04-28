@@ -111,7 +111,7 @@ namespace Kate
    * \see PluginView, PluginConfigPageInterface
    * \author Christoph Cullmann \<cullmann@kde.org\>
    */
-  class KATEINTERFACES_EXPORT Plugin : public QObject
+  class KATE_EXPORT Plugin : public QObject
   {
       Q_OBJECT
 
@@ -178,7 +178,7 @@ namespace Kate
    * \param args arguments
    * \return the plugin on success, otherwise NULL
    */
-  KATEINTERFACES_EXPORT Plugin *createPlugin ( const char* libname, Application *application = 0,
+  KATE_EXPORT Plugin *createPlugin ( const char* libname, Application *application = 0,
       const QStringList &args = QStringList() );
 
   /**
@@ -235,7 +235,7 @@ namespace Kate
    * \see Plugin, XMLGUIClient, KXMLGUIClient, MainWindow
    * \author Christoph Cullmann \<cullmann@kde.org\>
    */
-  class KATEINTERFACES_EXPORT PluginView : public QObject
+  class KATE_EXPORT PluginView : public QObject
   {
       friend class PrivatePluginView;
 
@@ -302,7 +302,7 @@ namespace Kate
    *
    * \see PluginView, KXMLGUIClient
    */
-  class KATEINTERFACES_EXPORT XMLGUIClient : public KXMLGUIClient
+  class KATE_EXPORT XMLGUIClient : public KXMLGUIClient
   {
     public:
       explicit XMLGUIClient(const KComponentData& componentData);

@@ -41,7 +41,7 @@ namespace Kate
    * \see Plugin, PluginConfigPageInterface
    * \author Christoph Cullmann \<cullmann@kde.org\>
    */
-  class KATEINTERFACES_EXPORT PluginConfigPage : public QWidget
+  class KATE_EXPORT PluginConfigPage : public QWidget
   {
       Q_OBJECT
 
@@ -124,7 +124,7 @@ namespace Kate
    * \see Plugin, PluginConfigPage
    * \author Christoph Cullmann \<cullmann@kde.org\>
    */
-  class KATEINTERFACES_EXPORT PluginConfigPageInterface
+  class KATE_EXPORT PluginConfigPageInterface
   {
       friend class PrivatePluginConfigPageInterface;
 
@@ -208,7 +208,7 @@ namespace Kate
    * \return the plugin config page interface or NULL if the plugin does not
    *        support the interface
    */
-  KATEINTERFACES_EXPORT PluginConfigPageInterface *pluginConfigPageInterface (Plugin *plugin);
+  KATE_EXPORT PluginConfigPageInterface *pluginConfigPageInterface (Plugin *plugin);
 
 }
 

@@ -58,7 +58,7 @@ namespace Kate
    *
    * \author Christoph Cullmann \<cullmann@kde.org\>
    */
-  class KATEINTERFACES_EXPORT Application : public QObject
+  class KATE_EXPORT Application : public QObject
   {
       friend class PrivateApplication;
 
@@ -130,7 +130,7 @@ namespace Kate
    * lifetime of a plugin.
    * \return application object
    */
-  KATEINTERFACES_EXPORT Application *application ();
+  KATE_EXPORT Application *application ();
 
 }
 

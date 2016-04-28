@@ -45,7 +45,7 @@ namespace Kate
    * \author Christoph Cullmann \<cullmann@kde.org\>
    * \see Plugin
    */
-  class KATEINTERFACES_EXPORT PluginManager : public QObject
+  class KATE_EXPORT PluginManager : public QObject
   {
       friend class PrivatePluginManager;
 
