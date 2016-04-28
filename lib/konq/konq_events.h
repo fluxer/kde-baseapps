@@ -23,7 +23,7 @@
 
 #include <kparts/event.h>
 #include <QtCore/QList>
-#include <libkonq_export.h>
+#include <konq_export.h>
 #include <kfileitem.h>
 #include <kconfigbase.h>
 
@@ -34,7 +34,7 @@ namespace KParts
 
 class KConfig;
 
-class LIBKONQ_EXPORT KonqFileSelectionEvent : public KParts::Event
+class KONQ_EXPORT KonqFileSelectionEvent : public KParts::Event
 {
 public:
   KonqFileSelectionEvent( const KFileItemList&selection, KParts::ReadOnlyPart *part ) : KParts::Event( s_fileItemSelectionEventName ), m_selection( selection ), m_part( part ) {}
@@ -51,7 +51,7 @@ private:
   KParts::ReadOnlyPart *m_part;
 };
 
-class LIBKONQ_EXPORT KonqFileMouseOverEvent : public KParts::Event
+class KONQ_EXPORT KonqFileMouseOverEvent : public KParts::Event
 {
 public:
   KonqFileMouseOverEvent( const KFileItem& item, KParts::ReadOnlyPart *part ) : KParts::Event( s_fileItemMouseOverEventName ), m_item( item ), m_part( part ) {}
@@ -68,7 +68,7 @@ private:
   KParts::ReadOnlyPart *m_part;
 };
 
-class LIBKONQ_EXPORT KonqConfigEvent : public KParts::Event
+class KONQ_EXPORT KonqConfigEvent : public KParts::Event
 {
 public:
   KonqConfigEvent( KConfigBase *config, const QString &prefix, bool save ) : KParts::Event( s_configEventName ), m_config( config ), m_prefix( prefix ), m_save( save ) {}

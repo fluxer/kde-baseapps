@@ -22,22 +22,21 @@
 #ifndef KATEPARTPRIVATE_EXPORT_H
 #define KATEPARTPRIVATE_EXPORT_H
 
-/* needed for KDE_EXPORT and KDE_IMPORT macros */
-#include <kdemacros.h>
+#include <qglobal.h>
 
 #if defined(KDELIBS_STATIC_LIBS)
    /* No export/import for static libraries */
 # define KATEPART_TESTS_EXPORT
 #elif defined(MAKE_KATEPARTINTERFACES_LIB)
   /* We build the test library, so export symbols */
-  #define KATEPART_TESTS_EXPORT KDE_EXPORT
+  #define KATEPART_TESTS_EXPORT Q_DECL_EXPORT
 #else
   /* We are using this library */
-  #define KATEPART_TESTS_EXPORT KDE_IMPORT
+  #define KATEPART_TESTS_EXPORT Q_DECL_IMPORT
 #endif
 
 # ifndef KATEPART_TESTS_EXPORT_DEPRECATED
-#  define KATEPART_TESTS_EXPORT_DEPRECATED KDE_DEPRECATED KATEPART_TESTS_EXPORT
+#  define KATEPART_TESTS_EXPORT_DEPRECATED Q_DECL_DEPRECATED KATEPART_TESTS_EXPORT
 # endif
 
 #endif  // KATEPARTPRIVATE_EXPORT_H

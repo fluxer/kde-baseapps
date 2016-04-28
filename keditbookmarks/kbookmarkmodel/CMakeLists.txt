@@ -19,6 +19,8 @@ set_target_properties(kbookmarkmodel_private PROPERTIES
      SOVERSION ${GENERIC_LIB_SOVERSION}
 )
 
+generate_export_header(kbookmarkmodel_private BASE_NAME KBOOKMARKMODEL)
+
 install(
     TARGETS kbookmarkmodel_private
     ${INSTALL_TARGETS_DEFAULT_ARGS}

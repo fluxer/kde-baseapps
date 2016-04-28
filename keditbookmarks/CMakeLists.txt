@@ -1,5 +1,7 @@
 add_subdirectory(kbookmarkmodel)
 
+include_directories(${CMAKE_CURRENT_BINARY_DIR}/kbookmarkmodel)
+
 ########### next target ###############
 
 add_executable(kbookmarkmerger kbookmarkmerger.cpp)
@@ -48,7 +50,7 @@ qt4_add_dbus_interface(keditbookmarks_SRCS
 
 kde4_add_kcfg_files(keditbookmarks_SRCS settings.kcfgc)
 
-add_executable( keditbookmarks ${keditbookmarks_SRCS})
+add_executable(keditbookmarks ${keditbookmarks_SRCS})
 
 target_link_libraries(keditbookmarks
     kbookmarkmodel_private

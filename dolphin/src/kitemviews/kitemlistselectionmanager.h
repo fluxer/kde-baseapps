@@ -23,7 +23,7 @@
 #ifndef KITEMLISTSELECTIONMANAGER_H
 #define KITEMLISTSELECTIONMANAGER_H
 
-#include <libdolphin_export.h>
+#include <dolphinprivate_export.h>
 
 #include <kitemviews/kitemmodelbase.h>
 #include <kitemviews/kitemset.h>
@@ -35,7 +35,7 @@ class KItemModelBase;
 /**
  * @brief Allows to select and deselect items of a KItemListView.
  */
-class LIBDOLPHINPRIVATE_EXPORT KItemListSelectionManager : public QObject
+class DOLPHINPRIVATE_EXPORT KItemListSelectionManager : public QObject
 {
     Q_OBJECT
 

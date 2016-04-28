@@ -51,9 +51,17 @@ target_link_libraries(kate
     kateinterfaces
 )
 
+generate_export_header(kateinterfaces BASE_NAME kate)
+
 install(
     TARGETS
     kateinterfaces
     kate
     ${INSTALL_TARGETS_DEFAULT_ARGS}
+)
+
+install(
+    FILES ${CMAKE_CURRENT_BINARY_DIR}/kate_export.h
+    DESTINATION ${INCLUDE_INSTALL_DIR}
+    COMPONENT Devel
 )

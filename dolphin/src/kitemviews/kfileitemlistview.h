@@ -20,7 +20,7 @@
 #ifndef KFILEITEMLISTVIEW_H
 #define KFILEITEMLISTVIEW_H
 
-#include <libdolphin_export.h>
+#include <dolphinprivate_export.h>
 
 #include <kitemviews/kstandarditemlistview.h>
 
@@ -36,7 +36,7 @@ class QTimer;
  * KItemListView::setWidgetCreator() and KItemListView::setGroupHeaderCreator()
  * to apply customized generators.
  */
-class LIBDOLPHINPRIVATE_EXPORT KFileItemListView : public KStandardItemListView
+class DOLPHINPRIVATE_EXPORT KFileItemListView : public KStandardItemListView
 {
     Q_OBJECT
 

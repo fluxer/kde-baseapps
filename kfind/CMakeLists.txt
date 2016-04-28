@@ -1,3 +1,5 @@
+include_directories(${CMAKE_BINARY_DIR}/lib/konq)
+
 set(kfind_SRCS
     main.cpp
     kfinddlg.cpp

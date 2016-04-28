@@ -25,13 +25,13 @@
 #include <QSet>
 #include <QObject>
 
-#include "libdolphin_export.h"
+#include "dolphinprivate_export.h"
 
 /**
  * @brief Wrapper for QClipboard to provide fast access for checking
  *        whether a KFileItem has been clipped.
  */
-class LIBDOLPHINPRIVATE_EXPORT KFileItemClipboard : public QObject
+class DOLPHINPRIVATE_EXPORT KFileItemClipboard : public QObject
 {
     Q_OBJECT
 

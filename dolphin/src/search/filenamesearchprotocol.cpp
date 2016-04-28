@@ -185,7 +185,7 @@ void FileNameSearchProtocol::cleanup()
     m_iteratedDirs.clear();
 }
 
-extern "C" int KDE_EXPORT kdemain( int argc, char **argv )
+extern "C" int Q_DECL_EXPORT kdemain( int argc, char **argv )
 {
     KComponentData instance("kio_search");
     QCoreApplication app(argc, argv);

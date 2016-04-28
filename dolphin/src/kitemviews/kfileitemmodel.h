@@ -20,7 +20,7 @@
 #ifndef KFILEITEMMODEL_H
 #define KFILEITEMMODEL_H
 
-#include <libdolphin_export.h>
+#include <dolphinprivate_export.h>
 #include <KFileItemList>
 #include <KUrl>
 #include <kitemviews/kitemmodelbase.h>
@@ -42,7 +42,7 @@ class QTimer;
  * Recursive expansion of sub-directories is supported by
  * KFileItemModel::setExpanded().
  */
-class LIBDOLPHINPRIVATE_EXPORT KFileItemModel : public KItemModelBase
+class DOLPHINPRIVATE_EXPORT KFileItemModel : public KItemModelBase
 {
     Q_OBJECT
 

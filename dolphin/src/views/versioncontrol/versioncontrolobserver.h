@@ -20,7 +20,7 @@
 #ifndef VERSIONCONTROLOBSERVER_H
 #define VERSIONCONTROLOBSERVER_H
 
-#include <libdolphin_export.h>
+#include <dolphinprivate_export.h>
 
 #include <KFileItem>
 #include <kversioncontrolplugin2.h>
@@ -43,7 +43,7 @@ class UpdateItemStatesThread;
  *
  * @see VersionControlPlugin
  */
-class LIBDOLPHINPRIVATE_EXPORT VersionControlObserver : public QObject
+class DOLPHINPRIVATE_EXPORT VersionControlObserver : public QObject
 {
     Q_OBJECT
 

@@ -20,7 +20,7 @@
 #ifndef KSTANDARDITEM_H
 #define KSTANDARDITEM_H
 
-#include <libdolphin_export.h>
+#include <dolphinprivate_export.h>
 
 #include <QByteArray>
 #include <QHash>
@@ -37,7 +37,7 @@ class KStandardItemModel;
  * used roles. It is possible to assign values for custom
  * roles by using setDataValue().
  */
-class LIBDOLPHINPRIVATE_EXPORT KStandardItem
+class DOLPHINPRIVATE_EXPORT KStandardItem
 {
 
 public:

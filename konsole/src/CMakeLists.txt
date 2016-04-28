@@ -135,6 +135,8 @@ add_executable(konsole ${konsole_SRCS})
 
 target_link_libraries(konsole PRIVATE konsoleprivate)
 
+generate_export_header(konsoleprivate)
+
 install(
     TARGETS konsole konsoleprivate
     ${INSTALL_TARGETS_DEFAULT_ARGS}

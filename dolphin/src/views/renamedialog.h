@@ -20,7 +20,7 @@
 #ifndef RENAMEDIALOG_H
 #define RENAMEDIALOG_H
 
-#include "libdolphin_export.h"
+#include "dolphinprivate_export.h"
 
 #include <KDialog>
 #include <KFileItem>
@@ -33,7 +33,7 @@ class KIntSpinBox;
 /**
  * @brief Dialog for renaming a variable number of files.
  */
-class LIBDOLPHINPRIVATE_EXPORT RenameDialog : public KDialog
+class DOLPHINPRIVATE_EXPORT RenameDialog : public KDialog
 {
     Q_OBJECT
 

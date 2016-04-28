@@ -21,7 +21,7 @@
 #ifndef VIEWPROPERTIESDIALOG_H
 #define VIEWPROPERTIESDIALOG_H
 
-#include "libdolphin_export.h"
+#include "dolphinprivate_export.h"
 
 #include <KDialog>
 
@@ -39,7 +39,7 @@ class DolphinView;
  * and previews should be shown. The properties can be assigned to the current folder,
  * or recursively to all sub folders.
  */
-class LIBDOLPHINPRIVATE_EXPORT ViewPropertiesDialog : public KDialog
+class DOLPHINPRIVATE_EXPORT ViewPropertiesDialog : public KDialog
 {
     Q_OBJECT
 

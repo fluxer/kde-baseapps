@@ -23,7 +23,7 @@
 #ifndef KITEMLISTKEYBOARDSEARCHMANAGER_H
 #define KITEMLISTKEYBOARDSEARCHMANAGER_H
 
-#include <libdolphin_export.h>
+#include <dolphinprivate_export.h>
 
 #include <QObject>
 #include <QString>
@@ -35,7 +35,7 @@
  * @see KItemListController
  * @see KItemModelBase
  */
-class LIBDOLPHINPRIVATE_EXPORT KItemListKeyboardSearchManager : public QObject
+class DOLPHINPRIVATE_EXPORT KItemListKeyboardSearchManager : public QObject
 {
     Q_OBJECT
 

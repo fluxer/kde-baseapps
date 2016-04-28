@@ -22,7 +22,7 @@
 
 #include <QObject>
 
-#include "libdolphin_export.h"
+#include "dolphinprivate_export.h"
 
 class DolphinNewFileMenu;
 class KUrl;
@@ -34,7 +34,7 @@ class KUrl;
  * As soon as a DolphinNewFileMenu instance created a new item,
  * the observer will emit the signal itemCreated().
  */
-class LIBDOLPHINPRIVATE_EXPORT DolphinNewFileMenuObserver : public QObject
+class DOLPHINPRIVATE_EXPORT DolphinNewFileMenuObserver : public QObject
 {
     Q_OBJECT
 

@@ -21,7 +21,7 @@
 #ifndef DOLPHINVIEW_H
 #define DOLPHINVIEW_H
 
-#include "libdolphin_export.h"
+#include "dolphinprivate_export.h"
 
 #include <kparts/part.h>
 #include <KFileItem>
@@ -61,7 +61,7 @@ class QRegExp;
  * - show previews
  * - enable grouping
  */
-class LIBDOLPHINPRIVATE_EXPORT DolphinView : public QWidget
+class DOLPHINPRIVATE_EXPORT DolphinView : public QWidget
 {
     Q_OBJECT
 

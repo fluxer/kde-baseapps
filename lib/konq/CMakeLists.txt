@@ -28,7 +28,7 @@ set(konq_LIB_SRCS
 
 add_library(konq ${LIBRARY_TYPE} ${konq_LIB_SRCS})
 
-target_link_libraries(konq PRIVATE ${KDE4_KPARTS_LIBS} ${KDE4_KFILE_LIBS} ${ZLIB_LIBRARY} ${X11_X11_LIB})
+target_link_libraries(konq PRIVATE ${KDE4_KFILE_LIBS} ${ZLIB_LIBRARY} ${X11_X11_LIB})
 target_link_libraries(konq PUBLIC ${KDE4_KPARTS_LIBS})
 
 set_target_properties(konq PROPERTIES
@@ -36,7 +36,7 @@ set_target_properties(konq PROPERTIES
     SOVERSION ${GENERIC_LIB_SOVERSION}
 )
 
-install(TARGETS konq  ${INSTALL_TARGETS_DEFAULT_ARGS})
+install(TARGETS konq ${INSTALL_TARGETS_DEFAULT_ARGS})
 
 ########### konq_sound ###############
 
@@ -52,13 +52,15 @@ install(FILES
     DESTINATION ${DATA_INSTALL_DIR}/kbookmark
 )
 
+generate_export_header(konq)
+
 install(FILES
+    ${CMAKE_CURRENT_BINARY_DIR}/konq_export.h
     konq_popupmenu.h # used by folderview
     konq_popupmenuplugin.h
     konq_dndpopupmenuplugin.h
     # konq_copytomenu.h - anyone needs it?
     konq_operations.h
-    libkonq_export.h
     konq_events.h
     konqmimedata.h
     kversioncontrolplugin.h

@@ -23,7 +23,7 @@
 
 #include <kurl.h>
 #include <kfileitem.h>
-#include <libkonq_export.h>
+#include <konq_export.h>
 
 class QMenu;
 class KonqCopyToMenuPrivate;
@@ -31,7 +31,7 @@ class KonqCopyToMenuPrivate;
 /**
  * This class adds "Copy To" and "Move To" submenus to a popupmenu.
  */
-class LIBKONQ_EXPORT KonqCopyToMenu
+class KONQ_EXPORT KonqCopyToMenu
 {
 public:
     /**

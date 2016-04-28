@@ -19,7 +19,7 @@
 #ifndef KVERSIONCONTROLPLUGIN_H
 #define KVERSIONCONTROLPLUGIN_H
 
-#include <libkonq_export.h>
+#include <konq_export.h>
 
 #include <QObject>
 
@@ -40,7 +40,7 @@ class QAction;
  *
  * @since 4.4
  */
-class LIBKONQ_EXPORT KVersionControlPlugin : public QObject
+class KONQ_EXPORT KVersionControlPlugin : public QObject
 {
     Q_OBJECT
 

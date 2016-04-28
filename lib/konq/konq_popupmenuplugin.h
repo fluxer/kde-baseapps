@@ -21,7 +21,7 @@
 #ifndef KONQ_POPUPMENUPLUGIN_H
 #define KONQ_POPUPMENUPLUGIN_H
 
-#include "libkonq_export.h"
+#include "konq_export.h"
 #include <QtCore/QObject>
 
 class QMenu;
@@ -40,7 +40,7 @@ class KonqPopupMenuInformation;
  *
  * @deprecated Use KFileItemActionPlugin instead.
  */
-class LIBKONQ_EXPORT KonqPopupMenuPlugin : public QObject
+class KONQ_EXPORT KonqPopupMenuPlugin : public QObject
 {
     Q_OBJECT
 public:

@@ -20,7 +20,7 @@
 #ifndef KVERSIONCONTROLPLUGIN2_H
 #define KVERSIONCONTROLPLUGIN2_H
 
-#include <libkonq_export.h>
+#include <konq_export.h>
 #include <kversioncontrolplugin.h>
 
 /**
@@ -78,7 +78,7 @@
  *
  * @since 4.8
  */
-class LIBKONQ_EXPORT KVersionControlPlugin2 : public KVersionControlPlugin
+class KONQ_EXPORT KVersionControlPlugin2 : public KVersionControlPlugin
 {
     Q_OBJECT
 

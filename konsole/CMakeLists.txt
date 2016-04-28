@@ -3,6 +3,7 @@ project(Konsole)
 include_directories(
     ${CMAKE_SOURCE_DIR}
     ${CMAKE_BINARY_DIR}
+    ${CMAKE_BINARY_DIR}/lib/konq
 )
 
 add_definitions(

@@ -20,7 +20,7 @@
 #ifndef KITEMLISTROLEEDITOR_H
 #define KITEMLISTROLEEDITOR_H
 
-#include "libdolphin_export.h"
+#include "dolphinprivate_export.h"
 
 #include <KTextEdit>
 
@@ -33,7 +33,7 @@
  *
  * The size automatically gets increased if the text does not fit.
  */
-class LIBDOLPHINPRIVATE_EXPORT KItemListRoleEditor : public KTextEdit
+class DOLPHINPRIVATE_EXPORT KItemListRoleEditor : public KTextEdit
 {
     Q_OBJECT
 

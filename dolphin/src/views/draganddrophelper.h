@@ -21,7 +21,7 @@
 #ifndef DRAGANDDROPHELPER_H
 #define DRAGANDDROPHELPER_H
 
-#include "libdolphin_export.h"
+#include "dolphinprivate_export.h"
 
 #include <QString>
 
@@ -31,7 +31,7 @@ class QDropEvent;
 class QWidget;
 class KonqOperations;
 
-class LIBDOLPHINPRIVATE_EXPORT DragAndDropHelper
+class DOLPHINPRIVATE_EXPORT DragAndDropHelper
 {
 public:
     /**

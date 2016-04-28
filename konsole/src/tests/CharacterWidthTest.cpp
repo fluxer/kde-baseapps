@@ -24,7 +24,7 @@
 #include <qtest_kde.h>
 
 #include "../konsole_wcwidth.h"
-#include "../konsole_export.h"
+#include "../konsoleprivate_export.h"
 
 using namespace Konsole;
 

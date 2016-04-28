@@ -37,7 +37,7 @@
 
 extern "C"
 {
-    KDE_EXPORT void kcminit_nsplugin()
+    Q_DECL_EXPORT void kcminit_nsplugin()
     {
         KConfigGroup config(KSharedConfig::openConfig( "kcmnspluginrc", KConfig::NoGlobals ), "Misc");
         if( config.readEntry( "StartupCheck", true ))

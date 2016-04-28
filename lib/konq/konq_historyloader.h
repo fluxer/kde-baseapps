@@ -21,7 +21,7 @@
 #ifndef KONQ_HISTORYLOADER_H
 #define KONQ_HISTORYLOADER_H
 
-#include "libkonq_export.h"
+#include "konq_export.h"
 #include <QObject>
 
 class KonqHistoryList;

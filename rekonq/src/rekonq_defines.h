@@ -28,20 +28,21 @@
 #ifndef REKONQ_DEFINES_H
 #define REKONQ_DEFINES_H
 
+// ----------------------------------------------------------------------------------------------------
+// INCLUDES
+
+#include <KDebug>
 
 // ----------------------------------------------------------------------------------------------------
 // UNIT TESTS NEED
 
-/* needed for KDE_EXPORT and KDE_IMPORT macros */
-#include <kdemacros.h>
-
 /* Classes from the rekonq application, which are exported only for unit tests */
 #ifndef REKONQ_TESTS_EXPORT
 /* We are building this library */
-#define REKONQ_TESTS_EXPORT KDE_EXPORT
+#define REKONQ_TESTS_EXPORT Q_DECL_EXPORT
 #else
 /* We are using this library */
-#define REKONQ_TESTS_EXPORT KDE_IMPORT
+#define REKONQ_TESTS_EXPORT Q_DECL_IMPORT
 #endif
 
 
@@ -94,13 +95,6 @@ enum SyncData
 };
 
 }
-
-
-// ----------------------------------------------------------------------------------------------------
-// INCLUDES
-
-#include <KDebug>
-
 
 
 // ----------------------------------------------------------------------------------------------------

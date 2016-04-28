@@ -7,6 +7,7 @@ configure_file(
 
 include_directories(
     ${CMAKE_CURRENT_BINARY_DIR}
+    ${CMAKE_BINARY_DIR}/lib/konq
 )
 
 if(ENABLE_TESTING)
@@ -100,6 +101,8 @@ set_target_properties(dolphinprivate PROPERTIES
     VERSION ${GENERIC_LIB_VERSION}
     SOVERSION ${GENERIC_LIB_SOVERSION}
 )
+
+generate_export_header(dolphinprivate)
 
 install(
     TARGETS dolphinprivate

@@ -1,3 +1,5 @@
+include_directories(${CMAKE_BINARY_DIR}/lib/konq)
+
 macro_optional_add_subdirectory(svn)
 macro_optional_add_subdirectory(git)
 macro_optional_add_subdirectory(hg)

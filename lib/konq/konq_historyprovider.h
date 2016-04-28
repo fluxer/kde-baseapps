@@ -24,7 +24,7 @@
 
 #include <kparts/historyprovider.h>
 #include <kurl.h>
-#include "libkonq_export.h"
+#include "konq_export.h"
 #include "konq_historyentry.h"
 
 class KonqHistoryEntry;
@@ -37,7 +37,7 @@ class KonqHistoryProviderPrivate;
  * other processes (konqueror, history list, krunner etc.) via D-Bus to keep
  * one global and persistent history.
  */
-class LIBKONQ_EXPORT KonqHistoryProvider : public KParts::HistoryProvider
+class KONQ_EXPORT KonqHistoryProvider : public KParts::HistoryProvider
 {
     Q_OBJECT
 

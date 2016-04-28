@@ -32,7 +32,7 @@
 #include <kparts/browserextension.h>
 #include <kservice.h>
 
-#include <libkonq_export.h>
+#include <konq_export.h>
 
 class KNewFileMenu;
 class KFileItemActions;
@@ -47,7 +47,7 @@ class KonqPopupMenuPrivate;
  *
  * Users of KonqPopupMenu include: konqueror, the media applet, the trash applet
  */
-class LIBKONQ_EXPORT KonqPopupMenu : public KMenu
+class KONQ_EXPORT KonqPopupMenu : public KMenu
 {
   Q_OBJECT
 public:

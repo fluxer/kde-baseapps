@@ -1,3 +1,5 @@
+include_directories(${CMAKE_BINARY_DIR}/lib/konq)
+
 add_subdirectory(kcm)
 
 set(kdepasswd_SRCS

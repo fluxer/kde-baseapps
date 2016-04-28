@@ -20,7 +20,7 @@
 #ifndef KONQMIMEDATA_H
 #define KONQMIMEDATA_H
 
-#include <libkonq_export.h>
+#include <konq_export.h>
 #include <kurl.h>
 class QMimeData;
 
@@ -28,7 +28,7 @@ class QMimeData;
  * This class provides functions for creating and decoding clipboard/drag-n-drop data
  * of URLs. In particular it ships: (kde) urls, most-local urls, and an "is cut" boolean.
  */
-class LIBKONQ_EXPORT KonqMimeData
+class KONQ_EXPORT KonqMimeData
 {
 public:
     /**

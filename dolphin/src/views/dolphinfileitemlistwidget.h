@@ -20,7 +20,7 @@
 #ifndef DOLPHINFILEITEMLISTWIDGET_H
 #define DOLPHINFILEITEMLISTWIDGET_H
 
-#include <libdolphin_export.h>
+#include <dolphinprivate_export.h>
 
 #include <kitemviews/kfileitemlistwidget.h>
 #include <kversioncontrolplugin2.h>
@@ -31,7 +31,7 @@
  * The "version" role is set if version-control-plugins have been enabled.
  * @see KVersionControlPlugin
  */
-class LIBDOLPHINPRIVATE_EXPORT DolphinFileItemListWidget : public KFileItemListWidget
+class DOLPHINPRIVATE_EXPORT DolphinFileItemListWidget : public KFileItemListWidget
 {
     Q_OBJECT
 

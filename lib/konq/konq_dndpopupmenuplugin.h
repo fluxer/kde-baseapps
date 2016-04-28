@@ -18,7 +18,7 @@
 #ifndef _KONQ_DNDPOPUPMENUPLUGIN_H_
 #define _KONQ_DNDPOPUPMENUPLUGIN_H_
 
-#include "libkonq_export.h"
+#include "konq_export.h"
 #include <QtCore/QObject>
 
 class QMenu;
@@ -37,7 +37,7 @@ class QAction;
  *
  * @author Harald Hvaal <metellius@gmail.com>
  */
-class LIBKONQ_EXPORT KonqDndPopupMenuPlugin : public QObject
+class KONQ_EXPORT KonqDndPopupMenuPlugin : public QObject
 {
     Q_OBJECT
 public:

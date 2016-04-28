@@ -24,9 +24,9 @@
 #include <QtCore/QDateTime>
 #include <QtCore/QMetaType>
 #include <kurl.h>
-#include "libkonq_export.h"
+#include "konq_export.h"
 
-class LIBKONQ_EXPORT KonqHistoryEntry
+class KONQ_EXPORT KonqHistoryEntry
 {
 public:
     KonqHistoryEntry();
@@ -59,7 +59,7 @@ KDE_DUMMY_QHASH_FUNCTION(KonqHistoryEntry)
 
 Q_DECLARE_METATYPE(KonqHistoryEntry)
 
-class LIBKONQ_EXPORT KonqHistoryList : public QList<KonqHistoryEntry>
+class KONQ_EXPORT KonqHistoryList : public QList<KonqHistoryEntry>
 {
 public:
     /**

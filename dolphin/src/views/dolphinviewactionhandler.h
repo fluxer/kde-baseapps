@@ -22,7 +22,7 @@
 #ifndef DOLPHINVIEWACTIONHANDLER_H
 #define DOLPHINVIEWACTIONHANDLER_H
 
-#include "libdolphin_export.h"
+#include "dolphinprivate_export.h"
 #include <KActionMenu>
 #include <KSelectAction>
 #include "views/dolphinview.h"
@@ -48,7 +48,7 @@ class KActionCollection;
  * @see DolphinMainWindow
  * @see DolphinPart
  */
-class LIBDOLPHINPRIVATE_EXPORT DolphinViewActionHandler : public QObject
+class DOLPHINPRIVATE_EXPORT DolphinViewActionHandler : public QObject
 {
     Q_OBJECT
 

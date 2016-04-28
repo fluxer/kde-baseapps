@@ -6,6 +6,7 @@ endif()
 
 find_package(KDE4 REQUIRED)
 include(KDE4Defaults)
+include(GenerateExportHeader)
 
 set(LIBRARY_TYPE SHARED)
 
@@ -33,8 +34,6 @@ include_directories(
 add_definitions(
     ${QT_DEFINITIONS}
     ${KDE4_DEFINITIONS}
-    -DQT_USE_FAST_CONCATENATION
-    -DQT_USE_FAST_OPERATOR_PLUS
 )
 
 add_subdirectory(lib)
