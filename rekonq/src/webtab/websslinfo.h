@@ -27,8 +27,6 @@
 #ifndef WEBSSLINFO_H
 #define WEBSSLINFO_H
 
-#include <kdemacros.h>
-
 #include <QtCore/QUrl>
 #include <QtCore/QList>
 #include <QtCore/QString>

@@ -22,7 +22,6 @@
 #include "fileviewbazaarplugin.h"
 
 #include <kaction.h>
-#include <kdemacros.h>
 #include <kdialog.h>
 #include <kdebug.h>
 #include <kfileitem.h>
@@ -31,6 +30,8 @@
 #include <krun.h>
 #include <kshell.h>
 #include <kvbox.h>
+#include <kpluginfactory.h>
+#include <kpluginloader.h>
 #include <QDir>
 #include <QLabel>
 #include <QPlainTextEdit>
@@ -39,8 +40,6 @@
 #include <QStringList>
 #include <QTextStream>
 
-#include <KPluginFactory>
-#include <KPluginLoader>
 K_PLUGIN_FACTORY(FileViewBazaarPluginFactory,registerPlugin<FileViewBazaarPlugin>();)
 K_EXPORT_PLUGIN(FileViewBazaarPluginFactory("fileviewbazaarplugin"))
 

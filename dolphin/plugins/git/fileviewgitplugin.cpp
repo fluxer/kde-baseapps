@@ -28,19 +28,18 @@
 #include "pulldialog.h"
 
 #include <kaction.h>
-#include <kdemacros.h>
 #include <kfileitem.h>
 #include <kicon.h>
 #include <klocale.h>
 #include <ktemporaryfile.h>
 #include <kurl.h>
+#include <kpluginfactory.h>
+#include <kpluginloader.h>
 #include <QProcess>
 #include <QString>
 #include <QStringList>
 #include <QTextCodec>
 
-#include <KPluginFactory>
-#include <KPluginLoader>
 K_PLUGIN_FACTORY(FileViewGitPluginFactory, registerPlugin<FileViewGitPlugin>();)
 K_EXPORT_PLUGIN(FileViewGitPluginFactory("fileviewgitplugin"))
 
