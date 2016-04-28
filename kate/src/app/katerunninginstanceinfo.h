@@ -72,8 +72,8 @@ class KateRunningInstanceInfo: public QObject {
 typedef QMap<QString, KateRunningInstanceInfo*> KateRunningInstanceMap;
 
 
-KDE_EXPORT bool fillinRunningKateAppInstances(KateRunningInstanceMap *map);
-KDE_EXPORT void cleanupRunningKateAppInstanceMap(KateRunningInstanceMap *map);
+KATE_EXPORT bool fillinRunningKateAppInstances(KateRunningInstanceMap *map);
+KATE_EXPORT void cleanupRunningKateAppInstanceMap(KateRunningInstanceMap *map);
 
 #endif
 
