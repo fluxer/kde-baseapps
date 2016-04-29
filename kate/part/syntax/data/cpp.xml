@@ -202,6 +202,7 @@
     <item> Q_DECL_DEPRECATED </item>
     <item> Q_DECL_HIDDEN </item>
     <item> Q_DECL_IMPORT </item>
+    <item> Q_DECL_EXPORT </item>
     <item> Q_DECL_VARIABLE_DEPRECATED </item>
     <item> Q_DESTRUCTOR_FUNCTION0 </item>
     <item> Q_DESTRUCTOR_FUNCTION </item>
