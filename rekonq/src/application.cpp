@@ -59,7 +59,6 @@
 // KDE Includes
 #include <KCmdLineArgs>
 #include <KDialog>
-#include <KProcess>
 #include <KPushButton>
 #include <KStandardDirs>
 #include <KWindowSystem>
@@ -72,6 +71,7 @@
 #include <QDBusReply>
 #include <QDir>
 #include <QTimer>
+#include <QProcess>
 
 
 Application::Application()
@@ -757,7 +757,7 @@ void Application::clearPrivateData()
 
         if (clearWidget.clearCachedPages->isChecked())
         {
-            KProcess::startDetached(KStandardDirs::findExe("kio_http_cache_cleaner"),
+            QProcess::startDetached(KStandardDirs::findExe("kio_http_cache_cleaner"),
                                     QStringList(QL1S("--clear-all")));
         }
 

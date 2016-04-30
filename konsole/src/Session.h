@@ -40,9 +40,9 @@
 #include "konsoleprivate_export.h"
 
 class QColor;
+class QProcess;
 
 class KConfigGroup;
-class KProcess;
 
 namespace Konsole
 {
@@ -747,7 +747,7 @@ private:
 
     // ZModem
     bool           _zmodemBusy;
-    KProcess*      _zmodemProc;
+    QProcess*      _zmodemProc;
     ZModemDialog*  _zmodemProgress;
 
     bool _hasDarkBackground;

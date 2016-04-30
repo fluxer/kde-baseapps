@@ -37,6 +37,7 @@
 #include <QtCore/QStringList>
 #include <QtDBus/QDBusConnection>
 #include <QDateTime>
+#include <QProcess>
 
 // KDE
 #include <KDebug>
@@ -44,7 +45,6 @@
 #include <KNotification>
 #include <KRun>
 #include <KShell>
-#include <KProcess>
 #include <KStandardDirs>
 #include <KConfigGroup>
 
@@ -1179,10 +1179,8 @@ void Session::cancelZModem()
 void Session::startZModem(const QString& zmodem, const QString& dir, const QStringList& list)
 {
     _zmodemBusy = true;
-    _zmodemProc = new KProcess();
-    _zmodemProc->setOutputChannelMode(KProcess::SeparateChannels);
-
-    *_zmodemProc << zmodem << "-v" << list;
+    _zmodemProc = new QProcess();
+    _zmodemProc->setProcessChannelMode(QProcess::SeparateChannels);
 
     if (!dir.isEmpty())
         _zmodemProc->setWorkingDirectory(dir);
@@ -1194,7 +1192,9 @@ void Session::startZModem(const QString& zmodem, const QString& dir, const QStri
     connect(_zmodemProc, SIGNAL(finished(int,QProcess::ExitStatus)),
             this, SLOT(zmodemFinished()));
 
-    _zmodemProc->start();
+    QStringList procargs;
+    procargs << "-v" << list;
+    _zmodemProc->start(zmodem, procargs);
 
     disconnect(_shellProcess, SIGNAL(receivedData(const char*,int)),
                this, SLOT(onReceiveBlock(const char*,int)));
@@ -1255,12 +1255,12 @@ void Session::zmodemFinished()
     /* zmodemFinished() is called by QProcess's finished() and
        ZModemDialog's user1Clicked(). Therefore, an invocation by
        user1Clicked() will recursively invoke this function again
-       when the KProcess is deleted! */
+       when the QProcess is deleted! */
     if (_zmodemProc) {
-        KProcess* process = _zmodemProc;
+        QProcess* process = _zmodemProc;
         _zmodemProc = 0;   // Set _zmodemProc to 0 avoid recursive invocations!
         _zmodemBusy = false;
-        delete process;    // Now, the KProcess may be disposed safely.
+        delete process;    // Now, the QProcess may be disposed safely.
 
         disconnect(_shellProcess, SIGNAL(receivedData(const char*,int)),
                    this , SLOT(zmodemReceiveBlock(const char*,int)));

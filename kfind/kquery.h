@@ -28,10 +28,10 @@
 #include <QtCore/QDir>
 #include <QtCore/QPair>
 #include <QtCore/QStringList>
+#include <QtCore/QProcess>
 
 #include <kio/job.h>
 #include <kurl.h>
-#include <kprocess.h>
 
 class KFileItem;
 
@@ -110,7 +110,7 @@ class KQuery : public QObject
   bool m_showHiddenFiles;
   QByteArray bufferLocate;
   QStringList locateList;
-  KProcess *processLocate;
+  QProcess *processLocate;
   QList<QRegExp*> m_regexps;// regexps for file name
 //  QValueList<bool> m_regexpsContainsGlobs;  // what should this be good for ? Alex
   KIO::ListJob *job;

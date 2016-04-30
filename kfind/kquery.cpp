@@ -43,7 +43,7 @@ KQuery::KQuery(QObject *parent)
     m_useLocate(false), m_showHiddenFiles(false),
     job(0), m_insideCheckEntries(false), m_result(0)
 {
-  processLocate = new KProcess(this);
+  processLocate = new QProcess(this);
   connect(processLocate,SIGNAL(readyReadStandardOutput()),this,SLOT(slotreadyReadStandardOutput()));
   connect(processLocate,SIGNAL(readyReadStandardError()),this,SLOT(slotreadyReadStandardError()));
   connect(processLocate,SIGNAL(finished(int,QProcess::ExitStatus)),this,SLOT(slotendProcessLocate(int,QProcess::ExitStatus)));
@@ -108,11 +108,8 @@ void KQuery::start()
     bufferLocate.clear();
     m_url.cleanPath();
 
-    processLocate->clearProgram();
-    processLocate->setProgram( "locate", QStringList() <<  m_url.path( KUrl::AddTrailingSlash ) );
-
-    processLocate->setOutputChannelMode(KProcess::SeparateChannels);
-    processLocate->start();
+    processLocate->setProcessChannelMode(QProcess::SeparateChannels);
+    processLocate->start("locate", QStringList() <<  m_url.path( KUrl::AddTrailingSlash ));
   }
   else //Use KIO
   {

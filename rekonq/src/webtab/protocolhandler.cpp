@@ -48,7 +48,6 @@
 #include <KLocale>
 #include <KLocalizedString>
 #include <KMessageBox>
-#include <KProcess>
 #include <KStandardDirs>
 #include <KToolInvocation>
 #include <KProtocolInfo>

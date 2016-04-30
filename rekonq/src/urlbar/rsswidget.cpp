@@ -32,13 +32,12 @@
 #include <KComboBox>
 #include <KLocalizedString>
 #include <KMessageBox>
-#include <KProcess>
 #include <KUrl>
 
 // Qt Includes
 #include <QDBusConnectionInterface>
 #include <QDBusInterface>
-
+#include <QProcess>
 #include <QDialogButtonBox>
 #include <QFormLayout>
 #include <QLabel>
@@ -148,10 +147,10 @@ void RSSWidget::addWithAkregator(const QString &url)
     // Akregator is not running
     else
     {
-        KProcess proc;
-        proc << "akregator" << "-g" << i18n("Imported Feeds");
-        proc << "-a" << url;
-        if (proc.startDetached() == 0)
+        QProcess proc;
+        QStringList procargs;
+        procargs << "-g" << i18n("Imported Feeds") << "-a" << url;
+        if (proc.startDetached("akregator", procargs) == 0)
         {
             KMessageBox::error(0, QString(i18n("There was an error. Please verify Akregator is installed on your system.")
                                           + "<br /><br /> <a href=\"" + url + "\">" + url + "</a>"));

@@ -35,15 +35,15 @@
 #include <qfile.h>
 #include <qinputdialog.h>
 #include <qregexp.h>
-#include <qstring.h>
 #include <qtextstream.h>
-#include <kactioncollection.h>
 #include <QApplication>
 #include <QTreeWidget>
 #include <QHeaderView>
+#include <QProcess>
 
 #include <kdefakes.h> // for setenv
 #include <kaction.h>
+#include <kactioncollection.h>
 #include <kcursor.h>
 #include <kdebug.h>
 #include <kcomponentdata.h>
@@ -52,7 +52,6 @@
 #include <kstandarddirs.h>
 #include <ktemporaryfile.h>
 #include <kpluginfactory.h>
-#include <kprocess.h>
 
 K_PLUGIN_FACTORY(PluginKateXMLCheckFactory, registerPlugin<PluginKateXMLCheck>();)
 K_EXPORT_PLUGIN(PluginKateXMLCheckFactory("katexmlcheck"))
@@ -113,10 +112,10 @@ PluginKateXMLCheckView::PluginKateXMLCheckView(Kate::MainWindow *mainwin)
    connect(kv, SIGNAL(modifiedChanged()), this, SLOT(slotUpdate()));
 */
 
-    m_proc = new KProcess();
+    m_proc = new QProcess();
     connect(m_proc, SIGNAL(finished(int,QProcess::ExitStatus)), this, SLOT(slotProcExited(int,QProcess::ExitStatus)));
     // we currently only want errors:
-    m_proc->setOutputChannelMode(KProcess::OnlyStderrChannel);
+    m_proc->setReadChannel(QProcess::StandardError);
 
     mainWindow()->guiFactory()->addClient(this);
 }
@@ -254,7 +253,7 @@ bool PluginKateXMLCheckView::slotValidate()
 
 	win->showToolView (dock);
 
-	m_proc->clearProgram();
+	QStringList procargs;
 	m_validating = false;
 	m_dtdname = "";
 
@@ -290,14 +289,14 @@ bool PluginKateXMLCheckView::slotValidate()
 	}
 	//kDebug() << "**catalogs: " << getenv("XML_CATALOG_FILES");
 
-	*m_proc << exe << "--noout";
+	procargs << "--noout";
 
 	// tell xmllint the working path of the document's file, if possible.
 	// otherweise it will not find relative DTDs
 	QString path = kv->document()->url().directory();
 	kDebug() << path;
 	if (!path.isEmpty()) {
-		*m_proc << "--path" << path;
+		procargs << "--path" << path;
 	}
 
 	// heuristic: assume that the doctype is in the first 10,000 bytes:
@@ -320,19 +319,19 @@ bool PluginKateXMLCheckView::slotValidate()
 		if( !dtdname.startsWith("http:") ) {		// todo: u_dtd.isLocalFile() doesn't work :-(
 			// a local DTD is used
 			m_validating = true;
-			*m_proc << "--valid";
+			procargs << "--valid";
 		} else {
 			m_validating = true;
-			*m_proc << "--valid";
+			procargs << "--valid";
 		}
 	} else if( text_start.indexOf("<!DOCTYPE") != -1 ) {
 		// DTD is inside the XML file
 		m_validating = true;
-		*m_proc << "--valid";
+		procargs << "--valid";
 	}
-	*m_proc << m_tmp_file->fileName();
+	procargs << m_tmp_file->fileName();
 
-	m_proc->start();
+	m_proc->start(exe, procargs);
 	if( ! m_proc->waitForStarted(-1) ) {
 		KMessageBox::error(0, i18n("<b>Error:</b> Failed to execute xmllint. Please make "
 			"sure that xmllint is installed. It is part of libxml2."));

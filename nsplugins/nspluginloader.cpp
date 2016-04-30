@@ -321,7 +321,6 @@ bool NSPluginLoader::loadViewer()
 {
    kDebug() << "NSPluginLoader::loadViewer";
 
-   _process.clearProgram();
    // get the dbus app id
    int pid = (int)getpid();
    QString tmp;
@@ -342,32 +341,34 @@ bool NSPluginLoader::loadViewer()
       return false;
    }
 
+   QString procprogram = viewer;
+   QStringList procargs;
+
    bool runInValgrind = !qgetenv("VALGRIND_NSPLUGINVIEWER").isEmpty();
    bool runInGdb      = !qgetenv("GDB_NSPLUGINVIEWER").isEmpty();
 
    if (runInValgrind || runInGdb) {
-      _process << "konsole";
-      _process << "--nofork";
-      _process << "--noclose";   
-      _process << "-e";
+      procprogram = "konsole";
+      procargs << "--nofork";
+      procargs << "--noclose";
+      procargs << "-e";
 
       if (runInValgrind) {
-         _process << "valgrind";
-         _process << "--num-callers=50";
+         procargs << "valgrind";
+         procargs << "--num-callers=50";
       } else {
-         _process << "gdb";
-         _process << "--args";
+         procargs << "gdb";
+         procargs << "--args";
       }
+      procargs << viewer;
    }
 
-   _process << viewer;
-
-   _process << "-dbusservice";
-   _process << _viewerDBusId;
+   procargs << "-dbusservice";
+   procargs << _viewerDBusId;
 
    // run the process
    kDebug() << "Running nspluginviewer";
-   _process.start();
+   _process.start(procprogram, procargs);
 
    // wait for the process to run
    int cnt = 0;

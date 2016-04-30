@@ -30,7 +30,7 @@
 #include <QtGui/qtreewidget.h>
 
 typedef  QVector<KTextEditor::Document*> DocVector;
-class KProcess;
+class QProcess;
 class KTemporaryFile;
 
 /**
@@ -61,7 +61,7 @@ class KateMwModOnHdDialog : public KDialog
     void handleSelected( int action );
     class QTreeWidget *twDocuments;
     class QPushButton *btnDiff;
-    KProcess *m_proc;
+    QProcess *m_proc;
     KTemporaryFile *m_diffFile;
     QStringList m_stateTexts;
 

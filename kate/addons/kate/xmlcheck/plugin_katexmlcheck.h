@@ -37,8 +37,8 @@
 
 class QTreeWidget;
 class QTreeWidgetItem;
+class QProcess;
 class KTemporaryFile;
-class KProcess;
 
 class PluginKateXMLCheckView : public Kate::PluginView, public Kate::XMLGUIClient
 {
@@ -60,7 +60,7 @@ public slots:
 private:
     KTemporaryFile *m_tmp_file;
     bool m_validating;
-    KProcess *m_proc;
+    QProcess *m_proc;
     QString m_proc_stderr;
     QString m_dtdname;
     QTreeWidget *listview;

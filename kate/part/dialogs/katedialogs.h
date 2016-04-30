@@ -67,8 +67,8 @@ class KIntNumInput;
 class KIntSpinBox;
 class KPluginSelector;
 class KPluginInfo;
-class KProcess;
 
+class QProcess;
 class QCheckBox;
 class QLabel;
 class QCheckBox;
@@ -402,7 +402,7 @@ class KateModOnHdPrompt : public KDialog
     Ui::ModOnHdWidget* ui;
     KateDocument *m_doc;
     KTextEditor::ModificationInterface::ModifiedOnDiskReason m_modtype;
-    KProcess *m_proc;
+    QProcess *m_proc;
     KTemporaryFile *m_diffFile;
 };
 

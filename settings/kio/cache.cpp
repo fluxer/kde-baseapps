@@ -29,9 +29,9 @@
 #include <QLayout>
 #include <QPushButton>
 #include <QRadioButton>
+#include <QProcess>
 
 // KDE
-#include <kprocess.h>
 #include <kdebug.h>
 #include <kpluginfactory.h>
 #include <kio/http_slave_defaults.h>
@@ -123,7 +123,7 @@ void CacheConfigModule::configChanged()
 
 void CacheConfigModule::on_clearCacheButton_clicked()
 {
-  KProcess::startDetached(KStandardDirs::findExe("kio_http_cache_cleaner"),
+  QProcess::startDetached(KStandardDirs::findExe("kio_http_cache_cleaner"),
                           QStringList(QLatin1String("--clear-all")));
 }
 

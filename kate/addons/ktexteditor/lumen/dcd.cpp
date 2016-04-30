@@ -19,7 +19,6 @@
 **/
 
 #include "dcd.h"
-#include <kprocess.h>
 #include <kdebug.h>
 #include <QtCore/QFile>
 
@@ -146,19 +145,18 @@ int DCD::port()
 
 bool DCD::running()
 {
-    return m_sproc.state() == KProcess::Running;
+    return m_sproc.state() == QProcess::Running;
 }
 
 
 bool DCD::startServer()
 {
-    m_sproc.setOutputChannelMode(KProcess::MergedChannels);
-    m_sproc.setProgram(m_server, QStringList(QString("-p%1").arg(m_port)));
-    m_sproc.start();
+    m_sproc.setProcessChannelMode(QProcess::MergedChannels);
+    m_sproc.start(m_server, QStringList(QString("-p%1").arg(m_port)));
     bool started = m_sproc.waitForStarted(TIMEOUT_START_SERVER);
     bool finished = m_sproc.waitForFinished(TIMEOUT_START_SERVER);
 
-    if (!started || finished || m_sproc.state() == KProcess::NotRunning) {
+    if (!started || finished || m_sproc.state() == QProcess::NotRunning) {
         kWarning() << "unable to start completion-server:" << m_sproc.exitCode();
         kWarning() << m_sproc.readAll();
         return false;
@@ -170,18 +168,17 @@ bool DCD::startServer()
 
 DCDCompletion DCD::complete(QString file, int offset)
 {
-    KProcess proc;
-    proc.setOutputChannelMode(KProcess::MergedChannels);
-    proc.setProgram(m_client,
+    QProcess proc;
+    proc.setProcessChannelMode(QProcess::MergedChannels);
+    proc.start(m_client,
         QStringList()
             << QString("-p%1").arg(m_port)
             << QString("-c%1").arg(offset)
             << file
     );
-    int ret = proc.execute(TIMEOUT_COMPLETE);
 
-    if (ret != 0) {
-        kWarning() << "unable to complete:" << ret;
+    if (!proc.waitForFinished(TIMEOUT_COMPLETE)) {
+        kWarning() << "unable to complete:" << proc.exitCode();
         kWarning() << proc.readAll();
         return DCDCompletion();
     }
@@ -191,15 +188,14 @@ DCDCompletion DCD::complete(QString file, int offset)
 
 DCDCompletion DCD::complete(QByteArray data, int offset)
 {
-    KProcess proc;
-    proc.setOutputChannelMode(KProcess::MergedChannels);
-    proc.setProgram(m_client,
+    QProcess proc;
+    proc.setProcessChannelMode(QProcess::MergedChannels);
+    proc.start(m_client,
         QStringList()
             << QString("-p%1").arg(m_port)
             << QString("-c%1").arg(offset)
     );
 
-    proc.start();
     proc.write(data);
     proc.closeWriteChannel();
     if (!proc.waitForFinished(TIMEOUT_COMPLETE)) {
@@ -218,16 +214,15 @@ DCDCompletion DCD::complete(QByteArray data, int offset)
 
 QString DCD::doc(QByteArray data, int offset)
 {
-    KProcess proc;
-    proc.setOutputChannelMode(KProcess::MergedChannels);
-    proc.setProgram(m_client,
+    QProcess proc;
+    proc.setProcessChannelMode(QProcess::MergedChannels);
+    proc.start(m_client,
         QStringList()
             << QString("-p%1").arg(m_port)
             << QString("-c%1").arg(offset)
             << QString("--doc")
     );
 
-    proc.start();
     proc.write(data);
     proc.closeWriteChannel();
     if (!proc.waitForFinished(TIMEOUT_COMPLETE)) {
@@ -307,30 +302,28 @@ void DCD::addImportPath(QStringList paths)
 
     kDebug() << "ARGUMENTS:" << arguments;
 
-    KProcess proc;
-    proc.setOutputChannelMode(KProcess::MergedChannels);
-    proc.setProgram(m_client, arguments);
-    int ret = proc.execute(TIMEOUT_IMPORTPATH);
+    QProcess proc;
+    proc.setProcessChannelMode(QProcess::MergedChannels);
+    proc.start(m_client, arguments);
 
-    if (ret != 0) {
-        kWarning() << "unable to add importpath(s)" << paths << ":" << ret;
+    if (!proc.waitForFinished(TIMEOUT_IMPORTPATH)) {
+        kWarning() << "unable to add importpath(s)" << paths << ":" << proc.exitCode();
         kWarning() << proc.readAll();
     }
 }
 
 void DCD::shutdown()
 {
-    KProcess proc;
-    proc.setOutputChannelMode(KProcess::MergedChannels);
-    proc.setProgram(m_client,
+    QProcess proc;
+    proc.setProcessChannelMode(QProcess::MergedChannels);
+    proc.start(m_client,
         QStringList()
             << QString("-p%1").arg(m_port)
             << QString("--shutdown")
     );
-    int ret = proc.execute(TIMEOUT_SHUTDOWN);
 
-    if (ret != 0) {
-        kWarning() << "unable to shutdown dcd:" << ret;
+    if (!proc.waitForFinished(TIMEOUT_SHUTDOWN)) {
+        kWarning() << "unable to shutdown dcd:" << proc.exitCode();
         kWarning() << proc.readAll();
     }
 }
@@ -338,7 +331,7 @@ void DCD::shutdown()
 
 bool DCD::stopServer()
 {
-    if (m_sproc.state() == KProcess::Running) {
+    if (m_sproc.state() == QProcess::Running) {
         kDebug() << "shutting down dcd";
         shutdown();
         if(!m_sproc.waitForFinished(TIMEOUT_SHUTDOWN_SERVER))

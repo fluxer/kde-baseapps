@@ -34,7 +34,6 @@
 #include <knotification.h>
 #include <krun.h>
 #include <kshell.h>
-#include <kprocess.h>
 #include <kshortcut.h>
 #include <kprotocolmanager.h>
 #include <kio/deletejob.h>
@@ -69,6 +68,7 @@
 #include <QEvent>
 #include <QList>
 #include <QDir>
+#include <QProcess>
 
 #include <assert.h>
 #include <unistd.h>
@@ -441,7 +441,7 @@ void KonqOperations::asyncDrop( const KFileItem & destItem )
         for ( ; it != lst.end() ; it++ )
             args << (*it).path(); // assume local files
         kDebug(1203) << "starting " << m_destUrl.path() << " with " << lst.count() << " arguments";
-        KProcess::startDetached( m_destUrl.path(), args );
+        QProcess::startDetached( m_destUrl.path(), args );
     }
     deleteLater();
 }

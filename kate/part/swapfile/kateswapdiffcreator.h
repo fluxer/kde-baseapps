@@ -25,7 +25,7 @@
 #include <QAction>
 #include <KTemporaryFile>
 
-class KProcess;
+class QProcess;
 
 namespace Kate {
   class SwapFile;
@@ -50,7 +50,7 @@ class SwapDiffCreator : public QObject
     void slotDiffFinished();
 
   private:
-    KProcess* m_proc;
+    QProcess* m_proc;
     KTemporaryFile m_originalFile;
     KTemporaryFile m_recoveredFile;
     KTemporaryFile m_diffFile;

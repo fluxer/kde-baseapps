@@ -41,6 +41,7 @@
 #include <QLibrary>
 #include <QDBusInterface>
 #include <QDBusConnectionInterface>
+#include <QProcess>
 
 #include <kapplication.h>
 #include <kdebug.h>
@@ -55,7 +56,6 @@
 #include <kcmdlineargs.h>
 #include <kaboutdata.h>
 #include <klocale.h>
-#include <kprocess.h>
 #include <ksycoca.h>
 
 #include "sdk/npfunctions.h"
@@ -594,7 +594,7 @@ int main( int argc, char **argv )
     }
 
     // We're done with forking,
-    // KProcess needs SIGCHLD to be reset to what it was initially
+    // QProcess needs SIGCHLD to be reset to what it was initially
     sigaction( SIGCHLD, &oldact, 0 );
 
     // delete old mime types
@@ -677,9 +677,8 @@ int main( int argc, char **argv )
         kbuildsycoca.call("recreate");
     } else {
         // kded not running? fallback to calling kbuildsycoca directly:
-        KProcess proc;
-        proc << KStandardDirs::findExe(KBUILDSYCOCA_EXENAME);
-        proc.setOutputChannelMode(KProcess::MergedChannels); // silence kbuildsycoca output
-        proc.execute();
+        QProcess proc;
+        proc.setProcessChannelMode(QProcess::MergedChannels); // silence kbuildsycoca output
+        proc.execute(KStandardDirs::findExe(KBUILDSYCOCA_EXENAME));
     }
 }

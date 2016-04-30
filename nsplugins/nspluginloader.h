@@ -30,11 +30,11 @@
 #include <QHash>
 #include <QObject>
 #include <QWidget>
+#include <QProcess>
 #include <QtGui/qx11embed_x11.h>
 
 #include <KUrl>
 #include <kdemacros.h>
-#include <kprocess.h>
 #include "comm/dbustypes.h"
 
 #define EMBEDCLASS QX11EmbedContainer
@@ -112,7 +112,7 @@ private:
   QMultiHash<QString, QString> _mapping;
   QHash<QString, QString> _filetype;
 
-  KProcess _process;
+  QProcess _process;
   QString _viewerDBusId;
   OrgKdeNspluginsViewerInterface *_viewer;
 

@@ -22,7 +22,7 @@
 #include "kateswapfile.h"
 #include "katedocument.h"
 
-#include <kprocess.h>
+#include <qprocess.h>
 #include <kmessagebox.h>
 #include <krun.h>
 #include <klocale.h>
@@ -90,17 +90,18 @@ void SwapDiffCreator::viewDiff()
   }
   m_recoveredFile.close ();
 
-  // create a KProcess proc for diff
-  m_proc = new KProcess(this);
-  m_proc->setOutputChannelMode(KProcess::MergedChannels);
-  *m_proc << "diff" << "-u" <<  m_originalFile.fileName() << m_recoveredFile.fileName();
+  // create a QProcess proc for diff
+  m_proc = new QProcess(this);
+  m_proc->setProcessChannelMode(QProcess::MergedChannels);
 
   connect(m_proc, SIGNAL(readyRead()), this, SLOT(slotDataAvailable()));
   connect(m_proc, SIGNAL(finished(int,QProcess::ExitStatus)), this, SLOT(slotDiffFinished()));
 
 //   setCursor(Qt::WaitCursor);
 
-  m_proc->start();
+  QStringList procargs;
+  procargs << "-u" <<  m_originalFile.fileName() << m_recoveredFile.fileName();
+  m_proc->start("diff", procargs);
 
   QTextStream ts(m_proc);
   int lineCount = recoverDoc.lines();

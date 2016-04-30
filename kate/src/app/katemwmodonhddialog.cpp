@@ -25,12 +25,12 @@
 
 #include <KLocale>
 #include <KMessageBox>
-#include <kprocess.h>
 #include <KRun>
 #include <KTemporaryFile>
 #include <KPushButton>
 #include <KVBox>
 
+#include <QProcess>
 #include <QHeaderView>
 #include <QLabel>
 #include <QPushButton>
@@ -242,17 +242,18 @@ void KateMwModOnHdDialog::slotDiff()
   m_diffFile = new KTemporaryFile();
   m_diffFile->open();
 
-  // Start a KProcess that creates a diff
-  m_proc = new KProcess( this );
-  m_proc->setOutputChannelMode( KProcess::MergedChannels );
-  *m_proc << "diff" << "-ub" << "-" << doc->url().toLocalFile();
+  // Start a QProcess that creates a diff
+  m_proc = new QProcess( this );
+  m_proc->setProcessChannelMode( QProcess::MergedChannels );
   connect( m_proc, SIGNAL(readyRead()), this, SLOT(slotDataAvailable()) );
   connect( m_proc, SIGNAL(finished(int,QProcess::ExitStatus)), this, SLOT(slotPDone()) );
 
   setCursor( Qt::WaitCursor );
   btnDiff->setEnabled(false);
 
-  m_proc->start();
+  QStringList procargs;
+  procargs << "-ub" << "-" << doc->url().toLocalFile();
+  m_proc->start("diff", procargs);
 
   QTextStream ts(m_proc);
   int lastln = doc->lines() - 1;

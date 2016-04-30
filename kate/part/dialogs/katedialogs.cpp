@@ -79,7 +79,6 @@
 #include <kmimetypechooser.h>
 #include <knuminput.h>
 #include <kmenu.h>
-#include <kprocess.h>
 #include <krun.h>
 #include <kseparator.h>
 #include <kstandarddirs.h>
@@ -90,22 +89,23 @@
 #include <kplugininfo.h>
 #include <ktabwidget.h>
 
+#include <QtCore/QFile>
+#include <QtCore/QMap>
+#include <QtCore/QObject>
+#include <QtCore/QProcess>
+#include <QtCore/QStringList>
+#include <QtCore/QTextCodec>
+#include <QtCore/QTextStream>
 #include <QtGui/QCheckBox>
 #include <QtGui/QComboBox>
 #include <QtGui/QDialog>
-#include <QtCore/QFile>
 #include <QtGui/QGroupBox>
 #include <QtGui/QLabel>
 #include <QtGui/QLayout>
-#include <QtCore/QMap>
-#include <QtCore/QObject>
 #include <QtGui/QPainter>
 #include <QtGui/QRadioButton>
 #include <QtGui/QSlider>
-#include <QtCore/QStringList>
 #include <QtGui/QTabWidget>
-#include <QtCore/QTextCodec>
-#include <QtCore/QTextStream>
 #include <QtGui/QToolButton>
 #include <QtGui/QWhatsThis>
 #include <QtGui/qevent.h>
@@ -1349,13 +1349,9 @@ void KateModOnHdPrompt::slotDiff()
   m_diffFile = new KTemporaryFile();
   m_diffFile->open();
 
-  // Start a KProcess that creates a diff
-  m_proc = new KProcess( this );
-  m_proc->setOutputChannelMode( KProcess::MergedChannels );
-  qDebug() << "diff" << QString(ui->chkIgnoreWhiteSpaces->isChecked() ? "-ub" : "-u")
-     << "-" <<  m_doc->url().toLocalFile();
-  *m_proc << "diff" << QString(ui->chkIgnoreWhiteSpaces->isChecked() ? "-ub" : "-u")
-     << "-" <<  m_doc->url().toLocalFile();
+  // Start a QProcess that creates a diff
+  m_proc = new QProcess( this );
+  m_proc->setProcessChannelMode( QProcess::MergedChannels );
   connect( m_proc, SIGNAL(readyRead()), this, SLOT(slotDataAvailable()) );
   connect( m_proc, SIGNAL(finished(int,QProcess::ExitStatus)), this, SLOT(slotPDone()) );
 
@@ -1364,7 +1360,11 @@ void KateModOnHdPrompt::slotDiff()
   ui->chkIgnoreWhiteSpaces->setEnabled( false );
   ui->btnDiff->setEnabled( false );
 
-  m_proc->start();
+  QStringList procargs;
+  procargs << QString(ui->chkIgnoreWhiteSpaces->isChecked() ? "-ub" : "-u")
+     << "-" <<  m_doc->url().toLocalFile();
+  qDebug() << "diff" << procargs;
+  m_proc->start("diff", procargs);
 
   QTextStream ts(m_proc);
   int lastln = m_doc->lines() - 1;

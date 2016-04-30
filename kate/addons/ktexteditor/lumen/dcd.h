@@ -23,7 +23,7 @@
 
 #include <qobject.h>
 #include <qmap.h>
-#include <kprocess.h>
+#include <qprocess.h>
 #include <kicon.h>
 
 namespace DCDCompletionType { enum DCDCompletionType { Identifiers, Calltips }; };
@@ -86,7 +86,7 @@ class DCD
         int m_port;
         QString m_server;
         QString m_client;
-        KProcess m_sproc;
+        QProcess m_sproc;
 };
 
 #endif
