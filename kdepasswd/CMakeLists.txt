@@ -5,11 +5,13 @@ add_subdirectory(kcm)
 set(kdepasswd_SRCS
     kdepasswd.cpp
     passwd.cpp
-    passwddlg.cpp)
+    passwddlg.cpp
+    process.cpp
+)
 
 add_executable(kdepasswd ${kdepasswd_SRCS})
 
-target_link_libraries(kdepasswd ${KDE4_KIO_LIBS} ${KDE4_KDESU_LIBS})
+target_link_libraries(kdepasswd ${KDE4_KIO_LIBS} ${KDE4_KPTY_LIBS})
 
 install(
     TARGETS kdepasswd

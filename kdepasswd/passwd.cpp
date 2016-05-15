@@ -45,8 +45,6 @@
 #include <kstandarddirs.h>
 #include <kdefakes.h>
 
-#include <kdesu/process.h>
-
 
 PasswdProcess::PasswdProcess(const QByteArray &user)
 {
@@ -101,7 +99,7 @@ int PasswdProcess::exec(const char *oldpass, const char *newpass,
     QList<QByteArray> args;
     if(bOtherUser)
         args += m_User;
-    int ret = KDESu::PtyProcess::exec("passwd", args);
+    int ret = PtyProcess::exec("passwd", args);
     if (ret < 0)
     {
         kDebug(1512) << "Passwd not found!\n";

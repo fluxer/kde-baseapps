@@ -27,14 +27,14 @@
 #define PASSWD_H
 
 #include <QtCore/qbytearray.h>
-#include <kdesu/process.h>
+#include "process.h"
 
 /**
  * A C++ API to passwd.
  */
 
 class PasswdProcess
-    : public KDESu::PtyProcess
+    : public PtyProcess
 {
 public:
     PasswdProcess(const QByteArray &user = QByteArray());
