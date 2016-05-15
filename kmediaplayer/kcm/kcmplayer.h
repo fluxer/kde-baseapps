@@ -50,7 +50,7 @@ public slots:
 private:
     Ui_KCMPlayer *m_ui;
     QSettings *m_settings;
-    KMediaPlayer *m_player;
+    KAudioPlayer *m_player;
     QString m_application;
 };
 
