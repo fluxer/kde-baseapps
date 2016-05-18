@@ -53,6 +53,7 @@
     <item> Q_SIGNALS </item>
     <item> Q_SLOT </item>
     <item> Q_SLOTS </item>
+    <item> Q_NULLPTR </item>
     <!-- Various macros from:
         http://qt-project.org/doc/qt-4.8/qmetatype.html#macros
         http://qt-project.org/doc/qt-4.8/qbytearray.html#macros
