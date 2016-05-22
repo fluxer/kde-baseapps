@@ -87,7 +87,7 @@ QVariant CodeCompletionTestModel::data( const QModelIndex & index, int role ) co
             default:
               return " const";
             case 1:
-              return " KDE_DEPRECATED";
+              return " Q_DECL_DEPRECATED";
             case 2:
               return "";
           }
