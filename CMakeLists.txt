@@ -14,9 +14,18 @@ find_package(ZLIB)
 set_package_properties(ZLIB PROPERTIES
     DESCRIPTION "Support for gzip compressed files and data streams"
     URL "http://www.zlib.net"
-    PURPOSE "Required for building Konqueror"
+    PURPOSE "Required for building Konqueror library"
     TYPE REQUIRED
 )
+
+find_package(Sudo)
+set_package_properties(Sudo PROPERTIES
+    DESCRIPTION "Sudo allows a system administrator to delegate authority to give certain users"
+    URL "http://www.sudo.ws/"
+    TYPE RUNTIME
+    PURPOSE "Needed for kdesudo to operate"
+)
+
 
 include(ConfigureChecks.cmake)
 configure_file(
@@ -45,6 +54,7 @@ add_subdirectory(kfind)
 add_subdirectory(settings)
 add_subdirectory(konsole)
 add_subdirectory(kmediaplayer)
+add_subdirectory(kdesudo)
 
 if(Q_WS_X11)
     if(NOT KATIE_FOUND)
