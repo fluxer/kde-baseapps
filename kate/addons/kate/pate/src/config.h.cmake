@@ -17,5 +17,5 @@
 // the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 // Boston, MA 02110-1301, USA.
 
-#define PATE_PYTHON_LIBRARY "${PYTHON_LIBRARY}"
+#define PATE_PYTHON_LIBRARY "${PYTHON_LIBRARIES}"
 #define PATE_PYTHON_SITE_PACKAGES_INSTALL_DIR "${PYTHON_SITE_PACKAGES_INSTALL_DIR}"

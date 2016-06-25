@@ -46,7 +46,7 @@ kde4_add_plugin(katepateplugin ${sources})
 target_link_libraries(
     katepateplugin
     ${KDE4_KDEUI_LIBS}
-    ${PYTHON_LIBRARY}
+    ${PYTHON_LIBRARIES}
     ${QT_QTWEBKIT_LIBRARY}
     kateinterfaces
 )

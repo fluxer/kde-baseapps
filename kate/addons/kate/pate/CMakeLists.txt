@@ -20,8 +20,8 @@
 
 project(pate)
 
-macro_optional_find_package(PythonLibrary)
-macro_log_feature(PYTHON_LIBRARY "PythonLibrary" "Python Library" "")
+macro_optional_find_package(PythonLibs)
+macro_log_feature(PYTHONLIBS_FOUND "PythonLibs" "Python Library" "")
 
 macro_optional_find_package(SIP)
 macro_log_feature(SIP_FOUND "SIP" "Support for SIP Python bindings" "")
@@ -32,14 +32,14 @@ macro_log_feature(PYQT4_FOUND "PyQt4" "Python bindings for Qt4" "")
 macro_optional_find_package(PyKDE4)
 macro_log_feature(PYKDE4_FOUND "PyKDE4" "Python bindings for KDE4" "")
 
-if (NOT PYTHONLIBRARY_FOUND)
+if (NOT PYTHONLIBS_FOUND)
     message(WARNING "Pate plugin needs Python Library.")
     return()
-endif (NOT PYTHONLIBRARY_FOUND)
-if (NOT PYTHON_LIBRARY)
+endif (NOT PYTHONLIBS_FOUND)
+if (NOT PYTHON_LIBRARIES)
     message(WARNING "Pate plugin needs Python Library. (We are halfway there broken installation??")
     return()
-endif (NOT PYTHON_LIBRARY)
+endif (NOT PYTHON_LIBRARIES)
 if (NOT SIP_FOUND OR 0x${SIP_VERSION} LESS 0x40701)
     message(WARNING "Pate plugin needs SIP 4.7.1 or later. " ${SIP_VERSION})
     return()
@@ -74,7 +74,7 @@ include(KDE4Defaults)
 include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}
     ${SIP_INCLUDE_DIR}
-    ${PYTHON_INCLUDE_PATH}
+    ${PYTHON_INCLUDE_DIRS}
     # KDE
     ${KDE4_INCLUDE_DIR}
     ${KDE4_INCLUDE_DIR}/solid
