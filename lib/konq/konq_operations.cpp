@@ -320,7 +320,7 @@ KonqOperations *KonqOperations::doDrop( const KFileItem & destItem, const KUrl &
 
         Qt::DropAction action = ev->dropAction();
         // Check for the drop of a bookmark -> we want a Link action
-        if ( ev->provides("application/x-xbel") )
+        if ( ev->mimeData()->hasFormat( QLatin1String("application/x-xbel")) )
         {
             modifiers |= Qt::ControlModifier | Qt::ShiftModifier;
             action = Qt::LinkAction;
