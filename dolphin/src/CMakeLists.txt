@@ -51,7 +51,6 @@ set(dolphinprivate_LIB_SRCS
     kitemviews/private/kitemlistsmoothscroller.cpp
     kitemviews/private/kitemlistviewanimation.cpp
     kitemviews/private/kitemlistviewlayouter.cpp
-    kitemviews/private/kpixmapmodifier.cpp
     settings/additionalinfodialog.cpp
     settings/applyviewpropsjob.cpp
     settings/viewmodes/viewmodesettings.cpp

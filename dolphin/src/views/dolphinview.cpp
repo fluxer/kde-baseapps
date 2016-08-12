@@ -122,10 +122,6 @@ DolphinView::DolphinView(const KUrl& url, QWidget* parent) :
     const int delay = GeneralSettings::autoExpandFolders() ? 750 : -1;
     controller->setAutoActivationDelay(delay);
 
-    // The EnlargeSmallPreviews setting can only be changed after the model
-    // has been set in the view by KItemListController.
-    m_view->setEnlargeSmallPreviews(GeneralSettings::enlargeSmallPreviews());
-
     m_container = new KItemListContainer(controller, this);
     m_container->installEventFilter(this);
     setFocusProxy(m_container);

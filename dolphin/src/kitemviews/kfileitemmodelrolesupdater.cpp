@@ -29,7 +29,6 @@
 #include <KIO/JobUiDelegate>
 #include <KIO/PreviewJob>
 
-#include "private/kpixmapmodifier.h"
 #include "private/kdirectorycontentscounter.h"
 
 #include <QApplication>
@@ -64,7 +63,6 @@ KFileItemModelRolesUpdater::KFileItemModelRolesUpdater(KFileItemModel* model, QO
     m_iconSizeChangedDuringPausing(false),
     m_rolesChangedDuringPausing(false),
     m_previewShown(false),
-    m_enlargeSmallPreviews(true),
     m_clearPreviews(false),
     m_finishedItems(),
     m_model(model),
@@ -186,21 +184,6 @@ void KFileItemModelRolesUpdater::setPreviewsShown(bool show)
 bool KFileItemModelRolesUpdater::previewsShown() const
 {
     return m_previewShown;
-}
-
-void KFileItemModelRolesUpdater::setEnlargeSmallPreviews(bool enlarge)
-{
-    if (enlarge != m_enlargeSmallPreviews) {
-        m_enlargeSmallPreviews = enlarge;
-        if (m_previewShown) {
-            updateAllPreviews();
-        }
-    }
-}
-
-bool KFileItemModelRolesUpdater::enlargeSmallPreviews() const
-{
-    return m_enlargeSmallPreviews;
 }
 
 void KFileItemModelRolesUpdater::setEnabledPlugins(const QStringList& list)
@@ -433,43 +416,7 @@ void KFileItemModelRolesUpdater::slotGotPreview(const KFileItem& item, const QPi
         return;
     }
 
-    QPixmap scaledPixmap = pixmap;
-
-    const QString mimeType = item.mimetype();
-    const int slashIndex = mimeType.indexOf(QLatin1Char('/'));
-    const QString mimeTypeGroup = mimeType.left(slashIndex);
-    if (mimeTypeGroup == QLatin1String("image")) {
-        if (m_enlargeSmallPreviews) {
-            KPixmapModifier::applyFrame(scaledPixmap, m_iconSize);
-        } else {
-            // Assure that small previews don't get enlarged. Instead they
-            // should be shown centered within the frame.
-            const QSize contentSize = KPixmapModifier::sizeInsideFrame(m_iconSize);
-            const bool enlargingRequired = scaledPixmap.width()  < contentSize.width() &&
-                                           scaledPixmap.height() < contentSize.height();
-            if (enlargingRequired) {
-                QSize frameSize = scaledPixmap.size();
-                frameSize.scale(m_iconSize, Qt::KeepAspectRatio);
-
-                QPixmap largeFrame(frameSize);
-                largeFrame.fill(Qt::transparent);
-
-                KPixmapModifier::applyFrame(largeFrame, frameSize);
-
-                QPainter painter(&largeFrame);
-                painter.drawPixmap((largeFrame.width()  - scaledPixmap.width()) / 2,
-                                   (largeFrame.height() - scaledPixmap.height()) / 2,
-                                   scaledPixmap);
-                scaledPixmap = largeFrame;
-            } else {
-                // The image must be shrinked as it is too large to fit into
-                // the available icon size
-                KPixmapModifier::applyFrame(scaledPixmap, m_iconSize);
-            }
-        }
-    } else {
-        KPixmapModifier::scale(scaledPixmap, m_iconSize);
-    }
+    QPixmap scaledPixmap = pixmap.scaled(m_iconSize, Qt::KeepAspectRatio, Qt::SmoothTransformation);;
 
     QHash<QByteArray, QVariant> data = rolesData(item);
 

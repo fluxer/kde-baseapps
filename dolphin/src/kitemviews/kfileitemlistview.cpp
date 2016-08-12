@@ -24,14 +24,13 @@
 #include "kfileitemmodel.h"
 #include <KLocale>
 #include <KStringHandler>
-#include "private/kpixmapmodifier.h"
 
 #include <KDebug>
 #include <KIcon>
 #include <KTextEdit>
 
 #include <QPainter>
-#include <QtGui/qtextlayout.h>
+#include <QTextLayout>
 #include <QTimer>
 
 // #define KFILEITEMLISTVIEW_DEBUG
@@ -93,18 +92,6 @@ void KFileItemListView::setPreviewsShown(bool show)
 bool KFileItemListView::previewsShown() const
 {
     return m_modelRolesUpdater ? m_modelRolesUpdater->previewsShown() : false;
-}
-
-void KFileItemListView::setEnlargeSmallPreviews(bool enlarge)
-{
-    if (m_modelRolesUpdater) {
-        m_modelRolesUpdater->setEnlargeSmallPreviews(enlarge);
-    }
-}
-
-bool KFileItemListView::enlargeSmallPreviews() const
-{
-    return m_modelRolesUpdater ? m_modelRolesUpdater->enlargeSmallPreviews() : false;
 }
 
 void KFileItemListView::setEnabledPlugins(const QStringList& list)
@@ -172,7 +159,7 @@ QPixmap KFileItemListView::createDragPixmap(const KItemSet& indexes) const
             KIcon icon(model()->data(index).value("iconName").toString());
             pixmap = icon.pixmap(size, size);
         } else {
-            KPixmapModifier::scale(pixmap, QSize(size, size));
+            pixmap = pixmap.scaled(QSize(size, size), Qt::KeepAspectRatio, Qt::SmoothTransformation);
         }
 
         painter.drawPixmap(x, y, pixmap);

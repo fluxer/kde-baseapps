@@ -104,14 +104,6 @@ public:
     bool previewsShown() const;
 
     /**
-     * If enabled a small preview gets upscaled to the icon size in case where
-     * the icon size is larger than the preview. Per default enlarging is
-     * enabled.
-     */
-    void setEnlargeSmallPreviews(bool enlarge);
-    bool enlargeSmallPreviews() const;
-
-    /**
      * If \a paused is set to true the asynchronous resolving of roles will be paused.
      * State changes during pauses like changing the icon size or the preview-shown
      * will be remembered and handled after unpausing.
@@ -272,9 +264,6 @@ private:
 
     // Property for setPreviewsShown()/previewsShown().
     bool m_previewShown;
-
-    // Property for setEnlargeSmallPreviews()/enlargeSmallPreviews()
-    bool m_enlargeSmallPreviews;
 
     // True if the role "iconPixmap" should be cleared when resolving the next
     // role with resolveRole(). Is necessary if the preview gets disabled

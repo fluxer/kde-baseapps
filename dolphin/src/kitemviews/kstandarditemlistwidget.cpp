@@ -32,7 +32,6 @@
 
 #include "private/kfileitemclipboard.h"
 #include "private/kitemlistroleeditor.h"
-#include "private/kpixmapmodifier.h"
 
 #include <QtGui/qfontmetrics.h>
 #include <QGraphicsScene>
@@ -956,7 +955,7 @@ void KStandardItemListWidget::updatePixmapCache()
         } else if (m_pixmap.width() != maxIconWidth || m_pixmap.height() != maxIconHeight) {
             // A custom pixmap has been applied. Assure that the pixmap
             // is scaled to the maximum available size.
-            KPixmapModifier::scale(m_pixmap, QSize(maxIconWidth, maxIconHeight));
+            m_pixmap = m_pixmap.scaled(QSize(maxIconWidth, maxIconHeight), Qt::KeepAspectRatio, Qt::SmoothTransformation);
         }
 
         if (m_isCut) {
@@ -1353,8 +1352,7 @@ void KStandardItemListWidget::updateAdditionalInfoTextColor()
 void KStandardItemListWidget::drawPixmap(QPainter* painter, const QPixmap& pixmap)
 {
     if (m_scaledPixmapSize != pixmap.size()) {
-        QPixmap scaledPixmap = pixmap;
-        KPixmapModifier::scale(scaledPixmap, m_scaledPixmapSize);
+        QPixmap scaledPixmap = pixmap.scaled(m_scaledPixmapSize, Qt::KeepAspectRatio, Qt::SmoothTransformation);;
         painter->drawPixmap(m_pixmapPos, scaledPixmap);
 
 #ifdef KSTANDARDITEMLISTWIDGET_DEBUG
@@ -1463,7 +1461,7 @@ QPixmap KStandardItemListWidget::pixmapForIcon(const QString& name, const QStrin
 
         pixmap = icon.pixmap(requestedSize, requestedSize);
         if (requestedSize != size) {
-            KPixmapModifier::scale(pixmap, QSize(size, size));
+            pixmap = pixmap.scaled(QSize(size, size), Qt::KeepAspectRatio, Qt::SmoothTransformation);;
         }
 
         // Strangely KFileItem::overlays() returns empty string-values, so

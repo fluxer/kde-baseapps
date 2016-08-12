@@ -48,14 +48,6 @@ public:
     bool previewsShown() const;
 
     /**
-     * If enabled a small preview gets upscaled to the icon size in case where
-     * the icon size is larger than the preview. Per default enlarging is
-     * enabled.
-     */
-    void setEnlargeSmallPreviews(bool enlarge);
-    bool enlargeSmallPreviews() const;
-
-    /**
      * Sets the list of enabled thumbnail plugins that are used for previews.
      * Per default all plugins enabled in the KConfigGroup "PreviewSettings"
      * are used.
