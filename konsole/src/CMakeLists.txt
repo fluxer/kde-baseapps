@@ -145,9 +145,6 @@ install(
 ### Embedded Konsole KPart
 
 kde4_add_plugin(konsolepart Part.cpp)
-set_target_properties(konsolepart PROPERTIES
-    DEFINE_SYMBOL KONSOLE_PART
-)
 target_link_libraries(konsolepart
     ${KDE4_KPARTS_LIBS}
     konsoleprivate
