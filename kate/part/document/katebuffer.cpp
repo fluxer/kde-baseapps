@@ -34,7 +34,6 @@
 
 #include <kdebug.h>
 #include <kglobal.h>
-#include <kcharsets.h>
 #include <kde_file.h>
 
 // on the fly compression

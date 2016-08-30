@@ -70,7 +70,6 @@
 #include <kicon.h>
 #include <klocale.h>
 #include <kglobal.h>
-#include <kcharsets.h>
 #include <kmessagebox.h>
 #include <kaction.h>
 #include <kstandardaction.h>
