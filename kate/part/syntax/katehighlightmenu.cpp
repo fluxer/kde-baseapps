@@ -27,8 +27,6 @@
 #include "katesyntaxmanager.h"
 #include "katesyntaxdocument.h"
 
-#include "ui_filetypeconfigwidget.h"
-
 #include <kconfig.h>
 #include <kmimetype.h>
 #include <kmimetypechooser.h>
