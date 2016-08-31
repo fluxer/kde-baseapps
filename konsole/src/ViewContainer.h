@@ -412,6 +412,8 @@ private slots:
 signals:
     void detachTab(ViewContainer * self, QWidget * activeView);
     void closeTab(ViewContainer * self, QWidget * activeView);
+private slots:
+    void widgetRemoved(int index);
 
 private:
     void dynamicTabBarVisibility();
@@ -419,7 +421,6 @@ private:
     void setTabActivity(int index, bool activity);
     void renameTab(int index);
     void updateVisibilityOfQuickButtons();
-    void widgetRemoved(int index);
 
     ViewContainerTabBar* _tabBar;
     QPointer<QStackedWidget> _stackWidget;
