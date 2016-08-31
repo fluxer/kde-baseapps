@@ -96,6 +96,7 @@
       <item> fltk_wrap_ui </item>
       <item> foreach </item>
       <item> function </item>
+      <item> generate_export_header </item>
       <item> get_cmake_property </item>
       <item> get_directory_property </item>
       <item> get_filename_component </item>
@@ -180,6 +181,7 @@
       <item> ARGS </item>
       <item> ASCII </item>
       <item> AUTHOR_WARNING </item>
+      <item> BASE_NAME </item>
       <item> BEFORE </item>
       <item> BRIEF_DOCS </item>
       <item> BUILD </item>
@@ -546,6 +548,14 @@
       <item> EXCLUDE_FROM_ALL </item>
       <item> EXCLUDE_FROM_DEFAULT_BUILD </item>
       <item> EXPORT_NAME </item>
+      <item> EXPORT_MACRO_NAME </item>
+      <item> EXPORT_FILE_NAME </item>
+      <item> DEPRECATED_MACRO_NAME </item>
+      <item> NO_EXPORT_MACRO_NAME </item>
+      <item> STATIC_DEFINE </item>
+      <item> NO_DEPRECATED_MACRO_NAME </item>
+      <item> DEFINE_NO_DEPRECATED </item>
+      <item> PREFIX_NAME </item>
       <item> EXTERNAL_OBJECT </item>
       <item> EchoString </item>
       <item> FAIL_REGULAR_EXPRESSION </item>
