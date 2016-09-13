@@ -40,7 +40,7 @@ KateProjectTreeViewContextMenu::~KateProjectTreeViewContextMenu ()
 {
 }
 
-static bool isGit(const QString& filename)
+static inline bool isGit(const QString& filename)
 {
   QFileInfo fi(filename);
   QDir dir (fi.absoluteDir());
@@ -57,22 +57,6 @@ static bool isGit(const QString& filename)
   return isGit;
 }
 
-static bool appExists(const QString& appname)
-{
-  return !KStandardDirs::findExe(appname).isEmpty();
-}
-
-static void launchApp(const QString &app, const QString& file)
-{
-  QFileInfo fi(file);
-  QDir dir (fi.absoluteDir());
-
-  QStringList args;
-  args << file;
-
-  QProcess::startDetached(app, QStringList(), dir.absolutePath());
-}
-
 void KateProjectTreeViewContextMenu::exec(const QString& filename, const QPoint& pos, QWidget* parent)
 {
   /**
@@ -81,7 +65,7 @@ void KateProjectTreeViewContextMenu::exec(const QString& filename, const QPoint&
   QMenu menu;
 
   QAction *copyAction=menu.addAction(KIcon("edit-copy"),i18n("Copy Filename"));
-    
+
   /**
    * handle "open with"
    * find correct mimetype to query for possible applications
@@ -102,24 +86,43 @@ void KateProjectTreeViewContextMenu::exec(const QString& filename, const QPoint&
   }
 
   /**
+   * handle "open directory with"
+   * the mimetype to query for possible applications is known
+   */
+  // QFileInfo dirname(filename);
+  QMenu *openDirectoryWithMenu = menu.addMenu(i18n("Open Directory With"));
+  KService::List dirOffers = KMimeTypeTrader::self()->query("inode/directory", "Application");
+
+  /**
+   * for each one, insert a menu item...
+   */
+  for(KService::List::Iterator it = dirOffers.begin(); it != dirOffers.end(); ++it)
+  {
+    KService::Ptr service = *it;
+    QAction *action = openDirectoryWithMenu->addAction(KIcon(service->icon()), service->name());
+    action->setData(service->entryPath());
+  }
+
+  /**
    * perhaps disable menu, if no entries!
    */
-  openWithMenu->setEnabled (!openWithMenu->isEmpty());
+  openWithMenu->setEnabled(!openWithMenu->isEmpty());
+  openDirectoryWithMenu->setEnabled(!openDirectoryWithMenu->isEmpty());
 
   QList<QAction*> appActions;
   if (isGit(filename)) {
     QMenu* git = menu.addMenu(i18n("Git Tools"));
-    if (appExists("gitk")) {
+    if (!KStandardDirs::findExe("gitk").isEmpty()) {
       QAction* action = git->addAction(i18n("Launch gitk"));
       action->setData("gitk");
       appActions.append(action);
     }
-    if (appExists("qgit")) {
+    if (!KStandardDirs::findExe("qgit").isEmpty()) {
       QAction* action = git->addAction(i18n("Launch qgit"));
       action->setData("qgit");
       appActions.append(action);
     }
-    if (appExists("git-cola")) {
+    if (!KStandardDirs::findExe("git-cola").isEmpty()) {
       QAction* action = git->addAction(i18n("Launch git-cola"));
       action->setData("git-cola");
       appActions.append(action);
@@ -134,14 +137,29 @@ void KateProjectTreeViewContextMenu::exec(const QString& filename, const QPoint&
    * run menu and handle the triggered action
    */
   if (QAction *action = menu.exec (pos)) {
-
-    // handle apps
     if (copyAction == action) {
+      // handle copy
       QApplication::clipboard()->setText(filename);
     } else if (appActions.contains(action)) {
-      launchApp(action->data().toString(), filename);
+      // handle app action
+      QFileInfo fi(filename);
+      QDir dir (fi.absoluteDir());
+
+      QStringList args;
+      args << filename;
+
+      QProcess::startDetached(action->data().toString(), QStringList(), dir.absolutePath());
+    } else if(openDirectoryWithMenu == action->parentWidget()) {
+      // handle open directory with
+      const QString openDirWith = action->data().toString();
+      if (KService::Ptr app = KService::serviceByDesktopPath(openDirWith)) {
+        QFileInfo fi(filename);
+        QList<QUrl> list;
+        list << QUrl::fromLocalFile (fi.dir().absolutePath());
+        KRun::run(*app, list, parent);
+      }
     } else {
-      // handle "open with"
+      // open with
       const QString openWith = action->data().toString();
       if (KService::Ptr app = KService::serviceByDesktopPath(openWith)) {
         QList<QUrl> list;
