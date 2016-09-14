@@ -115,7 +115,7 @@ void KateScriptManager::collect(bool force)
    */
   foreach (const QString &type, QStringList () << "indentation" << "commands") {
     // get a list of all .js files for the current type
-    const QStringList list = KGlobal::dirs()->findAllResources("data", "katepart/script/" + type + "/*.js", KStandardDirs::NoDuplicates);
+    const QStringList list = KGlobal::dirs()->findAllResources("data", "katepart/script/" + type + "/" + type + "/*.js", KStandardDirs::NoDuplicates);
     
     // iterate through the files and read info out of cache or file
     foreach(const QString &fileName, list) {
