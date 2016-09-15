@@ -135,6 +135,7 @@
     <item> Q_ALIGNOF </item>
     <item> Q_ASSERT </item>
     <item> Q_ASSERT_X </item>
+    <item> Q_UNREACHABLE </item>
     <item> Q_BIG_ENDIAN </item>
     <item> Q_BROKEN_DEBUG_STREAM </item>
     <item> Q_BROKEN_TEMPLATE_SPECIALIZATION </item>
