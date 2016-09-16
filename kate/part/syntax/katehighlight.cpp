@@ -1128,8 +1128,8 @@ bool KateHighlighting::isInWord( QChar c, int attrib ) const
 
 bool KateHighlighting::canBreakAt( QChar c, int attrib ) const
 {
-  static const QString& sq = KGlobal::staticQString("\"'");
-  return (m_additionalData[ hlKeyForAttrib( attrib ) ]->wordWrapDeliminator.indexOf(c) != -1) && (sq.indexOf(c) == -1);
+  return (m_additionalData[ hlKeyForAttrib( attrib ) ]->wordWrapDeliminator.indexOf(c) != -1)
+    && (c != QChar::fromAscii('"') && c != QChar::fromAscii('\''));
 }
 
 QLinkedList<QRegExp> KateHighlighting::emptyLines(int attrib) const
