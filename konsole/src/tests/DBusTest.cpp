@@ -21,6 +21,8 @@
 #include "DBusTest.h"
 #include "../Session.h"
 
+#include <QtDBus/QDBusConnectionInterface>
+
 using namespace Konsole;
 
 /* Exec a new Konsole and grab its dbus */

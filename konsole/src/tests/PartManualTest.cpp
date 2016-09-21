@@ -38,7 +38,6 @@
 #include <KPluginFactory>
 #include <KService>
 #include <KParts/Part>
-#include <KPtyProcess>
 #include <KPtyDevice>
 #include <KDialog>
 #include <KDebug>

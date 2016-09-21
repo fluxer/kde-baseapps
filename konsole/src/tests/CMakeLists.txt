@@ -2,6 +2,8 @@ include_directories(
     ${KDE4_KPTY_INCLUDES}
     ${KDE4_KPARTS_INCLUDES}
     ${QT_QTTEST_INCLUDES}
+    # for konsoleprivate_export.h
+    ${CMAKE_CURRENT_BINARY_DIR}/..
 )
 
 set(KONSOLE_TEST_LIBS
