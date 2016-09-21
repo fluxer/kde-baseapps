@@ -100,8 +100,6 @@ private slots:
      */
     void markOutdatedPreview();
 
-    void slotVideoChanged();
-
     /**
      * Is invoked after the file meta data configuration dialog has been
      * closed and refreshes the visibility of the meta data.

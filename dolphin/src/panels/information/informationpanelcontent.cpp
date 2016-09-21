@@ -88,8 +88,6 @@ InformationPanelContent::InformationPanelContent(QWidget* parent) :
     m_playerWidget = new KMediaWidget(parent);
     m_playerWidget->hide();
     m_playerWidget->setMinimumWidth(minPreviewWidth);
-    connect(m_playerWidget->player(), SIGNAL(loaded()),
-            this, SLOT(slotVideoChanged()));
 
     // name
     m_nameLabel = new QLabel(parent);
@@ -202,6 +200,7 @@ void InformationPanelContent::showItem(const KFileItem& item)
             if (m_preview->isVisible()) {
                 m_playerWidget->setMaximumSize(m_preview->size());
             }
+            m_preview->setVisible(false);
         } else {
             m_playerWidget->player()->stop();
             m_playerWidget->hide();
@@ -338,11 +337,6 @@ void InformationPanelContent::markOutdatedPreview()
                                                KIconLoader::Desktop,
                                                KIconLoader::DisabledState);
     m_preview->setPixmap(disabledPixmap);
-}
-
-void InformationPanelContent::slotVideoChanged()
-{
-    m_preview->setVisible(true);
 }
 
 void InformationPanelContent::refreshMetaData()
