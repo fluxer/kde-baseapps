@@ -51,29 +51,35 @@ KMediaWindow::KMediaWindow(QWidget *parent, Qt::WindowFlags flags)
     b->setIcon(KIcon("document-open-remote"));
     b->setWhatsThis(i18n("Open a URL."));
 
-    KAction *c = actionCollection()->addAction("file_quit", this, SLOT(quit()));
-    c->setText(i18n("Quit"));
-    c->setIcon(KIcon("application-exit"));
-    c->setShortcut(KStandardShortcut::quit());
-    c->setWhatsThis(i18n("Close the application."));
+    KAction *c = actionCollection()->addAction("file_close", this, SLOT(closePath()));
+    c->setText(i18n("Close"));
+    c->setIcon(KIcon("document-close"));
+    c->setShortcut(KStandardShortcut::close());
+    c->setWhatsThis(i18n("Close the the current path/URL."));
 
-    KAction *d = actionCollection()->addAction("player_fullscreen", this, SLOT(fullscreen()));
-    d->setText(i18n("Fullscreen"));
-    d->setIcon(KIcon("view-fullscreen"));
-    d->setShortcut(KStandardShortcut::fullScreen());
-    d->setWhatsThis(i18n("Set the player view to fullscreen/non-fullscreen"));
+    KAction *d = actionCollection()->addAction("file_quit", this, SLOT(quit()));
+    d->setText(i18n("Quit"));
+    d->setIcon(KIcon("application-exit"));
+    d->setShortcut(KStandardShortcut::quit());
+    d->setWhatsThis(i18n("Close the application."));
+
+    KAction *e = actionCollection()->addAction("player_fullscreen", this, SLOT(fullscreen()));
+    e->setText(i18n("Fullscreen"));
+    e->setIcon(KIcon("view-fullscreen"));
+    e->setShortcut(KStandardShortcut::fullScreen());
+    e->setWhatsThis(i18n("Set the player view to fullscreen/non-fullscreen"));
 
 /*
     // TODO: can this be less hacky?
-    KAction *e = actionCollection()->addAction("player_audio_1", this, SLOT(configure()));
-    e->setText(i18n("test audio track"));
-    e->setIcon(KIcon("audio-input-line"));
+    KAction *f = actionCollection()->addAction("player_audio_1", this, SLOT(foo()));
+    f->setText(i18n("test audio track"));
+    f->setIcon(KIcon("audio-input-line"));
 */
 
-    KAction *f = actionCollection()->addAction("settings_player", this, SLOT(configure()));
-    f->setText(i18n("Configure KMediaPlayer"));
-    f->setIcon(KIcon("preferences-desktop-sound"));
-    f->setWhatsThis(i18n("Configure KMediaPlayer and applications that use it."));
+    KAction *g = actionCollection()->addAction("settings_player", this, SLOT(configure()));
+    g->setText(i18n("Configure KMediaPlayer"));
+    g->setIcon(KIcon("preferences-desktop-sound"));
+    g->setWhatsThis(i18n("Configure KMediaPlayer and applications that use it."));
 
     m_settings = new QSettings("KMediaPlayer", "kmediaplayer");
     m_recentfiles = new KRecentFilesAction(KIcon("document-open-recent"), "Open recent", this);
@@ -81,16 +87,16 @@ KMediaWindow::KMediaWindow(QWidget *parent, Qt::WindowFlags flags)
     m_recentfiles->setWhatsThis(i18n("Open recently opened files."));
     connect(m_recentfiles, SIGNAL(urlSelected(KUrl)), this, SLOT(openURL(KUrl)));
     actionCollection()->addAction("file_open_recent", m_recentfiles);
-    QStringList recenturls = m_settings->value("KMultiMedia/recenturls", QStringList()).toStringList();
-    foreach (QString url, recenturls) {
-        KUrl kurl(url);
+    const QVariant recenturls = m_settings->value("KMultiMedia/recenturls", QStringList());
+    foreach (const QString url, recenturls.toStringList()) {
+        const KUrl kurl(url);
         m_recentfiles->addUrl(kurl);
     }
 
     setupGUI();
     setAutoSaveSettings();
 
-    bool firstrun = m_settings->value("KMultiMedia/firstrun", true).toBool();
+    const bool firstrun = m_settings->value("KMultiMedia/firstrun", true).toBool();
     if (firstrun) {
         // no toolbar unless explicitly enabled
         toolBar()->setVisible(false);
@@ -113,14 +119,18 @@ KMediaWindow::~KMediaWindow()
     statusBar()->setVisible(m_statusvisible);
     saveAutoSaveSettings();
 
-    KUrl::List recenturls = m_recentfiles->urls();
     QStringList recentlist;
-    foreach (KUrl url, recenturls) {
+    foreach (const KUrl url, m_recentfiles->urls()) {
         recentlist.append(url.prettyUrl());
     }
     m_settings->setValue("KMultiMedia/recenturls", recentlist);
     m_settings->setValue("KMultiMedia/firstrun", false);
     m_settings->sync();
+
+    m_player->deleteLater();
+    m_recentfiles->deleteLater();
+    m_settings->deleteLater();
+    m_menu->deleteLater();
 }
 
 void KMediaWindow::showEvent(QShowEvent *event)
@@ -149,7 +159,7 @@ void KMediaWindow::hideMenuBar(bool visible)
 
 void KMediaWindow::openPath()
 {
-    QString path = KFileDialog::getOpenFileName(KUrl(), QString(), this, i18n("Select paths"));
+    const QString path = KFileDialog::getOpenFileName(KUrl(), QString(), this, i18n("Select paths"));
     if (!path.isEmpty()) {
         if (!m_player->player()->isPathSupported(path)) {
             QMessageBox::warning(this, i18n("Invalid path"),
@@ -180,9 +190,16 @@ void KMediaWindow::openURL()
     }
 }
 
-void KMediaWindow::quit()
+void KMediaWindow::openURL(KUrl url)
 {
-    qApp->quit();
+    m_player->open(url.prettyUrl());
+    m_recentfiles->addUrl(url);
+}
+
+void KMediaWindow::closePath()
+{
+    m_player->player()->stop();
+    statusBar()->showMessage("");
 }
 
 void KMediaWindow::fullscreen()
@@ -197,12 +214,6 @@ void KMediaWindow::configure()
     kcmdialg.exec();
 }
 
-void KMediaWindow::openURL(KUrl url)
-{
-    m_player->open(url.prettyUrl());
-    m_recentfiles->addUrl(url);
-}
-
 void KMediaWindow::menubar() {
     menuBar()->setVisible(!menuBar()->isVisible());
 }
@@ -212,4 +223,9 @@ void KMediaWindow::menu(QPoint position)
     // it is bogus, just ignore it
     Q_UNUSED(position);
     m_menu->exec(QCursor::pos());
+}
+
+void KMediaWindow::quit()
+{
+    qApp->quit();
 }

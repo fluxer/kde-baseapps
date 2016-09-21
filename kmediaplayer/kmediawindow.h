@@ -36,6 +36,7 @@ public slots:
     void openPath();
     void openURL();
     void openURL(KUrl url);
+    void closePath();
     void fullscreen();
     void configure();
     void menubar();

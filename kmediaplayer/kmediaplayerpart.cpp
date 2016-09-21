@@ -19,16 +19,9 @@
 #include "kmediaplayerpart.h"
 
 #include <KAboutData>
-#include <KAction>
-#include <KActionCollection>
 #include <KLocale>
 #include <KMessageBox>
-#include <KStandardAction>
-#include <KStatusBar>
 #include <KPluginFactory>
-#include <QtCore/QByteArray>
-#include <QtCore/QDir>
-#include <QtGui/QScrollArea>
 
 K_PLUGIN_FACTORY(KMediaPlayerPartFactory, registerPlugin<KMediaPlayerPart>();)  // produce a factory
 K_EXPORT_PLUGIN(KMediaPlayerPartFactory(KAboutData(
@@ -52,12 +45,17 @@ BrowserExtension::BrowserExtension(KMediaPlayerPart *parent)
 KMediaPlayerPart::KMediaPlayerPart(QWidget *parentWidget, QObject *parent, const QList<QVariant>&)
         : ReadOnlyPart(parent)
         , m_ext(new BrowserExtension(this))
-        , m_player(0)
+        , m_player(new KMediaWidget(parentWidget, KMediaWidget::HiddenControls))
 {
     setComponentData(KMediaPlayerPartFactory::componentData());
-
-    m_player = new KMediaWidget(parentWidget, KMediaWidget::HiddenControls);
     setWidget(m_player);
+}
+
+KMediaPlayerPart::~KMediaPlayerPart()
+{
+    m_player->player()->stop();
+    m_player->deleteLater();
+    m_ext->deleteLater();
 }
 
 bool KMediaPlayerPart::openUrl(const KUrl &url)
@@ -68,8 +66,8 @@ bool KMediaPlayerPart::openUrl(const KUrl &url)
 
 bool KMediaPlayerPart::openFile()
 {
-    KUrl kurl = url();
-    QString kurlstring = kurl.prettyUrl();
+    const KUrl kurl = url();
+    const QString kurlstring = kurl.prettyUrl();
     if (!kurl.isValid()) {
         KMessageBox::information(widget(), i18n("The URL is not valid: %1", kurlstring));
     } else if (!m_player->player()->isProtocolSupported(kurl.protocol())) {
@@ -84,19 +82,20 @@ bool KMediaPlayerPart::openFile()
 
 bool KMediaPlayerPart::closeUrl()
 {
+    m_player->player()->stop();
     return ReadOnlyPart::closeUrl();
 }
 
-void KMediaPlayerPart::updateURL(const KUrl &u)
+void KMediaPlayerPart::updateURL(const KUrl &url)
 {
     // update the interface
     emit m_ext->openUrlNotify(); //must be done first
-    emit m_ext->setLocationBarUrl(u.prettyUrl());
+    emit m_ext->setLocationBarUrl(url.prettyUrl());
 
-    m_player->open(u.prettyUrl());
+    m_player->open(url.prettyUrl());
 
     //do this last, or it breaks Konqi location bar
-    setUrl(u);
+    setUrl(url);
 }
 
 #include "moc_kmediaplayerpart.cpp"

@@ -1,10 +1,12 @@
 <!DOCTYPE kpartgui SYSTEM "kpartgui.dtd">
-<kpartgui name="kmediaplayer" version="1" >
+<kpartgui name="kmediaplayer" version="2" >
     <MenuBar>
         <Menu name="file"><text>&amp;File</text>
             <Action name="file_open"/>
             <Action name="file_open_url"/>
             <Action name="file_open_recent"/>
+            <Separator/>
+            <Action name="file_close"/>
             <Separator/>
             <Action name="file_quit"/>
         </Menu>
