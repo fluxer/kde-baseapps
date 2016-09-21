@@ -1,6 +1,6 @@
-add_subdirectory(kbookmarkmodel)
-
 include_directories(${CMAKE_CURRENT_BINARY_DIR}/kbookmarkmodel)
+
+add_subdirectory(kbookmarkmodel)
 
 ########### next target ###############
 
