@@ -179,7 +179,7 @@ void CloseExceptPluginView::updateMenuSlotStub(KTextEditor::Document*)
 }
 
 void CloseExceptPluginView::appendActionsFrom(
-    const std::set<QString>& paths
+    const QSet<QString>& paths
   , actions_map_type& actions
   , KActionMenu* menu
   , QSignalMapper* mapper
@@ -188,16 +188,17 @@ void CloseExceptPluginView::appendActionsFrom(
     Q_FOREACH(const QString& path, paths)
     {
         QString action = path.startsWith('*') ? path : path + '*';
-        actions[action] = QPointer<KAction>(new KAction(action, menu));
-        menu->addAction(actions[action]);
-        connect(actions[action], SIGNAL(triggered()), mapper, SLOT(map()));
-        mapper->setMapping(actions[action], action);
+        QPointer<KAction> kaction(new KAction(action, menu));
+        actions[action] = kaction;
+        menu->addAction(kaction);
+        connect(kaction, SIGNAL(triggered()), mapper, SLOT(map()));
+        mapper->setMapping(kaction, action);
     }
 }
 
 QPointer<QSignalMapper> CloseExceptPluginView::updateMenu(
-    const std::set<QString>& paths
-  , const std::set<QString>& masks
+    const QSet<QString>& paths
+  , const QSet<QString>& masks
   , actions_map_type& actions
   , KActionMenu* menu
   )
@@ -206,11 +207,12 @@ QPointer<QSignalMapper> CloseExceptPluginView::updateMenu(
     menu->setEnabled(!paths.empty());
 
     // Clear previous menus
-    for (actions_map_type::iterator it = actions.begin(), last = actions.end(); it !=last;)
+    foreach (const QPointer<KAction> it, actions)
     {
-        menu->removeAction(*it);
-        actions.erase(it++);
+        menu->removeAction(it);
     }
+    actions.clear();
+
     // Form a new one
     QPointer<QSignalMapper> mapper = QPointer<QSignalMapper>(new QSignalMapper(this));
     appendActionsFrom(paths, actions, menu, mapper);
@@ -241,7 +243,7 @@ void CloseExceptPluginView::updateMenu()
     else
     {
         // Iterate over documents and form a set of candidates
-        typedef std::set<QString> paths_set_type;
+        typedef QSet<QString> paths_set_type;
         paths_set_type doc_paths;
         paths_set_type masks;
         Q_FOREACH(KTextEditor::Document* document, docs)

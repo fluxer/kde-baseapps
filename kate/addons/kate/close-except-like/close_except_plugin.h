@@ -75,13 +75,13 @@ private:
     void connectToDocument(KTextEditor::Document*);
     void updateMenu();
     QPointer<QSignalMapper> updateMenu(
-        const std::set<QString>&
-      , const std::set<QString>&
+        const QSet<QString>&
+      , const QSet<QString>&
       , actions_map_type&
       , KActionMenu*
       );
     void appendActionsFrom(
-        const std::set<QString>&
+        const QSet<QString>&
       , actions_map_type&
       , KActionMenu*
       , QSignalMapper*

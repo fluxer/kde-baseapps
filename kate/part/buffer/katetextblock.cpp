@@ -73,7 +73,7 @@ void TextBlock::clearLines ()
 {
   m_lines.clear ();
 }
-    
+
 void TextBlock::text (QString &text) const
 {
   // combine all lines
