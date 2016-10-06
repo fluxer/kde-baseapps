@@ -53,6 +53,9 @@
 #include <KConfigGroup>
 #include <KGlobal>
 #include <KCodecAction>
+#include <KService>
+#include <KMimeType>
+#include <KMimeTypeTrader>
 #include <kdeversion.h>
 
 // Konsole
@@ -113,6 +116,7 @@ SessionController::SessionController(Session* session , TerminalDisplay* view, Q
     , _codecAction(0)
     , _switchProfileMenu(0)
     , _webSearchMenu(0)
+    , _openWithMenu(0)
     , _listenForScreenWindowUpdates(false)
     , _preventClose(false)
     , _keepIconUntilInteraction(false)
@@ -372,6 +376,7 @@ void SessionController::selectionChanged(const QString& selectedText)
 {
     _selectedText = selectedText;
     updateCopyAction(selectedText);
+    updateOpenWithMenu(selectedText);
 }
 
 void SessionController::updateCopyAction(const QString& selectedText)
@@ -423,6 +428,7 @@ void SessionController::updateWebSearchMenu()
             _webSearchMenu->addAction(action);
 
             _webSearchMenu->setVisible(true);
+            _webSearchMenu->setEnabled(true);
         }
     }
 }
@@ -439,6 +445,51 @@ void SessionController::handleWebShortcutAction()
         const KUrl& url = filterData.uri();
         new KRun(url, QApplication::activeWindow());
     }
+}
+
+void SessionController::updateOpenWithMenu(const QString &selectedText)
+{
+    // reset
+    _openWithMenu->setVisible(false);
+    _openWithMenu->menu()->clear();
+
+    if (selectedText.isEmpty())
+        return;
+
+    QString searchText = selectedText;
+    searchText = searchText.replace('\n', ' ').replace('\r', ' ').simplified();
+
+    if (searchText.isEmpty())
+        return;
+
+    KMimeType::Ptr mimeType = KMimeType::findByPath(searchText);
+    KService::List offers = KMimeTypeTrader::self()->query(mimeType->name(), "Application");
+
+    for(KService::List::Iterator it = offers.begin(); it != offers.end(); ++it) {
+        KService::Ptr service = *it;
+        KAction *action = new KAction(KIcon(service->icon()), service->name(), _openWithMenu);
+        const QStringList actionData = QStringList() << service->exec() << searchText;
+        action->setData(actionData);
+        connect(action, SIGNAL(triggered()), this, SLOT(handleOpenWithAction()));
+        _openWithMenu->addAction(action);
+    }
+
+    const bool shouldEnable = offers.count() > 0;
+    _openWithMenu->setVisible(shouldEnable);
+    _openWithMenu->setEnabled(shouldEnable);
+}
+
+void SessionController::handleOpenWithAction()
+{
+    KAction* action = qobject_cast<KAction*>(sender());
+    if (!action)
+        return;
+
+    const QStringList actionData = action->data().toStringList();
+    Q_ASSERT(actionData.count() = 2);
+    KUrl::List actionUrls;
+    actionUrls << actionData.at(1);
+    KRun::run(actionData.at(0), actionUrls, QApplication::activeWindow());
 }
 
 void SessionController::configureWebShortcuts()
@@ -588,6 +639,10 @@ void SessionController::setupCommonActions()
     _webSearchMenu->setVisible(false);
     collection->addAction("web-search", _webSearchMenu);
 
+    _openWithMenu = new KActionMenu(i18n("Open With"), this);
+    _openWithMenu->setIcon(KIcon("document-open"));
+    _openWithMenu->setVisible(false);
+    collection->addAction("open-with", _openWithMenu);
 
     action = collection->addAction("select-all", this, SLOT(selectAll()));
     action->setText(i18n("&Select All"));

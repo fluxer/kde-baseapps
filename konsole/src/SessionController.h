@@ -250,6 +250,7 @@ private slots:
     void renameSession();
     void switchProfile(Profile::Ptr profile);
     void handleWebShortcutAction();
+    void handleOpenWithAction();
     void configureWebShortcuts();
     void sendSignal(QAction* action);
 
@@ -289,6 +290,7 @@ private slots:
     // update actions related with selected text
     void updateCopyAction(const QString& selectedText);
     void updateWebSearchMenu();
+    void updateOpenWithMenu(const QString& selectedText);
 
 private:
     // begins the search
@@ -338,6 +340,7 @@ private:
 
     KActionMenu* _switchProfileMenu;
     KActionMenu* _webSearchMenu;
+    KActionMenu* _openWithMenu;
 
     bool _listenForScreenWindowUpdates;
     bool _preventClose;
