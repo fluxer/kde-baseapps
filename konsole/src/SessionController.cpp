@@ -462,6 +462,7 @@ void SessionController::updateOpenWithMenu(const QString &selectedText)
     if (searchText.isEmpty())
         return;
 
+    // TODO: handle relative URL/path selection properly, it will cost a bit of I/O
     KMimeType::Ptr mimeType = KMimeType::findByPath(searchText);
     KService::List offers = KMimeTypeTrader::self()->query(mimeType->name(), "Application");
 
@@ -486,7 +487,7 @@ void SessionController::handleOpenWithAction()
         return;
 
     const QStringList actionData = action->data().toStringList();
-    Q_ASSERT(actionData.count() = 2);
+    Q_ASSERT(actionData.count() == 2);
     KUrl::List actionUrls;
     actionUrls << actionData.at(1);
     KRun::run(actionData.at(0), actionUrls, QApplication::activeWindow());
