@@ -22,6 +22,8 @@
 #include <kdebug.h>
 #include <kstandarddirs.h>
 #include <kdesktopfile.h>
+#include <kconfiggroup.h>
+#include <kservice.h>
 #include <kicon.h>
 
 #include "kcmplayer.h"
@@ -36,7 +38,6 @@ KCMPlayer::KCMPlayer(QWidget *parent, const QVariantList &arguments)
     m_ui = new Ui_KCMPlayer();
     m_ui->setupUi(this);
     m_settings = new QSettings("KMediaPlayer", "kmediaplayer", this);
-    m_player = new KAudioPlayer(this);
 
     setButtons(KCModule::Default | KCModule::Apply);
 
@@ -50,12 +51,13 @@ KCMPlayer::KCMPlayer(QWidget *parent, const QVariantList &arguments)
 
     Q_UNUSED(arguments);
 
-    QString globalaudio = m_settings->value("global/audiooutput", "auto").toString();
-    int globalvolume = m_settings->value("global/volume", 90).toInt();
-    bool globalmute = m_settings->value("global/mute", false).toBool();
+    const QString globalaudio = m_settings->value("global/audiooutput", "auto").toString();
+    const int globalvolume = m_settings->value("global/volume", 90).toInt();
+    const bool globalmute = m_settings->value("global/mute", false).toBool();
 
-    QStringList audiooutputs = m_player->audiooutputs();
-    delete m_player;
+    KAudioPlayer player(this);
+    const QStringList audiooutputs = player.audiooutputs();
+    player.deleteLater();
     m_ui->w_audiooutput->addItems(audiooutputs);
     m_ui->w_appaudiooutput->addItems(audiooutputs);
     int audioindex = m_ui->w_audiooutput->findText(globalaudio);
@@ -70,20 +72,19 @@ KCMPlayer::KCMPlayer(QWidget *parent, const QVariantList &arguments)
     connect(m_ui->w_mute, SIGNAL(stateChanged(int)),
         this, SLOT(setGlobalMute(int)));
 
-    QStringList desktopfiles = KGlobal::dirs()->findAllResources("xdgdata-apps",
-        "*.desktop", KStandardDirs::Recursive | KStandardDirs::NoDuplicates);
-    desktopfiles.sort();
-    foreach (const QString desktopfile, desktopfiles )
+    // NOTE: this catches all .desktop files
+    const KService::List servicefiles = KService::allServices();
+    foreach (const KService::Ptr service, servicefiles )
     {
-        KDesktopFile *desktop = new KDesktopFile(desktopfile);
-        QString appname = desktop->readName();
-        if (appname.isEmpty()) {
-            kDebug() << "ignoring application without name" << appname;
+        const QString servname = service.data()->desktopEntryName();
+        if (service.data()->property(QLatin1String("X-KDE-MediaPlayer"), QVariant::Bool).toBool() != true) {
+            kDebug() << "ignoring service that does not make use of the media player" << servname;
             continue;
         }
-        QString appicon = desktop->readIcon();
-        m_ui->w_application->addItem(KIcon(appicon), appname);
+        const QString servicon = service.data()->icon();
+        m_ui->w_application->addItem(KIcon(servicon), servname);
     }
+
     connect(m_ui->w_application, SIGNAL(currentIndexChanged(QString)),
         this, SLOT(setApplicationSettings(QString)));
     connect(m_ui->w_appaudiooutput, SIGNAL(currentIndexChanged(QString)),
@@ -96,6 +97,9 @@ KCMPlayer::KCMPlayer(QWidget *parent, const QVariantList &arguments)
 
 KCMPlayer::~KCMPlayer()
 {
+    m_settings->sync();
+    delete m_settings;
+    delete m_ui;
 }
 
 void KCMPlayer::defaults()
