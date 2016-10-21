@@ -113,10 +113,8 @@ KMediaWindow::KMediaWindow(QWidget *parent, Qt::WindowFlags flags)
 
 KMediaWindow::~KMediaWindow()
 {
+    hideMenuBar(true);
     disconnect(m_player, SIGNAL(controlsHidden(bool)), this, SLOT(hideMenuBar(bool)));
-    menuBar()->setVisible(m_menuvisible);
-    toolBar()->setVisible(m_toolvisible);
-    statusBar()->setVisible(m_statusvisible);
     saveAutoSaveSettings();
 
     QStringList recentlist;
