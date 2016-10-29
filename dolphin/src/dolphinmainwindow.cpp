@@ -436,7 +436,7 @@ void DolphinMainWindow::openNewActivatedTab(const KUrl& primaryUrl, const KUrl& 
 void DolphinMainWindow::activateNextTab()
 {
     if (m_viewTab.count() >= 2) {
-        const int tabIndex = (m_tabBar->currentIndex() + 1) + m_tabBar->count();
+        const int tabIndex = (m_tabBar->currentIndex() + 1) % m_tabBar->count();
         setActiveTab(tabIndex);
     }
 }
