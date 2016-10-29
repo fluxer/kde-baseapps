@@ -173,7 +173,7 @@ QString ProcessInfo::formatShortDir(const QString& input) const
         const QString& part = iter.previous();
 
         if (dirNamesToShorten.contains(part)) {
-            result.prepend(QDir::separator() + part[0]);
+            result.prepend(QDir::separator() + QString(part[0]));
         } else {
             result.prepend(part);
             break;

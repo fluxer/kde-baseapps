@@ -436,7 +436,7 @@ void DolphinMainWindow::openNewActivatedTab(const KUrl& primaryUrl, const KUrl& 
 void DolphinMainWindow::activateNextTab()
 {
     if (m_viewTab.count() >= 2) {
-        const int tabIndex = (m_tabBar->currentIndex() + 1) % m_tabBar->count();
+        const int tabIndex = (m_tabBar->currentIndex() + 1) + m_tabBar->count();
         setActiveTab(tabIndex);
     }
 }
@@ -565,7 +565,7 @@ void DolphinMainWindow::saveProperties(KConfigGroup& group)
 
     for (int i = 0; i < tabCount; ++i) {
         const DolphinTabPage* tabPage = m_viewTab.at(i);
-        group.writeEntry("Tab " % QString::number(i), tabPage->saveState());
+        group.writeEntry("Tab " + QString::number(i), tabPage->saveState());
     }
 }
 
@@ -573,7 +573,7 @@ void DolphinMainWindow::readProperties(const KConfigGroup& group)
 {
     const int tabCount = group.readEntry("Tab Count", 1);
     for (int i = 0; i < tabCount; ++i) {
-        const QByteArray state = group.readEntry("Tab " % QString::number(i), QByteArray());
+        const QByteArray state = group.readEntry("Tab " + QString::number(i), QByteArray());
         DolphinTabPage* tabPage = m_viewTab.at(i);
         tabPage->restoreState(state);
 

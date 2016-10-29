@@ -73,12 +73,12 @@ FileViewDropboxPlugin::FileViewDropboxPlugin(QObject* parent, const QVariantList
         m_itemVersions.insert("unwatched",  KVersionControlPlugin2::UnversionedVersion);
     }
 
-    const QString dropboxDir = QDir::home().path() % QDir::separator() % fileName() % QDir::separator();
-    d->controlSocketPath = QDir::toNativeSeparators(dropboxDir % QLatin1String("command_socket"));
+    const QString dropboxDir = QDir::home().path() + QDir::separator() + fileName() + QDir::separator();
+    d->controlSocketPath = QDir::toNativeSeparators(dropboxDir + QLatin1String("command_socket"));
     d->controlSocket->connectToServer(d->controlSocketPath);
 
     connect(d->databaseFileWatcher, SIGNAL(fileChanged(QString)), SIGNAL(itemVersionsChanged()));
-    d->databaseFileWatcher->addPath(QDir::toNativeSeparators(dropboxDir % QLatin1String("aggregation.dbx")));
+    d->databaseFileWatcher->addPath(QDir::toNativeSeparators(dropboxDir + QLatin1String("aggregation.dbx")));
 
     connect(d->contextActions, SIGNAL(actionTriggered(QAction*)), SLOT(handleContextAction(QAction*)));
 }
@@ -163,7 +163,7 @@ QList<QAction*> FileViewDropboxPlugin::actions(const KFileItemList& items) const
 
 void FileViewDropboxPlugin::handleContextAction(QAction* action)
 {
-    sendCommand("icon_overlay_context_action\nverb\t" % action->objectName() % "\npaths\t", d->contextFilePaths, d->controlSocket);
+    sendCommand("icon_overlay_context_action\nverb\t" + action->objectName() + "\npaths\t", d->contextFilePaths, d->controlSocket);
 }
 
 QStringList FileViewDropboxPlugin::sendCommand(const QString& command,
@@ -180,7 +180,7 @@ QStringList FileViewDropboxPlugin::sendCommand(const QString& command,
     static const QString done("\ndone\n");
     static const QString ok("ok\n");
 
-    const QString request = command % paths.join(parameterSeperator) % done;
+    const QString request = command + paths.join(parameterSeperator) + done;
 
     socket->readAll();
     socket->write(request.toUtf8());

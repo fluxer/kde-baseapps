@@ -1434,7 +1434,7 @@ void KStandardItemListWidget::closeRoleEditor()
 
 QPixmap KStandardItemListWidget::pixmapForIcon(const QString& name, const QStringList& overlays, int size)
 {
-    const QString key = "KStandardItemListWidget:" % name % ":" % overlays.join(":") % ":" % QString::number(size);
+    const QString key = "KStandardItemListWidget:" + name + ":" + overlays.join(":") + ":" + QString::number(size);
     QPixmap pixmap;
 
     if (!QPixmapCache::find(key, pixmap)) {

@@ -41,9 +41,6 @@
 
 #include <KProtocolManager>
 
-// Qt includes
-#include <QStringBuilder>
-
 
 UserAgentInfo::UserAgentInfo()
 {
@@ -135,7 +132,7 @@ QString UserAgentInfo::userAgentDescription(int i)
         systemSummary = i18nc("describe UA platform, eg: firefox 3.1 \"on Windows XP\"", " on %1 %2", systemName, systemRelease);
     }
 
-    return userAgentName(i) % QL1C(' ') % userAgentVersion(i) % systemSummary;
+    return userAgentName(i) + QL1C(' ') + userAgentVersion(i) + systemSummary;
 }
 
 
