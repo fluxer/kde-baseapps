@@ -38,6 +38,4 @@ add_subdirectory(close-except-like)
 
 add_subdirectory(replicode)
 
-macro_optional_add_subdirectory(pate)
-
-macro_optional_add_subdirectory(project)
+add_subdirectory(project)
