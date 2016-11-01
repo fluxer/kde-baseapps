@@ -898,7 +898,7 @@ void KateBuildView::processLine(const QString &line)
 
     if (!rx)
     {
-        addError(QString(), 0, QString(), line);
+        addError(QString(), QString(), QString(), line);
         //kDebug() << "A filename was not found in the line ";
         return;
     }

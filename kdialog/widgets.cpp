@@ -74,7 +74,7 @@ void Widgets::handleXGeometry(QWidget * dlg)
 bool Widgets::inputBox(QWidget *parent, const QString& title, const QString& text, const QString& init, QString &result)
 {
   bool ok;
-  const QString str = KInputDialog::getText( title, text, init, &ok, parent, 0, 0, QString() );
+  const QString str = KInputDialog::getText( title, text, init, &ok, parent );
   if ( ok )
     result = str;
   return ok;
