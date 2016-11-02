@@ -224,7 +224,9 @@ KdeSudo::KdeSudo(const QString &icon, const QString &appname) :
             processArgs << "--";
         }
 
-
+        if (args->isSet("dbus")) {
+            processArgs << "dbus-launch";
+        }
 
         if (args->isSet("c")) {
             QString command = args->getOption("c");

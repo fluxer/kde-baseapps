@@ -84,6 +84,7 @@ int main(int argc, char **argv)
     options.add("f <file>", ki18n("Use target UID if <file> is not writeable"));
     options.add("t", ki18n("Fake option for KDE's KdeSu compatibility"));
     options.add("n", ki18n("Fake option for compatibility"));
+    options.add("nodbus", ki18n("Do not start a message bus"));
     options.add("nonewdcop", ki18n("Use existing DCOP server"));
     options.add("comment <dialog text>", ki18n("The comment that should be "
                 "displayed in the dialog"));
