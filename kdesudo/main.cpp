@@ -85,10 +85,8 @@ int main(int argc, char **argv)
     options.add("t", ki18n("Fake option for KDE's KdeSu compatibility"));
     options.add("n", ki18n("Fake option for compatibility"));
     options.add("nodbus", ki18n("Do not start a message bus"));
-    options.add("nonewdcop", ki18n("Use existing DCOP server"));
     options.add("comment <dialog text>", ki18n("The comment that should be "
                 "displayed in the dialog"));
-    options.add("noignorebutton", ki18n("Do not display « ignore » button"));
     options.add("attach <winid>", ki18n("Makes the dialog transient for an X app specified by winid"));
     options.add("desktop <desktop file>", ki18n("Manual override for "
                 "automatic desktop file detection"));

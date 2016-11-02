@@ -62,11 +62,18 @@ KdeSudo::KdeSudo(const QString &icon, const QString &appname) :
     bool priority = args->isSet("p");
     bool showCommand = (!args->isSet("d"));
     bool changeUID = true;
-    bool noExec = false;
     QString runas = args->getOption("u");
     QString cmd;
     int winid = -1;
     bool attach = args->isSet("attach");
+
+    if (!args->isSet("c") && !args->count()) {
+        KMessageBox::information(0, i18n("No command arguments supplied!\n"
+                                         "Usage: kdesudo [-u <runas>] <command>\n"
+                                         "KdeSudo will now exit...")
+                                );
+        exit(0);
+    }
 
     m_dialog = new KPasswordDialog;
     m_dialog->setDefaultButton(KDialog::Ok);
@@ -74,14 +81,6 @@ KdeSudo::KdeSudo(const QString &icon, const QString &appname) :
     if (attach) {
         winid = args->getOption("attach").toInt(&attach, 0);
         KWindowSystem::setMainWindow(m_dialog, (WId)winid);
-    }
-
-    if (!args->isSet("c") && !args->count()) {
-        KMessageBox::information(0, i18n("No command arguments supplied!\n"
-                                         "Usage: kdesudo [-u <runas>] <command>\n"
-                                         "KdeSudo will now exit...")
-                                );
-        noExec = true;
     }
 
     m_process = new QProcess;
@@ -280,11 +279,7 @@ KdeSudo::KdeSudo(const QString &icon, const QString &appname) :
 
     m_process->setProcessChannelMode(QProcess::MergedChannels);
 
-    if (noExec) {
-        exit(0);
-    } else {
-        m_process->start("sudo", processArgs);
-    }
+    m_process->start("sudo", processArgs);
 }
 
 KdeSudo::~KdeSudo()
