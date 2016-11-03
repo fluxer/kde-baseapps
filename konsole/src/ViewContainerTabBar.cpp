@@ -24,10 +24,11 @@
 #include "ViewContainer.h"
 
 // Qt
-#include <QtCore/QMimeData>
+#include <QMimeData>
 #include <QLabel>
-#include <QtGui/QPainter>
-#include <QtGui/qevent.h>
+#include <QPainter>
+#include <QEvent>
+#include <QPen>
 
 // KDE
 #include <KLocalizedString>

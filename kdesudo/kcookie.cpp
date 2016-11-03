@@ -35,44 +35,15 @@ namespace KDESu
         };
 
 
-
         KCookie::KCookie()
             : d(new KCookiePrivate)
         {
 #ifdef Q_WS_X11
-            getXCookie();
-#endif
-        }
-
-        KCookie::~KCookie()
-        {
-            delete d;
-        }
-
-        QByteArray KCookie::display() const
-        {
-            return d->m_Display;
-        }
-
-#ifdef Q_WS_X11
-        QByteArray KCookie::displayAuth() const
-        {
-            return d->m_DisplayAuth;
-        }
-#endif
-
-        void KCookie::getXCookie()
-        {
-#ifdef Q_WS_X11
-            d->m_Display = getenv("DISPLAY");
-#else
-            d->m_Display = getenv("QWS_DISPLAY");
-#endif
+            d->m_Display = qgetenv("DISPLAY");
             if (d->m_Display.isEmpty()) {
                 kError(900) << "$DISPLAY is not set.\n";
                 return;
             }
-#ifdef Q_WS_X11 // No need to mess with X Auth stuff
             QByteArray disp = d->m_Display;
             if (disp.startsWith("localhost:")) {
                 disp.remove(0, 9);
@@ -100,5 +71,21 @@ namespace KDESu
 #endif
         }
 
+        KCookie::~KCookie()
+        {
+            delete d;
+        }
+
+        QByteArray KCookie::display() const
+        {
+            return d->m_Display;
+        }
+
+#ifdef Q_WS_X11
+        QByteArray KCookie::displayAuth() const
+        {
+            return d->m_DisplayAuth;
+        }
+#endif
     }
 }

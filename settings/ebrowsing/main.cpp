@@ -106,7 +106,7 @@ void KURIFilterModule::save()
 {
     foreach( KCModule* module, modules )
     {
-	  module->save();
+        module->save();
     }
 }
 
@@ -114,7 +114,7 @@ void KURIFilterModule::defaults()
 {
     foreach( KCModule* module, modules )
     {
-	  module->defaults();
+        module->defaults();
     }
 }
 

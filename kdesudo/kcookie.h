@@ -45,8 +45,6 @@ namespace KDESu
 #endif
 
         private:
-            void getXCookie();
-
             class KCookiePrivate;
             KCookiePrivate *const d;
         };
