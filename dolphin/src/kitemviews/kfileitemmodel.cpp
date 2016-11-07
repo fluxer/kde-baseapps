@@ -1123,14 +1123,6 @@ void KFileItemModel::insertItems(QList<ItemData*>& newItems)
     m_groups.clear();
     prepareItemsForSorting(newItems);
 
-    if (m_sortRole == NameRole && m_naturalSorting) {
-        // Natural sorting of items can be very slow. However, it becomes much
-        // faster if the input sequence is already mostly sorted. Therefore, we
-        // first sort 'newItems' according to the QStrings returned by
-        // KFileItem::text() using QString::operator<(), which is quite fast.
-        parallelMergeSort(newItems.begin(), newItems.end(), nameLessThan, QThread::idealThreadCount());
-    }
-
     sort(newItems.begin(), newItems.end());
 
 #ifdef KFILEITEMMODEL_DEBUG
@@ -1648,17 +1640,9 @@ void KFileItemModel::sort(QList<KFileItemModel::ItemData*>::iterator begin,
 {
     KFileItemModelLessThan lessThan(this);
 
-    if (m_sortRole == NameRole) {
-        // Sorting by name can be expensive, in particular if natural sorting is
-        // enabled. Use all CPU cores to speed up the sorting process.
-        static const int numberOfThreads = QThread::idealThreadCount();
-        parallelMergeSort(begin, end, lessThan, numberOfThreads);
-    } else {
-        // Sorting by other roles is quite fast. Use only one thread to prevent
-        // problems caused by non-reentrant comparison functions, see
-        // https://bugs.kde.org/show_bug.cgi?id=312679
-        mergeSort(begin, end, lessThan);
-    }
+    // Use only one thread to prevent problems caused by non-reentrant
+    // comparison functions, see https://bugs.kde.org/show_bug.cgi?id=312679
+    mergeSort(begin, end, lessThan);
 }
 
 int KFileItemModel::sortRoleCompare(const ItemData* a, const ItemData* b) const

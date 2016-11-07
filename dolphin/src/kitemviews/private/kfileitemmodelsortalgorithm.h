@@ -22,9 +22,6 @@
 #ifndef KFILEITEMMODELSORTALGORITHM_H
 #define KFILEITEMMODELSORTALGORITHM_H
 
-#include <QtCore/QFuture>
-#include <QtCore/QtConcurrentRun>
-
 #include <algorithm>
 
 /**
@@ -52,39 +49,6 @@ static void mergeSort(RandomAccessIterator begin,
     mergeSort(begin, middle, lessThan);
     mergeSort(middle, end, lessThan);
     merge(begin, middle, end, lessThan);
-}
-
-/**
- * Uses up to \a numberOfThreads threads to sort the items between
- * \a begin and \a end. Only item ranges longer than
- * \a parallelMergeSortingThreshold are split to be sorted by two different
- * threads.
- *
- * The comparison function \a lessThan must be reentrant.
- */
-
-template <typename RandomAccessIterator, typename LessThan>
-static void parallelMergeSort(RandomAccessIterator begin,
-                              RandomAccessIterator end,
-                              LessThan lessThan,
-                              int numberOfThreads,
-                              int parallelMergeSortingThreshold = 100)
-{
-    const int span = end - begin;
-
-    if (numberOfThreads > 1 && span > parallelMergeSortingThreshold) {
-        const int newNumberOfThreads = numberOfThreads / 2;
-        const RandomAccessIterator middle = begin + span / 2;
-
-        QFuture<void> future = QtConcurrent::run(parallelMergeSort<RandomAccessIterator, LessThan>, begin, middle, lessThan, newNumberOfThreads, parallelMergeSortingThreshold);
-        parallelMergeSort(middle, end, lessThan, newNumberOfThreads, parallelMergeSortingThreshold);
-
-        future.waitForFinished();
-
-        merge(begin, middle, end, lessThan);
-    } else {
-        mergeSort(begin, end, lessThan);
-    }
 }
 
 /**
