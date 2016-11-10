@@ -51,7 +51,7 @@ void FileNameSearchProtocol::listDir(const KUrl& url)
 
     const QString search = url.queryItem("search");
     if (!search.isEmpty()) {
-        m_regExp = new QRegExp(search, Qt::CaseInsensitive, QRegExp::Wildcard);
+        m_regExp = new QRegExp(search, Qt::CaseInsensitive);
     }
 
     m_checkContent = url.queryItem("checkContent");
