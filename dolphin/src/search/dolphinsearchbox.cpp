@@ -311,6 +311,7 @@ void DolphinSearchBox::init()
     m_searchInput->installEventFilter(this);
     m_searchInput->setClearButtonShown(true);
     m_searchInput->setFont(KGlobalSettings::generalFont());
+    m_searchInput->setToolTip(i18nc("@info:tooltip", "Enter rich Perl-like pattern matching syntax"));
     setFocusProxy(m_searchInput);
     connect(m_searchInput, SIGNAL(returnPressed(QString)),
             this, SLOT(slotReturnPressed(QString)));
@@ -342,10 +343,12 @@ void DolphinSearchBox::init()
     // Create "From Here" and "Everywhere"button
     m_fromHereButton = new QToolButton(this);
     m_fromHereButton->setText(i18nc("action:button", "From Here"));
+    m_fromHereButton->setToolTip(i18nc("@info:tooltip", "Search only in the current directory"));
     initButton(m_fromHereButton);
 
     m_everywhereButton = new QToolButton(this);
     m_everywhereButton->setText(i18nc("action:button", "Everywhere"));
+    m_everywhereButton->setToolTip(i18nc("@info:tooltip", "Search in the Home directory"));
     initButton(m_everywhereButton);
 
     QButtonGroup* searchLocationGroup = new QButtonGroup(this);
