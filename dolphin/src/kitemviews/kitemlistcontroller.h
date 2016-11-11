@@ -42,7 +42,6 @@ class QGraphicsSceneMouseEvent;
 class QGraphicsSceneResizeEvent;
 class QGraphicsSceneWheelEvent;
 class QHideEvent;
-class QInputMethodEvent;
 class QKeyEvent;
 class QMimeData;
 class QShowEvent;
@@ -139,7 +138,6 @@ public:
     virtual bool showEvent(QShowEvent* event);
     virtual bool hideEvent(QHideEvent* event);
     virtual bool keyPressEvent(QKeyEvent* event);
-    virtual bool inputMethodEvent(QInputMethodEvent* event);
     virtual bool mousePressEvent(QGraphicsSceneMouseEvent* event, const QTransform& transform);
     virtual bool mouseMoveEvent(QGraphicsSceneMouseEvent* event, const QTransform& transform);
     virtual bool mouseReleaseEvent(QGraphicsSceneMouseEvent* event, const QTransform& transform);

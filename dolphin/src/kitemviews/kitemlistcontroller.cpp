@@ -522,12 +522,6 @@ void KItemListController::slotAutoActivationTimeout()
     }
 }
 
-bool KItemListController::inputMethodEvent(QInputMethodEvent* event)
-{
-    Q_UNUSED(event);
-    return false;
-}
-
 bool KItemListController::mousePressEvent(QGraphicsSceneMouseEvent* event, const QTransform& transform)
 {
     if (!m_view) {
@@ -1004,8 +998,6 @@ bool KItemListController::processEvent(QEvent* event, const QTransform& transfor
     switch (event->type()) {
     case QEvent::KeyPress:
         return keyPressEvent(static_cast<QKeyEvent*>(event));
-    case QEvent::InputMethod:
-        return inputMethodEvent(static_cast<QInputMethodEvent*>(event));
     case QEvent::GraphicsSceneMousePress:
         return mousePressEvent(static_cast<QGraphicsSceneMouseEvent*>(event), QTransform());
     case QEvent::GraphicsSceneMouseMove:

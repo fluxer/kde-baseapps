@@ -99,7 +99,9 @@ KateViewInternal::KateViewInternal(KateView *view)
 {
   setMinimumSize (0,0);
   setAttribute(Qt::WA_OpaquePaintEvent);
+#ifndef QT_KATIE
   setAttribute(Qt::WA_InputMethodEnabled);
+#endif
 
   // invalidate m_selectionCached.start(), or keyb selection is screwed initially
   m_selectionCached = KTextEditor::Range::invalid();
@@ -3465,6 +3467,7 @@ bool KateViewInternal::rangeAffectsView(const KTextEditor::Range& range, bool re
 }
 
 //BEGIN IM INPUT STUFF
+#ifndef QT_KATIE
 QVariant KateViewInternal::inputMethodQuery ( Qt::InputMethodQuery query ) const
 {
   switch (query) {
@@ -3614,7 +3617,7 @@ void KateViewInternal::inputMethodEvent(QInputMethodEvent* e)
 
   e->accept();
 }
-
+#endif
 //END IM INPUT STUFF
 
 void KateViewInternal::flashChar(const KTextEditor::Cursor & pos, KTextEditor::Attribute::Ptr attribute)

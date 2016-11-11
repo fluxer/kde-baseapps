@@ -217,7 +217,9 @@ class KateViewInternal : public QWidget
     virtual void wheelEvent(QWheelEvent* e);
     virtual void focusInEvent (QFocusEvent *);
     virtual void focusOutEvent (QFocusEvent *);
+#ifndef QT_KATIE
     virtual void inputMethodEvent(QInputMethodEvent* e);
+#endif
 
     void contextMenuEvent ( QContextMenuEvent * e );
 
@@ -407,18 +409,18 @@ class KateViewInternal : public QWidget
   /**
    * IM input stuff
    */
+#ifndef QT_KATIE
   public:
     virtual QVariant inputMethodQuery(Qt::InputMethodQuery query) const;
+#endif
 
   private:
     KTextEditor::MovingRange *m_imPreeditRange;
     QList<KTextEditor::MovingRange *> m_imPreeditRangeChildren;
 
-  private:
     void mouseMoved();
     void cursorMoved();
 
-  private:
     inline KateDocument *doc() { return m_view->doc(); }
     inline KateDocument *doc() const { return m_view->doc(); }
 };

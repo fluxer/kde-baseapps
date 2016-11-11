@@ -382,8 +382,10 @@ TerminalDisplay::TerminalDisplay(QWidget* parent)
 
     setFocusPolicy(Qt::WheelFocus);
 
+#ifndef QT_KATIE
     // enable input method support
     setAttribute(Qt::WA_InputMethodEnabled, true);
+#endif
 
     // this is an important optimization, it tells Qt
     // that TerminalDisplay will handle repainting its entire area.
@@ -2767,7 +2769,7 @@ void TerminalDisplay::pasteFromX11Selection(bool appendEnter)
 /*                                Input Method                               */
 /*                                                                           */
 /* ------------------------------------------------------------------------- */
-
+#ifndef QT_KATIE
 void TerminalDisplay::inputMethodEvent(QInputMethodEvent* event)
 {
     if (!event->commitString().isEmpty()) {
@@ -2815,6 +2817,7 @@ QVariant TerminalDisplay::inputMethodQuery(Qt::InputMethodQuery query) const
 
     return QVariant();
 }
+#endif
 
 QRect TerminalDisplay::preeditRect() const
 {
