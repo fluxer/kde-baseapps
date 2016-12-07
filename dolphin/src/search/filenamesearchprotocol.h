@@ -53,6 +53,7 @@ private:
     void cleanup();
 
     QString m_checkContent;
+    QString m_literal;
     QString m_checkType;
     QRegExp* m_regExp;
     QSet<QString> m_iteratedDirs;

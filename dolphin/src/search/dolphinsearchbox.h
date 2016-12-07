@@ -28,6 +28,7 @@ class DolphinFacetsWidget;
 class KLineEdit;
 class KSeparator;
 class QToolButton;
+class QCheckBox;
 class QScrollArea;
 class QLabel;
 class QVBoxLayout;
@@ -158,6 +159,7 @@ private:
     KSeparator* m_separator;
     QToolButton* m_fromHereButton;
     QToolButton* m_everywhereButton;
+    QCheckBox* m_literalBox;
     QToolButton* m_facetsToggleButton;
     DolphinFacetsWidget* m_facetsWidget;
 

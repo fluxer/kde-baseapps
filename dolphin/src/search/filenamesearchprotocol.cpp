@@ -49,14 +49,21 @@ void FileNameSearchProtocol::listDir(const KUrl& url)
 {
     cleanup();
 
-    const QString search = url.queryItem("search");
+    m_checkContent = url.queryItem("checkContent");
+
+    m_literal = url.queryItem("literal");
+
+    m_checkType = url.queryItem("checkType");
+
+
+    QString search = url.queryItem("search");
+    if (!search.isEmpty() && m_literal == "yes") {
+        search = QRegExp::escape(search);
+    }
+
     if (!search.isEmpty()) {
         m_regExp = new QRegExp(search, Qt::CaseInsensitive);
     }
-
-    m_checkContent = url.queryItem("checkContent");
-
-    m_checkType = url.queryItem("checkType");
 
     const QString urlString = url.queryItem("url");
     searchDirectory(KUrl(urlString));

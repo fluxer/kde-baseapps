@@ -37,6 +37,7 @@
 #include <QScrollArea>
 #include <QTimer>
 #include <QToolButton>
+#include <QCheckBox>
 #include <QVBoxLayout>
 
 DolphinSearchBox::DolphinSearchBox(QWidget* parent) :
@@ -52,6 +53,7 @@ DolphinSearchBox::DolphinSearchBox(QWidget* parent) :
     m_separator(0),
     m_fromHereButton(0),
     m_everywhereButton(0),
+    m_literalBox(0),
     m_facetsToggleButton(0),
     m_facetsWidget(0),
     m_searchPath(),
@@ -113,6 +115,10 @@ KUrl DolphinSearchBox::urlForSearching() const
         url.addQueryItem("checkContent", "yes");
     }
 
+    if(m_literalBox->isChecked()) {
+        url.addQueryItem("literal", "yes");
+    }
+
     if (!m_facetsWidget->types().isEmpty()) {
         url.addQueryItem("checkType", m_facetsWidget->types());
     }
@@ -138,6 +144,7 @@ void DolphinSearchBox::fromSearchUrl(const KUrl& url)
         setText(queryItems.value("search"));
         setSearchPath(queryItems.value("url"));
         m_contentButton->setChecked(queryItems.value("checkContent") == "yes");
+        m_literalBox->setChecked(queryItems.value("literal") == "yes");
     } else {
         setText(QString());
         setSearchPath(url);
@@ -283,6 +290,8 @@ void DolphinSearchBox::loadSettings()
         m_fileNameButton->setChecked(true);
     }
 
+    m_literalBox->setChecked(SearchSettings::literal());
+
     m_facetsWidget->setVisible(SearchSettings::showFacetsWidget());
 }
 
@@ -290,6 +299,7 @@ void DolphinSearchBox::saveSettings()
 {
     SearchSettings::setLocation(m_fromHereButton->isChecked() ? "FromHere" : "Everywhere");
     SearchSettings::setWhat(m_fileNameButton->isChecked() ? "FileName" : "Content");
+    SearchSettings::setLiteral(m_literalBox->isChecked());
     SearchSettings::setShowFacetsWidget(m_facetsToggleButton->isChecked());
     SearchSettings::self()->writeConfig();
 }
@@ -355,6 +365,12 @@ void DolphinSearchBox::init()
     searchLocationGroup->addButton(m_fromHereButton);
     searchLocationGroup->addButton(m_everywhereButton);
 
+    // Create "Literal" widget
+    m_literalBox = new QCheckBox(this);
+    m_literalBox->setText(i18nc("action:button", "Literal"));
+    m_literalBox->setToolTip(i18nc("@info:tooltip", "Escape the regular expression sequence"));
+    connect(m_literalBox, SIGNAL(stateChanged(int)), this, SLOT(slotConfigurationChanged()));
+
     // Create "Facets" widgets
     m_facetsToggleButton = new QToolButton(this);
     m_facetsToggleButton->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
@@ -374,6 +390,8 @@ void DolphinSearchBox::init()
     optionsLayout->addWidget(m_separator);
     optionsLayout->addWidget(m_fromHereButton);
     optionsLayout->addWidget(m_everywhereButton);
+    optionsLayout->addWidget(m_separator);
+    optionsLayout->addWidget(m_literalBox);
     optionsLayout->addStretch(1);
     optionsLayout->addWidget(m_facetsToggleButton);
 
