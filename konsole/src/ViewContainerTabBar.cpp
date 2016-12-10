@@ -27,7 +27,7 @@
 #include <QMimeData>
 #include <QLabel>
 #include <QPainter>
-#include <QEvent>
+#include <QDragEnterEvent>
 #include <QPen>
 
 // KDE
