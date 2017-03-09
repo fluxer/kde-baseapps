@@ -1,4 +1,4 @@
 {
 	"name": "kde-baseapps" ,
 	"files": [ { "git": 1 } ]
-};
+}
