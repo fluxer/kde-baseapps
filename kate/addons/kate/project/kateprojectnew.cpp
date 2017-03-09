@@ -84,7 +84,7 @@ void KateProjectNew::slotOk()
     }
 
     // not very elegant but it will do
-    QByteArray projectdata("{\n\t\"name\": \"#PROJECTNAME#\" ,\n\t\"files\": [ { \"#PROJECTTYPE#\": 1 } ]\n};");
+    QByteArray projectdata("{\n\t\"name\": \"#PROJECTNAME#\" ,\n\t\"files\": [ { \"#PROJECTTYPE#\": 1 } ]\n}");
     projectdata.replace("#PROJECTNAME#", m_ui->projectName->text().toUtf8());
     projectdata.replace("#PROJECTTYPE#", getPathType(m_ui->projectPath->text()));
 
