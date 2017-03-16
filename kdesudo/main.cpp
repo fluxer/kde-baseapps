@@ -74,7 +74,6 @@ int main(int argc, char **argv)
     KCmdLineOptions options;
     options.add("u <runas>", ki18n("sets a runas user"));
     options.add("c <command>", ki18n("The command to execute"));
-    options.add("s", ki18n("Fake option for compatibility"));
     options.add("i <icon name>", ki18n("Specify icon to use in the password"
                                        " dialog"));
     options.add("d", ki18n("Do not show the command to be run in the dialog"));
@@ -82,14 +81,18 @@ int main(int argc, char **argv)
                                       " 0 the lowest [50]"));
     options.add("r", ki18n("Use realtime scheduling"));
     options.add("f <file>", ki18n("Use target UID if <file> is not writeable"));
-    options.add("t", ki18n("Fake option for KDE's KdeSu compatibility"));
-    options.add("n", ki18n("Fake option for compatibility"));
     options.add("nodbus", ki18n("Do not start a message bus"));
     options.add("comment <dialog text>", ki18n("The comment that should be "
                 "displayed in the dialog"));
     options.add("attach <winid>", ki18n("Makes the dialog transient for an X app specified by winid"));
     options.add("desktop <desktop file>", ki18n("Manual override for "
                 "automatic desktop file detection"));
+    options.add("noignorebutton", ki18n("Fake option for KDE's KdeSu compatibility"));
+    options.add("t", ki18n("Fake option for KDE's KdeSu compatibility"));
+    // nothing is making use of it AFAICT
+    // options.add("nonewdcop", ki18n("Fake option for compatibility"));
+    options.add("s", ki18n("Fake option for compatibility"));
+    options.add("n", ki18n("Fake option for compatibility"));
 
     options.add("+command", ki18n("The command to execute"));
 
