@@ -1051,7 +1051,10 @@ void KStandardItemListWidget::updateTextsCache()
     for (int i = 0; i < m_sortedVisibleRoles.count(); ++i) {
         TextInfo* textInfo = new TextInfo();
         textInfo->staticText.setTextFormat(Qt::PlainText);
+// only relevant to OpenGL which Katie does not support
+#ifndef QT_KATIE
         textInfo->staticText.setPerformanceHint(QStaticText::AggressiveCaching);
+#endif
         textInfo->staticText.setTextOption(textOption);
         m_textInfo.insert(m_sortedVisibleRoles[i], textInfo);
     }

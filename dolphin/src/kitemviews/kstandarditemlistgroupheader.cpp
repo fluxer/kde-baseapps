@@ -32,7 +32,10 @@ KStandardItemListGroupHeader::KStandardItemListGroupHeader(QGraphicsWidget* pare
     m_pixmap()
 {
     m_text.setTextFormat(Qt::PlainText);
+// only relevant to OpenGL which Katie does not support
+#ifndef QT_KATIE
     m_text.setPerformanceHint(QStaticText::AggressiveCaching);
+#endif
 }
 
 KStandardItemListGroupHeader::~KStandardItemListGroupHeader()
