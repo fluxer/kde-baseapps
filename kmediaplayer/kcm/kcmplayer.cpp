@@ -60,7 +60,7 @@ KCMPlayer::KCMPlayer(QWidget *parent, const QVariantList &arguments)
     player.deleteLater();
     m_ui->w_audiooutput->addItems(audiooutputs);
     m_ui->w_appaudiooutput->addItems(audiooutputs);
-    int audioindex = m_ui->w_audiooutput->findText(globalaudio);
+    const int audioindex = m_ui->w_audiooutput->findText(globalaudio);
     m_ui->w_audiooutput->setCurrentIndex(audioindex);
     m_ui->w_volume->setValue(globalvolume);
     m_ui->w_mute->setChecked(globalmute);
@@ -109,7 +109,7 @@ void KCMPlayer::defaults()
 void KCMPlayer::load()
 {
     // Qt::MatchFixedString is basicly case-insensitive
-    int appindex = m_ui->w_application->findText(QCoreApplication::applicationName(), Qt::MatchFixedString);
+    const int appindex = m_ui->w_application->findText(QCoreApplication::applicationName(), Qt::MatchFixedString);
     if (appindex >= 0) {
         m_ui->w_application->setCurrentIndex(appindex);
     } else {
@@ -184,7 +184,8 @@ void KCMPlayer::setApplicationSettings(QString application)
     int appvolume = m_settings->value(m_application + "/volume", 90).toInt();
     bool appmute = m_settings->value(m_application +"/mute", false).toBool();
 
-    m_ui->w_appaudiooutput->setEditText(appaudio);
+    const int audioindex = m_ui->w_appaudiooutput->findText(appaudio);
+    m_ui->w_appaudiooutput->setCurrentIndex(audioindex);
     m_ui->w_appvolume->setValue(appvolume);
     m_ui->w_appmute->setChecked(appmute);
 }
