@@ -40,7 +40,6 @@
 #include <kconfig.h>
 #include <kconfiggroup.h>
 #include <kglobalsettings.h>
-#include <kdefakes.h>
 #include <kstatusbar.h>
 #include <kio/job.h>
 

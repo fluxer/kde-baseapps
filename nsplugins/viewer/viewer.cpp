@@ -41,11 +41,7 @@
 #include <sys/resource.h>
 #include <sys/time.h>
 #include <unistd.h>
-#include <kdefakes.h>
 
-#ifdef Bool
-#undef Bool
-#endif
 #include <kconfig.h>
 
 #include "xtevents.h"

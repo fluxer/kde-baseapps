@@ -43,7 +43,6 @@
 
 #include <kdebug.h>
 #include <kstandarddirs.h>
-#include <kdefakes.h>
 
 
 PasswdProcess::PasswdProcess(const QByteArray &user)

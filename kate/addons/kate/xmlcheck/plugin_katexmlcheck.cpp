@@ -41,7 +41,6 @@
 #include <QHeaderView>
 #include <QProcess>
 
-#include <kdefakes.h> // for setenv
 #include <kaction.h>
 #include <kactioncollection.h>
 #include <kcursor.h>

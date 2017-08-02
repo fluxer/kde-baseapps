@@ -52,8 +52,6 @@
 #include "nsplugins_instance_interface.h"
 #include "nsplugins_viewer_interface.h"
 
-#include <kdefakes.h>
-
 #include <X11/Xlib.h>
 #include <unistd.h>
 
