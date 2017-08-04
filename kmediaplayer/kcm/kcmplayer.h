@@ -23,7 +23,9 @@
 #include <kmediaplayer.h>
 #include <QSettings>
 
+QT_BEGIN_NAMESPACE
 class Ui_KCMPlayer;
+QT_END_NAMESPACE
 
 class KCMPlayer : public KCModule
 {

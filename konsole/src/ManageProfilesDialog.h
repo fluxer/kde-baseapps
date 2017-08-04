@@ -22,7 +22,11 @@
 
 // Qt
 #include <QStyledItemDelegate>
-#include <QtCore/QSet>
+#include <QSet>
+#include <QItemSelection>
+#include <QShowEvent>
+#include <QStandardItem>
+#include <QStandardItemModel>
 
 // KDE
 #include <KDialog>
@@ -30,15 +34,9 @@
 // Konsole
 #include "Profile.h"
 
-#include <QItemSelection>
-#include <QShowEvent>
-#include <QStandardItem>
-#include <QStandardItemModel>
-
-namespace Ui
-{
-class ManageProfilesDialog;
-}
+QT_BEGIN_NAMESPACE
+namespace Ui { class ManageProfilesDialog; }
+QT_END_NAMESPACE
 
 namespace Konsole
 {
