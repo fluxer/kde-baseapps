@@ -25,7 +25,7 @@
 #include <kitemviews/kstandarditemlistview.h>
 
 class KFileItemModelRolesUpdater;
-class QTimer;
+#include <QTimer>
 
 /**
  * @brief View that allows to show the content of file-items.

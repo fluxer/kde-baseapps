@@ -39,7 +39,7 @@ class KateTextLayout
 {
   friend class KateLineLayout;
   friend class KateLayoutCache;
-  template <class T> friend class QVector;
+  template <class T> friend class QT_PREPEND_NAMESPACE(QVector);
 
   public:
     bool isValid() const;

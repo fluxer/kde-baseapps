@@ -33,9 +33,9 @@
 class KMenu;
 class KToolBar;
 
-class QDomNode;
-class QString;
-class QWidget;
+#include <QDomNode>
+#include <QString>
+#include <QWidget>
 
 
 namespace RekonqFactory

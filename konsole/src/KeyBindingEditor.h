@@ -23,12 +23,11 @@
 // Qt
 #include <QWidget>
 
-class QTableWidgetItem;
+#include <QTableWidgetItem>
 
-namespace Ui
-{
-class KeyBindingEditor;
-}
+QT_BEGIN_NAMESPACE
+namespace Ui { class KeyBindingEditor; }
+QT_END_NAMESPACE
 
 namespace Konsole
 {

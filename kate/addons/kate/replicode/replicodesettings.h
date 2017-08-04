@@ -22,7 +22,7 @@
 
 #include <QObject>
 
-class QIODevice;
+#include <QIODevice>
 
 class ReplicodeSettings : public QObject
 {

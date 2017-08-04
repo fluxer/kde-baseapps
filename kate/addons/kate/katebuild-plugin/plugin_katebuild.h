@@ -25,7 +25,7 @@
 ** MA 02110-1301, USA.
 */
 
-class QRegExp;
+#include <QRegExp>
 
 #include <QtGui/qtreewidget.h>
 #include <QString>

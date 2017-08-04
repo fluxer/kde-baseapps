@@ -27,7 +27,7 @@
 #include <kxmlguiwindow.h>
 #include <QList>
 
-class QBoxLayout;
+#include <QBoxLayout>
 class NSPluginLoader;
 class NSPluginInstance;
 

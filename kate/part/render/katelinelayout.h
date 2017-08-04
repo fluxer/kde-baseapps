@@ -26,7 +26,7 @@
 
 #include <ktexteditor/cursor.h>
 
-class QTextLayout;
+#include <QTextLayout>
 class KateDocument;
 class KateTextLayout;
 class KateRenderer;

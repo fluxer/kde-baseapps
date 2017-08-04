@@ -58,8 +58,8 @@ typedef NPError NP_ShutdownUPP(void);
 void quitXt();
 
 class OrgKdeNspluginsCallBackInterface;
-class QLibrary;
-class QTimer;
+#include <QLibrary>
+#include <QTimer>
 
 // We need the following inside the scripting code
 namespace kdeNsPluginViewer {

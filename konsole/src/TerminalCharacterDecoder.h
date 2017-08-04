@@ -29,7 +29,7 @@
 #include "Character.h"
 #include "konsoleprivate_export.h"
 
-class QTextStream;
+#include <QTextStream>
 
 namespace Konsole
 {

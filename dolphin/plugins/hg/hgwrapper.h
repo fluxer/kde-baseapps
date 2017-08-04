@@ -28,7 +28,7 @@
 #include <kfileitem.h>
 #include <kversioncontrolplugin2.h>
 
-class QTextCodec;
+#include <QTextCodec>
 
 
 //TODO: Create signals for infoMessage and errorMessage which will be 

@@ -44,7 +44,7 @@ class KateMainWindow;
 class KateViewSpace;
 class KAction;
 
-class QToolButton;
+#include <QToolButton>
 
 class KateViewManager : public QSplitter
 {

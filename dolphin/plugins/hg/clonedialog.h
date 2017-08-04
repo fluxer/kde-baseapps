@@ -27,8 +27,8 @@
 class KLineEdit;
 class KPushButton;
 class KTextEdit;
-class QStackedLayout;
-class QCheckBox;
+#include <QStackedLayout>
+#include <QCheckBox>
 
 //TODO: Enable to enter username/passwords if not found in config as well
 //  as override within dialog

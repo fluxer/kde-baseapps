@@ -24,11 +24,11 @@
 #include <QWidget>
 #include <QtCore/QBitArray>
 
-class QAction;
-class QLabel;
-class QTimer;
+#include <QAction>
+#include <QLabel>
+#include <QTimer>
 class KLineEdit;
-class QToolButton;
+#include <QToolButton>
 
 namespace Konsole
 {

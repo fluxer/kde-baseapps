@@ -21,7 +21,7 @@
 
 #include <settings/settingspagebase.h>
 
-class QCheckBox;
+#include <QCheckBox>
 
 /**
  * @brief Page for the enabling or disabling confirmation dialogs.

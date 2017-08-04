@@ -30,7 +30,7 @@
 
 class Snippet;
 class SnippetRepository;
-class QModelIndex;
+#include <QModelIndex>
 
 namespace KTextEditor {
   class View;

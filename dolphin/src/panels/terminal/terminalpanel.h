@@ -23,8 +23,8 @@
 #include <panels/panel.h>
 
 class TerminalInterface;
-class QVBoxLayout;
-class QWidget;
+#include <QVBoxLayout>
+#include <QWidget>
 
 namespace KIO {
     class StatJob;

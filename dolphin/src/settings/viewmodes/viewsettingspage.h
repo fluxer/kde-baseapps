@@ -23,7 +23,7 @@
 #include <settings/settingspagebase.h>
 
 class ViewSettingsTab;
-class QWidget;
+#include <QWidget>
 
 /**
  * @brief Page for the 'View' settings of the Dolphin settings dialog.

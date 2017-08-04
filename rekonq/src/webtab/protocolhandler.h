@@ -42,7 +42,7 @@ class KDirLister;
 class KFileItemList;
 class KJob;
 
-class QNetworkRequest;
+#include <QNetworkRequest>
 class QWebFrame;
 
 

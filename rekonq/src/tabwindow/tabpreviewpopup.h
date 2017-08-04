@@ -36,9 +36,9 @@
 #include <KPassivePopup>
 
 // forward declatrations
-class QLabel;
-class QPixmap;
-class QString;
+#include <QLabel>
+#include <QPixmap>
+#include <QString>
 
 
 class TabPreviewPopup : public KPassivePopup

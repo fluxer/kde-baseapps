@@ -21,8 +21,8 @@
 
 #include <kservice.h>
 
-class QString;
-class QStringList;
+#include <QString>
+#include <QStringList>
 
 class UserAgentInfo
 {

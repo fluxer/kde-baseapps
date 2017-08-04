@@ -22,10 +22,10 @@
 
 #include <QWidget>
 
-class QButtonGroup;
-class QCheckBox;
-class QDate;
-class QRadioButton;
+#include <QButtonGroup>
+#include <QCheckBox>
+#include <QDate>
+#include <QRadioButton>
 
 /**
  * @brief Allows to filter search-queries by facets.

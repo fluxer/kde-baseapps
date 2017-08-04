@@ -27,8 +27,8 @@
 #include <QPointer>
 
 class KWidget;
-class QTreeView;
-class QTextEdit;
+#include <QTreeView>
+#include <QTextEdit>
 
 /**
  * Cares about expanding/un-expanding items in a tree-view together with ExpandingDelegate

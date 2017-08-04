@@ -24,7 +24,7 @@
 #include <QMetaType>
 #include <QObject>
 
-class QString;
+#include <QString>
 
 class KDirectoryContentsCounterWorker : public QObject
 {

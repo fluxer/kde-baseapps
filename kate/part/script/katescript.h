@@ -30,8 +30,8 @@
 
 #include "katedocument.h"
 
-class QScriptEngine;
-class QScriptContext;
+#include <QScriptEngine>
+#include <QScriptContext>
 
 class KateDocument;
 class KateView;

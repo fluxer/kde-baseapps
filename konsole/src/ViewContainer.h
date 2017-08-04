@@ -31,17 +31,17 @@
 // Konsole
 #include "Profile.h"
 
-class QStackedWidget;
-class QWidget;
-class QHBoxLayout;
-class QVBoxLayout;
+#include <QStackedWidget>
+#include <QWidget>
+#include <QHBoxLayout>
+#include <QVBoxLayout>
 
 // TabbedViewContainer
 // Qt
-class QPoint;
-class QToolButton;
-class QMenu;
-class QDropEvent;
+#include <QPoint>
+#include <QToolButton>
+#include <QMenu>
+#include <QDropEvent>
 
 // KDE
 class KMenu;

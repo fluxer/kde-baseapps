@@ -51,7 +51,7 @@ class KateScrollBar;
 class KateTextLayout;
 class KateTextAnimation;
 
-class QScrollBar;
+#include <QScrollBar>
 
 class KateViewInternal : public QWidget
 {

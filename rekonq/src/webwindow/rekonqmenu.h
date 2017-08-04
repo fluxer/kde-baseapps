@@ -37,7 +37,7 @@
 #include <KMenu>
 
 // Forward Declarations
-class QWidget;
+#include <QWidget>
 
 
 /**

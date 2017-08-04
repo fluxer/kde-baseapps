@@ -34,9 +34,9 @@
 class KateCompletionWidget;
 class KateArgumentHintModel;
 class KateView;
-class QWidget;
-class QTextEdit;
-class QTimer;
+#include <QWidget>
+#include <QTextEdit>
+#include <QTimer>
 class HierarchicalModelHandler;
 
 /**

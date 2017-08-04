@@ -30,7 +30,7 @@
 class KIconButton;
 class KLineEdit;
 class KUrlRequester;
-class QCheckBox;
+#include <QCheckBox>
 
 class PlacesItemEditDialog: public KDialog
 {

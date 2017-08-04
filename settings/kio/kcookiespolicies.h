@@ -33,7 +33,7 @@
 #include "ui_kcookiespolicies.h"
 
 
-class QTreeWidgetItem;
+#include <QTreeWidgetItem>
 
 class KCookiesPolicies : public KCModule
 {

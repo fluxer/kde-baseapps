@@ -35,9 +35,9 @@
 #include <ktexteditor/view.h>
 #include <ktexteditor/document.h>
 
-class QTreeWidget;
-class QTreeWidgetItem;
-class QProcess;
+#include <QTreeWidget>
+#include <QTreeWidgetItem>
+#include <QProcess>
 class KTemporaryFile;
 
 class PluginKateXMLCheckView : public Kate::PluginView, public Kate::XMLGUIClient

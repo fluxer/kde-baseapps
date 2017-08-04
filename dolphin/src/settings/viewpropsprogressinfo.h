@@ -25,9 +25,9 @@
 #include <KUrl>
 
 class ApplyViewPropsJob;
-class QLabel;
-class QProgressBar;
-class QTimer;
+#include <QLabel>
+#include <QProgressBar>
+#include <QTimer>
 class ViewProperties;
 
 /**

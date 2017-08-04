@@ -39,12 +39,13 @@ view needs to pull default settings from the main plugin config
 #include "katefiletreemodel.h"
 #include "katefiletreeproxymodel.h"
 
-#include <QGroupBox>
 #include <KColorButton>
-#include <QLabel>
 #include <KComboBox>
-#include <QVBoxLayout>
 #include <KLocale>
+
+#include <QGroupBox>
+#include <QLabel>
+#include <QVBoxLayout>
 #include <QCheckBox>
 
 KateFileTreeConfigPage::KateFileTreeConfigPage( QWidget* parent, KateFileTreePlugin *fl )

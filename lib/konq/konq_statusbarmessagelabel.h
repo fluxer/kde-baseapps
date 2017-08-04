@@ -24,8 +24,8 @@
 #include "konq_export.h"
 #include <QWidget>
 
-class QPaintEvent;
-class QResizeEvent;
+#include <QPaintEvent>
+#include <QResizeEvent>
 
 /**
  * @brief Represents a message text label as part of the status bar.

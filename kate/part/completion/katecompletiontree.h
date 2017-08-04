@@ -27,7 +27,7 @@
 class KateCompletionWidget;
 class KateCompletionModel;
 
-class QTimer;
+#include <QTimer>
 
 class KateCompletionTree : public ExpandingTree
 {

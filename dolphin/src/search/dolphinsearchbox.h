@@ -27,11 +27,11 @@
 class DolphinFacetsWidget;
 class KLineEdit;
 class KSeparator;
-class QToolButton;
-class QCheckBox;
-class QScrollArea;
-class QLabel;
-class QVBoxLayout;
+#include <QToolButton>
+#include <QCheckBox>
+#include <QScrollArea>
+#include <QLabel>
+#include <QVBoxLayout>
 
 /**
  * @brief Input box for searching files.

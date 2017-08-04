@@ -21,8 +21,8 @@
 
 #include <settings/settingspagebase.h>
 
-class QCheckBox;
-class QRadioButton;
+#include <QCheckBox>
+#include <QRadioButton>
 
 /**
  * @brief Page for the 'Navigation' settings of the Dolphin settings dialog.

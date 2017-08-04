@@ -28,11 +28,12 @@
 #include "katedialogs.h"
 #include "katemodemanager.h"
 
-
+QT_BEGIN_NAMESPACE
 namespace Ui
 {
   class FileTypeConfigWidget;
 }
+QT_END_NAMESPACE
 
 class ModeConfigPage : public KateConfigPage
 {

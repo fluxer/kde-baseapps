@@ -19,9 +19,9 @@
 #ifndef DATAOUTPUTWIDGET_H
 #define DATAOUTPUTWIDGET_H
 
-class QTextStream;
-class QVBoxLayout;
-class QSqlQuery;
+#include <QTextStream>
+#include <QVBoxLayout>
+#include <QSqlQuery>
 class DataOutputModel;
 class DataOutputView;
 

@@ -38,7 +38,7 @@
 #include <QUrl>
 
 // Forward Declarations
-class QPixmap;
+#include <QPixmap>
 
 /**
  * This class is used in many classes of rekonq to produce an image

@@ -25,7 +25,7 @@
 
 class KComboBox;
 class KPushButton;
-class QLabel;
+#include <QLabel>
 
 /**
  * Implements dialog to list & create branches and update/switch working 

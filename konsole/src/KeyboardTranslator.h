@@ -31,8 +31,8 @@
 // Konsole
 #include "konsoleprivate_export.h"
 
-class QIODevice;
-class QTextStream;
+#include <QIODevice>
+#include <QTextStream>
 
 namespace Konsole
 {

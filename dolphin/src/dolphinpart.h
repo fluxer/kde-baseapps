@@ -26,7 +26,7 @@
 
 class DolphinNewFileMenu;
 class DolphinViewActionHandler;
-class QActionGroup;
+#include <QActionGroup>
 class KAction;
 class KFileItemList;
 class KFileItem;

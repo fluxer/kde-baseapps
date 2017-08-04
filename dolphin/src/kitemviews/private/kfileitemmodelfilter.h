@@ -25,7 +25,7 @@
 #include <QStringList>
 
 class KFileItem;
-class QRegExp;
+#include <QRegExp>
 
 /**
  * @brief Allows to check whether an item of the KFileItemModel

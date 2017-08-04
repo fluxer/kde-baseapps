@@ -50,7 +50,7 @@ class KAction;
 class KIcon;
 class KJob;
 
-class QActionGroup;
+#include <QActionGroup>
 
 
 class REKONQ_TESTS_EXPORT ListItem : public QWidget

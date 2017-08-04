@@ -40,7 +40,7 @@
 #include <QPointer>
 
 class KActionMenu;
-class QAction;
+#include <QAction>
 class KConfigBase;
 
 namespace Kate {

@@ -23,8 +23,8 @@
 #include <kdialog.h>
 
 class HgCommitInfoWidget;
-class QCheckBox;
-class QGroupBox;
+#include <QCheckBox>
+#include <QGroupBox>
 class KLineEdit;
 
 //TODO: Some helper for writing patterns

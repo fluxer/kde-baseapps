@@ -29,7 +29,7 @@
 #include <KFile>
 #include <KUrl>
 
-class QAbstractItemView;
+#include <QAbstractItemView>
 class KateBookmarkHandler;
 class KAction;
 class KActionCollection;

@@ -27,8 +27,8 @@
 
 class KFileItem;
 class KUrl;
-class QDropEvent;
-class QWidget;
+#include <QDropEvent>
+#include <QWidget>
 class KonqOperations;
 
 class DOLPHINPRIVATE_EXPORT DragAndDropHelper

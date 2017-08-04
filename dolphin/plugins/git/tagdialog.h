@@ -26,8 +26,8 @@
 class KTextEdit;
 class KLineEdit;
 class KComboBox;
-class QTextCodec;
-class QRadioButton;
+#include <QTextCodec>
+#include <QRadioButton>
 
 class TagDialog : public KDialog
 {

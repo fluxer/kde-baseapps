@@ -36,7 +36,7 @@
 #include <KMessageWidget>
 
 // Forward Declarations
-class QAction;
+#include <QAction>
 
 
 class REKONQ_TESTS_EXPORT PreviewSelectorBar : public KMessageWidget

@@ -22,10 +22,10 @@
 
 #include <kdialog.h>
 
-class QSpinBox;
+#include <QSpinBox>
 class KPushButton;
-class QTextEdit;
-class QLabel;
+#include <QTextEdit>
+#include <QLabel>
 class HgServeWrapper;
 
 /**

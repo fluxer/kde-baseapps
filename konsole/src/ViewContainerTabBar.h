@@ -25,7 +25,7 @@
 // KDE
 #include <KTabBar>
 
-class QLabel;
+#include <QLabel>
 
 namespace Konsole
 {

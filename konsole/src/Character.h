@@ -195,7 +195,10 @@ inline ColorEntry::FontWeight Character::fontWeight(const ColorEntry* base) cons
         return ColorEntry::UseCurrentFormat;
 }
 }
+
+QT_BEGIN_NAMESPACE
 Q_DECLARE_TYPEINFO(Konsole::Character, Q_MOVABLE_TYPE);
+QT_END_NAMESPACE
 
 #endif // CHARACTER_H
 

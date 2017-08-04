@@ -32,8 +32,8 @@
 #include <QList>
 #include <QRadioButton>
 
-class QCheckBox;
-class QSpinBox;
+#include <QCheckBox>
+#include <QSpinBox>
 class KateMainWindow;
 
 struct PluginPageListItem

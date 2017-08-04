@@ -28,8 +28,8 @@
 
 #include <kcapacitybar.h>
 
-class QHideEvent;
-class QShowEvent;
+#include <QHideEvent>
+#include <QShowEvent>
 
 class SpaceInfoObserver;
 

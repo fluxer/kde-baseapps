@@ -30,8 +30,8 @@
 
 class KateDocument;
 class KateViewInternal;
-class QTimeLine;
-class QPainter;
+#include <QTimeLine>
+#include <QPainter>
 
 /**
  * This class is used to flash text in the text view.

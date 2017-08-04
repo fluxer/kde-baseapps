@@ -33,18 +33,18 @@
 #include "ColorScheme.h"
 #include "Enumeration.h"
 
-class QDrag;
-class QDragEnterEvent;
-class QDropEvent;
-class QLabel;
-class QTimer;
-class QEvent;
-class QGridLayout;
-class QKeyEvent;
-class QScrollBar;
-class QShowEvent;
-class QHideEvent;
-class QTimerEvent;
+#include <QDrag>
+#include <QDragEnterEvent>
+#include <QDropEvent>
+#include <QLabel>
+#include <QTimer>
+#include <QEvent>
+#include <QGridLayout>
+#include <QKeyEvent>
+#include <QScrollBar>
+#include <QShowEvent>
+#include <QHideEvent>
+#include <QTimerEvent>
 
 namespace Konsole
 {

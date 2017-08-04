@@ -23,10 +23,9 @@
 // KDE
 #include <KDialog>
 
-namespace Ui
-{
-class RenameTabDialog;
-}
+QT_BEGIN_NAMESPACE
+namespace Ui { class RenameTabDialog; }
+QT_END_NAMESPACE
 
 namespace Konsole
 {

@@ -26,9 +26,9 @@
 #include <QtGui/QWidget>
 #include <QtCore/QFile>
 
-class QTextEdit;
-class QLineEdit;
-class QSocketNotifier;
+#include <QTextEdit>
+#include <QLineEdit>
+#include <QSocketNotifier>
 
 class IOView : public QWidget
 {

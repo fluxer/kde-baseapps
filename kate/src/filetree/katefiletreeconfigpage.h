@@ -22,10 +22,14 @@
 #ifndef KATE_FILETREE_CONFIGPAGE_H
 #define KATE_FILETREE_CONFIGPAGE_H
 
-#include <QWidget>
+#include <QGroupBox>
+#include <QLabel>
+#include <QCheckBox>
 
 #include <kate/pluginconfigpageinterface.h>
 
+class KColorButton;
+class KComboBox;
 class KateFileTreePlugin;
 
 class KateFileTreeConfigPage : public Kate::PluginConfigPage {
@@ -46,11 +50,11 @@ class KateFileTreeConfigPage : public Kate::PluginConfigPage {
     void slotMyChanged();
 
   private:
-    class QGroupBox *gbEnableShading;
-    class KColorButton *kcbViewShade, *kcbEditShade;
-    class QLabel *lEditShade, *lViewShade, *lSort, *lMode;
-    class KComboBox *cmbSort, *cmbMode;
-    class QCheckBox *cbShowFullPath;
+    QGroupBox *gbEnableShading;
+    KColorButton *kcbViewShade, *kcbEditShade;
+    QLabel *lEditShade, *lViewShade, *lSort, *lMode;
+    KComboBox *cmbSort, *cmbMode;
+    QCheckBox *cbShowFullPath;
     KateFileTreePlugin *m_plug;
 
     bool m_changed;

@@ -22,8 +22,8 @@
 
 #include <kdialog.h>
 
-class QGroupBox;
-class QCheckBox;
+#include <QGroupBox>
+#include <QCheckBox>
 class KLineEdit;
 class HgCommitInfoWidget;
 class HgPathSelector;

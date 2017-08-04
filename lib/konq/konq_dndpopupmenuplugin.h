@@ -21,11 +21,11 @@
 #include "konq_export.h"
 #include <QtCore/QObject>
 
-class QMenu;
+#include <QMenu>
 class KActionCollection;
 class KFileItemListProperties;
 class KUrl;
-class QAction;
+#include <QAction>
 
 /**
  * Base class for drag and drop popup menus

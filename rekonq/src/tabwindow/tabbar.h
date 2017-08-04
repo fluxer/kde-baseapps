@@ -41,7 +41,7 @@
 class TabPreviewPopup;
 class TabHighlightEffect;
 
-class QSignalMapper;
+#include <QSignalMapper>
 
 
 class TabBar : public KTabBar

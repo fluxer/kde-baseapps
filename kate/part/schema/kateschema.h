@@ -28,7 +28,7 @@
 #include <QtCore/QPointer>
 
 class KateView;
-class QActionGroup;
+#include <QActionGroup>
 
 class KateSchema
 {

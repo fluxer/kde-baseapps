@@ -26,10 +26,10 @@
 #include <kdialog.h>
 
 
-class QPlainTextEdit;
+#include <QPlainTextEdit>
 class KAction;
 class KMenu;
-class QLabel;
+#include <QLabel>
 
 namespace KTextEditor {
     class View;

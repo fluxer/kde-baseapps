@@ -33,7 +33,7 @@
 #include "katecommandlinescript.h"
 #include "katetemplatescript.h"
 
-class QString;
+#include <QString>
 
 
 /**

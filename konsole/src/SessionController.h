@@ -41,10 +41,10 @@ namespace KIO
 class Job;
 }
 
-class QAction;
-class QTextCodec;
-class QKeyEvent;
-class QTimer;
+#include <QAction>
+#include <QTextCodec>
+#include <QKeyEvent>
+#include <QTimer>
 
 class KCodecAction;
 class KUrl;

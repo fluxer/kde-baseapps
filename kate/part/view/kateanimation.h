@@ -24,7 +24,7 @@
 #include <QObject>
 #include <QPointer>
 
-class QTimer;
+#include <QTimer>
 
 class KMessageWidget;
 class KateFadeEffect;

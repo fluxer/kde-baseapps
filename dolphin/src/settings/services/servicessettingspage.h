@@ -24,10 +24,10 @@
 #include <QMap>
 #include <QString>
 
-class QCheckBox;
-class QGroupBox;
-class QListView;
-class QSortFilterProxyModel;
+#include <QCheckBox>
+#include <QGroupBox>
+#include <QListView>
+#include <QSortFilterProxyModel>
 class ServiceModel;
 
 /**

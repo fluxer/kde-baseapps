@@ -36,8 +36,8 @@
 #include <QObject>
 
 // Forward Declarations
-class QBasicTimer;
-class QTime;
+#include <QBasicTimer>
+#include <QTime>
 
 
 /**

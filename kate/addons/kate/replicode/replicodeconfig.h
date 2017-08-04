@@ -21,7 +21,10 @@
 
 #include <QTabWidget>
 
+QT_BEGIN_NAMESPACE
 class Ui_tabWidget;
+QT_END_NAMESPACE
+
 class ReplicodeSettings;
 
 class ReplicodeConfig : public QTabWidget

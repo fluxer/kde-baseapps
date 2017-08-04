@@ -67,7 +67,7 @@ class KToggleAction;
 class KAction;
 class KSelectAction;
 
-class QVBoxLayout;
+#include <QVBoxLayout>
 
 //
 // Kate KTextEditor::View class ;)

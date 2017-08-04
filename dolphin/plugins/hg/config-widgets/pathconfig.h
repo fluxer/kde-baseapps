@@ -24,8 +24,8 @@
 #include <QtCore/QMap>
 #include <QtCore/QString>
 
-class QTableWidget;
-class QTableWidgetItem;
+#include <QTableWidget>
+#include <QTableWidgetItem>
 class KPushButton;
 class KAction;
 class KMenu;

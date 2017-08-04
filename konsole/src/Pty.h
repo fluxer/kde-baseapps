@@ -32,7 +32,7 @@
 // Konsole
 #include "konsoleprivate_export.h"
 
-class QStringList;
+#include <QStringList>
 
 namespace Konsole
 {

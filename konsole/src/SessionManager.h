@@ -29,7 +29,7 @@
 // Konsole
 #include "Profile.h"
 
-class QSignalMapper;
+#include <QSignalMapper>
 
 class KConfig;
 

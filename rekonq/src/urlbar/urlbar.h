@@ -42,10 +42,10 @@
 #include <QToolButton>
 
 // Forward Declarations
-class QWidget;
+#include <QWidget>
 class CompletionWidget;
 class WebTab;
-class QTimer;
+#include <QTimer>
 
 
 class IconButton : public QToolButton

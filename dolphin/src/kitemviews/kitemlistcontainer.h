@@ -32,7 +32,7 @@ class KItemListController;
 class KItemListSmoothScroller;
 class KItemListView;
 class KItemModelBase;
-class QPropertyAnimation;
+#include <QPropertyAnimation>
 
 /**
  * @brief Provides a QWidget based scrolling view for a KItemListController.

@@ -23,8 +23,8 @@
 #include <settings/settingspagebase.h>
 
 class KIntSpinBox;
-class QListView;
-class QModelIndex;
+#include <QListView>
+#include <QModelIndex>
 
 /**
  * @brief Allows the configuration of file previews.

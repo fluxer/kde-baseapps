@@ -22,9 +22,9 @@
 
 #include <kdialog.h>
 
-class QListWidget;
-class QCheckBox;
-class QGroupBox;
+#include <QListWidget>
+#include <QCheckBox>
+#include <QGroupBox>
 class KLineEdit;
 
 /**

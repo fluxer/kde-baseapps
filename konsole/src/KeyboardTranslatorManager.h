@@ -30,7 +30,7 @@
 #include "konsoleprivate_export.h"
 #include "KeyboardTranslator.h"
 
-class QIODevice;
+#include <QIODevice>
 
 namespace Konsole
 {

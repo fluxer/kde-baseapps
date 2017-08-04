@@ -25,7 +25,7 @@
 #include <QGraphicsWidget>
 #include <QPixmap>
 
-class QPropertyAnimation;
+#include <QPropertyAnimation>
 
 /**
  * @brief Allows to toggle between the selected and unselected state of an item.

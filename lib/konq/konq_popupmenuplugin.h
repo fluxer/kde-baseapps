@@ -24,7 +24,7 @@
 #include "konq_export.h"
 #include <QtCore/QObject>
 
-class QMenu;
+#include <QMenu>
 class KActionCollection;
 class KonqPopupMenuInformation;
 

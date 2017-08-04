@@ -27,7 +27,7 @@ namespace KTextEditor {
   class Document;
 }
 
-class QActionGroup;
+#include <QActionGroup>
 
 class KateFileTree: public QTreeView
 {

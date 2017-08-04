@@ -3,8 +3,8 @@
 
 #include <kcmodule.h>
 
-class QGroupBox;
-class QCheckBox;
+#include <QGroupBox>
+#include <QCheckBox>
 
 class KIntNumInput;
 

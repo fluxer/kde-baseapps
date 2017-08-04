@@ -23,8 +23,8 @@
 #include <kdirlister.h>
 #include <kdirwatch.h>
 
-class QString;
-class QDir;
+#include <QString>
+#include <QDir>
 
 class KQuery;
 class KUrl;

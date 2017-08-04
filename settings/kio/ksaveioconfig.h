@@ -22,7 +22,7 @@
 
 #include <kprotocolmanager.h>
 
-class QWidget;
+#include <QWidget>
 
 namespace KSaveIOConfig
 {

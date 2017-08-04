@@ -25,7 +25,7 @@
 #include <QWidget>
 
 class KFileItemList;
-class QLabel;
+#include <QLabel>
 
 class KFileMetaDataWidget;
 

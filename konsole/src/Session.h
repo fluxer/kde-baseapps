@@ -39,8 +39,8 @@
 // Konsole
 #include "konsoleprivate_export.h"
 
-class QColor;
-class QProcess;
+#include <QColor>
+#include <QProcess>
 
 class KConfigGroup;
 

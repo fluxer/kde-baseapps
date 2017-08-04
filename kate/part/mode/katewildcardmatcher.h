@@ -21,7 +21,7 @@
 
 
 
-class QString;
+#include <QString>
 
 
 

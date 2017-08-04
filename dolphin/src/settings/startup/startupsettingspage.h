@@ -23,7 +23,7 @@
 #include <KUrl>
 
 class KLineEdit;
-class QCheckBox;
+#include <QCheckBox>
 
 /**
  * @brief Page for the 'Startup' settings of the Dolphin settings dialog.

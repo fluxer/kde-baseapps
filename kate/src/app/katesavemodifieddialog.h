@@ -24,8 +24,8 @@
 #include <KDialog>
 #include <QList>
 
-class QTreeWidget;
-class QTreeWidgetItem;
+#include <QTreeWidget>
+#include <QTreeWidgetItem>
 
 class KateSaveModifiedDialog: public KDialog
 {

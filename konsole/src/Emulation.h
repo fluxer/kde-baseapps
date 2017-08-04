@@ -27,11 +27,10 @@
 #include <QtCore/QSize>
 #include <QtCore/QTextCodec>
 #include <QtCore/QTimer>
+#include <QtGui/QKeyEvent>
 
 // Konsole
 #include "konsoleprivate_export.h"
-
-class QKeyEvent;
 
 namespace Konsole
 {

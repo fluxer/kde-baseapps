@@ -23,7 +23,7 @@
 #include <kdialog.h>
 
 class KComboBox;
-class QCheckBox;
+#include <QCheckBox>
 
 class PushDialog : public KDialog
 {

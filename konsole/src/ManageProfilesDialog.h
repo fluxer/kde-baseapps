@@ -30,10 +30,10 @@
 // Konsole
 #include "Profile.h"
 
-class QItemSelection;
-class QShowEvent;
-class QStandardItem;
-class QStandardItemModel;
+#include <QItemSelection>
+#include <QShowEvent>
+#include <QStandardItem>
+#include <QStandardItemModel>
 
 namespace Ui
 {

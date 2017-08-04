@@ -25,8 +25,8 @@
 
 class DolphinFontRequester;
 class KComboBox;
-class QCheckBox;
-class QSlider;
+#include <QCheckBox>
+#include <QSlider>
 
 /**
  * @brief Represents one tab of the view-settings page.

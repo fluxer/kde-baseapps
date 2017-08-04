@@ -25,7 +25,7 @@
 #include <QWidget>
 
 class KLineEdit;
-class QToolButton;
+#include <QToolButton>
 
 /**
  * @brief Provides an input field for filtering the currently shown items.

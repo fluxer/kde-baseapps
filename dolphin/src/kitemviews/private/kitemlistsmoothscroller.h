@@ -25,9 +25,9 @@
 #include <QAbstractAnimation>
 #include <QObject>
 
-class QPropertyAnimation;
-class QScrollBar;
-class QWheelEvent;
+#include <QPropertyAnimation>
+#include <QScrollBar>
+#include <QWheelEvent>
 
 /**
  * @brief Helper class for KItemListContainer to have a smooth

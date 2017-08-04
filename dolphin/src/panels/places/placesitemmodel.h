@@ -32,8 +32,8 @@
 class KBookmark;
 class KBookmarkManager;
 class PlacesItem;
-class QAction;
-class QTimer;
+#include <QAction>
+#include <QTimer>
 
 // #define PLACESITEMMODEL_DEBUG
 

@@ -52,7 +52,7 @@ class KBookmarkGroup;
 class KBookmarkManager;
 class KUrl;
 
-class QAction;
+#include <QAction>
 
 
 /**

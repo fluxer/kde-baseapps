@@ -25,7 +25,7 @@
 
 class KateCompletionWidget;
 class KateArgumentHintModel;
-class QRect;
+#include <QRect>
 
 class KateArgumentHintTree : public ExpandingTree {
   Q_OBJECT

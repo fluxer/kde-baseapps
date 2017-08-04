@@ -25,7 +25,7 @@
 #include <kfileitem.h>
 #include <konq_export.h>
 
-class QMenu;
+#include <QMenu>
 class KonqCopyToMenuPrivate;
 
 /**

@@ -28,9 +28,9 @@
 
 #include <kvbox.h>
 #include <QList>
-#include <QtGui/qevent.h>
-
-class QShowEvent;
+#include <QKeyEvent>
+#include <QShowEvent>
+#include <QCheckBox>
 
 namespace KParts
 {
@@ -212,8 +212,8 @@ class KateKonsoleConfigPage : public Kate::PluginConfigPage {
     virtual void defaults()
     {}
   private:
-    class QCheckBox *cbAutoSyncronize;
-    class QCheckBox *cbSetEditor;
+    QCheckBox *cbAutoSyncronize;
+    QCheckBox *cbSetEditor;
     KateKonsolePlugin *mPlugin;
 };
 #endif

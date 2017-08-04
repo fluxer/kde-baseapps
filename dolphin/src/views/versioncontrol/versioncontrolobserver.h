@@ -31,8 +31,8 @@
 
 class KFileItemList;
 class KFileItemModel;
-class QAction;
-class QTimer;
+#include <QAction>
+#include <QTimer>
 class UpdateItemStatesThread;
 
 /**

@@ -38,8 +38,8 @@
 // Forward Declarations
 class TabBar;
 
-class QEvent;
-class QPainter;
+#include <QEvent>
+#include <QPainter>
 
 
 class TabHighlightEffect : public QGraphicsEffect

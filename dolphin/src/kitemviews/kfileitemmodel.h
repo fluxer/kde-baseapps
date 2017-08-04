@@ -30,7 +30,7 @@
 #include <QSet>
 
 class KFileItemModelDirLister;
-class QTimer;
+#include <QTimer>
 
 /**
  * @brief KItemModelBase implementation for KFileItems.

@@ -19,8 +19,8 @@
 #ifndef TEXTOUTPUTWIDGET_H
 #define TEXTOUTPUTWIDGET_H
 
-class QHBoxLayout;
-class QTextEdit;
+#include <QHBoxLayout>
+#include <QTextEdit>
 
 #include "connection.h"
 #include <qwidget.h>

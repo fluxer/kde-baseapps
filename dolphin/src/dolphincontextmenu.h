@@ -32,7 +32,7 @@
 
 #include <QScopedPointer>
 
-class QAction;
+#include <QAction>
 class DolphinMainWindow;
 class KFileItemActions;
 class KFileItemListProperties;

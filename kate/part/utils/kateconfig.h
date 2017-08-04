@@ -39,7 +39,7 @@ class KateRenderer;
 
 class KConfig;
 
-class QTextCodec;
+#include <QTextCodec>
 
 
 /**

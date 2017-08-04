@@ -33,8 +33,8 @@
 class KDirectoryContentsCounter;
 class KFileItemModel;
 class KJob;
-class QPixmap;
-class QTimer;
+#include <QPixmap>
+#include <QTimer>
 
 
 /**

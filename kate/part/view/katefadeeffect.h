@@ -24,9 +24,9 @@
 #include <QObject>
 #include <QPointer>
 
-class QWidget;
-class QTimeLine;
-class QGraphicsOpacityEffect;
+#include <QWidget>
+#include <QTimeLine>
+#include <QGraphicsOpacityEffect>
 /**
  * This class provides a fade in/out effect for arbitrary QWidget%s.
  * Example:

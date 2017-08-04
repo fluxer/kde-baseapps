@@ -26,9 +26,9 @@
 
 class KComboBox;
 class KLineEdit;
-class QCheckBox;
-class QGroupBox;
-class QRadioButton;
+#include <QCheckBox>
+#include <QGroupBox>
+#include <QRadioButton>
 
 /**
  * @brief The dialog for checking out Branches or Tags in Git.

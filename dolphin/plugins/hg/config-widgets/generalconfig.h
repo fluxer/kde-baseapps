@@ -24,7 +24,7 @@
 #include "hgconfig.h"
 
 class KLineEdit;
-class QCheckBox;
+#include <QCheckBox>
 
 /**
  * General configuration options, usually found [ui] group of hgrc file.

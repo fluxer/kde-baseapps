@@ -39,7 +39,7 @@
 #include <QHash>
 #include <QStackedWidget>
 
-class QMenu;
+#include <QMenu>
 
 namespace KIO
 {

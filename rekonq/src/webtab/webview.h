@@ -45,8 +45,8 @@
 class WebPage;
 class WebTab;
 
-class QLabel;
-class QTimer;
+#include <QLabel>
+#include <QTimer>
 
 
 class REKONQ_TESTS_EXPORT WebView : public KWebView

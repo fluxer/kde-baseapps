@@ -25,10 +25,10 @@
 
 #include <KDialog>
 
-class QCheckBox;
+#include <QCheckBox>
 class KComboBox;
-class QPushButton;
-class QRadioButton;
+#include <QPushButton>
+#include <QRadioButton>
 class ViewProperties;
 class DolphinView;
 

@@ -28,7 +28,7 @@
 
 class KDirWatch;
 class KFileItemModel;
-class QString;
+#include <QString>
 
 class KDirectoryContentsCounter : public QObject
 {

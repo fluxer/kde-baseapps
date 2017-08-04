@@ -25,9 +25,11 @@
 
 #include "kateconfig.h"
 
+QT_BEGIN_NAMESPACE
 namespace Ui { class CompletionConfigWidget; }
+QT_END_NAMESPACE
 
-class QTreeWidgetItem;
+#include <QTreeWidgetItem>
 class KateCompletionModel;
 
 /**

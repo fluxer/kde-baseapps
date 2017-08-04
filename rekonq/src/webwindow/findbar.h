@@ -38,8 +38,8 @@
 // Forward Declarations
 class KLineEdit;
 
-class QString;
-class QCheckBox;
+#include <QString>
+#include <QCheckBox>
 
 
 class REKONQ_TESTS_EXPORT FindBar : public QWidget

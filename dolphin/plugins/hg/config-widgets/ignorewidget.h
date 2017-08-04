@@ -22,9 +22,9 @@
 
 #include <QtGui/QWidget>
 
-class QListWidget;
+#include <QListWidget>
 class KPushButton; 
-class QInputDialog;
+#include <QInputDialog>
 
 /**
  * Widget to manage ignored files. Used .hgignore file in repository.

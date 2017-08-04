@@ -30,7 +30,7 @@
 #include <QtGui/qtreewidget.h>
 
 typedef  QVector<KTextEditor::Document*> DocVector;
-class QProcess;
+#include <QProcess>
 class KTemporaryFile;
 
 /**

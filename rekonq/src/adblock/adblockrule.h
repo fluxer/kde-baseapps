@@ -36,8 +36,8 @@
 #include <QSharedPointer>
 
 // Forward Includes
-class QNetworkRequest;
-class QString;
+#include <QNetworkRequest>
+#include <QString>
 
 
 enum RuleTypes

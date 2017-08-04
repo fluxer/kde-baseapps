@@ -35,7 +35,7 @@
 #include <KToolBar>
 
 // Forward Declarations
-class QPoint;
+#include <QPoint>
 
 
 class MainToolBar : public KToolBar

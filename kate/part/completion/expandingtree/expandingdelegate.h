@@ -32,8 +32,8 @@ class KateCompletionWidget;
 class KateDocument;
 class KateTextLine;
 class ExpandingWidgetModel;
-class QVariant;
-class QStyleOptionViewItem;
+#include <QVariant>
+#include <QStyleOptionViewItem>
 
 /**
  * This is a delegate that cares, together with ExpandingWidgetModel, about embedded widgets in tree-view.

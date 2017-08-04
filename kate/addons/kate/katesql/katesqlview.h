@@ -26,8 +26,8 @@ class SQLManager;
 class KConfigBase;
 class KComboBox;
 
-class QSqlQuery;
-class QActionGroup;
+#include <QSqlQuery>
+#include <QActionGroup>
 
 #include <kate/plugin.h>
 #include <kate/mainwindow.h>

@@ -20,10 +20,12 @@
 #define COMMANDHISTORY_H
 
 #include "kbookmarkmodel_export.h"
+
 #include <QObject>
+#include <QUndoCommand>
+
 class KBookmarkGroup;
 class KBookmarkManager;
-class QUndoCommand;
 class KActionCollection;
 
 // TODO namespacing

@@ -25,7 +25,7 @@
 
 class KFileItem;
 class KFileItemList;
-class QAction;
+#include <QAction>
 
 /**
  * @brief Base class for version control plugins.

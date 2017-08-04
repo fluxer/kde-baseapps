@@ -24,8 +24,8 @@
 #include <kdialog.h>
 
 class KComboBox;
-class QLabel;
-class QCheckBox;
+#include <QLabel>
+#include <QCheckBox>
 
 /**
  * Dialog to update working directory to specific revision/changeset/branch/tag.

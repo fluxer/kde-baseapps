@@ -33,6 +33,11 @@
 
 #include <qlist.h>
 #include <qwizard.h>
+#include <qpushbutton.h>
+#include <qbuttongroup.h>
+#include <qaction.h>
+#include <qcheckbox.h>
+#include <qtreewidget.h>
 
 /**
  * This template system has the following features:
@@ -148,12 +153,12 @@ class KateTemplateInfoWidget : public QWidget
 
     class KLineEdit *leTemplate, *leDocumentName, *leDescription, *leAuthor;
     class KComboBox *cmbGroup;
-    class QPushButton *btnHighlight;
+    QPushButton *btnHighlight;
     class KIconButton *ibIcon;
-    class QString highlightName;
+    QString highlightName;
 
   private slots:
-    void slotHlSet( class QAction *action );
+    void slotHlSet( QAction *action );
 
   private:
     KateFileTemplates *kft;
@@ -185,7 +190,7 @@ class KateTemplateWizard : public QWizard
     void accept();
 
   private slots:
-    void slotTmplateSet( class QAction* );
+    void slotTmplateSet( QAction* );
     void slotStateChanged();
     void slotStateChanged( int ) { slotStateChanged(); }
     void slotStateChanged( const QString& ) { slotStateChanged(); }
@@ -195,22 +200,22 @@ class KateTemplateWizard : public QWizard
     KateTemplateInfoWidget *kti;
 
     // origin page
-    class QButtonGroup *bgOrigin;
+    QButtonGroup *bgOrigin;
     class KUrlRequester *urOrigin;
-    class QPushButton *btnTmpl;
+    QPushButton *btnTmpl;
     uint selectedTemplateIdx;
 
     // location page
-    class QButtonGroup *bgLocation;
+    QButtonGroup *bgLocation;
     class KUrlRequester *urLocation;
     class KLineEdit *leTemplateFileName;
 
     // macro replacement page
-    class QCheckBox *cbRRealname, *cbRUsername, *cbREmail;
+    QCheckBox *cbRRealname, *cbRUsername, *cbREmail;
     QString sFullname, sEmail/*, sUsername*/;
 
     // final
-    class QCheckBox *cbOpenTemplate;
+    QCheckBox *cbOpenTemplate;
 };
 
 class KateTemplateManager : public QWidget
@@ -231,8 +236,8 @@ class KateTemplateManager : public QWidget
     void slotRemoveTemplate();
 
   private:
-    class QTreeWidget *lvTemplates;
-    class QPushButton *btnNew, *btnEdit, *btnRemove;
+    QTreeWidget *lvTemplates;
+    QPushButton *btnNew, *btnEdit, *btnRemove;
     KateFileTemplates *kft;
 //     QList<class TemplateInfo> *remove;
 

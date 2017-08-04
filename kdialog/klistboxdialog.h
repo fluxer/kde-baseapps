@@ -25,7 +25,7 @@
 
 #include <QListWidget>
 
-class QLabel;
+#include <QLabel>
 
 class KListBoxDialog : public KDialog
 {

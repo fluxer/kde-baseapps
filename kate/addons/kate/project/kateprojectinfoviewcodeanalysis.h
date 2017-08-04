@@ -28,7 +28,7 @@
 
 class KateProjectPluginView;
 class KMessageWidget;
-class QProcess;
+#include <QProcess>
 
 /**
  * View for Code Analysis.

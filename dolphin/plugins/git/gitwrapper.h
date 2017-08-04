@@ -25,7 +25,7 @@
 #include <QStringList>
 #include <QSet>
 
-class QTextCodec;
+#include <QTextCodec>
 
 /**
  * @brief A git wrapper class to access git functions conveniently using a Singleton interface.

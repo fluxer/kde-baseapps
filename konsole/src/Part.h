@@ -30,9 +30,9 @@
 // Konsole
 #include "Profile.h"
 
-class QAction;
-class QStringList;
-class QKeyEvent;
+#include <QAction>
+#include <QStringList>
+#include <QKeyEvent>
 
 namespace Konsole
 {

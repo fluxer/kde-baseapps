@@ -27,9 +27,9 @@
 #include <QVariant>
 
 class KItemListView;
-class QGraphicsWidget;
-class QPointF;
-class QPropertyAnimation;
+#include <QGraphicsWidget>
+#include <QPointF>
+#include <QPropertyAnimation>
 
 /**
  * @brief Internal helper class for KItemListView to animate the items.

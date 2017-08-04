@@ -44,7 +44,7 @@
 #include <QString>
 
 // Forward Declarations
-class QSslCertificate;
+#include <QSslCertificate>
 
 
 /**

@@ -36,7 +36,7 @@
 #include <KConfigDialog>
 
 // Forward Declarations
-class QWidget;
+#include <QWidget>
 class Private;
 
 

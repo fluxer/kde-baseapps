@@ -25,11 +25,11 @@
 
 class KUrl;
 class StatusBarSpaceInfo;
-class QLabel;
-class QProgressBar;
-class QToolButton;
-class QSlider;
-class QTimer;
+#include <QLabel>
+#include <QProgressBar>
+#include <QToolButton>
+#include <QSlider>
+#include <QTimer>
 
 /**
  * @brief Represents the statusbar of a Dolphin view.

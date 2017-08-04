@@ -36,8 +36,8 @@
 #include "localsview.h"
 
 class KHistoryComboBox;
-class QTextEdit;
-class QTreeWidget;
+#include <QTextEdit>
+#include <QTreeWidget>
 
 typedef QList<QVariant> VariantList;
 

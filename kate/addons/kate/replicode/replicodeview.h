@@ -25,12 +25,12 @@
 #include <kate/plugin.h>
 #include <QProcess>
 
-class QListWidgetItem;
-class QListWidget;
-class QTemporaryFile;
-class QProcess;
-class QListWidget;
-class QPushButton;
+#include <QListWidgetItem>
+#include <QListWidget>
+#include <QTemporaryFile>
+#include <QProcess>
+#include <QListWidget>
+#include <QPushButton>
 class KAction;
 class ReplicodeConfig;
 

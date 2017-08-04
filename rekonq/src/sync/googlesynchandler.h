@@ -38,7 +38,7 @@
 #include <KBookmarkGroup>
 
 // Forward Declarations
-class QNetworkReply;
+#include <QNetworkReply>
 class BookmarkManager;
 
 class GoogleSyncHandler : public SyncHandler

@@ -25,6 +25,7 @@
 #define EDITSNIPPET_H
 
 #include <KDialog>
+#include <QStandardItemModel>
 
 namespace KTextEditor
 {
@@ -35,11 +36,11 @@ class View;
 class SnippetRepository;
 class Snippet;
 
-class QStandardItemModel;
-
+QT_BEGIN_NAMESPACE
 namespace Ui {
-class EditSnippetBase;
+    class EditSnippetBase;
 }
+QT_END_NAMESPACE
 
 /**
  * This dialog is used to create/edit snippets in a given repository.

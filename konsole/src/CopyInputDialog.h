@@ -32,10 +32,9 @@
 #include "Session.h"
 #include "SessionListModel.h"
 
-namespace Ui
-{
-class CopyInputDialog;
-}
+QT_BEGIN_NAMESPACE
+namespace Ui { class CopyInputDialog; }
+QT_END_NAMESPACE
 
 namespace Konsole
 {

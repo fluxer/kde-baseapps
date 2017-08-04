@@ -24,9 +24,9 @@
 #include <KUrl>
 
 class KComboBox;
-class QCheckBox;
-class QLabel;
-class QRadioButton;
+#include <QCheckBox>
+#include <QLabel>
+#include <QRadioButton>
 
 /**
  * @brief Tab page for the 'Behavior' settings of the Dolphin settings dialog.

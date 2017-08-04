@@ -36,16 +36,16 @@ class KItemListKeyboardSearchManager;
 class KItemListSelectionManager;
 class KItemListView;
 class KItemListWidget;
-class QGraphicsSceneHoverEvent;
-class QGraphicsSceneDragDropEvent;
-class QGraphicsSceneMouseEvent;
-class QGraphicsSceneResizeEvent;
-class QGraphicsSceneWheelEvent;
-class QHideEvent;
-class QKeyEvent;
-class QMimeData;
-class QShowEvent;
-class QTransform;
+#include <QGraphicsSceneHoverEvent>
+#include <QGraphicsSceneDragDropEvent>
+#include <QGraphicsSceneMouseEvent>
+#include <QGraphicsSceneResizeEvent>
+#include <QGraphicsSceneWheelEvent>
+#include <QHideEvent>
+#include <QKeyEvent>
+#include <QMimeData>
+#include <QShowEvent>
+#include <QTransform>
 
 /**
  * @brief Controls the view, model and selection of an item-list.

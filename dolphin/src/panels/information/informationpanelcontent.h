@@ -31,10 +31,10 @@
 class KFileItemList;
 class PixmapViewer;
 class PlacesItemModel;
-class QPixmap;
-class QString;
-class QLabel;
-class QScrollArea;
+#include <QPixmap>
+#include <QString>
+#include <QLabel>
+#include <QScrollArea>
 
 namespace KIO {
   class PreviewJob;

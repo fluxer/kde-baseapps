@@ -24,7 +24,7 @@
 #include <QString>
 #include <QPoint>
 
-class QWidget;
+#include <QWidget>
 
 class KateProjectTreeViewContextMenu
 {

@@ -25,7 +25,7 @@
 #include <QAction>
 #include <KTemporaryFile>
 
-class QProcess;
+#include <QProcess>
 
 namespace Kate {
   class SwapFile;

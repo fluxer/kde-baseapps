@@ -27,7 +27,7 @@
 #include <kxmlguifactory.h>
 #include <kurl.h>
 
-class QWidget;
+#include <QWidget>
 
 namespace KTextEditor
 {

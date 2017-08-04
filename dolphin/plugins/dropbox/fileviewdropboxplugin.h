@@ -29,7 +29,7 @@
 #include <QtCore/qvariant.h>
 #include <QPointer>
 
-class QLocalSocket;
+#include <QLocalSocket>
 
 //The dropbox protocol info can be found in the dropboxd-protocol file
 //it can be found here http://dl.dropbox.com/u/4577542/dropbox/dropboxd-protocol.txt

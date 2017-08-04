@@ -24,12 +24,12 @@
 
 #include "ui_katesessionConfig.h"
 
-class QTreeView;
-class QGraphicsProxyWidget;
-class QStandardItemModel;
-class QModelIndex;
+#include <QTreeView>
+#include <QGraphicsProxyWidget>
+#include <QStandardItemModel>
+#include <QModelIndex>
 class KConfigDialog;
-class QStringList;
+#include <QStringList>
 class KateSessionConfigInterface : public QWidget {
     // Wrapper widget class for the configuration interface.
     Q_OBJECT

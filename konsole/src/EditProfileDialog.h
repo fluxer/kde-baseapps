@@ -34,14 +34,13 @@
 #include "ColorScheme.h"
 #include "ColorSchemeEditor.h"
 
-class QAbstractButton;
-class QItemSelectionModel;
-class QTextCodec;
+#include <QAbstractButton>
+#include <QItemSelectionModel>
+#include <QTextCodec>
 
-namespace Ui
-{
-class EditProfileDialog;
-}
+QT_BEGIN_NAMESPACE
+namespace Ui { class EditProfileDialog; }
+QT_END_NAMESPACE
 
 namespace Konsole
 {

@@ -29,7 +29,7 @@ class EditCommand;
 
 class KLineEdit;
 
-class QTimer;
+#include <QTimer>
 
 class BookmarkInfoWidget : public QWidget {
     Q_OBJECT

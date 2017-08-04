@@ -25,7 +25,7 @@
 
 class KComboBox;
 class KPushButton;
-class QLabel;
+#include <QLabel>
 class HgCommitInfoWidget;
 
 /**

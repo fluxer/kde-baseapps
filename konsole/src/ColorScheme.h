@@ -32,8 +32,8 @@
 #include "CharacterColor.h"
 
 class KConfig;
-class QPixmap;
-class QPainter;
+#include <QPixmap>
+#include <QPainter>
 
 namespace Konsole
 {

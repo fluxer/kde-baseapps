@@ -27,7 +27,7 @@
 #include <KTextEditor/ContainerInterface>
 
 class KateApp;
-class QWidget;
+#include <QWidget>
 namespace KTextEditor {
   class View;
 }

@@ -30,11 +30,11 @@
 #include <QPointer>
 #include <qsortfilterproxymodel.h>
 
-class QListView;
-class QTreeView;
+#include <QListView>
+#include <QTreeView>
 class KLineEdit;
 class KateMainWindow;
-class QStandardItemModel;
+#include <QStandardItemModel>
 
 namespace KTextEditor {
     class Document;

@@ -23,8 +23,8 @@
 class KUrlRequester;
 class KLineEdit;
 
-class QRadioButton;
-class QCheckBox;
+#include <QRadioButton>
+#include <QCheckBox>
 
 #include <qwizard.h>
 

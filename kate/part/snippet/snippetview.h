@@ -27,7 +27,7 @@
 #include "ui_snippetview.h"
 
 class SnippetFilterProxyModel;
-class QStandardItem;
+#include <QStandardItem>
 class KateSnippetGlobal;
 class KAction;
 

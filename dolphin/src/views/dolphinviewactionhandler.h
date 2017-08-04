@@ -29,8 +29,8 @@
 #include <QObject>
 
 class KToggleAction;
-class QAction;
-class QActionGroup;
+#include <QAction>
+#include <QActionGroup>
 class DolphinView;
 class KActionCollection;
 

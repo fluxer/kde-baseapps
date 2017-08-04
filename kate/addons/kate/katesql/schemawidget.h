@@ -20,7 +20,7 @@
 #define SCHEMAWIDGET_H
 
 class SQLManager;
-class QMouseEvent;
+#include <QMouseEvent>
 
 #include <QTreeWidget>
 #include <QtGui/qtreewidget.h>

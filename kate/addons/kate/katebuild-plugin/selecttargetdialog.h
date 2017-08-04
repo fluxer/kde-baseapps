@@ -28,11 +28,11 @@
 
 #include <map>
 
-class QComboBox;
-class QLabel;
-class QLineEdit;
-class QListWidget;
-class QListWidgetItem;
+#include <QComboBox>
+#include <QLabel>
+#include <QLineEdit>
+#include <QListWidget>
+#include <QListWidgetItem>
 
 
 class SelectTargetDialog : public KDialog

@@ -29,7 +29,7 @@
 #include "Profile.h"
 #include "ViewContainer.h"
 
-class QSignalMapper;
+#include <QSignalMapper>
 class KActionCollection;
 class KConfigGroup;
 

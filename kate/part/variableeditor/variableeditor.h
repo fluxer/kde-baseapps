@@ -37,11 +37,11 @@ class VariableRemoveSpacesItem;
 
 class KColorCombo;
 class KFontComboBox;
-class QCheckBox;
-class QComboBox;
-class QLabel;
-class QLineEdit;
-class QSpinBox;
+#include <QCheckBox>
+#include <QComboBox>
+#include <QLabel>
+#include <QLineEdit>
+#include <QSpinBox>
 
 namespace Sonnet {
   class DictionaryComboBox;

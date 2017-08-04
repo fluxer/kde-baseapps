@@ -33,7 +33,7 @@
 
 class KItemListSelectionToggle;
 class KItemListView;
-class QPropertyAnimation;
+#include <QPropertyAnimation>
 
 /**
  * @brief Provides information for creating an instance of KItemListWidget.

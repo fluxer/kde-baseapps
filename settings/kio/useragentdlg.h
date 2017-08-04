@@ -30,7 +30,7 @@
 
 class KConfig;
 class UserAgentInfo;
-class QTreeWidgetItem;
+#include <QTreeWidgetItem>
 
 class UserAgentDlg : public KCModule
 {

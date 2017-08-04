@@ -42,9 +42,9 @@ class KJob;
 class KNewFileMenu;
 class KTabBar;
 class KUrl;
-class QSplitter;
-class QToolButton;
-class QVBoxLayout;
+#include <QSplitter>
+#include <QToolButton>
+#include <QVBoxLayout>
 
 /**
  * @short Main window for Dolphin.

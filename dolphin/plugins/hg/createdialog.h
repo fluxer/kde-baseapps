@@ -24,7 +24,7 @@
 #include <kdialog.h>
 
 class KLineEdit;
-class QLabel;
+#include <QLabel>
 
 /**
  * Dialog to initialize new mercurial repository

@@ -22,8 +22,8 @@
 
 #include <kdialog.h>
 
-class QCheckBox;
-class QTextCodec;
+#include <QCheckBox>
+#include <QTextCodec>
 class KTextEdit;
 
 class CommitDialog : public KDialog

@@ -22,19 +22,18 @@
 #ifndef KATECOMPLETIONWIDGET_H
 #define KATECOMPLETIONWIDGET_H
 
-#include <QtGui/QFrame>
+#include <QFrame>
 #include <QObject>
+#include <QToolButton>
+#include <QPushButton>
+#include <QLabel>
+#include <QTimer>
 
 #include "katepartprivate_export.h"
 
 #include <ktexteditor/movingrange.h>
 #include <ktexteditor/codecompletioninterface.h>
 #include <ktexteditor/codecompletionmodel.h>
-
-class QToolButton;
-class QPushButton;
-class QLabel;
-class QTimer;
 
 class KateView;
 class KateCompletionModel;

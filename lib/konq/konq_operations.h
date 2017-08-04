@@ -31,7 +31,7 @@
 
 class KJob;
 namespace KIO { class Job; class SimpleJob; struct CopyInfo; }
-class QWidget;
+#include <QWidget>
 class KFileItem;
 class KFileItemListProperties;
 

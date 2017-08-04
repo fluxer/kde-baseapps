@@ -20,7 +20,7 @@
 #define KATESQLCONFIGPAGE_H
 
 class OutputStyleWidget;
-class QCheckBox;
+#include <QCheckBox>
 
 #include "katesqlplugin.h"
 

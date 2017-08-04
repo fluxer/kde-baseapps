@@ -33,11 +33,11 @@
 
 class KColorButton;
 class KTinyTabButton;
-class QCheckBox;
-class QLabel;
-class QRadioButton;
-class QSlider;
-class QSpinBox;
+#include <QCheckBox>
+#include <QLabel>
+#include <QRadioButton>
+#include <QSlider>
+#include <QSpinBox>
 
 /**
  * The class @p KTinyTabBarConfigPage provides a config page for

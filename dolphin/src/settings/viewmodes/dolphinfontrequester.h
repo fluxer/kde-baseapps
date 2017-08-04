@@ -24,7 +24,7 @@
 #include <QWidget>
 
 class KComboBox;
-class QPushButton;
+#include <QPushButton>
 
 /**
  * @brief Allows to select between using the system font or a custom font.

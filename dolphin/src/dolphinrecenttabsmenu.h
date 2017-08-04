@@ -24,7 +24,7 @@
 #include <KUrl>
 
 class DolphinTabPage;
-class QAction;
+#include <QAction>
 
 class DolphinRecentTabsMenu : public KActionMenu
 {

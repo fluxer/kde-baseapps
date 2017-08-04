@@ -28,9 +28,9 @@
 class DolphinModel;
 class DolphinSortFilterProxyModel;
 class FileMetaDataToolTip;
-class QAbstractItemView;
-class QModelIndex;
-class QTimer;
+#include <QAbstractItemView>
+#include <QModelIndex>
+#include <QTimer>
 
 /**
  * @brief Manages the tooltips for an item view.

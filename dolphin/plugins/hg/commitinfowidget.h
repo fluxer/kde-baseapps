@@ -29,8 +29,8 @@ namespace KTextEditor {
     class Document;
 };
 
-class QListWidget;
-class QListWidgetItem;
+#include <QListWidget>
+#include <QListWidgetItem>
 
 /**
  * Shows Changesets using a custom deltegate CommitItemDelegate. Shows

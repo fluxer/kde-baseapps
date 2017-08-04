@@ -22,7 +22,7 @@
 
 #include <kcmodule.h>
 
-class QCheckBox;
+#include <QCheckBox>
 
 class AutoBraceConfig
     : public KCModule

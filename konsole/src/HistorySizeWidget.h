@@ -27,12 +27,11 @@
 // Konsole
 #include "Enumeration.h"
 
-class QAbstractButton;
+#include <QAbstractButton>
 
-namespace Ui
-{
-class HistorySizeWidget;
-}
+QT_BEGIN_NAMESPACE
+namespace Ui { class HistorySizeWidget; }
+QT_END_NAMESPACE
 
 namespace Konsole
 {

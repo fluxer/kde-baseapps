@@ -23,10 +23,10 @@
 #include "hgwrapper.h"
 #include "syncdialogbase.h"
 
-class QCheckBox;
-class QTableWidget;
+#include <QCheckBox>
+#include <QTableWidget>
 class KTextEdit;
-class QGroupBox;
+#include <QGroupBox>
 
 /**
  * Dialog to implement Push operation

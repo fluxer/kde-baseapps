@@ -20,7 +20,7 @@
 #ifndef ZOOMLEVELINFO_H
 #define ZOOMLEVELINFO_H
 
-class QSize;
+#include <QSize>
 
 /**
  * @short Helper class for getting information about the zooming

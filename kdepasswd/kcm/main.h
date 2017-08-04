@@ -27,8 +27,8 @@
 #include "chfacedlg.h"
 
 class KUser;
-class QEvent;
-class QObject;
+#include <QEvent>
+#include <QObject>
 class KUrl;
 
 class MainWidget : public QWidget, public Ui::MainWidget

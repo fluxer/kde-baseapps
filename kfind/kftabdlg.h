@@ -26,18 +26,18 @@
 #include <kmimetype.h>
 
 class KUrlComboBox;
-class QButtonGroup;
-class QPushButton;
-class QRadioButton;
-class QCheckBox;
+#include <QButtonGroup>
+#include <QPushButton>
+#include <QRadioButton>
+#include <QCheckBox>
 class KLineEdit;
-class QString;
-class QDate;
-class QRegExp;
+#include <QString>
+#include <QDate>
+#include <QRegExp>
 class KDialog;
 class KComboBox;
 class KIntSpinBox;
-class QLabel;
+#include <QLabel>
 
 class KfDirDialog;
 class KDateCombo;

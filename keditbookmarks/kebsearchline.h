@@ -23,7 +23,7 @@
 #include <QtCore/QLinkedList>
 
 
-class QAction;
+#include <QAction>
 class KViewSearchLinePrivate;
 /**
  * This class makes it easy to add a search line for filtering the items in a

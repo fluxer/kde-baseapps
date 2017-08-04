@@ -29,7 +29,7 @@ namespace KTextEditor { class Mark; class View; }
 class KAction;
 class KToggleAction;
 class KActionCollection;
-class QMenu;
+#include <QMenu>
 
 class KateBookmarks : public QObject
 {

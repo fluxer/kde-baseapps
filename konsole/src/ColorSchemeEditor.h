@@ -22,6 +22,7 @@
 
 // Qt
 #include <QWidget>
+#include <QTableWidgetItem>
 
 // KDE
 #include <KDialog>
@@ -29,12 +30,9 @@
 // Konsole
 #include "Profile.h"
 
-class QTableWidgetItem;
-
-namespace Ui
-{
-class ColorSchemeEditor;
-}
+QT_BEGIN_NAMESPACE
+namespace Ui { class ColorSchemeEditor; }
+QT_END_NAMESPACE
 
 namespace Konsole
 {

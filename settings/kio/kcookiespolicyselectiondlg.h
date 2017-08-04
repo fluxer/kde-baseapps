@@ -24,7 +24,7 @@
 
 #include "ui_kcookiespolicyselectiondlg.h"
 
-class QWidget;
+#include <QWidget>
 
 class KCookieAdvice
 {

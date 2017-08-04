@@ -40,7 +40,7 @@
 class BookmarksTreeModel;
 
 class KBookmark;
-class QModelIndex;
+#include <QModelIndex>
 
 
 class REKONQ_TESTS_EXPORT BookmarksPanel : public UrlPanel

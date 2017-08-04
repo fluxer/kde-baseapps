@@ -28,18 +28,18 @@
 
 #include <QtGui/QAccessible>
 #include <QtGui/qaccessible2.h>
+#include <QtGui/QAccessibleWidget>
+
 #include <klocale.h>
-#include <qaccessiblewidget.h>
 
-
-
+QT_BEGIN_NAMESPACE
 QString Q_GUI_EXPORT qTextBeforeOffsetFromString(int offset, QAccessible2::BoundaryType boundaryType,
         int *startOffset, int *endOffset, const QString& text);
 QString Q_GUI_EXPORT qTextAtOffsetFromString(int offset, QAccessible2::BoundaryType boundaryType,
         int *startOffset, int *endOffset, const QString& text);
 QString Q_GUI_EXPORT qTextAfterOffsetFromString(int offset, QAccessible2::BoundaryType boundaryType,
         int *startOffset, int *endOffset, const QString& text);
-
+QT_END_NAMESPACE
 
 /**
  * This class implements a QAccessible-interface for a Kate::TextCursor. An

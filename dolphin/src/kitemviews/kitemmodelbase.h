@@ -32,7 +32,7 @@
 #include <QObject>
 #include <QVariant>
 
-class QMimeData;
+#include <QMimeData>
 
 /**
  * @brief Base class for model implementations used by KItemListView and KItemListController.

@@ -40,10 +40,10 @@
 #define EMBEDCLASS QX11EmbedContainer
 
 class OrgKdeNspluginsViewerInterface;
-class QPushButton;
-class QGridLayout;
+#include <QPushButton>
+#include <QGridLayout>
 class OrgKdeNspluginsInstanceInterface;
-class QFrame;
+#include <QFrame>
 
 class NSPluginInstance : public EMBEDCLASS
 {

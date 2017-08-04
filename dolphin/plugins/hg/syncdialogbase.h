@@ -28,10 +28,10 @@
 #include <QtCore/QMap>
 #include <kdialog.h>
 
-class QLabel;
-class QCheckBox;
-class QGroupBox;
-class QProgressBar;
+#include <QLabel>
+#include <QCheckBox>
+#include <QGroupBox>
+#include <QProgressBar>
 class KLineEdit;
 class KTextEdit;
 class KComboBox;

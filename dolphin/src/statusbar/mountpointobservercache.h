@@ -24,7 +24,7 @@
 #include <QObject>
 
 class MountPointObserver;
-class QTimer;
+#include <QTimer>
 
 class MountPointObserverCache : public QObject
 {

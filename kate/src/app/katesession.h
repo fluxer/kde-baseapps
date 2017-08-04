@@ -35,7 +35,7 @@
 class KateSessionManager;
 class KPushButton;
 
-class QCheckBox;
+#include <QCheckBox>
 
 class KateSession  : public QSharedData
 {

@@ -29,7 +29,7 @@ class PlacesItemEditDialog;
 class PlacesItem;
 class PlacesItemModel;
 class PlacesView;
-class QGraphicsSceneDragDropEvent;
+#include <QGraphicsSceneDragDropEvent>
 
 /**
  * @brief Combines bookmarks and mounted devices as list.

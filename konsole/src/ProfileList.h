@@ -29,9 +29,9 @@
 #include "Profile.h"
 #include "konsoleprivate_export.h"
 
-class QAction;
-class QActionGroup;
-class QKeySequence;
+#include <QAction>
+#include <QActionGroup>
+#include <QKeySequence>
 
 namespace Konsole
 {

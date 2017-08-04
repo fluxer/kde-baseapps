@@ -42,10 +42,16 @@
 #include <sonnet/configwidget.h>
 #include <sonnet/dictionarycombobox.h>
 
+#include <QtCore/QProcess>
 #include <QtCore/QStringList>
 #include <QtGui/QColor>
 #include <QtGui/QTabWidget>
 #include <QtGui/QTreeWidget>
+#include <QtGui/QCheckBox>
+#include <QtGui/QLabel>
+#include <QtGui/QCheckBox>
+#include <QtGui/QKeyEvent>
+#include <QtGui/QTableWidget>
 
 struct syntaxContextData;
 
@@ -68,13 +74,7 @@ class KIntSpinBox;
 class KPluginSelector;
 class KPluginInfo;
 
-class QProcess;
-class QCheckBox;
-class QLabel;
-class QCheckBox;
-class QKeyEvent;
-class QTableWidget;
-
+QT_BEGIN_NAMESPACE
 namespace Ui
 {
   class ModOnHdWidget;
@@ -89,6 +89,7 @@ namespace Ui
   class ViInputModeConfigWidget;
   class SpellCheckConfigWidget;
 }
+QT_END_NAMESPACE
 
 class KateConfigPage : public KTextEditor::ConfigPage
 {

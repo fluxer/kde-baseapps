@@ -25,7 +25,7 @@
 #include <QQueue>
 #include <QTimeLine>
 
-class QPaintEvent;
+#include <QPaintEvent>
 
 /**
  * @brief Widget which shows a pixmap centered inside the boundaries.

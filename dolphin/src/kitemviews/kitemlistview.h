@@ -45,7 +45,7 @@ class KItemListWidget;
 class KItemListWidgetInformant;
 class KItemListWidgetCreatorBase;
 class KItemListViewCreatorBase;
-class QTimer;
+#include <QTimer>
 
 /**
  * @brief Represents the view of an item-list.

@@ -24,7 +24,7 @@
 #include <QList>
 #include <QListWidget>
 
-class QCheckBox;
+#include <QCheckBox>
 
 /**
  * @brief Dialog for changing the additional information shown in the view.

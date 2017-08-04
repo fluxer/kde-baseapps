@@ -38,7 +38,7 @@
 // Forward Declarations
 class KUrl;
 
-class QToolButton;
+#include <QToolButton>
 
 class TabHistory;
 

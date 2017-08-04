@@ -44,7 +44,7 @@ bool readFile(const QString& sourceUrl, QString& sourceCode)
 
   QFile file(sourceUrl);
   if (!file.open(QIODevice::ReadOnly)) {
-    kDebug(13050) << i18n("Unable to find '%1'", sourceUrl);
+    // FIXME: kDebug(13050) << i18n("Unable to find '%1'", sourceUrl);
     return false;
   } else {
     QTextStream stream(&file);

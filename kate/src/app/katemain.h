@@ -31,11 +31,11 @@
 #include <QGridLayout>
 #include <QEvent>
 
-class QEvent;
-class QGridLayout;
-class QLabel;
-class QPixmap;
-class QVBoxLayout;
+#include <QEvent>
+#include <QGridLayout>
+#include <QLabel>
+#include <QPixmap>
+#include <QVBoxLayout>
 
 
 

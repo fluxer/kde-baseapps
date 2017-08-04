@@ -54,8 +54,8 @@ namespace KTextEditor {
   class MovingRange;
 }
 
-class QTimer;
-class QVBoxLayout;
+#include <QTimer>
+#include <QVBoxLayout>
 
 /**
  * This class is required because QScrollBar's sliderMoved() signal is

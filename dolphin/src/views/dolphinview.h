@@ -47,8 +47,8 @@ class KUrl;
 class ToolTipManager;
 class VersionControlObserver;
 class ViewProperties;
-class QGraphicsSceneDragDropEvent;
-class QRegExp;
+#include <QGraphicsSceneDragDropEvent>
+#include <QRegExp>
 
 /**
  * @short Represents a view for the directory content.

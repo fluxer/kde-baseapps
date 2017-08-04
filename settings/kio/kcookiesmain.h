@@ -12,7 +12,7 @@
 
 #include <kcmodule.h>
 
-class QTabWidget;
+#include <QTabWidget>
 class KCookiesPolicies;
 class KCookiesManagement;
 

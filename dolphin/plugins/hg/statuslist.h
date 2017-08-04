@@ -24,7 +24,7 @@
 #include <QtCore/QString>
 
 class KLineEdit;
-class QTableWidget;
+#include <QTableWidget>
 
 /**
  * Shows a list of files and their corresponding version states in a table.

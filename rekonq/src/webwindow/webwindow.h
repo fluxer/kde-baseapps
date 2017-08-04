@@ -51,9 +51,9 @@ class RekonqMenu;
 class KMenu;
 class KToolBar;
 
-class QLabel;
-class QPixmap;
-class QTimer;
+#include <QLabel>
+#include <QPixmap>
+#include <QTimer>
 
 
 class WebWindow : public QWidget

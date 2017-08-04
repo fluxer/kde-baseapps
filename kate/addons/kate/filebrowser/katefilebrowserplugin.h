@@ -41,9 +41,9 @@ class KDirOperator;
 class KFileItem;
 class KHistoryComboBox;
 class KToolBar;
-class QToolButton;
-class QCheckBox;
-class QSpinBox;
+#include <QToolButton>
+#include <QCheckBox>
+#include <QSpinBox>
 
 class KateFileBrowser;
 class KateFileBrowserPluginView;

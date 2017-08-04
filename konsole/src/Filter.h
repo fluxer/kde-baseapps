@@ -30,7 +30,7 @@
 // Konsole
 #include "Character.h"
 
-class QAction;
+#include <QAction>
 
 namespace Konsole
 {

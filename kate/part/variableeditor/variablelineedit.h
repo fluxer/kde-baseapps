@@ -23,9 +23,9 @@
 
 #include <QWidget>
 
-class QFrame;
-class QLineEdit;
-class QToolButton;
+#include <QFrame>
+#include <QLineEdit>
+#include <QToolButton>
 class VariableListView;
 
 class VariableLineEdit : public QWidget

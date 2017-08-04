@@ -21,7 +21,7 @@
 
 #include <settings/settingspagebase.h>
 
-class QCheckBox;
+#include <QCheckBox>
 
 /**
  * @brief Tab page for the 'Status Bar' settings of the Dolphin settings dialog.

@@ -24,7 +24,9 @@
 #include <QWidget>
 #include <QDialog>
 
+QT_BEGIN_NAMESPACE
 class Ui_KateProjectNew;
+QT_END_NAMESPACE
 
 class KateProjectNew: public QDialog
 {

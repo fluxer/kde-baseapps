@@ -29,15 +29,18 @@
 #include <ktexteditor/messageinterface.h>
 #include <ktexteditor/searchinterface.h>
 
+#include <QVBoxLayout>
+#include <QComboBox>
+
 class KateView;
 class KateViewConfig;
-class QVBoxLayout;
-class QComboBox;
 
+QT_BEGIN_NAMESPACE
 namespace Ui {
     class IncrementalSearchBar;
     class PowerSearchBar;
 }
+QT_END_NAMESPACE
 
 namespace KTextEditor {
     class MovingRange;

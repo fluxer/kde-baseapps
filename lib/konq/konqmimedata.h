@@ -22,7 +22,7 @@
 
 #include <konq_export.h>
 #include <kurl.h>
-class QMimeData;
+#include <QMimeData>
 
 /**
  * This class provides functions for creating and decoding clipboard/drag-n-drop data

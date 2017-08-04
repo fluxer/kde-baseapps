@@ -26,7 +26,7 @@
 #include <QtCore/QList>
 #include <QSplitter>
 
-class QFocusEvent;
+#include <QFocusEvent>
 
 namespace Konsole
 {

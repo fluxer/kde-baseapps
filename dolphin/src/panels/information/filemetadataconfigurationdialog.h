@@ -25,7 +25,7 @@
 
 class KFileMetaDataConfigurationWidget;
 
-class QLabel;
+#include <QLabel>
 
 /**
  * @brief Dialog which allows to configure which meta data should be shown

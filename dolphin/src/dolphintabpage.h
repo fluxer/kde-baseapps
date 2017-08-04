@@ -24,7 +24,7 @@
 #include <QPointer>
 #include <KUrl>
 
-class QSplitter;
+#include <QSplitter>
 class DolphinViewContainer;
 class KFileItemList;
 

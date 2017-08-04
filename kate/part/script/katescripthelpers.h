@@ -22,8 +22,8 @@
 #include <QtScript/QScriptValue>
 #include "katepartprivate_export.h"
 
-class QScriptEngine;
-class QScriptContext;
+#include <QScriptEngine>
+#include <QScriptContext>
 
 namespace Kate {
   /** Top-level script functions */
