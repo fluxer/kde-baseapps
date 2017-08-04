@@ -27,10 +27,9 @@
 // Konsole
 #include "Enumeration.h"
 
-namespace Ui
-{
-class HistorySizeDialog;
-}
+QT_BEGIN_NAMESPACE
+namespace Ui { class HistorySizeDialog; }
+QT_END_NAMESPACE
 
 namespace Konsole
 {
