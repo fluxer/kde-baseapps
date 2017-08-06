@@ -28,6 +28,7 @@
 
 #include <klocale.h>
 #include <kmessagewidget.h>
+#include <kstandarddirs.h>
 
 KateProjectInfoViewCodeAnalysis::KateProjectInfoViewCodeAnalysis (KateProjectPluginView *pluginView, KateProject *project)
   : QWidget ()
@@ -81,6 +82,38 @@ KateProjectInfoViewCodeAnalysis::~KateProjectInfoViewCodeAnalysis ()
 
 void KateProjectInfoViewCodeAnalysis::slotStartStopClicked ()
 {
+  /**
+   * stop analyzer
+   */
+  if (m_analyzer) {
+    m_startStopAnalysis->setText(i18n("Start Analysis..."));
+    m_analyzer->terminate();
+    delete m_analyzer;
+    m_analyzer=0;
+    return;
+  }
+
+  /**
+   * display a message to install cppcheck, but after stop has been performed
+   * since cppcheck may have been uninstalled after the analyzer has been run
+   */
+  if (m_messageWidget) {
+    delete m_messageWidget;
+    m_messageWidget=0;
+  }
+
+  if (KStandardDirs::findExe("cppcheck").isEmpty()) {
+    m_messageWidget = new KMessageWidget();
+    m_messageWidget->setCloseButtonVisible(true);
+    m_messageWidget->setMessageType(KMessageWidget::Warning);
+    m_messageWidget->setWordWrap(false);
+    m_messageWidget->setText(i18n("Please install 'cppcheck'."));
+    static_cast<QVBoxLayout*>(layout ())->insertWidget(0, m_messageWidget);
+    m_messageWidget->animatedShow();
+    return;
+  }
+
+
   m_treeView->setSortingEnabled (false);
 
   /**
@@ -92,7 +125,7 @@ void KateProjectInfoViewCodeAnalysis::slotStartStopClicked ()
    * clear existing entries
    */
   m_model->removeRows(0,m_model->rowCount(),QModelIndex());
-  
+
   /**
    * launch cppcheck
    */
@@ -104,22 +137,14 @@ void KateProjectInfoViewCodeAnalysis::slotStartStopClicked ()
   QStringList args;
   args << "-q" << "--inline-suppr" << "--enable=all" << "--template={file}////{line}////{severity}////{message}" << "--file-list=-";
   m_analyzer->start("cppcheck", args);
-  
-  if (m_messageWidget) {
-    delete m_messageWidget;
-    m_messageWidget=0;
+
+  /**
+   * TODO: if failure occured stop now and display the error
+   */
+  if (m_analyzer->waitForStarted()) {
+    m_startStopAnalysis->setText(i18n("Stop Analysis"));
   }
-  
-  if (!m_analyzer->waitForStarted()) {
-    m_messageWidget = new KMessageWidget();
-    m_messageWidget->setCloseButtonVisible(true);
-    m_messageWidget->setMessageType(KMessageWidget::Warning);
-    m_messageWidget->setWordWrap(false);
-    m_messageWidget->setText(i18n("Please install 'cppcheck'."));
-    static_cast<QVBoxLayout*>(layout ())->insertWidget(0, m_messageWidget);
-    m_messageWidget->animatedShow (); 
-    return;
-  }
+
   /**
    * write files list and close write channel
    */
