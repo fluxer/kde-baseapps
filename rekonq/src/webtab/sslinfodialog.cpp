@@ -33,15 +33,13 @@
 
 #include <kglobal.h>
 #include <klocale.h>
-#include <ktcpsocket.h>
 
 // Qt Includes
-#include <QtCore/qdatetime.h>
+#include <QDateTime>
 #include <QFile>
-
+#include <QSslError>
 #include <QLabel>
 #include <QTextDocument>
-
 #include <QSslCertificate>
 
 
@@ -164,10 +162,10 @@ QList<QStringList> SslInfoDialog::errorsFromString(const QString &s)
         Q_FOREACH(const QString & s, sl)
         {
             bool didConvert;
-            KSslError::Error error = static_cast<KSslError::Error>(s.trimmed().toInt(&didConvert));
+            QSslError::SslError error = static_cast<QSslError::SslError>(s.trimmed().toInt(&didConvert));
             if (didConvert)
             {
-                errors << KSslError(error).errorString();
+                errors << QSslError(error).errorString();
             }
         }
         resultList << errors;
