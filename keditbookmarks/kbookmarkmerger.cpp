@@ -24,7 +24,6 @@
  * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 #include <kaboutdata.h>
-#include <kapplication.h>
 #include <kbookmarkmanager.h>
 #include <kcmdlineargs.h>
 #include <kdebug.h>
@@ -33,6 +32,7 @@
 
 #include <QtCore/QDir>
 #include <QtXml/qdom.h>
+#include <QCoreApplication>
 
 int main( int argc, char**argv )
 {
@@ -49,8 +49,7 @@ int main( int argc, char**argv )
 	cmdLineOptions.add("+directory", ki18n( "Directory to scan for extra bookmarks" ));
 	KCmdLineArgs::addCmdLineOptions( cmdLineOptions );
 
-	KApplication app( false );
-	app.disableSessionManagement();
+	QCoreApplication app(argc, argv);
 
 	KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
 	if ( args->count() != 1 ) {

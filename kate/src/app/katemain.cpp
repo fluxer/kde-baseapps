@@ -352,7 +352,7 @@ int main( int argc, char **argv )
     // register a service to dbus. If we don't use KApplication we cannot use KStartupInfo
     // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     //
-    KApplication app(true);
+    KApplication app;
 
     // do no session management for this app, just client
     app.disableSessionManagement ();

@@ -135,7 +135,7 @@ int main(int argc, char **argv) {
     bool browser = args->isSet("browser");
 
     //KApplication::disableAutoDcopRegistration();
-    KApplication app(isGui);
+    KApplication app;
 
     bool gotFilenameArg = (args->count() == 1);
 
