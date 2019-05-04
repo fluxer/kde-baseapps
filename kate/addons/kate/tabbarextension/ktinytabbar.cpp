@@ -593,8 +593,7 @@ void KTinyTabBar::setTabButtonStyle( ButtonStyle tabStyle )
 {
     m_tabButtonStyle = tabStyle;
 
-    KTinyTabButton* tabButton;
-    foreach( tabButton, m_tabButtons )
+    foreach (KTinyTabButton* tabButton, m_tabButtons )
         tabButton->setTabButtonStyle( tabStyle );
 
     m_upButton->setTabButtonStyle( tabStyle );
@@ -657,8 +656,7 @@ void KTinyTabBar::setHighlightPreviousTab( bool highlight )
 {
     m_highlightPreviousTab = highlight;
 
-    KTinyTabButton* tabButton;
-    foreach( tabButton, m_tabButtons )
+    foreach (KTinyTabButton* tabButton, m_tabButtons )
         tabButton->setHighlightPreviousTab( highlight );
 }
 
@@ -677,8 +675,7 @@ void KTinyTabBar::setHighlightActiveTab( bool highlight )
 {
     m_highlightActiveTab = highlight;
 
-    KTinyTabButton* tabButton;
-    foreach( tabButton, m_tabButtons )
+    foreach( KTinyTabButton* tabButton, m_tabButtons )
         tabButton->setHighlightActiveTab( highlight );
 }
 
@@ -697,8 +694,7 @@ void KTinyTabBar::setHighlightOpacity( int value )
 {
     m_highlightOpacity = value;
 
-    KTinyTabButton* tabButton;
-    foreach( tabButton, m_tabButtons )
+    foreach( KTinyTabButton* tabButton, m_tabButtons )
         tabButton->setHighlightOpacity( value );
 }
 
@@ -716,8 +712,7 @@ int KTinyTabBar::highlightOpacity() const
 void KTinyTabBar::setPreviousTabColor( const QColor& color )
 {
     m_colorPreviousTab = color;
-    KTinyTabButton* tabButton;
-    foreach( tabButton, m_tabButtons )
+    foreach( KTinyTabButton* tabButton, m_tabButtons )
         tabButton->setPreviousTabColor( color );
 }
 
@@ -735,8 +730,7 @@ QColor KTinyTabBar::previousTabColor() const
 void KTinyTabBar::setActiveTabColor( const QColor& color )
 {
     m_colorActiveTab = color;
-    KTinyTabButton* tabButton;
-    foreach( tabButton, m_tabButtons )
+    foreach( KTinyTabButton* tabButton, m_tabButtons )
         tabButton->setActiveTabColor( color );
 }
 
@@ -765,8 +759,7 @@ bool KTinyTabBar::isTabModified( int button_id ) const
 void KTinyTabBar::setHighlightModifiedTabs( bool modified )
 {
     m_highlightModifiedTabs = modified;
-    KTinyTabButton* tabButton;
-    foreach( tabButton, m_tabButtons )
+    foreach( KTinyTabButton* tabButton, m_tabButtons )
         tabButton->setHighlightModifiedTabs( modified );
 }
 
@@ -778,8 +771,7 @@ bool KTinyTabBar::highlightModifiedTabs() const
 void KTinyTabBar::setModifiedTabsColor( const QColor& color )
 {
     m_colorModifiedTab = color;
-    KTinyTabButton* tabButton;
-    foreach( tabButton, m_tabButtons )
+    foreach( KTinyTabButton* tabButton, m_tabButtons )
         tabButton->setModifiedTabsColor( color );
 }
 
@@ -790,8 +782,7 @@ QColor KTinyTabBar::modifiedTabsColor() const
 
 void KTinyTabBar::removeHighlightMarks()
 {
-    KTinyTabButton* tabButton;
-    foreach( tabButton, m_tabButtons )
+    foreach( KTinyTabButton* tabButton, m_tabButtons )
     {
         if( tabButton->highlightColor().isValid() )
             tabButton->setHighlightColor( QColor() );
@@ -805,8 +796,7 @@ void KTinyTabBar::setHighlightMarks( const QMap<QString, QString>& marks )
 {
     m_highlightedTabs = marks;
 
-    KTinyTabButton* tabButton;
-    foreach( tabButton, m_tabButtons )
+    foreach( KTinyTabButton* tabButton, m_tabButtons )
     {
         if( marks.contains( tabButton->text() ) )
         {
@@ -970,9 +960,7 @@ void KTinyTabBar::resizeEvent( QResizeEvent* event )
 
     updateHelperButtons( event->size(), needed_rows );
 
-    KTinyTabButton* tabButton;
-
-    foreach( tabButton, m_tabButtons )
+    foreach( KTinyTabButton* tabButton, m_tabButtons )
         tabButton->hide();
 
     for( int row = 0; row < numRows(); ++row )
@@ -981,7 +969,7 @@ void KTinyTabBar::resizeEvent( QResizeEvent* event )
         for( int i = 0; i < tabs_per_row; ++i )
         {
             // value returns 0L, if index is out of bounds
-            tabButton = m_tabButtons.value( current_row * tabs_per_row + i );
+            KTinyTabButton *tabButton = m_tabButtons.value( current_row * tabs_per_row + i );
 
             if( tabButton )
             {

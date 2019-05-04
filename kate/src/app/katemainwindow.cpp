@@ -849,11 +849,9 @@ void KateMainWindow::slotFullScreen(bool t)
 
 bool KateMainWindow::showModOnDiskPrompt()
 {
-  KTextEditor::Document *doc;
-
   DocVector list;
   list.reserve( KateDocManager::self()->documents() );
-  foreach( doc, KateDocManager::self()->documentList())
+  foreach( KTextEditor::Document *doc, KateDocManager::self()->documentList())
   {
     if ( KateDocManager::self()->documentInfo( doc )->modifiedOnDisc )
     {

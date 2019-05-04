@@ -3986,8 +3986,7 @@ void KateDocument::readVariables(bool onlyViewAndRenderer)
     m_config->configStart();
 
   // views!
-  KateView *v;
-  foreach (v,m_views)
+  foreach (KateView *v,m_views)
   {
     v->config()->configStart();
     v->renderer()->config()->configStart();
@@ -4008,7 +4007,7 @@ void KateDocument::readVariables(bool onlyViewAndRenderer)
   if (!onlyViewAndRenderer)
     m_config->configEnd();
 
-  foreach (v,m_views)
+  foreach (KateView *v,m_views)
   {
     v->config()->configEnd();
     v->renderer()->config()->configEnd();
@@ -4230,11 +4229,10 @@ void KateDocument::readVariableLine( QString t, bool onlyViewAndRenderer )
 
 void KateDocument::setViewVariable( QString var, QString val )
 {
-  KateView *v;
   bool state;
   int n;
   QColor c;
-  foreach (v,m_views)
+  foreach (KateView *v,m_views)
   {
     if ( var == "dynamic-word-wrap" && checkBoolValue( val, &state ) )
       v->config()->setDynWordWrap( state );
@@ -4513,8 +4511,7 @@ void KateDocument::updateFileType (const QString &newType, bool user)
              config()->setIndentationMode (KateGlobal::self()->modeManager()->fileType(newType).indenter);
 
           // views!
-          KateView *v;
-          foreach (v,m_views)
+          foreach (KateView *v,m_views)
           {
             v->config()->configStart();
             v->renderer()->config()->configStart();
@@ -4527,7 +4524,7 @@ void KateDocument::updateFileType (const QString &newType, bool user)
           if (m_bomSetByUser)
              m_config->setBom(bom_settings);
           m_config->configEnd();
-          foreach (v,m_views)
+          foreach (KateView *v,m_views)
           {
             v->config()->configEnd();
             v->renderer()->config()->configEnd();

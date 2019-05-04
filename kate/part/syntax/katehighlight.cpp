@@ -387,8 +387,9 @@ void KateHighlighting::doHighlight ( const Kate::TextLineData *_prevLine,
       bool anItemMatched = false;
       bool customStartEnableDetermined = false;
 
-      foreach (item, context->items)
+      foreach (KateHlItem *it, context->items)
       {
+	item = it;
         // does we only match if we are firstNonSpace?
         if (item->firstNonSpace && (offset > startNonSpace))
           continue;
