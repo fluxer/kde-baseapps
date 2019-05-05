@@ -42,8 +42,8 @@
 #include <QDBusInterface>
 #include <QDBusConnectionInterface>
 #include <QProcess>
+#include <QCoreApplication>
 
-#include <kapplication.h>
 #include <kdebug.h>
 #include <kglobal.h>
 #include <kstandarddirs.h>
@@ -532,7 +532,7 @@ int main( int argc, char **argv )
       printf("10\n"); fflush(stdout);
     }
 
-    KApplication app(false);
+    QCoreApplication app(argc, argv);
 
     // Set up SIGCHLD handler
     struct sigaction act;
