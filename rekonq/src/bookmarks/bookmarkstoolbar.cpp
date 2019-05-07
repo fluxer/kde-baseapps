@@ -416,7 +416,7 @@ bool BookmarkToolBar::eventFilter(QObject *watched, QEvent *event)
             QPoint pos = mapFromGlobal(QCursor::pos());
             KBookmarkActionInterface *action = dynamic_cast<KBookmarkActionInterface *>(actionAt(pos));
 
-            if (action && mouseEvent->button() != Qt::MidButton)
+            if (action && mouseEvent->button() != Qt::MiddleButton)
             {
                 m_dragAction = actionAt(pos);
                 m_startDragPos = pos;
@@ -448,7 +448,7 @@ bool BookmarkToolBar::eventFilter(QObject *watched, QEvent *event)
             {
                 if (action->bookmark().isGroup())
                 {
-                    if (mouseEvent->button() == Qt::MidButton)
+                    if (mouseEvent->button() == Qt::MiddleButton)
                     {
                         BookmarkManager::self()->owner()->loadBookmarkFolder(action->bookmark());
                     }
@@ -463,7 +463,7 @@ bool BookmarkToolBar::eventFilter(QObject *watched, QEvent *event)
                 {
                     if (!action->bookmark().isNull() && !action->bookmark().isSeparator())
                     {
-                        if (mouseEvent->button() == Qt::MidButton)
+                        if (mouseEvent->button() == Qt::MiddleButton)
                         {
                             BookmarkManager::self()->owner()->loadBookmarkInNewTab(action->bookmark());
                         }

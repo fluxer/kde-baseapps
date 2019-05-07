@@ -579,7 +579,7 @@ void WebWindow::openPrevious(Qt::MouseButtons mouseButtons, Qt::KeyboardModifier
     if (!item)
         return;
 
-    if (mouseButtons == Qt::MidButton || keyboardModifiers == Qt::ControlModifier)
+    if (mouseButtons == Qt::MiddleButton || keyboardModifiers == Qt::ControlModifier)
     {
         rApp->loadUrl(item->url(), Rekonq::NewTab);
     }
@@ -612,7 +612,7 @@ void WebWindow::openNext(Qt::MouseButtons mouseButtons, Qt::KeyboardModifiers ke
     if (!item)
         return;
 
-    if (mouseButtons == Qt::MidButton || keyboardModifiers == Qt::ControlModifier)
+    if (mouseButtons == Qt::MiddleButton || keyboardModifiers == Qt::ControlModifier)
     {
         rApp->loadUrl(item->url(), Rekonq::NewTab);
     }
@@ -989,7 +989,7 @@ void WebWindow::openHomePage(Qt::MouseButtons buttons, Qt::KeyboardModifiers mod
 {
     KUrl homeUrl = KUrl(ReKonfig::homePage());
 
-    if (buttons == Qt::MidButton || modifiers == Qt::ControlModifier)
+    if (buttons == Qt::MiddleButton || modifiers == Qt::ControlModifier)
         rApp->loadUrl(homeUrl, Rekonq::NewTab);
     else
         load(homeUrl);

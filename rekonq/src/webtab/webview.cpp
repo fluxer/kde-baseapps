@@ -634,7 +634,7 @@ void WebView::mousePressEvent(QMouseEvent *event)
         triggerPageAction(KWebPage::Forward);
         break;
 
-    case Qt::MidButton:
+    case Qt::MiddleButton:
         switch (ReKonfig::middleClickAction())
         {
         case 0: // AutoScroll
@@ -779,7 +779,7 @@ void WebView::viewImage(Qt::MouseButtons buttons, Qt::KeyboardModifiers modifier
     KAction *a = qobject_cast<KAction*>(sender());
     KUrl url(a->data().toUrl());
 
-    if (modifiers & Qt::ControlModifier || buttons == Qt::MidButton)
+    if (modifiers & Qt::ControlModifier || buttons == Qt::MiddleButton)
     {
         emit loadUrl(url, Rekonq::NewTab);
     }
@@ -1429,7 +1429,7 @@ void WebView::mouseReleaseEvent(QMouseEvent *event)
 
     if (!url.isEmpty())
     {
-        if (event->button() & Qt::MidButton)
+        if (event->button() & Qt::MiddleButton)
         {
             // open tab as focused
             if (event->modifiers() & Qt::ShiftModifier)

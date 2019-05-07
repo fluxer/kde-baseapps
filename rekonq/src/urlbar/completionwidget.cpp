@@ -352,7 +352,7 @@ void CompletionWidget::itemChosen(ListItem *item, Qt::MouseButton button, Qt::Ke
 {
     KUrl u = item->url();
 
-    if (button == Qt::MidButton || modifier == Qt::ControlModifier)
+    if (button == Qt::MiddleButton || modifier == Qt::ControlModifier)
     {
         emit chosenUrl(u, Rekonq::NewFocusedTab);
     }

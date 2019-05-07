@@ -137,7 +137,7 @@ void BookmarkOwner::openBookmark(const KBookmark &bookmark,
                                  Qt::MouseButtons mouseButtons,
                                  Qt::KeyboardModifiers keyboardModifiers)
 {
-    if (keyboardModifiers & Qt::ControlModifier || mouseButtons & Qt::MidButton)
+    if (keyboardModifiers & Qt::ControlModifier || mouseButtons & Qt::MiddleButton)
         loadBookmarkInNewTab(bookmark);
     else
         loadBookmark(bookmark);

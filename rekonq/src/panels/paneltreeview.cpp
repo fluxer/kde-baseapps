@@ -96,7 +96,7 @@ void PanelTreeView::mouseReleaseEvent(QMouseEvent *event)
     if (!index.isValid())
         return;
 
-    if (event->button() == Qt::MidButton || event->modifiers() == Qt::ControlModifier)
+    if (event->button() == Qt::MiddleButton || event->modifiers() == Qt::ControlModifier)
         emit openUrl(index.data(Qt::UserRole).value< KUrl >(), Rekonq::NewTab);
 
     else if (event->button() == Qt::LeftButton)

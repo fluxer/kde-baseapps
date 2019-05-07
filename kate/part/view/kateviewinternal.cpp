@@ -2715,7 +2715,7 @@ void KateViewInternal::mouseReleaseEvent( QMouseEvent* e )
       e->accept ();
       break;
 
-    case Qt::MidButton:
+    case Qt::MiddleButton:
       placeCursor( e->pos() );
 
       if( doc()->isReadWrite() ) {

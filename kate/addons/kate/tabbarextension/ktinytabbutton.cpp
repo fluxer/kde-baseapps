@@ -229,7 +229,7 @@ void KTinyTabButton::contextMenuEvent( QContextMenuEvent* ev )
 
 void KTinyTabButton::mousePressEvent( QMouseEvent* ev )
 {
-    if (ev->button() == Qt::MidButton) {
+    if (ev->button() == Qt::MiddleButton) {
         if (ev->modifiers() & Qt::ControlModifier) {
             // clear tab highlight
             setHighlightColor(QColor());

@@ -1887,7 +1887,7 @@ void TerminalDisplay::mousePressEvent(QMouseEvent* ev)
                 }
             }
         }
-    } else if (ev->button() == Qt::MidButton) {
+    } else if (ev->button() == Qt::MiddleButton) {
         processMidButtonClick(ev);
     } else if (ev->button() == Qt::RightButton) {
         if (_mouseMarks || (ev->modifiers() & Qt::ShiftModifier))
@@ -1971,7 +1971,7 @@ void TerminalDisplay::mouseMoveEvent(QMouseEvent* ev)
         int button = 3;
         if (ev->buttons() & Qt::LeftButton)
             button = 0;
-        if (ev->buttons() & Qt::MidButton)
+        if (ev->buttons() & Qt::MiddleButton)
             button = 1;
         if (ev->buttons() & Qt::RightButton)
             button = 2;
@@ -2006,7 +2006,7 @@ void TerminalDisplay::mouseMoveEvent(QMouseEvent* ev)
     if (_actSel == 0) return;
 
 // don't extend selection while pasting
-    if (ev->buttons() & Qt::MidButton) return;
+    if (ev->buttons() & Qt::MiddleButton) return;
 
     extendSelection(ev->pos());
 }
@@ -2206,9 +2206,9 @@ void TerminalDisplay::mouseReleaseEvent(QMouseEvent* ev)
     }
 
     if (!_mouseMarks &&
-            (ev->button() == Qt::RightButton || ev->button() == Qt::MidButton) &&
+            (ev->button() == Qt::RightButton || ev->button() == Qt::MiddleButton) &&
             !(ev->modifiers() & Qt::ShiftModifier)) {
-        emit mouseSignal(ev->button() == Qt::MidButton ? 1 : 2,
+        emit mouseSignal(ev->button() == Qt::MiddleButton ? 1 : 2,
                          charColumn + 1,
                          charLine + 1 + _scrollBar->value() - _scrollBar->maximum() ,
                          2);
@@ -2269,7 +2269,7 @@ void TerminalDisplay::processMidButtonClick(QMouseEvent* ev)
 void TerminalDisplay::mouseDoubleClickEvent(QMouseEvent* ev)
 {
     // Yes, successive middle click can trigger this event
-    if (ev->button() == Qt::MidButton) {
+    if (ev->button() == Qt::MiddleButton) {
         processMidButtonClick(ev);
         return;
     }

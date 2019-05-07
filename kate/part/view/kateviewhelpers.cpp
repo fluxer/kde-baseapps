@@ -194,7 +194,7 @@ void KateScrollBar::mousePressEvent(QMouseEvent* e)
     QScrollBar::mousePressEvent(e);
   }
 
-  if (e->button() == Qt::MidButton)
+  if (e->button() == Qt::MiddleButton)
     m_middleMouseDown = true;
   else if (e->button() == Qt::LeftButton)
     m_leftMouseDown = true;
@@ -209,7 +209,7 @@ void KateScrollBar::mousePressEvent(QMouseEvent* e)
 
 void KateScrollBar::mouseReleaseEvent(QMouseEvent* e)
 {
-  if (e->button() == Qt::MidButton)
+  if (e->button() == Qt::MiddleButton)
     m_middleMouseDown = false;
   else if (e->button() == Qt::LeftButton)
     m_leftMouseDown = false;
@@ -243,7 +243,7 @@ void KateScrollBar::mouseMoveEvent(QMouseEvent* e)
     QScrollBar::mouseMoveEvent(e);
   }
 
-  if (e->buttons() & (Qt::LeftButton | Qt::MidButton)) {
+  if (e->buttons() & (Qt::LeftButton | Qt::MiddleButton)) {
     redrawMarks();
 
     // current line tool tip

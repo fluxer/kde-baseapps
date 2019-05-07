@@ -431,7 +431,7 @@ void TabBar::mousePressEvent(QMouseEvent *event)
     hideTabPreview();
 
     // just close tab on middle mouse click
-    if (event->button() == Qt::MidButton)
+    if (event->button() == Qt::MiddleButton)
         return;
 
     KTabBar::mousePressEvent(event);
