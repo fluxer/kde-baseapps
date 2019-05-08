@@ -18,7 +18,7 @@
 */
 
 #include "replicodesettings.h"
-#include <QtCore/qxmlstream.h>
+#include <QXmlStreamWriter>
 #include <QSettings>
 #include <QDebug>
 #include <QString>
