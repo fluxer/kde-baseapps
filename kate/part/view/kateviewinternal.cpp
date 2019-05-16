@@ -1897,7 +1897,9 @@ void KateViewInternal::updateCursor( const KTextEditor::Cursor& newCursor, bool 
   tagLine(oldDisplayCursor);
   tagLine(m_displayCursor);
 
+#ifndef QT_KATIE
   updateMicroFocus();
+#endif
 
   if (m_cursorTimer.isActive ())
   {
