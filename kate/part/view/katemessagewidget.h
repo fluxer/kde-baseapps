@@ -24,6 +24,7 @@
 #include <QtGui/QWidget>
 #include <QtCore/QHash>
 #include <QPointer>
+#include <QTimer>
 
 #include "katepartprivate_export.h"
 

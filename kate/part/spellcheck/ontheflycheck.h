@@ -28,6 +28,7 @@
 #include <QPair>
 #include <QString>
 #include <QSet>
+#include <QTimer>
 
 #include <sonnet/speller.h>
 

@@ -33,6 +33,9 @@
 #include <QtGui/qevent.h>
 #include <QLinkedList>
 #include <QWidget>
+#include <QTimer>
+#include <QRegExp>
+#include <QGraphicsSceneDragDropEvent>
 
 typedef KIO::FileUndoManager::CommandType CommandType;
 
@@ -47,8 +50,6 @@ class KUrl;
 class ToolTipManager;
 class VersionControlObserver;
 class ViewProperties;
-#include <QGraphicsSceneDragDropEvent>
-#include <QRegExp>
 
 /**
  * @short Represents a view for the directory content.

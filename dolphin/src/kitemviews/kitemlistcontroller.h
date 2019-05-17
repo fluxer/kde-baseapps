@@ -29,7 +29,8 @@
 
 #include <QObject>
 #include <QPixmap>
-#include <QtCore/qpoint.h>
+#include <QPoint>
+#include <QTimer>
 
 class KItemModelBase;
 class KItemListKeyboardSearchManager;

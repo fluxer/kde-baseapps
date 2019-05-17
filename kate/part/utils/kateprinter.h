@@ -24,14 +24,14 @@
 #define __KATE_PRINTER_H__
 
 #include <QtGui/QWidget>
-
-class KateDocument;
-
-class KColorButton;
 #include <QCheckBox>
 #include <QComboBox>
 #include <QGroupBox>
 #include <QLabel>
+#include <QPrinter>
+
+class KateDocument;
+class KColorButton;
 class KLineEdit;
 class KIntSpinBox;
 class KComboBox;

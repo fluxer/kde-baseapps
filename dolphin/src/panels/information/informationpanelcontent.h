@@ -27,14 +27,13 @@
 #include <KMediaWidget>
 
 #include <QPointer>
+#include <QTimer>
+#include <QLabel>
+#include <QScrollArea>
 
 class KFileItemList;
 class PixmapViewer;
 class PlacesItemModel;
-#include <QPixmap>
-#include <QString>
-#include <QLabel>
-#include <QScrollArea>
 
 namespace KIO {
   class PreviewJob;

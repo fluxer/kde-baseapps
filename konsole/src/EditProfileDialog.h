@@ -24,6 +24,10 @@
 #include <QAbstractItemDelegate>
 #include <QtCore/QHash>
 #include <QtCore/QPointer>
+#include <QtCore/QTimer>
+#include <QAbstractButton>
+#include <QItemSelectionModel>
+#include <QTextCodec>
 
 // KDE
 #include <KDialog>
@@ -33,10 +37,6 @@
 #include "Enumeration.h"
 #include "ColorScheme.h"
 #include "ColorSchemeEditor.h"
-
-#include <QAbstractButton>
-#include <QItemSelectionModel>
-#include <QTextCodec>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class EditProfileDialog; }

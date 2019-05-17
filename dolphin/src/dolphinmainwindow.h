@@ -22,6 +22,7 @@
 #ifndef DOLPHIN_MAINWINDOW_H
 #define DOLPHIN_MAINWINDOW_H
 
+#include <QTimer>
 #include <KFileItemDelegate>
 #include <KIcon>
 #include <kio/fileundomanager.h>

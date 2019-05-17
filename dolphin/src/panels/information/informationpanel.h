@@ -20,6 +20,7 @@
 #ifndef INFORMATIONPANEL_H
 #define INFORMATIONPANEL_H
 
+#include <QTimer>
 #include <panels/panel.h>
 
 class InformationPanelContent;

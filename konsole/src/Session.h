@@ -27,20 +27,19 @@
 // Qt
 #include <QtCore/QStringList>
 #include <QtCore/QHash>
-//#include <QtCore/qbytearray.h>
 #include <QtCore/QUuid>
 #include <QtCore/QSize>
 #include <QtCore/QProcess>
-#include <QWidget>
+#include <QtCore/QTimer>
+#include <QtCore/QProcess>
+#include <QtGui/QWidget>
+#include <QtGui/QColor>
 
 // KDE
 #include <KUrl>
 
 // Konsole
 #include "konsoleprivate_export.h"
-
-#include <QColor>
-#include <QProcess>
 
 class KConfigGroup;
 

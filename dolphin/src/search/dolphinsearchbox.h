@@ -23,15 +23,16 @@
 #include <KUrl>
 #include <QList>
 #include <QWidget>
-
-class DolphinFacetsWidget;
-class KLineEdit;
-class KSeparator;
+#include <QTimer>
 #include <QToolButton>
 #include <QCheckBox>
 #include <QScrollArea>
 #include <QLabel>
 #include <QVBoxLayout>
+
+class DolphinFacetsWidget;
+class KLineEdit;
+class KSeparator;
 
 /**
  * @brief Input box for searching files.
