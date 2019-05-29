@@ -30,7 +30,6 @@
 #include <Solid/StorageVolume>
 #include <Solid/PortableMediaPlayer>
 
-class KDirLister;
 class PlacesItemSignalHandler;
 
 /**
@@ -99,10 +98,10 @@ private:
     void onAccessibilityChanged();
 
     /**
-     * Is invoked if the listing of the trash has been completed.
+     * Is invoked if the trash state config changes.
      * Updates the state of the trash-icon to be empty or full.
      */
-    void onTrashDirListerCompleted();
+    void onTrashConfigChange(const QString &config);
 
     /**
      * Applies the data-value from the role to m_bookmark.
@@ -118,7 +117,6 @@ private:
     QPointer<Solid::OpticalDisc> m_disc;
     QPointer<Solid::PortableMediaPlayer> m_mtp;
     QPointer<PlacesItemSignalHandler> m_signalHandler;
-    QPointer<KDirLister> m_trashDirLister;
     KBookmark m_bookmark;
 
     friend class PlacesItemSignalHandler; // Calls onAccessibilityChanged()

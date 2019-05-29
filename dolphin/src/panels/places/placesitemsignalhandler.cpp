@@ -40,10 +40,10 @@ void PlacesItemSignalHandler::onAccessibilityChanged()
     }
 }
 
-void PlacesItemSignalHandler::onTrashDirListerCompleted()
+void PlacesItemSignalHandler::onTrashConfigChange(const QString &config)
 {
     if (m_item) {
-        m_item->onTrashDirListerCompleted();
+        m_item->onTrashConfigChange(config);
     }
 }
 

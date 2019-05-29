@@ -59,7 +59,7 @@ public slots:
     /**
      * Calls PlacesItem::onTrashDirListerCompleted()
      */
-    void onTrashDirListerCompleted();
+    void onTrashConfigChange(const QString &config);
 
 private:
     PlacesItem* m_item;

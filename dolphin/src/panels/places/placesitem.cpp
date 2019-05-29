@@ -24,7 +24,9 @@
 
 #include <KBookmarkManager>
 #include <KDebug>
-#include <KDirLister>
+#include <KDirWatch>
+#include <KConfigGroup>
+#include <KStandardDirs>
 #include <KIcon>
 #include <KLocale>
 #include "placesitemsignalhandler.h"
@@ -39,7 +41,6 @@ PlacesItem::PlacesItem(const KBookmark& bookmark, PlacesItem* parent) :
     m_disc(),
     m_mtp(),
     m_signalHandler(0),
-    m_trashDirLister(0),
     m_bookmark()
 {
     m_signalHandler = new PlacesItemSignalHandler(this);
@@ -49,7 +50,6 @@ PlacesItem::PlacesItem(const KBookmark& bookmark, PlacesItem* parent) :
 PlacesItem::~PlacesItem()
 {
     delete m_signalHandler;
-    delete m_trashDirLister;
 }
 
 void PlacesItem::setUrl(const KUrl& url)
@@ -60,18 +60,13 @@ void PlacesItem::setUrl(const KUrl& url)
     // setting an equal URL results in an itemsChanged()
     // signal.
     if (dataValue("url").value<KUrl>() != url) {
-        delete m_trashDirLister;
         if (url.protocol() == QLatin1String("trash")) {
-            // The trash icon must always be updated dependent on whether
-            // the trash is empty or not. We use a KDirLister that automatically
-            // watches for changes if the number of items has been changed.
-            // The update of the icon is handled in onTrashDirListerCompleted().
-            m_trashDirLister = new KDirLister();
-            m_trashDirLister->setAutoErrorHandlingEnabled(false, 0);
-            m_trashDirLister->setDelayedMimeTypes(true);
-            QObject::connect(m_trashDirLister, SIGNAL(completed()),
-                             m_signalHandler, SLOT(onTrashDirListerCompleted()));
-            m_trashDirLister->openUrl(url);
+            onTrashConfigChange("trash");
+            KDirWatch::self()->addFile(KStandardDirs::locateLocal("config", "trashrc"));
+            QObject::connect(KDirWatch::self(), SIGNAL(created(QString)),
+                             m_signalHandler, SLOT(onTrashConfigChange(QString)));
+            QObject::connect(KDirWatch::self(), SIGNAL(dirty(QString)),
+                             m_signalHandler, SLOT(onTrashConfigChange(QString)));
         }
 
         setDataValue("url", url);
@@ -292,11 +287,12 @@ void PlacesItem::onAccessibilityChanged()
     setUrl(m_access->filePath());
 }
 
-void PlacesItem::onTrashDirListerCompleted()
+void PlacesItem::onTrashConfigChange(const QString &config)
 {
     Q_ASSERT(url().protocol() == QLatin1String("trash"));
 
-    const bool isTrashEmpty = m_trashDirLister->items().isEmpty();
+    KConfig trashConfig("trashrc", KConfig::SimpleConfig);
+    const bool isTrashEmpty = trashConfig.group("Status").readEntry("Empty", true);
     setIcon(isTrashEmpty ? "user-trash" : "user-trash-full");
 }
 
