@@ -40,7 +40,7 @@ KMediaWindow::KMediaWindow(QWidget *parent, Qt::WindowFlags flags)
     m_player = new KMediaWidget(this, KMediaWidget::AllOptions);
     setCentralWidget(m_player);
 
-    KAction *a = actionCollection()->addAction("file_open", this, SLOT(openPath()));
+    KAction *a = actionCollection()->addAction("file_open_path", this, SLOT(openPath()));
     a->setText(i18n("Open"));
     a->setIcon(KIcon("document-open"));
     a->setShortcut(KStandardShortcut::open());
@@ -69,13 +69,6 @@ KMediaWindow::KMediaWindow(QWidget *parent, Qt::WindowFlags flags)
     e->setShortcut(KStandardShortcut::fullScreen());
     e->setWhatsThis(i18n("Set the player view to fullscreen/non-fullscreen"));
 
-/*
-    // TODO: can this be less hacky?
-    KAction *f = actionCollection()->addAction("player_audio_1", this, SLOT(foo()));
-    f->setText(i18n("test audio track"));
-    f->setIcon(KIcon("audio-input-line"));
-*/
-
     KAction *g = actionCollection()->addAction("settings_player", this, SLOT(configure()));
     g->setText(i18n("Configure KMediaPlayer"));
     g->setIcon(KIcon("preferences-desktop-sound"));
@@ -93,7 +86,7 @@ KMediaWindow::KMediaWindow(QWidget *parent, Qt::WindowFlags flags)
         m_recentfiles->addUrl(kurl);
     }
 
-    setupGUI();
+    setupGUI(KXmlGuiWindow::Keys | KXmlGuiWindow::StatusBar | KXmlGuiWindow::Save | KXmlGuiWindow::Create);
     setAutoSaveSettings();
 
     const bool firstrun = m_settings->value("KMultiMedia/firstrun", true).toBool();
@@ -134,7 +127,6 @@ KMediaWindow::~KMediaWindow()
 void KMediaWindow::showEvent(QShowEvent *event)
 {
     m_menuvisible = menuBar()->isVisible();
-    m_toolvisible = toolBar()->isVisible();
     m_statusvisible = statusBar()->isVisible();
     Q_UNUSED(event);
 }
@@ -143,14 +135,11 @@ void KMediaWindow::hideMenuBar(bool visible)
 {
     if (!visible) {
         m_menuvisible = menuBar()->isVisible();
-        m_toolvisible = toolBar()->isVisible();
         m_statusvisible = statusBar()->isVisible();
         menuBar()->setVisible(false);
-        toolBar()->setVisible(false);
         statusBar()->setVisible(false);
     } else {
         menuBar()->setVisible(m_menuvisible);
-        toolBar()->setVisible(m_toolvisible);
         statusBar()->setVisible(m_statusvisible);
     }
 }
