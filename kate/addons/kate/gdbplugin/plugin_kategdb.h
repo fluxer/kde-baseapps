@@ -80,7 +80,7 @@ private Q_SLOTS:
     void programEnded();
     void gdbEnded();
 
-    void insertStackFrame( QString const& level, QString const& info );
+    void insertStackFrame( const QString &level, const QString &info );
     void stackFrameChanged( int level );
     void stackFrameSelected();
 
@@ -88,8 +88,8 @@ private Q_SLOTS:
     void threadSelected( int thread );
 
     void showIO( bool show );
-    void addOutputText( QString const& text );
-    void addErrorText( QString const& text );
+    void addOutputText( const QString &text );
+    void addErrorText( const QString &text );
     void clearMarks();
     void handleEsc(QEvent *e);
 

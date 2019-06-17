@@ -41,13 +41,13 @@ public:
     void runDebugger(const GDBTargetConf &conf, const QStringList &ioFifos);
     bool debuggerRunning() const;
     bool debuggerBusy() const;
-    bool hasBreakpoint( KUrl const& url, int line );
+    bool hasBreakpoint( const KUrl &url, int line );
 
-    void toggleBreakpoint( KUrl const& url, int line );
-    void movePC( KUrl const& url, int line );
-    void runToCursor( KUrl const& url, int line );
+    void toggleBreakpoint( const KUrl &url, int line );
+    void movePC( const KUrl &url, int line );
+    void runToCursor( const KUrl &url, int line );
 
-    void issueCommand( QString const& cmd );
+    void issueCommand( const QString &cmd );
 
 
 public Q_SLOTS:
@@ -73,11 +73,11 @@ Q_SIGNALS:
     void breakPointSet( const KUrl &file, int lineNum );
     void breakPointCleared( const KUrl &file, int lineNum );
     void clearBreakpointMarks();
-    void stackFrameInfo( QString const& level, QString const& info );
+    void stackFrameInfo( const QString &level, const QString &info );
     void stackFrameChanged( int level );
     void threadInfo( int number, bool avtive );
 
-    void infoLocal( QString const& line );
+    void infoLocal( const QString &line );
 
     void outputText( const QString &text );
     void outputError( const QString &text );

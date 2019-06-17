@@ -133,7 +133,7 @@ bool DebugView::hasBreakpoint( const KUrl& url, int line )
     return false;
 }
 
-void DebugView::toggleBreakpoint( KUrl const& url, int line )
+void DebugView::toggleBreakpoint( const KUrl &url, int line )
 {
     if( m_state == ready )
     {
@@ -209,7 +209,7 @@ void DebugView::slotDebugFinished( int /*exitCode*/, QProcess::ExitStatus status
     emit gdbEnded();
 }
 
-void DebugView::movePC( KUrl const& url, int line )
+void DebugView::movePC( const KUrl &url, int line )
 {
     if( m_state == ready )
     {
@@ -219,7 +219,7 @@ void DebugView::movePC( KUrl const& url, int line )
     }
 }
 
-void DebugView::runToCursor( KUrl const& url, int line )
+void DebugView::runToCursor( const KUrl &url, int line )
 {
     if( m_state == ready )
     {
@@ -570,7 +570,7 @@ void DebugView::processErrors()
     }
  }
 
-void DebugView::issueCommand( QString const& cmd )
+void DebugView::issueCommand( const QString &cmd )
 {
     if( m_state == ready )
     {
