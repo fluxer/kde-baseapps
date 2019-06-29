@@ -37,7 +37,8 @@
 KMediaWindow::KMediaWindow(QWidget *parent, Qt::WindowFlags flags)
     : KXmlGuiWindow(parent, flags)
 {
-    m_player = new KMediaWidget(this, KMediaWidget::AllOptions);
+    // TODO: enable all options once mouse tracking on all relevant widgets can be done
+    m_player = new KMediaWidget(this, KMediaWidget::DragDrop | KMediaWidget::FullscreenVideo);
     setCentralWidget(m_player);
 
     KAction *a = actionCollection()->addAction("file_open_path", this, SLOT(openPath()));
