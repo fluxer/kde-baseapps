@@ -43,6 +43,7 @@ using namespace KTextEditor;
 
 QTEST_KDEMAIN(KateDocumentTest, GUI)
 
+QT_BEGIN_NAMESPACE
 namespace QTest {
     template<>
     char *toString(const KTextEditor::Cursor &cursor)
@@ -52,6 +53,7 @@ namespace QTest {
         return qstrdup(ba.data());
     }
 }
+QT_END_NAMESPACE
 
 class MovingRangeInvalidator : public QObject {
     Q_OBJECT

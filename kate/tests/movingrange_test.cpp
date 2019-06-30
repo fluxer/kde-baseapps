@@ -32,6 +32,7 @@ using namespace KTextEditor;
 
 QTEST_KDEMAIN(MovingRangeTest, GUI)
 
+QT_BEGIN_NAMESPACE
 namespace QTest {
     template<>
     char *toString(const KTextEditor::Cursor &cursor)
@@ -41,7 +42,7 @@ namespace QTest {
         return qstrdup(ba.data());
     }
 }
-
+QT_END_NAMESPACE
 
 class RangeFeedback : public MovingRangeFeedback
 {

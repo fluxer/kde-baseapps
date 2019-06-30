@@ -31,6 +31,7 @@ Q_DECLARE_METATYPE(KTextEditor::Cursor)
 
 QTEST_KDEMAIN(ScriptDocumentTest, GUI)
 
+QT_BEGIN_NAMESPACE
 namespace QTest {
   template<>
   char *toString(const KTextEditor::Cursor &cursor)
@@ -41,6 +42,7 @@ namespace QTest {
     return qstrdup(ba.data());
   }
 }
+QT_END_NAMESPACE
 
 QtMsgHandler ScriptDocumentTest::s_msgHandler = 0;
 

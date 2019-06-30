@@ -29,6 +29,7 @@ Q_DECLARE_METATYPE(KTextEditor::Range)
 
 QTEST_KDEMAIN(RegExpSearchTest, GUI)
 
+QT_BEGIN_NAMESPACE
 namespace QTest {
   template<>
   char *toString(const KTextEditor::Range &range)
@@ -40,6 +41,7 @@ namespace QTest {
     return qstrdup(ba.data());
   }
 }
+QT_END_NAMESPACE
 
 #define testNewRow() (QTest::newRow(QString("line %1").arg(__LINE__).toAscii().data()))
 

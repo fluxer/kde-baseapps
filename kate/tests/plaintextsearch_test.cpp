@@ -29,6 +29,7 @@ Q_DECLARE_METATYPE(KTextEditor::Range)
 
 QTEST_KDEMAIN(PlainTextSearchTest, GUI)
 
+QT_BEGIN_NAMESPACE
 namespace QTest {
   template<>
   char *toString(const KTextEditor::Range &range)
@@ -40,6 +41,7 @@ namespace QTest {
     return qstrdup(ba.data());
   }
 }
+QT_END_NAMESPACE
 
 QtMsgHandler PlainTextSearchTest::s_msgHandler = 0;
 
