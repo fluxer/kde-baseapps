@@ -75,7 +75,7 @@ KMediaWindow::KMediaWindow(QWidget *parent, Qt::WindowFlags flags)
     g->setIcon(KIcon("preferences-desktop-sound"));
     g->setWhatsThis(i18n("Configure KMediaPlayer and applications that use it."));
 
-    m_settings = new QSettings("KMediaPlayer", "kmediaplayer");
+    m_settings = new KSettings("kmediaplayer");
     m_recentfiles = new KRecentFilesAction(KIcon("document-open-recent"), "Open recent", this);
     m_recentfiles->setShortcut(KStandardShortcut::shortcut(KStandardShortcut::OpenRecent));
     m_recentfiles->setWhatsThis(i18n("Open recently opened files."));

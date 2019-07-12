@@ -22,7 +22,7 @@
 #include <KXmlGuiWindow>
 #include <KMediaWidget>
 #include <KRecentFilesAction>
-#include <QSettings>
+#include <ksettings.h>
 #include <QMenu>
 
 class KMediaWindow: public KXmlGuiWindow
@@ -52,7 +52,7 @@ protected:
 private:
     KMediaWidget *m_player;
     KRecentFilesAction *m_recentfiles;
-    QSettings *m_settings;
+    KSettings *m_settings;
     QMenu *m_menu;
     bool m_menuvisible;
     bool m_toolvisible;

@@ -21,7 +21,7 @@
 
 #include <kcmodule.h>
 #include <kmediaplayer.h>
-#include <QSettings>
+#include <ksettings.h>
 
 QT_BEGIN_NAMESPACE
 class Ui_KCMPlayer;
@@ -51,7 +51,7 @@ public slots:
 
 private:
     Ui_KCMPlayer *m_ui;
-    QSettings *m_settings;
+    KSettings *m_settings;
     QString m_application;
 };
 
