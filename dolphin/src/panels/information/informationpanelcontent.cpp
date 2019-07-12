@@ -262,6 +262,11 @@ bool InformationPanelContent::eventFilter(QObject* obj, QEvent* event)
         m_metaDataWidget->setFont(KGlobalSettings::smallestReadableFont());
         break;
 
+    case QEvent::Hide:
+        if (m_playerWidget)
+            m_playerWidget->player()->stop();
+        break;
+
     default:
         break;
     }
