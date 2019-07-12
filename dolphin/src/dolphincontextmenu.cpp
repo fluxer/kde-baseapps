@@ -46,6 +46,7 @@
 #include <KStandardAction>
 #include <KStandardDirs>
 #include <KToolBar>
+#include <ksettings.h>
 
 #include <panels/places/placesitem.h>
 #include <panels/places/placesitemmodel.h>
@@ -143,8 +144,8 @@ void DolphinContextMenu::openTrashContextMenu()
     Q_ASSERT(m_context & TrashContext);
 
     QAction* emptyTrashAction = new QAction(KIcon("trash-empty"), i18nc("@action:inmenu", "Empty Trash"), this);
-    KConfig trashConfig("trashrc", KConfig::SimpleConfig);
-    emptyTrashAction->setEnabled(!trashConfig.group("Status").readEntry("Empty", true));
+    KSettings trashConfig("trashrc", KSettings::SimpleConfig);
+    emptyTrashAction->setEnabled(!trashConfig.value("Status/Empty", true).toBool());
     addAction(emptyTrashAction);
 
     addCustomActions();

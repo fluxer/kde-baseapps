@@ -29,6 +29,7 @@
 #include <KStandardDirs>
 #include <KIcon>
 #include <KLocale>
+#include <ksettings.h>
 #include "placesitemsignalhandler.h"
 #include <QDateTime>
 #include <Solid/Block>
@@ -63,8 +64,6 @@ void PlacesItem::setUrl(const KUrl& url)
         if (url.protocol() == QLatin1String("trash")) {
             onTrashConfigChange("trash");
             KDirWatch::self()->addFile(KStandardDirs::locateLocal("config", "trashrc"));
-            QObject::connect(KDirWatch::self(), SIGNAL(created(QString)),
-                             m_signalHandler, SLOT(onTrashConfigChange(QString)));
             QObject::connect(KDirWatch::self(), SIGNAL(dirty(QString)),
                              m_signalHandler, SLOT(onTrashConfigChange(QString)));
         }
@@ -291,8 +290,8 @@ void PlacesItem::onTrashConfigChange(const QString &config)
 {
     Q_ASSERT(url().protocol() == QLatin1String("trash"));
 
-    KConfig trashConfig("trashrc", KConfig::SimpleConfig);
-    const bool isTrashEmpty = trashConfig.group("Status").readEntry("Empty", true);
+    KSettings trashConfig("trashrc", KSettings::SimpleConfig);
+    const bool isTrashEmpty = trashConfig.value("Status/Empty", true).toBool();
     setIcon(isTrashEmpty ? "user-trash" : "user-trash-full");
 }
 

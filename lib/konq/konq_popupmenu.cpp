@@ -41,6 +41,7 @@
 #include <kmimetypetrader.h>
 #include <kstandarddirs.h>
 #include <kconfiggroup.h>
+#include <ksettings.h>
 #include <kdesktopfile.h>
 #include <kfileshare.h>
 #include <kauthorized.h>
@@ -328,8 +329,8 @@ void KonqPopupMenuPrivate::init(KonqPopupMenu::Flags kpf, KParts::BrowserExtensi
         m_ownActions.append(act);
         act->setIcon( KIcon("trash-empty") );
         act->setText( i18n( "&Empty Trash Bin" ) );
-        KConfig trashConfig( "trashrc", KConfig::SimpleConfig);
-        act->setEnabled( !trashConfig.group("Status").readEntry( "Empty", true ) );
+        KSettings trashConfig("trashrc", KSettings::SimpleConfig);
+        act->setEnabled( !trashConfig.value("Status/Empty", true).toBool() );
         QObject::connect(act, SIGNAL(triggered()), q, SLOT(slotPopupEmptyTrashBin()));
         q->addAction(act);
     }
