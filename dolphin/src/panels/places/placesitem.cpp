@@ -55,19 +55,19 @@ PlacesItem::~PlacesItem()
 
 void PlacesItem::setUrl(const KUrl& url)
 {
+    if (url.protocol() == QLatin1String("trash")) {
+        KDirWatch::self()->addFile(KStandardDirs::locateLocal("config", "trashrc"));
+        QObject::connect(KDirWatch::self(), SIGNAL(dirty(QString)),
+                            m_signalHandler, SLOT(onTrashConfigChange(QString)));
+        onTrashConfigChange("trash");
+    }
+
     // The default check in KStandardItem::setDataValue()
     // for equal values does not work with a custom value
     // like KUrl. Hence do a manual check to prevent that
     // setting an equal URL results in an itemsChanged()
     // signal.
     if (dataValue("url").value<KUrl>() != url) {
-        if (url.protocol() == QLatin1String("trash")) {
-            onTrashConfigChange("trash");
-            KDirWatch::self()->addFile(KStandardDirs::locateLocal("config", "trashrc"));
-            QObject::connect(KDirWatch::self(), SIGNAL(dirty(QString)),
-                             m_signalHandler, SLOT(onTrashConfigChange(QString)));
-        }
-
         setDataValue("url", url);
     }
 }
