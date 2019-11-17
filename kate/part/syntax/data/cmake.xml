@@ -470,6 +470,9 @@
       <item> WIN32 </item>
       <item> WINDOWS_COMMAND </item>
       <item> WORKING_DIRECTORY </item>
+      <item> WORLD_EXECUTE </item>
+      <item> WORLD_READ </item>
+      <item> WORLD_WRITE </item>
       <item> WRITE </item>
     </list>
 
