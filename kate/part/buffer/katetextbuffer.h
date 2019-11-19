@@ -419,22 +419,22 @@ class KATEPART_TESTS_EXPORT TextBuffer : public QObject {
     void invalidateRanges();
 
   //
-  // md5 checksum handling
+  // sha1 checksum handling
   //
   public:
     /**
-    * md5 digest of the document on disk, set either through file loading
+    * sha1 digest of the document on disk, set either through file loading
     * in openFile() or in KateDocument::saveFile()
-    * @return md5 digest for this document
+    * @return sha1 digest for this document
     */
     const QByteArray &digest () const;
 
     /**
-    * Set the md5sum of this buffer. Make sure this checksum is up-to-date
+    * Set the sha1sum of this buffer. Make sure this checksum is up-to-date
     * when reading digest().
-    * @param md5sum md5 digest for the document on disk
+    * @param sha1sum sha1 digest for the document on disk
     */
-    void setDigest (const QByteArray & md5sum);
+    void setDigest (const QByteArray & sha1sum);
 
   private:
     QByteArray m_digest;

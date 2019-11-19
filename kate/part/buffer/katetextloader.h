@@ -58,7 +58,7 @@ class TextLoader
       , m_lastLineStart (0)
       , m_eol (TextBuffer::eolUnknown) // no eol type detected atm
       , m_buffer (KATE_FILE_LOADER_BS, 0)
-      , m_digest (QCryptographicHash::Md5)
+      , m_digest (QCryptographicHash::Sha1)
       , m_converterState (0)
       , m_bomFound (false)
       , m_firstRead (true)
@@ -188,7 +188,7 @@ class TextLoader
             // if any text is there, append it....
             if (c > 0)
             {
-              // update md5 hash sum
+              // update hash sum
               m_digest.addData (m_buffer.data(), c);
 
               // detect byte order marks & codec for byte order markers on first read

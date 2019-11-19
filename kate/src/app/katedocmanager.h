@@ -199,7 +199,7 @@ class KateDocManager : public QObject
   private:
     bool loadMetaInfos(KTextEditor::Document *doc, const KUrl &url);
     void saveMetaInfos(const QList<KTextEditor::Document *> &docs);
-    bool computeUrlMD5(const KUrl &url, QByteArray &result);
+    bool computeUrlChecksum(const KUrl &url, QByteArray &result);
 
     Kate::DocumentManager *m_documentManager;
     QList<KTextEditor::Document*> m_docList;

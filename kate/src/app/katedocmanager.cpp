@@ -625,7 +625,7 @@ void KateDocManager::slotModifiedOnDisc (KTextEditor::Document *doc, bool b, KTe
 }
 
 /**
- * Load file and file's meta-information if the MD5 didn't change since last time.
+ * Load file and file's meta-information if the digest didn't change since last time.
  */
 bool KateDocManager::loadMetaInfos(KTextEditor::Document *doc, const KUrl &url)
 {
@@ -635,15 +635,15 @@ bool KateDocManager::loadMetaInfos(KTextEditor::Document *doc, const KUrl &url)
   if (!m_metaInfos->hasGroup(url.prettyUrl()))
     return false;
 
-  QByteArray md5;
+  QByteArray checksum;
   bool ok = true;
 
-  if (computeUrlMD5(url, md5))
+  if (computeUrlChecksum(url, checksum))
   {
     KConfigGroup urlGroup( m_metaInfos, url.prettyUrl() );
-    const QString old_md5 = urlGroup.readEntry("MD5");
+    const QString old_checksum = urlGroup.readEntry("Checksum");
 
-    if ((const char *)md5 == old_md5)
+    if (checksum == old_checksum)
     {
       if (KTextEditor::ParameterizedSessionConfigInterface *iface =
         qobject_cast<KTextEditor::ParameterizedSessionConfigInterface *>(doc))
@@ -677,7 +677,7 @@ void KateDocManager::saveMetaInfos(const QList<KTextEditor::Document *> &documen
   if (!m_saveMetaInfos)
     return;
 
-  QByteArray md5;
+  QByteArray sha1;
   QDateTime now = QDateTime::currentDateTime();
 
   foreach(const KTextEditor::Document *doc, documents)
@@ -685,14 +685,14 @@ void KateDocManager::saveMetaInfos(const QList<KTextEditor::Document *> &documen
     if (doc->isModified())
       continue;
 
-    if (computeUrlMD5(doc->url(), md5))
+    if (computeUrlChecksum(doc->url(), sha1))
     {
       KConfigGroup urlGroup( m_metaInfos, doc->url().prettyUrl() );
 
       if (KTextEditor::SessionConfigInterface *iface = qobject_cast<KTextEditor::SessionConfigInterface *>(doc))
         iface->writeSessionConfig(urlGroup);
 
-      urlGroup.writeEntry("MD5", md5.constData());
+      urlGroup.writeEntry("Checksum", sha1.constData());
       urlGroup.writeEntry("Time", now);
     }
   }
@@ -700,20 +700,20 @@ void KateDocManager::saveMetaInfos(const QList<KTextEditor::Document *> &documen
   m_metaInfos->sync();
 }
 
-// TODO: KDE 5: KateDocument computes the md5 digest when loading a file, and
-//       when saving a file. Maybe add "QString KTextEditor::Document::md5sum()" const?
-bool KateDocManager::computeUrlMD5(const KUrl &url, QByteArray &result)
+// TODO: KDE 5: KateDocument computes the digest when loading a file, and
+//       when saving a file. Maybe add "QString KTextEditor::Document::checksum()" const?
+bool KateDocManager::computeUrlChecksum(const KUrl &url, QByteArray &result)
 {
   QFile f(url.toLocalFile());
 
   if (f.exists() && f.open(QIODevice::ReadOnly))
   {
-    QByteArray md5 = QCryptographicHash::hash(f.readAll(), QCryptographicHash::Md5);
+    QByteArray sha1 = QCryptographicHash::hash(f.readAll(), QCryptographicHash::Sha1);
 
-    if (md5.isEmpty())
+    if (sha1.isEmpty())
       return false;
 
-    result = md5.toHex();
+    result = sha1.toHex();
     f.close();
   }
   else

@@ -2212,7 +2212,7 @@ bool KateDocument::saveFile()
     return false;
   }
 
-  // update the md5 digest
+  // update the digest
   createDigest ();
 
   // add m_file again to dirwatch
@@ -4338,7 +4338,7 @@ void KateDocument::slotModOnHdDirty (const QString &path)
 {
   if ((path == m_dirWatchFile) && (!m_modOnHd || m_modOnHdReason != OnDiskModified))
   {
-    // compare md5 with the one we have (if we have one)
+    // compare digest with the one we have (if we have one)
     if ( !digest().isEmpty() )
     {
       QByteArray oldDigest = digest();
@@ -4395,23 +4395,23 @@ const QByteArray &KateDocument::digest () const
 
 bool KateDocument::createDigest ()
 {
-  QByteArray md5sum;
+  QByteArray sha1sum;
 
   if ( url().isLocalFile() )
   {
     QFile f ( url().toLocalFile() );
     if ( f.open( QIODevice::ReadOnly) )
     {
-      QCryptographicHash crypto(QCryptographicHash::Md5);
+      QCryptographicHash crypto(QCryptographicHash::Sha1);
       while(!f.atEnd())
         crypto.addData (f.read(256 * 1024));
-      md5sum = crypto.result();
+      sha1sum = crypto.result();
     }
   }
 
-  m_buffer->setDigest( md5sum );
+  m_buffer->setDigest( sha1sum );
 
-  return !md5sum.isEmpty();
+  return !sha1sum.isEmpty();
 }
 
 QString KateDocument::reasonedMOHString() const

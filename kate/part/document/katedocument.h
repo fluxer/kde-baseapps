@@ -909,7 +909,7 @@ Q_SIGNALS:
 
   private:
     /**
-     * create a MD5 digest of the file, if it is a local file.
+     * create a Sha1 digest of the file, if it is a local file.
      * The result can be accessed through KateBuffer::digest().
      *
      * @return wheather the operation was attempted and succeeded.
@@ -928,8 +928,8 @@ Q_SIGNALS:
 
   public:
     /**
-     * md5 digest of this document
-     * @return md5 digest for this document
+     * sha1 digest of this document
+     * @return sha1 digest for this document
      */
     const QByteArray &digest () const;
 
