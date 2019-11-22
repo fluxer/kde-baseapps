@@ -2235,7 +2235,7 @@ void KateViewEncodingAction::Private::_k_subActionTriggered(QAction *action)
     return;
   currentSubAction=action;
   bool ok = false;
-  int mib = q->mibForName(action->text(), &ok);
+  int mib = q->mibForName(action->iconText(), &ok);
   if (ok)
   {
     emit q->KSelectAction::triggered(action->text());
