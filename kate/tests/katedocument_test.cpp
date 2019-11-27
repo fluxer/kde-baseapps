@@ -327,18 +327,18 @@ void KateDocumentTest::testInsertNewline()
     doc.editWrapLine(1, 4);
 }
 
-// we have two different ways of creating the md5 checksum:
+// we have two different ways of creating the Sha1 checksum:
 // in KateFileLoader and KateDocument::createDigest. Make
 // sure, these two implementations result in the same checksum.
 void KateDocumentTest::testDigest()
 {
-  // md5sum of data/md5checksum.txt: ff6e0fddece03adeb8f902e8c540735a
+  // sha1sum of data/sha1checksum.txt: 58527e1f4c8574d61450ff18cffaa8cd41c3554d
   // QCryptographicHash is used, therefore we need fromHex here
-  const QByteArray fileDigest = QByteArray::fromHex("ff6e0fddece03adeb8f902e8c540735a");
+  const QByteArray fileDigest = QByteArray::fromHex("58527e1f4c8574d61450ff18cffaa8cd41c3554d");
 
   // make sure, Kate::TextBuffer and KateDocument::createDigest() equal
   KateDocument doc(false, false, false);
-  doc.openUrl(QString(KDESRCDIR + QString("data/md5checksum.txt")));
+  doc.openUrl(QString(KDESRCDIR + QString("data/sha1checksum.txt")));
   const QByteArray bufferDigest(doc.digest());
   QVERIFY(doc.createDigest());
   const QByteArray docDigest(doc.digest());
