@@ -1881,11 +1881,6 @@
 <entity name="kgr" type="gen">
 <text-expanded>&amp;#x03BA;</text-expanded>
 </entity>
-<entity name="kcharselect" type="gen">
-<text-expanded>
-<application>kcharselect</application>
-</text-expanded>
-</entity>
 <entity name="sext" type="gen">
 <text-expanded>&amp;#x2736;</text-expanded>
 </entity>
