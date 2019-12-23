@@ -31,7 +31,11 @@ ReplicodeSettings::ReplicodeSettings(QObject *parent) :
 
 void ReplicodeSettings::load()
 {
+#ifndef QT_KATIE
     QSettings settings("MTS", "Humanobs UI");
+#else
+    QSettings settings("MTS/Humanobs UI", QSettings::IniFormat);
+#endif
 
     // Load
     userOperatorPath = settings.value("User Operator Module Path", QString()).toString();
@@ -81,7 +85,11 @@ void ReplicodeSettings::load()
 
 void ReplicodeSettings::save()
 {
+#ifndef QT_KATIE
     QSettings settings("MTS", "Humanobs UI");
+#else
+    QSettings settings("MTS/Humanobs UI", QSettings::IniFormat);
+#endif
 
     // Load
     settings.setValue("User Operator Module Path", userOperatorPath);
