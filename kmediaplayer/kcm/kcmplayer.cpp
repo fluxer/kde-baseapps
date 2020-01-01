@@ -37,7 +37,7 @@ KCMPlayer::KCMPlayer(QWidget *parent, const QVariantList &arguments)
 {
     m_ui = new Ui_KCMPlayer();
     m_ui->setupUi(this);
-    m_settings = new KSettings("kmediaplayer");
+    m_settings = new KSettings("kmediaplayer", KSettings::FullConfig);
 
     setButtons(KCModule::Default | KCModule::Apply);
 
