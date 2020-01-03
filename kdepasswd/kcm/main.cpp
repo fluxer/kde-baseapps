@@ -28,9 +28,7 @@
 #include <QPixmap>
 #include <QStringList>
 #include <QEvent>
-#ifndef QT_KATIE
 #include <QDragEnterEvent>
-#endif
 #include <QDBusInterface>
 #include <QDBusReply>
 #include <QImageReader>
