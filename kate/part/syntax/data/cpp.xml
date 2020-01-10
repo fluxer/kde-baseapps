@@ -1591,6 +1591,20 @@
     <item> qPrintable </item>
     <item> qRound64 </item>
     <item> qRound </item>
+    <item> qCeil </item>
+    <item> qFloor </item>
+    <item> qFabs </item>
+    <item> qSin </item>
+    <item> qCos </item>
+    <item> qTan </item>
+    <item> qAcos </item>
+    <item> qAsin </item>
+    <item> qAtan </item>
+    <item> qAtan2 </item>
+    <item> qSqrt </item>
+    <item> qLn </item>
+    <item> qExp </item>
+    <item> qPow </item>
     <item> qVersion </item>
     <item> qWarning </item>
     <item> q_check_ptr </item>
