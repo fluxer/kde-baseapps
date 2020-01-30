@@ -300,6 +300,10 @@ void InformationPanelContent::configureSettings(const QList<QAction*>& customCon
 
     const bool isChecked = action->isChecked();
     if (action == previewAction) {
+        if (!isChecked) {
+            m_playerWidget->player()->stop();
+            m_playerWidget->hide();
+        }
         m_preview->setVisible(isChecked);
         InformationPanelSettings::setPreviewsShown(isChecked);
     } else if (action == configureAction) {
