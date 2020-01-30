@@ -114,10 +114,10 @@ bool KateProject::reload (bool force)
   if (!ok)
     return false;
 #else
-  // TODO: error reporting via QJsonParseError
-  QByteArray jsondata = file.readAll();
-  QJsonDocument jsondoc = QJsonDocument::fromJson(jsondata);
+  QJsonParseError error;
+  QJsonDocument jsondoc = QJsonDocument::fromJson(file.readAll(), &error);
   if (jsondoc.isEmpty()) {
+    kWarning() << error.errorString();
     return false;
   }
   QVariant project = jsondoc.toVariant();
