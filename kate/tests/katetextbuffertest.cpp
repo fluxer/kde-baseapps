@@ -419,12 +419,12 @@ void KateTextBufferTest::saveFileInUnwritableFolder()
 {
   const QString folder_name = QString("katetest_%1").arg(QCoreApplication::applicationPid());
   const QString file_path = QDir::tempPath() + '/' + folder_name + "/foo";
-  Q_ASSERT(QDir::temp().mkdir(folder_name));
+  QVERIFY(QDir::temp().mkdir(folder_name));
 
   QFile f(file_path);
-  Q_ASSERT(f.open(QIODevice::WriteOnly | QIODevice::Truncate));
+  QVERIFY(f.open(QIODevice::WriteOnly | QIODevice::Truncate));
   f.write("1234567890");
-  Q_ASSERT(f.flush());
+  QVERIFY(f.flush());
   f.close();
 
   QFile::setPermissions(QDir::tempPath() + '/' + folder_name, QFile::ExeOwner);
