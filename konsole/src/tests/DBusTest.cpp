@@ -51,8 +51,11 @@ void DBusTest::initTestCase()
 
     // Create a new Konsole with a separate process id
     QProcess proc;
-    if (!proc.execute("konsole"))
+    proc.start("konsole");
+    proc.waitForStarted();
+    if (proc.exitCode() != 0) {
         kFatal() << "Unable to exec a new Konsole : " << proc.exitCode();
+    }
 
     // Wait for above Konsole to finish starting
 #if defined(HAVE_USLEEP)
