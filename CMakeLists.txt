@@ -57,15 +57,7 @@ add_subdirectory(kmediaplayer)
 add_subdirectory(kdesudo)
 
 if(Q_WS_X11)
-    if(NOT KATIE_FOUND)
-        # TODO: fix
-        add_subdirectory(nsplugins)
-    endif()
     add_subdirectory(kdepasswd)
-endif()
-
-if(QT_QTWEBKIT_FOUND)
-    add_subdirectory(rekonq)
 endif()
 
 feature_summary(WHAT ALL INCLUDE_QUIET_PACKAGES FATAL_ON_MISSING_REQUIRED_PACKAGES)
