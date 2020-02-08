@@ -351,7 +351,7 @@ function tryAfterClosingParensis_ch(cursor)
  * \code
  *  install(
  *      DIRECTORY ${name}
- *      DESTINATION ${DATA_INSTALL_DIR}/kate/pate
+ *      DESTINATION ${KDE4_DATA_INSTALL_DIR}/kate/pate
  *      FILES_MATCHING
  *          PATTERN "*.py"
  *          PATTERN "*.ui"

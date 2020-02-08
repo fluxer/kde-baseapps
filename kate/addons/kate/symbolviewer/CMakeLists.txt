@@ -24,16 +24,16 @@ target_link_libraries(katesymbolviewerplugin
 
 install(
     TARGETS katesymbolviewerplugin
-    DESTINATION ${PLUGIN_INSTALL_DIR}
+    DESTINATION ${KDE4_PLUGIN_INSTALL_DIR}
 )
 
 ########### install files ###############
 
 install(
     FILES ui.rc
-    DESTINATION ${DATA_INSTALL_DIR}/kate/plugins/katesymbolviewer
+    DESTINATION ${KDE4_DATA_INSTALL_DIR}/kate/plugins/katesymbolviewer
 )
 install(
     FILES katesymbolviewer.desktop
-    DESTINATION ${SERVICES_INSTALL_DIR}
+    DESTINATION ${KDE4_SERVICES_INSTALL_DIR}
 )

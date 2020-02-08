@@ -151,12 +151,12 @@ target_link_libraries(konsolepart
 )
 install(
     TARGETS konsolepart
-    DESTINATION ${PLUGIN_INSTALL_DIR}
+    DESTINATION ${KDE4_PLUGIN_INSTALL_DIR}
 )
 
 ### konsoleprofile command-line tool
 
 install(
     PROGRAMS konsoleprofile
-    DESTINATION ${BIN_INSTALL_DIR}
+    DESTINATION ${KDE4_BIN_INSTALL_DIR}
 )

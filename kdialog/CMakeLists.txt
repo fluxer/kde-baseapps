@@ -27,5 +27,5 @@ install(
 )
 install(
     FILES org.kde.kdialog.ProgressDialog.xml
-    DESTINATION ${DBUS_INTERFACES_INSTALL_DIR}
+    DESTINATION ${KDE4_DBUS_INTERFACES_INSTALL_DIR}
 )

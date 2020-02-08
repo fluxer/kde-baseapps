@@ -18,15 +18,15 @@ target_link_libraries(fileviewgitplugin ${KDE4_KIO_LIBS} konq)
 
 install(
     FILES fileviewgitplugin.desktop
-    DESTINATION ${SERVICES_INSTALL_DIR}
+    DESTINATION ${KDE4_SERVICES_INSTALL_DIR}
 )
 
 install(
     FILES fileviewgitpluginsettings.kcfg
-    DESTINATION ${KCFG_INSTALL_DIR}
+    DESTINATION ${KDE4_KCFG_INSTALL_DIR}
 )
 
 install(
     TARGETS fileviewgitplugin
-    DESTINATION ${PLUGIN_INSTALL_DIR}
+    DESTINATION ${KDE4_PLUGIN_INSTALL_DIR}
 )

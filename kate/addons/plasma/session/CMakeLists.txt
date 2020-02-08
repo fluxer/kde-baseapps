@@ -9,9 +9,9 @@ target_link_libraries(plasma_applet_katesession
 
 install(
     TARGETS plasma_applet_katesession
-    DESTINATION ${PLUGIN_INSTALL_DIR}
+    DESTINATION ${KDE4_PLUGIN_INSTALL_DIR}
 )
 install(
     FILES plasma-applet-katesession.desktop
-    DESTINATION ${SERVICES_INSTALL_DIR}
+    DESTINATION ${KDE4_SERVICES_INSTALL_DIR}
 )

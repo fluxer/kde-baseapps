@@ -67,17 +67,17 @@ install(
 
 install(
     FILES keditbookmarks.kcfg
-    DESTINATION ${KCFG_INSTALL_DIR}
+    DESTINATION ${KDE4_KCFG_INSTALL_DIR}
 )
 
 install(
     FILES
     keditbookmarksui.rc
     keditbookmarks-genui.rc
-    DESTINATION ${DATA_INSTALL_DIR}/keditbookmarks
+    DESTINATION ${KDE4_DATA_INSTALL_DIR}/keditbookmarks
 )
 
 install(
     PROGRAMS keditbookmarks.desktop
-    DESTINATION ${XDG_APPS_INSTALL_DIR}
+    DESTINATION ${KDE4_XDG_APPS_INSTALL_DIR}
 )

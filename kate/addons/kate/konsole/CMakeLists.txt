@@ -10,7 +10,7 @@ target_link_libraries(katekonsoleplugin
 
 install(
     TARGETS katekonsoleplugin
-    DESTINATION ${PLUGIN_INSTALL_DIR}
+    DESTINATION ${KDE4_PLUGIN_INSTALL_DIR}
 )
 
 
@@ -18,9 +18,9 @@ install(
 
 install(
     FILES ui.rc
-    DESTINATION ${DATA_INSTALL_DIR}/kate/plugins/katekonsole
+    DESTINATION ${KDE4_DATA_INSTALL_DIR}/kate/plugins/katekonsole
 )
 install(
     FILES katekonsoleplugin.desktop
-    DESTINATION ${SERVICES_INSTALL_DIR}
+    DESTINATION ${KDE4_SERVICES_INSTALL_DIR}
 )

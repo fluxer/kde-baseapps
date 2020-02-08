@@ -121,20 +121,20 @@ target_link_libraries(dolphinpart dolphinprivate konq ${KDE4_KPARTS_LIBS} ${KDE4
 
 install(
     TARGETS dolphinpart
-    DESTINATION ${PLUGIN_INSTALL_DIR}
+    DESTINATION ${KDE4_PLUGIN_INSTALL_DIR}
 )
 
 install(
     FILES dolphinpart.rc
-    DESTINATION ${DATA_INSTALL_DIR}/dolphinpart
+    DESTINATION ${KDE4_DATA_INSTALL_DIR}/dolphinpart
 )
 install(
     FILES dolphinpart.desktop
-    DESTINATION ${SERVICES_INSTALL_DIR}
+    DESTINATION ${KDE4_SERVICES_INSTALL_DIR}
 )
 install(
     FILES views/versioncontrol/fileviewversioncontrolplugin.desktop
-    DESTINATION ${SERVICETYPES_INSTALL_DIR}
+    DESTINATION ${KDE4_SERVICETYPES_INSTALL_DIR}
 )
 
 ##########################################
@@ -298,7 +298,7 @@ install(
     kcm_dolphinnavigation
     kcm_dolphinservices
     kcm_dolphingeneral
-    DESTINATION ${PLUGIN_INSTALL_DIR}
+    DESTINATION ${KDE4_PLUGIN_INSTALL_DIR}
 )
 
 #########################################
@@ -309,14 +309,14 @@ target_link_libraries(kio_filenamesearch ${KDE4_KIO_LIBS})
 
 install(
     TARGETS kio_filenamesearch
-    DESTINATION ${PLUGIN_INSTALL_DIR}
+    DESTINATION ${KDE4_PLUGIN_INSTALL_DIR}
 )
 
 ########### install files ###############
 
 install(
     PROGRAMS dolphin.desktop
-    DESTINATION ${XDG_APPS_INSTALL_DIR}
+    DESTINATION ${KDE4_XDG_APPS_INSTALL_DIR}
 )
 install(
     FILES
@@ -326,15 +326,15 @@ install(
     settings/dolphin_iconsmodesettings.kcfg
     settings/dolphin_detailsmodesettings.kcfg
     settings/dolphin_versioncontrolsettings.kcfg
-    DESTINATION ${KCFG_INSTALL_DIR}
+    DESTINATION ${KDE4_KCFG_INSTALL_DIR}
 )
 install(
     FILES dolphinui.rc
-    DESTINATION ${DATA_INSTALL_DIR}/dolphin
+    DESTINATION ${KDE4_DATA_INSTALL_DIR}/dolphin
 )
 install(
     FILES dolphin.appdata.xml
-    DESTINATION ${SHARE_INSTALL_PREFIX}/appdata
+    DESTINATION ${KDE4_SHARE_INSTALL_PREFIX}/appdata
 )
 install(
     FILES
@@ -343,9 +343,9 @@ install(
     settings/kcm/kcmdolphinnavigation.desktop
     settings/kcm/kcmdolphinservices.desktop
     settings/kcm/kcmdolphingeneral.desktop
-    DESTINATION ${SERVICES_INSTALL_DIR}
+    DESTINATION ${KDE4_SERVICES_INSTALL_DIR}
 )
 install(
     FILES settings/services/servicemenu.knsrc
-    DESTINATION ${CONFIG_INSTALL_DIR}
+    DESTINATION ${KDE4_CONFIG_INSTALL_DIR}
 )

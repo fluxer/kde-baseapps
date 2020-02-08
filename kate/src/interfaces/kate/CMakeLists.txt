@@ -7,6 +7,6 @@ install(
     plugin.h
     pluginconfigpageinterface.h
     pluginmanager.h
-    DESTINATION ${INCLUDE_INSTALL_DIR}/kate
+    DESTINATION ${KDE4_INCLUDE_INSTALL_DIR}/kate
     COMPONENT Devel
 )

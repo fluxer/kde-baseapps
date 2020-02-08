@@ -14,16 +14,16 @@ target_link_libraries(katebuildplugin
 
 install(
     TARGETS katebuildplugin
-    DESTINATION ${PLUGIN_INSTALL_DIR}
+    DESTINATION ${KDE4_PLUGIN_INSTALL_DIR}
 )
 
 ########### install files ###############
 
 install(
     FILES ui.rc
-    DESTINATION ${DATA_INSTALL_DIR}/kate/plugins/katebuild
+    DESTINATION ${KDE4_DATA_INSTALL_DIR}/kate/plugins/katebuild
 )
 install(
     FILES katebuildplugin.desktop
-    DESTINATION ${SERVICES_INSTALL_DIR}
+    DESTINATION ${KDE4_SERVICES_INSTALL_DIR}
 )

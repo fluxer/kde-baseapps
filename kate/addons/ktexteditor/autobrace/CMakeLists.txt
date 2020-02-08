@@ -18,7 +18,7 @@ target_link_libraries(ktexteditor_autobrace
 
 install(
     TARGETS ktexteditor_autobrace
-    DESTINATION ${PLUGIN_INSTALL_DIR}
+    DESTINATION ${KDE4_PLUGIN_INSTALL_DIR}
 )
 
 ########### install files ###############
@@ -27,5 +27,5 @@ install(
     FILES
     ktexteditor_autobrace.desktop
     ktexteditor_autobrace_config.desktop
-    DESTINATION ${SERVICES_INSTALL_DIR}
+    DESTINATION ${KDE4_SERVICES_INSTALL_DIR}
 )

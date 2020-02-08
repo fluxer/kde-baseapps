@@ -19,5 +19,5 @@ install(
 )
 install(
     PROGRAMS kdepasswd.desktop
-    DESTINATION ${XDG_APPS_INSTALL_DIR}
+    DESTINATION ${KDE4_XDG_APPS_INSTALL_DIR}
 )

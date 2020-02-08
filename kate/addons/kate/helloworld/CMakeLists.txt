@@ -8,13 +8,13 @@ target_link_libraries(katehelloworldplugin
 ########### install files ###############
 install(
     TARGETS katehelloworldplugin
-    DESTINATION ${PLUGIN_INSTALL_DIR}
+    DESTINATION ${KDE4_PLUGIN_INSTALL_DIR}
 )
 install(
     FILES ui.rc
-    DESTINATION ${DATA_INSTALL_DIR}/kate/plugins/katehelloworld
+    DESTINATION ${KDE4_DATA_INSTALL_DIR}/kate/plugins/katehelloworld
 )
 install(
     FILES katehelloworld.desktop
-    DESTINATION ${SERVICES_INSTALL_DIR}
+    DESTINATION ${KDE4_SERVICES_INSTALL_DIR}
 )

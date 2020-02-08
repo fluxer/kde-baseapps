@@ -29,5 +29,5 @@ install(
     ${CMAKE_CURRENT_BINARY_DIR}/html-php.xml
     ${CMAKE_CURRENT_BINARY_DIR}/css-php.xml
     ${CMAKE_CURRENT_BINARY_DIR}/javascript-php.xml
-    DESTINATION ${DATA_INSTALL_DIR}/katepart/syntax
+    DESTINATION ${KDE4_DATA_INSTALL_DIR}/katepart/syntax
 )

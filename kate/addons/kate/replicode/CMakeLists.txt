@@ -17,13 +17,13 @@ target_link_libraries(katereplicodeplugin
 
 install(
     TARGETS katereplicodeplugin
-    DESTINATION ${PLUGIN_INSTALL_DIR}
+    DESTINATION ${KDE4_PLUGIN_INSTALL_DIR}
 )
 install(
     FILES ui.rc
-    DESTINATION ${DATA_INSTALL_DIR}/kate/plugins/katereplicodeplugin
+    DESTINATION ${KDE4_DATA_INSTALL_DIR}/kate/plugins/katereplicodeplugin
 )
 install(
     FILES katereplicodeplugin.desktop
-    DESTINATION ${SERVICES_INSTALL_DIR}
+    DESTINATION ${KDE4_SERVICES_INSTALL_DIR}
 )

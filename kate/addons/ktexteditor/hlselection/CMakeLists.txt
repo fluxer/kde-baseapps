@@ -12,15 +12,15 @@ target_link_libraries(ktexteditor_hlselection
 
 install(
     TARGETS ktexteditor_hlselection
-    DESTINATION ${PLUGIN_INSTALL_DIR}
+    DESTINATION ${KDE4_PLUGIN_INSTALL_DIR}
 )
 
 ########### install files ###############
 
 install(
     FILES ktexteditor_hlselection.desktop
-    DESTINATION ${SERVICES_INSTALL_DIR}
+    DESTINATION ${KDE4_SERVICES_INSTALL_DIR}
 )
 
 # Dominik: right now, we do not have any actions, so do not insall ui.rc file
-# install( FILES ktexteditor_hlselectionui.rc  DESTINATION  ${DATA_INSTALL_DIR}/ktexteditor_hlselection )
+# install( FILES ktexteditor_hlselectionui.rc  DESTINATION  ${KDE4_DATA_INSTALL_DIR}/ktexteditor_hlselection )

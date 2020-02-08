@@ -15,5 +15,5 @@ install(
     Solarized.colorscheme
     SolarizedLight.colorscheme
     WhiteOnBlack.colorscheme
-    DESTINATION ${DATA_INSTALL_DIR}/konsole
+    DESTINATION ${KDE4_DATA_INSTALL_DIR}/konsole
 )

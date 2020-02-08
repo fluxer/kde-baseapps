@@ -42,7 +42,7 @@ install(TARGETS konq ${INSTALL_TARGETS_DEFAULT_ARGS})
 
 install(FILES
     directory_bookmarkbar.desktop
-    DESTINATION ${DATA_INSTALL_DIR}/kbookmark
+    DESTINATION ${KDE4_DATA_INSTALL_DIR}/kbookmark
 )
 
 generate_export_header(konq)
@@ -60,11 +60,11 @@ install(FILES
     kversioncontrolplugin2.h
     konq_historyprovider.h
     konq_historyentry.h
-    DESTINATION ${INCLUDE_INSTALL_DIR}
+    DESTINATION ${KDE4_INCLUDE_INSTALL_DIR}
     COMPONENT Devel
 )
 install(FILES
     konqpopupmenuplugin.desktop
     konqdndpopupmenuplugin.desktop
-    DESTINATION ${SERVICETYPES_INSTALL_DIR}
+    DESTINATION ${KDE4_SERVICETYPES_INSTALL_DIR}
 )

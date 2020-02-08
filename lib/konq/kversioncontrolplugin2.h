@@ -61,7 +61,7 @@
  *   <code>
  *   kde4_add_plugin(fileviewsvnplugin fileviewsvnplugin.cpp)
  *   target_link_libraries(fileviewsvnplugin konq)
- *   install(FILES fileviewsvnplugin.desktop DESTINATION ${SERVICES_INSTALL_DIR})
+ *   install(FILES fileviewsvnplugin.desktop DESTINATION ${KDE4_SERVICES_INSTALL_DIR})
  *   </code>
  *
  * General implementation notes:

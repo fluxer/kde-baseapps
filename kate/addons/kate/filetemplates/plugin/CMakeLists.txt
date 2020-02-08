@@ -9,20 +9,20 @@ target_link_libraries(katefiletemplates
 
 install(
     TARGETS katefiletemplates
-    DESTINATION ${PLUGIN_INSTALL_DIR}
+    DESTINATION ${KDE4_PLUGIN_INSTALL_DIR}
 )
 
 ########### install files ###############
 
 install(
     FILES ui.rc
-    DESTINATION ${DATA_INSTALL_DIR}/kate/plugins/katefiletemplates
+    DESTINATION ${KDE4_DATA_INSTALL_DIR}/kate/plugins/katefiletemplates
 )
 install(
     FILES katetemplate.xml
-    DESTINATION ${DATA_INSTALL_DIR}/katepart/syntax
+    DESTINATION ${KDE4_DATA_INSTALL_DIR}/katepart/syntax
 )
 install(
     FILES katefiletemplates.desktop
-    DESTINATION  ${SERVICES_INSTALL_DIR}
+    DESTINATION  ${KDE4_SERVICES_INSTALL_DIR}
 )

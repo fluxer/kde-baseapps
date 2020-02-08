@@ -16,7 +16,7 @@ install( FILES
     linkNFS.desktop
     linkCDWRITER.desktop
     linkMO.desktop
-    DESTINATION ${TEMPLATES_INSTALL_DIR}
+    DESTINATION ${KDE4_TEMPLATES_INSTALL_DIR}
 )
 
 
@@ -35,5 +35,5 @@ install(
     NFS.desktop
     CDWRITER-Device.desktop
     MO-Device.desktop
-    DESTINATION ${TEMPLATES_INSTALL_DIR}/.source
+    DESTINATION ${KDE4_TEMPLATES_INSTALL_DIR}/.source
 )

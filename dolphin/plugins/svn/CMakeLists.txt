@@ -10,15 +10,15 @@ target_link_libraries(fileviewsvnplugin ${KDE4_KIO_LIBS} konq)
 
 install(
     FILES fileviewsvnplugin.desktop
-    DESTINATION ${SERVICES_INSTALL_DIR}
+    DESTINATION ${KDE4_SERVICES_INSTALL_DIR}
 )
 
 install(
     FILES fileviewsvnpluginsettings.kcfg
-    DESTINATION ${KCFG_INSTALL_DIR}
+    DESTINATION ${KDE4_KCFG_INSTALL_DIR}
 )
 
 install(
     TARGETS fileviewsvnplugin
-    DESTINATION ${PLUGIN_INSTALL_DIR}
+    DESTINATION ${KDE4_PLUGIN_INSTALL_DIR}
 )

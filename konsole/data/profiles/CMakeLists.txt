@@ -1,4 +1,4 @@
 install(
     FILES Shell.profile
-    DESTINATION ${DATA_INSTALL_DIR}/konsole
+    DESTINATION ${KDE4_DATA_INSTALL_DIR}/konsole
 )

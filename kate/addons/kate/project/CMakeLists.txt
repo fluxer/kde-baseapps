@@ -28,15 +28,15 @@ target_link_libraries(kateprojectplugin
 ########### install files ###############
 install(
     TARGETS kateprojectplugin
-    DESTINATION ${PLUGIN_INSTALL_DIR}
+    DESTINATION ${KDE4_PLUGIN_INSTALL_DIR}
 )
 install(
     FILES
     ui.rc
     kateproject.example
-    DESTINATION ${DATA_INSTALL_DIR}/kate/plugins/project
+    DESTINATION ${KDE4_DATA_INSTALL_DIR}/kate/plugins/project
 )
 install(
     FILES kateprojectplugin.desktop
-    DESTINATION ${SERVICES_INSTALL_DIR}
+    DESTINATION ${KDE4_SERVICES_INSTALL_DIR}
 )

@@ -17,16 +17,16 @@ target_link_libraries(ktexteditor_exporter
 
 install(
     TARGETS ktexteditor_exporter
-    DESTINATION ${PLUGIN_INSTALL_DIR}
+    DESTINATION ${KDE4_PLUGIN_INSTALL_DIR}
 )
 
 ########### install files ###############
 
 install(
     FILES ktexteditor_exporter.desktop
-    DESTINATION ${SERVICES_INSTALL_DIR}
+    DESTINATION ${KDE4_SERVICES_INSTALL_DIR}
 )
 install(
     FILES ktexteditor_exporterui.rc
-    DESTINATION ${DATA_INSTALL_DIR}/ktexteditor_exporter
+    DESTINATION ${KDE4_DATA_INSTALL_DIR}/ktexteditor_exporter
 )

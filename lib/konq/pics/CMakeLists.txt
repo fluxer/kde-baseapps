@@ -4,5 +4,5 @@ install(
     arrow_topright.png
     arrow_bottomleft.png
     arrow_bottomright.png
-    DESTINATION ${DATA_INSTALL_DIR}/konqueror/pics
+    DESTINATION ${KDE4_DATA_INSTALL_DIR}/konqueror/pics
 )

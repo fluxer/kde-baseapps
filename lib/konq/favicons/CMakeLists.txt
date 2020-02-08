@@ -15,17 +15,17 @@ target_link_libraries(kded_favicons ${KDE4_KIO_LIBS})
 
 install(
     TARGETS kded_favicons
-    DESTINATION ${PLUGIN_INSTALL_DIR}
+    DESTINATION ${KDE4_PLUGIN_INSTALL_DIR}
 )
 
 ########### install files ###############
 
 install(
     FILES favicons.desktop
-    DESTINATION ${SERVICES_INSTALL_DIR}/kded
+    DESTINATION ${KDE4_SERVICES_INSTALL_DIR}/kded
 )
 
 install(
     FILES org.kde.FavIcon.xml
-    DESTINATION ${DBUS_INTERFACES_INSTALL_DIR}
+    DESTINATION ${KDE4_DBUS_INTERFACES_INSTALL_DIR}
 )

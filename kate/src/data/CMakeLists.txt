@@ -1,24 +1,24 @@
 # desktop files and co
 install(
     PROGRAMS kate.desktop
-    DESTINATION ${XDG_APPS_INSTALL_DIR}
+    DESTINATION ${KDE4_XDG_APPS_INSTALL_DIR}
 )
 
 install(
     FILES katerc
-    DESTINATION ${CONFIG_INSTALL_DIR}
+    DESTINATION ${KDE4_CONFIG_INSTALL_DIR}
 )
 
 install(
     FILES
     tips
     kateui.rc
-    DESTINATION ${DATA_INSTALL_DIR}/kate
+    DESTINATION ${KDE4_DATA_INSTALL_DIR}/kate
 )
 
 install(
     FILES kateplugin.desktop
-    DESTINATION ${SERVICETYPES_INSTALL_DIR}
+    DESTINATION ${KDE4_SERVICETYPES_INSTALL_DIR}
 )
 
 # kate application icons

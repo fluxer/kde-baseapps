@@ -8,15 +8,15 @@ target_link_libraries(katetabifyplugin
 
 install(
     TARGETS katetabifyplugin
-    DESTINATION ${PLUGIN_INSTALL_DIR}
+    DESTINATION ${KDE4_PLUGIN_INSTALL_DIR}
 )
 
 ####################### install files #########################################
 install(
     FILES ui.rc
-    DESTINATION ${DATA_INSTALL_DIR}/kate/plugins/katetabify
+    DESTINATION ${KDE4_DATA_INSTALL_DIR}/kate/plugins/katetabify
 )
 install(
     FILES katetabifyplugin.desktop
-    DESTINATION ${SERVICES_INSTALL_DIR}
+    DESTINATION ${KDE4_SERVICES_INSTALL_DIR}
 )

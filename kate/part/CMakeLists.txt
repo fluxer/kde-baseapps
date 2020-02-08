@@ -222,11 +222,11 @@ target_link_libraries(katepart
 # install the part
 install(
     TARGETS katepart
-    DESTINATION ${PLUGIN_INSTALL_DIR}
+    DESTINATION ${KDE4_PLUGIN_INSTALL_DIR}
 )
 
 # install the snippet stuff
 install(
     FILES snippet/ktexteditor_codesnippets_core.knsrc
-    DESTINATION ${CONFIG_INSTALL_DIR}
+    DESTINATION ${KDE4_CONFIG_INSTALL_DIR}
 )
