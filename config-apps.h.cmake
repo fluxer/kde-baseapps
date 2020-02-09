@@ -3,8 +3,5 @@
 /* Define if you have usleep */
 #cmakedefine HAVE_USLEEP 1
 
-/* Define to 1 if the QtDBus module is present. */
-#cmakedefine QT_QTDBUS_FOUND 1
-
 /* Number of bits in a file offset, on hosts where this is settable. */
 #define _FILE_OFFSET_BITS 64

@@ -49,7 +49,7 @@
 #endif
 
 #include "../config-apps.h"
-#ifdef QT_QTDBUS_FOUND
+#ifdef QT_DBUS_LIB
 #include <QtDBus/QDBusConnection>
 #include <QtDBus/QDBusConnectionInterface>
 #endif
@@ -99,7 +99,7 @@ bool WinIdEmbedder::eventFilter(QObject *o, QEvent *e)
  */
 bool sendVisualNotification(const QString &text, const QString &title, const QString &icon, int timeout)
 {
-#ifdef QT_QTDBUS_FOUND
+#ifdef QT_DBUS_LIB
   const QString dbusServiceName = "org.freedesktop.Notifications";
   const QString dbusInterfaceName = "org.freedesktop.Notifications";
   const QString dbusPath = "/org/freedesktop/Notifications";
