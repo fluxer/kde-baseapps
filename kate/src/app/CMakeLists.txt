@@ -30,7 +30,7 @@ set(kateinterfaces_LIB_SRCS
 
 add_library(kateinterfaces ${LIBRARY_TYPE} ${kateinterfaces_LIB_SRCS})
 
-target_link_libraries(kateinterfaces
+target_link_libraries(kateinterfaces PUBLIC
     ${QT_QTXML_LIBRARY}
     ${KDE4_KTEXTEDITOR_LIBS}
     ${KDE4_KPARTS_LIBS}

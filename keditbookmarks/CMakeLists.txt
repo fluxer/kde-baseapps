@@ -47,15 +47,14 @@ qt4_add_dbus_interface(keditbookmarks_SRCS
     favicon_interface
 )
 
-
 kde4_add_kcfg_files(keditbookmarks_SRCS settings.kcfgc)
 
 add_executable(keditbookmarks ${keditbookmarks_SRCS})
 
 target_link_libraries(keditbookmarks
+    ${KDE4_KPARTS_LIBS}
     kbookmarkmodel_private
     konq
-    ${KDE4_KPARTS_LIBS}
 )
 
 install(

@@ -9,7 +9,6 @@ include_directories(
     ${KDE4_KDEUI_INCLUDES}
 )
 
-#  set(kt4_SRC app.cpp mainwindow.cpp core.cpp view.cpp viewmodel.cpp main.cpp)
 set(KDESUDO_SRC
     main.cpp
     kdesudo.cpp
@@ -18,7 +17,9 @@ set(KDESUDO_SRC
 
 add_executable(kdesudo ${KDESUDO_SRC})
 
-target_link_libraries(kdesudo ${KDE4_KDEUI_LIBS})
+target_link_libraries(kdesudo
+    ${KDE4_KDEUI_LIBS}
+)
 
 install(
     TARGETS kdesudo

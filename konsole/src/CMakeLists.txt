@@ -115,7 +115,6 @@ target_link_libraries(konsoleprivate
     ${KDE4_KIO_LIBS}
     ${KDE4_KNOTIFYCONFIG_LIBS}
     ${QT_QTXML_LIBRARY}
-    ${X11_LIBRARIES}
     konq
 )
 

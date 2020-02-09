@@ -11,7 +11,10 @@ set(kfind_SRCS
 
 add_executable(kfind ${kfind_SRCS})
 
-target_link_libraries(kfind konq ${KDE4_KFILE_LIBS})
+target_link_libraries(kfind
+    ${KDE4_KFILE_LIBS}
+    konq
+)
 
 install(
     TARGETS kfind

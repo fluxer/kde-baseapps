@@ -28,8 +28,14 @@ set(konq_LIB_SRCS
 
 add_library(konq ${LIBRARY_TYPE} ${konq_LIB_SRCS})
 
-target_link_libraries(konq PRIVATE ${KDE4_KFILE_LIBS} ${ZLIB_LIBRARY} ${X11_X11_LIB})
-target_link_libraries(konq PUBLIC ${KDE4_KPARTS_LIBS})
+target_link_libraries(konq PRIVATE
+    ${ZLIB_LIBRARY}
+    ${X11_X11_LIB}
+)
+target_link_libraries(konq PUBLIC
+    ${KDE4_KPARTS_LIBS}
+    ${KDE4_KFILE_LIBS}
+)
 
 set_target_properties(konq PROPERTIES
     VERSION ${GENERIC_LIB_VERSION}

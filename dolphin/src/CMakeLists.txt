@@ -1,10 +1,3 @@
-macro_bool_to_01(X11_Xrender_FOUND HAVE_XRENDER)
-
-configure_file(
-    config-X11.h.cmake
-    ${CMAKE_CURRENT_BINARY_DIR}/config-X11.h
-)
-
 include_directories(
     ${CMAKE_CURRENT_BINARY_DIR}
     ${CMAKE_BINARY_DIR}/lib/konq
@@ -86,15 +79,10 @@ kde4_add_kcfg_files(dolphinprivate_LIB_SRCS
 
 add_library(dolphinprivate SHARED ${dolphinprivate_LIB_SRCS})
 
-target_link_libraries(
-    dolphinprivate
+target_link_libraries(dolphinprivate
     ${KDE4_KFILE_LIBS}
     konq
 )
-
-if(X11_Xrender_FOUND)
-    target_link_libraries(dolphinprivate ${X11_Xrender_LIB})
-endif(X11_Xrender_FOUND)
 
 set_target_properties(dolphinprivate PROPERTIES
     VERSION ${GENERIC_LIB_VERSION}
@@ -117,7 +105,12 @@ set(dolphinpart_SRCS
 
 kde4_add_plugin(dolphinpart ${dolphinpart_SRCS})
 
-target_link_libraries(dolphinpart dolphinprivate konq ${KDE4_KPARTS_LIBS} ${KDE4_KFILE_LIBS})
+target_link_libraries(dolphinpart
+    ${KDE4_KPARTS_LIBS}
+    ${KDE4_KFILE_LIBS}
+    dolphinprivate
+    konq
+)
 
 install(
     TARGETS dolphinpart
@@ -214,10 +207,10 @@ target_link_libraries(dolphin
     ${KDE4_KFILE_LIBS}
     ${KDE4_KPARTS_LIBS}
     ${KDE4_KCMUTILS_LIBRARY}
+    ${KDE4_SOLID_LIBS}
+    ${KDE4_KMEDIAPLAYER_LIBS}
     konq
     dolphinprivate
-    ${KDE4_SOLID_LIBS}
-    kmediaplayer
 )
 
 install(
