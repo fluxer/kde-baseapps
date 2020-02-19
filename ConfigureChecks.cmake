@@ -1,8 +1,3 @@
-include(CheckIncludeFile)
 include(CheckIncludeFiles)
 include(CheckSymbolExists)
 include(CheckFunctionExists)
-include(CheckLibraryExists)
-include(CheckStructMember)
-include(CheckTypeSize)
-include(CheckCXXSourceCompiles)
