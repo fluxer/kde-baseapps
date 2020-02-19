@@ -29,7 +29,7 @@
 
 #include "updateitemstatesthread.h"
 
-#include <QFile>
+#include <QDir>
 #include <QMutex>
 #include <QTimer>
 
@@ -297,7 +297,7 @@ KVersionControlPlugin* VersionControlObserver::searchPlugin(const KUrl& director
     // like .svn, .git, ...
     foreach (KVersionControlPlugin* plugin, plugins) {
         const QString fileName = directory.path(KUrl::AddTrailingSlash) + plugin->fileName();
-        if (QFile::exists(fileName)) {
+        if (QDir(fileName).exists()) {
             // The score of this plugin is 0 (best), so we can just return this plugin,
             // instead of going through the plugin scoring procedure, we can't find a better one ;)
             return plugin;
@@ -315,7 +315,7 @@ KVersionControlPlugin* VersionControlObserver::searchPlugin(const KUrl& director
             int upUrlCounter = 1;
             while ((upUrlCounter < bestScore) && (upUrl != dirUrl)) {
                 const QString fileName = dirUrl.path(KUrl::AddTrailingSlash) + plugin->fileName();
-                if (QFile::exists(fileName)) {
+                if (QDir(fileName).exists()) {
                     if (upUrlCounter < bestScore) {
                         bestPlugin = plugin;
                         bestScore = upUrlCounter;
