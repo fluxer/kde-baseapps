@@ -26,7 +26,7 @@
 #include <QtCore/QHash>
 #include <QtCore/QTextCodec>
 #include <kfileitem.h>
-#include <kversioncontrolplugin2.h>
+#include <kversioncontrolplugin.h>
 
 #include <QTextCodec>
 
@@ -127,7 +127,7 @@ public:
      * @param result A hashmap containing FileName-ItemVersion pairs
      *
      */
-    void getItemVersions(QHash<QString, KVersionControlPlugin2::ItemVersion> &result);
+    void getItemVersions(QHash<QString, KVersionControlPlugin::ItemVersion> &result);
 
     void addFiles(const KFileItemList &fileList);
     void removeFiles(const KFileItemList &fileList);

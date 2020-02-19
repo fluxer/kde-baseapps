@@ -25,12 +25,12 @@
 #include <KService>
 #include <KServiceTypeTrader>
 #include <kitemviews/kfileitemmodel.h>
-#include <kversioncontrolplugin2.h>
+#include <kversioncontrolplugin.h>
 
 #include "updateitemstatesthread.h"
 
 #include <QFile>
-#include <QtCore/qmutex.h>
+#include <QMutex>
 #include <QTimer>
 
 VersionControlObserver::VersionControlObserver(QObject* parent) :
@@ -89,8 +89,6 @@ KFileItemModel* VersionControlObserver::model() const
 
 QList<QAction*> VersionControlObserver::actions(const KFileItemList& items) const
 {
-    QList<QAction*> actions;
-
     bool hasNullItems = false;
     foreach (const KFileItem& item, items) {
         if (item.isNull()) {
@@ -100,31 +98,11 @@ QList<QAction*> VersionControlObserver::actions(const KFileItemList& items) cons
         }
     }
 
-    if (!m_model || hasNullItems) {
-        return actions;
+    if (!m_model || hasNullItems || !isVersioned()) {
+        return QList<QAction*>();
     }
 
-    KVersionControlPlugin2* pluginV2 = qobject_cast<KVersionControlPlugin2*>(m_plugin);
-    if (pluginV2) {
-        // Use version 2 of the KVersionControlPlugin which allows providing actions
-        // also for non-versioned directories.
-        actions = pluginV2->actions(items);
-    } else if (isVersioned()) {
-        // Support deprecated interfaces from KVersionControlPlugin version 1.
-        // Context menu actions where only available for versioned directories.
-        QString directory;
-        if (items.count() == 1) {
-            const KFileItem rootItem = m_model->rootItem();
-            if (!rootItem.isNull() && items.first().url() == rootItem.url()) {
-                directory = rootItem.url().path(KUrl::AddTrailingSlash);
-            }
-        }
-
-        actions = directory.isEmpty() ? m_plugin->contextMenuActions(items)
-                                      : m_plugin->contextMenuActions(directory);
-    }
-
-    return actions;
+    return m_plugin->actions(items);
 }
 
 void VersionControlObserver::delayedDirectoryVerification()
@@ -156,14 +134,8 @@ void VersionControlObserver::verifyDirectory()
 
     m_plugin = searchPlugin(rootItem.url());
     if (m_plugin) {
-        KVersionControlPlugin2* pluginV2 = qobject_cast<KVersionControlPlugin2*>(m_plugin);
-        if (pluginV2) {
-            connect(pluginV2, SIGNAL(itemVersionsChanged()),
+        connect(m_plugin, SIGNAL(itemVersionsChanged()),
                     this, SLOT(silentDirectoryVerification()));
-        } else {
-            connect(m_plugin, SIGNAL(versionStatesChanged()),
-                    this, SLOT(silentDirectoryVerification()));
-        }
         connect(m_plugin, SIGNAL(infoMessage(QString)),
                 this, SIGNAL(infoMessage(QString)));
         connect(m_plugin, SIGNAL(errorMessage(QString)),
@@ -266,7 +238,7 @@ int VersionControlObserver::createItemStatesList(QMap<QString, QVector<ItemState
         if (expansionLevel == currentExpansionLevel) {
             ItemState itemState;
             itemState.item = m_model->fileItem(index);
-            itemState.version = KVersionControlPlugin2::UnversionedVersion;
+            itemState.version = KVersionControlPlugin::UnversionedVersion;
 
             items.append(itemState);
         } else if (expansionLevel > currentExpansionLevel) {

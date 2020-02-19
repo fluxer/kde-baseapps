@@ -21,7 +21,7 @@
 #define FILEVIEWSVNPLUGIN_H
 
 #include <kfileitem.h>
-#include <kversioncontrolplugin2.h>
+#include <kversioncontrolplugin.h>
 #include <QHash>
 #include <QProcess>
 #include <QTemporaryFile>
@@ -29,7 +29,7 @@
 /**
  * @brief Subversion implementation for the KVersionControlPlugin interface.
  */
-class FileViewSvnPlugin : public KVersionControlPlugin2
+class FileViewSvnPlugin : public KVersionControlPlugin
 {
     Q_OBJECT
 

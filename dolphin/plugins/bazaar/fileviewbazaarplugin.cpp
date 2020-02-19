@@ -150,7 +150,7 @@ bool FileViewBazaarPlugin::beginRetrieval(const QString& directory)
 
     // Clear all entries for this directory including the entries
     // for sub directories
-    QMutableHashIterator<QString, VersionState> it(m_versionInfoHash);
+    QMutableHashIterator<QString, ItemVersion> it(m_versionInfoHash);
     while (it.hasNext()) {
         it.next();
         if (it.key().startsWith(directory) || !it.key().startsWith(baseDir)) {
@@ -180,7 +180,7 @@ bool FileViewBazaarPlugin::beginRetrieval(const QString& directory)
     while (process.waitForReadyRead()) {
         char buffer[1024];
         while (process.readLine(buffer, sizeof(buffer)) > 0)  {
-            VersionState state = NormalVersion;
+            ItemVersion state = NormalVersion;
             QString filePath = QString::fromUtf8(buffer);
 
             // This could probably do with being more consistent
@@ -200,7 +200,7 @@ bool FileViewBazaarPlugin::beginRetrieval(const QString& directory)
             // Only values with a different state as 'NormalVersion'
             // are added to the hash table. If a value is not in the
             // hash table, it is automatically defined as 'NormalVersion'
-            // (see FileViewBazaarPlugin::versionState()).
+            // (see FileViewBazaarPlugin::itemVersion()).
             if (state != NormalVersion) {
                 int pos = 4;
                 const int length = filePath.length() - pos - 1;
@@ -231,7 +231,7 @@ void FileViewBazaarPlugin::endRetrieval()
 {
 }
 
-KVersionControlPlugin::VersionState FileViewBazaarPlugin::versionState(const KFileItem& item)
+KVersionControlPlugin::ItemVersion FileViewBazaarPlugin::itemVersion(const KFileItem& item) const
 {
     const QString itemUrl = item.localPath();
     if (m_versionInfoHash.contains(itemUrl)) {
@@ -247,10 +247,10 @@ KVersionControlPlugin::VersionState FileViewBazaarPlugin::versionState(const KFi
     // The item is a directory. Check whether an item listed by 'bzr status' (= m_versionInfoHash)
     // is part of this directory. In this case a local modification should be indicated in the
     // directory already.
-    QHash<QString, VersionState>::const_iterator it = m_versionInfoHash.constBegin();
+    QHash<QString, ItemVersion>::const_iterator it = m_versionInfoHash.constBegin();
     while (it != m_versionInfoHash.constEnd()) {
         if (it.key().startsWith(itemUrl)) {
-            const VersionState state = m_versionInfoHash.value(it.key());
+            const ItemVersion state = m_versionInfoHash.value(it.key());
             if (state == LocallyModifiedVersion) {
                 return LocallyModifiedVersion;
             }
@@ -261,7 +261,7 @@ KVersionControlPlugin::VersionState FileViewBazaarPlugin::versionState(const KFi
     return NormalVersion;
 }
 
-QList<QAction*> FileViewBazaarPlugin::contextMenuActions(const KFileItemList& items)
+QList<QAction*> FileViewBazaarPlugin::actions(const KFileItemList& items) const
 {
     Q_ASSERT(!items.isEmpty());
     foreach (const KFileItem& item, items) {
@@ -277,7 +277,7 @@ QList<QAction*> FileViewBazaarPlugin::contextMenuActions(const KFileItemList& it
         int versionedCount = 0;
         int editingCount = 0;
         foreach (const KFileItem& item, items) {
-            const VersionState state = versionState(item);
+            const ItemVersion state = itemVersion(item);
             if (state != UnversionedVersion) {
                 ++versionedCount;
             }
@@ -312,34 +312,6 @@ QList<QAction*> FileViewBazaarPlugin::contextMenuActions(const KFileItemList& it
     actions.append(m_commitAction);
     actions.append(m_addAction);
     actions.append(m_removeAction);
-    actions.append(m_showLocalChangesAction);
-    actions.append(m_logAction);
-    return actions;
-}
-
-QList<QAction*> FileViewBazaarPlugin::contextMenuActions(const QString& directory)
-{
-    m_contextDir = directory;
-    m_contextItems.clear();
-
-    // Only enable the actions if no commands are
-    // executed currently (see slotOperationCompleted() and
-    // startBazaarCommandProcess()).
-    const bool enabled = !m_pendingOperation;
-    m_updateAction->setEnabled(enabled);
-    m_pullAction->setEnabled(enabled);
-    m_pushAction->setEnabled(enabled);
-    m_commitAction->setEnabled(enabled);
-    m_addAction->setEnabled(enabled);
-    m_showLocalChangesAction->setEnabled(enabled);
-    m_logAction->setEnabled(enabled);
-
-    QList<QAction*> actions;
-    actions.append(m_updateAction);
-    actions.append(m_pullAction);
-    actions.append(m_pushAction);
-    actions.append(m_commitAction);
-    actions.append(m_addAction);
     actions.append(m_showLocalChangesAction);
     actions.append(m_logAction);
     return actions;
@@ -421,7 +393,7 @@ void FileViewBazaarPlugin::slotOperationCompleted(int exitCode, QProcess::ExitSt
         emit errorMessage(m_errorMsg);
     } else if (m_contextItems.isEmpty()) {
         emit operationCompletedMessage(m_operationCompletedMsg);
-        emit versionStatesChanged();
+        emit itemVersionsChanged();
     } else {
         startBazaarCommandProcess();
     }

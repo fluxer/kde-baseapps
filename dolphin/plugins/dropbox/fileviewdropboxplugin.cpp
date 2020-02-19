@@ -58,19 +58,19 @@ public:
     QPointer<KActionCollection> contextActions;
 };
 
-QMap<QString, KVersionControlPlugin2::ItemVersion> FileViewDropboxPlugin::m_itemVersions;
+QMap<QString, KVersionControlPlugin::ItemVersion> FileViewDropboxPlugin::m_itemVersions;
 
 FileViewDropboxPlugin::FileViewDropboxPlugin(QObject* parent, const QVariantList& args):
-    KVersionControlPlugin2(parent),
+    KVersionControlPlugin(parent),
     d(new Private(this))
 {
     Q_UNUSED(args);
 
     if (m_itemVersions.isEmpty()) {
-        m_itemVersions.insert("up to date", KVersionControlPlugin2::NormalVersion);
-        m_itemVersions.insert("syncing",    KVersionControlPlugin2::UpdateRequiredVersion);
-        m_itemVersions.insert("unsyncable", KVersionControlPlugin2::ConflictingVersion);
-        m_itemVersions.insert("unwatched",  KVersionControlPlugin2::UnversionedVersion);
+        m_itemVersions.insert("up to date", KVersionControlPlugin::NormalVersion);
+        m_itemVersions.insert("syncing",    KVersionControlPlugin::UpdateRequiredVersion);
+        m_itemVersions.insert("unsyncable", KVersionControlPlugin::ConflictingVersion);
+        m_itemVersions.insert("unwatched",  KVersionControlPlugin::UnversionedVersion);
     }
 
     const QString dropboxDir = QDir::home().path() + QDir::separator() + fileName() + QDir::separator();
@@ -106,16 +106,16 @@ bool FileViewDropboxPlugin::beginRetrieval(const QString& directory)
     return connectWithDropbox(d->itemStateSocket, LongTimeout);
 }
 
-KVersionControlPlugin2::ItemVersion FileViewDropboxPlugin::itemVersion(const KFileItem& item) const
+KVersionControlPlugin::ItemVersion FileViewDropboxPlugin::itemVersion(const KFileItem& item) const
 {
     const QStringList reply = sendCommand("icon_overlay_file_status\npath\t", QStringList() << QDir(item.localPath()).canonicalPath(),
                                           d->itemStateSocket, WaitForReply, LongTimeout);
     if(reply.count() < 2) {
         // file/dir is not served by dropbox
-        return KVersionControlPlugin2::UnversionedVersion;
+        return KVersionControlPlugin::UnversionedVersion;
     }
 
-    return m_itemVersions.value(reply.at(1), KVersionControlPlugin2::UnversionedVersion);
+    return m_itemVersions.value(reply.at(1), KVersionControlPlugin::UnversionedVersion);
 }
 
 void FileViewDropboxPlugin::endRetrieval()

@@ -327,7 +327,7 @@ QStringList HgWrapper::getBranches()
     return result;
 }
 
-void HgWrapper::getItemVersions(QHash<QString, KVersionControlPlugin2::ItemVersion> &result)
+void HgWrapper::getItemVersions(QHash<QString, KVersionControlPlugin::ItemVersion> &result)
 {
     /*int nTrimOutLeft = m_hgBaseDir.length();
     QString relativePrefix = m_currentDir.right(m_currentDir.length() -
@@ -351,31 +351,31 @@ void HgWrapper::getItemVersions(QHash<QString, KVersionControlPlugin2::ItemVersi
             const QString currentLine(QTextCodec::codecForLocale()->toUnicode(buffer).trimmed());
             char currentStatus = buffer[0];
             QString currentFile = currentLine.mid(2);
-            KVersionControlPlugin2::ItemVersion vs = KVersionControlPlugin2::NormalVersion;
+            KVersionControlPlugin::ItemVersion vs = KVersionControlPlugin::NormalVersion;
             switch (currentStatus) {
                 case 'A':
-                    vs = KVersionControlPlugin2::AddedVersion;
+                    vs = KVersionControlPlugin::AddedVersion;
                     break;
                 case 'M':
-                    vs = KVersionControlPlugin2::LocallyModifiedVersion;
+                    vs = KVersionControlPlugin::LocallyModifiedVersion;
                     break;
                 case '?':
-                    vs = KVersionControlPlugin2::UnversionedVersion;
+                    vs = KVersionControlPlugin::UnversionedVersion;
                     break;
                 case 'R':
-                    vs = KVersionControlPlugin2::RemovedVersion;
+                    vs = KVersionControlPlugin::RemovedVersion;
                     break;
                 case 'I':
-                    vs = KVersionControlPlugin2::IgnoredVersion;
+                    vs = KVersionControlPlugin::IgnoredVersion;
                     break;
                 case 'C':
-                    vs = KVersionControlPlugin2::NormalVersion;
+                    vs = KVersionControlPlugin::NormalVersion;
                     break;
                 case '!':
-                    vs = KVersionControlPlugin2::MissingVersion;
+                    vs = KVersionControlPlugin::MissingVersion;
                     break;
             }
-            if (vs != KVersionControlPlugin2::NormalVersion) {
+            if (vs != KVersionControlPlugin::NormalVersion) {
                 // Get full path to file and insert it to result
                 KUrl url = KUrl::fromPath(m_hgBaseDir);
                 url.addPath(currentFile);

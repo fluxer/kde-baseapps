@@ -23,7 +23,7 @@
 #ifndef FILEVIEWDROPBOXPLUGIN_H
 #define FILEVIEWDROPBOXPLUGIN_H
 
-#include <kversioncontrolplugin2.h>
+#include <kversioncontrolplugin.h>
 
 #include <QMap>
 #include <QtCore/qvariant.h>
@@ -36,9 +36,9 @@
 //Thanks Steffen Schuldenzucker!
 
 /**
- * @brief Dropbox implementation for the KVersionControlPlugin2 interface.
+ * @brief Dropbox implementation for the KVersionControlPlugin interface.
  */
-class FileViewDropboxPlugin : public KVersionControlPlugin2
+class FileViewDropboxPlugin : public KVersionControlPlugin
 {
     Q_OBJECT
 
@@ -62,7 +62,7 @@ public:
     virtual QString fileName() const;
 
     virtual bool beginRetrieval(const QString& directory);
-    virtual KVersionControlPlugin2::ItemVersion itemVersion(const KFileItem& item) const;
+    virtual KVersionControlPlugin::ItemVersion itemVersion(const KFileItem& item) const;
     virtual void endRetrieval();
 
     virtual QList<QAction*> actions(const KFileItemList& items) const;
@@ -83,7 +83,7 @@ private:
     class Private;
     Private* const d;
 
-    static QMap<QString, KVersionControlPlugin2::ItemVersion> m_itemVersions;
+    static QMap<QString, KVersionControlPlugin::ItemVersion> m_itemVersions;
 };
 
 #endif // FILEVIEWDROPBOXPLUGIN_H

@@ -44,7 +44,7 @@ K_PLUGIN_FACTORY(FileViewGitPluginFactory, registerPlugin<FileViewGitPlugin>();)
 K_EXPORT_PLUGIN(FileViewGitPluginFactory("fileviewgitplugin"))
 
 FileViewGitPlugin::FileViewGitPlugin(QObject* parent, const QList<QVariant>& args) :
-    KVersionControlPlugin2(parent),
+    KVersionControlPlugin(parent),
     m_pendingOperation(false),
     m_addAction(0),
     m_removeAction(0),
@@ -241,7 +241,7 @@ void FileViewGitPlugin::endRetrieval()
 {
 }
 
-KVersionControlPlugin2::ItemVersion FileViewGitPlugin::itemVersion(const KFileItem& item) const
+KVersionControlPlugin::ItemVersion FileViewGitPlugin::itemVersion(const KFileItem& item) const
 {
     const QString itemUrl = item.localPath();
     if (m_versionInfoHash.contains(itemUrl)) {

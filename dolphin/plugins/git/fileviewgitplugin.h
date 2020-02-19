@@ -22,16 +22,16 @@
 #define FILEVIEWGITPLUGIN_H
 
 #include <kfileitem.h>
-#include <kversioncontrolplugin2.h>
+#include <kversioncontrolplugin.h>
 #include <QList>
 #include <QHash>
 #include <QProcess>
 #include <QString>
 
 /**
- * @brief Git implementation for the KVersionControlPlugin2 interface.
+ * @brief Git implementation for the KVersionControlPlugin interface.
  */
-class FileViewGitPlugin : public KVersionControlPlugin2
+class FileViewGitPlugin : public KVersionControlPlugin
 {
     Q_OBJECT
 
@@ -41,7 +41,7 @@ public:
     virtual QString fileName() const;
     virtual bool beginRetrieval(const QString& directory);
     virtual void endRetrieval();
-    virtual KVersionControlPlugin2::ItemVersion itemVersion(const KFileItem& item) const;
+    virtual KVersionControlPlugin::ItemVersion itemVersion(const KFileItem& item) const;
     virtual QList<QAction*> actions(const KFileItemList &items) const;
 
 private slots:

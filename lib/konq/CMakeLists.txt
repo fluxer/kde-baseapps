@@ -16,8 +16,7 @@ set(konq_LIB_SRCS
    konq_statusbarmessagelabel.cpp  # used by dolphin and konqueror
    konq_events.cpp
    konqmimedata.cpp         # used by dolphin, KonqOperations, some filemanagement konqueror modules.
-   kversioncontrolplugin.cpp  # used by dolphin and its version control plugins (deprecated)
-   kversioncontrolplugin2.cpp # used by dolphin and its version control plugins
+   kversioncontrolplugin.cpp  # used by dolphin and its version control plugins
 )
 
 add_library(konq ${LIBRARY_TYPE} ${konq_LIB_SRCS})
@@ -56,7 +55,6 @@ install(FILES
     konq_events.h
     konqmimedata.h
     kversioncontrolplugin.h
-    kversioncontrolplugin2.h
     DESTINATION ${KDE4_INCLUDE_INSTALL_DIR}
     COMPONENT Devel
 )

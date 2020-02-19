@@ -23,7 +23,7 @@
 #include <dolphinprivate_export.h>
 
 #include <KFileItem>
-#include <kversioncontrolplugin2.h>
+#include <kversioncontrolplugin.h>
 #include <QList>
 #include <QMutex>
 #include <QObject>
@@ -103,7 +103,7 @@ private:
     struct ItemState
     {
         KFileItem item;
-        KVersionControlPlugin2::ItemVersion version;
+        KVersionControlPlugin::ItemVersion version;
     };
 
     void updateItemStates();

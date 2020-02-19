@@ -43,7 +43,7 @@ K_PLUGIN_FACTORY(FileViewSvnPluginFactory, registerPlugin<FileViewSvnPlugin>();)
 K_EXPORT_PLUGIN(FileViewSvnPluginFactory("fileviewsvnplugin"))
 
 FileViewSvnPlugin::FileViewSvnPlugin(QObject* parent, const QList<QVariant>& args) :
-    KVersionControlPlugin2(parent),
+    KVersionControlPlugin(parent),
     m_pendingOperation(false),
     m_versionInfoHash(),
     m_updateAction(0),
@@ -195,7 +195,7 @@ void FileViewSvnPlugin::endRetrieval()
 {
 }
 
-KVersionControlPlugin2::ItemVersion FileViewSvnPlugin::itemVersion(const KFileItem& item) const
+KVersionControlPlugin::ItemVersion FileViewSvnPlugin::itemVersion(const KFileItem& item) const
 {
     const QString itemUrl = item.localPath();
     if (m_versionInfoHash.contains(itemUrl)) {

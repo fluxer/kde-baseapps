@@ -41,9 +41,8 @@ public:
     virtual QString fileName() const;
     virtual bool beginRetrieval(const QString& directory);
     virtual void endRetrieval();
-    virtual KVersionControlPlugin::VersionState versionState(const KFileItem& item);
-    virtual QList<QAction*> contextMenuActions(const KFileItemList& items);
-    virtual QList<QAction*> contextMenuActions(const QString& directory);
+    virtual KVersionControlPlugin::ItemVersion itemVersion(const KFileItem& item) const;
+    virtual QList<QAction*> actions(const KFileItemList& items) const;
 
 private slots:
     void updateFiles();
@@ -79,7 +78,7 @@ private:
 
 private:
     bool m_pendingOperation;
-    QHash<QString, VersionState> m_versionInfoHash;
+    QHash<QString, ItemVersion> m_versionInfoHash;
 
     QAction* m_updateAction;
     QAction* m_pullAction;
@@ -95,8 +94,8 @@ private:
     QString m_errorMsg;
     QString m_operationCompletedMsg;
 
-    QString m_contextDir;
-    KFileItemList m_contextItems;
+    mutable QString m_contextDir;
+    mutable KFileItemList m_contextItems;
 
     QProcess m_process;
     QTemporaryFile m_tempFile;

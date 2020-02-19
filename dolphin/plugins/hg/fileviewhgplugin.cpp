@@ -63,7 +63,7 @@ K_EXPORT_PLUGIN(FileViewHgPluginFactory("fileviewhgplugin"))
 //TODO: Use i18nc rather thn i18c throughout plugin
 
 FileViewHgPlugin::FileViewHgPlugin(QObject *parent, const QList<QVariant> &args):
-    KVersionControlPlugin2(parent),
+    KVersionControlPlugin(parent),
     m_mainContextMenu(0),
     m_addAction(0),
     m_removeAction(0),
@@ -334,7 +334,7 @@ void FileViewHgPlugin::endRetrieval()
 {
 }
 
-KVersionControlPlugin2::ItemVersion FileViewHgPlugin::itemVersion(const KFileItem &item) const
+KVersionControlPlugin::ItemVersion FileViewHgPlugin::itemVersion(const KFileItem &item) const
 {
     //FIXME: When folder is empty or all files within untracked.
     const QString itemUrl = item.localPath();
@@ -804,7 +804,7 @@ void FileViewHgPlugin::slotOperationCompleted(int exitCode, QProcess::ExitStatus
     else {
         m_contextItems.clear();
         emit operationCompletedMessage(m_operationCompletedMsg);
-        emit versionStatesChanged();
+        emit itemVersionsChanged();
     }
 }
 
