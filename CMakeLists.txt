@@ -10,14 +10,6 @@ include(GenerateExportHeader)
 
 set(LIBRARY_TYPE SHARED)
 
-find_package(ZLIB)
-set_package_properties(ZLIB PROPERTIES
-    DESCRIPTION "Support for gzip compressed files and data streams"
-    URL "http://www.zlib.net"
-    PURPOSE "Required for building Konqueror library"
-    TYPE REQUIRED
-)
-
 find_package(Sudo)
 set_package_properties(Sudo PROPERTIES
     DESCRIPTION "Sudo allows a system administrator to delegate authority to give certain users"

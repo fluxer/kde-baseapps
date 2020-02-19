@@ -7,9 +7,6 @@ endif()
 
 ########### libkonq ###############
 
-# For crc32 in konq_historyloader.cpp
-include_directories( ${ZLIB_INCLUDE_DIR} )
-
 set(konq_LIB_SRCS
    konq_popupmenu.cpp       # used by konqueror, kfind, folderview, kickoff
    konq_popupmenuplugin.cpp # for KonqPopupMenu and its plugins
@@ -19,9 +16,6 @@ set(konq_LIB_SRCS
    konq_statusbarmessagelabel.cpp  # used by dolphin and konqueror
    konq_events.cpp
    konqmimedata.cpp         # used by dolphin, KonqOperations, some filemanagement konqueror modules.
-   konq_historyentry.cpp
-   konq_historyloader.cpp
-   konq_historyprovider.cpp
    kversioncontrolplugin.cpp  # used by dolphin and its version control plugins (deprecated)
    kversioncontrolplugin2.cpp # used by dolphin and its version control plugins
 )
@@ -29,7 +23,6 @@ set(konq_LIB_SRCS
 add_library(konq ${LIBRARY_TYPE} ${konq_LIB_SRCS})
 
 target_link_libraries(konq PRIVATE
-    ${ZLIB_LIBRARY}
     ${X11_X11_LIB}
 )
 target_link_libraries(konq PUBLIC
@@ -64,8 +57,6 @@ install(FILES
     konqmimedata.h
     kversioncontrolplugin.h
     kversioncontrolplugin2.h
-    konq_historyprovider.h
-    konq_historyentry.h
     DESTINATION ${KDE4_INCLUDE_INSTALL_DIR}
     COMPONENT Devel
 )
