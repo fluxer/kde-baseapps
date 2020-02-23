@@ -58,11 +58,7 @@ void DBusTest::initTestCase()
     }
 
     // Wait for above Konsole to finish starting
-#if defined(HAVE_USLEEP)
-    usleep(5 * 1000);
-#else
-    sleep(5);
-#endif
+    QTest::qWait(5000);
 
     serviceReply = bus->registeredServiceNames();
     if (!serviceReply.isValid())

@@ -35,8 +35,6 @@
 #include <kglobal.h>
 #include <klocale.h>
 
-#include <config-apps.h>
-
 K_PLUGIN_FACTORY_DECLARATION(KioConfigFactory)
 
 SMBRoOptions::SMBRoOptions(QWidget *parent, const QVariantList &, const KComponentData &componentData)

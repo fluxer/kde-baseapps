@@ -31,8 +31,6 @@
 #include <QWidget>
 
 #include <views/dolphinview.h>
-#include <config-apps.h>
-
 
 class FilterBar;
 class KMessageWidget;

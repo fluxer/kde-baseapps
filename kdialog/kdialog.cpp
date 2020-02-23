@@ -48,7 +48,6 @@
 #include <netwm.h>
 #endif
 
-#include "../config-apps.h"
 #ifdef QT_DBUS_LIB
 #include <QtDBus/QDBusConnection>
 #include <QtDBus/QDBusConnectionInterface>

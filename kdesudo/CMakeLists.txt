@@ -1,3 +1,6 @@
+include(CheckSymbolExists)
+include(CheckIncludeFiles)
+
 check_include_files("sys/prctl.h" HAVE_SYS_PRCTL_H)
 check_symbol_exists(PR_SET_DUMPABLE "sys/prctl.h" HAVE_PR_SET_DUMPABLE)
 add_feature_info("prctl-dumpable" HAVE_PR_SET_DUMPABLE "Used to disallow ptracing")

@@ -26,8 +26,6 @@
 
 #include "passwd.h"
 
-#include <config-apps.h> // setenv
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -93,7 +91,7 @@ int PasswdProcess::exec(const char *oldpass, const char *newpass,
 
     // Try to set the default locale to make the parsing of the output
     // of `passwd' easier.
-    setenv("LANG","C", true /* override */);
+    ::setenv("LANG","C", true /* override */);
 
     QList<QByteArray> args;
     if(bOtherUser)

@@ -18,13 +18,6 @@ set_package_properties(Sudo PROPERTIES
     PURPOSE "Needed for kdesudo to operate"
 )
 
-
-include(ConfigureChecks.cmake)
-configure_file(
-    config-apps.h.cmake
-    ${CMAKE_CURRENT_BINARY_DIR}/config-apps.h
-)
-
 include_directories(
     ${CMAKE_CURRENT_BINARY_DIR}
     ${CMAKE_CURRENT_SOURCE_DIR}/lib/konq
