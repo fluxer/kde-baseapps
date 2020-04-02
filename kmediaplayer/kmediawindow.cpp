@@ -215,5 +215,6 @@ void KMediaWindow::menu(QPoint position)
 
 void KMediaWindow::quit()
 {
+    KMediaWindow::close();
     qApp->quit();
 }
