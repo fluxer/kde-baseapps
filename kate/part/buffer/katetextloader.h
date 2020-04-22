@@ -23,7 +23,7 @@
 
 #include <QtCore/QString>
 #include <QtCore/QFile>
-#include <QtCore/QCryptographicHash>
+#include <QCryptographicHash>
 
 // on the fly compression
 #include <kfilterdev.h>

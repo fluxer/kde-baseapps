@@ -86,8 +86,8 @@
 #include <QtGui/QClipboard>
 #include <QtCore/QTextStream>
 #include <QtCore/QTextCodec>
-#include <QtCore/QCryptographicHash>
 #include <QtCore/QMap>
+#include <QCryptographicHash>
 //END  includes
 
 #if 0
