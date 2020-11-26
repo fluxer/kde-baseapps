@@ -1,6 +1,0 @@
-[KNewStuff2]
-ProvidersUrl=http://download.kde.org/khotnewstuff/servicemenu-providers.xml
-ChecksumPolicy=ifpossible
-SignaturePolicy=ifpossible
-TargetDir=kde4/services/ServiceMenus
-Uncompress=archive

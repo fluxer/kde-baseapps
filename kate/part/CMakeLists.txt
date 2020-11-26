@@ -224,9 +224,3 @@ install(
     TARGETS katepart
     DESTINATION ${KDE4_PLUGIN_INSTALL_DIR}
 )
-
-# install the snippet stuff
-install(
-    FILES snippet/ktexteditor_codesnippets_core.knsrc
-    DESTINATION ${KDE4_CONFIG_INSTALL_DIR}
-)

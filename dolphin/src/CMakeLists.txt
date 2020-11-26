@@ -338,7 +338,3 @@ install(
     settings/kcm/kcmdolphingeneral.desktop
     DESTINATION ${KDE4_SERVICES_INSTALL_DIR}
 )
-install(
-    FILES settings/services/servicemenu.knsrc
-    DESTINATION ${KDE4_CONFIG_INSTALL_DIR}
-)
