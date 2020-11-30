@@ -1,4 +1,4 @@
-#!/bin/env bash
+#!/bin/bash
 # Copyright 2008, 2009 Matthew Woehlke (mw_triad@users.sourceforge.net)
 # Copyright 2013, Alex Turbov (i.zaufi@gmail.com)
 #
@@ -98,7 +98,7 @@ echo "$(count all_vars) builtin variables"
     sed 's!.*!      <item> & </item>!' $t.vars
     cat $t.5
     echo "        <!-- generated rules -->"
-    sed 's!.*!        <RegExpr attribute="Builtin CMake Variable" context="#stay" String="\\b&\\b" />!' $t.varsrr
+    sed 's|.*|        <RegExpr attribute="Builtin CMake Variable" context="#stay" String="\\b&\\b" />|' $t.varsrr
     cat $t.6
 } > cmake.xml
 
