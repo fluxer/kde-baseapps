@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!-- [Purpose & Copyright]
 
     Highlight ISO-Prolog texts or template/include for Prolog dialects
@@ -29,81 +29,7 @@
  * Boston, MA  02110-1301, USA.                                       *
  **********************************************************************
 -->
-<!DOCTYPE language SYSTEM "language.dtd"
-[<!-- [Regular Expressions, Character Classes & Important Tokens]
-E.g. the dot "." has so many different meanings (i.e. in an RegExpr 'any char',
-'fullstop' of a clause, etc. pp.) that I decided it's usefull to write these out
-to make the rules more expressive. -->
 
-<!-- RegExpr for graphic tokens.  Comment start "/*" is catched earlier. -->
-    <!ENTITY gr_char_iso    	"[#$&amp;*+\-./:&lt;=>?@^~\\]">
-
-<!-- RegExpr: The highlighting engine always strips newline, so this ok: -->
-    <!ENTITY any_nw         "[^ \t]">
-    <!ENTITY any            ".">
-
-<!-- RegExpr: we want to highlight some graphic tokens: Logic & Control
-    fullstop shall not be falsely detected if it is actually a list functor
-    comma is catched extra to highlight it as "Normal Text" in an arg_seq
-    (and the cut "!" is NOT an op) -->
-    <!ENTITY fullstop_iso          "\.(?!(\(|&gr_char_iso;))">
-    <!ENTITY logic_control_ops_iso "(;|->|\\\+|:-|=|\\=)(?!&gr_char_iso;)">
-
-    <!-- RegExpr: DCG (not my idea it is not reversed and named 'reduction') -->
-    <!ENTITY dcg_production_iso    "-->(?!&gr_char_iso;)">
-
-    <!-- RegExpr: partitioning of arithmetic operators:
-    - the 1st "arith_compare" always demand arithmetic evaluation
-      => highlight as "Arithmetics".
-    - the 2nd only at the right side of "is" or when an arith_compare applies.
-      They are used in other contexts as well, e.g. traditionally A-B is used
-      for 'a pair of something', the "^" in bagof/3 and setof/3.
-      => highlight as "Arithmetics" only in an arith_expr.
-    - the 3rd are true ISO bogus: it is not specified whether it is arithmetic
-      or logical shift, and for bitwise AND, OR and NEG the integer format is
-      unspecified => not portable, depend on Prolog implementation. -->
-    <!ENTITY arith_compare_iso  "(=:=|=\\=|=&lt;|&lt;|>=|>)(?!&gr_char_iso;)">
-    <!ENTITY arith_ops_mixed_iso      "(\+|-|\*|\^)(?!&gr_char_iso;)">
-    <!ENTITY arith_ops_int_iso      "//(?!&gr_char_iso;)">
-    <!ENTITY arith_ops_float_iso      "(/|\*\*)(?!&gr_char_iso;)">
-    <!ENTITY arith_bogus_iso  "(/\\|\\/|\\|&lt;&lt;|>>)(?!&gr_char_iso;)">
-
-    <!-- RegExpr: other predefined operators -->
-    <!ENTITY predefined_ops_iso "(\?-|==|\\==|@=&lt;|@&lt;|@>=|@>|=\.\.|@|:)(?!&gr_char_iso;)">
-
-    <!-- We treat a number as float if it includes a decimal dot or exponent -->
-    <!ENTITY float3_iso "[0-9]+E[+\-]?[0-9]+">
-    <!ENTITY float2_iso "[0-9]+\.[0-9]+">
-    <!ENTITY float1_iso "[0-9]+\.[0-9]+E[+\-]?[0-9]+">
-
-<!-- RegExpr for esc'd char code in quoted 'strings' e.g. "\007\" -->
-    <!ENTITY esc_oct_iso	"\\[0-7]+\\">
-    <!ENTITY esc_hex_iso	"\\x[a-fA-F0-9]+\\">
-
-<!-- Char classes for AnyChar, NOT RegExpr: no esc seqs, ranges, etc. pp. here!
-     Used to avoid expensive RegExpr whenever possible. -->
-    <!--  Not needed: any_alnum_under_iso:  use "DetectIdentifier" instead -->
-    <!ENTITY any_lower_iso         "abcdefghijklmnopqrstuvwxyz">
-    <!ENTITY any_upper_under_iso   "ABCDEFGHIJKLMNOPQRSTUVWXYZ_">
-    <!ENTITY any_bin_iso           "01">
-    <!ENTITY any_oct_iso           "01234567">
-    <!ENTITY any_dec_iso           "0123456789">
-    <!ENTITY any_hex_iso           "0123456789abcdefABCDEF">
-    <!ENTITY any_graphic_iso       "#$&amp;*+-./:&lt;=>?@^~\">
-
-    <!-- Common esc seq in quoted & char code (after "0'").
-    Tab is handled extra.  Esc'd newline is catched earlier. -->
-    <!ENTITY any_esc_iso		"abfnrtv\'`&quot;]">
-
-    <!ENTITY dot        ".">
-
-    <!-- Some solo chars for DetectChar -->
-    <!ENTITY comma	",">
-    <!ENTITY cut        "!">
-    <!ENTITY bar        "|">
-    <!ENTITY tab	"	">
-    <!ENTITY bs         "\">
-]>
 <language name="Prolog" section="Sources"
 	  version="1.2" kateversion="2.3"
 	  mimetype="text/x-prolog"
