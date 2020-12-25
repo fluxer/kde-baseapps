@@ -1,4 +1,4 @@
-#!/usr/bin/perl
+#!/usr/bin/env perl
 
 # This perl script read stdin and write on stdout. It shall be an XML language file.
 #
