@@ -174,7 +174,7 @@ void KCMUserAccount::save()
  * FIXME: there is apparently no way to set full name
  * non-interactively as a normal user on FreeBSD.
  */
-#ifndef Q_OS_FREEBSD
+#if !defined(Q_OS_FREEBSD) && !defined(Q_OS_DRAGONFLY)
     /* Save realname to /etc/passwd */
     if ( _mw->leRealname->isModified() ) {
         // save icon file also with accountsservice

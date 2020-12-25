@@ -42,16 +42,12 @@
 #include <KUser>
 #include <KDebug>
 
-#if defined(Q_OS_FREEBSD) || defined(Q_OS_OPENBSD) || defined(Q_OS_MAC)
+#if defined(Q_OS_FREEBSD) || defined(Q_OS_OPENBSD) || defined(Q_OS_DRAGONFLY)
 #include <sys/sysctl.h>
-#endif
-
-
-#if defined(Q_OS_FREEBSD) || defined(Q_OS_OPENBSD)
 #include <sys/types.h>
 #include <sys/user.h>
 #include <sys/syslimits.h>
-#   if defined(Q_OS_FREEBSD)
+#   if defined(Q_OS_FREEBSD) || defined(Q_OS_DRAGONFLY)
 #   include <libutil.h>
 #   endif
 #endif
@@ -599,7 +595,7 @@ private:
     }
 };
 
-#elif defined(Q_OS_FREEBSD)
+#elif defined(Q_OS_FREEBSD) || defined(Q_OS_DRAGONFLY)
 class FreeBSDProcessInfo : public UnixProcessInfo
 {
 public:
@@ -1050,7 +1046,7 @@ ProcessInfo* ProcessInfo::newInstance(int aPid, bool enableEnvironmentRead)
     return new LinuxProcessInfo(aPid, enableEnvironmentRead);
 #elif defined(Q_OS_SOLARIS)
     return new SolarisProcessInfo(aPid, enableEnvironmentRead);
-#elif defined(Q_OS_FREEBSD)
+#elif defined(Q_OS_FREEBSD) || defined(Q_OS_DRAGONFLY)
     return new FreeBSDProcessInfo(aPid, enableEnvironmentRead);
 #elif defined(Q_OS_OPENBSD)
     return new OpenBSDProcessInfo(aPid, enableEnvironmentRead);
