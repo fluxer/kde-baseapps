@@ -50,6 +50,9 @@
 #   if defined(Q_OS_FREEBSD) || defined(Q_OS_DRAGONFLY)
 #   include <libutil.h>
 #   endif
+#   if defined(Q_OS_DRAGONFLY)
+#   include <kinfo.h>
+#   endif
 #endif
 
 using namespace Konsole;
@@ -624,11 +627,19 @@ private:
             return false;
         }
 
+#ifdef Q_OS_DRAGONFLY
+        setName(kInfoProc->kp_comm);
+        setPid(kInfoProc->kp_pid);
+        setParentPid(kInfoProc->kp_ppid);
+        setForegroundPid(kInfoProc->kp_pgid);
+        setUserId(kInfoProc->kp_uid);
+#else
         setName(kInfoProc->ki_comm);
         setPid(kInfoProc->ki_pid);
         setParentPid(kInfoProc->ki_ppid);
         setForegroundPid(kInfoProc->ki_pgid);
         setUserId(kInfoProc->ki_uid);
+#endif
 
         readUserName();
 
@@ -666,6 +677,9 @@ private:
     }
 
     virtual bool readCurrentDir(int aPid) {
+#ifdef Q_OS_DRAGONFLY
+#  warning readCurrentDir() not implemented for DragonFly BSD
+#else
         int numrecords;
         struct kinfo_file* info = 0;
 
@@ -685,6 +699,7 @@ private:
 
         free(info);
         return false;
+#endif // Q_OS_DRAGONFLY
     }
 };
 
