@@ -1,5 +1,9 @@
 include(CheckIncludeFiles)
 
+### BSD util library
+find_library(UTIL_LIBRARY util)
+mark_as_advanced(UTIL_LIBRARY)
+
 ### Tests
 if(ENABLE_TESTING)
     add_subdirectory(tests)
@@ -117,6 +121,12 @@ target_link_libraries(konsoleprivate
     ${QT_QTXML_LIBRARY}
     konq
 )
+
+if(UTIL_LIBRARY)
+    target_link_libraries(konsoleprivate
+        ${UTIL_LIBRARY}
+    )
+endif()
 
 set(konsole_SRCS
     Application.cpp
