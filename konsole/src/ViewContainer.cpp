@@ -168,7 +168,7 @@ void ViewContainer::forgetView(QWidget* view)
 void ViewContainer::removeView(QWidget* view)
 {
     disconnect(view, SIGNAL(destroyed(QObject*)), this, SLOT(viewDestroyed(QObject*)));
-
+    removeViewWidget(view);
     forgetView(view);
 }
 
