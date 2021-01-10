@@ -41,8 +41,9 @@
 #include <QPainter>
 #include <QPropertyAnimation>
 #include <QStyle>
-#include <QtGui/qstyleoption.h>
+#include <QStyleOption>
 #include <QTimer>
+#include <QElapsedTimer>
 
 #include <algorithm>
 

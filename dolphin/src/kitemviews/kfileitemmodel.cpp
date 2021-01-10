@@ -34,6 +34,7 @@
 #include <QMimeData>
 #include <QTimer>
 #include <QWidget>
+#include <QElapsedTimer>
 
 #include <algorithm>
 #include <vector>
