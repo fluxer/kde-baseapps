@@ -48,6 +48,7 @@ private slots:
 
 protected:
     virtual void showEvent(QShowEvent *event);
+    virtual bool eventFilter(QObject *object, QEvent *event);
 
 private:
     KMediaWidget *m_player;

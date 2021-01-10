@@ -37,8 +37,7 @@
 KMediaWindow::KMediaWindow(QWidget *parent, Qt::WindowFlags flags)
     : KXmlGuiWindow(parent, flags)
 {
-    // TODO: enable all options once mouse tracking on all relevant widgets can be done
-    m_player = new KMediaWidget(this, KMediaWidget::DragDrop | KMediaWidget::FullscreenVideo);
+    m_player = new KMediaWidget(this, KMediaWidget::AllOptions);
     setCentralWidget(m_player);
 
     KAction *a = actionCollection()->addAction("file_open_path", this, SLOT(openPath()));
@@ -103,6 +102,9 @@ KMediaWindow::KMediaWindow(QWidget *parent, Qt::WindowFlags flags)
     m_menu->addAction(KIcon("show-menu"), i18n("Show/hide menubar"), this, SLOT(menubar()));
     setContextMenuPolicy(Qt::CustomContextMenu);
     connect(this, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(menu(QPoint)));
+
+    setMouseTracking(true);
+    qApp->installEventFilter(this);
 }
 
 KMediaWindow::~KMediaWindow()
@@ -129,7 +131,15 @@ void KMediaWindow::showEvent(QShowEvent *event)
 {
     m_menuvisible = menuBar()->isVisible();
     m_statusvisible = statusBar()->isVisible();
-    Q_UNUSED(event);
+    KXmlGuiWindow::showEvent(event);
+}
+
+bool KMediaWindow::eventFilter(QObject *object, QEvent *event)
+{
+    if (event->type() == QEvent::MouseMove || event->type() == QEvent::KeyPress) {
+        m_player->resetControlsTimer();
+    }
+    return KXmlGuiWindow::eventFilter(object, event);
 }
 
 void KMediaWindow::hideMenuBar(bool visible)
