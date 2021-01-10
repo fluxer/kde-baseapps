@@ -28,6 +28,7 @@
 #include <KFileDialog>
 #include <KToolBar>
 #include <KStatusBar>
+#include <KConfigGroup>
 #include <QMessageBox>
 #include <QApplication>
 #include <QMenuBar>
@@ -37,7 +38,10 @@
 KMediaWindow::KMediaWindow(QWidget *parent, Qt::WindowFlags flags)
     : KXmlGuiWindow(parent, flags)
 {
+    m_config = new KConfig("kmediaplayerrc", KConfig::SimpleConfig);
+
     m_player = new KMediaWidget(this, KMediaWidget::AllOptions);
+
     setCentralWidget(m_player);
 
     KAction *a = actionCollection()->addAction("file_open_path", this, SLOT(openPath()));
@@ -74,22 +78,14 @@ KMediaWindow::KMediaWindow(QWidget *parent, Qt::WindowFlags flags)
     g->setIcon(KIcon("preferences-desktop-sound"));
     g->setWhatsThis(i18n("Configure KMediaPlayer and applications that use it."));
 
-    m_settings = new KSettings("kmediaplayer", KSettings::FullConfig);
     m_recentfiles = new KRecentFilesAction(KIcon("document-open-recent"), "Open recent", this);
     m_recentfiles->setShortcut(KStandardShortcut::shortcut(KStandardShortcut::OpenRecent));
     m_recentfiles->setWhatsThis(i18n("Open recently opened files."));
     connect(m_recentfiles, SIGNAL(urlSelected(KUrl)), this, SLOT(openURL(KUrl)));
     actionCollection()->addAction("file_open_recent", m_recentfiles);
-    const QVariant recenturls = m_settings->value("KMultiMedia/recenturls", QStringList());
-    foreach (const QString url, recenturls.toStringList()) {
-        const KUrl kurl(url);
-        m_recentfiles->addUrl(kurl);
-    }
 
-    setupGUI(KXmlGuiWindow::Keys | KXmlGuiWindow::StatusBar | KXmlGuiWindow::Save | KXmlGuiWindow::Create);
-    setAutoSaveSettings();
-
-    const bool firstrun = m_settings->value("KMultiMedia/firstrun", true).toBool();
+    KConfigGroup firstrungroup(m_config, "KMediaPlayer");
+    const bool firstrun = firstrungroup.readEntry("firstrun", true);
     if (firstrun) {
         // no toolbar unless explicitly enabled
         toolBar()->setVisible(false);
@@ -103,6 +99,12 @@ KMediaWindow::KMediaWindow(QWidget *parent, Qt::WindowFlags flags)
     setContextMenuPolicy(Qt::CustomContextMenu);
     connect(this, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(menu(QPoint)));
 
+    setupGUI(KXmlGuiWindow::Keys | KXmlGuiWindow::StatusBar | KXmlGuiWindow::Save | KXmlGuiWindow::Create);
+    setAutoSaveSettings();
+
+    KConfigGroup recentfilesgroup(m_config, "RecentFiles");
+    m_recentfiles->loadEntries(recentfilesgroup);
+
     setMouseTracking(true);
     qApp->installEventFilter(this);
 }
@@ -113,18 +115,15 @@ KMediaWindow::~KMediaWindow()
     disconnect(m_player, SIGNAL(controlsHidden(bool)), this, SLOT(hideMenuBar(bool)));
     saveAutoSaveSettings();
 
-    QStringList recentlist;
-    foreach (const KUrl url, m_recentfiles->urls()) {
-        recentlist.append(url.prettyUrl());
-    }
-    m_settings->setValue("KMultiMedia/recenturls", recentlist);
-    m_settings->setValue("KMultiMedia/firstrun", false);
-    m_settings->sync();
+    KConfigGroup recentfilesgroup(m_config, "RecentFiles");
+    m_recentfiles->saveEntries(recentfilesgroup);
+    KConfigGroup firstrungroup(m_config, "KMediaPlayer");
+    firstrungroup.writeEntry("firstrun", false);
 
     m_player->deleteLater();
     m_recentfiles->deleteLater();
-    m_settings->deleteLater();
     m_menu->deleteLater();
+    delete m_config;
 }
 
 void KMediaWindow::showEvent(QShowEvent *event)

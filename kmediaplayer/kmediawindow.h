@@ -22,7 +22,7 @@
 #include <KXmlGuiWindow>
 #include <KMediaWidget>
 #include <KRecentFilesAction>
-#include <ksettings.h>
+#include <KConfig>
 #include <QMenu>
 
 class KMediaWindow: public KXmlGuiWindow
@@ -51,9 +51,9 @@ protected:
     virtual bool eventFilter(QObject *object, QEvent *event);
 
 private:
+    KConfig *m_config;
     KMediaWidget *m_player;
     KRecentFilesAction *m_recentfiles;
-    KSettings *m_settings;
     QMenu *m_menu;
     bool m_menuvisible;
     bool m_toolvisible;
