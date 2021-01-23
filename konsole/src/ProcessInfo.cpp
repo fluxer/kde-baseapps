@@ -1066,6 +1066,7 @@ ProcessInfo* ProcessInfo::newInstance(int aPid, bool enableEnvironmentRead)
 #elif defined(Q_OS_OPENBSD)
     return new OpenBSDProcessInfo(aPid, enableEnvironmentRead);
 #else
+#warning ProcessInfo not implemented for this platform
     return new NullProcessInfo(aPid, enableEnvironmentRead);
 #endif
 }
