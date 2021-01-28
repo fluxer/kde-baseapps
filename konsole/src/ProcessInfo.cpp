@@ -678,7 +678,7 @@ private:
 
     virtual bool readCurrentDir(int aPid) {
 #ifdef Q_OS_DRAGONFLY
-#  warning readCurrentDir() not implemented for DragonFly BSD
+#  warning readCurrentDir() not implemented
 #else
         int numrecords;
         struct kinfo_file* info = 0;
@@ -835,6 +835,72 @@ private:
         setCurrentDir(buf);
         return true;
     }
+};
+
+#elif defined(Q_OS_NETBSD)
+#include <kvm.h>
+#include <sys/param.h>
+#include <sys/sysctl.h>
+
+class NetBSDProcessInfo : public UnixProcessInfo
+{
+public:
+    NetBSDProcessInfo(int aPid, bool readEnvironment) :
+        UnixProcessInfo(aPid, readEnvironment) {
+        kd = kvm_open(NULL, NULL, NULL, KVM_NO_FILES, "kvm_open");
+    }
+    ~NetBSDProcessInfo() {
+        kvm_close(kd);
+    }
+
+private:
+    virtual bool readProcInfo(int aPid) {
+        int len;
+        struct kinfo_proc2 *kInfoProc = kvm_getproc2(kd, KERN_PROC_PID, aPid, sizeof(struct kinfo_proc2), &len);
+        if (len < 1)
+            return false;
+
+        setName(kInfoProc->p_comm);
+        setPid(kInfoProc->p_pid);
+        setParentPid(kInfoProc->p_ppid);
+        setForegroundPid(kInfoProc->p_tpgid);
+        setUserId(kInfoProc->p_uid);
+        setUserName(kInfoProc->p_login);
+
+        return true;
+    }
+
+    virtual bool readArguments(int aPid) {
+#warning readArguments() not implemented
+        return false;
+    }
+
+    virtual bool readEnvironment(int aPid) {
+#warning readEnvironment() not implemented
+        return false;
+    }
+
+    virtual bool readCurrentDir(int aPid) {
+        char    buf[PATH_MAX];
+        int     managementInfoBase[4];
+        size_t  len;
+
+        managementInfoBase[0] = CTL_KERN;
+        managementInfoBase[1] = KERN_PROC_ARGS;
+        managementInfoBase[2] = aPid;
+        managementInfoBase[3] = KERN_PROC_CWD;
+
+        len = sizeof(buf);
+        if (::sysctl(managementInfoBase, 4, buf, &len, NULL, 0) == -1) {
+            kWarning() << "sysctl() call failed with code" << errno;
+            return false;
+        }
+
+        setCurrentDir(buf);
+        return true;
+    }
+
+    kvm_t *kd;
 };
 
 #elif defined(Q_OS_SOLARIS)
@@ -1065,6 +1131,8 @@ ProcessInfo* ProcessInfo::newInstance(int aPid, bool enableEnvironmentRead)
     return new FreeBSDProcessInfo(aPid, enableEnvironmentRead);
 #elif defined(Q_OS_OPENBSD)
     return new OpenBSDProcessInfo(aPid, enableEnvironmentRead);
+#elif defined(Q_OS_NETBSD)
+    return new NetBSDProcessInfo(aPid, enableEnvironmentRead);
 #else
 #warning ProcessInfo not implemented for this platform
     return new NullProcessInfo(aPid, enableEnvironmentRead);

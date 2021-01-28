@@ -4,6 +4,10 @@ include(CheckIncludeFiles)
 find_library(UTIL_LIBRARY util)
 mark_as_advanced(UTIL_LIBRARY)
 
+### NetBSD kvm library
+find_library(KVM_LIBRARY kvm)
+mark_as_advanced(KVM_LIBRARY)
+
 ### Tests
 if(ENABLE_TESTING)
     add_subdirectory(tests)
@@ -125,6 +129,12 @@ target_link_libraries(konsoleprivate
 if(UTIL_LIBRARY)
     target_link_libraries(konsoleprivate
         ${UTIL_LIBRARY}
+    )
+endif()
+
+if(KVM_LIBRARY)
+    target_link_libraries(konsoleprivate
+        ${KVM_LIBRARY}
     )
 endif()
 
