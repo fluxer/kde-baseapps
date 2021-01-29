@@ -41,6 +41,7 @@ int main(int argc, char **argv) {
                         ki18n("Maintainer"),
                         "xakepa10@gmail.com");
     aboutData.setProgramIconName(QLatin1String("applications-multimedia"));
+    aboutData.setOrganizationDomain("kde.org");
 
     KCmdLineArgs::init(argc, argv, &aboutData);
     KCmdLineOptions option;
