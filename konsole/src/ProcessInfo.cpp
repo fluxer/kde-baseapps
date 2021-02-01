@@ -47,12 +47,16 @@
 #include <sys/types.h>
 #include <sys/user.h>
 #include <sys/syslimits.h>
-#   if defined(Q_OS_FREEBSD) || defined(Q_OS_DRAGONFLY)
-#   include <libutil.h>
-#   endif
-#   if defined(Q_OS_DRAGONFLY)
-#   include <kinfo.h>
-#   endif
+#  if defined(Q_OS_FREEBSD) || defined(Q_OS_DRAGONFLY)
+#    include <libutil.h>
+#  endif
+#  if defined(Q_OS_DRAGONFLY)
+#    include <kinfo.h>
+#  endif
+#endif
+
+#ifndef PATH_MAX
+#  define PATH_MAX _POSIX_PATH_MAX
 #endif
 
 using namespace Konsole;
@@ -406,7 +410,7 @@ void UnixProcessInfo::readUserName()
     delete [] getpwBuffer;
 }
 
-#if defined(Q_OS_LINUX)
+#if defined(Q_OS_LINUX) || defined(Q_OS_HURD)
 class LinuxProcessInfo : public UnixProcessInfo
 {
 public:
@@ -549,10 +553,10 @@ private:
     }
 
     virtual bool readCurrentDir(int aPid) {
-        char path_buffer[MAXPATHLEN + 1];
-        path_buffer[MAXPATHLEN] = 0;
+        char path_buffer[PATH_MAX + 1];
+        path_buffer[PATH_MAX] = 0;
         QByteArray procCwd = QFile::encodeName(QString("/proc/%1/cwd").arg(aPid));
-        const int length = readlink(procCwd.constData(), path_buffer, MAXPATHLEN);
+        const int length = readlink(procCwd.constData(), path_buffer, PATH_MAX);
         if (length == -1) {
             setError(UnknownError);
             return false;
@@ -1123,7 +1127,7 @@ QString SSHProcessInfo::format(const QString& input) const
 
 ProcessInfo* ProcessInfo::newInstance(int aPid, bool enableEnvironmentRead)
 {
-#if defined(Q_OS_LINUX)
+#if defined(Q_OS_LINUX) || defined(Q_OS_HURD)
     return new LinuxProcessInfo(aPid, enableEnvironmentRead);
 #elif defined(Q_OS_SOLARIS)
     return new SolarisProcessInfo(aPid, enableEnvironmentRead);
