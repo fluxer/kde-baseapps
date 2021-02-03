@@ -792,7 +792,9 @@ private:
 
             buf = nbuf;
             rc = ::sysctl(managementInfoBase, 4, buf, &len, NULL, 0);
-            kWarning() << "sysctl() call failed with code" << errno;
+            if (rc == -1) {
+                kWarning() << "sysctl() call failed with code" << errno;
+            }
         } while (rc == -1 && errno == ENOMEM);
 
         if (nbuf == NULL || rc == -1) {
