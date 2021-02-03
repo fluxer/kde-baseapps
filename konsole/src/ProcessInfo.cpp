@@ -42,17 +42,36 @@
 #include <KUser>
 #include <KDebug>
 
-#if defined(Q_OS_FREEBSD) || defined(Q_OS_OPENBSD) || defined(Q_OS_DRAGONFLY)
-#include <sys/sysctl.h>
-#include <sys/types.h>
-#include <sys/user.h>
-#include <sys/syslimits.h>
-#  if defined(Q_OS_FREEBSD) || defined(Q_OS_DRAGONFLY)
-#    include <libutil.h>
-#  endif
+#if defined(Q_OS_FREEBSD) || defined(Q_OS_DRAGONFLY)
+#  include <sys/sysctl.h>
+#  include <sys/types.h>
+#  include <sys/user.h>
+#  include <sys/syslimits.h>
+#  include <libutil.h>
 #  if defined(Q_OS_DRAGONFLY)
 #    include <kinfo.h>
 #  endif
+#elif defined(Q_OS_NETBSD)
+#  include <kvm.h>
+#  include <sys/sysctl.h>
+#  include <errno.h>
+#elif defined(Q_OS_OPENBSD)
+#  include <sys/sysctl.h>
+#  include <sys/types.h>
+#  include <sys/user.h>
+#  include <sys/syslimits.h>
+#  include <errno.h>
+#elif defined(Q_OS_SOLARIS)
+// The procfs structure definition requires off_t to be
+// 32 bits, which only applies if FILE_OFFSET_BITS=32.
+// Futz around here to get it to compile regardless,
+// although some of the structure sizes might be wrong.
+// Fortunately, the structures we actually use don't use
+// off_t, and we're safe.
+#  if defined(_FILE_OFFSET_BITS) && (_FILE_OFFSET_BITS==64)
+#    undef _FILE_OFFSET_BITS
+#  endif
+#  include <procfs.h>
 #endif
 
 #ifndef PATH_MAX
@@ -842,10 +861,6 @@ private:
 };
 
 #elif defined(Q_OS_NETBSD)
-#include <kvm.h>
-#include <sys/param.h>
-#include <sys/sysctl.h>
-
 class NetBSDProcessInfo : public UnixProcessInfo
 {
 public:
@@ -908,17 +923,6 @@ private:
 };
 
 #elif defined(Q_OS_SOLARIS)
-// The procfs structure definition requires off_t to be
-// 32 bits, which only applies if FILE_OFFSET_BITS=32.
-// Futz around here to get it to compile regardless,
-// although some of the structure sizes might be wrong.
-// Fortunately, the structures we actually use don't use
-// off_t, and we're safe.
-#if defined(_FILE_OFFSET_BITS) && (_FILE_OFFSET_BITS==64)
-#undef _FILE_OFFSET_BITS
-#endif
-#include <procfs.h>
-
 class SolarisProcessInfo : public UnixProcessInfo
 {
 public:
