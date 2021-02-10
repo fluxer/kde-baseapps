@@ -28,12 +28,8 @@
 #include <QDir>
 #include <QFile>
 #include <QFileInfo>
-#include <QtGui/qplaintextedit.h>
-#ifndef QT_KATIE
-#include <qjson/parser.h>
-#else
+#include <QPlainTextEdit>
 #include <QJsonDocument>
-#endif
 
 KateProject::KateProject ()
   : QObject ()
@@ -107,21 +103,12 @@ bool KateProject::reload (bool force)
   /**
    * parse the whole file, bail out again on error!
    */
-#ifndef QT_KATIE
-  bool ok = true;
-  QJson::Parser parser;
-  QVariant project = parser.parse (&file, &ok);
-  if (!ok)
-    return false;
-#else
-  QJsonParseError error;
-  QJsonDocument jsondoc = QJsonDocument::fromJson(file.readAll(), &error);
-  if (jsondoc.isEmpty()) {
-    kWarning() << error.errorString();
+  QJsonDocument jsondoc = QJsonDocument::fromJson(file.readAll());
+  if (jsondoc.isNull()) {
+    kWarning() << jsondoc.errorString();
     return false;
   }
   QVariant project = jsondoc.toVariant();
-#endif
 
   /**
    * now: get global group
