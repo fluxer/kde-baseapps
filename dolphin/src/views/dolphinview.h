@@ -534,18 +534,6 @@ signals:
      */
     void writeStateChanged(bool isFolderWritable);
 
-    /**
-     * Is emitted if the URL should be changed to the previous URL of the
-     * history (e.g. because the "back"-mousebutton has been pressed).
-     */
-    void goBackRequested();
-
-    /**
-     * Is emitted if the URL should be changed to the next URL of the
-     * history (e.g. because the "next"-mousebutton has been pressed).
-     */
-    void goForwardRequested();
-
 protected:
     /** Changes the zoom level if Control is pressed during a wheel event. */
     virtual void wheelEvent(QWheelEvent* event);

@@ -532,13 +532,6 @@ bool KItemListController::mousePressEvent(QGraphicsSceneMouseEvent* event, const
     m_pressedIndex = m_view->itemAt(m_pressedMousePos);
     emit mouseButtonPressed(m_pressedIndex, event->buttons());
 
-    // TODO: Qt5: Replace Qt::XButton1 by Qt::BackButton and Qt::XButton2 by Qt::ForwardButton
-    if (event->buttons() & (Qt::XButton1 | Qt::XButton2)) {
-        // Do not select items when clicking the back/forward buttons, see
-        // https://bugs.kde.org/show_bug.cgi?id=327412.
-        return true;
-    }
-
     if (m_view->isAboveExpansionToggle(m_pressedIndex, m_pressedMousePos)) {
         m_selectionManager->endAnchoredSelection();
         m_selectionManager->setCurrentItem(m_pressedIndex);

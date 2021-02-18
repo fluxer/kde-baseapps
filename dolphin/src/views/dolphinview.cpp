@@ -1047,15 +1047,9 @@ void DolphinView::slotModelChanged(KItemModelBase* current, KItemModelBase* prev
 void DolphinView::slotMouseButtonPressed(int itemIndex, Qt::MouseButtons buttons)
 {
     Q_UNUSED(itemIndex);
+    Q_UNUSED(buttons);
 
     hideToolTip();
-
-    // TODO: Qt5: Replace Qt::XButton1 by Qt::BackButton and Qt::XButton2 by Qt::ForwardButton
-    if (buttons & Qt::XButton1) {
-        emit goBackRequested();
-    } else if (buttons & Qt::XButton2) {
-        emit goForwardRequested();
-    }
 }
 
 void DolphinView::slotAboutToCreate(const KUrl::List& urls)

@@ -1721,10 +1721,6 @@ void DolphinMainWindow::connectViewSignals(DolphinViewContainer* container)
             this, SLOT(enableStopAction()));
     connect(view, SIGNAL(directoryLoadingCompleted()),
             this, SLOT(disableStopAction()));
-    connect(view, SIGNAL(goBackRequested()),
-            this, SLOT(goBack()));
-    connect(view, SIGNAL(goForwardRequested()),
-            this, SLOT(goForward()));
 
     const KUrlNavigator* navigator = container->urlNavigator();
     connect(navigator, SIGNAL(urlChanged(KUrl)),
