@@ -910,8 +910,27 @@ private:
     }
 
     virtual bool readEnvironment(int aPid) {
-#warning readEnvironment() not implemented
-        return false;
+        int len;
+        struct kinfo_proc2 *kInfoProc = kvm_getproc2(kd, KERN_PROC_PID, aPid, sizeof(struct kinfo_proc2), &len);
+        if (len < 1)
+            return false;
+
+        char **env = kvm_getenvv2(kd, kInfoProc, 256);
+        if (!env)
+            return false;
+
+        while (*env) {
+            char* eqsign = strchr(*env, '=');
+            if (!eqsign || eqsign[1] == '\0') {
+                env++;
+                continue;
+            }
+            *eqsign = '\0';
+            addEnvironmentBinding(QString(*env), QString(eqsign + 1));
+            env++;
+        }
+
+        return true;
     }
 
     virtual bool readCurrentDir(int aPid) {
