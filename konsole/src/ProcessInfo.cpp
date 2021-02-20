@@ -892,8 +892,21 @@ private:
     }
 
     virtual bool readArguments(int aPid) {
-#warning readArguments() not implemented
-        return false;
+        int len;
+        struct kinfo_proc2 *kInfoProc = kvm_getproc2(kd, KERN_PROC_PID, aPid, sizeof(struct kinfo_proc2), &len);
+        if (len < 1)
+            return false;
+
+        char **argv = kvm_getargv2(kd, kInfoProc, 256);
+        if (!argv)
+            return false;
+
+        while (*argv) {
+            addArgument(QString(*argv));
+            argv++;
+        }
+
+        return true;
     }
 
     virtual bool readEnvironment(int aPid) {
