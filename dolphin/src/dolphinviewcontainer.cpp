@@ -543,31 +543,6 @@ void DolphinViewContainer::slotUrlNavigatorLocationChanged(const KUrl& url)
             // a new view widget.
             QTimer::singleShot(0, this, SLOT(requestFocus()));
         }
-    } else if (KProtocolManager::isSourceProtocol(url)) {
-        QString app = "rekonq";
-        if (url.protocol().startsWith(QLatin1String("http"))) {
-            showMessage(i18nc("@info:status", // krazy:exclude=qmethods
-                              "Dolphin does not support web pages, the web browser has been launched"),
-                        Information);
-
-            const KConfigGroup config(KSharedConfig::openConfig("kdeglobals"), "General");
-            const QString browser = config.readEntry("BrowserApplication");
-            if (!browser.isEmpty()) {
-                app = browser;
-                if (app.startsWith('!')) {
-                    // a literal command has been configured, remove the '!' prefix
-                    app = app.mid(1);
-                }
-            }
-        } else {
-            showMessage(i18nc("@info:status",
-                              "Protocol not supported by Dolphin, Rekonq has been launched"),
-                        Information);
-        }
-
-        const QString secureUrl = KShell::quoteArg(url.pathOrUrl());
-        const QString command = app + ' ' + secureUrl;
-        KRun::runCommand(command, app, app, this);
     } else {
         showMessage(i18nc("@info:status", "Invalid protocol"), Error);
     }
