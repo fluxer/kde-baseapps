@@ -206,7 +206,7 @@ target_link_libraries(dolphin
     ${KDE4_KDEPRINT_LIBS}
     ${KDE4_KFILE_LIBS}
     ${KDE4_KPARTS_LIBS}
-    ${KDE4_KCMUTILS_LIBRARY}
+    ${KDE4_KCMUTILS_LIBS}
     ${KDE4_SOLID_LIBS}
     ${KDE4_KMEDIAPLAYER_LIBS}
     konq

@@ -3,7 +3,7 @@
 kde4_add_test(libkonq-konqmimedatatest konqmimedatatest.cpp)
 
 target_link_libraries(libkonq-konqmimedatatest konq
-    ${KDE4_KDECORE_LIBRARY}
+    ${KDE4_KDECORE_LIBS}
     ${QT_QTGUI_LIBRARY}
     ${QT_QTCORE_LIBRARY}
     ${QT_QTTEST_LIBRARY}
@@ -34,8 +34,8 @@ kde4_add_test(libkonq-favicontest ${favicontest_SRCS})
 
 target_link_libraries(libkonq-favicontest
     konq
-    ${KDE4_KDECORE_LIBRARY}
-    ${KDE4_KIO_LIBRARY}
+    ${KDE4_KDECORE_LIBS}
+    ${KDE4_KIO_LIBS}
     ${QT_QTCORE_LIBRARY}
     ${QT_QTGUI_LIBRARY}
     ${QT_QTDBUS_LIBRARY}
