@@ -1,7 +1,5 @@
 project(KMediaPlayer)
 
-add_subdirectory(kcm)
-
 # application
 add_executable(kmediaplayer main.cpp kmediawindow.cpp)
 

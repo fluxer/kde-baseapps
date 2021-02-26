@@ -41,6 +41,7 @@ KMediaWindow::KMediaWindow(QWidget *parent, Qt::WindowFlags flags)
     m_config = new KConfig("kmediaplayerrc", KConfig::SimpleConfig);
 
     m_player = new KMediaWidget(this, KMediaWidget::AllOptions);
+    m_player->player()->setPlayerID("kmediaplayer");
 
     setCentralWidget(m_player);
 

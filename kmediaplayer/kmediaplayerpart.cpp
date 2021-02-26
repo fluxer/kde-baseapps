@@ -49,6 +49,7 @@ KMediaPlayerPart::KMediaPlayerPart(QWidget *parentWidget, QObject *parent, const
 {
     setComponentData(KMediaPlayerPartFactory::componentData());
     setWidget(m_player);
+    m_player->player()->setPlayerID("kmediaplayerpart");
 }
 
 KMediaPlayerPart::~KMediaPlayerPart()
