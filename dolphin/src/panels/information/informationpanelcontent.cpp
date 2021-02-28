@@ -86,6 +86,7 @@ InformationPanelContent::InformationPanelContent(QWidget* parent) :
     m_preview->setMinimumHeight(KIconLoader::SizeEnormous);
 
     m_playerWidget = new KMediaWidget(parent);
+    m_playerWidget->player()->setPlayerID("informationpanel");
     m_playerWidget->hide();
     m_playerWidget->setMinimumWidth(minPreviewWidth);
 
