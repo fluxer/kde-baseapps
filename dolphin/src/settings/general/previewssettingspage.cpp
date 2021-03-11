@@ -178,9 +178,6 @@ void PreviewsSettingsPage::loadSettings()
     KConfigGroup globalConfig(KGlobal::config(), "PreviewSettings");
 
     QStringList enabledByDefault;
-    enabledByDefault << QLatin1String("directorythumbnail")
-                    << QLatin1String("imagethumbnail")
-                    << QLatin1String("jpegthumbnail");
     const KService::List plugins = KServiceTypeTrader::self()->query(QLatin1String("ThumbCreator"));
     foreach (const KSharedPtr<KService>& service, plugins) {
         const bool enabled = service->property("X-KDE-PluginInfo-EnabledByDefault", QVariant::Bool).toBool();

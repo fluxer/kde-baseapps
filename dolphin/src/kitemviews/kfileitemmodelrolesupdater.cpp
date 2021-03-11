@@ -26,6 +26,7 @@
 #include <KDebug>
 #include <KFileItem>
 #include <KGlobal>
+#include <KServiceTypeTrader>
 #include <KIO/JobUiDelegate>
 #include <KIO/PreviewJob>
 
@@ -84,11 +85,17 @@ KFileItemModelRolesUpdater::KFileItemModelRolesUpdater(KFileItemModel* model, QO
 {
     Q_ASSERT(model);
 
+    QStringList enabledByDefault;
+    const KService::List plugins = KServiceTypeTrader::self()->query(QLatin1String("ThumbCreator"));
+    foreach (const KSharedPtr<KService>& service, plugins) {
+        const bool enabled = service->property("X-KDE-PluginInfo-EnabledByDefault", QVariant::Bool).toBool();
+        if (enabled) {
+            enabledByDefault << service->desktopEntryName();
+        }
+    }
+
     const KConfigGroup globalConfig(KGlobal::config(), "PreviewSettings");
-    m_enabledPlugins = globalConfig.readEntry("Plugins", QStringList()
-                                                         << "directorythumbnail"
-                                                         << "imagethumbnail"
-                                                         << "jpegthumbnail");
+    m_enabledPlugins = globalConfig.readEntry("Plugins", enabledByDefault);
 
     connect(m_model, SIGNAL(itemsInserted(KItemRangeList)),
             this,    SLOT(slotItemsInserted(KItemRangeList)));
