@@ -19,36 +19,23 @@
 #ifndef KMEDIAPART_H
 #define KMEDIAPART_H
 
-#include <KParts/BrowserExtension>
 #include <KParts/Part>
 #include <KMediaWidget>
 #include <KUrl>
-
-class KMediaPlayerPart;
-class BrowserExtension : public KParts::BrowserExtension
-{
-public:
-    explicit BrowserExtension(KMediaPlayerPart*);
-};
 
 class KMediaPlayerPart : public KParts::ReadOnlyPart
 {
     Q_OBJECT
 public:
-    KMediaPlayerPart(QWidget*, QObject*, const QList<QVariant>&);
+    KMediaPlayerPart(QWidget *parentWidget, QObject *parent, const QList<QVariant> &arguments);
     ~KMediaPlayerPart();
 
+    // reimplementations
     virtual bool openUrl(const KUrl &url);
     virtual bool openFile();
-
-public slots:
     virtual bool closeUrl();
 
-private slots:
-    void updateURL(const KUrl &url);
-
 private:
-    BrowserExtension *m_ext;
     KMediaWidget *m_player;
 };
 

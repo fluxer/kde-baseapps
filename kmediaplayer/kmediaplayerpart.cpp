@@ -28,7 +28,7 @@ K_EXPORT_PLUGIN(KMediaPlayerPartFactory(KAboutData(
                "kmediaplayerpart",
                0,
                ki18n("KMediaPlayerPart"),
-               "1.0.0",
+               "1.1.0",
                ki18n("Simple media player part for KDE."),
                KAboutData::License_GPL_V2,
                ki18n("(c) 2016 Ivailo Monev"),
@@ -38,15 +38,11 @@ K_EXPORT_PLUGIN(KMediaPlayerPartFactory(KAboutData(
                setProgramIconName(QLatin1String("KMediaPlayerPart")).
                setCatalogName("kmediaplayer")))
 
-BrowserExtension::BrowserExtension(KMediaPlayerPart *parent)
-        : KParts::BrowserExtension(parent)
-{}
-
-KMediaPlayerPart::KMediaPlayerPart(QWidget *parentWidget, QObject *parent, const QList<QVariant>&)
-        : ReadOnlyPart(parent)
-        , m_ext(new BrowserExtension(this))
-        , m_player(new KMediaWidget(parentWidget, KMediaWidget::HiddenControls))
+KMediaPlayerPart::KMediaPlayerPart(QWidget *parentWidget, QObject *parent, const QList<QVariant> &arguments)
+    : ReadOnlyPart(parent)
+    , m_player(new KMediaWidget(parentWidget, KMediaWidget::HiddenControls))
 {
+    Q_UNUSED(arguments);
     setComponentData(KMediaPlayerPartFactory::componentData());
     setWidget(m_player);
     m_player->player()->setPlayerID("kmediaplayerpart");
@@ -56,7 +52,6 @@ KMediaPlayerPart::~KMediaPlayerPart()
 {
     m_player->player()->stop();
     m_player->deleteLater();
-    m_ext->deleteLater();
 }
 
 bool KMediaPlayerPart::openUrl(const KUrl &url)
@@ -85,18 +80,6 @@ bool KMediaPlayerPart::closeUrl()
 {
     m_player->player()->stop();
     return ReadOnlyPart::closeUrl();
-}
-
-void KMediaPlayerPart::updateURL(const KUrl &url)
-{
-    // update the interface
-    emit m_ext->openUrlNotify(); //must be done first
-    emit m_ext->setLocationBarUrl(url.prettyUrl());
-
-    m_player->open(url.prettyUrl());
-
-    //do this last, or it breaks Konqi location bar
-    setUrl(url);
 }
 
 #include "moc_kmediaplayerpart.cpp"
