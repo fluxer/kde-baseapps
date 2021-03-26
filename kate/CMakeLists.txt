@@ -1,18 +1,6 @@
 # Kate project
 project (kate)
 
-find_program(CTAGS_EXECUTABLE ctags)
-add_feature_info(ctags
-    CTAGS_EXECUTABLE
-    "Code indexing support in Kate"
-)
-
-find_program(CPPCHECK_EXECUTABLE cppcheck)
-add_feature_info(cppcheck
-    CPPCHECK_EXECUTABLE
-    "Code analysis support in Kate"
-)
-
 # config.h
 check_function_exists(fdatasync HAVE_FDATASYNC)
 check_function_exists(ctermid HAVE_CTERMID)
