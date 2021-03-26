@@ -1,7 +1,7 @@
 include_directories(${CMAKE_BINARY_DIR}/lib/konq)
 
-macro_optional_add_subdirectory(svn)
-macro_optional_add_subdirectory(git)
-macro_optional_add_subdirectory(hg)
-macro_optional_add_subdirectory(bazaar)
-macro_optional_add_subdirectory(dropbox)
+add_subdirectory(svn)
+add_subdirectory(git)
+add_subdirectory(hg)
+add_subdirectory(bazaar)
+add_subdirectory(dropbox)

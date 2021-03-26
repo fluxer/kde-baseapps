@@ -30,13 +30,13 @@ include_directories(
 )
 
 # kate part
-macro_optional_add_subdirectory(part)
+add_subdirectory(part)
 
 # kate application
-macro_optional_add_subdirectory(src)
+add_subdirectory(src)
 
 # addons, e.g. ktexteditor plugins, kate plugins, plasma applets, ...
-macro_optional_add_subdirectory(addons)
+add_subdirectory(addons)
 
 # tests
 if(ENABLE_TESTING)
