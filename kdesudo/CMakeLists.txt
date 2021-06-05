@@ -1,9 +1,13 @@
 include(CheckSymbolExists)
 include(CheckIncludeFiles)
 
-check_include_files("sys/prctl.h" HAVE_SYS_PRCTL_H)
+# Linux
 check_symbol_exists(PR_SET_DUMPABLE "sys/prctl.h" HAVE_PR_SET_DUMPABLE)
-add_feature_info("prctl-dumpable" HAVE_PR_SET_DUMPABLE "Used to disallow ptracing")
+add_feature_info("pr_set_dumpable" HAVE_PR_SET_DUMPABLE "Used to disallow process tracing")
+
+# FreeBSD
+check_symbol_exists(procctl "sys/procctl.h" HAVE_PROCCTL)
+add_feature_info("procctl" HAVE_PROCCTL "Used to disallow process tracing")
 
 configure_file(config.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config.h)
 

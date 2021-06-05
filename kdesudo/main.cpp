@@ -35,17 +35,23 @@
 
 #include <config.h>
 
-#if HAVE_SYS_PRCTL_H
-#include <sys/prctl.h>
+#if defined(HAVE_PR_SET_DUMPABLE)
+#  include <sys/prctl.h>
+#elif defined(HAVE_PROCCTL)
+#  include <unistd.h>
+#  include <sys/procctl.h>
 #endif
 
 #include "kdesudo.h"
 
 int main(int argc, char **argv)
 {
-    // Disable ptrace to prevent arbitrary apps reading password out of memory.
-#if HAVE_PR_SET_DUMPABLE
+    // Disable tracing to prevent arbitrary apps reading password out of memory.
+#if defined(HAVE_PR_SET_DUMPABLE)
     prctl(PR_SET_DUMPABLE, 0);
+#elif defined(HAVE_PROCCTL)
+    int ctldata = PROC_TRACE_CTL_DISABLE;
+    procctl(P_PID, ::getpid(), PROC_TRACE_CTL, &ctldata);
 #endif
 
     KAboutData about(
