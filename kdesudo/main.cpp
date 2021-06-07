@@ -129,12 +129,9 @@ int main(int argc, char **argv)
     executable = executableList[executableList.count() - 1];
 
     /* Kubuntu has a bug in it - this is a workaround for it */
-    KGlobal::dirs()->addResourceDir("apps", "/usr/share/applications/kde");
     KGlobal::dirs()->addResourceDir("apps", "/usr/share/applications/kde4");
-    KGlobal::dirs()->addResourceDir("apps", "/usr/share/kde/services");
     KGlobal::dirs()->addResourceDir("apps", "/usr/share/kde4/services");
     KGlobal::dirs()->addResourceDir("apps", "/usr/share/applications");
-    KGlobal::dirs()->addResourceDir("apps", "/usr/share/applnk");
 
     QString path = getenv("PATH");
     QStringList pathList = path.split(":");
