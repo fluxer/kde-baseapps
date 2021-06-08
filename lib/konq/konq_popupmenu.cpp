@@ -43,7 +43,6 @@
 #include <kconfiggroup.h>
 #include <ksettings.h>
 #include <kdesktopfile.h>
-#include <kfileshare.h>
 #include <kauthorized.h>
 #include <kglobal.h>
 #include <kacceleratormanager.h>
@@ -444,7 +443,11 @@ void KonqPopupMenuPrivate::init(KonqPopupMenu::Flags kpf, KParts::BrowserExtensi
         delete q->actions().last();
 
     if ( isDirectory && isLocal ) {
-        if ( KFileShare::authorization() == KFileShare::Authorized ) {
+        // same check is done in:
+        // kdelibs/kio/kio/ksambashare.cpp
+        // kde-extraapps/kdenetwork-filesharing/samba/filepropertiesplugin/sambausershareplugin.cpp
+        static const QString smbdExe = KStandardDirs::findRootExe("smbd");
+        if ( !smbdExe.isEmpty() ) {
             q->addSeparator();
             act = new KAction(m_parentWidget);
             m_ownActions.append(act);
