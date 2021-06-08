@@ -30,6 +30,12 @@ add_feature_info(cppcheck
     "Code analysis support in Kate"
 )
 
+find_program(RZSZ_EXECUTABLE NAMES rz lrz)
+add_feature_info(rzsz
+    RZSZ_EXECUTABLE
+    "ZModem support in Konsole"
+)
+
 include_directories(
     ${CMAKE_CURRENT_BINARY_DIR}
     ${CMAKE_CURRENT_SOURCE_DIR}/lib/konq
