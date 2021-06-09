@@ -571,6 +571,16 @@ void PlacesItemModel::slotDeviceRemoved(const QString& udi)
     }
 }
 
+void PlacesItemModel::slotContentChanged(const QString& udi, const bool hascontent)
+{
+    if (hascontent) {
+        slotDeviceRemoved(udi);
+        slotDeviceAdded(udi);
+    } else {
+        slotDeviceRemoved(udi);
+    }
+}
+
 void PlacesItemModel::slotStorageTeardownDone(Solid::ErrorType error, const QVariant& errorData)
 {
     if (error && errorData.isValid()) {
@@ -956,6 +966,7 @@ void PlacesItemModel::initializeAvailableDevices()
     Solid::DeviceNotifier* notifier = Solid::DeviceNotifier::instance();
     connect(notifier, SIGNAL(deviceAdded(QString)),   this, SLOT(slotDeviceAdded(QString)));
     connect(notifier, SIGNAL(deviceRemoved(QString)), this, SLOT(slotDeviceRemoved(QString)));
+    connect(notifier, SIGNAL(contentChanged(QString,bool)), this, SLOT(slotContentChanged(QString,bool)));
 
     const QList<Solid::Device>& deviceList = Solid::Device::listFromQuery(m_predicate);
     foreach (const Solid::Device& device, deviceList) {

@@ -134,6 +134,7 @@ protected:
 private slots:
     void slotDeviceAdded(const QString& udi);
     void slotDeviceRemoved(const QString& udi);
+    void slotContentChanged(const QString& udi, const bool hascontent);
     void slotStorageTeardownDone(Solid::ErrorType error, const QVariant& errorData);
     void slotStorageSetupDone(Solid::ErrorType error, const QVariant& errorData, const QString& udi);
     void hideItem();
