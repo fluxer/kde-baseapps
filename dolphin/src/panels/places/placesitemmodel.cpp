@@ -263,9 +263,6 @@ QAction* PlacesItemModel::teardownAction(int index) const
     }
 
     Solid::StorageDrive* drive = device.as<Solid::StorageDrive>();
-    if (!drive) {
-        drive = device.parent().as<Solid::StorageDrive>();
-    }
 
     bool hotPluggable = false;
     bool removable = false;
@@ -298,7 +295,7 @@ void PlacesItemModel::requestEject(int index)
 {
     const PlacesItem* item = placesItem(index);
     if (item) {
-        Solid::OpticalDrive* drive = item->device().parent().as<Solid::OpticalDrive>();
+        Solid::OpticalDrive* drive = item->device().as<Solid::OpticalDrive>();
         if (drive) {
             connect(drive, SIGNAL(ejectDone(Solid::ErrorType,QVariant,QString)),
                     this, SLOT(slotStorageTeardownDone(Solid::ErrorType,QVariant)));
