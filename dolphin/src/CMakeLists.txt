@@ -326,10 +326,6 @@ install(
     DESTINATION ${KDE4_DATA_INSTALL_DIR}/dolphin
 )
 install(
-    FILES dolphin.appdata.xml
-    DESTINATION ${KDE4_SHARE_INSTALL_PREFIX}/appdata
-)
-install(
     FILES
     search/filenamesearch.protocol
     settings/kcm/kcmdolphinviewmodes.desktop
