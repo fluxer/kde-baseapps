@@ -32,9 +32,9 @@
 #include <KLocalizedString>
 #include <KPushButton>
 #include <KAction>
-#include <KMimeTypeTrader>
-#include <KTextEditor/Document>
 #include <KTextEditor/View>
+#include <KTextEditor/Document>
+#include <KTextEditor/EditorChooser>
 #include <KToolInvocation>
 #include <KMessageBox>
 #include <KMessageWidget>
@@ -46,14 +46,10 @@ QPair<KTextEditor::View*, QToolButton*> getViewForTab(QWidget* tabWidget)
 {
     QVBoxLayout* layout = new QVBoxLayout;
     tabWidget->setLayout(layout);
-    KParts::ReadWritePart* part= KMimeTypeTrader::self()->createPartInstanceFromQuery<KParts::ReadWritePart>(
-                                        "text/plain", tabWidget, tabWidget);
-    KTextEditor::Document* document = qobject_cast<KTextEditor::Document*>(part);
-    Q_ASSERT(document);
-    Q_ASSERT(document->action("file_save"));
-    document->action("file_save")->setEnabled(false);
 
-    KTextEditor::View* view = qobject_cast< KTextEditor::View* >( document->widget() );
+    KTextEditor::Document *document = KTextEditor::EditorChooser::editor()->createDocument(tabWidget);
+    Q_ASSERT(document);
+    KTextEditor::View* view = document->createView(tabWidget);
     layout->addWidget(view);
 
     QHBoxLayout* hlayout = new QHBoxLayout;
