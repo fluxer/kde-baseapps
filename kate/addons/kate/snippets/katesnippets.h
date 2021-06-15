@@ -58,8 +58,6 @@ class KateSnippetsPluginView : public Kate::PluginView
      */
     ~KateSnippetsPluginView ();
 
-    void readConfig();
-
   private:
     KateSnippetsPlugin *m_plugin;
     QWidget *m_toolView;
