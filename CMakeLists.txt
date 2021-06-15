@@ -30,6 +30,12 @@ add_feature_info(cppcheck
     "Code analysis support in Kate"
 )
 
+find_program(XMLLINT_EXECUTABLE xmllint)
+add_feature_info(xmllint
+    XMLLINT_EXECUTABLE
+    "XML linting support in Kate"
+)
+
 find_program(RZSZ_EXECUTABLE NAMES rz lrz)
 add_feature_info(rzsz
     RZSZ_EXECUTABLE
