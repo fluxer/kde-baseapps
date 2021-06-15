@@ -1779,7 +1779,7 @@ bool DolphinMainWindow::isKompareInstalled() const
     if (!initialized) {
         // TODO: maybe replace this approach later by using a menu
         // plugin like kdiff3plugin.cpp
-        installed = !KGlobal::dirs()->findExe("kompare").isEmpty();
+        installed = !KStandardDirs::findExe("kompare").isEmpty();
         initialized = true;
     }
     return installed;

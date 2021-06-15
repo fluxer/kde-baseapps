@@ -273,10 +273,7 @@ bool PluginKateXMLCheckView::slotValidate()
 	s << kv->document()->text();
 	s.flush();
 
-	QString exe = KStandardDirs::findExe("xmllint");
-	if( exe.isEmpty() ) {
-		exe = KStandardDirs::locate("exe", "xmllint");
-	}
+	const QString exe = KStandardDirs::findExe("xmllint");
 
 	// use catalogs for KDE docbook:
 	if( ! getenv("XML_CATALOG_FILES") ) {

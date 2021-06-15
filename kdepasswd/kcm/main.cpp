@@ -116,7 +116,7 @@ KCMUserAccount::KCMUserAccount( QWidget *parent, const QVariantList &)
 
 void KCMUserAccount::slotChangePassword()
 {
-    QString bin = KGlobal::dirs()->findExe("kdepasswd");
+    QString bin = KStandardDirs::findExe("kdepasswd");
     if ( bin.isEmpty() ) {
         kDebug() << "kcm_useraccount: kdepasswd was not found.";
         KMessageBox::sorry ( this, i18n( "A program error occurred: the internal "
