@@ -19,3 +19,8 @@ install(
     FILES katesnippetsplugin.desktop
     DESTINATION ${KDE4_SERVICES_INSTALL_DIR}
 )
+
+install(
+    FILES data/desktop.xml data/Markdown.xml
+    DESTINATION ${KDE4_DATA_INSTALL_DIR}/ktexteditor_snippets/data
+)

@@ -1,0 +1,328 @@
+<snippets namespace="" license="BSD" filetypes=".desktop" authors="Magali de Morangies" name="Desktop files">
+ <script></script>
+ <item>
+  <displayprefix></displayprefix>
+  <match>DesktopEntryHeader</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin># Main Group Header, located on 1st line, above keys it defines.
+[Desktop Entry]
+${cursor}
+</fillin>
+ </item>
+ <item>
+   <displayprefix></displayprefix>
+   <match>ActionGroupHeader</match>
+   <displaypostfix></displaypostfix>
+   <displayarguments></displayarguments>
+   <fillin># Action Group Header, located above group of keys it defines.
+# Its name follows schema "[Desktop Action %s]", where "%s" is
+# an Action Identifier string included in "Actions" key list.
+[Desktop Action {$ACTION_IDENTIFIER}]
+${cursor}
+   </fillin>
+ </item>
+ <item>
+   <displayprefix></displayprefix>
+   <match>Actions</match>
+   <displaypostfix></displaypostfix>
+   <displayarguments></displayarguments>
+   <fillin># Additional launches of Application specific actions.
+# Each Action is identified by a string, separed from another with ";",
+# and is related with corresponding ActionGroup named after the schema:
+# "[Desktop Action %s]", where "%s" is the Action Identifier string.
+Actions=${cursor}
+   </fillin>
+ </item>
+ <item>
+   <displayprefix></displayprefix>
+   <match>ActionGroupKeys</match>
+   <displaypostfix></displaypostfix>
+   <displayarguments></displayarguments>
+   <fillin># Localised string - the action's displayed name:
+Name=
+Name[$LANG]=
+# Localised string - the action's icon name/filename/path:
+Icon=
+Icon[$LANG]=
+# Command line string - action's executable with arguments:
+Exec=
+   </fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>Categories</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin># Character chains - related with "Type=Application", optional.
+# *Main values are*: Audio;AudioVideo;Development;Education;Game;
+# Graphics;Network;Office;Science;Settings;System;Utility;Video;
+# *Additional values*: Midi;Mixer;Sequencer;Tuner (Audio/AudioVideo);
+# AudioVideoEditing;Player;Recorder;DiscBurning (Audio/AudioVideo/Video)
+# Music (AudioVideo/Education);
+# TV (AudioVideo/Video);
+# Building;Debugger;IDE;GUIDesigner;Profiling;Translation (Development);
+# WebDevelopment (Development/Network);
+# Database;ProjectManagement (Development/Office);
+# Art;Construction;ArtificialIntelligence;Astronomy;Biology;Chemistry;
+# ComputerScience;DataVisualization;Economy;Electricity;Geography;
+# Geology;Geoscience;History;Humanities;ImageProcessing;Literature;
+# Math;MedicalSoftware;Physics;Robotics;Sports (Education/Science);
+# Maps;Spirituality (Education/Science/Utility);
+# ParallelComputing (Education;ComputerScience/Science;ComputerScience);
+# NumericalAnalysis (Education;Math/Science;Math)
+# ActionGame;AdventureGame;ArcadeGame;BoardGame;BlocksGame;CardGame;
+# KidsGame;LogicGame;RolePlaying;Shooter;Simulation;SportsGame;
+# StrategyGame (Game);
+# Emulator (Game/System);
+# 2DGraphics;3DGraphics;Scanning (Graphics);
+# Photography;Publishing;Viewer (Graphics/Office);
+# RasterGraphics;VectorGraphics (Graphics;2DGraphics);
+# OCR (Graphics;Scanning);
+# Dialup;InstantMessaging;Chat;IRCClient;Feed;FileTransfer;HamRadio;
+# News;P2P;RemoteAccess;Telephony;VideoConference;WebBrowser (Network);
+# Email (Network/Office);
+# Monitor (Network/System);
+# Calendar;ContactManagement;Chart;Finance;FlowChart;PDA;Presentation;
+# Spreadsheet;WordProcessor (Office);
+# Dictionary (Office/Utility;TextTools)
+# DesktopSettings;HardwareSettings;PackageManager (Settings);
+# Printing (Settings;HardwareSettings);
+# Accessibility (Settings/Utility);
+# Security (Settings/System);
+# FileSystem;TerminalEmulator (System);
+# FileTools (System/Utility);
+# FileManager (System;FileTools);
+# *Additional values not related to main ones*:
+# Adult;Amusement;ConsoleOnly;Core;Documentation;Electronics;
+# Engineering;GNOME;GTK;Java;KDE;Motif;Qt;XFCE;
+# *Reserved values for specific purposes*:
+# Applet;Screensaver;Shell;TrayIcon;
+# *Some distributions may use private values, read documentation*.
+Categories=${cursor}
+</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>Comment</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin># Comments about defined application. Localised character chains.
+Comment=
+Comment[$LANG]=
+</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>DBusActivatable</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin># Key specifying if D-Bus activation is supported by the program.
+# Bolean value "true" or "false" - default is "false".
+DBusActivatable=false
+${cursor}
+</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>Encoding</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin># Encoding mode used in the file - default value is "UTF-8"
+Encoding=UTF-8
+${cursor}
+</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>Exec</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin># The related key "Type" must have for value "Application";
+# Localised character chains - path to executable and arguments.
+# Example:
+# Exec=/path/to/executable %f --caption "%c"
+# Exec[fr]=/path/to/french/translated/executable %u --caption "%c"
+Exec=
+Exec[$LANG]=
+</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>GenericName</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin># General category of defined application. Localised character chains.
+GenericName=
+GenericName[$LANG]=
+</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>Icon</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin># Application's icon. If no specified icon found, default one is shown.
+# Localised chain of characters - icon's name, filename or full path.
+# Example:
+# Icon=system-included-icon
+# Icon[fr]=/path/to/special/french/translation/icon.png
+Icon=
+Icon[$LANG]=
+</fillin>
+ </item>
+ <item>
+   <displayprefix></displayprefix>
+   <match>Implements</match>
+   <displaypostfix></displaypostfix>
+   <displayarguments></displayarguments>
+   <fillin># List of interfaces that Application implements - default is none.
+# Each interface must be named after D-Bus rules, and "DBusActivatable=true".
+Implements=${cursor}
+   </fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>Keywords</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin># Keywords related to the application (help for search indexers)
+# Keywords values are localised chains of characters separed by ";".
+Keywords=
+Keywords[$LANG]=
+</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>MimeType</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin># Application's supported extensions, not required to validate the file.
+# Chains of character separated by ";" - Mime Types "category/extension"
+# Example:
+# MimeType=audio/ogg;audio/wav;
+MimeType=${cursor}
+</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>Name</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin># Name of defined application. Localised chain of characters.
+Name=
+Name[$LANG]=
+</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>NoDisplay</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin># No display indication - if program must exist but not appear in menu.
+# Bolean values "true" or "false" - Default value is "false":
+NoDisplay=false
+${cursor}
+</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>NotShowIn-OnlyShowIn</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin># Keys listing Application compatible or conflicting environments.
+# Both or only one can be used, with any of the registred values:
+# Cinnamon;EDE;GNOME;KDE;LXDE;MATE;Old;Razor;ROX;TDE;Unity;XFCE;
+# Example:
+# NotShowIn=GNOME;MATE;Unity;XFCE;
+# OnlyShowIn=KDE;
+NotShowIn=
+OnlyShowIn=
+</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>Path</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin># Path to data directory in which Application starts.
+# Localised chain of characters - path to a directory.
+# Example:
+# Path=/path/to/data/dir
+# Path[fr]=/path/to/french/data/dir
+Path=
+Path[$LANG]=
+</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>StartupNotify</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin># Application's StartupWMClass support argument.
+# Bolean values "true" or "false" - default is "false".
+StartupNotify=false
+${cursor}
+</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>StartupWMClass</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin># Chain of characters - Application windows class name, when "StartupNotify=true".
+StartupWMClass=${cursor}
+</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>Terminal</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin># Application's terminal indication (for console-based programs).
+# Bolean values "true" or "false" - default is "false".
+Terminal=false
+${cursor}
+</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>TryExec</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin># Verification for executable availability, before application launch.
+# Localised chain of characters - path to an executable file.
+TryExec=
+TryExec[$LANG]=
+</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>Type</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin># Type of this Desktop file - "Application", "Link" or "Directory".
+Type=${cursor}
+</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>URL</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin># Localised chain of characters - "Type=Link" targeted URL.
+URL=
+URL[$LANG]=
+</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>Version</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin># XDG syntax version this file follows (NOT related to app version!)
+Version=1.0
+${cursor}
+</fillin>
+ </item>
+</snippets>
