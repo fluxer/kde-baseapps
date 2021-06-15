@@ -9,6 +9,8 @@ X-KDE-Library=kcm_kio
 X-KDE-PluginKeyword=bookmarks
 X-KDE-ParentApp=kcontrol
 
+X-KDE-System-Settings-Parent-Category=network-and-connectivity
+
 Name=Bookmarks
 Name[af]=Boekmerke
 Name[ar]=العلامات

@@ -9,6 +9,8 @@ X-KDE-Library=kcm_kio
 X-KDE-PluginKeyword=cache
 X-KDE-ParentApp=kcontrol
 
+X-KDE-System-Settings-Parent-Category=network-and-connectivity
+
 Name=Cache
 Name[af]=Kas
 Name[ar]=ذاكرة مخبئة
