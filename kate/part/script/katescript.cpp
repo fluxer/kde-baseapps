@@ -43,9 +43,10 @@
 /** Converstion function from KTextEditor::Cursor to QtScript cursor */
 static QScriptValue cursorToScriptValue(QScriptEngine *engine, const KTextEditor::Cursor &cursor)
 {
-  QString code = QString("new Cursor(%1, %2);").arg(cursor.line())
-                                               .arg(cursor.column());
-  return engine->evaluate(code);
+  QScriptValue obj = engine->newObject();
+  obj.setProperty("line", cursor.line());
+  obj.setProperty("column", cursor.column());
+  return obj;
 }
 
 /** Converstion function from QtScript cursor to KTextEditor::Cursor */
