@@ -86,7 +86,7 @@ void PtyTest::testRunProgram()
 
     // since there is no other processes using this pty, the two methods
     // should return the same pid.
-    QCOMPARE(pty.foregroundProcessGroup(), pty.pid());
+    QCOMPARE(Q_PID(pty.foregroundProcessGroup()), Q_PID(pty.pid()));
 }
 
 QTEST_KDEMAIN_CORE(PtyTest)
