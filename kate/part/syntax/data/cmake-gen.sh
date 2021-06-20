@@ -38,7 +38,7 @@ sed "1,$(wc -l < $t.4)d" $t._4 | sed -e '/<\/list\s*>/ba' -e 'd' -e ':a' -e 'n;b
 sed -n -e '/<context.*"Detect More Builtin Variables"/{p;q}' -e 'p' $t._5 > $t.5
 sed "1,$(wc -l < $t.5)d" $t._5 | sed -e '/<\/context\s*>/ba' -e 'd' -e ':a' -e 'n;ba' > $t.6
 
-cmake --help-command-list | sed '1d' | sort > $t.commands
+$CMAKE --help-command-list | sed '1d' | sort > $t.commands
 echo "$(count commands) commands"
 
 extract_args() {
@@ -64,11 +64,11 @@ while read COMMAND ; do
 done < $t.commands
 sed '/^#/d' $t.args | sort -u > $t.argsu
 echo "$(count args) arguments, $(count argsu) unique"
-cmake --help-property-list | sed -e '1d' -e '/[<>]/d' | sort -u > $t.props
+$CMAKE --help-property-list | sed -e '1d' -e '/[<>]/d' | sort -u > $t.props
 echo "$(count props) properties"
 
 # Get builtin CMake variables list
-cmake --help-variable-list | sed -e '1d' | grep -v 'Project name' > $t.all_vars
+$CMAKE --help-variable-list | sed -e '1d' | grep -v 'Project name' > $t.all_vars
 grep '^[A-Za-z_0-9]\+\s*$' $t.all_vars | sort -u > $t.vars
 grep -v '^[A-Za-z_0-9]\+\s*$' $t.all_vars \
   | sed 's,<LANG>,[A-Za-z_][A-Za-z_0-9]*,' \
@@ -84,7 +84,7 @@ echo "$(count all_vars) builtin variables"
 
 # Generate new .xml
 {
-    sed '/<!-- generated for/s/^.*$/<!-- generated for "'"$(cmake --version)"'" -->/' $t.1
+    sed '/<!-- generated for/s/^.*$/<!-- generated for "'"$($CMAKE --version)"'" -->/' $t.1
     echo "      <!-- generated list -->"
     sed 's!.*!      <item> & </item>!' $t.commands
     cat $t.2
