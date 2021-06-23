@@ -42,6 +42,12 @@ add_feature_info(rzsz
     "ZModem support in Konsole"
 )
 
+find_program(LOCALE_EXECUTABLE NAMES locate)
+add_feature_info(locate
+    LOCALE_EXECUTABLE
+    "Search indexing support in KFind"
+)
+
 include_directories(
     ${CMAKE_CURRENT_BINARY_DIR}
     ${CMAKE_CURRENT_SOURCE_DIR}/lib/konq
