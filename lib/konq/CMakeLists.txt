@@ -13,8 +13,6 @@ set(konq_LIB_SRCS
    konq_dndpopupmenuplugin.cpp # for KonqDndPopupMenu and its plugins
    konq_copytomenu.cpp         # used by dolphin, KonqPopupMenu
    konq_operations.cpp         # used by dolphin and konqueror
-   konq_statusbarmessagelabel.cpp  # used by dolphin and konqueror
-   konq_events.cpp
    konqmimedata.cpp         # used by dolphin, KonqOperations, some filemanagement konqueror modules.
    kversioncontrolplugin.cpp  # used by dolphin and its version control plugins
 )
@@ -52,7 +50,6 @@ install(FILES
     konq_dndpopupmenuplugin.h
     # konq_copytomenu.h - anyone needs it?
     konq_operations.h
-    konq_events.h
     konqmimedata.h
     kversioncontrolplugin.h
     DESTINATION ${KDE4_INCLUDE_INSTALL_DIR}
