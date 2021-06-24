@@ -837,7 +837,7 @@ void KateSaveConfigTab::apply()
   KateDocumentConfig::global()->setNewLineAtEof(ui->chkNewLineAtEof->isChecked());
 
   // set both standard and fallback encoding
-  KateDocumentConfig::global()->setEncoding((ui->cmbEncoding->currentIndex() == 0) ? "" : KGlobal::charsets()->encodingForName(ui->cmbEncoding->currentText()));
+  KateDocumentConfig::global()->setEncoding(KGlobal::charsets()->encodingForName(ui->cmbEncoding->currentText()));
 
   KateGlobalConfig::global()->setFallbackEncoding(KGlobal::charsets()->encodingForName(ui->cmbEncodingFallback->currentText()));
 
@@ -857,11 +857,8 @@ void KateSaveConfigTab::reload()
 
   // encodings
   ui->cmbEncoding->clear ();
-  ui->cmbEncoding->addItem (i18n("KDE Default"));
-  ui->cmbEncoding->setCurrentIndex(0);
   ui->cmbEncodingFallback->clear ();
   QStringList encodings (KGlobal::charsets()->descriptiveEncodingNames());
-  int insert = 1;
   for (int i=0; i < encodings.count(); i++)
   {
     bool found = false;
@@ -874,16 +871,14 @@ void KateSaveConfigTab::reload()
 
       if ( codecForEnc->name() == KateDocumentConfig::global()->encoding() )
       {
-        ui->cmbEncoding->setCurrentIndex(insert);
+        ui->cmbEncoding->setCurrentIndex(i);
       }
 
       if ( codecForEnc == KateGlobalConfig::global()->fallbackCodec() )
       {
         // adjust index for fallback config, has no default!
-        ui->cmbEncodingFallback->setCurrentIndex(insert-1);
+        ui->cmbEncodingFallback->setCurrentIndex(i);
       }
-
-      insert++;
     }
   }
 
