@@ -42,7 +42,7 @@ int main (int argc, char *argv[])
   Kate::TextBuffer buffer (0);
 
   // set codec
-  buffer.setFallbackTextCodec (QTextCodec::codecForName ("ISO 8859-15"));
+  buffer.setFallbackTextCodec (QTextCodec::codecForName ("ISO-8859-15"));
   buffer.setTextCodec (QTextCodec::codecForName (encoding.toLatin1()));
 
   // switch to Mac EOL, this will test eol detection, as files are normal unix or dos
@@ -51,12 +51,16 @@ int main (int argc, char *argv[])
   // load file
   bool encodingErrors = false;
   bool tooLongLines = false;
-  if (!buffer.load (inFile, encodingErrors, tooLongLines, false) || encodingErrors)
+  if (!buffer.load (inFile, encodingErrors, tooLongLines, false) || encodingErrors) {
+    qWarning() << "encodingErrors" << encodingErrors << "tooLongLines" << tooLongLines;
     return 1;
+  }
 
   // save file
-  if (!buffer.save (outFile))
-    return 1;
+  if (!buffer.save (outFile)) {
+    qWarning() << "could not save file";
+    return 2;
+  }
 
   return 0;
 }

@@ -127,7 +127,7 @@ const QString &KateGlobalConfig::fallbackEncoding () const
 QTextCodec *KateGlobalConfig::fallbackCodec () const
 {
   if (m_fallbackEncoding.isEmpty())
-      return QTextCodec::codecForName("ISO 8859-15");
+    return QTextCodec::codecForName("ISO-8859-15");
 
   return KGlobal::charsets()->codecForName (m_fallbackEncoding);
 }
