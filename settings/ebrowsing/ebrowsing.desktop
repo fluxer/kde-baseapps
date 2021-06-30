@@ -8,7 +8,8 @@ Exec=kcmshell4 ebrowsing
 X-KDE-Library=kcm_kurifilt
 X-KDE-ParentApp=kcontrol
 
-X-KDE-System-Settings-Parent-Category=account-details
+# used by kpart, konsole, krunner and more
+X-KDE-System-Settings-Parent-Category=workspace-appearance-and-behavior
 
 Name=Web Shortcuts
 Name[af]=Web Kortpaaie
