@@ -255,8 +255,6 @@ void PlacesItem::initializeDevice(const QString& udi)
     }
 
     m_access = m_device.as<Solid::StorageAccess>();
-    m_volume = m_device.as<Solid::StorageVolume>();
-    m_disc = m_device.as<Solid::OpticalDisc>();
     m_mtp = m_device.as<Solid::PortableMediaPlayer>();
 
     setText(m_device.description());
@@ -268,14 +266,6 @@ void PlacesItem::initializeDevice(const QString& udi)
         setUrl(m_access->filePath());
         QObject::connect(m_access, SIGNAL(accessibilityChanged(bool,QString)),
                          m_signalHandler, SLOT(onAccessibilityChanged()));
-    } else if (m_disc && (m_disc->availableContent() & Solid::OpticalDisc::Audio) != 0) {
-        Solid::Block *block = m_device.as<Solid::Block>();
-        if (block) {
-            const QString device = block->device();
-            setUrl(QString("audiocd:/?device=%1").arg(device));
-        } else {
-            setUrl(QString("audiocd:/"));
-        }
     } else if (m_mtp) {
         setUrl(QString("mtp:udi=%1").arg(m_device.udi()));
     }

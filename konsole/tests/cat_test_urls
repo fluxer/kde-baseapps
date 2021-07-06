@@ -4,8 +4,6 @@
 # This should be cleaned up to have only 1 of each 'test' and seperate into
 $ passing and failing.
 FILE://localhost/home/root
-audiocd:/By%20Name/15%20Geantra%C3%AE.wav
-audiocd:/By%20Name/15%252FGeantra%C3%AE.wav
 data:text/plain,foobar?gazonk=flarp
 donkey://abc/DE
 error:/?error=14&errText=Unknown%20host%20asdfu.adgi.sdfgoi#http://asdfu.adgi.sdfgoi
