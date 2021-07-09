@@ -62,15 +62,6 @@
 #  include <sys/syslimits.h>
 #  include <errno.h>
 #elif defined(Q_OS_SOLARIS)
-// The procfs structure definition requires off_t to be
-// 32 bits, which only applies if FILE_OFFSET_BITS=32.
-// Futz around here to get it to compile regardless,
-// although some of the structure sizes might be wrong.
-// Fortunately, the structures we actually use don't use
-// off_t, and we're safe.
-#  if defined(_FILE_OFFSET_BITS) && (_FILE_OFFSET_BITS==64)
-#    undef _FILE_OFFSET_BITS
-#  endif
 #  include <procfs.h>
 #endif
 
