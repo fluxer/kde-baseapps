@@ -757,7 +757,7 @@ bool Session::closeInNormalWay()
         return true;
     }
 
-    if (kill(SIGHUP)) {
+    if (kill(SIGHUP) == 0) {
         return true;
     } else {
         kWarning() << "Process " << _shellProcess->pid() << " did not die with SIGHUP";
@@ -771,7 +771,7 @@ bool Session::closeInForceWay()
     _autoClose    = true;
     _closePerUserRequest = true;
 
-    if (kill(SIGKILL)) {
+    if (kill(SIGKILL) == 0) {
         return true;
     } else {
         kWarning() << "Process " << _shellProcess->pid() << " did not die with SIGKILL";
