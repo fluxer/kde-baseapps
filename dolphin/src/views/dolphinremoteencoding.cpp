@@ -104,7 +104,7 @@ void DolphinRemoteEncoding::fillMenu()
     KMenu* menu = m_menu->menu();
     menu->clear();
 
-
+#warning TODO: split into sub-menus based on script
     for (int i = 0; i < m_encodingDescriptions.size();i++) {
         QAction* action = new QAction(m_encodingDescriptions.at(i), this);
         action->setCheckable(true);
@@ -131,12 +131,13 @@ void DolphinRemoteEncoding::updateMenu()
         m_menu->menu()->actions().at(i)->setChecked(false);
     }
 
-    const QString charset = KGlobal::charsets()->descriptionForEncoding(KProtocolManager::charsetFor(m_currentURL));
+    const QString charset = KProtocolManager::charsetFor(m_currentURL);;
     if (!charset.isEmpty()) {
         int id = 0;
         bool isFound = false;
+        const QString charsetDescription = KGlobal::charsets()->descriptionForEncoding(charset);
         for (int i = 0; i < m_encodingDescriptions.size(); i++) {
-            if (m_encodingDescriptions.at(i) == charset) {
+            if (m_encodingDescriptions.at(i) == charsetDescription) {
                 isFound = true;
                 id = i;
                 break;
