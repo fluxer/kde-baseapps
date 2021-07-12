@@ -46,8 +46,7 @@
 DolphinRemoteEncoding::DolphinRemoteEncoding(QObject* parent, DolphinViewActionHandler* actionHandler)
    :QObject(parent),
     m_actionHandler(actionHandler),
-    m_loaded(false),
-    m_idDefault(0)
+    m_loaded(false)
 {
     m_menu = new KActionMenu(KIcon("character-set"), i18n("Select Remote Charset"), this);
     m_actionHandler->actionCollection()->addAction("change_remote_encoding", m_menu);
@@ -70,7 +69,6 @@ void DolphinRemoteEncoding::slotReload()
 void DolphinRemoteEncoding::loadSettings()
 {
     m_loaded = true;
-    m_encodingDescriptions = KGlobal::charsets()->descriptiveEncodingNames();
 
     fillMenu();
 }
@@ -105,17 +103,16 @@ void DolphinRemoteEncoding::fillMenu()
     menu->clear();
 
 #warning TODO: split into sub-menus based on script
-    for (int i = 0; i < m_encodingDescriptions.size();i++) {
-        QAction* action = new QAction(m_encodingDescriptions.at(i), this);
+    foreach (const QString &description, KGlobal::charsets()->descriptiveEncodingNames()) {
+        QAction* action = new QAction(description, this);
         action->setCheckable(true);
-        action->setData(i);
+        action->setData(KGlobal::charsets()->encodingForName(description));
         menu->addAction(action);
     }
     menu->addSeparator();
 
     menu->addAction(i18n("Reload"), this, SLOT(slotReload()), 0);
     menu->addAction(i18n("Default"), this, SLOT(slotDefault()), 0)->setCheckable(true);
-    m_idDefault = m_encodingDescriptions.size() + 2;
 
     connect(menu, SIGNAL(triggered(QAction*)), this, SLOT(slotItemSelected(QAction*)));
 }
@@ -126,20 +123,19 @@ void DolphinRemoteEncoding::updateMenu()
         loadSettings();
     }
 
+    const QList<QAction*> menuActions = m_menu->menu()->actions();
     // uncheck everything
-    for (int i =  0; i < m_menu->menu()->actions().count(); i++) {
-        m_menu->menu()->actions().at(i)->setChecked(false);
+    foreach (QAction *action, menuActions) {
+        action->setChecked(false);
     }
 
     const QString charset = KProtocolManager::charsetFor(m_currentURL);;
     if (!charset.isEmpty()) {
-        int id = 0;
         bool isFound = false;
-        const QString charsetDescription = KGlobal::charsets()->descriptionForEncoding(charset);
-        for (int i = 0; i < m_encodingDescriptions.size(); i++) {
-            if (m_encodingDescriptions.at(i) == charsetDescription) {
+        foreach (QAction* action, menuActions) {
+            if (action->data().toString() == charset) {
                 isFound = true;
-                id = i;
+                action->setChecked(true);
                 break;
             }
         }
@@ -148,11 +144,9 @@ void DolphinRemoteEncoding::updateMenu()
 
         if (!isFound) {
             kWarning() << "could not find entry for charset=" << charset ;
-        } else {
-            m_menu->menu()->actions().at(id)->setChecked(true);
         }
     } else {
-        m_menu->menu()->actions().at(m_idDefault)->setChecked(true);
+        m_menu->menu()->actions().last()->setChecked(true);
     }
 
 }
@@ -168,12 +162,10 @@ void DolphinRemoteEncoding::slotAboutToShow()
 void DolphinRemoteEncoding::slotItemSelected(QAction* action)
 {
     if (action) {
-        int id = action->data().toInt();
-
-        KConfig config(("kio_" + m_currentURL.protocol() + "rc").toLatin1());
-        QString host = m_currentURL.host();
-        if (m_menu->menu()->actions().at(id)->isChecked()) {
-            QString charset = KGlobal::charsets()->encodingForName(m_encodingDescriptions.at(id));
+        if (action->isChecked()) {
+            KConfig config(("kio_" + m_currentURL.protocol() + "rc").toLatin1());
+            QString host = m_currentURL.host();
+            QString charset = action->data().toString();
             KConfigGroup cg(&config, host);
             cg.writeEntry(DATA_KEY, charset);
             config.sync();

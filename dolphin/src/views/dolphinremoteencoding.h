@@ -58,12 +58,10 @@ private:
   void updateMenu();
 
   KActionMenu* m_menu;
-  QStringList m_encodingDescriptions;
   KUrl m_currentURL;
   DolphinViewActionHandler* m_actionHandler;
 
   bool m_loaded;
-  int m_idDefault;
 };
 
 #endif
