@@ -391,7 +391,7 @@ void KonqPopupMenuPrivate::init(KonqPopupMenu::Flags kpf, KParts::BrowserExtensi
     m_menuActions.setItemListProperties(m_popupItemProperties);
 
     if ( sReading ) {
-        m_menuActions.addOpenWithActionsTo(q, "DesktopEntryName != 'kfmclient' and DesktopEntryName != 'kfmclient_dir' and DesktopEntryName != 'kfmclient_html'");
+        m_menuActions.addOpenWithActionsTo(q);
 
         QList<QAction *> previewActions = m_actionGroups.value("preview");
         if (!previewActions.isEmpty()) {
