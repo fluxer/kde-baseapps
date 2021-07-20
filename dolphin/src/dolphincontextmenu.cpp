@@ -223,7 +223,7 @@ void DolphinContextMenu::openItemContextMenu()
             }
 
             addSeparator();
-        } else if (m_baseUrl.protocol().contains("search")) {
+        } else if (m_baseUrl.protocol() == "filenamesearch") {
             openParentInNewWindowAction = new QAction(KIcon("window-new"),
                                                     i18nc("@action:inmenu",
                                                           "Open Path in New Window"),

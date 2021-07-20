@@ -139,8 +139,6 @@ void PlacesItem::setBookmark(const KBookmark& bookmark)
     const GroupType type = groupType();
     if (icon().isEmpty()) {
         switch (type) {
-        case RecentlyAccessedType: setIcon("chronometer"); break;
-        case SearchForType:        setIcon("nepomuk"); break;
         case PlacesType:
         default:                   setIcon("folder");
         }
@@ -149,8 +147,6 @@ void PlacesItem::setBookmark(const KBookmark& bookmark)
 
     switch (type) {
     case PlacesType:           setGroup(i18nc("@item", "Places")); break;
-    case RecentlyAccessedType: setGroup(i18nc("@item", "Recently Accessed")); break;
-    case SearchForType:        setGroup(i18nc("@item", "Search For")); break;
     case DevicesType:          setGroup(i18nc("@item", "Devices")); break;
     default:                   Q_ASSERT(false); break;
     }
@@ -167,14 +163,6 @@ PlacesItem::GroupType PlacesItem::groupType() const
 {
     if (udi().isEmpty()) {
         const QString protocol = url().protocol();
-        if (protocol == QLatin1String("timeline")) {
-            return RecentlyAccessedType;
-        }
-
-        if (protocol.contains(QLatin1String("search"))) {
-            return SearchForType;
-        }
-
         if (protocol == QLatin1String("bluetooth")) {
             return DevicesType;
         }

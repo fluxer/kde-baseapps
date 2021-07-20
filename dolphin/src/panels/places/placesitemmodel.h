@@ -113,14 +113,6 @@ public:
 
     void dropMimeDataBefore(int index, const QMimeData* mimeData);
 
-    /**
-     * @return Converts the URL, which contains "virtual" URLs for system-items like
-     *         "search:/documents" into a Query-URL that will be handled by
-     *         the corresponding IO-slave. Virtual URLs for bookmarks are used to
-     *         be independent from internal format changes.
-     */
-    static KUrl convertedUrl(const KUrl& url);
-
     virtual void clear();
 signals:
     void errorMessage(const QString& message);
@@ -219,32 +211,11 @@ private:
      */
     static bool equalBookmarkIdentifiers(const KBookmark& b1, const KBookmark& b2);
 
-    /**
-     * @return URL using the timeline-protocol for searching (see convertedUrl()).
-     */
-    static KUrl createTimelineUrl(const KUrl& url);
-
-    /**
-     * Helper method for createTimelineUrl().
-     * @return String that represents a date-path in the format that
-     *         the timeline-protocol expects.
-     */
-    static QString timelineDateString(int year, int month, int day = 0);
-
-    /**
-     * @return URL that can be listed by KIO and results in searching
-     *         for a given term. The URL \a url represents a places-internal
-     *         URL like e.g. "search:/documents" (see convertedUrl()).
-     */
-    static KUrl createSearchUrl(const KUrl& url);
-
-
 #ifdef PLACESITEMMODEL_DEBUG
     void showModelState();
 #endif
 
 private:
-    bool m_fileIndexingEnabled;
     bool m_hiddenItemsShown;
 
     QSet<QString> m_availableDevices;

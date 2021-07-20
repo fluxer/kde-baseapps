@@ -42,8 +42,6 @@ public:
     enum GroupType
     {
         PlacesType,
-        SearchForType,
-        RecentlyAccessedType,
         DevicesType
     };
 

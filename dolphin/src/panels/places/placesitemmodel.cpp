@@ -61,7 +61,6 @@ namespace {
 
 PlacesItemModel::PlacesItemModel(QObject* parent) :
     KStandardItemModel(parent),
-    m_fileIndexingEnabled(false),
     m_hiddenItemsShown(false),
     m_availableDevices(),
     m_predicate(),
@@ -430,18 +429,6 @@ void PlacesItemModel::dropMimeDataBefore(int index, const QMimeData* mimeData)
     }
 }
 
-KUrl PlacesItemModel::convertedUrl(const KUrl& url)
-{
-    KUrl newUrl = url;
-    if (url.protocol() == QLatin1String("timeline")) {
-        newUrl = createTimelineUrl(url);
-    } else if (url.protocol() == QLatin1String("search")) {
-        newUrl = createSearchUrl(url);
-    }
-
-    return newUrl;
-}
-
 void PlacesItemModel::onItemInserted(int index)
 {
     const PlacesItem* insertedItem = placesItem(index);
@@ -728,13 +715,11 @@ void PlacesItemModel::loadBookmarks()
         missingSystemBookmarks.insert(data.url);
     }
 
-    // The bookmarks might have a mixed order of places, devices and search-groups due
+    // The bookmarks might have a mixed order of places and devices due
     // to the compatibility with the KFilePlacesPanel. In Dolphin's places panel the
     // items should always be collected in one group so the items are collected first
     // in separate lists before inserting them.
     QList<PlacesItem*> placesItems;
-    QList<PlacesItem*> recentlyAccessedItems;
-    QList<PlacesItem*> searchForItems;
     QList<PlacesItem*> devicesItems;
 
     while (!bookmark.isNull()) {
@@ -759,8 +744,6 @@ void PlacesItemModel::loadBookmarks()
 
                 switch (item->groupType()) {
                 case PlacesItem::PlacesType:           placesItems.append(item); break;
-                case PlacesItem::RecentlyAccessedType: recentlyAccessedItems.append(item); break;
-                case PlacesItem::SearchForType:        searchForItems.append(item); break;
                 case PlacesItem::DevicesType:
                 default:                               Q_ASSERT(false); break;
                 }
@@ -778,8 +761,6 @@ void PlacesItemModel::loadBookmarks()
                 PlacesItem* item = createSystemPlacesItem(data);
                 switch (item->groupType()) {
                 case PlacesItem::PlacesType:           placesItems.append(item); break;
-                case PlacesItem::RecentlyAccessedType: recentlyAccessedItems.append(item); break;
-                case PlacesItem::SearchForType:        searchForItems.append(item); break;
                 case PlacesItem::DevicesType:
                 default:                               Q_ASSERT(false); break;
                 }
@@ -795,8 +776,6 @@ void PlacesItemModel::loadBookmarks()
 
     QList<PlacesItem*> items;
     items.append(placesItems);
-    items.append(recentlyAccessedItems);
-    items.append(searchForItems);
     items.append(devicesItems);
 
     foreach (PlacesItem* item, items) {
@@ -823,9 +802,7 @@ bool PlacesItemModel::acceptBookmark(const KBookmark& bookmark,
 
     const bool allowedHere = (appName.isEmpty()
                               || appName == KGlobal::mainComponent().componentName()
-                              || appName == KGlobal::mainComponent().componentName() + AppNamePrefix)
-                             && (m_fileIndexingEnabled || (url.protocol() != QLatin1String("timeline") &&
-                                                           url.protocol() != QLatin1String("search")));
+                              || appName == KGlobal::mainComponent().componentName() + AppNamePrefix);
 
     return (udi.isEmpty() && allowedHere) || deviceAvailable;
 }
@@ -837,50 +814,8 @@ PlacesItem* PlacesItemModel::createSystemPlacesItem(const SystemBookmarkData& da
                                                     data.url,
                                                     data.icon);
 
-    const QString protocol = data.url.protocol();
-    if (protocol == QLatin1String("timeline") || protocol == QLatin1String("search")) {
-        // As long as the KFilePlacesView from kdelibs is available, the system-bookmarks
-        // for "Recently Accessed" and "Search For" should be a setting available only
-        // in the Places Panel (see description of AppNamePrefix for more details).
-        const QString appName = KGlobal::mainComponent().componentName() + AppNamePrefix;
-        bookmark.setMetaDataItem("OnlyInApp", appName);
-    }
-
     PlacesItem* item = new PlacesItem(bookmark);
     item->setSystemItem(true);
-
-    // Create default view-properties for all "Search For" and "Recently Accessed" bookmarks
-    // in case if the user has not already created custom view-properties for a corresponding
-    // query yet.
-    const bool createDefaultViewProperties = (item->groupType() == PlacesItem::SearchForType ||
-                                              item->groupType() == PlacesItem::RecentlyAccessedType) &&
-                                              !GeneralSettings::self()->globalViewProps();
-    if (createDefaultViewProperties) {
-        ViewProperties props(convertedUrl(data.url));
-        if (!props.exist()) {
-            const QString path = data.url.path();
-            if (path == QLatin1String("/documents")) {
-                props.setViewMode(DolphinView::DetailsView);
-                props.setPreviewsShown(false);
-                props.setVisibleRoles(QList<QByteArray>() << "text" << "path");
-            } else if (path == QLatin1String("/images")) {
-                props.setViewMode(DolphinView::IconsView);
-                props.setPreviewsShown(true);
-                props.setVisibleRoles(QList<QByteArray>() << "text" << "imageSize");
-            } else if (path == QLatin1String("/audio")) {
-                props.setViewMode(DolphinView::DetailsView);
-                props.setPreviewsShown(false);
-                props.setVisibleRoles(QList<QByteArray>() << "text" << "artist" << "album");
-            } else if (path == QLatin1String("/videos")) {
-                props.setViewMode(DolphinView::IconsView);
-                props.setPreviewsShown(true);
-                props.setVisibleRoles(QList<QByteArray>() << "text");
-            } else if (data.url.protocol() == "timeline") {
-                props.setViewMode(DolphinView::DetailsView);
-                props.setVisibleRoles(QList<QByteArray>() << "text" << "date");
-            }
-        }
-    }
 
     return item;
 }
@@ -906,33 +841,6 @@ void PlacesItemModel::createSystemBookmarks()
     m_systemBookmarks.append(SystemBookmarkData(KUrl("trash:/"),
                                                 "user-trash",
                                                 I18N_NOOP2("KFile System Bookmarks", "Trash")));
-
-    if (m_fileIndexingEnabled) {
-        m_systemBookmarks.append(SystemBookmarkData(KUrl("timeline:/today"),
-                                                    "go-jump-today",
-                                                    I18N_NOOP2("KFile System Bookmarks", "Today")));
-        m_systemBookmarks.append(SystemBookmarkData(KUrl("timeline:/yesterday"),
-                                                    "view-calendar-day",
-                                                    I18N_NOOP2("KFile System Bookmarks", "Yesterday")));
-        m_systemBookmarks.append(SystemBookmarkData(KUrl("timeline:/thismonth"),
-                                                    "view-calendar-month",
-                                                    I18N_NOOP2("KFile System Bookmarks", "This Month")));
-        m_systemBookmarks.append(SystemBookmarkData(KUrl("timeline:/lastmonth"),
-                                                    "view-calendar-month",
-                                                    I18N_NOOP2("KFile System Bookmarks", "Last Month")));
-        m_systemBookmarks.append(SystemBookmarkData(KUrl("search:/documents"),
-                                                    "folder-txt",
-                                                    I18N_NOOP2("KFile System Bookmarks", "Documents")));
-        m_systemBookmarks.append(SystemBookmarkData(KUrl("search:/images"),
-                                                    "folder-image",
-                                                    I18N_NOOP2("KFile System Bookmarks", "Images")));
-        m_systemBookmarks.append(SystemBookmarkData(KUrl("search:/audio"),
-                                                    "folder-sound",
-                                                    I18N_NOOP2("KFile System Bookmarks", "Audio Files")));
-        m_systemBookmarks.append(SystemBookmarkData(KUrl("search:/videos"),
-                                                    "folder-video",
-                                                    I18N_NOOP2("KFile System Bookmarks", "Videos")));
-    }
 
     for (int i = 0; i < m_systemBookmarks.count(); ++i) {
         m_systemBookmarksIndexes.insert(m_systemBookmarks[i].url, i);
@@ -1099,64 +1007,6 @@ bool PlacesItemModel::equalBookmarkIdentifiers(const KBookmark& b1, const KBookm
         return b1.metaDataItem("ID") == b2.metaDataItem("ID");
     }
 }
-
-KUrl PlacesItemModel::createTimelineUrl(const KUrl& url)
-{
-    // TODO: Clarify with the Baloo-team whether it makes sense
-    // provide default-timeline-URLs like 'yesterday', 'this month'
-    // and 'last month'.
-    KUrl timelineUrl;
-
-    const QString path = url.pathOrUrl();
-    if (path.endsWith(QLatin1String("yesterday"))) {
-        const QDate date = QDate::currentDate().addDays(-1);
-        const int year = date.year();
-        const int month = date.month();
-        const int day = date.day();
-        timelineUrl = "timeline:/" + timelineDateString(year, month) +
-              '/' + timelineDateString(year, month, day);
-    } else if (path.endsWith(QLatin1String("thismonth"))) {
-        const QDate date = QDate::currentDate();
-        timelineUrl = "timeline:/" + timelineDateString(date.year(), date.month());
-    } else if (path.endsWith(QLatin1String("lastmonth"))) {
-        const QDate date = QDate::currentDate().addMonths(-1);
-        timelineUrl = "timeline:/" + timelineDateString(date.year(), date.month());
-    } else {
-        Q_ASSERT(path.endsWith(QLatin1String("today")));
-        timelineUrl= url;
-    }
-
-    return timelineUrl;
-}
-
-QString PlacesItemModel::timelineDateString(int year, int month, int day)
-{
-    QString date = QString::number(year) + '-';
-    if (month < 10) {
-        date += '0';
-    }
-    date += QString::number(month);
-
-    if (day >= 1) {
-        date += '-';
-        if (day < 10) {
-            date += '0';
-        }
-        date += QString::number(day);
-    }
-
-    return date;
-}
-
-KUrl PlacesItemModel::createSearchUrl(const KUrl& url)
-{
-    KUrl searchUrl;
-
-    Q_UNUSED(url);
-
-    return searchUrl;
-}
-
 
 #ifdef PLACESITEMMODEL_DEBUG
 void PlacesItemModel::showModelState()

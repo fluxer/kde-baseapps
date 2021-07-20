@@ -67,7 +67,7 @@ PlacesPanel::~PlacesPanel()
 
 bool PlacesPanel::urlChanged()
 {
-    if (!url().isValid() || url().protocol().contains("search")) {
+    if (!url().isValid() || url().protocol() == "filenamesearch") {
         // Skip results shown by a search, as possible identical
         // directory names are useless without parent-path information.
         return false;
@@ -335,9 +335,6 @@ void PlacesPanel::slotItemDropEvent(int index, QGraphicsSceneDragDropEvent* even
 
     const PlacesItem* destItem = m_model->placesItem(index);
     const PlacesItem::GroupType group = destItem->groupType();
-    if (group == PlacesItem::SearchForType || group == PlacesItem::RecentlyAccessedType) {
-        return;
-    }
 
     if (m_model->storageSetupNeeded(index)) {
         connect(m_model, SIGNAL(storageSetupDone(int,bool)),
@@ -534,9 +531,9 @@ void PlacesPanel::triggerItem(int index, Qt::MouseButton button)
         const KUrl url = m_model->data(index).value("url").value<KUrl>();
         if (!url.isEmpty()) {
             if (button == Qt::MiddleButton) {
-                emit placeMiddleClicked(PlacesItemModel::convertedUrl(url));
+                emit placeMiddleClicked(url);
             } else {
-                emit placeActivated(PlacesItemModel::convertedUrl(url));
+                emit placeActivated(url);
             }
         }
     }

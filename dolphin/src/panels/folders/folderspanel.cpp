@@ -105,7 +105,7 @@ void FoldersPanel::rename(const KFileItem& item)
 
 bool FoldersPanel::urlChanged()
 {
-    if (!url().isValid() || url().protocol().contains("search")) {
+    if (!url().isValid() || url().protocol() == "filenamesearch") {
         // Skip results shown by a search, as possible identical
         // directory names are useless without parent-path information.
         return false;
