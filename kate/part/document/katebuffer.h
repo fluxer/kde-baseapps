@@ -22,7 +22,7 @@
 
 #include "katetextbuffer.h"
 
-#include "katepartprivate_export.h"
+#include "katepartinterfaces_export.h"
 
 #include <QtCore/QObject>
 
@@ -36,7 +36,7 @@ class KateHighlighting;
  * @author Waldo Bastian <bastian@kde.org>
  * @author Christoph Cullmann <cullmann@kde.org>
  */
-class KATEPART_TESTS_EXPORT KateBuffer : public Kate::TextBuffer
+class KATEPARTINTERFACES_EXPORT KateBuffer : public Kate::TextBuffer
 {
   Q_OBJECT
 

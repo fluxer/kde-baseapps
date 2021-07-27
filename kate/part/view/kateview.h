@@ -72,7 +72,7 @@ class KSelectAction;
 //
 // Kate KTextEditor::View class ;)
 //
-class KATEPART_TESTS_EXPORT KateView : public KTextEditor::View,
+class KATEPARTINTERFACES_EXPORT KateView : public KTextEditor::View,
                  public KTextEditor::TextHintInterface,
                  public KTextEditor::SessionConfigInterface,
                  public KTextEditor::TemplateInterface2,

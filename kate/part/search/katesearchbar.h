@@ -23,7 +23,7 @@
 #define KATE_SEARCH_BAR_H 1
 
 #include "kateviewhelpers.h"
-#include "katepartprivate_export.h"
+#include "katepartinterfaces_export.h"
 
 #include <ktexteditor/attribute.h>
 #include <ktexteditor/messageinterface.h>
@@ -47,7 +47,7 @@ namespace KTextEditor {
 }
 
 
-class KATEPART_TESTS_EXPORT KateSearchBar : public KateViewBarWidget {
+class KATEPARTINTERFACES_EXPORT KateSearchBar : public KateViewBarWidget {
     Q_OBJECT
 
     friend class SearchBarTest;

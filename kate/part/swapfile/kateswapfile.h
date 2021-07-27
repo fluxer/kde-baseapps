@@ -27,7 +27,7 @@
 #include <QFile>
 #include <QTimer>
 
-#include "katepartprivate_export.h"
+#include "katepartinterfaces_export.h"
 #include "katetextbuffer.h"
 #include "katebuffer.h"
 #include "katedocument.h"
@@ -43,7 +43,7 @@ namespace Kate {
  * In case Kate crashes, this can be used to replay all edit actions to
  * recover the lost data.
  */
-class KATEPART_TESTS_EXPORT SwapFile : public QObject
+class KATEPARTINTERFACES_EXPORT SwapFile : public QObject
 {
   Q_OBJECT
 

@@ -36,7 +36,7 @@
 
 #include <ktexteditor/containerinterface.h>
 #include <ktexteditor/cursor.h>
-#include "katepartprivate_export.h"
+#include "katepartinterfaces_export.h"
 #include "katetextline.h"
 #include "katedocument.h"
 
@@ -411,7 +411,7 @@ class KateViewBar : public QWidget
     QVBoxLayout *m_layout;
 };
 
-class KATEPART_TESTS_EXPORT KateCommandLineBar : public KateViewBarWidget
+class KATEPARTINTERFACES_EXPORT KateCommandLineBar : public KateViewBarWidget
 {
   Q_OBJECT
 

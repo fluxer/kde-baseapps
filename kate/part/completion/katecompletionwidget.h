@@ -29,7 +29,7 @@
 #include <QLabel>
 #include <QTimer>
 
-#include "katepartprivate_export.h"
+#include "katepartinterfaces_export.h"
 
 #include <ktexteditor/movingrange.h>
 #include <ktexteditor/codecompletioninterface.h>
@@ -51,7 +51,7 @@ namespace KTextEditor {
  *
  * @author Hamish Rodda <rodda@kde.org>
  */
-class KATEPART_TESTS_EXPORT KateCompletionWidget : public QFrame
+class KATEPARTINTERFACES_EXPORT KateCompletionWidget : public QFrame
 {
   Q_OBJECT
 

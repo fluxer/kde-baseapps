@@ -43,7 +43,7 @@
 #include <ktexteditor/recoveryinterface.h>
 #include <ktexteditor/messageinterface.h>
 
-#include "katepartprivate_export.h"
+#include "katepartinterfaces_export.h"
 #include "katetextline.h"
 #include "katetextcursor.h"
 #include "katetextrange.h"
@@ -71,7 +71,7 @@ class KateAutoIndent;
 //
 // Kate KTextEditor::Document class (and even KTextEditor::Editor ;)
 //
-class KATEPART_TESTS_EXPORT KateDocument : public KTextEditor::Document,
+class KATEPARTINTERFACES_EXPORT KateDocument : public KTextEditor::Document,
                      public KTextEditor::SessionConfigInterface,
                      public KTextEditor::ParameterizedSessionConfigInterface,
                      public KTextEditor::SearchInterface,

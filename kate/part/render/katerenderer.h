@@ -47,7 +47,7 @@ typedef KSharedPtr<KateLineLayout> KateLineLayoutPtr;
  * (used for the views and printing)
  *
  **/
-class KATEPART_TESTS_EXPORT KateRenderer
+class KATEPARTINTERFACES_EXPORT KateRenderer
 {
 public:
     /**

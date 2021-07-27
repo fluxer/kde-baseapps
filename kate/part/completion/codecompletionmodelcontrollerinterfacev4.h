@@ -22,7 +22,7 @@
 
 #include <ktexteditor/codecompletionmodelcontrollerinterface.h>
 
-#include "katepartprivate_export.h"
+#include "katepartinterfaces_export.h"
 
 /// @todo For KDE 4.7 this interface (or a version of it) should go into interfaces/ktexteditor
 

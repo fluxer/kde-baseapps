@@ -25,7 +25,7 @@
 #include <ktexteditor/cursor.h>
 #include <ktexteditor/document.h>
 
-#include "katepartprivate_export.h"
+#include "katepartinterfaces_export.h"
 
 namespace KTextEditor {
 
@@ -66,7 +66,7 @@ namespace KTextEditor {
  * \todo KDE5: move to ktexteditor interface, use it in
  *       MovingCursor::move() to avoid code duplication
  */
-class KATEPART_TESTS_EXPORT DocumentCursor
+class KATEPARTINTERFACES_EXPORT DocumentCursor
 {
   //
   // sub types

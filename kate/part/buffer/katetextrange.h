@@ -28,7 +28,7 @@
 #include <ktexteditor/movingrange.h>
 #include <ktexteditor/movingrangefeedback.h>
 
-#include "katepartprivate_export.h"
+#include "katepartinterfaces_export.h"
 #include "katetextcursor.h"
 
 namespace Kate {
@@ -43,7 +43,7 @@ class TextBuffer;
  * a TextRange will become automatically invalid as soon as start() == end()
  * position holds.
  */
-class KATEPART_TESTS_EXPORT TextRange : public KTextEditor::MovingRange {
+class KATEPARTINTERFACES_EXPORT TextRange : public KTextEditor::MovingRange {
   // this is a friend, block changes might invalidate ranges...
   friend class TextBlock;
 

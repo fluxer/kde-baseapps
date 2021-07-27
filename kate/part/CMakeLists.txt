@@ -200,6 +200,8 @@ set_target_properties(
     SOVERSION ${GENERIC_LIB_SOVERSION}
 )
 
+generate_export_header(katepartinterfaces)
+
 # install kate part interfaces
 install(
     TARGETS katepartinterfaces

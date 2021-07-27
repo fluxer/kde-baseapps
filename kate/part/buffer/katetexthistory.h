@@ -25,7 +25,7 @@
 
 #include <ktexteditor/range.h>
 
-#include "katepartprivate_export.h"
+#include "katepartinterfaces_export.h"
 #include "katetextcursor.h"
 #include "katetextrange.h"
 
@@ -36,7 +36,7 @@ class TextBuffer;
 /**
  * Class representing the editing history of a TextBuffer
  */
-class KATEPART_TESTS_EXPORT TextHistory {
+class KATEPARTINTERFACES_EXPORT TextHistory {
   friend class TextBuffer;
   friend class TextBlock;
 

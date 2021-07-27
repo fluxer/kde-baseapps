@@ -26,7 +26,7 @@
 
 #include <ktexteditor/range.h>
 
-#include "katepartprivate_export.h"
+#include "katepartinterfaces_export.h"
 
 namespace KTextEditor {
   class Document;
@@ -37,7 +37,7 @@ namespace KTextEditor {
  * This should be NO QObject, it is created to often!
  * I measured that, if you create it 20k times to replace for example " " in a document, that takes seconds on a modern machine!
  */
-class KATEPART_TESTS_EXPORT KateRegExpSearch
+class KATEPARTINTERFACES_EXPORT KateRegExpSearch
 {
   public:
     explicit KateRegExpSearch (KTextEditor::Document *document, Qt::CaseSensitivity caseSensitivity);

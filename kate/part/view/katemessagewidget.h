@@ -26,7 +26,7 @@
 #include <QPointer>
 #include <QTimer>
 
-#include "katepartprivate_export.h"
+#include "katepartinterfaces_export.h"
 
 namespace KTextEditor
 {
@@ -40,7 +40,7 @@ class KateAnimation;
  * This class implements a message widget based on KMessageWidget.
  * It is used to show messages through the KTextEditior::MessageInterface.
  */
-class KATEPART_TESTS_EXPORT KateMessageWidget : public QWidget
+class KATEPARTINTERFACES_EXPORT KateMessageWidget : public QWidget
 {
   Q_OBJECT
 

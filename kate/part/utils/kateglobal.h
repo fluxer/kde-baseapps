@@ -22,7 +22,7 @@
 #ifndef __KATE_GLOBAL_H__
 #define __KATE_GLOBAL_H__
 
-#include "katepartprivate_export.h"
+#include "katepartinterfaces_export.h"
 #include "katescript.h"
 
 #include <ktexteditor/editor.h>
@@ -68,7 +68,7 @@ Q_DECLARE_METATYPE(KSharedConfig::Ptr)
  * or view stay around, here is the place to put things
  * which are needed and shared by all this objects ;)
  */
-class KATEPART_TESTS_EXPORT KateGlobal : public KTextEditor::Editor, public KTextEditor::CommandInterface, public KTextEditor::ContainerInterface, public KTextEditor::TemplateScriptRegistrar
+class KATEPARTINTERFACES_EXPORT KateGlobal : public KTextEditor::Editor, public KTextEditor::CommandInterface, public KTextEditor::ContainerInterface, public KTextEditor::TemplateScriptRegistrar
 {
   Q_OBJECT
   Q_INTERFACES(KTextEditor::CommandInterface)

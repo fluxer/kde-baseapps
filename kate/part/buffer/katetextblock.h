@@ -24,7 +24,7 @@
 #include <QtCore/QVector>
 #include <QtCore/QSet>
 
-#include "katepartprivate_export.h"
+#include "katepartinterfaces_export.h"
 #include <ktexteditor/cursor.h>
 #include "katetextline.h"
 
@@ -39,7 +39,7 @@ class TextRange;
  * This is used to build up a Kate::TextBuffer.
  * This class should only be used by TextBuffer/Cursor/Range.
  */
-class KATEPART_TESTS_EXPORT TextBlock {
+class KATEPARTINTERFACES_EXPORT TextBlock {
   public:
     /**
      * Construct an empty text block.

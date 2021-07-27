@@ -30,7 +30,7 @@
 #include <ktexteditor/document.h>
 
 #include "katedocument.h"
-#include "katepartprivate_export.h"
+#include "katepartinterfaces_export.h"
 #include "katetextblock.h"
 #include "katetextcursor.h"
 #include "katetextrange.h"
@@ -42,7 +42,7 @@ namespace Kate {
  * Class representing a text buffer.
  * The interface is line based, internally the text will be stored in blocks of text lines.
  */
-class KATEPART_TESTS_EXPORT TextBuffer : public QObject {
+class KATEPARTINTERFACES_EXPORT TextBuffer : public QObject {
   friend class TextCursor;
   friend class TextRange;
   friend class TextBlock;

@@ -24,7 +24,7 @@
 #include <QStringList>
 #include <QtScript/QScriptable>
 
-#include "katepartprivate_export.h"
+#include "katepartinterfaces_export.h"
 
 #include <QtScript/QScriptValue>
 
@@ -43,7 +43,7 @@ class KateDocument;
  * setDocument _must_ be called before using any other method. This is not checked
  * for the sake of speed.
  */
-class KATEPART_TESTS_EXPORT KateScriptDocument : public QObject, protected QScriptable
+class KATEPARTINTERFACES_EXPORT KateScriptDocument : public QObject, protected QScriptable
 {
   Q_OBJECT
   // Note: we have no Q_PROPERTIES due to consistency: everything is a function.

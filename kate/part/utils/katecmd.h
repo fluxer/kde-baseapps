@@ -21,7 +21,7 @@
 #ifndef KATE_CMD_H
 #define KATE_CMD_H
 
-#include "katepartprivate_export.h"
+#include "katepartinterfaces_export.h"
 
 #include <ktexteditor/commandinterface.h>
 
@@ -30,7 +30,7 @@
 #include <QtCore/QHash>
 #include <QtCore/QStringList>
 
-class KATEPART_TESTS_EXPORT KateCmd
+class KATEPARTINTERFACES_EXPORT KateCmd
 {
   public:
     KateCmd ();

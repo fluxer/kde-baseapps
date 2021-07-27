@@ -20,7 +20,7 @@
 #define KATE_SCRIPTHELPERS_H
 
 #include <QtScript/QScriptValue>
-#include "katepartprivate_export.h"
+#include "katepartinterfaces_export.h"
 
 #include <QScriptEngine>
 #include <QScriptContext>
@@ -30,15 +30,15 @@ namespace Kate {
   namespace Script {
 
     /** read complete file contents, helper */
-    KATEPART_TESTS_EXPORT bool readFile(const QString& sourceUrl, QString& sourceCode);
+    KATEPARTINTERFACES_EXPORT bool readFile(const QString& sourceUrl, QString& sourceCode);
     
-    KATEPART_TESTS_EXPORT QScriptValue read(QScriptContext *context, QScriptEngine *engine);
-    KATEPART_TESTS_EXPORT QScriptValue require(QScriptContext *context, QScriptEngine *engine);
-    KATEPART_TESTS_EXPORT QScriptValue debug(QScriptContext *context, QScriptEngine *engine);
-    KATEPART_TESTS_EXPORT QScriptValue i18n(QScriptContext *context, QScriptEngine *engine);
-    KATEPART_TESTS_EXPORT QScriptValue i18nc(QScriptContext *context, QScriptEngine *engine);
-    KATEPART_TESTS_EXPORT QScriptValue i18np(QScriptContext *context, QScriptEngine *engine);
-    KATEPART_TESTS_EXPORT QScriptValue i18ncp(QScriptContext *context, QScriptEngine *engine);
+    KATEPARTINTERFACES_EXPORT QScriptValue read(QScriptContext *context, QScriptEngine *engine);
+    KATEPARTINTERFACES_EXPORT QScriptValue require(QScriptContext *context, QScriptEngine *engine);
+    KATEPARTINTERFACES_EXPORT QScriptValue debug(QScriptContext *context, QScriptEngine *engine);
+    KATEPARTINTERFACES_EXPORT QScriptValue i18n(QScriptContext *context, QScriptEngine *engine);
+    KATEPARTINTERFACES_EXPORT QScriptValue i18nc(QScriptContext *context, QScriptEngine *engine);
+    KATEPARTINTERFACES_EXPORT QScriptValue i18np(QScriptContext *context, QScriptEngine *engine);
+    KATEPARTINTERFACES_EXPORT QScriptValue i18ncp(QScriptContext *context, QScriptEngine *engine);
   }
 }
 

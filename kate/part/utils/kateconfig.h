@@ -20,7 +20,7 @@
 #ifndef __KATE_CONFIG_H__
 #define __KATE_CONFIG_H__
 
-#include "katepartprivate_export.h"
+#include "katepartinterfaces_export.h"
 
 #include <ktexteditor/markinterface.h>
 
@@ -91,7 +91,7 @@ class KateConfig
     bool configIsRunning;
 };
 
-class KATEPART_TESTS_EXPORT KateGlobalConfig : public KateConfig
+class KATEPARTINTERFACES_EXPORT KateGlobalConfig : public KateConfig
 {
   private:
     friend class KateGlobal;
@@ -135,7 +135,7 @@ class KATEPART_TESTS_EXPORT KateGlobalConfig : public KateConfig
     static KateGlobalConfig *s_global;
 };
 
-class KATEPART_TESTS_EXPORT KateDocumentConfig : public KateConfig
+class KATEPARTINTERFACES_EXPORT KateDocumentConfig : public KateConfig
 {
   private:
     friend class KateGlobal;
@@ -371,7 +371,7 @@ class KATEPART_TESTS_EXPORT KateDocumentConfig : public KateConfig
     KateDocument *m_doc;
 };
 
-class KATEPART_TESTS_EXPORT KateViewConfig : public KateConfig
+class KATEPARTINTERFACES_EXPORT KateViewConfig : public KateConfig
 {
   private:
     friend class KateGlobal;
@@ -608,7 +608,7 @@ class KATEPART_TESTS_EXPORT KateViewConfig : public KateConfig
     KateView *m_view;
 };
 
-class KATEPART_TESTS_EXPORT KateRendererConfig : public KateConfig
+class KATEPARTINTERFACES_EXPORT KateRendererConfig : public KateConfig
 {
   private:
     friend class KateGlobal;

@@ -21,7 +21,7 @@
 #ifndef KATE_TEXTFOLDING_H
 #define KATE_TEXTFOLDING_H
 
-#include "katepartprivate_export.h"
+#include "katepartinterfaces_export.h"
 
 #include "ktexteditor/range.h"
 
@@ -39,7 +39,7 @@ class TextCursor;
  * as they are well nested.
  * Multiple instances of this class can exist for the same buffer.
  */
-class KATEPART_TESTS_EXPORT TextFolding : public QObject {
+class KATEPARTINTERFACES_EXPORT TextFolding : public QObject {
   Q_OBJECT
   
   public: 
