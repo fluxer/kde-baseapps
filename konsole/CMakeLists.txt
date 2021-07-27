@@ -8,8 +8,6 @@ include_directories(
 
 add_definitions(
     ${QT_QTDBUS_DEFINITIONS}
-    -DQT_USE_FAST_CONCATENATION
-    -DQT_USE_FAST_OPERATOR_PLUS
     -DKDE_DEFAULT_DEBUG_AREA=1211
 )
 
