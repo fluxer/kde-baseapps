@@ -1,11 +1,12 @@
 [Desktop Entry]
 MountPoint=
 Dev=
-ReadOnly=0
+ReadOnly=false
 Type=FSDevice
 Icon=media-optical-recordable
 Actions=Eject;
 X-KDE-Priority=TopLevel
+
 [Desktop Action Eject]
 Name=Eject
 Name[af]=Uitskiet
