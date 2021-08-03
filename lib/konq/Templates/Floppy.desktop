@@ -8,7 +8,6 @@ Icon=media-floppy
 X-KDE-Priority=TopLevel
 
 [Desktop Action Format]
-Exec=kfloppy %v
 # ctxt: Starts a program to format a floppy drive
 Name=Format
 Name[ar]=هيِّئ
@@ -77,3 +76,4 @@ Name[wa]=Abwesner
 Name[x-test]=xxFormatxx
 Name[zh_CN]=格式化
 Name[zh_TW]=格式
+Exec=kfloppy %v
