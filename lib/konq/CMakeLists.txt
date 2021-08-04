@@ -1,4 +1,3 @@
-add_subdirectory( pics )
 add_subdirectory( favicons )
 add_subdirectory( Templates )
 if(ENABLE_TESTING)
