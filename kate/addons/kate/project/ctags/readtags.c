@@ -366,7 +366,7 @@ static char *duplicate (const char *str)
     {
 	result = (char*) malloc (strlen (str) + 1);
 	if (result == NULL)
-	    perror (NULL);
+	    perror ("malloc");
 	else
 	    strcpy (result, str);
     }

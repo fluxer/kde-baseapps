@@ -94,7 +94,7 @@ int PtyProcess::checkPidExited(pid_t pid)
 
 	if (ret < 0)
 	{
-		kError(1512) << "waitpid():" << perror;
+		kError(1512) << "waitpid():" << ::strerror(errno);
 		return Error;
 	}
 	if (ret == pid)
@@ -187,7 +187,7 @@ QByteArray PtyProcess::readAll(bool block)
     int flags = fcntl(fd(), F_GETFL);
     if (flags < 0)
     {
-        kError(1512) << "fcntl(F_GETFL):" << perror;
+        kError(1512) << "fcntl(F_GETFL):" << ::strerror(errno);
         return ret;
     }
     int oflags = flags;
@@ -284,7 +284,7 @@ int PtyProcess::exec(const QByteArray &command, const QList<QByteArray> &args)
 
     if ((m_Pid = fork()) == -1)
     {
-        kError(1512) << "fork():" << perror;
+        kError(1512) << "fork():" << ::strerror(errno);
         return -1;
     }
 
@@ -344,7 +344,7 @@ int PtyProcess::exec(const QByteArray &command, const QList<QByteArray> &args)
     execv(path, const_cast<char **>(argp));
     free(argp);
 
-    kError(1512) << "execv(" << path << "):" << perror;
+    kError(1512) << "execv(" << path << "):" << ::strerror(errno);
     _exit(1);
     return -1; // Shut up compiler. Never reached.
 }
@@ -374,7 +374,7 @@ int PtyProcess::WaitSlave()
         }
         if (!d->m_pPTY->tcGetAttr(&tio))
         {
-            kError(1512) << "tcgetattr():" << perror;
+            kError(1512) << "tcgetattr():" << ::strerror(errno);
             return -1;
         }
         if (tio.c_lflag & ECHO)
@@ -435,7 +435,7 @@ int PtyProcess::waitForChild()
         {
             if (errno != EINTR)
             {
-                kError(1512) << "select():" << perror;
+                kError(1512) << "select():" << ::strerror(errno);
                 return -1;
             }
             ret = 0;
@@ -524,13 +524,13 @@ int PtyProcess::setupTTY()
     struct ::termios tio;
     if (tcgetattr(0, &tio) < 0)
     {
-        kError(1512) << "tcgetattr():" << perror;
+        kError(1512) << "tcgetattr():" << ::strerror(errno);
         return -1;
     }
     tio.c_oflag &= ~OPOST;
     if (tcsetattr(0, TCSANOW, &tio) < 0)
     {
-        kError(1512) << "tcsetattr():" << perror;
+        kError(1512) << "tcsetattr():" << ::strerror(errno);
         return -1;
     }
 
