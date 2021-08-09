@@ -451,6 +451,7 @@ void KonqPopupMenuPrivate::init(KonqPopupMenu::Flags kpf, KParts::BrowserExtensi
             q->addSeparator();
             act = new KAction(m_parentWidget);
             m_ownActions.append(act);
+            act->setObjectName( QLatin1String("share" )); // for unittest
             act->setText( i18n("Share") );
             QObject::connect(act, SIGNAL(triggered()), q, SLOT(slotOpenShareFileDialog()));
             q->addAction(act);
