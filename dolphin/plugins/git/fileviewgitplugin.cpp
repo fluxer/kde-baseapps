@@ -69,7 +69,7 @@ FileViewGitPlugin::FileViewGitPlugin(QObject* parent, const QList<QVariant>& arg
             this, SLOT(removeFiles()));
 
     m_checkoutAction = new KAction(this);
-//     m_checkoutAction->setIcon(KIcon("svn_switch")); does not exist in normal kde SC
+    m_checkoutAction->setIcon(KIcon("debug-step-into"));
     m_checkoutAction->setText(i18nc("@action:inmenu", "<application>Git</application> Checkout..."));
     connect(m_checkoutAction, SIGNAL(triggered()),
             this, SLOT(checkout()));
@@ -81,16 +81,17 @@ FileViewGitPlugin::FileViewGitPlugin(QObject* parent, const QList<QVariant>& arg
             this, SLOT(commit()));
 
     m_tagAction = new KAction(this);
-//     m_tagAction->setIcon(KIcon("svn-commit"));
+    m_tagAction->setIcon(KIcon("bookmark-new"));
     m_tagAction->setText(i18nc("@action:inmenu", "<application>Git</application> Create Tag..."));
     connect(m_tagAction, SIGNAL(triggered()),
             this, SLOT(createTag()));
     m_pushAction = new KAction(this);
-//     m_pushAction->setIcon(KIcon("svn-commit"));
+    m_pushAction->setIcon(KIcon("go-top"));
     m_pushAction->setText(i18nc("@action:inmenu", "<application>Git</application> Push..."));
     connect(m_pushAction, SIGNAL(triggered()),
             this, SLOT(push()));
     m_pullAction = new KAction(this);
+    m_pullAction->setIcon(KIcon("go-bottom"));
     m_pullAction->setText(i18nc("@action:inmenu", "<application>Git</application> Pull..."));
     connect(m_pullAction, SIGNAL(triggered()),
             this, SLOT(pull()));

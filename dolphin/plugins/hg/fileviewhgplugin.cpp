@@ -123,14 +123,14 @@ FileViewHgPlugin::FileViewHgPlugin(QObject *parent, const QList<QVariant> &args)
             this, SLOT(commit()));
 
     m_tagAction = new KAction(this);
-    m_tagAction->setIcon(KIcon("svn-tag"));
+    m_tagAction->setIcon(KIcon("bookmark-new"));
     m_tagAction->setText(i18nc("@action:inmenu",
                                   "<application>Hg</application> Tag"));
     connect(m_tagAction, SIGNAL(triggered()),
             this, SLOT(tag()));
 
     m_branchAction = new KAction(this);
-    m_branchAction->setIcon(KIcon("svn-branch"));
+    m_branchAction->setIcon(KIcon("bookmark-new"));
     m_branchAction->setText(i18nc("@action:inmenu",
                                   "<application>Hg</application> Branch"));
     connect(m_branchAction, SIGNAL(triggered()),
