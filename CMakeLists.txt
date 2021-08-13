@@ -4,7 +4,7 @@ if("${CMAKE_SOURCE_DIR}" STREQUAL "${CMAKE_BINARY_DIR}")
     message(SEND_ERROR "kde-baseapps requires an out of source build")
 endif()
 
-find_package(KDE4 4.19.0 REQUIRED)
+find_package(KDE4 4.21.0 REQUIRED)
 include(KDE4Defaults)
 include(GenerateExportHeader)
 
