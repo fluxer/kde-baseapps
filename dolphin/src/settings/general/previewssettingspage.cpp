@@ -131,7 +131,8 @@ void PreviewsSettingsPage::applySettings()
     }
 
     KConfigGroup globalConfig(KGlobal::config(), QLatin1String("PreviewSettings"));
-    globalConfig.writeEntry("Plugins", m_enabledPreviewPlugins);
+    globalConfig.writeEntry("Plugins", m_enabledPreviewPlugins,
+                            KConfigBase::Normal | KConfigBase::Global);
 
     const qulonglong maximumLocalSize = static_cast<qulonglong>(m_localFileSizeBox->value()) * 1024 * 1024;
     globalConfig.writeEntry("MaximumSize",
