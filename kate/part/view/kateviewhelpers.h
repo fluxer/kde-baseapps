@@ -143,8 +143,6 @@ Q_SIGNALS:
 
     // lists of lines added/removed recently to avoid scrollbar flickering
     QHash<int, int> m_linesAdded;
-
-    static unsigned char characterOpacity[256];
 };
 
 class KateIconBorder : public QWidget

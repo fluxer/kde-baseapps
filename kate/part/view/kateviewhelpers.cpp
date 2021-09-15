@@ -82,7 +82,7 @@ static const int s_lineWidth = 100;
 static const int s_pixelMargin = 8;
 static const int s_linePixelIncLimit = 6;
 
-unsigned char KateScrollBar::characterOpacity[256] = {
+static const unsigned char s_characterOpacity[256] = {
   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,  // <- 15
   0, 0, 0, 0, 0, 0, 0, 0, 255, 0, 255, 0, 0, 0, 0, 0,  // <- 31
   0, 125, 41, 221, 138, 195, 218, 21, 142, 142, 137, 137, 97, 87, 87, 140,  // <- 47
@@ -312,7 +312,7 @@ const QColor KateScrollBar::charColor(const QVector<Kate::TextLineData::Attribut
   // than an A or similar.
   // This gives the pixels created a bit of structure, which makes it look more
   // like real text.
-  color.setAlpha((ch.unicode() < 256) ? characterOpacity[ch.unicode()] : 1.0);
+  color.setAlpha((ch.unicode() < 256) ? s_characterOpacity[ch.unicode()] : 1.0);
 
   return color;
 }
