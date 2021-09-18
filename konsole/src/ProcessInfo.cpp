@@ -992,7 +992,7 @@ private:
         const bool readable = info.isReadable();
 
         if (readable && info.isSymLink()) {
-            setCurrentDir(info.symLinkTarget());
+            setCurrentDir(info.readLink());
             return true;
         } else {
             if (!readable)
