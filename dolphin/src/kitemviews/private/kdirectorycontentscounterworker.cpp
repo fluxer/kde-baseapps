@@ -18,11 +18,13 @@
  *   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA            *
  ***************************************************************************/
 
+#include "config-dolphin.h"
 #include "kdirectorycontentscounterworker.h"
 
 // Required includes for subItemsCount():
-    #include <dirent.h>
-    #include <QFile>
+#include <kde_file.h>
+#include <QFile>
+#include <dirent.h>
 
 KDirectoryContentsCounterWorker::KDirectoryContentsCounterWorker(QObject* parent) :
     QObject(parent)
@@ -58,10 +60,24 @@ int KDirectoryContentsCounterWorker::subItemsCount(const QString& path, Options 
             // If only directories are counted, consider an unknown file type and links also
             // as directory instead of trying to do an expensive stat()
             // (see bugs 292642 and 299997).
+#if defined(HAVE_DIRENT_D_TYPE)
             const bool countEntry = !countDirectoriesOnly ||
                                     dirEntry->d_type == DT_DIR ||
                                     dirEntry->d_type == DT_LNK ||
                                     dirEntry->d_type == DT_UNKNOWN;
+#else
+            QByteArray fullpath = QFile::encodeName(path);
+            fullpath += dirEntry->d_name;
+
+            KDE_struct_stat statbuf;
+            if (KDE_lstat(fullpath.constData(), &statbuf) == -1) {
+                continue;
+            }
+
+            const bool countEntry = !countDirectoriesOnly ||
+                                    S_ISDIR(statbuf.st_mode) ||
+                                    S_ISLNK(statbuf.st_mode);
+#endif
             if (countEntry) {
                 ++count;
             }
