@@ -32,8 +32,6 @@ add_subdirectory(snippets)
 
 add_subdirectory(tabify)
 
-add_subdirectory(katesql)
-
 add_subdirectory(close-except-like)
 
 add_subdirectory(project)
