@@ -20,6 +20,8 @@
 
 #include "kateprojectindex.h"
 
+#include <KStandardDirs>
+#include <KDebug>
 #include <QProcess>
 #include <QDir>
 
@@ -62,7 +64,24 @@ void KateProjectIndex::loadCtags (const QStringList &files)
    * close file again, other process will use it
    */
   m_ctagsIndexFile.close ();
-   
+
+  static const QStringList ctagexes = QStringList()
+    << QLatin1String("ctags")
+    << QLatin1String("ctags-universal")
+    << QLatin1String("ctags-exuberant")
+    << QLatin1String("uctags");
+  QString ctagsexe;
+  foreach (const QString &it, ctagexes) {
+    ctagsexe = KStandardDirs::findExe(it);
+    if (!ctagsexe.isEmpty()) {
+      break;
+    }
+  }
+  if (ctagsexe.isEmpty()) {
+    kWarning() << "ctags not found";
+    return;
+  }
+
   /**
    * try to run ctags for all files in this project
    * output to our ctags index file
@@ -70,7 +89,7 @@ void KateProjectIndex::loadCtags (const QStringList &files)
   QProcess ctags;
   QStringList args;
   args << "-L" << "-" << "-f" << m_ctagsIndexFile.fileName() << "--fields=+K+n";
-  ctags.start("ctags", args);
+  ctags.start(ctagsexe, args);
   if (!ctags.waitForStarted())
     return;
   
