@@ -105,9 +105,7 @@ bool KateProject::reload (bool force)
    */
   QJsonDocument jsondoc = QJsonDocument::fromJson(file.readAll());
   if (jsondoc.isNull()) {
-#if QT_VERSION >= 0x041000
     kWarning() << jsondoc.errorString();
-#endif
     return false;
   }
   QVariant project = jsondoc.toVariant();
