@@ -1310,6 +1310,7 @@
     <item> QStandardItem </item>
     <item> QStandardItemEditorCreator </item>
     <item> QStandardItemModel </item>
+    <item> QStandardPaths </item>
     <item> QState </item>
     <item> QStateMachine </item>
     <item> QStaticText </item>
