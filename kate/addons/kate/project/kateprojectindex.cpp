@@ -69,6 +69,7 @@ void KateProjectIndex::loadCtags (const QStringList &files)
     << QLatin1String("ctags")
     << QLatin1String("ctags-universal")
     << QLatin1String("ctags-exuberant")
+    << QLatin1String("exctags")
     << QLatin1String("uctags");
   QString ctagsexe;
   foreach (const QString &it, ctagexes) {

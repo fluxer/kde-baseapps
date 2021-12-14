@@ -18,7 +18,7 @@ set_package_properties(Sudo PROPERTIES
     PURPOSE "Needed for kdesudo to operate"
 )
 
-find_program(CTAGS_EXECUTABLE ctags ctags-universal ctags-exuberant uctags)
+find_program(CTAGS_EXECUTABLE ctags ctags-universal ctags-exuberant exctags uctags)
 add_feature_info(ctags
     CTAGS_EXECUTABLE
     "Code indexing support in Kate"
