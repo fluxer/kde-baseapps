@@ -2017,28 +2017,6 @@ QList<QPair<int, QVariant> > KFileItemModel::permissionRoleGroups() const
     return groups;
 }
 
-QList<QPair<int, QVariant> > KFileItemModel::ratingRoleGroups() const
-{
-    Q_ASSERT(!m_itemData.isEmpty());
-
-    const int maxIndex = count() - 1;
-    QList<QPair<int, QVariant> > groups;
-
-    int groupValue = -1;
-    for (int i = 0; i <= maxIndex; ++i) {
-        if (isChildItem(i)) {
-            continue;
-        }
-        const int newGroupValue = m_itemData.at(i)->values.value("rating", 0).toInt();
-        if (newGroupValue != groupValue) {
-            groupValue = newGroupValue;
-            groups.append(QPair<int, QVariant>(i, newGroupValue));
-        }
-    }
-
-    return groups;
-}
-
 QList<QPair<int, QVariant> > KFileItemModel::genericStringRoleGroups(const QByteArray& role) const
 {
     Q_ASSERT(!m_itemData.isEmpty());

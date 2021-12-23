@@ -22,20 +22,14 @@
 
 #include "kstandarditemlistgroupheader.h"
 
-#include <kratingpainter.h>
 #include <QPainter>
 
 KStandardItemListGroupHeader::KStandardItemListGroupHeader(QGraphicsWidget* parent) :
     KItemListGroupHeader(parent),
     m_dirtyCache(true),
-    m_text(),
-    m_pixmap()
+    m_text()
 {
     m_text.setTextFormat(Qt::PlainText);
-// only relevant to OpenGL which Katie does not support
-#ifndef QT_KATIE
-    m_text.setPerformanceHint(QStaticText::AggressiveCaching);
-#endif
 }
 
 KStandardItemListGroupHeader::~KStandardItemListGroupHeader()
@@ -52,12 +46,8 @@ void KStandardItemListGroupHeader::paint(QPainter* painter, const QStyleOptionGr
 
 void KStandardItemListGroupHeader::paintRole(QPainter* painter, const QRectF& roleBounds, const QColor& color)
 {
-    if (m_pixmap.isNull()) {
-        painter->setPen(color);
-        painter->drawStaticText(roleBounds.topLeft(), m_text);
-    } else {
-        painter->drawPixmap(roleBounds.topLeft(), m_pixmap);
-    }
+    painter->setPen(color);
+    painter->drawStaticText(roleBounds.topLeft(), m_text);
 }
 
 void KStandardItemListGroupHeader::paintSeparator(QPainter* painter, const QColor& color)
@@ -103,26 +93,9 @@ void KStandardItemListGroupHeader::updateCache()
 
     const qreal maxWidth = size().width() - 4 * styleOption().padding;
 
-    if (role() == "rating") {
-        m_text = QString(); // krazy:exlude=nullstrassign
-
-        const qreal height = styleOption().fontMetrics.ascent();
-        const QSizeF pixmapSize(qMin(height * 5, maxWidth), height);
-
-        m_pixmap = QPixmap(pixmapSize.toSize());
-        m_pixmap.fill(Qt::transparent);
-
-        QPainter painter(&m_pixmap);
-        const QRect rect(0, 0, m_pixmap.width(), m_pixmap.height());
-        const int rating = data().toInt();
-        KRatingPainter::paintRating(&painter, rect, Qt::AlignJustify | Qt::AlignVCenter, rating);
-    } else {
-        m_pixmap = QPixmap();
-
-        QFontMetricsF fontMetrics(font());
-        const QString text = fontMetrics.elidedText(data().toString(), Qt::ElideRight, maxWidth);
-        m_text.setText(text);
-    }
+    QFontMetricsF fontMetrics(font());
+    const QString text = fontMetrics.elidedText(data().toString(), Qt::ElideRight, maxWidth);
+    m_text.setText(text);
 }
 
 #include "moc_kstandarditemlistgroupheader.cpp"

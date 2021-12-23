@@ -26,7 +26,6 @@
 #include <KIconEffect>
 #include <KIconLoader>
 #include <KLocale>
-#include <kratingpainter.h>
 #include <KStringHandler>
 #include <KDebug>
 
@@ -88,25 +87,21 @@ qreal KStandardItemListWidgetInformant::preferredRoleColumnWidth(const QByteArra
     const QFontMetrics& normalFontMetrics = option.fontMetrics;
     const QFontMetrics linkFontMetrics(customizedFontForLinks(option.font));
 
-    if (role == "rating") {
-        width += KStandardItemListWidget::preferredRatingSize(option).width();
-    } else {
-        // If current item is a link, we use the customized link font metrics instead of the normal font metrics.
-        const QFontMetrics& fontMetrics = itemIsLink(index, view) ? linkFontMetrics : normalFontMetrics;
+    // If current item is a link, we use the customized link font metrics instead of the normal font metrics.
+    const QFontMetrics& fontMetrics = itemIsLink(index, view) ? linkFontMetrics : normalFontMetrics;
 
-        width += fontMetrics.width(text);
+    width += fontMetrics.width(text);
 
-        if (role == "text") {
-            if (view->supportsItemExpanding()) {
-                // Increase the width by the expansion-toggle and the current expansion level
-                const int expandedParentsCount = values.value("expandedParentsCount", 0).toInt();
-                const qreal height = option.padding * 2 + qMax(option.iconSize, fontMetrics.height());
-                width += (expandedParentsCount + 1) * height;
-            }
-
-            // Increase the width by the required space for the icon
-            width += option.padding * 2 + option.iconSize;
+    if (role == "text") {
+        if (view->supportsItemExpanding()) {
+            // Increase the width by the expansion-toggle and the current expansion level
+            const int expandedParentsCount = values.value("expandedParentsCount", 0).toInt();
+            const qreal height = option.padding * 2 + qMax(option.iconSize, fontMetrics.height());
+            width += (expandedParentsCount + 1) * height;
         }
+
+        // Increase the width by the required space for the icon
+        width += option.padding * 2 + option.iconSize;
     }
 
     return width;
@@ -125,10 +120,6 @@ bool KStandardItemListWidgetInformant::itemIsLink(int index, const KItemListView
 QString KStandardItemListWidgetInformant::roleText(const QByteArray& role,
                                                    const QHash<QByteArray, QVariant>& values) const
 {
-    if (role == "rating") {
-        // Always use an empty text, as the rating is shown by the image m_rating.
-        return QString();
-    }
     return values.value(role).toString();
 }
 
@@ -271,7 +262,6 @@ KStandardItemListWidget::KStandardItemListWidget(KItemListWidgetInformant* infor
     m_customTextColor(),
     m_additionalInfoTextColor(),
     m_overlay(),
-    m_rating(),
     m_roleEditor(0),
     m_oldRoleEditor(0)
 {
@@ -410,16 +400,6 @@ void KStandardItemListWidget::paint(QPainter* painter, const QStyleOptionGraphic
     for (int i = 1; i < m_sortedVisibleRoles.count(); ++i) {
         const TextInfo* textInfo = m_textInfo.value(m_sortedVisibleRoles[i]);
         painter->drawStaticText(textInfo->pos, textInfo->staticText);
-    }
-
-    if (!m_rating.isNull()) {
-        const TextInfo* ratingTextInfo = m_textInfo.value("rating");
-        QPointF pos = ratingTextInfo->pos;
-        const Qt::Alignment align = ratingTextInfo->staticText.textOption().alignment();
-        if (align & Qt::AlignHCenter) {
-            pos.rx() += (size().width() - m_rating.width()) / 2 - 2;
-        }
-        painter->drawPixmap(pos, m_rating);
     }
 
     if (clipAdditionalInfoBounds) {
@@ -1065,30 +1045,6 @@ void KStandardItemListWidget::updateTextsCache()
     case DetailsLayout: updateDetailsLayoutTextCache(); break;
     default: Q_ASSERT(false); break;
     }
-
-    const TextInfo* ratingTextInfo = m_textInfo.value("rating");
-    if (ratingTextInfo) {
-        // The text of the rating-role has been set to empty to get
-        // replaced by a rating-image showing the rating as stars.
-        const KItemListStyleOption& option = styleOption();
-        QSizeF ratingSize = preferredRatingSize(option);
-
-        const qreal availableWidth = (m_layout == DetailsLayout)
-                                     ? columnWidth("rating") - columnPadding(option)
-                                     : size().width();
-        if (ratingSize.width() > availableWidth) {
-            ratingSize.rwidth() = availableWidth;
-        }
-        m_rating = QPixmap(ratingSize.toSize());
-        m_rating.fill(Qt::transparent);
-
-        QPainter painter(&m_rating);
-        const QRect rect(0, 0, m_rating.width(), m_rating.height());
-        const int rating = data().value("rating").toInt();
-        KRatingPainter::paintRating(&painter, rect, Qt::AlignJustify | Qt::AlignVCenter, rating);
-    } else if (!m_rating.isNull()) {
-        m_rating = QPixmap();
-    }
 }
 
 void KStandardItemListWidget::updateIconsLayoutTextCache()
@@ -1201,10 +1157,7 @@ void KStandardItemListWidget::updateIconsLayoutTextCache()
             if (requiredWidth > maxWidth) {
                 const QString elidedText = m_customizedFontMetrics.elidedText(text, Qt::ElideRight, maxWidth);
                 textInfo->staticText.setText(elidedText);
-                requiredWidth = m_customizedFontMetrics.width(elidedText);
-            } else if (role == "rating") {
-		// Use the width of the rating pixmap, because the rating text is empty.
-                requiredWidth = m_rating.width();
+                requiredWidth = m_customizedFontMetrics.width(elidedText);;
             }
         }
         layout.endLayout();
@@ -1485,12 +1438,6 @@ QPixmap KStandardItemListWidget::pixmapForIcon(const QString& name, const QStrin
     }
 
     return pixmap;
-}
-
-QSizeF KStandardItemListWidget::preferredRatingSize(const KItemListStyleOption& option)
-{
-    const qreal height = option.fontMetrics.ascent();
-    return QSizeF(height * 5, height);
 }
 
 qreal KStandardItemListWidget::columnPadding(const KItemListStyleOption& option)

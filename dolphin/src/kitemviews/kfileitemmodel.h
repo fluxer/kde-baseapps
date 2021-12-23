@@ -381,7 +381,6 @@ private:
     QList<QPair<int, QVariant> > sizeRoleGroups() const;
     QList<QPair<int, QVariant> > dateRoleGroups() const;
     QList<QPair<int, QVariant> > permissionRoleGroups() const;
-    QList<QPair<int, QVariant> > ratingRoleGroups() const;
     QList<QPair<int, QVariant> > genericStringRoleGroups(const QByteArray& typeForRole) const;
 
     /**
