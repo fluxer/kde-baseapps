@@ -44,6 +44,105 @@
 
 // #define KSTANDARDITEMLISTWIDGET_DEBUG
 
+KStaticText::KStaticText()
+    : m_textwidth(0.0)
+{
+}
+
+QString KStaticText::text() const
+{
+    return m_text;
+}
+
+void KStaticText::setText(const QString &text)
+{
+    m_text = text;
+}
+
+void KStaticText::setTextWidth(const qreal textwidth)
+{
+    m_textwidth = textwidth;
+}
+
+// detailed/compact mode only getter
+QSizeF KStaticText::size() const
+{
+    QTextLayout textlayout(m_text);
+    textlayout.setTextOption(m_textoption);
+    textlayout.beginLayout();
+    QTextLine textline = textlayout.createLine();
+    while (textline.isValid()) {
+        textline.setLineWidth(m_textwidth);
+        textline = textlayout.createLine();
+    }
+    textlayout.endLayout();
+
+    return textlayout.boundingRect().size();
+}
+
+// multi-line (wrapped) text aware overload
+QSizeF KStaticText::size(const QFontMetricsF &fontmetrics, const int maxlines) const
+{
+    QString text = m_text;
+    redo:
+        QTextLayout textlayout(text);
+        textlayout.setTextOption(m_textoption);
+        textlayout.beginLayout();
+        QTextLine textline = textlayout.createLine();
+        int linecount = 1;
+        qreal lineheight = 0;
+        while (textline.isValid()) {
+            textline.setLineWidth(m_textwidth);
+            textline.setPosition(QPointF(0, lineheight));
+            if (maxlines != -1 && linecount == maxlines && textline.naturalTextWidth() > m_textwidth) {
+                text = fontmetrics.elidedText(text, Qt::ElideRight, m_textwidth);
+                goto redo;
+            }
+            lineheight += textline.height();
+            textline = textlayout.createLine();
+            linecount++;
+        }
+        textlayout.endLayout();
+
+    return textlayout.boundingRect().size();
+}
+
+QTextOption KStaticText::textOption() const
+{
+    return m_textoption;
+}
+
+void KStaticText::setTextOption(const QTextOption &textoption)
+{
+    m_textoption = textoption;
+}
+
+void KStaticText::paint(QPainter *painter, const QPointF position, const QFontMetricsF &fontmetrics, const int maxlines) const
+{
+    QString text = m_text;
+    redo:
+        QTextLayout textlayout(text);
+        textlayout.setTextOption(m_textoption);
+        textlayout.beginLayout();
+        QTextLine textline = textlayout.createLine();
+        int linecount = 1;
+        qreal lineheight = 0;
+        while (textline.isValid()) {
+            textline.setLineWidth(m_textwidth);
+            textline.setPosition(QPointF(0, lineheight));
+            if (maxlines != -1 && linecount == maxlines && textline.naturalTextWidth() > m_textwidth) {
+                text = fontmetrics.elidedText(text, Qt::ElideRight, m_textwidth);
+                goto redo;
+            }
+            lineheight += textline.height();
+            textline = textlayout.createLine();
+            linecount++;
+        }
+        textlayout.endLayout();
+
+    textlayout.draw(painter, position);
+}
+
 KStandardItemListWidgetInformant::KStandardItemListWidgetInformant() :
     KItemListWidgetInformant()
 {
@@ -379,7 +478,7 @@ void KStandardItemListWidget::paint(QPainter* painter, const QStyleOptionGraphic
         return;
     }
 
-    painter->drawStaticText(textInfo->pos, textInfo->staticText);
+    textInfo->staticText.paint(painter, textInfo->pos, m_customizedFontMetrics, itemListStyleOption.maxTextLines);
 
     bool clipAdditionalInfoBounds = false;
     if (m_supportsItemExpanding) {
@@ -399,7 +498,7 @@ void KStandardItemListWidget::paint(QPainter* painter, const QStyleOptionGraphic
 
     for (int i = 1; i < m_sortedVisibleRoles.count(); ++i) {
         const TextInfo* textInfo = m_textInfo.value(m_sortedVisibleRoles[i]);
-        painter->drawStaticText(textInfo->pos, textInfo->staticText);
+        textInfo->staticText.paint(painter, textInfo->pos, m_customizedFontMetrics);
     }
 
     if (clipAdditionalInfoBounds) {
@@ -1030,11 +1129,6 @@ void KStandardItemListWidget::updateTextsCache()
     m_textInfo.clear();
     for (int i = 0; i < m_sortedVisibleRoles.count(); ++i) {
         TextInfo* textInfo = new TextInfo();
-        textInfo->staticText.setTextFormat(Qt::PlainText);
-// only relevant to OpenGL which Katie does not support
-#ifndef QT_KATIE
-        textInfo->staticText.setPerformanceHint(QStaticText::AggressiveCaching);
-#endif
         textInfo->staticText.setTextOption(textOption);
         m_textInfo.insert(m_sortedVisibleRoles[i], textInfo);
     }
@@ -1359,7 +1453,14 @@ QRectF KStandardItemListWidget::roleEditingRect(const QByteArray& role) const
         return QRectF();
     }
 
-    QRectF rect(textInfo->pos, textInfo->staticText.size());
+    QRectF rect;
+    if (m_layout == IconsLayout) {
+        const KItemListStyleOption& option = styleOption();
+        rect = QRectF(textInfo->pos, textInfo->staticText.size(m_customizedFontMetrics, option.maxTextLines));
+    } else {
+        rect = QRectF(textInfo->pos, textInfo->staticText.size());
+    }
+
     if (m_layout == DetailsLayout) {
         rect.setWidth(columnWidth(role) - rect.x());
     }

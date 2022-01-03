@@ -25,12 +25,38 @@
 #include <kitemviews/kitemlistwidget.h>
 
 #include <QPixmap>
-#include <QtCore/qpoint.h>
-#include <QStaticText>
+#include <QPoint>
+#include <QTextOption>
 
 class KItemListRoleEditor;
 class KItemListStyleOption;
 class KItemListView;
+
+class KStaticText {
+public:
+    KStaticText();
+
+    QString text() const;
+    void setText(const QString &text);
+
+    void setTextWidth(const qreal textwidth);
+
+    QSizeF size() const;
+    QSizeF size(const QFontMetricsF &fontmetrics, const int maxlines = -1) const;
+
+    QTextOption textOption() const;
+    void setTextOption(const QTextOption &textoption);
+
+    void paint(
+        QPainter *painter, const QPointF position,
+        const QFontMetricsF &fontmetrics, const int maxlines = -1
+    ) const;
+
+private:
+    QString m_text;
+    QTextOption m_textoption;
+    qreal m_textwidth;
+};
 
 class DOLPHINPRIVATE_EXPORT KStandardItemListWidgetInformant : public KItemListWidgetInformant
 {
@@ -243,7 +269,7 @@ private:
     struct TextInfo
     {
         QPointF pos;
-        QStaticText staticText;
+        KStaticText staticText;
     };
     QHash<QByteArray, TextInfo*> m_textInfo;
 
