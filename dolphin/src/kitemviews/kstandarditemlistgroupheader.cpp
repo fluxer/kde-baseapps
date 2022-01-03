@@ -29,7 +29,6 @@ KStandardItemListGroupHeader::KStandardItemListGroupHeader(QGraphicsWidget* pare
     m_dirtyCache(true),
     m_text()
 {
-    m_text.setTextFormat(Qt::PlainText);
 }
 
 KStandardItemListGroupHeader::~KStandardItemListGroupHeader()
@@ -47,7 +46,7 @@ void KStandardItemListGroupHeader::paint(QPainter* painter, const QStyleOptionGr
 void KStandardItemListGroupHeader::paintRole(QPainter* painter, const QRectF& roleBounds, const QColor& color)
 {
     painter->setPen(color);
-    painter->drawStaticText(roleBounds.topLeft(), m_text);
+    painter->drawText(roleBounds, m_text);
 }
 
 void KStandardItemListGroupHeader::paintSeparator(QPainter* painter, const QColor& color)
@@ -91,11 +90,7 @@ void KStandardItemListGroupHeader::updateCache()
     Q_ASSERT(m_dirtyCache);
     m_dirtyCache = false;
 
-    const qreal maxWidth = size().width() - 4 * styleOption().padding;
-
-    QFontMetricsF fontMetrics(font());
-    const QString text = fontMetrics.elidedText(data().toString(), Qt::ElideRight, maxWidth);
-    m_text.setText(text);
+    m_text = data().toString();
 }
 
 #include "moc_kstandarditemlistgroupheader.cpp"

@@ -25,7 +25,7 @@
 #include <kitemviews/kitemlistgroupheader.h>
 
 #include <QPixmap>
-#include <QStaticText>
+#include <QString>
 
 class DOLPHINPRIVATE_EXPORT KStandardItemListGroupHeader : public KItemListGroupHeader
 {
@@ -49,7 +49,7 @@ private:
 
 private:
     bool m_dirtyCache;
-    QStaticText m_text;
+    QString m_text;
 };
 #endif
 
