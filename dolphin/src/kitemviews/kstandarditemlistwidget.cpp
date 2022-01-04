@@ -83,14 +83,11 @@ QSizeF KStaticText::size() const
         return brect.size();
     }
 
-    QTextLayout textlayout(m_text);
+    QTextLayout textlayout(m_text, m_font);
     textlayout.setTextOption(m_textoption);
     textlayout.beginLayout();
     QTextLine textline = textlayout.createLine();
-    while (textline.isValid()) {
-        textline.setLineWidth(m_textwidth);
-        textline = textlayout.createLine();
-    }
+    textline.setLineWidth(m_textwidth);
     textlayout.endLayout();
 
     brect = textlayout.boundingRect();
@@ -109,14 +106,16 @@ QSizeF KStaticText::size(const QFontMetricsF &fontmetrics, const int maxlines) c
 
     QString text = m_text;
     redo:
-        QTextLayout textlayout(text);
+        QTextLayout textlayout(text, m_font);
         textlayout.setTextOption(m_textoption);
         textlayout.beginLayout();
         QTextLine textline = textlayout.createLine();
         int linecount = 1;
-        qreal lineheight = 0;
+        const qreal fontleading = fontmetrics.leading();
+        qreal lineheight = -fontleading;
         while (textline.isValid()) {
             textline.setLineWidth(m_textwidth);
+            lineheight += fontleading;
             textline.setPosition(QPointF(0, lineheight));
             if (maxlines != -1 && linecount == maxlines && textline.naturalTextWidth() > m_textwidth) {
                 text = fontmetrics.elidedText(text, Qt::ElideRight, m_textwidth);
@@ -142,11 +141,16 @@ void KStaticText::setTextOption(const QTextOption &textoption)
     m_textoption = textoption;
 }
 
+void KStaticText::setFont(const QFont &font)
+{
+    m_font = font;
+}
+
 void KStaticText::paint(QPainter *painter, const QPointF position, const QFontMetricsF &fontmetrics, const int maxlines) const
 {
     QString text = m_text;
     redo:
-        QTextLayout textlayout(text);
+        QTextLayout textlayout(text, m_font);
         textlayout.setTextOption(m_textoption);
         textlayout.beginLayout();
         QTextLine textline = textlayout.createLine();
@@ -1155,6 +1159,7 @@ void KStandardItemListWidget::updateTextsCache()
     for (int i = 0; i < m_sortedVisibleRoles.count(); ++i) {
         TextInfo* textInfo = new TextInfo();
         textInfo->staticText.setTextOption(textOption);
+        textInfo->staticText.setFont(m_customizedFont);
         m_textInfo.insert(m_sortedVisibleRoles[i], textInfo);
     }
 
@@ -1316,6 +1321,7 @@ void KStandardItemListWidget::updateCompactLayoutTextCache()
         const QString text = roleText(role, values);
         TextInfo* textInfo = m_textInfo.value(role);
         textInfo->staticText.setText(text);
+        textInfo->staticText.setFont(m_customizedFont);
 
         qreal requiredWidth = m_customizedFontMetrics.width(text);
         if (requiredWidth > maxWidth) {

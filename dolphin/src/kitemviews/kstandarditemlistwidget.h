@@ -47,6 +47,8 @@ public:
     QTextOption textOption() const;
     void setTextOption(const QTextOption &textoption);
 
+    void setFont(const QFont &font);
+
     void paint(
         QPainter *painter, const QPointF position,
         const QFontMetricsF &fontmetrics, const int maxlines = -1
@@ -55,6 +57,7 @@ public:
 private:
     QString m_text;
     QTextOption m_textoption;
+    QFont m_font;
     qreal m_textwidth;
     mutable QRectF brect;
     mutable bool mixguard;
