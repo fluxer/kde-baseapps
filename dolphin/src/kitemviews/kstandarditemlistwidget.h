@@ -56,6 +56,8 @@ private:
     QString m_text;
     QTextOption m_textoption;
     qreal m_textwidth;
+    mutable QRectF brect;
+    mutable bool mixguard;
 };
 
 class DOLPHINPRIVATE_EXPORT KStandardItemListWidgetInformant : public KItemListWidgetInformant

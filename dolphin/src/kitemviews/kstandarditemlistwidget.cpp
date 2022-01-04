@@ -45,7 +45,8 @@
 // #define KSTANDARDITEMLISTWIDGET_DEBUG
 
 KStaticText::KStaticText()
-    : m_textwidth(0.0)
+    : m_textwidth(0.0),
+    mixguard(false)
 {
 }
 
@@ -56,17 +57,32 @@ QString KStaticText::text() const
 
 void KStaticText::setText(const QString &text)
 {
+    brect = QRectF();
+    mixguard = false;
     m_text = text;
 }
 
 void KStaticText::setTextWidth(const qreal textwidth)
 {
+    brect = QRectF();
+    mixguard = false;
     m_textwidth = textwidth;
 }
 
 // detailed/compact mode only getter
 QSizeF KStaticText::size() const
 {
+#ifndef QT_NO_DEBUG
+    if (mixguard) {
+        kWarning() << "Mixing size overloads, discarding cache";
+    }
+#endif
+
+    if (!mixguard && !brect.isNull()) {
+        // qDebug() << Q_FUNC_INFO << "cache hit";
+        return brect.size();
+    }
+
     QTextLayout textlayout(m_text);
     textlayout.setTextOption(m_textoption);
     textlayout.beginLayout();
@@ -77,12 +93,20 @@ QSizeF KStaticText::size() const
     }
     textlayout.endLayout();
 
-    return textlayout.boundingRect().size();
+    brect = textlayout.boundingRect();
+    return brect.size();
 }
 
 // multi-line (wrapped) text aware overload
 QSizeF KStaticText::size(const QFontMetricsF &fontmetrics, const int maxlines) const
 {
+    mixguard = true;
+
+    if (!brect.isNull()) {
+        // qDebug() << Q_FUNC_INFO << "cache hit";
+        return brect.size();
+    }
+
     QString text = m_text;
     redo:
         QTextLayout textlayout(text);
@@ -104,7 +128,8 @@ QSizeF KStaticText::size(const QFontMetricsF &fontmetrics, const int maxlines) c
         }
         textlayout.endLayout();
 
-    return textlayout.boundingRect().size();
+    brect = textlayout.boundingRect();
+    return brect.size();
 }
 
 QTextOption KStaticText::textOption() const
