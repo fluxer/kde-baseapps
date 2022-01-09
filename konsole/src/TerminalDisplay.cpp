@@ -190,8 +190,6 @@ void TerminalDisplay::fontChange(const QFont&)
     if (_fontWidth < 1)
         _fontWidth = 1;
 
-    _fontAscent = fm.ascent();
-
     emit changedFontMetricSignal(_fontHeight, _fontWidth);
     propagateSize();
     update();
@@ -293,7 +291,6 @@ TerminalDisplay::TerminalDisplay(QWidget* parent)
     , _gridLayout(0)
     , _fontHeight(1)
     , _fontWidth(1)
-    , _fontAscent(1)
     , _boldIntense(true)
     , _lines(1)
     , _columns(1)
