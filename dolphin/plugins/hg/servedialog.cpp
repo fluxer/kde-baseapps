@@ -84,7 +84,7 @@ void HgServeDialog::setupUI()
     m_logEdit = new QTextEdit;
     m_repoPathLabel = new QLabel;
     m_logEdit->setReadOnly(true);
-    m_logEdit->setFontFamily(QLatin1String("Monospace"));
+    m_logEdit->setFontFamily(QLatin1String(KDE_DEFAULT_FIXED_FONT));
 
     QVBoxLayout *buttonLayout = new QVBoxLayout;
     buttonLayout->addWidget(m_startButton);

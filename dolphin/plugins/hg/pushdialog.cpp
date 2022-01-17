@@ -82,7 +82,7 @@ void HgPushDialog::createChangesGroup()
     m_outChangesList->setSelectionBehavior(QAbstractItemView::SelectRows);
     m_outChangesList->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
-    m_changesetInfo->setFontFamily(QLatin1String("Monospace"));
+    m_changesetInfo->setFontFamily(QLatin1String(KDE_DEFAULT_FIXED_FONT));
 
     hbox->addWidget(m_outChangesList);
     hbox->addWidget(m_changesetInfo);

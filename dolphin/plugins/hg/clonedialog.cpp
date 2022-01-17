@@ -98,7 +98,7 @@ HgCloneDialog::HgCloneDialog(const QString &directory, QWidget *parent):
     m_stackLayout = new  QStackedLayout;
     m_outputEdit = new KTextEdit;
     m_outputEdit->setReadOnly(true);
-    m_outputEdit->setFontFamily(QLatin1String("Monospace"));
+    m_outputEdit->setFontFamily(QLatin1String(KDE_DEFAULT_FIXED_FONT));
     m_stackLayout->addWidget(frame);
     m_stackLayout->addWidget(m_outputEdit);
 
