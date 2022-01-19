@@ -448,7 +448,7 @@ void EditProfileDialog::setupAppearancePage(const Profile::Ptr profile)
     const bool antialias = profile->antiAliasFonts();
 
     QFont profileFont = profile->font();
-    profileFont.setStyleStrategy(antialias ? QFont::PreferAntialias : QFont::NoAntialias);
+    profileFont.setHintingPreference(antialias ? QFont::PreferDefaultHinting : QFont::PreferNoHinting);
 
     _ui->fontPreviewLabel->installEventFilter(this);
     _ui->fontPreviewLabel->setFont(profileFont);
@@ -474,7 +474,7 @@ void EditProfileDialog::setupAppearancePage(const Profile::Ptr profile)
 void EditProfileDialog::setAntialiasText(bool enable)
 {
     QFont profileFont = _ui->fontPreviewLabel->font();
-    profileFont.setStyleStrategy(enable ? QFont::PreferAntialias : QFont::NoAntialias);
+    profileFont.setHintingPreference(enable ? QFont::PreferDefaultHinting : QFont::PreferNoHinting);
 
     // update preview to reflect text smoothing state
     fontSelected(profileFont);

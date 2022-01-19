@@ -209,7 +209,7 @@ void TerminalDisplay::setVTFont(const QFont& f)
         // hint that text should be drawn without anti-aliasing.
         // depending on the user's font configuration, this may not be respected
         if (!_antialiasText)
-            font.setStyleStrategy(QFont::NoAntialias);
+            font.setHintingPreference(QFont::PreferNoHinting);
 
         // experimental optimization.  Konsole assumes that the terminal is using a
         // mono-spaced font, in which case kerning information should have an effect.
