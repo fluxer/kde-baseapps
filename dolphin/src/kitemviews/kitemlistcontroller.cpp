@@ -40,7 +40,6 @@
 #include <QGraphicsView>
 #include <QMimeData>
 #include <QTimer>
-#include <QAccessible>
 
 KItemListController::KItemListController(KItemModelBase* model, KItemListView* view, QObject* parent) :
     QObject(parent),
@@ -907,8 +906,6 @@ bool KItemListController::dropEvent(QGraphicsSceneDragDropEvent* event, const QT
         emit itemDropEvent(m_view->itemAt(pos), event);
     }
 
-    QAccessible::updateAccessibility(view(), 0, QAccessible::DragDropEnd);
-
     return true;
 }
 
@@ -1159,7 +1156,6 @@ void KItemListController::startDragging()
     drag->setHotSpot(hotSpot);
 
     drag->exec(Qt::MoveAction | Qt::CopyAction | Qt::LinkAction, Qt::CopyAction);
-    QAccessible::updateAccessibility(view(), 0, QAccessible::DragDropStart);
 }
 
 KItemListWidget* KItemListController::hoveredWidget() const

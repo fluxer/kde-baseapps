@@ -906,8 +906,6 @@ private:
     bool _centerContents;   // center the contents between margins
 
     qreal _opacity;
-
-    friend class TerminalDisplayAccessible;
 };
 
 class AutoScrollHandler : public QObject

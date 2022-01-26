@@ -32,6 +32,7 @@
 #include <kitemviews/private/kitemlistviewanimation.h>
 #include <QGraphicsWidget>
 #include <QSet>
+#include <QTimer>
 
 class KItemListController;
 class KItemListGroupHeaderCreatorBase;
@@ -45,7 +46,6 @@ class KItemListWidget;
 class KItemListWidgetInformant;
 class KItemListWidgetCreatorBase;
 class KItemListViewCreatorBase;
-#include <QTimer>
 
 /**
  * @brief Represents the view of an item-list.
@@ -764,8 +764,6 @@ private:
     friend class KItemListHeader;    // Accesses m_headerWidget
     friend class KItemListController;
     friend class KItemListControllerTest;
-    friend class KItemListViewAccessible;
-    friend class KItemListAccessibleCell;
 };
 
 /**

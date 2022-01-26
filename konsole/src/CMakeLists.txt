@@ -100,7 +100,6 @@ set(konsoleprivate_SRCS
     TerminalCharacterDecoder.cpp
     ExtendedCharTable.cpp
     TerminalDisplay.cpp
-    TerminalDisplayAccessible.cpp
     ViewContainer.cpp
     ViewContainerTabBar.cpp
     ViewManager.cpp

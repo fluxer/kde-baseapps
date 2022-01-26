@@ -39,7 +39,6 @@
 #include "katecompletionwidget.h"
 #include "katesearchbar.h"
 #include "spellcheck/spellingmenu.h"
-#include "kateviewaccessible.h"
 #include "katetextanimation.h"
 #include "katemessagewidget.h"
 
@@ -208,10 +207,6 @@ KateViewInternal::KateViewInternal(KateView *view)
   connect( m_view, SIGNAL(selectionChanged(KTextEditor::View*)),
              this, SLOT(viewSelectionChanged()) );
 
-#ifndef QT_NO_ACCESSIBILITY
-  QAccessible::installFactory(accessibleInterfaceFactory);
-#endif
-
   // update is called in KateView, after construction and layout is over
   // but before any other kateviewinternal call
 }
@@ -222,10 +217,6 @@ KateViewInternal::~KateViewInternal ()
   if (m_textAnimation) {
     delete m_textAnimation;
   }
-
-#ifndef QT_NO_ACCESSIBILITY
-  QAccessible::removeFactory(accessibleInterfaceFactory);
-#endif
 
   // kill preedit ranges
   delete m_imPreeditRange;
@@ -669,10 +660,6 @@ void KateViewInternal::makeVisible (const KTextEditor::Cursor& c, int endCol, bo
   }
 
   m_madeVisible = !force;
-
-#ifndef QT_NO_ACCESSIBILITY
-  QAccessible::updateAccessibility( this, KateCursorAccessible::ChildId, QAccessible::Focus );
-#endif
 }
 
 void KateViewInternal::slotRegionVisibilityChanged()
@@ -1815,10 +1802,6 @@ void KateViewInternal::updateSelection( const KTextEditor::Cursor& _newCursor, b
     m_selectionCached = KTextEditor::Range::invalid();
     m_selectAnchor = KTextEditor::Cursor::invalid();
   }
-
-#ifndef QT_NO_ACCESSIBILITY
-  QAccessible::updateAccessibility(this, 0, QAccessible::TextSelectionChanged);
-#endif
 }
 
 void KateViewInternal::setCaretStyle( KateRenderer::caretStyles style, bool repaint )
@@ -3450,9 +3433,6 @@ void KateViewInternal::mouseMoved( )
 void KateViewInternal::cursorMoved( )
 {
   m_view->updateRangesIn (KTextEditor::Attribute::ActivateCaretIn);
-#ifndef QT_NO_ACCESSIBILITY
-  QAccessible::updateAccessibility(this, 0, QAccessible::TextCaretMoved);
-#endif
 }
 
 bool KateViewInternal::rangeAffectsView(const KTextEditor::Range& range, bool realCursors) const

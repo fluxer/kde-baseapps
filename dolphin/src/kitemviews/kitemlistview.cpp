@@ -47,8 +47,6 @@
 
 #include <algorithm>
 
-#include "kitemlistviewaccessible.h"
-
 namespace {
     // Time in ms until reaching the autoscroll margin triggers
     // an initial autoscrolling
@@ -57,21 +55,6 @@ namespace {
     // Delay in ms for triggering the next autoscroll
     const int RepeatingAutoScrollDelay = 1000 / 60;
 }
-
-#ifndef QT_NO_ACCESSIBILITY
-QAccessibleInterface* accessibleInterfaceFactory(const QString &key, QObject *object)
-{
-    Q_UNUSED(key)
-
-    if (KItemListContainer* container = qobject_cast<KItemListContainer*>(object)) {
-        return new KItemListContainerAccessible(container);
-    } else if (KItemListView* view = qobject_cast<KItemListView*>(object)) {
-        return new KItemListViewAccessible(view);
-    }
-
-    return 0;
-}
-#endif
 
 KItemListView::KItemListView(QGraphicsWidget* parent) :
     QGraphicsWidget(parent),
@@ -130,11 +113,6 @@ KItemListView::KItemListView(QGraphicsWidget* parent) :
     m_headerWidget->setVisible(false);
 
     m_header = new KItemListHeader(this);
-
-#ifndef QT_NO_ACCESSIBILITY
-    QAccessible::installFactory(accessibleInterfaceFactory);
-#endif
-
 }
 
 KItemListView::~KItemListView()
@@ -1270,7 +1248,6 @@ void KItemListView::slotItemsChanged(const KItemRangeList& itemRanges,
             doLayout(NoAnimation);
         }
     }
-    QAccessible::updateAccessibility(this, 0, QAccessible::TableModelChanged);
 }
 
 void KItemListView::slotGroupsChanged()
@@ -1346,7 +1323,6 @@ void KItemListView::slotCurrentChanged(int current, int previous)
             currentWidget->setCurrent(true);
         }
     }
-    QAccessible::updateAccessibility(this, current+1, QAccessible::Focus);
 }
 
 void KItemListView::slotSelectionChanged(const KItemSet& current, const KItemSet& previous)

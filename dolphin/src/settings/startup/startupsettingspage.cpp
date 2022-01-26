@@ -65,11 +65,6 @@ StartupSettingsPage::StartupSettingsPage(const KUrl& url, QWidget* parent) :
     m_homeUrl->setClearButtonShown(true);
 
     QPushButton* selectHomeUrlButton = new QPushButton(KIcon("folder-open"), QString(), homeUrlBox);
-
-#ifndef QT_NO_ACCESSIBILITY
-    selectHomeUrlButton->setAccessibleName(i18nc("@action:button", "Select Home Location"));
-#endif
-
     connect(selectHomeUrlButton, SIGNAL(clicked()),
             this, SLOT(selectHomeUrl()));
 
