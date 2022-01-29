@@ -3850,7 +3850,7 @@ bool KateDocument::documentReload()
     m_userSetEncodingForNextReload = false;
 
     // restore cursor positions for all views
-    QLinkedList<KateView*>::iterator it = m_views.begin();
+    QList<KateView*>::iterator it = m_views.begin();
     for(int i = 0; i < m_views.size(); ++i, ++it) {
       setActiveView(*it);
       (*it)->setCursorPositionInternal( cursorPositions.at(i), m_config->tabWidth(), false );

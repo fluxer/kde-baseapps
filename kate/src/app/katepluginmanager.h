@@ -30,7 +30,7 @@
 #include <KConfigBase>
 
 #include <QObject>
-#include <QLinkedList>
+#include <QList>
 
 class KateMainWindow;
 

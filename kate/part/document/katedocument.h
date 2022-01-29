@@ -22,9 +22,9 @@
 #ifndef _KATE_DOCUMENT_H_
 #define _KATE_DOCUMENT_H_
 
-#include <QtCore/QLinkedList>
+#include <QtCore/QList>
 #include <QtCore/QMap>
-#include <QtCore/qdatetime.h>
+#include <QtCore/QDateTime>
 #include <QtGui/QClipboard>
 #include <QtCore/QStack>
 
@@ -158,7 +158,7 @@ Q_SIGNALS:
     KateView* activeKateView() const;
 
   private:
-    QLinkedList<KateView*> m_views;
+    QList<KateView*> m_views;
     QList<KTextEditor::View*> m_textEditViews;
     KTextEditor::View *m_activeView;
 

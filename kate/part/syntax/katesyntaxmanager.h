@@ -38,8 +38,8 @@
 #include <QtCore/QObject>
 #include <QtCore/QStringList>
 #include <QtCore/QPointer>
-#include <QtCore/qdatetime.h>
-#include <QtCore/QLinkedList>
+#include <QtCore/QDateTime>
+#include <QtCore/QList>
 
 class KateSyntaxDocument;
 class KateHighlighting;

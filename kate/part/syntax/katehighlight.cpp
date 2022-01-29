@@ -1133,7 +1133,7 @@ bool KateHighlighting::canBreakAt( QChar c, int attrib ) const
     && (c != QChar::fromAscii('"') && c != QChar::fromAscii('\''));
 }
 
-QLinkedList<QRegExp> KateHighlighting::emptyLines(int attrib) const
+QList<QRegExp> KateHighlighting::emptyLines(int attrib) const
 {
 #ifdef HIGHLIGHTING_DEBUG
   kDebug(13010)<<"hlKeyForAttrib: "<<hlKeyForAttrib(attrib);
@@ -1231,7 +1231,7 @@ void KateHighlighting::readEmptyLineConfig()
   KateHlManager::self()->syntax->setIdentifier(buildIdentifier);
   KateSyntaxContextData *data=KateHlManager::self()->syntax->getGroupInfo("general","emptyLine");
 
-  QLinkedList<QRegExp> exprList;
+  QList<QRegExp> exprList;
 
   if (data)
   {
@@ -2213,7 +2213,7 @@ bool KateHighlighting::isEmptyLine(const Kate::TextLineData *textline) const
   if (txt.isEmpty())
     return true;
   
-  QLinkedList<QRegExp> l;
+  QList<QRegExp> l;
   l=emptyLines(textline->attribute(0));
   if (l.isEmpty()) return false;
   foreach(const QRegExp &re,l) {

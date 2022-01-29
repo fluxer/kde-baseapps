@@ -39,7 +39,7 @@
 #include <QtCore/QStringList>
 #include <QtCore/QPointer>
 #include <QtCore/qdatetime.h>
-#include <QtCore/QLinkedList>
+#include <QtCore/QList>
 
 class KateHlContext;
 class KateHlItem;
@@ -184,7 +184,7 @@ class KateHighlighting
     /**
      *
      */
-    QLinkedList<QRegExp> emptyLines(int attribute=0) const;
+    QList<QRegExp> emptyLines(int attribute=0) const;
 
     bool isEmptyLine(const Kate::TextLineData *textline) const;
 
@@ -383,7 +383,7 @@ class KateHighlighting
         CSLPos  singleLineCommentPosition;
         QString deliminator;
         QString wordWrapDeliminator;
-        QLinkedList<QRegExp> emptyLines;
+        QList<QRegExp> emptyLines;
         QHash<QString, QChar> characterEncodings;
         KatePrefixStore characterEncodingsPrefixStore;
         QHash<QChar, QString> reverseCharacterEncodings;

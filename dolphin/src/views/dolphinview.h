@@ -31,7 +31,7 @@
 
 #include <QBoxLayout>
 #include <QtGui/qevent.h>
-#include <QLinkedList>
+#include <QList>
 #include <QWidget>
 #include <QTimer>
 #include <QRegExp>
