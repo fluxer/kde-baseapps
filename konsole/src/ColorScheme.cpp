@@ -129,7 +129,7 @@ ColorScheme::ColorScheme()
     _table = 0;
     _randomTable = 0;
     _opacity = 1.0;
-    setWallpaper(QString());
+    setWallpaper(QString(), false);
 }
 
 ColorScheme::ColorScheme(const ColorScheme& other)
@@ -294,7 +294,9 @@ void ColorScheme::read(const KConfig& config)
 
     _description = i18n(schemeDescription.toUtf8());
     _opacity = configGroup.readEntry("Opacity", qreal(1.0));
-    setWallpaper(configGroup.readEntry("Wallpaper", QString()));
+    const QString wallpaper = configGroup.readEntry("Wallpaper", QString());
+    const bool tiled = configGroup.readEntry("TileWallpaper", false);
+    setWallpaper(wallpaper, tiled);
 
     for (int i = 0 ; i < TABLE_COLORS ; i++) {
         readColorEntry(config, i);
@@ -326,6 +328,7 @@ void ColorScheme::write(KConfig& config) const
     configGroup.writeEntry("Description", _description);
     configGroup.writeEntry("Opacity", _opacity);
     configGroup.writeEntry("Wallpaper", _wallpaper->path());
+    configGroup.writeEntry("TileWallpaper", _wallpaper->tiled());
 
     for (int i = 0 ; i < TABLE_COLORS ; i++) {
         writeColorEntry(config, i);
@@ -362,9 +365,9 @@ void ColorScheme::writeColorEntry(KConfig& config , int index) const
     }
 }
 
-void ColorScheme::setWallpaper(const QString& path)
+void ColorScheme::setWallpaper(const QString& path, const bool tiled)
 {
-    _wallpaper = new ColorSchemeWallpaper(path);
+    _wallpaper = new ColorSchemeWallpaper(path, tiled);
 }
 
 ColorSchemeWallpaper::Ptr ColorScheme::wallpaper() const
@@ -372,8 +375,9 @@ ColorSchemeWallpaper::Ptr ColorScheme::wallpaper() const
     return _wallpaper;
 }
 
-ColorSchemeWallpaper::ColorSchemeWallpaper(const QString& aPath)
-    : _path(aPath),
+ColorSchemeWallpaper::ColorSchemeWallpaper(const QString& aPath, const bool tiled)
+    : _tiled(tiled),
+      _path(aPath),
       _picture(0)
 {
 }
@@ -396,27 +400,35 @@ void ColorSchemeWallpaper::load()
         _picture->load(_path);
 }
 
-bool ColorSchemeWallpaper::isNull() const
-{
-    return _path.isEmpty();
-}
-
 bool ColorSchemeWallpaper::draw(QPainter& painter, const QRect& rect, qreal opacity)
 {
     if (!_picture || _picture->isNull())
         return false;
 
     if (qFuzzyCompare(1.0, opacity)) {
-        painter.drawTiledPixmap(rect, *_picture, rect.topLeft());
+        if (_tiled) {
+            painter.drawTiledPixmap(rect, *_picture, rect.topLeft());
+        } else {
+            painter.drawPixmap(rect.topLeft(), _picture->scaled(_size), rect);
+        }
         return true;
     }
     painter.save();
     painter.setCompositionMode(QPainter::CompositionMode_Source);
     painter.fillRect(rect, QColor(0,0,0,0));
     painter.setOpacity(opacity);
-    painter.drawTiledPixmap(rect, *_picture, rect.topLeft());
+    if (_tiled) {
+        painter.drawTiledPixmap(rect, *_picture, rect.topLeft());
+    } else {
+        painter.drawPixmap(rect.topLeft(), _picture->scaled(_size), rect);
+    }
     painter.restore();
     return true;
+}
+
+bool ColorSchemeWallpaper::isNull() const
+{
+    return _path.isEmpty();
 }
 
 QString ColorSchemeWallpaper::path() const
@@ -424,3 +436,12 @@ QString ColorSchemeWallpaper::path() const
     return _path;
 }
 
+bool ColorSchemeWallpaper::tiled() const
+{
+    return _tiled;
+}
+
+void ColorSchemeWallpaper::setSize(const QSize &size)
+{
+    _size = size;
+}

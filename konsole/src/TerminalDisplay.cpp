@@ -577,7 +577,8 @@ void TerminalDisplay::drawBackground(QPainter& painter, const QRect& rect, const
     QRect contentsRect = contentsRegion.boundingRect();
 
     if (useOpacitySetting && !_wallpaper->isNull() &&
-            _wallpaper->draw(painter, contentsRect, _opacity)) {
+        _wallpaper->draw(painter, contentsRect, _opacity)) {
+        ;
     } else if (qAlpha(_blendColor) < 0xff && useOpacitySetting) {
         QColor color(backgroundColor);
         color.setAlpha(qAlpha(_blendColor));
@@ -1587,6 +1588,8 @@ void TerminalDisplay::updateImageSize()
 
     if (_screenWindow)
         _screenWindow->setWindowLines(_lines);
+
+    _wallpaper->setSize(_contentRect.size());
 
     _resizing = (oldLines != _lines) || (oldColumns != _columns);
 

@@ -86,6 +86,8 @@ ColorSchemeEditor::ColorSchemeEditor(QWidget* aParent)
             this, SLOT(selectWallpaper()));
     connect(_ui->wallpaperPath, SIGNAL(textChanged(QString)),
             this, SLOT(wallpaperPathChanged(QString)));
+    connect(_ui->wallpaperTile, SIGNAL(toggled(bool)),
+            this, SLOT(wallpaperTiledChanged(bool)));
 
     // color table
     _ui->colorTable->setColumnCount(3);
@@ -167,13 +169,18 @@ void ColorSchemeEditor::selectWallpaper()
 void ColorSchemeEditor::wallpaperPathChanged(const QString& path)
 {
     if (path.isEmpty()) {
-        _colors->setWallpaper(path);
+        _colors->setWallpaper(path, _ui->wallpaperTile->isChecked());
     } else {
         QFileInfo i(path);
 
         if (i.exists() && i.isFile() && i.isReadable())
-            _colors->setWallpaper(path);
+            _colors->setWallpaper(path, _ui->wallpaperTile->isChecked());
     }
+}
+void ColorSchemeEditor::wallpaperTiledChanged(const bool tiled)
+{
+    Q_UNUSED(tiled);
+    wallpaperPathChanged(_ui->wallpaperPath->text());
 }
 void ColorSchemeEditor::setDescription(const QString& text)
 {
@@ -225,6 +232,7 @@ void ColorSchemeEditor::setup(const ColorScheme* scheme, bool isNewScheme)
 
     // wallpaper stuff
     _ui->wallpaperPath->setText(scheme->wallpaper()->path());
+    _ui->wallpaperTile->setChecked(scheme->wallpaper()->tiled());
 }
 void ColorSchemeEditor::setupColorTable(const ColorScheme* colors)
 {

@@ -46,7 +46,7 @@ class ColorSchemeWallpaper : public QSharedData
 public:
     typedef KSharedPtr<ColorSchemeWallpaper> Ptr;
 
-    explicit ColorSchemeWallpaper(const QString& path);
+    explicit ColorSchemeWallpaper(const QString& path, const bool tiled);
     ~ColorSchemeWallpaper();
 
     void load();
@@ -55,10 +55,14 @@ public:
     bool draw(QPainter& painter, const QRect& rect, qreal opacity=1.0);
 
     bool isNull() const;
-
     QString path() const;
+    bool tiled() const;
+
+    void setSize(const QSize &size);
 
 private:
+    bool _tiled;
+    QSize _size;
     QString _path;
     QPixmap* _picture;
 };
@@ -153,7 +157,7 @@ public:
      */
     qreal opacity() const;
 
-    void setWallpaper(const QString& path);
+    void setWallpaper(const QString& path, const bool tiled);
 
     ColorSchemeWallpaper::Ptr wallpaper() const;
 

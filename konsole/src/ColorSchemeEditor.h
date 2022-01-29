@@ -80,6 +80,7 @@ private slots:
     void setRandomizedBackgroundColor(bool randomized);
     void editColorItem(QTableWidgetItem* item);
     void wallpaperPathChanged(const QString& path);
+    void wallpaperTiledChanged(const bool tiled);
     void selectWallpaper();
     /** Triggered by apply/ok buttons */
     void saveColorScheme();
