@@ -22,6 +22,7 @@
 
 #include <KUrl>
 
+#include <QScopedPointer>
 #include <QColor>
 #include <QtGui/qevent.h>
 #include <QString>

@@ -38,6 +38,7 @@
 #include <ksavefile.h>
 #include <kio/netaccess.h>
 
+#include <QtCore/QScopedPointer>
 #include <QtCore/QMimeData>
 #include <QtGui/QApplication>
 #include <QtGui/QClipboard>
