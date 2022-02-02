@@ -11,7 +11,6 @@ set(kateprojectplugin_PART_SRCS
     kateprojectcompletion.cpp
     kateprojectindex.cpp
     kateprojectinfoviewindex.cpp
-    kateprojectinfoviewterminal.cpp
     kateprojectinfoviewcodeanalysis.cpp
     kateprojectinfoviewnotes.cpp
     kateprojectnew.cpp

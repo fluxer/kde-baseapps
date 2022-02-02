@@ -20,7 +20,6 @@
 
 #include "kateprojectinfoview.h"
 #include "kateprojectpluginview.h"
-#include "kateprojectinfoviewterminal.h"
 #include "kateprojectinfoviewindex.h"
 #include "kateprojectinfoviewcodeanalysis.h"
 #include "kateprojectinfoviewnotes.h"
@@ -32,11 +31,6 @@ KateProjectInfoView::KateProjectInfoView (KateProjectPluginView *pluginView, Kat
   , m_pluginView (pluginView)
   , m_project (project)
 {
-  /**
-   * terminal
-   */
-  addTab (new KateProjectInfoViewTerminal (pluginView, project), i18n("Terminal"));
-
   /**
    * index
    */
