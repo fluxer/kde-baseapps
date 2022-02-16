@@ -42,16 +42,6 @@ void setProxyConnectTimeout (int);
 void setResponseTimeout (int);
 
 
-/** Cache Settings */
-void setMaxCacheAge (int);
-
-void setUseCache (bool);
-
-void setMaxCacheSize (int);
-
-void setCacheControl (KIO::CacheControl);
-
-
 /** Proxy Settings */
 void setUseReverseProxy (bool);
 
