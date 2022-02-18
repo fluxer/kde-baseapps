@@ -66,7 +66,6 @@ void TestLinkItr::doAction()
 {
     kDebug();
     m_job = KIO::get(currentBookmark().url(), KIO::Reload, KIO::HideProgressInfo);
-    m_job->addMetaData( QString("cookies"), QString("none") );
     m_job->addMetaData( QString("errorPage"), QString("false") );
 
     connect(m_job, SIGNAL(result(KJob*)),

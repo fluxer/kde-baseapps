@@ -177,7 +177,6 @@ FavIconWebGrabber::FavIconWebGrabber(KParts::ReadOnlyPart *part, const KUrl &url
 
     kDebug() << "starting KIO::get() on" << m_url;
     KIO::Job *job = KIO::get(m_url, KIO::NoReload, KIO::HideProgressInfo);
-    job->addMetaData( QString("cookies"), QString("none") );
     connect(job, SIGNAL(result(KJob*)),
             this, SLOT(slotFinished(KJob*)));
     connect(job, SIGNAL(mimetype(KIO::Job*,QString)),
