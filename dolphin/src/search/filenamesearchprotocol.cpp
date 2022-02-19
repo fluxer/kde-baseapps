@@ -30,6 +30,7 @@
 #include <QCoreApplication>
 #include <QEventLoop>
 #include <QRegExp>
+#include <QTextStream>
 
 FileNameSearchProtocol::FileNameSearchProtocol( const QByteArray &pool, const QByteArray &app ) :
     SlaveBase("search", pool, app),

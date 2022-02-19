@@ -25,6 +25,7 @@
 class KFileItem;
 class KUrl;
 #include <QRegExp>
+#include <QSet>
 
 /**
  * @brief Lists files where the filename matches do a given query.
