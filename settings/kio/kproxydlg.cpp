@@ -219,10 +219,8 @@ KProxyDialog::KProxyDialog(QWidget* parent, const QVariantList& args)
     mUi.systemProxyGroupBox->setVisible(false);
     mUi.manualProxyGroupBox->setVisible(false);
     mUi.autoDetectButton->setVisible(false);
-    mUi.proxyConfigScriptGroupBox->setVisible(false);
 
     InputValidator* v = new InputValidator;
-    mUi.proxyScriptUrlRequester->lineEdit()->setValidator(v);
     mUi.manualProxyHttpEdit->setValidator(v);
     mUi.manualProxyHttpsEdit->setValidator(v);
     mUi.manualProxyFtpEdit->setValidator(v);
@@ -238,15 +236,11 @@ KProxyDialog::KProxyDialog(QWidget* parent, const QVariantList& args)
 
     // signals and slots connections
     connect(mUi.noProxyRadioButton, SIGNAL(clicked()), SLOT(slotChanged()));
-    connect(mUi.autoDiscoverProxyRadioButton, SIGNAL(clicked()), SLOT(slotChanged()));
-    connect(mUi.autoScriptProxyRadioButton, SIGNAL(clicked()), SLOT(slotChanged()));
     connect(mUi.manualProxyRadioButton, SIGNAL(clicked()), SLOT(slotChanged()));
     connect(mUi.systemProxyRadioButton, SIGNAL(clicked()), SLOT(slotChanged()));
     connect(mUi.noProxyRadioButton, SIGNAL(clicked()), SLOT(slotChanged()));
     connect(mUi.useReverseProxyCheckBox, SIGNAL(clicked()), SLOT(slotChanged()));
     connect(mUi.useSameProxyCheckBox, SIGNAL(clicked()), SLOT(slotChanged()));
-
-    connect(mUi.proxyScriptUrlRequester, SIGNAL(textChanged(QString)), SLOT(slotChanged()));
 
     connect(mUi.manualProxyHttpEdit, SIGNAL(textChanged(QString)), SLOT(slotChanged()));
     connect(mUi.manualProxyHttpsEdit, SIGNAL(textChanged(QString)), SLOT(slotChanged()));
@@ -276,7 +270,6 @@ void KProxyDialog::load()
     mProxyMap[QL1S("HttpsProxy")] = KProtocolManager::proxyFor(QL1S("https"));
     mProxyMap[QL1S("FtpProxy")] = KProtocolManager::proxyFor(QL1S("ftp"));
     mProxyMap[QL1S("SocksProxy")] = KProtocolManager::proxyFor(QL1S("socks"));
-    mProxyMap[QL1S("ProxyScript")] = KProtocolManager::proxyConfigScript();
     mProxyMap[QL1S("NoProxy")] = KSaveIOConfig::noProxyFor();
 
     const int proxyType = KProtocolManager::proxyType();
@@ -302,25 +295,11 @@ void KProxyDialog::load()
                                              httpProxyPort == mUi.manualProxySocksSpinBox->value());
     }
 
-    // Validate and Set the automatic proxy configuration script url.
-    KUrl u (mProxyMap.value(QL1S("ProxyScript")));
-    if (u.isValid() && !u.isEmpty()) {
-        u.setUser (QString());
-        u.setPass (QString());
-        mUi.proxyScriptUrlRequester->setUrl(u);
-    }
-
     // Set use reverse proxy checkbox...
     mUi.useReverseProxyCheckBox->setChecked((!mProxyMap.value(QL1S("NoProxy")).isEmpty()
                                               && KProtocolManager::useReverseProxy()));
 
     switch (proxyType) {
-    case KProtocolManager::WPADProxy:
-        mUi.autoDiscoverProxyRadioButton->setChecked(true);
-        break;
-    case KProtocolManager::PACProxy:
-        mUi.autoScriptProxyRadioButton->setChecked(true);
-        break;
     case KProtocolManager::ManualProxy:
         mUi.manualProxyRadioButton->setChecked(true);
         break;
@@ -332,11 +311,6 @@ void KProxyDialog::load()
         mUi.noProxyRadioButton->setChecked(true);
         break;
     }
-}
-
-static bool isPACProxyType(KProtocolManager::ProxyType type)
-{
-    return (type == KProtocolManager::PACProxy || type == KProtocolManager::WPADProxy);
 }
 
 void KProxyDialog::save()
@@ -370,11 +344,6 @@ void KProxyDialog::save()
             mProxyMap[QL1S("SocksProxy")] = mProxyMap.take(mUi.systemProxySocksEdit->objectName());
             mProxyMap[QL1S("NoProxy")] = mProxyMap.take(mUi.systemNoProxyEdit->objectName());
         }
-    } else if (mUi.autoScriptProxyRadioButton->isChecked()) {
-        proxyType = KProtocolManager::PACProxy;
-        mProxyMap[QL1S("ProxyScript")] = mUi.proxyScriptUrlRequester->text();
-    } else if (mUi.autoDiscoverProxyRadioButton->isChecked()) {
-        proxyType = KProtocolManager::WPADProxy;
     }
 
     KSaveIOConfig::setProxyType(proxyType);
@@ -387,13 +356,9 @@ void KProxyDialog::save()
     KSaveIOConfig::setProxyFor(QL1S("ftp"), mProxyMap.value(QL1S("FtpProxy")));
     KSaveIOConfig::setProxyFor(QL1S("socks"), mProxyMap.value(QL1S("SocksProxy")));
 
-    KSaveIOConfig::setProxyConfigScript (mProxyMap.value(QL1S("ProxyScript")));
     KSaveIOConfig::setNoProxyFor (mProxyMap.value(QL1S("NoProxy")));
 
     KSaveIOConfig::updateRunningIOSlaves (this);
-    if (isPACProxyType(lastProxyType) || isPACProxyType(proxyType)) {
-        KSaveIOConfig::updateProxyScout (this);
-    }
 
     emit changed (false);
 }
@@ -401,7 +366,6 @@ void KProxyDialog::save()
 void KProxyDialog::defaults()
 {
     mUi.noProxyRadioButton->setChecked(true);
-    mUi.proxyScriptUrlRequester->clear();
 
     mUi.manualProxyHttpEdit->clear();
     mUi.manualProxyHttpsEdit->clear();

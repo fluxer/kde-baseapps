@@ -47,8 +47,6 @@ void setUseReverseProxy (bool);
 
 void setProxyType (KProtocolManager::ProxyType);
 
-void setProxyConfigScript (const QString&);
-
 void setProxyFor (const QString&, const QString&);
 
 QString noProxyFor();
@@ -65,8 +63,6 @@ void setAutoResume (bool);
 /** Update all running io-slaves */
 void updateRunningIOSlaves (QWidget* parent = 0L);
 
-/** Update proxy scout */
-void updateProxyScout (QWidget* parent = 0L);
 }
 
 #endif

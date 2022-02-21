@@ -164,13 +164,6 @@ void KSaveIOConfig::setProxyFor( const QString& protocol,
   cfg.sync();
 }
 
-void KSaveIOConfig::setProxyConfigScript( const QString& _url )
-{
-  KConfigGroup cfg (config(), "Proxy Settings");
-  cfg.writeEntry("Proxy Config Script", _url);
-  cfg.sync();
-}
-
 void KSaveIOConfig::updateRunningIOSlaves (QWidget *parent)
 {
   // Inform all running io-slaves about the changes...
@@ -182,20 +175,6 @@ void KSaveIOConfig::updateRunningIOSlaves (QWidget *parent)
     KMessageBox::information (parent,
                               i18n("You have to restart the running applications "
                                    "for these changes to take effect."),
-                              i18nc("@title:window", "Update Failed"));
-  }
-}
-
-void KSaveIOConfig::updateProxyScout(QWidget * parent)
-{
-  // Inform the proxyscout kded module about changes if we cannot update,
-  // ioslaves inform the end user...
-  QDBusInterface kded("org.kde.kded", "/modules/proxyscout", "org.kde.KPAC.ProxyScout");
-  QDBusReply<void> reply = kded.call("reset");
-  if (!reply.isValid())
-  {
-    KMessageBox::information (parent,
-                              i18n("You have to restart KDE for these changes to take effect."),
                               i18nc("@title:window", "Update Failed"));
   }
 }
