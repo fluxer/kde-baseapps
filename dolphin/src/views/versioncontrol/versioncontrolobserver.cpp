@@ -297,7 +297,7 @@ KVersionControlPlugin* VersionControlObserver::searchPlugin(const KUrl& director
     // like .svn, .git, ...
     foreach (KVersionControlPlugin* plugin, plugins) {
         const QString fileName = directory.path(KUrl::AddTrailingSlash) + plugin->fileName();
-        if (QDir(fileName).exists()) {
+        if (QFileInfo(fileName).exists()) {
             // The score of this plugin is 0 (best), so we can just return this plugin,
             // instead of going through the plugin scoring procedure, we can't find a better one ;)
             return plugin;
