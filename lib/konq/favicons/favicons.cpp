@@ -271,8 +271,7 @@ void FavIconsModule::slotResult(KJob *job)
         QImageReader ir( &buffer );
         QSize desired( 16,16 );
         if( ir.canRead() ) {
-            while( ir.imageCount() > 1
-              && ir.currentImageRect() != QRect(0, 0, desired.width(), desired.height())) {
+            while( ir.imageCount() > 1 ) {
                 if (!ir.jumpToNextImage()) {
                     break;
                 }
