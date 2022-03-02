@@ -22,7 +22,6 @@
 #include "favicon_interface.h" // org::kde::FavIcon
 
 #include <kparts/part.h>
-#include <kparts/browserinterface.h>
 
 class FavIconUpdater : public QObject
 {
