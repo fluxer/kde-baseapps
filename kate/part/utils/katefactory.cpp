@@ -66,8 +66,8 @@ class KateFactory : public KTextEditor::Factory
       // default to the kparts::* behavior of having one single widget() if the user don't requested a pure document
       bool bWantSingleView = ( classname != "KTextEditor::Document" );
 
-      // does user want browserview?
-      bool bWantBrowserView = ( classname == "Browser/View" );
+      // does user want browserview? not konqueror
+      bool bWantBrowserView = false;
 
       // should we be readonly?
       bool bWantReadOnly = (bWantBrowserView || ( classname == "KParts::ReadOnlyPart" ));

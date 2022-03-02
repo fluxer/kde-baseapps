@@ -1,6 +1,6 @@
 [Desktop Entry]
 Type=Service
-X-KDE-ServiceTypes=KParts/ReadOnlyPart,Browser/View,inode/directory,TerminalEmulator
+X-KDE-ServiceTypes=KParts/ReadOnlyPart,inode/directory,TerminalEmulator
 Icon=utilities-terminal
 
 X-KDE-Library=konsolepart

@@ -2,7 +2,7 @@
 Icon=applications-multimedia
 Name=KMediaPlayerPart
 Comment=Simple media player part for KDE
-X-KDE-ServiceTypes=KParts/ReadOnlyPart,Browser/View
+X-KDE-ServiceTypes=KParts/ReadOnlyPart
 X-KDE-Library=kmediaplayerpart
 X-KDE-MediaPlayer=kmediaplayerpart
 Type=Service
