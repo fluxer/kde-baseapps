@@ -24,29 +24,6 @@
 #include <kparts/part.h>
 #include <kparts/browserinterface.h>
 
-class FavIconWebGrabber : public QObject
-{
-    Q_OBJECT
-public:
-    FavIconWebGrabber(KParts::ReadOnlyPart *part, const KUrl &url);
-    ~FavIconWebGrabber() {}
-
-Q_SIGNALS:
-    void done(bool succeeded, const QString& errorString);
-
-private Q_SLOTS:
-    void slotMimetype(KIO::Job *job, const QString &_type);
-    void slotFinished(KJob *job);
-    void slotCanceled(const QString& errorString);
-    void slotCompleted();
-
-private:
-    KParts::ReadOnlyPart *m_part;
-    KUrl m_url;
-};
-
-class FavIconBrowserInterface;
-
 class FavIconUpdater : public QObject
 {
     Q_OBJECT
@@ -55,7 +32,6 @@ public:
     FavIconUpdater(QObject *parent);
     ~FavIconUpdater();
     void downloadIcon(const KBookmark &bk);
-    void downloadIconUsingWebBrowser(const KBookmark &bk, const QString& currentError);
 
 private Q_SLOTS:
     void setIconUrl(const KUrl &iconURL);
@@ -69,22 +45,8 @@ private:
     bool isFavIconSignalRelevant(bool isHost, const QString& hostOrURL) const;
 
 private:
-    KParts::ReadOnlyPart *m_part;
-    FavIconBrowserInterface *m_browserIface;
-    FavIconWebGrabber *m_webGrabber;
     KBookmark m_bk;
-    bool webupdate;
     org::kde::FavIcon m_favIconModule;
-};
-
-class FavIconBrowserInterface : public KParts::BrowserInterface
-{
-    Q_OBJECT
-public:
-    FavIconBrowserInterface(FavIconUpdater *view)
-        : KParts::BrowserInterface(view) {
-        ;
-    }
 };
 
 #endif

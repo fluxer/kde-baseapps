@@ -42,9 +42,6 @@ FavIconUpdater::FavIconUpdater(QObject *parent)
             this, SLOT(notifyChange(bool,QString,QString)) );
     connect(&m_favIconModule, SIGNAL(error(bool,QString,QString)),
             this, SLOT(slotFavIconError(bool,QString,QString)) );
-    m_part = 0;
-    m_webGrabber = 0;
-    m_browserIface = 0;
 }
 
 void FavIconUpdater::downloadIcon(const KBookmark &bk)
@@ -61,56 +58,12 @@ void FavIconUpdater::downloadIcon(const KBookmark &bk)
 
     } else {
         kDebug() << "no favicon found";
-        webupdate = false;
         m_favIconModule.forceDownloadHostIcon(url);
     }
 }
 
 FavIconUpdater::~FavIconUpdater()
 {
-    delete m_browserIface;
-    delete m_webGrabber;
-    delete m_part;
-}
-
-void FavIconUpdater::downloadIconUsingWebBrowser(const KBookmark &bk, const QString& currentError)
-{
-    kDebug();
-    m_bk = bk;
-    webupdate = true;
-
-    if (!m_part) {
-        QString partLoadingError;
-        KParts::ReadOnlyPart *part
-            = KMimeTypeTrader::createPartInstanceFromQuery<KParts::ReadOnlyPart>("text/html", 0, this, QString(), QVariantList(), &partLoadingError);
-        if (!part) {
-            emit done(false, i18n("%1; no HTML component found (%2)", currentError, partLoadingError));
-            return;
-        }
-
-        part->setProperty("pluginsEnabled", QVariant(false));
-        part->setProperty("javaScriptEnabled", QVariant(false));
-        part->setProperty("javaEnabled", QVariant(false));
-        part->setProperty("autoloadImages", QVariant(false));
-
-        KParts::BrowserExtension *ext = KParts::BrowserExtension::childObject(part);
-        Q_ASSERT(ext);
-
-        // TODO: what is this useful for?
-        m_browserIface = new FavIconBrowserInterface(this);
-        ext->setBrowserInterface(m_browserIface);
-
-        connect(ext, SIGNAL(setIconUrl(KUrl)),
-                this, SLOT(setIconUrl(KUrl)));
-
-        m_part = part;
-    }
-
-    // The part isn't created by the webgrabber so that we can create the part
-    // only once.
-    delete m_webGrabber;
-    m_webGrabber = new FavIconWebGrabber(m_part, bk.url());
-    connect(m_webGrabber, SIGNAL(done(bool,QString)), this, SIGNAL(done(bool,QString)));
 }
 
 // webkit callback
@@ -118,9 +71,6 @@ void FavIconUpdater::setIconUrl(const KUrl &iconURL)
 {
     m_favIconModule.setIconForUrl(m_bk.url().url(), iconURL.url());
     // The above call will make the kded module start the download and emit iconChanged or error.
-
-    delete m_webGrabber;
-    m_webGrabber = 0;
 }
 
 bool FavIconUpdater::isFavIconSignalRelevant(bool isHost, const QString& hostOrURL) const
@@ -149,71 +99,8 @@ void FavIconUpdater::slotFavIconError(bool isHost, const QString& hostOrURL, con
 {
     kDebug() << hostOrURL << errorString;
     if (isFavIconSignalRelevant(isHost, hostOrURL)) {
-        if (!webupdate) {
-            // no icon found, try webupdater
-            downloadIconUsingWebBrowser(m_bk, errorString);
-        } else {
-            // already tried webupdater
-            emit done(false, errorString);
-        }
+        emit done(false, errorString);
     }
-}
-
-/* -------------------------- */
-
-FavIconWebGrabber::FavIconWebGrabber(KParts::ReadOnlyPart *part, const KUrl &url)
-    : m_part(part), m_url(url) {
-
-    //FIXME only connect to result?
-//  connect(part, SIGNAL(result(KIO::Job*job)),
-//          this, SLOT(slotCompleted()));
-    connect(part, SIGNAL(canceled(QString)),
-            this, SLOT(slotCanceled(QString)));
-    connect(part, SIGNAL(completed(bool)),
-            this, SLOT(slotCompleted()));
-
-    // the use of KIO rather than directly using KWebKit is to allow silently abort on error
-    // TODO: an alternative would be to derive from KWebKitPart and reimplement showError(KJob*).
-
-    kDebug() << "starting KIO::get() on" << m_url;
-    KIO::Job *job = KIO::get(m_url, KIO::NoReload, KIO::HideProgressInfo);
-    connect(job, SIGNAL(result(KJob*)),
-            this, SLOT(slotFinished(KJob*)));
-    connect(job, SIGNAL(mimetype(KIO::Job*,QString)),
-            this, SLOT(slotMimetype(KIO::Job*,QString)));
-}
-
-void FavIconWebGrabber::slotMimetype(KIO::Job *job, const QString & /*type*/) {
-    KIO::SimpleJob *sjob = static_cast<KIO::SimpleJob *>(job);
-    m_url = sjob->url(); // allow for redirection
-    sjob->putOnHold();
-
-    // QString typeLocal = typeUncopied; // local copy
-    // kDebug() << "slotMimetype : " << typeLocal;
-    // TODO - what to do if typeLocal is not text/html ??
-
-    m_part->openUrl(m_url);
-}
-
-void FavIconWebGrabber::slotFinished(KJob *job)
-{
-    if (job->error()) {
-        kDebug() << job->errorString();
-        emit done(false, job->errorString());
-    }
-    // On success mimetype was emitted, so no need to do anything.
-}
-
-void FavIconWebGrabber::slotCompleted()
-{
-    kDebug();
-    emit done(true, QString());
-}
-
-void FavIconWebGrabber::slotCanceled(const QString& errorString)
-{
-    kDebug() << errorString;
-    emit done(false, errorString);
 }
 
 #include "moc_faviconupdater.cpp"
