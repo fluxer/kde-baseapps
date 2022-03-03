@@ -20,6 +20,7 @@
 #include "dolphinfacetswidget.h"
 
 #include <KLocale>
+#include <KMimeType>
 #include <QButtonGroup>
 #include <QCheckBox>
 #include <QtCore/qdatetime.h>
@@ -68,11 +69,32 @@ void DolphinFacetsWidget::facetChange()
     if (m_documents->isChecked()) {
         m_type = "application/x-dvi;application/postscript;application/pdf;image/x-eps";
     } else if (m_images->isChecked()) {
-        m_type = "image/gif;image/pjpeg;image/jpeg;image/png;image/svg+xml;image/tiff;mage/vnd.djvu;image/x-dcraw";
+        m_type = "";
+        foreach (const KMimeType::Ptr &mime, KMimeType::allMimeTypes()) {
+            if (mime->name().startsWith("image/")) {
+                m_type.append(mime->name());
+                m_type.append(";");
+            }
+        }
+        m_type.chop(1);
     } else if (m_audio->isChecked()) {
-        m_type = "audio/mpeg;audio/ogg;audio/flac;audio/mp3;audio/mpeg;audio/opus;audio/x-flac;audio/mp4;audio/x-vorbis+ogg;";
+        m_type = "";
+        foreach (const KMimeType::Ptr &mime, KMimeType::allMimeTypes()) {
+            if (mime->name().startsWith("audio/")) {
+                m_type.append(mime->name());
+                m_type.append(";");
+            }
+        }
+        m_type.chop(1);
     } else if (m_videos->isChecked()) {
-        m_type = "video/avi;video/mpeg;video/mp4;video/ogg;video/quicktime;video/webm;video/x-matroska;video/x-ms-wmv;video/x-flv";
+        m_type = "";
+        foreach (const KMimeType::Ptr &mime, KMimeType::allMimeTypes()) {
+            if (mime->name().startsWith("video/")) {
+                m_type.append(mime->name());
+                m_type.append(";");
+            }
+        }
+        m_type.chop(1);
     } else {
         m_type = "";
     }

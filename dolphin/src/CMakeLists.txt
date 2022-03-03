@@ -202,7 +202,6 @@ set(dolphin_SRCS ${dolphin_SRCS} panels/terminal/terminalpanel.cpp)
 add_executable(dolphin ${dolphin_SRCS})
 
 target_link_libraries(dolphin
-    ${KDE4_KDEPRINT_LIBS}
     ${KDE4_KFILE_LIBS}
     ${KDE4_KPARTS_LIBS}
     ${KDE4_KCMUTILS_LIBS}
