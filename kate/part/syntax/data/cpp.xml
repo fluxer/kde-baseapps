@@ -22,13 +22,11 @@
     priority="9"
   >
 <!--
-  The main purpose of this file is to hold Qt extensions syntax in a single place,
+  The main purpose of this file is to hold Katie extensions syntax in a single place,
   so later it can be included (using IncludeRules) to other (C++ based) syntaxes.
-
-  Based on Qt 4.8 documentation (http://qt-project.org/doc/qt-4.8/)
 -->
 <highlighting>
-  <list name="Qt4Macros">
+  <list name="KatieMacros">
     <item> emit </item>
     <item> signals </item>
     <item> slots </item>
@@ -36,11 +34,8 @@
     <item> forever </item>
     <item> SIGNAL </item>
     <item> SLOT </item>
-    <!-- http://qt-project.org/doc/qt-4.8/QApplication.html#macros -->
     <item> qApp </item>
-    <!-- http://qt-project.org/doc/qt-4.8/qcoreapplication.html#macros -->
     <item> Q_DECLARE_TR_FUNCTIONS </item>
-    <!-- QObject related macros from http://qt-project.org/doc/qt-4.8/qobject.html#macros -->
     <item> Q_CLASSINFO </item>
     <item> Q_EMIT </item>
     <item> Q_ENUMS </item>
@@ -54,19 +49,14 @@
     <item> Q_SLOT </item>
     <item> Q_SLOTS </item>
     <item> Q_NULLPTR </item>
-    <!-- Various macros from:
-        http://qt-project.org/doc/qt-4.8/qmetatype.html#macros
-        http://qt-project.org/doc/qt-4.8/qbytearray.html#macros
-        http://qt-project.org/doc/qt-4.8/qstring.html#macros
-        http://qt-project.org/doc/qt-4.8/qurl.html#macros
-      -->
+    <!-- Various macros -->
     <item> Q_DECLARE_METATYPE </item>
     <item> QT_NO_CAST_FROM_BYTEARRAY </item>
     <item> QT_NO_CAST_FROM_ASCII </item>
     <item> QT_NO_CAST_TO_ASCII </item>
     <item> QT_NO_URL_CAST_FROM_STRING </item>
     <item> QT_USE_QSTRINGBUILDER </item>
-    <!-- QtTest macros: http://qt-project.org/doc/qt-4.8/qtest.html#macros -->
+    <!-- KtTest macros -->
     <item> QBENCHMARK </item>
     <item> QBENCHMARK_ONCE </item>
     <item> QCOMPARE </item>
@@ -81,26 +71,20 @@
     <item> QVERIFY2 </item>
     <item> QVERIFY </item>
     <item> QWARN </item>
-    <!-- http://qt-project.org/doc/qt-4.8/qaxfactory.html#macros -->
     <item> QAXCLASS </item>
     <item> QAXFACTORY_BEGIN </item>
     <item> QAXFACTORY_DEFAULT </item>
     <item> QAXFACTORY_END </item>
     <item> QAXFACTORY_EXPORT </item>
     <item> QAXTYPE </item>
-    <!-- http://qt-project.org/doc/qt-4.8/qdesignercustomwidgetinterface.html#macros -->
     <item> QDESIGNER_WIDGET_EXPORT </item>
-    <!-- http://qt-project.org/doc/qt-4.8/qdeclarativeengine.html#macros -->
     <item> QML_DECLARE_TYPE </item>
     <item> QML_DECLARE_TYPEINFO </item>
-    <!-- http://qt-project.org/doc/qt-4.8/qwebpage.html#macros -->
     <item> QTWEBKIT_VERSION </item>
     <item> QTWEBKIT_VERSION_CHECK </item>
     <item> QTWEBKIT_VERSION_STR </item>
-    <!-- http://qt-project.org/doc/qt-4.8/qmetaobject.html#macros -->
     <item> Q_ARG </item>
     <item> Q_RETURN_ARG </item>
-    <!-- http://qt-project.org/doc/qt-4.8/qatomicint.html#macros -->
     <item> Q_ATOMIC_INT_FETCH_AND_ADD_IS_ALWAYS_NATIVE </item>
     <item> Q_ATOMIC_INT_FETCH_AND_ADD_IS_NOT_NATIVE </item>
     <item> Q_ATOMIC_INT_FETCH_AND_ADD_IS_SOMETIMES_NATIVE </item>
@@ -117,20 +101,15 @@
     <item> Q_ATOMIC_INT_TEST_AND_SET_IS_NOT_NATIVE </item>
     <item> Q_ATOMIC_INT_TEST_AND_SET_IS_SOMETIMES_NATIVE </item>
     <item> Q_ATOMIC_INT_TEST_AND_SET_IS_WAIT_FREE </item>
-    <!-- http://qt-project.org/doc/qt-4.8/qextensionmanager.html#macros -->
     <item> Q_DECLARE_EXTENSION_INTERFACE </item>
-    <!-- http://qt-project.org/doc/qt-4.8/qtplugin.html -->
     <item> Q_DECLARE_INTERFACE </item>
     <item> Q_EXPORT_PLUGIN2 </item>
     <item> Q_IMPORT_PLUGIN </item>
-    <!-- http://qt-project.org/doc/qt-4.8/qdbusabstractadaptor.html#macros -->
     <item> Q_NOREPLY </item>
-    <!-- http://qt-project.org/doc/qt-4.8/qscriptengine.html#macros -->
     <item> Q_SCRIPT_DECLARE_QMETAOBJECT </item>
-    <!-- http://qt-project.org/doc/qt-4.8/qwidget.html#macros -->
     <item> QWIDGETSIZE_MAX </item>
-    <!-- List of Qt macros obtained by
-         part/syntax/data/get-Qt-macros.sh for qglobal.h qfeatures.h qconfig.h
+    <!-- List of Katie macros obtained by:
+         `part/syntax/data/get-Qt-macros.sh for qglobal.h qconfig.h`
       -->
     <item> Q_ALIGNOF </item>
     <item> Q_ASSERT </item>
@@ -287,10 +266,6 @@
     <item> Q_SYMBIAN_SUPPORTS_SURFACES </item>
     <item> Q_SYMBIAN_TRANSITION_EFFECTS </item>
     <item> Q_SYMBIAN_WINDOW_SIZE_CACHE </item>
-    <item> QT3_SUPPORT_CONSTRUCTOR </item>
-    <item> QT3_SUPPORT </item>
-    <item> QT3_SUPPORT_VARIABLE </item>
-    <item> QT3_SUPPORT_WARNINGS </item>
     <item> QT_ARCH_I386 </item>
     <item> QT_ASCII_CAST_WARN_CONSTRUCTOR </item>
     <item> QT_ASCII_CAST_WARN </item>
@@ -566,160 +541,10 @@
     <item> Q_DUMMY_TYPE </item>
   </list>
 
-  <list name="Qt4Classes">
-    <!-- Classes listed here: http://qt-project.org/doc/qt-4.8/classes.html
-        Obtained by `get-Qt-classes.sh 4.8`
-      -->
-    <item> Q3Accel </item>
-    <item> Q3Action </item>
-    <item> Q3ActionGroup </item>
-    <item> Q3AsciiCache </item>
-    <item> Q3AsciiCacheIterator </item>
-    <item> Q3AsciiDict </item>
-    <item> Q3AsciiDictIterator </item>
-    <item> Q3Button </item>
-    <item> Q3ButtonGroup </item>
-    <item> Q3CString </item>
-    <item> Q3Cache </item>
-    <item> Q3CacheIterator </item>
-    <item> Q3Canvas </item>
-    <item> Q3CanvasEllipse </item>
-    <item> Q3CanvasItem </item>
-    <item> Q3CanvasItemList </item>
-    <item> Q3CanvasLine </item>
-    <item> Q3CanvasPixmap </item>
-    <item> Q3CanvasPixmapArray </item>
-    <item> Q3CanvasPolygon </item>
-    <item> Q3CanvasPolygonalItem </item>
-    <item> Q3CanvasRectangle </item>
-    <item> Q3CanvasSpline </item>
-    <item> Q3CanvasSprite </item>
-    <item> Q3CanvasText </item>
-    <item> Q3CanvasView </item>
-    <item> Q3CheckListItem </item>
-    <item> Q3CheckTableItem </item>
-    <item> Q3ColorDrag </item>
-    <item> Q3ComboBox </item>
-    <item> Q3ComboTableItem </item>
-    <item> Q3DataBrowser </item>
-    <item> Q3DataTable </item>
-    <item> Q3DataView </item>
-    <item> Q3DateEdit </item>
-    <item> Q3DateTimeEdit </item>
-    <item> Q3DateTimeEditBase </item>
-    <item> Q3DeepCopy </item>
-    <item> Q3Dict </item>
-    <item> Q3DictIterator </item>
-    <item> Q3Dns </item>
-    <item> Q3DockArea </item>
-    <item> Q3DockWindow </item>
-    <item> Q3DragObject </item>
-    <item> Q3DropSite </item>
-    <item> Q3EditorFactory </item>
-    <item> Q3FileDialog </item>
-    <item> Q3FileIconProvider </item>
-    <item> Q3FilePreview </item>
-    <item> Q3Frame </item>
-    <item> Q3Ftp </item>
-    <item> Q3Grid </item>
-    <item> Q3GridView </item>
-    <item> Q3GroupBox </item>
-    <item> Q3HBox </item>
-    <item> Q3HBoxLayout </item>
-    <item> Q3HButtonGroup </item>
-    <item> Q3HGroupBox </item>
-    <item> Q3Header </item>
-    <item> Q3Http </item>
-    <item> Q3HttpHeader </item>
-    <item> Q3HttpRequestHeader </item>
-    <item> Q3HttpResponseHeader </item>
-    <item> Q3IconDrag </item>
-    <item> Q3IconDragItem </item>
-    <item> Q3IconView </item>
-    <item> Q3IconViewItem </item>
-    <item> Q3ImageDrag </item>
-    <item> Q3IntCache </item>
-    <item> Q3IntCacheIterator </item>
-    <item> Q3IntDict </item>
-    <item> Q3IntDictIterator </item>
-    <item> Q3ListBox </item>
-    <item> Q3ListBoxItem </item>
-    <item> Q3ListBoxPixmap </item>
-    <item> Q3ListBoxText </item>
-    <item> Q3ListView </item>
-    <item> Q3ListViewItem </item>
-    <item> Q3ListViewItemIterator </item>
-    <item> Q3LocalFs </item>
-    <item> Q3MainWindow </item>
-    <item> Q3MemArray </item>
-    <item> Q3MimeSourceFactory </item>
-    <item> Q3MultiLineEdit </item>
-    <item> Q3NetworkOperation </item>
-    <item> Q3NetworkProtocol </item>
-    <item> Q3PaintDeviceMetrics </item>
-    <item> Q3Painter </item>
-    <item> Q3Picture </item>
-    <item> Q3PointArray </item>
-    <item> Q3PopupMenu </item>
-    <item> Q3Process </item>
-    <item> Q3ProgressBar </item>
-    <item> Q3ProgressDialog </item>
-    <item> Q3PtrCollection </item>
-    <item> Q3PtrDict </item>
-    <item> Q3PtrDictIterator </item>
-    <item> Q3PtrList </item>
-    <item> Q3PtrListIterator </item>
-    <item> Q3PtrQueue </item>
-    <item> Q3PtrStack </item>
-    <item> Q3PtrVector </item>
-    <item> Q3RangeControl </item>
-    <item> Q3ScrollView </item>
-    <item> Q3Semaphore </item>
-    <item> Q3ServerSocket </item>
-    <item> Q3Shared </item>
-    <item> Q3Signal </item>
-    <item> Q3SimpleRichText </item>
-    <item> Q3Socket </item>
-    <item> Q3SocketDevice </item>
-    <item> Q3SqlCursor </item>
-    <item> Q3SqlEditorFactory </item>
-    <item> Q3SqlFieldInfo </item>
-    <item> Q3SqlForm </item>
-    <item> Q3SqlPropertyMap </item>
-    <item> Q3SqlRecordInfo </item>
-    <item> Q3SqlSelectCursor </item>
-    <item> Q3StoredDrag </item>
-    <item> Q3StrIList </item>
-    <item> Q3StrList </item>
-    <item> Q3StrListIterator </item>
-    <item> Q3StyleSheet </item>
-    <item> Q3StyleSheetItem </item>
-    <item> Q3SyntaxHighlighter </item>
-    <item> Q3TabDialog </item>
-    <item> Q3Table </item>
-    <item> Q3TableItem </item>
-    <item> Q3TableSelection </item>
-    <item> Q3TextBrowser </item>
-    <item> Q3TextDrag </item>
-    <item> Q3TextEdit </item>
-    <item> Q3TextStream </item>
-    <item> Q3TextView </item>
-    <item> Q3TimeEdit </item>
-    <item> Q3ToolBar </item>
-    <item> Q3UriDrag </item>
-    <item> Q3Url </item>
-    <item> Q3VBox </item>
-    <item> Q3VBoxLayout </item>
-    <item> Q3VButtonGroup </item>
-    <item> Q3VGroupBox </item>
-    <item> Q3ValueList </item>
-    <item> Q3ValueListConstIterator </item>
-    <item> Q3ValueListIterator </item>
-    <item> Q3ValueStack </item>
-    <item> Q3ValueVector </item>
-    <item> Q3WhatsThis </item>
-    <item> Q3WidgetStack </item>
-    <item> Q3Wizard </item>
+  <list name="KatieClasses">
+    <!-- List of Katie classes obtained by:
+        `get-Qt-classes.sh 4.8`
+    -->
     <item> QAbstractAnimation </item>
     <item> QAbstractButton </item>
     <item> QAbstractEventDispatcher </item>
@@ -1560,21 +1385,20 @@
     <item> QTouchEventSequence </item>                      <!-- QTest -->
     <item> QStringListIterator </item>
     <item> QStringBuilder </item>
-    <!-- http://qt-project.org/doc/qt-4.8/qwidget.html#related-non-members -->
     <item> QWidgetList </item>
   </list>
 
-  <list name="Qt4Func">
-    <!-- Global functions list from http://qt-project.org/doc/qt-4.8/qobject.html#static-public-members -->
+  <list name="KatieFunc">
+    <!-- Global functions list -->
     <item> connect </item>
     <item> disconnect </item>
     <item> staticMetaObject </item>
     <item> tr </item>
     <item> trUtf8 </item>
-    <!-- Global functions list from http://qt-project.org/doc/qt-4.8/qobject.html#related-non-members -->
+    <!-- Global functions list -->
     <item> qFindChildren</item>
     <item> qobject_cast </item>
-    <!-- Global functions list from http://qt-project.org/doc/qt-4.8/qtglobal.html -->
+    <!-- Global functions list -->
     <item> qAbs </item>
     <item> qBound </item>
     <item> qCritical </item>
@@ -1614,7 +1438,7 @@
     <item> qt_symbian_exception2Error </item>
     <item> qt_symbian_exception2LeaveL </item>
     <item> qt_symbian_throwIfError </item>
-    <!-- Global functions list from http://qt-project.org/doc/qt-4.8/qtalgorithms.html -->
+    <!-- Global functions list -->
     <item> qBinaryFind </item>
     <item> qCopy </item>
     <item> qCopyBackward </item>
@@ -1630,7 +1454,6 @@
     <item> qStableSort </item>
     <item> qSwap </item>
     <item> qUpperBound </item>
-    <!-- Related non-members from http://qt-project.org/doc/qt-4.8/qbytearray.html -->
     <item> qChecksum </item>
     <item> qCompress </item>
     <item> qUncompress </item>
@@ -1645,13 +1468,10 @@
     <item> qstrnicmp </item>
     <item> qstrnlen </item>
     <item> qvsnprintf </item>
-    <!-- http://qt-project.org/doc/qt-4.8/qhash.html#related-non-members -->
     <item> qHash </item>
-    <!-- http://qt-project.org/doc/qt-4.8/qmetatype.html#related-non-members -->
     <item> qMetaTypeId </item>
     <item> qRegisterMetaType </item>
     <item> qRegisterMetaTypeStreamOperators </item>
-    <!-- http://qt-project.org/doc/qt-4.8/qcolor.html#related-non-members -->
     <item> qAlpha </item>
     <item> qBlue </item>
     <item> qGray </item>
@@ -1659,27 +1479,22 @@
     <item> qRed </item>
     <item> qRgb </item>
     <item> qRgba  </item>
-    <!-- http://qt-project.org/doc/qt-4.8/qcoreapplication.html#related-non-members -->
     <item> qAddPostRoutine </item>
-    <!-- http://qt-project.org/doc/qt-4.8/qdeclarativeengine.html#related-non-members -->
     <item> qmlInfo </item>
     <item> qmlRegisterInterface </item>
     <item> qmlRegisterType </item>
     <item> qmlRegisterTypeNotAvailable </item>
     <item> qmlRegisterUncreatableType </item>
-    <!-- http://qt-project.org/doc/qt-4.8/qwebpage.html#related-non-members -->
     <item> qWebKitMajorVersion </item>
     <item> qWebKitMinorVersion </item>
     <item> qWebKitVersion </item>
-    <!-- http://qt-project.org/doc/qt-4.8/qextensionmanager.html#related-non-members -->
     <item> qt_extension </item>
-    <!-- http://qt-project.org/doc/qt-4.8/qdbusargument.html#related-non-members -->
     <item> qDBusRegisterMetaType </item>
     <item> qdbus_cast </item>
   </list>
 
-  <!-- Types list from http://qt-project.org/doc/qt-4.8/qtglobal.html -->
-  <list name="Qt4Types">
+  <!-- Types list -->
+  <list name="KatieTypes">
     <item> QtMsgHandler </item>
     <item> QtMsgType </item>
     <item> QObjectList </item>
@@ -1700,39 +1515,35 @@
     <item> uint </item>
     <item> ulong </item>
     <item> ushort </item>
-    <!-- http://qt-project.org/doc/qt-4.8/qprocess.html#Q_PID-typedef -->
     <item> Q_PID </item>
-    <!-- http://qt-project.org/doc/qt-4.8/qcolor.html#related-non-members -->
     <item> QRgb </item>
-    <!-- http://qt-project.org/doc/qt-4.8/qscriptengine.html#related-non-members -->
     <item> qScriptConnect </item>
     <item> qScriptDisconnect </item>
     <item> qScriptRegisterMetaType </item>
     <item> qScriptRegisterSequenceMetaType </item>
     <item> qScriptValueFromSequence </item>
     <item> qScriptValueToSequence </item>
-    <!-- http://qt-project.org/doc/qt-4.8/qwidget.html#related-non-members -->
     <item> WId </item>
   </list>
 
   <contexts>
-    <!-- Base context for C++ and Qt highlighting to be used as standalone syntax -->
+    <!-- Base context for C++ and Katie highlighting to be used as standalone syntax -->
     <context attribute="Normal Text" lineEndContext="#stay" name="Normal">
-      <IncludeRules context="DetectQt4Extensions" />
+      <IncludeRules context="DetectKatieExtensions" />
       <IncludeRules context="##ISO C++" />
     </context>
 
     <!-- This context can be used from other (alternative) C++ syntax files
-         To use it just <IncludeRules context="DetectQt4Extensions##Qt4/C++" />
+         To use it just <IncludeRules context="DetectKatieExtensions##Katie/C++" />
       -->
-    <context attribute="Normal Text" lineEndContext="#stay" name="DetectQt4Extensions">
-      <keyword attribute="Qt4 Types" context="#stay" String="Qt4Types" />
-      <keyword attribute="Qt4 Classes" context="QtClassMember" String="Qt4Classes" />
-      <keyword attribute="Qt4 Functions" context="#stay" String="Qt4Func" />
-      <keyword attribute="Qt4 Macros" context="#stay" String="Qt4Macros" />
+    <context attribute="Normal Text" lineEndContext="#stay" name="DetectKatieExtensions">
+      <keyword attribute="Katie Types" context="#stay" String="KatieTypes" />
+      <keyword attribute="Katie Classes" context="KatieClassMember" String="KatieClasses" />
+      <keyword attribute="Katie Functions" context="#stay" String="KatieFunc" />
+      <keyword attribute="Katie Macros" context="#stay" String="KatieMacros" />
     </context>
 
-    <context attribute="Qt4 Classes" lineEndContext="#pop" name="QtClassMember">
+    <context attribute="Katie Classes" lineEndContext="#pop" name="KatieClassMember">
       <IncludeRules context="DetectNSEnd" />
     </context>
 
@@ -1746,10 +1557,10 @@
 
   <itemDatas>
     <itemData name="Normal Text"    defStyleNum="dsNormal" spellChecking="false" />
-    <itemData name="Qt4 Macros" defStyleNum="dsKeyword" color="#0095ff" selColor="#ffffff" bold="1" italic="0" spellChecking="false" />
-    <itemData name="Qt4 Types" defStyleNum="dsDataType" spellChecking="false" />
-    <itemData name="Qt4 Classes" defStyleNum="dsOthers" spellChecking="false" />
-    <itemData name="Qt4 Functions" defStyleNum="dsFunction" spellChecking="false" />
+    <itemData name="Katie Macros" defStyleNum="dsKeyword" color="#0095ff" selColor="#ffffff" bold="1" italic="0" spellChecking="false" />
+    <itemData name="Katie Types" defStyleNum="dsDataType" spellChecking="false" />
+    <itemData name="Katie Classes" defStyleNum="dsOthers" spellChecking="false" />
+    <itemData name="Katie Functions" defStyleNum="dsFunction" spellChecking="false" />
   </itemDatas>
 </highlighting>
 
