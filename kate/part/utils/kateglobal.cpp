@@ -30,14 +30,12 @@
 #include "kateschema.h"
 #include "kateschemaconfig.h"
 #include "kateconfig.h"
-#include "katescriptmanager.h"
 #include "katecmd.h"
 #include "katebuffer.h"
 #include "katepartpluginmanager.h"
 #include "katewordcompletion.h"
 #include "katekeywordcompletion.h"
 #include "spellcheck/spellcheck.h"
-#include "snippet/katesnippetglobal.h"
 
 #include <klocale.h>
 #include <kservicetypetrader.h>
@@ -67,7 +65,6 @@ KateGlobal::KateGlobal ()
              ki18n( "Embeddable editor component" ), KAboutData::License_LGPL_V2,
              ki18n( "(c) 2000-2013 The Kate Authors" ), KLocalizedString(), "http://www.kate-editor.org")
  , m_componentData (&m_aboutData)
- , m_snippetGlobal (0) // lazy constructed
  , m_sessionConfig (KGlobal::config())
 {
   // set s_self
@@ -162,9 +159,6 @@ KateGlobal::KateGlobal ()
   m_viewConfig = new KateViewConfig ();
   m_rendererConfig = new KateRendererConfig ();
 
-  // create script manager (search scripts)
-  m_scriptManager = KateScriptManager::self();
-
   //
   // plugin manager
   //
@@ -198,7 +192,6 @@ KateGlobal::KateGlobal ()
 
 KateGlobal::~KateGlobal()
 {
-  delete m_snippetGlobal;
   delete m_pluginManager;
 
   delete m_globalConfig;
@@ -215,7 +208,6 @@ KateGlobal::~KateGlobal()
   qDeleteAll (m_cmds);
 
   // cu managers
-  delete m_scriptManager;
   delete m_hlManager;
   delete m_cmdManager;
 
@@ -239,13 +231,6 @@ KTextEditor::Document *KateGlobal::createDocument ( QObject *parent )
 const QList<KTextEditor::Document*> &KateGlobal::documents ()
 {
   return m_docs;
-}
-
-KateSnippetGlobal *KateGlobal::snippetGlobal()
-{
-  if (!m_snippetGlobal)
-    m_snippetGlobal = new KateSnippetGlobal (this);  
-  return m_snippetGlobal;
 }
 
 //BEGIN KTextEditor::Editor config stuff
@@ -508,21 +493,6 @@ QObject * KateGlobal::container()
 void KateGlobal::setContainer( QObject * container )
 {m_container=container;}
 //END container interface
-
-QWidget *KateGlobal::snippetWidget ()
-{
-  return snippetGlobal()->snippetWidget ();
-}
-
-KTextEditor::TemplateScript* KateGlobal::registerTemplateScript (QObject* owner, const QString& script)
-{
-  return scriptManager()->registerTemplateScript(owner, script);
-}
-
-void KateGlobal::unregisterTemplateScript(KTextEditor::TemplateScript* templateScript)
-{
-  scriptManager()->unregisterTemplateScript(templateScript);
-}
 
 void KateGlobal::updateColorPalette()
 {

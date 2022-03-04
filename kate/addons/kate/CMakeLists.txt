@@ -28,8 +28,6 @@ add_subdirectory(openheader)
 add_subdirectory(xmltools)
 add_subdirectory(xmlcheck)
 
-add_subdirectory(snippets)
-
 add_subdirectory(tabify)
 
 add_subdirectory(close-except-like)

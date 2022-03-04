@@ -7,9 +7,6 @@ add_subdirectory(data)
 # syntax highlighting data files
 add_subdirectory(syntax/data)
 
-# jscripts for the part
-add_subdirectory(script/data)
-
 # includes
 include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}
@@ -17,7 +14,6 @@ include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}/completion
     ${CMAKE_CURRENT_SOURCE_DIR}/dialogs
     ${CMAKE_CURRENT_SOURCE_DIR}/document
-    ${CMAKE_CURRENT_SOURCE_DIR}/script
     ${CMAKE_CURRENT_SOURCE_DIR}/mode
     ${CMAKE_CURRENT_SOURCE_DIR}/render
     ${CMAKE_CURRENT_SOURCE_DIR}/search
@@ -73,19 +69,6 @@ set(katepart_PART_SRCS
     undo/kateundo.cpp
     undo/katemodifiedundo.cpp
     undo/kateundomanager.cpp
-
-    # scripting
-    script/katescript.cpp
-    script/kateindentscript.cpp
-    script/katecommandlinescript.cpp
-    script/katetemplatescript.cpp
-    script/katescriptmanager.cpp
-    script/katescriptaction.cpp
-
-    # scripting wrappers
-    script/katescriptdocument.cpp
-    script/katescriptview.cpp
-    script/katescripthelpers.cpp
 
     # mode (modemanager and co)
     mode/katemodemanager.cpp
@@ -148,7 +131,6 @@ set(katepart_PART_SRCS
     utils/kateconfig.cpp
     utils/katebookmarks.cpp
     utils/kateautoindent.cpp
-    utils/katetemplatehandler.cpp
     utils/kateprinter.cpp
     utils/kateglobal.cpp
     utils/katecmd.cpp
@@ -166,18 +148,6 @@ set(katepart_PART_SRCS
     swapfile/kateswapdiffcreator.cpp
     swapfile/kateswapfile.cpp
 
-    # snippets
-    snippet/katesnippetglobal.cpp
-    snippet/snippetview.cpp
-    snippet/snippetstore.cpp
-    snippet/snippetrepository.cpp
-    snippet/snippetfilterproxymodel.cpp
-    snippet/snippetcompletionmodel.cpp
-    snippet/snippetcompletionitem.cpp
-    snippet/snippet.cpp
-    snippet/editrepository.cpp
-    snippet/editsnippet.cpp
-
     # KDE5: move to KTextEditor
     kte5/documentcursor.cpp
 )
@@ -191,7 +161,6 @@ target_link_libraries(katepartinterfaces
     ${KDE4_KPARTS_LIBS}
     ${KDE4_KCMUTILS_LIBS}
     ${KDE4_KTEXTEDITOR_LIBS}
-    ${QT_QTSCRIPT_LIBRARY}
 )
 
 set_target_properties(
@@ -217,7 +186,6 @@ target_link_libraries(katepart
     ${KDE4_KPARTS_LIBS}
     ${KDE4_KCMUTILS_LIBS}
     ${KDE4_KTEXTEDITOR_LIBS}
-    ${QT_QTSCRIPT_LIBRARY}
     katepartinterfaces
 )
 

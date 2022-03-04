@@ -419,8 +419,6 @@ class KATEPARTINTERFACES_EXPORT KateView : public KTextEditor::View,
     void uncomment();
     void toggleComment();
     void killLine();
-    void createSnippet ();
-    void showSnippetsDialog ();
 
     /**
       Uppercases selected text, or an alphabetic character next to the cursor.

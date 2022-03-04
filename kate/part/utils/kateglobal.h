@@ -23,7 +23,6 @@
 #define __KATE_GLOBAL_H__
 
 #include "katepartinterfaces_export.h"
-#include "katescript.h"
 
 #include <ktexteditor/editor.h>
 
@@ -45,7 +44,6 @@ class KateRendererConfig;
 class KateDocument;
 class KateRenderer;
 class KateView;
-class KateScriptManager;
 class KDirWatch;
 class KateHlManager;
 class KatePartPluginManager;
@@ -53,7 +51,6 @@ class KateSpellCheckManager;
 class KateViGlobal;
 class KateWordCompletionModel;
 class KateKeywordCompletionModel;
-class KateSnippetGlobal;
 
 namespace Kate {
   class Command;
@@ -68,26 +65,13 @@ Q_DECLARE_METATYPE(KSharedConfig::Ptr)
  * or view stay around, here is the place to put things
  * which are needed and shared by all this objects ;)
  */
-class KATEPARTINTERFACES_EXPORT KateGlobal : public KTextEditor::Editor, public KTextEditor::CommandInterface, public KTextEditor::ContainerInterface, public KTextEditor::TemplateScriptRegistrar
+class KATEPARTINTERFACES_EXPORT KateGlobal : public KTextEditor::Editor, public KTextEditor::CommandInterface, public KTextEditor::ContainerInterface
 {
   Q_OBJECT
   Q_INTERFACES(KTextEditor::CommandInterface)
   Q_INTERFACES(KTextEditor::ContainerInterface)
-  Q_INTERFACES(KTextEditor::TemplateScriptRegistrar)
 
   public:
-    /**
-     * property to create a new snippet widget.
-     * caller must handle the delete then, is a variant with a widget inside
-     */
-    Q_PROPERTY (QWidget *snippetWidget READ snippetWidget)
-
-    /**
-     * Create a new snippet widget, to allow to manage and insert snippets
-     * @return new snippet widget
-     */
-    QWidget *snippetWidget ();
-
     /**
      * property to tell the editor to use a given session config for session related
      * configuration instead of KGlobal::config().
@@ -316,11 +300,6 @@ class KATEPARTINTERFACES_EXPORT KateGlobal : public KTextEditor::Editor, public 
     KateRendererConfig *rendererConfig () { return m_rendererConfig; }
 
     /**
-     * Global script collection
-     */
-    KateScriptManager *scriptManager () { return m_scriptManager; }
-
-    /**
      * hl manager
      * @return hl manager
      */
@@ -349,14 +328,6 @@ class KATEPARTINTERFACES_EXPORT KateGlobal : public KTextEditor::Editor, public 
      * @return global instance of the keyword completion model
      */
     KateKeywordCompletionModel *keywordCompletionModel () { return m_keywordCompletionModel; }
-
-    /**
-     * global instance of the snippet handling
-     * lazy constructed on first use to allow it to use the session config
-     * set after editor is constructed
-     * @return global instance of the snippet handling
-     */
-    KateSnippetGlobal *snippetGlobal();
 
     /**
      * register given command
@@ -404,12 +375,6 @@ class KATEPARTINTERFACES_EXPORT KateGlobal : public KTextEditor::Editor, public 
      * Set the associated container object
      */
     void setContainer( QObject * container );
-
-    /**
-     *  TemplateScriptRegistrar interface
-     */
-    KTextEditor::TemplateScript* registerTemplateScript (QObject* owner, const QString& script);
-    void unregisterTemplateScript(KTextEditor::TemplateScript* templateScript);
 
     /**
      * Copy text to clipboard an remember it in the history
@@ -512,11 +477,6 @@ class KATEPARTINTERFACES_EXPORT KateGlobal : public KTextEditor::Editor, public 
     QList<KTextEditor::Command *> m_cmds;
 
     /**
-     * script manager
-     */
-    KateScriptManager *m_scriptManager;
-
-    /**
      * hl manager
      */
     KateHlManager *m_hlManager;
@@ -547,11 +507,6 @@ class KATEPARTINTERFACES_EXPORT KateGlobal : public KTextEditor::Editor, public 
      * global instance of the language-specific keyword completion model
      */
     KateKeywordCompletionModel *m_keywordCompletionModel;
-
-    /**
-     * global instance of the snippet handling
-     */
-    KateSnippetGlobal *m_snippetGlobal;
 
     /**
      * session config

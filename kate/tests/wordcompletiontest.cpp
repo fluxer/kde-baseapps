@@ -27,6 +27,7 @@
 #include <KTextEditor/EditorChooser>
 
 #include <qtest_kde.h>
+#include <QScopedPointer>
 
 QTEST_KDEMAIN(WordCompletionTest, GUI)
 

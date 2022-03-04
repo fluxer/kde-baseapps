@@ -48,7 +48,6 @@
 #include "spellcheck/prefixstore.h"
 #include "spellcheck/ontheflycheck.h"
 #include "spellcheck/spellcheck.h"
-#include "katescriptmanager.h"
 #include "kateswapfile.h"
 
 #include "documentcursor.h"

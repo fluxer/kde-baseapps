@@ -24,8 +24,6 @@
 #include "kateconfig.h"
 #include "katehighlight.h"
 #include "kateglobal.h"
-#include "kateindentscript.h"
-#include "katescriptmanager.h"
 #include "kateview.h"
 #include "kateextendedattribute.h"
 #include "katedocument.h"
@@ -64,8 +62,8 @@ QStringList KateAutoIndent::listIdentifiers ()
 
 int KateAutoIndent::modeCount ()
 {
-  // inbuild modes + scripts
-  return 2 + KateGlobal::self()->scriptManager()->indentationScriptCount();
+  // inbuild modes
+  return 2;
 }
 
 
@@ -77,7 +75,7 @@ QString KateAutoIndent::modeName (int mode)
   if (mode == 1)
     return MODE_NORMAL;
 
-  return KateGlobal::self()->scriptManager()->indentationScriptByIndex(mode-2)->indentHeader().baseName();
+  return QString();
 }
 
 QString KateAutoIndent::modeDescription (int mode)
@@ -88,7 +86,7 @@ QString KateAutoIndent::modeDescription (int mode)
   if (mode == 1)
     return i18nc ("Autoindent mode", "Normal");
 
-  return i18nc ("Autoindent mode", KateGlobal::self()->scriptManager()->indentationScriptByIndex(mode-2)->indentHeader().name().toUtf8());
+  return QString();
 }
 
 QString KateAutoIndent::modeRequiredStyle(int mode)
@@ -96,7 +94,7 @@ QString KateAutoIndent::modeRequiredStyle(int mode)
   if (mode == 0 || mode == 1 || mode >= modeCount())
     return QString();
 
-  return KateGlobal::self()->scriptManager()->indentationScriptByIndex(mode-2)->indentHeader().requiredStyle();
+  return QString();
 }
 
 uint KateAutoIndent::modeNumber (const QString &name)
@@ -109,13 +107,9 @@ uint KateAutoIndent::modeNumber (const QString &name)
 }
 
 KateAutoIndent::KateAutoIndent (KateDocument *_doc)
-  : QObject(_doc), doc(_doc), m_script (0)
+  : QObject(_doc), doc(_doc)
 {
   // don't call updateConfig() here, document might is not ready for that....
-
-  // on script reload, the script pointer is invalid -> force reload
-  connect(KateGlobal::self()->scriptManager(), SIGNAL(reloaded()),
-          this, SLOT(reloadScript()));
 }
 
 KateAutoIndent::~KateAutoIndent ()
@@ -253,52 +247,9 @@ void KateAutoIndent::keepIndent ( int line )
 void KateAutoIndent::reloadScript()
 {
   // small trick to force reload
-  m_script = 0; // prevent dangling pointer
   QString currentMode = m_mode;
   m_mode = QString();
   setMode(currentMode);
-}
-
-void KateAutoIndent::scriptIndent (KateView *view, const KTextEditor::Cursor &position, QChar typedChar)
-{
-  // start edit
-  doc->pushEditState();
-  doc->editStart();
-
-  QPair<int, int> result = m_script->indent (view, position, typedChar, indentWidth);
-  int newIndentInChars = result.first;
-
-  // handle negative values special
-  if (newIndentInChars < -1) {
-    // do nothing atm
-  }
-
-  // reuse indentation of the previous line, just like the "normal" indenter
-  else if (newIndentInChars == -1)
-  {
-    // keep indent of previous line
-    keepIndent (position.line());
-  }
-
-  // get align
-  else {
-    int align = result.second;
-    if (align > 0)
-      kDebug (13060) << "Align: " << align;
-
-    // we got a positive or zero indent to use...
-    doIndent (position.line(), newIndentInChars, align);
-  }
-
-  // end edit in all cases
-  doc->editEnd ();
-  doc->popEditState();
-}
-
-bool KateAutoIndent::isStyleProvided(const KateIndentScript *script, const KateHighlighting *highlight)
-{
-  QString requiredStyle = script->indentHeader().requiredStyle();
-  return (requiredStyle.isEmpty() || requiredStyle == highlight->style());
 }
 
 void KateAutoIndent::setMode (const QString &name)
@@ -306,9 +257,6 @@ void KateAutoIndent::setMode (const QString &name)
   // bail out, already set correct mode...
   if (m_mode == name)
     return;
-
-  // cleanup
-  m_script = 0;
 
   // first, catch easy stuff... normal mode and none, easy...
   if ( name.isEmpty() || name == MODE_NONE )
@@ -323,48 +271,13 @@ void KateAutoIndent::setMode (const QString &name)
     return;
   }
 
-  // handle script indenters, if any for this name...
-  KateIndentScript *script = KateGlobal::self()->scriptManager()->indentationScript(name);
-  if ( script )
-  {
-    if (isStyleProvided(script, doc->highlight()))
-    {
-      m_script = script;
-      m_mode = name;
-
-      kDebug( 13060 ) << "mode: " << name << "accepted";
-      return;
-    }
-    else
-    {
-      kWarning( 13060 ) << "mode" << name <<
-        "requires a different highlight style: document style '" << doc->highlightingMode() << "'"
-        ", but script require '" << script->indentHeader().requiredStyle() << "'"
-        ;
-    }
-  }
-  else
-  {
-    kWarning( 13060 ) << "mode" << name << "does not exist";
-  }
-
   // Fall back to normal
   m_mode = MODE_NORMAL;
 }
 
 void KateAutoIndent::checkRequiredStyle()
 {
-  if (m_script)
-  {
-    if (!isStyleProvided(m_script, doc->highlight()))
-    {
-      kDebug( 13060 ) << "mode" << m_mode <<
-        "requires a different highlight style: document style '" << doc->highlightingMode() << "'"
-        ", but script require '" << m_script->indentHeader().requiredStyle() << "'"
-        ;
-      doc->config()->setIndentationMode(MODE_NORMAL);
-    }
-  }
+  doc->config()->setIndentationMode(MODE_NORMAL);
 }
 
 void KateAutoIndent::updateConfig ()
@@ -414,23 +327,6 @@ bool KateAutoIndent::changeIndent (const KTextEditor::Range &range, int change)
 
 void KateAutoIndent::indent (KateView *view, const KTextEditor::Range &range)
 {
-  // no script, do nothing...
-  if (!m_script)
-    return;
-
-  // we want one undo action >= START
-  doc->setUndoMergeAllEdits(true);
-
-  // loop over all lines given...
-  for (int line = range.start().line () < 0 ? 0 : range.start().line ();
-       line <= qMin (range.end().line (), doc->lines()-1); ++line)
-  {
-    // let the script indent for us...
-    scriptIndent (view, KTextEditor::Cursor (line, 0), QChar());
-  }
-
-  // we want one undo action => END
-  doc->setUndoMergeAllEdits(false);
 }
 
 void KateAutoIndent::userTypedChar (KateView *view, const KTextEditor::Cursor &position, QChar typedChar)
@@ -444,19 +340,7 @@ void KateAutoIndent::userTypedChar (KateView *view, const KTextEditor::Cursor &p
 
     // keep indent of previous line
     keepIndent (position.line());
-    return;
   }
-
-  // no script, do nothing...
-  if (!m_script)
-    return;
-
-  // does the script allow this char as trigger?
-  if (typedChar != '\n' && !m_script->triggerCharacters().contains(typedChar))
-    return;
-
-  // let the script indent for us...
-  scriptIndent (view, position, typedChar);
 }
 //END KateAutoIndent
 

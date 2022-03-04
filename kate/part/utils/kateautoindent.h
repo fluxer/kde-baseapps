@@ -29,7 +29,6 @@
 #include <kactionmenu.h>
 
 class KateDocument;
-class KateIndentScript;
 class KateHighlighting;
 
 /**
@@ -142,19 +141,6 @@ class KateAutoIndent : public QObject
      */
     void keepIndent ( int line );
 
-    /**
-     * Call the indentation script, this is a helper to be used in userTypedChar and indent
-     * \param view the view the user work at
-     * \param position current cursor position, after the inserted char...
-     * \param typedChar the inserted char, indent will just give the script '\n'
-     */
-    void scriptIndent (KateView *view, const KTextEditor::Cursor &position, QChar typedChar);
-
-    /**
-     * Return true if the required style for the script is provided by the highlighter.
-     */
-    static bool isStyleProvided(const KateIndentScript *script, const KateHighlighting *highlight);
-
   public:
     /**
      * Switch indenter
@@ -225,7 +211,6 @@ class KateAutoIndent : public QObject
     bool  useSpaces;    //!< Should we use spaces or tabs to indent
     bool  keepExtra;    //!< Keep indentation that is not on indentation boundaries
     QString m_mode;
-    KateIndentScript *m_script;
 };
 
 /**

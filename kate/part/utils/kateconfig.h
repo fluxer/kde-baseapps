@@ -716,11 +716,6 @@ class KATEPARTINTERFACES_EXPORT KateRendererConfig : public KateConfig
     bool animateBracketMatching () const;
     void setAnimateBracketMatching (bool on);
 
-    const QColor &templateBackgroundColor() const;
-    const QColor &templateEditablePlaceholderColor() const;
-    const QColor &templateFocusedEditablePlaceholderColor() const;
-    const QColor &templateNotEditablePlaceholderColor() const;
-
     const QColor& modifiedLineColor() const;
     void setModifiedLineColor(const QColor &col);
 
@@ -756,11 +751,6 @@ class KATEPARTINTERFACES_EXPORT KateRendererConfig : public KateConfig
     QColor m_spellingMistakeLineColor;
     QVector<QColor> m_lineMarkerColor;
 
-    QColor m_templateBackgroundColor;
-    QColor m_templateEditablePlaceholderColor;
-    QColor m_templateFocusedEditablePlaceholderColor;
-    QColor m_templateNotEditablePlaceholderColor;
-
     QColor m_modifiedLineColor;
     QColor m_savedLineColor;
     QColor m_searchHighlightColor;
@@ -788,7 +778,6 @@ class KATEPARTINTERFACES_EXPORT KateRendererConfig : public KateConfig
     bool m_lineNumberColorSet : 1;
     bool m_separatorColorSet : 1;
     bool m_spellingMistakeLineColorSet : 1;
-    bool m_templateColorsSet : 1;
     bool m_modifiedLineColorSet : 1;
     bool m_savedLineColorSet : 1;
     bool m_searchHighlightColorSet : 1;

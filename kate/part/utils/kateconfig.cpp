@@ -2053,7 +2053,6 @@ KateRendererConfig::KateRendererConfig ()
    m_lineNumberColorSet (false),
    m_separatorColorSet (false),
    m_spellingMistakeLineColorSet (false),
-   m_templateColorsSet (false),
    m_modifiedLineColorSet (false),
    m_savedLineColorSet (false),
    m_searchHighlightColorSet (false),
@@ -2091,7 +2090,6 @@ KateRendererConfig::KateRendererConfig (KateRenderer *renderer)
    m_lineNumberColorSet (false),
    m_separatorColorSet (false),
    m_spellingMistakeLineColorSet (false),
-   m_templateColorsSet(false),
    m_modifiedLineColorSet(false),
    m_savedLineColorSet(false),
    m_searchHighlightColorSet(false),
@@ -2248,19 +2246,6 @@ void KateRendererConfig::setSchemaInternal( const QString &schema )
   m_font = config.readEntry("Font", f);
   m_fontMetrics = QFontMetricsF (m_font);
   m_fontSet = true;
-
-  m_templateBackgroundColor = config.readEntry(QString("Color Template Background"), colors.color(Kate::TemplateBackground));
-
-  m_templateFocusedEditablePlaceholderColor = config.readEntry(QString("Color Template Focused Editable Placeholder"),
-                                                               colors.color(Kate::TemplateFocusedEditablePlaceholder));
-
-  m_templateEditablePlaceholderColor = config.readEntry(QString("Color Template Editable Placeholder"),
-                                                        colors.color(Kate::TemplateEditablePlaceholder));
-
-  m_templateNotEditablePlaceholderColor = config.readEntry(QString("Color Template Not Editable Placeholder"),
-                                                           colors.color(Kate::TemplateNotEditablePlaceholder));
-
-  m_templateColorsSet=true;
 }
 
 const QFont& KateRendererConfig::font() const
@@ -2535,38 +2520,6 @@ void KateRendererConfig::setFoldingColor (const QColor &col)
   m_foldingColor = col;
 
   configEnd ();
-}
-
-const QColor &KateRendererConfig::templateBackgroundColor() const
-{
-  if (m_templateColorsSet || isGlobal())
-    return m_templateBackgroundColor;
-
-  return s_global->templateBackgroundColor();
-}
-
-const QColor &KateRendererConfig::templateEditablePlaceholderColor() const
-{
-  if (m_templateColorsSet || isGlobal())
-    return m_templateEditablePlaceholderColor;
-
-  return s_global->templateEditablePlaceholderColor();
-}
-
-const QColor &KateRendererConfig::templateFocusedEditablePlaceholderColor() const
-{
-  if (m_templateColorsSet || isGlobal())
-    return m_templateFocusedEditablePlaceholderColor;
-
-  return s_global->templateFocusedEditablePlaceholderColor();
-}
-
-const QColor &KateRendererConfig::templateNotEditablePlaceholderColor() const
-{
-  if (m_templateColorsSet || isGlobal())
-    return m_templateNotEditablePlaceholderColor;
-
-  return s_global->templateNotEditablePlaceholderColor();
 }
 
 const QColor& KateRendererConfig::lineNumberColor() const

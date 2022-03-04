@@ -4,7 +4,6 @@ include_directories(
     ${CMAKE_SOURCE_DIR}/kate/part/completion
     ${CMAKE_SOURCE_DIR}/kate/part/dialogs
     ${CMAKE_SOURCE_DIR}/kate/part/document
-    ${CMAKE_SOURCE_DIR}/kate/part/script
     ${CMAKE_SOURCE_DIR}/kate/part/mode
     ${CMAKE_SOURCE_DIR}/kate/part/render
     ${CMAKE_SOURCE_DIR}/kate/part/search
@@ -17,8 +16,13 @@ include_directories(
     ${KDE4_KIO_INCLUDES}
 )
 
-set(KATE_TEST_LINK_LIBS ${KDE4_KDECORE_LIBS} ${QT_QTSCRIPT_LIBRARY}
-    ${QT_QTTEST_LIBRARY} ${KDE4_KCMUTILS_LIBS} ktexteditor katepartinterfaces)
+set(KATE_TEST_LINK_LIBS
+    ${KDE4_KDECORE_LIBS}
+    ${QT_QTTEST_LIBRARY}
+    ${KDE4_KCMUTILS_LIBS}
+    ktexteditor
+    katepartinterfaces
+)
 
 # buffer test
 kde4_add_test(kate-katetextbuffertest katetextbuffertest.cpp katetextbuffertest.h)
@@ -52,12 +56,6 @@ target_link_libraries(kate-plaintextsearch_test ${KATE_TEST_LINK_LIBS})
 kde4_add_test(kate-regexpsearch_test regexpsearch_test.cpp)
 
 target_link_libraries(kate-regexpsearch_test ${KATE_TEST_LINK_LIBS})
-
-########### scriptdocument test ###############
-
-kde4_add_test(kate-scriptdocument_test scriptdocument_test.cpp)
-
-target_link_libraries(kate-scriptdocument_test ${KATE_TEST_LINK_LIBS})
 
 ########### completion test ###############
 
@@ -154,17 +152,6 @@ target_link_libraries(kate-modificationsystem_test
     katepartinterfaces
 )
 
-########### templatehandler test ###############
-
-kde4_add_test(kate-templatehandler_test templatehandler_test.cpp)
-
-target_link_libraries(kate-templatehandler_test
-    ${KDE4_KDEUI_LIBS}
-    ${QT_QTTEST_LIBRARY}
-    ${KATE_TEST_LINK_LIBS}
-    katepartinterfaces
-)
-
 ########### text folding test ###############
 
 kde4_add_test(kate-codefoldingtest katefoldingtest.cpp)
@@ -175,54 +162,6 @@ target_link_libraries(kate-codefoldingtest
     ${KATE_TEST_LINK_LIBS}
     katepartinterfaces
 )
-
-########### indenting test ################
-
-set(indenttest_SRCS
-    indenttest.cpp
-    script_test_base.cpp
-    testutils.cpp
-)
-
-kde4_add_test(kate-indenttest ${indenttest_SRCS})
-
-target_link_libraries(kate-indenttest ${KATE_TEST_LINK_LIBS})
-
-########### commands test ################
-
-set(commands_test_SRCS
-    commands_test.cpp
-    script_test_base.cpp
-    testutils.cpp
-)
-
-kde4_add_test(kate-commands_test ${commands_test_SRCS})
-
-target_link_libraries(kate-commands_test ${KATE_TEST_LINK_LIBS})
-
-########### scripting test ################
-
-set(scripting_test_SRCS
-    scripting_test.cpp
-    script_test_base.cpp
-    testutils.cpp
-)
-
-kde4_add_test(kate-scripting_test ${scripting_test_SRCS})
-
-target_link_libraries(kate-scripting_test ${KATE_TEST_LINK_LIBS})
-
-########### syntax highlighting test ################
-
-set(syntax_highlighting_test_SRCS
-    syntax_highlighting_test.cpp
-    script_test_base.cpp
-    testutils.cpp
-)
-
-kde4_add_test(kate-syntax_highlighting_test ${syntax_highlighting_test_SRCS})
-
-target_link_libraries(kate-syntax_highlighting_test ${KATE_TEST_LINK_LIBS})
 
 ########### bug 286887 test ###############
 
@@ -236,43 +175,11 @@ target_link_libraries(kate-bug286887_test
     katepartinterfaces
 )
 
-########### bug 313759 test ###############
-
-set(bug313759_SRCS
-    bug313759.cpp
-    testutils.cpp
-)
-
-kde4_add_test(kate-bug313759_test ${bug313759_SRCS})
-
-target_link_libraries(kate-bug313759_test
-    ${KDE4_KDEUI_LIBS}
-    ${QT_QTTEST_LIBRARY}
-    ${KATE_TEST_LINK_LIBS}
-    katepartinterfaces
-)
-
 ########### bug 313769 test ###############
 
 kde4_add_test(kate-bug313769_test bug313769.cpp)
 
 target_link_libraries(kate-bug313769_test
-    ${KDE4_KDEUI_LIBS}
-    ${QT_QTTEST_LIBRARY}
-    ${KATE_TEST_LINK_LIBS}
-    katepartinterfaces
-)
-
-########### bug 317111 test ###############
-
-set(bug317111_SRCS
-    bug317111.cpp
-    testutils.cpp
-)
-
-kde4_add_test(kate-bug317111_test ${bug317111_SRCS})
-
-target_link_libraries(kate-bug317111_test
     ${KDE4_KDEUI_LIBS}
     ${QT_QTTEST_LIBRARY}
     ${KATE_TEST_LINK_LIBS}

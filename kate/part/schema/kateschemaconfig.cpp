@@ -216,34 +216,6 @@ QVector<KateColorItem> KateSchemaConfigColorTab::colorItemList() const
   }
 
   //
-  // text templates
-  //
-  ci.category = i18n("Text Templates & Snippets");
-
-  ci.whatsThis = QString(); // TODO: add whatsThis for text templates
-
-  ci.name = i18n("Background");
-  ci.key = "Color Template Background";
-  ci.defaultColor = colors.color(Kate::TemplateBackground);
-  items.append(ci);
-
-  ci.name = i18n("Editable Placeholder");
-  ci.key = "Color Template Editable Placeholder";
-  ci.defaultColor = colors.color(Kate::TemplateEditablePlaceholder);
-  items.append(ci);
-
-  ci.name = i18n("Focused Editable Placeholder");
-  ci.key = "Color Template Focused Editable Placeholder";
-  ci.defaultColor = colors.color(Kate::TemplateFocusedEditablePlaceholder);
-  items.append(ci);
-
-  ci.name = i18n("Not Editable Placeholder");
-  ci.key = "Color Template Not Editable Placeholder";
-  ci.defaultColor = colors.color(Kate::TemplateNotEditablePlaceholder);
-  items.append(ci);
-
-
-  //
   // finally, add all elements
   //
   return items;

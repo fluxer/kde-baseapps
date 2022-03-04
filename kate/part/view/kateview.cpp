@@ -52,12 +52,7 @@
 #include "spellcheck/spellcheckdialog.h"
 #include "spellcheck/spellingmenu.h"
 #include "katebuffer.h"
-#include "script/katescriptmanager.h"
-#include "script/katescriptaction.h"
-#include "snippet/katesnippetglobal.h"
-#include "snippet/snippetcompletionmodel.h"
 #include "katemessagewidget.h"
-#include "katetemplatehandler.h"
 
 #include <ktexteditor/messageinterface.h>
 
@@ -375,10 +370,6 @@ void KateView::setupActions()
     a = m_editRedo = ac->addAction(KStandardAction::Redo, m_doc, SLOT(redo()));
     a->setWhatsThis(i18n("Revert the most recent undo operation"));
 
-    // Tools > Scripts
-    KateScriptActionMenu* scriptActionMenu = new KateScriptActionMenu(this, i18n("&Scripts"));
-    ac->addAction("tools_scripts", scriptActionMenu);
-
     a = ac->addAction("tools_apply_wordwrap");
     a->setText(i18n("Apply &Word Wrap"));
     a->setWhatsThis(i18n("Use this command to wrap all lines of the current document which are longer than the width of the"
@@ -452,15 +443,6 @@ void KateView::setupActions()
     a->setWhatsThis(i18n("Manually invoke command completion, usually by using a shortcut bound to this action."));
     a->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Space));
     connect(a, SIGNAL(triggered(bool)), SLOT(userInvokedCompletion()));
-
-    a = ac->addAction( "tools_create_snippet" );
-    a->setIcon (KIcon("document-new"));
-    a->setText( i18n("Create Snippet") );
-    connect(a, SIGNAL(triggered(bool)), SLOT(createSnippet()));
-
-    a = ac->addAction( "tools_snippets" );
-    a->setText( i18n("Snippets...") );
-    connect(a, SIGNAL(triggered(bool)), SLOT(showSnippetsDialog()));
   }
   else
   {
@@ -703,16 +685,6 @@ void KateView::setupActions()
       action->setShortcutContext(Qt::WidgetWithChildrenShortcut);
 
   connect (this, SIGNAL(selectionChanged(KTextEditor::View*)), this, SLOT(slotSelectionChanged()));
-}
-
-void KateView::createSnippet ()
-{
-  KateGlobal::self()->snippetGlobal()->createSnippet (this);
-}
-
-void KateView::showSnippetsDialog ()
-{
-  KateGlobal::self()->snippetGlobal()->showDialog (this);
 }
 
 void KateView::slotConfigDialog ()
@@ -1194,7 +1166,7 @@ void KateView::slotReadWriteChanged ()
       << "tools_uncomment" << "tools_toggle_comment" << "tools_uppercase" << "tools_lowercase"
       << "tools_capitalize" << "tools_join_lines" << "tools_apply_wordwrap"
       << "tools_spelling_from_cursor"
-      << "tools_spelling_selection" << "tools_create_snippet";
+      << "tools_spelling_selection";
 
   QAction *a = 0;
   for (int z = 0; z < l.size(); z++)
@@ -1526,8 +1498,6 @@ void KateView::slotSelectionChanged ()
 
   m_cut->setEnabled (selection() || m_config->smartCopyCut() );
 
-  actionCollection()->action ("tools_create_snippet")->setEnabled (selection());
-
   m_spell->updateActions ();
 }
 
@@ -1614,11 +1584,6 @@ void KateView::updateConfig ()
     registerCompletionModel (KateGlobal::self()->wordCompletionModel());
   if (config()->keywordCompletion ())
     registerCompletionModel (KateGlobal::self()->keywordCompletionModel());
-
-  // add snippet completion, later with option
-  unregisterCompletionModel (KateGlobal::self()->snippetGlobal()->completionModel());
-  if (1)
-    registerCompletionModel (KateGlobal::self()->snippetGlobal()->completionModel());
 
   m_cut->setEnabled(m_doc->isReadWrite() && (selection() || m_config->smartCopyCut()));
   m_copy->setEnabled(selection() || m_config->smartCopyCut());
@@ -2169,15 +2134,6 @@ bool KateView::insertTemplateTextImplementation ( const KTextEditor::Cursor& c,
   if (!m_doc->isReadWrite())
     return false;
 
-  /**
-   * get script
-   */
-  KateTemplateScript* kateTemplateScript = KateGlobal::self()->scriptManager()->templateScript(templateScript);
-
-  /**
-   * the handler will delete itself when necessary
-   */
-  new KateTemplateHandler(this, c, templateString, initialValues, m_doc->undoManager(), kateTemplateScript);
   return true;
 }
 
