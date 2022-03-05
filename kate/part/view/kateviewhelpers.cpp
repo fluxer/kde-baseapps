@@ -956,9 +956,6 @@ void KateCmdLineEdit::slotReturnPressed ( const QString& text )
 
   QString cmd = text.mid( n );
 
-  // Parse any leading range expression, and strip it (and maybe do some other transforms on the command).
-  QString leadingRangeExpression;
-
   // Built in help: if the command starts with "help", [try to] show some help
   if ( cmd.startsWith( QLatin1String("help") ) )
   {
@@ -974,7 +971,7 @@ void KateCmdLineEdit::slotReturnPressed ( const QString& text )
   {
     KTextEditor::Command *p = KateCmd::self()->queryCommand (cmd);
 
-    m_oldText = leadingRangeExpression + cmd;
+    m_oldText = cmd;
     m_msgMode = true;
 
     // the following commands changes the focus themselves, so bar should be hidden before execution.
@@ -987,6 +984,7 @@ void KateCmdLineEdit::slotReturnPressed ( const QString& text )
       if (p)
       {
         QString msg;
+        p->exec(m_view, cmd, msg);
 
           if (msg.length() > 0) {
             if (msg.contains('\n')) {
