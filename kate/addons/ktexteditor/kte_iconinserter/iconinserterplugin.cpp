@@ -43,7 +43,7 @@ IconInserterPluginView::IconInserterPluginView(IconInserterPlugin *plugin, KText
 	setComponentData( IconInserterPluginFactory::componentData() );
 	setXMLFile("ktexteditor_iconinserterui.rc");
 	QAction *a=actionCollection()->addAction("iconinserter_inserticon",this,SLOT(insertIcon()));	
-	a->setIcon(KIcon("kcoloredit"));
+	a->setIcon(KIcon("insert-image"));
 	a->setText(i18n ("Insert KIcon-Code"));
 	a->setToolTip (i18n ("Insert Code for KIcon-Creation"));
 	a->setWhatsThis (i18n ("<b>IconInserter</b><p> Select an icon and use it as a KIcon in your source code."));
