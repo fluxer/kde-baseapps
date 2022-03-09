@@ -325,7 +325,7 @@ void KQuery::processQuery( const KFileItem &file)
       {
         if (!metaKeyRx.exactMatch(*it))
           continue;
-        strmetakeycontent=metadatas.item(*it).value().toString();
+        strmetakeycontent=metadatas.item(*it).value();
         if(strmetakeycontent.indexOf(m_metainfo)!=-1)
         {
           foundmeta=true;
