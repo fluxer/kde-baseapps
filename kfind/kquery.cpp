@@ -320,7 +320,7 @@ void KQuery::processQuery( const KFileItem &file)
       QStringList metakeys;
       QString strmetakeycontent;
 
-      metakeys = metadatas.supportedKeys();
+      metakeys = metadatas.keys();
       for (QStringList::const_iterator it = metakeys.constBegin(); it != metakeys.constEnd(); ++it )
       {
         if (!metaKeyRx.exactMatch(*it))
