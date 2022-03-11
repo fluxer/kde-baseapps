@@ -21,18 +21,13 @@
 #ifndef KATE_TEXTLOADER_H
 #define KATE_TEXTLOADER_H
 
+#include <kateglobal.h>
+
 #include <QtCore/QString>
 #include <QtCore/QFile>
 #include <QCryptographicHash>
 
 namespace Kate {
-
-/**
- * loader block size, load 256 kb at once per default
- * if file size is smaller, fall back to file size
- * must be a multiple of 2
- */
-static const qint64 KATE_FILE_LOADER_BS  = 256 * 1024;
 
 /**
  * File Loader, will handle reading of files + detecting encoding
@@ -54,7 +49,7 @@ class TextLoader
       , m_lastLineStart (0)
       , m_eol (TextBuffer::eolUnknown) // no eol type detected atm
       , m_buffer (KATE_FILE_LOADER_BS, 0)
-      , m_digest (QCryptographicHash::Sha1)
+      , m_digest (KATE_HASH_ALGORITHM)
       , m_converterState (0)
       , m_bomFound (false)
       , m_firstRead (true)

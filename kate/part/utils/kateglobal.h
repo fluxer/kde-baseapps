@@ -32,7 +32,8 @@
 #include <ktexteditor/commandinterface.h>
 #include <ktexteditor/containerinterface.h>
 #include <ktexteditor/templateinterface2.h>
-#include <QtCore/QList>
+#include <QList>
+#include <QCryptographicHash>
 
 class KateCmd;
 class KateModeManager;
@@ -57,6 +58,22 @@ namespace Kate {
 }
 
 Q_DECLARE_METATYPE(KSharedConfig::Ptr)
+
+/**
+ * loader block size, load 256 kb at once per default
+ * if file size is smaller, fall back to file size
+ * must be a multiple of 2
+ */
+static const qint64 KATE_FILE_LOADER_BS = (256 * 1024);
+
+/**
+ * loader hash sum algorithm
+ */
+#if QT_VERSION >= 0x041200
+static const QCryptographicHash::Algorithm KATE_HASH_ALGORITHM = QCryptographicHash::BLAKE3;
+#else
+static const QCryptographicHash::Algorithm KATE_HASH_ALGORITHM = QCryptographicHash::Sha1;
+#endif
 
 /**
  * KateGlobal

@@ -4401,9 +4401,9 @@ bool KateDocument::createDigest ()
     QFile f ( url().toLocalFile() );
     if ( f.open( QIODevice::ReadOnly) )
     {
-      QCryptographicHash crypto(QCryptographicHash::Sha1);
+      QCryptographicHash crypto(KATE_HASH_ALGORITHM);
       while(!f.atEnd())
-        crypto.addData (f.read(256 * 1024));
+        crypto.addData (f.read(KATE_FILE_LOADER_BS));
       sha1sum = crypto.result();
     }
   }
