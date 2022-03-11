@@ -25,10 +25,6 @@
 #include <QtCore/QFile>
 #include <QCryptographicHash>
 
-// on the fly compression
-#include <kfilterdev.h>
-#include <kmimetype.h>
-
 namespace Kate {
 
 /**
@@ -63,15 +59,8 @@ class TextLoader
       , m_bomFound (false)
       , m_firstRead (true)
     {
-      // try to get mimetype for on the fly decompression, don't rely on filename!
-      QFile testMime (filename);
-      if (testMime.open (QIODevice::ReadOnly))
-        m_mimeType = KMimeType::findByContent (&testMime)->name ();
-      else
-        m_mimeType = KMimeType::findByPath (filename, 0, false)->name ();
-
-      // construct filter device
-      m_file = KFilterDev::deviceForFile (filename, m_mimeType, false);
+      // construct file device
+      m_file = new QFile (filename);
     }
 
     /**
@@ -128,12 +117,6 @@ class TextLoader
      * @return byte order mark found?
      */
     bool byteOrderMarkFound () const { return m_bomFound; }
-
-    /**
-     * mime type used to create filter dev
-     * @return mime-type of filter device
-     */
-    const QString &mimeTypeForFilterDev () const { return m_mimeType; }
 
     /**
      * internal unicode data array
@@ -354,7 +337,6 @@ class TextLoader
     int m_position;
     int m_lastLineStart;
     TextBuffer::EndOfLineMode m_eol;
-    QString m_mimeType;
     QIODevice *m_file;
     QByteArray m_buffer;
     QCryptographicHash m_digest;

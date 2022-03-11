@@ -523,12 +523,6 @@ class KATEPARTINTERFACES_EXPORT TextBuffer : public QObject {
     QTextCodec *m_textCodec;
 
     /**
-     * Mime-Type used for transparent compression/decompression support
-     * Set by load(), reset by clear()
-     */
-    QString m_mimeTypeForFilterDev;
-
-    /**
      * Should byte order mark be created?
      */
     bool m_generateByteOrderMark;

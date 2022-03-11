@@ -36,11 +36,6 @@
 #include <kglobal.h>
 #include <kde_file.h>
 
-// on the fly compression
-#include <kfilterdev.h>
-#include <kmimetype.h>
-#include <kde_file.h>
-
 #include <QtCore/QFile>
 #include <QtCore/QTextStream>
 #include <QtCore/QTimer>

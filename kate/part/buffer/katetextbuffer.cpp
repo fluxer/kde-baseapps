@@ -136,9 +136,6 @@ void TextBuffer::clear ()
   // reset bom detection
   m_generateByteOrderMark = false;
 
-  // reset the filter device
-  m_mimeTypeForFilterDev = "text/plain";
-
   // clear edit history
   m_history.clear ();
 
@@ -665,9 +662,6 @@ bool TextBuffer::load (const QString &filename, bool &encodingErrors, bool &tooL
   if (file.eol() != eolUnknown)
     setEndOfLineMode (file.eol());
 
-  // remember mime type for filter device
-  m_mimeTypeForFilterDev = file.mimeTypeForFilterDev ();
-
   // assert that one line is there!
   Q_ASSERT (m_lines > 0);
 
@@ -677,9 +671,6 @@ bool TextBuffer::load (const QString &filename, bool &encodingErrors, bool &tooL
 
   // report BOM
   kDebug (13020) << (file.byteOrderMarkFound () ? "Found" : "Didn't find") << "byte order mark";
-
-  // report filter device mime-type
-  kDebug (13020) << "used filter device for mime-type" << m_mimeTypeForFilterDev;
 
   // emit success
   emit loaded (filename, encodingErrors);
@@ -734,27 +725,9 @@ bool TextBuffer::save (const QString &filename)
   }
 
   /**
-   * construct correct filter device and try to open
-   */
-  QIODevice *file = KFilterDev::device (&saveFile, m_mimeTypeForFilterDev, false);
-  const bool deleteFile = file;
-  if (!file)
-    file = &saveFile;
-
-  /**
-   * try to open, if new file
-   */
-  if (deleteFile) {
-    if (!file->open (QIODevice::WriteOnly | QIODevice::Truncate)) {
-      delete file;
-      return false;
-    }
-  }
-
-  /**
    * construct stream + disable Unicode headers
    */
-  QTextStream stream (file);
+  QTextStream stream (&saveFile);
   stream.setCodec (QTextCodec::codecForName("UTF-16"));
 
   // set the correct codec
@@ -794,12 +767,6 @@ bool TextBuffer::save (const QString &filename)
 
   // flush stream
   stream.flush ();
-
-  // close and delete file
-  if (deleteFile) {
-    file->close ();
-    delete file;
-  }
 
   // flush file
   if (!saveFile.flush())
