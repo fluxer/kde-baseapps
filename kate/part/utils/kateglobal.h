@@ -70,7 +70,7 @@ static const qint64 KATE_FILE_LOADER_BS = (256 * 1024);
  * loader hash sum algorithm
  */
 #if QT_VERSION >= 0x041200
-static const QCryptographicHash::Algorithm KATE_HASH_ALGORITHM = QCryptographicHash::BLAKE3;
+static const QCryptographicHash::Algorithm KATE_HASH_ALGORITHM = QCryptographicHash::KAT;
 #else
 static const QCryptographicHash::Algorithm KATE_HASH_ALGORITHM = QCryptographicHash::Sha1;
 #endif
