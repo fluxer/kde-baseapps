@@ -27,7 +27,6 @@
 // Qt
 #include <QtCore/QStringList>
 #include <QtCore/QHash>
-#include <QtCore/QUuid>
 #include <QtCore/QSize>
 #include <QtCore/QProcess>
 #include <QtCore/QTimer>
@@ -520,10 +519,8 @@ public slots:
      */
     Q_SCRIPTABLE QString title(int role) const;
 
-    /** Returns the "friendly" version of the QUuid of this session.
-    * This is a QUuid with the braces and dashes removed, so it cannot be
-    * used to construct a new QUuid. The same text appears in the
-    * SHELL_SESSION_ID environment variable.
+    /** Returns the "friendly" version of the ID of this session.
+    * The same text appears in the SHELL_SESSION_ID environment variable.
     */
     Q_SCRIPTABLE QString shellSessionId() const;
 
@@ -701,7 +698,7 @@ private:
     bool updateForegroundProcessInfo();
     ProcessInfo* updateWorkingDirectory();
 
-    QUuid            _uniqueIdentifier; // SHELL_SESSION_ID
+    QByteArray    _uniqueIdentifier; // SHELL_SESSION_ID
 
     Pty*          _shellProcess;
     Emulation*    _emulation;

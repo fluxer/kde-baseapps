@@ -63,6 +63,15 @@ using namespace Konsole;
 
 int Session::lastSessionId = 0;
 
+static inline QByteArray createSessionID()
+{
+#if QT_VERSION >= 0x041200
+    return qRandomUuid();
+#else
+    return QByteArray::number(qrand());
+#endif
+}
+
 Session::Session(QObject* parent) :
     QObject(parent)
     , _shellProcess(0)
@@ -84,7 +93,7 @@ Session::Session(QObject* parent) :
     , _zmodemProgress(0)
     , _hasDarkBackground(false)
 {
-    _uniqueIdentifier = QUuid::createUuid();
+    _uniqueIdentifier = createSessionID();
 
     //prepare DBus communication
     new SessionAdaptor(this);
@@ -386,10 +395,7 @@ void Session::terminalWarning(const QString& message)
 
 QString Session::shellSessionId() const
 {
-    QString friendlyUuid(_uniqueIdentifier.toString());
-    friendlyUuid.remove('-').remove('{').remove('}');
-
-    return friendlyUuid;
+    return QString::fromLatin1(_uniqueIdentifier.constData(), _uniqueIdentifier.size());
 }
 
 void Session::run()
@@ -408,7 +414,7 @@ void Session::run()
         kWarning() << "No command line arguments specified.";
     }
     if (_uniqueIdentifier.isNull()) {
-        _uniqueIdentifier = QUuid::createUuid();
+        _uniqueIdentifier = createSessionID();
     }
 
     const int CHOICE_COUNT = 3;
@@ -1390,7 +1396,7 @@ void Session::saveSession(KConfigGroup& group)
     group.writePathEntry("WorkingDir", currentWorkingDirectory());
     group.writeEntry("LocalTab",       tabTitleFormat(LocalTabTitle));
     group.writeEntry("RemoteTab",      tabTitleFormat(RemoteTabTitle));
-    group.writeEntry("SessionGuid",    _uniqueIdentifier.toString());
+    group.writeEntry("SessionGuid",    _uniqueIdentifier);
     group.writeEntry("Encoding",       QString(codec()));
 }
 
@@ -1405,7 +1411,7 @@ void Session::restoreSession(KConfigGroup& group)
     value = group.readEntry("RemoteTab");
     if (!value.isEmpty()) setTabTitleFormat(RemoteTabTitle, value);
     value = group.readEntry("SessionGuid");
-    if (!value.isEmpty()) _uniqueIdentifier = QUuid(value);
+    if (!value.isEmpty()) _uniqueIdentifier = value.toLatin1();
     value = group.readEntry("Encoding");
     if (!value.isEmpty()) setCodec(value.toUtf8());
 }
