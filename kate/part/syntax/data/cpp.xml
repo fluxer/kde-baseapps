@@ -1457,6 +1457,7 @@
     <item> qChecksum </item>
     <item> qCompress </item>
     <item> qUncompress </item>
+    <item> qRandomUuid </item>
     <item> qsnprintf </item>
     <item> qstrcmp </item>
     <item> qstrcpy </item>
