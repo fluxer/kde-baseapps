@@ -30,15 +30,6 @@ class KProxyDialog : public KCModule
     Q_OBJECT
 
 public:
-    enum DisplayUrlFlag {
-        HideNone = 0x00,
-        HideHttpUrlScheme = 0x01,
-        HideHttpsUrlScheme = 0x02,
-        HideFtpUrlScheme = 0x04,
-        HideSocksUrlScheme = 0x08
-    };
-    Q_DECLARE_FLAGS(DisplayUrlFlags, DisplayUrlFlag)
-
     KProxyDialog(QWidget* parent, const QVariantList& args);
     ~KProxyDialog();
 
@@ -66,7 +57,5 @@ private:
     QStringList mNoProxyForList;
     QMap<QString, QString> mProxyMap;
 };
-
-Q_DECLARE_OPERATORS_FOR_FLAGS (KProxyDialog::DisplayUrlFlags)
 
 #endif // KPROXYDLG_H

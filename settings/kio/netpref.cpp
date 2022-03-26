@@ -82,6 +82,20 @@ KIOPreferences::KIOPreferences(QWidget *parent, const QVariantList &)
     connect(cb_ftpMarkPartial, SIGNAL(toggled(bool)), SLOT(configChanged()));
     ftpLayout->addWidget(cb_ftpMarkPartial);
 
+    gb_Misc = new QGroupBox( i18n( "Miscellaneous" ), this );
+    mainLayout->addWidget( gb_Misc );
+    QFormLayout* miscLayout = new QFormLayout(gb_Misc);
+
+    sb_minimumKeepSize = new KIntNumInput( 0, this );
+    sb_minimumKeepSize->setSuffix( ki18np( " bytes", " bytes" ) );
+    connect(sb_minimumKeepSize, SIGNAL(valueChanged(int)), SLOT(configChanged()));
+    miscLayout->addRow(i18n( "Minimum keep size:" ), sb_minimumKeepSize);
+
+    cb_AutoResume = new QCheckBox( this );
+    cb_AutoResume->setWhatsThis( i18n("<p>Transfers will be auto-resumed.<p>") );
+    connect(cb_AutoResume, SIGNAL(toggled(bool)), SLOT(configChanged()));
+    miscLayout->addRow(i18n( "Enable auto-resuming" ), cb_AutoResume);
+
     mainLayout->addStretch( 1 );
 }
 
@@ -106,6 +120,10 @@ void KIOPreferences::load()
   KConfig config( "kio_ftprc", KConfig::NoGlobals );
   cb_ftpEnablePasv->setChecked( !config.group("").readEntry( "DisablePassiveMode", false ) );
   cb_ftpMarkPartial->setChecked( config.group("").readEntry( "MarkPartial", true ) );
+
+  sb_minimumKeepSize->setValue( proto.minimumKeepSize() );
+  cb_AutoResume->setChecked( proto.autoResume() );
+
   emit changed( false );
 }
 
@@ -121,6 +139,9 @@ void KIOPreferences::save()
   config.group("").writeEntry( "MarkPartial", cb_ftpMarkPartial->isChecked() );
   config.sync();
 
+  KSaveIOConfig::setMinimumKeepSize( sb_minimumKeepSize->value() );
+  KSaveIOConfig::setAutoResume( cb_AutoResume->isChecked() );
+
   KSaveIOConfig::updateRunningIOSlaves(this);
 
   emit changed( false );
@@ -135,6 +156,9 @@ void KIOPreferences::defaults()
 
   cb_ftpEnablePasv->setChecked( true );
   cb_ftpMarkPartial->setChecked( true );
+
+  sb_minimumKeepSize->setValue( DEFAULT_MINIMUM_KEEP_SIZE );
+  cb_AutoResume->setChecked( false );
 
   emit changed(true);
 }

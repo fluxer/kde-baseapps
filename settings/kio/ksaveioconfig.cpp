@@ -60,19 +60,6 @@ static KConfig* config()
   return d->config;
 }
 
-int KSaveIOConfig::proxyDisplayUrlFlags()
-{
-    KConfigGroup cfg (config(), QString());
-    return cfg.readEntry("ProxyUrlDisplayFlags", 0);
-}
-
-void KSaveIOConfig::setProxyDisplayUrlFlags (int flags)
-{
-    KConfigGroup cfg (config(), QString());
-    cfg.writeEntry("ProxyUrlDisplayFlags", flags);
-    cfg.sync();
-}
-
 void KSaveIOConfig::reparseConfiguration ()
 {
   delete d->config;

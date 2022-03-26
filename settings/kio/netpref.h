@@ -28,6 +28,8 @@ protected Q_SLOTS:
 private:
     QGroupBox* gb_Ftp;
     QGroupBox* gb_Timeout;
+    QGroupBox* gb_Misc;
+
     QCheckBox* cb_ftpEnablePasv;
     QCheckBox* cb_ftpMarkPartial;
 
@@ -35,6 +37,9 @@ private:
     KIntNumInput* sb_proxyConnect;
     KIntNumInput* sb_serverConnect;
     KIntNumInput* sb_serverResponse;
+
+    KIntNumInput* sb_minimumKeepSize;
+    QCheckBox* cb_AutoResume;
 };
 
 #endif // NETPREF_H

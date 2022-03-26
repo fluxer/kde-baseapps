@@ -26,9 +26,6 @@
 
 namespace KSaveIOConfig
 {
-int proxyDisplayUrlFlags();
-void setProxyDisplayUrlFlags (int);
-
 /* Reload config file (kioslaverc) */
 void reparseConfiguration();
 

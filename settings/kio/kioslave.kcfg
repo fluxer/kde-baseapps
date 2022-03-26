@@ -28,6 +28,12 @@
      <min>2</min>
      <max>3600</max>
    </entry>
+   <entry name="MinimumKeepSize" type="UInt" >
+     <default>5120</default>
+   </entry>
+   <entry name="AutoResume" type="Bool" >
+     <default>false</default>
+   </entry>
  </group>
  <group name="Proxy Settings" >
    <entry name="AuthMode" type="String" >
