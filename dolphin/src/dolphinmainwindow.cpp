@@ -326,15 +326,6 @@ void DolphinMainWindow::slotSelectionChanged(const KFileItemList& selection)
 {
     updateEditActions();
 
-    const int selectedUrlsCount = m_viewTab.at(m_tabIndex)->selectedItemsCount();
-
-    QAction* compareFilesAction = actionCollection()->action("compare_files");
-    if (selectedUrlsCount == 2) {
-        compareFilesAction->setEnabled(isKompareInstalled());
-    } else {
-        compareFilesAction->setEnabled(false);
-    }
-
     emit selectionChanged(selection);
 }
 
@@ -824,26 +815,6 @@ void DolphinMainWindow::goHome(Qt::MouseButtons buttons)
     }
 }
 
-void DolphinMainWindow::compareFiles()
-{
-    const KFileItemList items = m_viewTab.at(m_tabIndex)->selectedItems();
-    if (items.count() != 2) {
-        // The action is disabled in this case, but it could have been triggered
-        // via D-Bus, see https://bugs.kde.org/show_bug.cgi?id=325517
-        return;
-    }
-
-    KUrl urlA = items.at(0).url();
-    KUrl urlB = items.at(1).url();
-
-    QString command("kompare -c \"");
-    command.append(urlA.pathOrUrl());
-    command.append("\" \"");
-    command.append(urlB.pathOrUrl());
-    command.append('\"');
-    KRun::runCommand(command, "Kompare", "kompare", this);
-}
-
 void DolphinMainWindow::toggleShowMenuBar()
 {
     const bool visible = menuBar()->isVisible();
@@ -1172,7 +1143,6 @@ void DolphinMainWindow::updateControlMenu()
     KMenu* toolsMenu = new KMenu(i18nc("@action:inmenu", "Tools"), menu);
     connect(menu, SIGNAL(aboutToHide()), toolsMenu, SLOT(deleteLater()));
     toolsMenu->addAction(ac->action("show_filter_bar"));
-    toolsMenu->addAction(ac->action("compare_files"));
     toolsMenu->addAction(ac->action("open_terminal"));
     toolsMenu->addAction(ac->action("change_remote_encoding"));
     menu->addMenu(toolsMenu);
@@ -1393,12 +1363,6 @@ void DolphinMainWindow::setupActions()
     showFilterBar->setIcon(KIcon("view-filter"));
     showFilterBar->setShortcut(Qt::CTRL | Qt::Key_I);
     connect(showFilterBar, SIGNAL(triggered()), this, SLOT(showFilterBar()));
-
-    KAction* compareFiles = actionCollection()->addAction("compare_files");
-    compareFiles->setText(i18nc("@action:inmenu Tools", "Compare Files"));
-    compareFiles->setIcon(KIcon("kompare"));
-    compareFiles->setEnabled(false);
-    connect(compareFiles, SIGNAL(triggered()), this, SLOT(compareFiles()));
 
     KAction* openTerminal = actionCollection()->addAction("open_terminal");
     openTerminal->setText(i18nc("@action:inmenu Tools", "Open Terminal"));
@@ -1770,19 +1734,6 @@ QString DolphinMainWindow::tabName(const KUrl& url) const
         }
     }
     return name;
-}
-
-bool DolphinMainWindow::isKompareInstalled() const
-{
-    static bool initialized = false;
-    static bool installed = false;
-    if (!initialized) {
-        // TODO: maybe replace this approach later by using a menu
-        // plugin like kdiff3plugin.cpp
-        installed = !KStandardDirs::findExe("kompare").isEmpty();
-        initialized = true;
-    }
-    return installed;
 }
 
 void DolphinMainWindow::setUrlAsCaption(const KUrl& url)

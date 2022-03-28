@@ -299,9 +299,6 @@ private slots:
      */
     void goHome(Qt::MouseButtons buttons);
 
-    /** Opens Kompare for 2 selected files. */
-    void compareFiles();
-
     /**
      * Hides the menu bar if it is visible, makes the menu bar
      * visible if it is hidden.
@@ -506,9 +503,6 @@ private:
 
     /** Returns the name of the tab for the URL \a url. */
     QString tabName(const KUrl& url) const;
-
-
-    bool isKompareInstalled() const;
 
     /**
      * Sets the window caption to url.fileName() if this is non-empty,

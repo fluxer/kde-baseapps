@@ -44,7 +44,6 @@
         <Menu name="tools">
             <Action name="show_filter_bar" />
             <Action name="open_terminal" />
-            <Action name="compare_files" />
             <Action name="change_remote_encoding" />
         </Menu>
     </MenuBar>

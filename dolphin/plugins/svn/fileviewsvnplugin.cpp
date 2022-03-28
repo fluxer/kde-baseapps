@@ -47,7 +47,6 @@ FileViewSvnPlugin::FileViewSvnPlugin(QObject* parent, const QList<QVariant>& arg
     m_pendingOperation(false),
     m_versionInfoHash(),
     m_updateAction(0),
-    m_showLocalChangesAction(0),
     m_commitAction(0),
     m_addAction(0),
     m_removeAction(0),
@@ -68,12 +67,6 @@ FileViewSvnPlugin::FileViewSvnPlugin(QObject* parent, const QList<QVariant>& arg
     m_updateAction->setText(i18nc("@item:inmenu", "SVN Update"));
     connect(m_updateAction, SIGNAL(triggered()),
             this, SLOT(updateFiles()));
-
-    m_showLocalChangesAction = new KAction(this);
-    m_showLocalChangesAction->setIcon(KIcon("view-split-left-right"));
-    m_showLocalChangesAction->setText(i18nc("@item:inmenu", "Show Local SVN Changes"));
-    connect(m_showLocalChangesAction, SIGNAL(triggered()),
-            this, SLOT(showLocalChanges()));
 
     m_commitAction = new KAction(this);
     m_commitAction->setIcon(KIcon("svn-commit"));
@@ -287,17 +280,6 @@ void FileViewSvnPlugin::updateFiles()
                    i18nc("@info:status", "Updated SVN repository."));
 }
 
-void FileViewSvnPlugin::showLocalChanges()
-{
-    Q_ASSERT(!m_contextDir.isEmpty());
-    Q_ASSERT(m_contextItems.isEmpty());
-
-    const QString command = QLatin1String("mkfifo /tmp/fifo; svn diff ") +
-                            KShell::quoteArg(m_contextDir) +
-                            QLatin1String(" > /tmp/fifo & kompare /tmp/fifo; rm /tmp/fifo");
-    KRun::runCommand(command, 0);
-}
-
 void FileViewSvnPlugin::commitFiles()
 {
     KDialog dialog(0, Qt::Dialog);
@@ -437,12 +419,10 @@ QList<QAction*> FileViewSvnPlugin::directoryActions(const QString& directory) co
     // startSvnCommandProcess()).
     const bool enabled = !m_pendingOperation;
     m_updateAction->setEnabled(enabled);
-    m_showLocalChangesAction->setEnabled(enabled);
     m_commitAction->setEnabled(enabled);
 
     QList<QAction*> actions;
     actions.append(m_updateAction);
-    actions.append(m_showLocalChangesAction);
     actions.append(m_commitAction);
     actions.append(m_showUpdatesAction);
     return actions;

@@ -83,7 +83,6 @@ private:
     QHash<QString, ItemVersion> m_versionInfoHash;
 
     QAction* m_updateAction;
-    QAction* m_showLocalChangesAction;
     QAction* m_commitAction;
     QAction* m_addAction;
     QAction* m_removeAction;
