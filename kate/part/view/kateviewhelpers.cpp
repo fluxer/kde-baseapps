@@ -984,25 +984,24 @@ void KateCmdLineEdit::slotReturnPressed ( const QString& text )
       if (p)
       {
         QString msg;
-        p->exec(m_view, cmd, msg);
+        const bool cmdresult = p->exec(m_view, cmd, msg);
 
-          if (msg.length() > 0) {
-            if (msg.contains('\n')) {
-              // multiline error, use widget with more space
-              QWhatsThis::showText(mapToGlobal(QPoint(0,0)), msg);
-            } else {
-              setText(msg);
-            }
+        if (msg.length() > 0) {
+          if (msg.contains('\n')) {
+            // multiline error, use widget with more space
+            QWhatsThis::showText(mapToGlobal(QPoint(0,0)), msg);
           } else {
-            setText (i18n ("Command \"%1\" failed.",  cmd));
+            setText(msg);
           }
-          KNotification::beep();
+        } else if (!cmdresult) {
+          setText (i18n ("Command \"%1\" failed.",  cmd));
+        }
       }
       else
       {
         setText (i18n ("No such command: \"%1\"",  cmd));
-        KNotification::beep();
       }
+      KNotification::beep();
   }
 
   // clean up
