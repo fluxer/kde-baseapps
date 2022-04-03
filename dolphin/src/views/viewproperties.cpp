@@ -28,8 +28,7 @@
 #include <KStandardDirs>
 #include <KUrl>
 
-#include <QCryptographicHash>
-#include <QtCore/qdatetime.h>
+#include <QDateTime>
 #include <QFile>
 #include <QFileInfo>
 
@@ -459,8 +458,7 @@ bool ViewProperties::isPartOfHome(const QString& filePath)
 
 QString ViewProperties::directoryHashForUrl(const KUrl& url)
 {
-    const QByteArray hashValue = QCryptographicHash::hash(url.prettyUrl().toLatin1(),
-                                                     QCryptographicHash::Sha1);
+    const QByteArray hashValue = url.prettyUrl().toLatin1().toBase64();
     QString hashString = hashValue.toBase64();
     hashString.replace('/', '-');
     return hashString;
