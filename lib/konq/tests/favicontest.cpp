@@ -73,11 +73,6 @@ void FavIconTest::waitForSignal()
 
 void FavIconTest::initTestCase()
 {
-    // Disable kwallet, I don't want kwallet wizard to come up ;)
-    KConfig cfg("kwalletrc");
-    KConfigGroup cg( &cfg, "Wallet");
-    cg.writeEntry("First Use", false);
-    cg.writeEntry("Enabled", false);
 }
 
 // To avoid hitting the cache, we first set the icon to s_altIconUrl (ibm.com),
