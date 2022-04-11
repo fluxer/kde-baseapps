@@ -264,7 +264,8 @@ QString Session::currentWorkingDirectory()
 
     return _currentWorkingDir;
 }
-ProcessInfo* Session::updateWorkingDirectory()
+
+void Session::updateWorkingDirectory()
 {
     updateSessionProcessInfo();
 
@@ -273,8 +274,6 @@ ProcessInfo* Session::updateWorkingDirectory()
         _currentWorkingDir = currentDir;
         emit currentDirectoryChanged(_currentWorkingDir);
     }
-
-    return 0; // not used - for BIC in KDE 4.14.x
 }
 
 QList<TerminalDisplay*> Session::views() const
