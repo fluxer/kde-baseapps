@@ -784,12 +784,12 @@ bool Session::closeInForceWay()
     }
 }
 
-void Session::sendText(const QString& text) const
+void Session::sendText(const QString& text)
 {
     _emulation->sendText(text);
 }
 
-void Session::runCommand(const QString& command) const
+void Session::runCommand(const QString& command)
 {
     _emulation->sendText(command + '\n');
 }
