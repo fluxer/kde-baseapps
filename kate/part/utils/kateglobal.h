@@ -34,6 +34,7 @@
 #include <ktexteditor/templateinterface2.h>
 #include <QList>
 #include <QCryptographicHash>
+#include <qplatformdefs.h>
 
 class KateCmd;
 class KateModeManager;
@@ -64,7 +65,7 @@ Q_DECLARE_METATYPE(KSharedConfig::Ptr)
  * if file size is smaller, fall back to file size
  * must be a multiple of 2
  */
-static const qint64 KATE_FILE_LOADER_BS = (256 * 1024);
+static const qint64 KATE_FILE_LOADER_BS = QT_BUFFSIZE;
 
 /**
  * loader hash sum algorithm
