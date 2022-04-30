@@ -47,7 +47,6 @@ signals:
     void setShowUpdatesChecked(bool checked);
 private slots:
     void updateFiles();
-    void showLocalChanges();
     void commitFiles();
     void addFiles();
     void removeFiles();
