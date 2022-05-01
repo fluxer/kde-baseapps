@@ -72,7 +72,7 @@ void TerminalInterfaceTest::testTerminalInterface()
     // #1A - Test signal currentDirectoryChanged(QString)
     currentDirectory = QString("/tmp");
     terminal->sendInput("cd " + currentDirectory + '\n');
-    QTest::qWait(2000);
+    QTest::qWait(4000);
     QCOMPARE(stateSpy.count(), 1);
 
     // Correct result?
