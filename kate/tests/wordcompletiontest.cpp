@@ -31,7 +31,7 @@
 
 QTEST_KDEMAIN(WordCompletionTest, GUI)
 
-static const int count = 500000;
+static const int count = 50000;
 
 using namespace KTextEditor;
 
