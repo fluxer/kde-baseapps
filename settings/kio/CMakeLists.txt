@@ -2,7 +2,6 @@
 
 set(kcm_kio_PART_SRCS
     main.cpp
-    smbrodlg.cpp
     kproxydlg.cpp
     netpref.cpp
     bookmarks.cpp
@@ -25,7 +24,6 @@ install(
 
 install(
     FILES
-    smb.desktop
     bookmarks.desktop
     netpref.desktop
     proxy.desktop
