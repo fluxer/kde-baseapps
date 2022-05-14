@@ -18,7 +18,7 @@ build_script:
 
     sudo apt-get update -qq
 
-    sudo apt-get install -qq cmake katie-dev katanalibs sudo ctags cppcheck lrzsz libxml2-utils locate ccache
+    sudo apt-get install -qq cmake katie-dev katanalibs sudo ctags cppcheck lrzsz locate ccache
 
     export PATH="/usr/lib/ccache/:$PATH"
 
