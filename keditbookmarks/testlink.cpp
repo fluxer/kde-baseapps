@@ -66,7 +66,6 @@ void TestLinkItr::doAction()
 {
     kDebug();
     m_job = KIO::get(currentBookmark().url(), KIO::Reload, KIO::HideProgressInfo);
-    m_job->addMetaData( QString("errorPage"), QString("false") );
 
     connect(m_job, SIGNAL(result(KJob*)),
             this, SLOT(slotJobResult(KJob*)));
@@ -83,8 +82,8 @@ void TestLinkItr::slotJobResult(KJob *job)
     KIO::TransferJob *transfer = static_cast<KIO::TransferJob *>(job);
     const QString modDate = transfer->queryMetaData("modified");
 
-    if (transfer->error() || transfer->isErrorPage()) {
-        kDebug()<<"***********"<<transfer->error()<<"  "<<transfer->isErrorPage()<<endl;
+    if (transfer->error() != 0) {
+        kDebug()<<"***********"<<transfer->error()<<endl;
         // can we assume that errorString will contain no entities?
         QString err = transfer->errorString();
         err.replace("\n", " ");

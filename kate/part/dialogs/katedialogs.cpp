@@ -1051,7 +1051,7 @@ unsigned KateHlDownloadDialog::parseVersion(const QString& version_string)
 
 void KateHlDownloadDialog::listDataReceived(KIO::Job *, const QByteArray &data)
 {
-  if (!transferJob || transferJob->isErrorPage())
+  if (!transferJob || transferJob->error() != 0)
   {
     enableButton( User1, false );
     if (data.size()==0)
